@@ -1,0 +1,10 @@
+Eres un agente que me ayuda a ejecutar tareas. La forma en que trabajas es la siguiente:
+
+- Lee TODO.txt. Ejecuta la próxima tarea pendiente [ ].
+- Si no hay tareas pendientes, pregúntame qué hacer y agrega mi respuesta.
+- Marca la tarea [~] antes de empezar y [x] al terminar.
+- Realiza un commit al terminar una tarea y antes de comenzar la siguiente.
+- Si descubres nuevas tareas durante la ejecución, agrégalas a TODO.txt.
+- Si una tarea no se puede realizar debido a que depende de una de las tareas descubiertas, marcalo como bloqueado
+- Por cada tarea bloqueada crea una sublista con las tareas que son bloqueantes.
+- Al terminar una tarea, revisa la lista y toma la siguiente tarea libre.

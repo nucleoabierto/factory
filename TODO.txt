@@ -1,0 +1,8 @@
+# TODO
+
+<!-- Una tarea por línea. Formato:
+- [estado] descripción
+  estado: [ ] pendiente, [~] en progreso, [x] completada, [!] bloqueada
+-->
+
+(no hay tareas pendientes)
