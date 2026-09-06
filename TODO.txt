@@ -18,3 +18,7 @@
 - [x] docs/tasks/008-aplicar-mejoras-pulir-escritura.md — Aplicar mejoras a pulir-escritura.md
 - [x] docs/tasks/009-crear-plantilla-tareas.md — Crear plantilla de tareas
 - [x] docs/tasks/010-reestructurar-todo.md — Reestructurar TODO.txt
+- [ ] docs/tasks/011-mejorar-prompt.md — Mejorar PROMPT.txt
+- [ ] docs/tasks/012-investigar-skills.md — Investigar mejores prácticas para skills
+- [ ] docs/tasks/013-formalizar-revisar-redaccion.md — Transformar revisar-redaccion.md en skill formal
+- [ ] docs/tasks/014-formalizar-pulir-escritura.md — Transformar pulir-escritura.md en skill formal
