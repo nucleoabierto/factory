@@ -8,7 +8,7 @@ Cuando se necesite corregir ortografía, gramática evidente, puntuación, tipog
 
 ## Cuándo no usar
 
-- Para evaluar o mejorar el estilo (claridad, concisión, coherencia, cohesión, tono, riqueza léxica): usar el skill de revisión de redacción.
+- Para evaluar o mejorar el estilo (claridad, concisión, coherencia, cohesión, tono, riqueza léxica): usar el *skill* de revisión de redacción (ver `revisar-redaccion.md`).
 - Para reorganizar el orden de las ideas o reformular la progresión temática.
 - Para evaluar el contenido, la veracidad o la calidad sustantiva de las ideas.
 
@@ -23,41 +23,41 @@ El texto corregido, con las correcciones aplicadas directamente. No se devuelve 
 
 ## Fuentes de autoridad
 
-1. **RAE-ASALE — Ortografía de la lengua española (2010)** — Normas de ortografía, puntuación, mayúsculas, signos ortográficos y ortotipografía.
-2. **RAE-ASALE — Diccionario panhispánico de dudas (DPD)** — Resolución de dudas frecuentes: concordancia, régimen, leísmo, dequeísmo, impropiedades léxicas, extranjerismos, topónimos.
-3. **RAE-ASALE — Nueva gramática de la lengua española** — Normas gramaticales: concordancia, régimen verbal, tiempos verbales, pronombres.
-4. **RAE — Diccionario de la lengua española (DLE)** — Forma correcta de las palabras, acepciones, género y pluralización.
+1. **RAE-ASALE** — *Ortografía de la lengua española* (2010) — Normas de ortografía, puntuación, mayúsculas, signos ortográficos y ortotipografía.
+2. **RAE-ASALE** — *Diccionario panhispánico de dudas* (DPD) — Resolución de dudas frecuentes: concordancia, régimen, leísmo, dequeísmo, impropiedades léxicas, extranjerismos, topónimos.
+3. **RAE-ASALE** — *Nueva gramática de la lengua española* — Normas gramaticales: concordancia, régimen verbal, tiempos verbales, pronombres.
+4. **RAE** — *Diccionario de la lengua española* (DLE) — Forma correcta de las palabras, acepciones, género y pluralización.
 5. **FundéuRAE** — Recomendaciones sobre dudas lingüísticas frecuentes, usos asentados, anglicismos, mayúsculas, abreviaturas y cifras.
 6. **Libro de estilo configurable (opcional)** — Si el usuario proporciona criterios editoriales específicos, estos prevalecen sobre las preferencias no normativas de la RAE y la Fundéu.
 
 ## Criterios de aplicación
 
 - **Corrección directa:** los errores normativos inequívocos se corrigen directamente en el texto.
-- **Casos dudosos:** cuando una corrección es ambigua o admite múltiples interpretaciones, se señala sin aplicar. El pulido mecánico no decide entre opciones válidas; solo corrige lo que es claramente erróneo.
+- **Casos dudosos:** cuando una corrección es ambigua o admite múltiples interpretaciones, se señala sin aplicar: el pulido mecánico solo corrige lo claramente erróneo.
 - **Consistencia sobre preferencia:** cuando no hay una norma estricta (p. ej., tipo de comillas, uso de cursivas), se unifica el criterio a lo largo del texto, eligiendo la opción más frecuente o la recomendada por la RAE/Fundéu.
 - **Mínima intervención:** se corrige solo lo necesario; no se reescriben oraciones ni se altera la estructura del texto.
 - **Respeto a la voz del autor:** no se modifican elecciones estilísticas legítimas.
 
-## Qué corrige
+## Qué corrige y señala
 
 ### Ortografía
 
 - **Uso de letras:** corrige errores en la representación gráfica de los fonemas (b/v, g/j, h, c/s/z, ll/y, x, etc.).
-- **Tildes:** corrige acentuación errónea (faltas de tilde, tildes innecesarias, tilde diacrítica, diéresis).
+- **Tildes:** normaliza la acentuación (faltas de tilde, tildes innecesarias, tilde diacrítica, diéresis).
 - **Unión y separación de palabras:** corrige escritura incorrecta en una o varias palabras (aparte / a parte; porque / por qué; sino / si no; conque / con que; etc.).
-- **Mayúsculas y minúsculas:** corrige el uso normativo de mayúsculas (iniciales, nombres propios, siglas, cargos, instituciones, topónimos) y minúsculas según la Ortografía de la lengua española (RAE-ASALE).
+- **Mayúsculas y minúsculas:** corrige el uso normativo de mayúsculas (iniciales, nombres propios, siglas, cargos, instituciones, topónimos) y minúsculas según la *Ortografía de la lengua española* (RAE-ASALE).
 
 ### Gramática evidente
 
-Corrige errores gramaticales no ambiguos, donde la forma correcta es inequívoca según la norma. Los casos dudosos se señalan sin aplicar.
+Corrige errores gramaticales inequívocos según la norma. Los casos dudosos se rigen por el criterio general de «Casos dudosos».
 
 - **Concordancia:** corrige errores de concordancia nominal (género y número entre sustantivo, adjetivos y determinantes) y verbal (número y persona entre sujeto y verbo).
-- **Régimen verbal:** corrige errores en el régimen de los verbos (preposiciones que rigen cada verbo: depender de, consistir en, pensar en, etc.).
+- **Régimen verbal:** ajusta errores en el régimen de los verbos (preposiciones que rigen cada verbo: depender de, consistir en, pensar en, etc.).
 - **Tiempos verbales:** corrige usos incorrectos de los tiempos verbales y correlaciones temporales erróneas.
-- **Dequeísmo y queísmo:** corrige "de que" innecesario y "que" sin la preposición requerida.
+- **Dequeísmo y queísmo:** corrige *de que* innecesario y *que* sin la preposición requerida.
 - **Leísmo, laísmo y loísmo:** corrige usos no admisibles de los pronombres átonos.
-- **Verbos impersonales:** corrige concordancias erróneas con "haber" impersonal ("habían" por "había" + sustantivo plural) y otros verbos impersonales.
-- **Formas verbales:** corrige formas verbales incorrectas (inflexiones, participios irregulares, etc.).
+- **Verbos impersonales:** corrige concordancias erróneas con *haber* impersonal (*habían* por *había* + sustantivo plural) y otros verbos impersonales.
+- **Formas verbales:** sanea formas verbales incorrectas (inflexiones, participios irregulares, etc.).
 - **Pronombres:** corrige la colocación y forma de los pronombres átonos (enclíticos/proclíticos).
 
 ### Puntuación
@@ -80,46 +80,44 @@ Corrige errores gramaticales no ambiguos, donde la forma correcta es inequívoca
 
 ### Formato Markdown
 
-Cuando el texto esté en Markdown, aplica además las siguientes reglas objetivas de formato:
+Cuando el texto esté en Markdown, se aplican además las siguientes reglas objetivas de formato:
 
-- **Encabezados:** usa encabezados ATX (`#`, `##`, `###`) y nunca saltas niveles (`##` → `####`). Los encabezados son estructura, no tamaño de fuente. No termines encabezados con signo de puntuación.
+- **Encabezados:** se usan encabezados ATX (`#`, `##`, `###`) y nunca se saltan niveles (`##` → `####`). Los encabezados son estructura, no tamaño de fuente. No se terminan los encabezados con signo de puntuación.
 - **Un solo H1:** el documento tiene exactamente un encabezado de nivel 1 (`#`).
-- **Líneas en blanco:** deja una línea en blanco antes y después de cada encabezado, lista, bloque de código, cita y tabla.
-- **Tablas vs. listas:** usa tablas solo para datos tabulares compactos (celdas con pocas palabras, estructura regular). Si una celda necesita más de un par de frases, o contiene listas, párrafos o bloques de código, sustituye la tabla por una lista de definición o encabezados con texto. Tablas con 20+ filas: considera dividirlas por secciones con encabezados descriptivos.
-- **Listas:** usa un único marcador (`-`) en todo el documento. Indenta los elementos anidados con dos espacios. No mezcles `-`, `*` y `+`.
-- **Negritas:** usa `**negrita**` solo para términos importantes que se introducen o avisos críticos. No uses negritas como sustituto de encabezados. No pongas bloques enteros en negrita. Si todo es negrita, nada destaca.
-- **Cursivas:** usa `*cursiva*` para énfasis ligero, títulos de obras, extranjerismos no adaptados y metalenguaje. No combines estilos inline (`**negrita** + *cursiva* + `código``) en el mismo fragmento.
-- **Emojis:** redúcelos al mínimo. Unos pocos pueden ayudar a la orientación; el exceso distrae y resta profesionalidad. No dependas solo de emojis para indicar estado o tipo (incluye siempre texto).
-- **TOC (tabla de contenidos):** en documentos largos (más de 3-4 pantallas), incluye un TOC. Prefiere la generación automática (remark-toc, md-toc, extensión TOC de Python-Markdown) sobre la manual para evitar desincronización. El TOC se genera a partir de los encabezados H2-H6 como lista anidada de enlaces ancla.
-- **Consistencia de estilo:** elige un estilo (`-` para listas, `**` para negrita, `*` para cursiva, ATX para encabezados) y manténlo en todo el documento.
+- **Líneas en blanco:** se deja una línea en blanco antes y después de cada encabezado, lista, bloque de código, cita y tabla.
+- **Tablas vs. listas:** se usan tablas solo para datos tabulares compactos (celdas con pocas palabras, estructura regular). Si una celda necesita más de un par de frases, o contiene listas, párrafos o bloques de código, se sustituye la tabla por una lista de definición o encabezados con texto. En tablas con más de 20 filas, se considera dividirlas por secciones con encabezados descriptivos.
+- **Listas:** se usa un único marcador (`-`) en todo el documento. Se indentan los elementos anidados con dos espacios. No se mezclan `-`, `*` y `+`.
+- **Negritas:** se usa `**negrita**` solo para términos importantes que se introducen o avisos críticos. No se usan negritas como sustituto de encabezados. No se ponen bloques enteros en negrita. Si todo es negrita, nada destaca.
+- **Cursivas:** se usa `*cursiva*` para énfasis ligero, títulos de obras, extranjerismos no adaptados y metalenguaje. No se combinan estilos en línea (`**negrita**` + `*cursiva*` + `código`) en el mismo fragmento.
+- **Emojis:** se reducen al mínimo. Unos pocos pueden ayudar a la orientación; el exceso distrae y resta profesionalidad. No se depende solo de emojis para indicar estado o tipo (se incluye siempre texto).
+- **Índice (tabla de contenidos):** en documentos largos (más de 3-4 pantallas), se incluye un índice. Se prefiere la generación automática (mediante extensiones como remark-toc, md-toc o la extensión TOC de Python-Markdown, que generan un índice a partir de los encabezados) sobre la manual, para evitar desincronización. El índice se genera a partir de los encabezados H2-H6 como lista anidada de enlaces ancla.
+- **Consistencia de estilo:** se elige un estilo (`-` para listas, `**` para negrita, `*` para cursiva, ATX para encabezados) y se mantiene en todo el documento.
 
 ### Edición objetiva de estructura
 
-Aplica criterios mecánicos objetivos sobre la presentación del texto. No reescribe ni reorganiza ideas; solo aplica reglas de edición verificables.
+Aplica reglas de edición objetivas sobre la presentación del texto. No reescribe ni reorganiza ideas. Estas detecciones se basan en umbrales objetivos (longitud en palabras, recuento de incisos) y no constituyen juicio estilístico; la evaluación cualitativa corresponde a la revisión de redacción.
 
-- **Párrafos excesivamente largos:** detecta párrafos que superen las 10 líneas (o ~150 palabras) y, si existe un punto natural objetivo (cambio de idea marcado por un punto y seguido con transición temática clara), los parte en ese punto. No parte párrafos si no hay un punto natural evidente; en ese caso, los señala sin intervenir.
-- **Párrafos de una sola oración:** detecta párrafos formados por una sola oración muy breve (menos de 10 palabras) que no cumplan una función narrativa clara (como un énfasis o una transición). Si son fragmentos sueltos sin propósito, los señala para posible fusión con el párrafo adyacente.
-- **Oraciones excesivamente largas:** detecta oraciones que superen las 40 palabras con subordinación abundante o más de dos incisos. Las señala sin reescribirlas (la reescritura es propia de la revisión de redacción), pero aplica correcciones de puntuación si las hay.
+- **Párrafos excesivamente largos:** detecta párrafos que superen las 10 líneas o 150 palabras. Si existe un punto natural objetivo —cambio de idea con transición temática clara—, los parte en ese punto. Si no lo hay, los señala sin intervenir.
+- **Párrafos de una sola oración:** detecta párrafos de una sola oración breve (menos de 10 palabras) sin función narrativa clara —ni énfasis ni transición—. Si son fragmentos sueltos sin propósito, los señala para posible fusión con el párrafo adyacente.
+- **Oraciones excesivamente largas:** detecta oraciones que superen las 40 palabras con subordinación abundante o más de dos incisos. Las señala sin reescribirlas; la reescritura corresponde a la revisión de redacción. No obstante, aplica correcciones de puntuación si las hay.
 - **Secuencias monótonas:** detecta secuencias de 3 o más oraciones consecutivas con la misma longitud (±3 palabras) y la misma estructura sintáctica (sujeto-verbo-complemento). Las señala sin reescribir.
 - **Espaciado entre párrafos:** unifica el espaciado entre párrafos (un único salto de línea en texto plano, o una línea en blanco en Markdown).
 
 ## Qué no corrige
 
 - **Estilo:** no evalúa ni modifica la claridad, la concisión, la coherencia, la cohesión, el tono ni la riqueza léxica. Estos son principios subjetivos propios de la revisión de redacción.
-- **Estructura del discurso:** no reorganiza el orden de las ideas ni reformula la progresión temática. Solo aplica criterios mecánicos objetivos de presentación (partir párrafos largos en puntos naturales, señalar oraciones excesivamente largas).
+- **Estructura del discurso y reescritura:** no reorganiza el orden de las ideas ni reformula oraciones para mejorar su redacción. Solo aplica reglas de edición objetivas (partir párrafos largos en puntos naturales, señalar oraciones excesivamente largas, unificar formato).
 - **Contenido:** no evalúa la veracidad, la originalidad ni la calidad sustantiva de las ideas.
-- **Reescritura:** no reformula oraciones para mejorar su redacción; solo corrige errores normativos y técnicos, y aplica reglas de edición objetivas (partir párrafos, unificar formato).
 - **Voz del autor:** no altera la voz ni el estilo del autor.
 
 ## Procedimiento
 
 1. **Leer el texto completo** una vez para identificar el criterio tipográfico predominante (tipo de comillas, uso de cursivas, estilo de cifras) y si el texto está en Markdown.
-2. **Recorrer el texto** aplicando las correcciones en el siguiente orden:
+2. **Recorrer el texto** aplicando las correcciones en el siguiente orden, señalando sin aplicar los casos dudosos que surjan en cada fase:
    1. Ortografía (letras, tildes, unión/separación, mayúsculas).
    2. Gramática evidente (concordancia, régimen, tiempos verbales, pronombres).
    3. Puntuación (signos, comas, posición).
    4. Tipografía y ortotipografía (comillas, guiones, cursivas, espacios, abreviaturas, cifras, consistencia).
-   5. Formato Markdown (encabezados, tablas vs. listas, negritas, cursivas, emojis, TOC, consistencia de estilo) — solo si el texto está en Markdown.
+   5. Formato Markdown (encabezados, tablas vs. listas, negritas, cursivas, emojis, índice, consistencia de estilo) — solo si el texto está en Markdown.
    6. Edición objetiva de estructura (partir párrafos largos, señalar oraciones excesivamente largas, detectar secuencias monótonas, unificar espaciado).
-3. **Señalar los casos dudosos** que no se corrigen automáticamente, sin alterar el texto en esos puntos.
-4. **Devolver el texto corregido.**
+3. **Devolver el texto corregido.**
