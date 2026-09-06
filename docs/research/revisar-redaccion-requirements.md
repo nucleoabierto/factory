@@ -42,6 +42,15 @@ Un informe de revisión estructurado que incluye:
 - **Información encontrable:** evalúa si la estructura permite al lector localizar fácilmente la información que busca (principio ISO 24495-1).
 - **Autosuficiencia del enunciado:** verifica que cada oración o párrafo pueda entenderse por sí mismo sin requerir que el lector reconstruya información implícita dispersa en otras partes del texto (principio de Integridad de SBVR).
 - **Explicitud de matices y excepciones:** detecta afirmaciones que entran en tensión o contradicción con otras partes del texto sin que el matiz o la excepción se hagan explícitos (principio de Accommodation de SBVR).
+- **Progresión narrativa:** evalúa si la estructura sigue una progresión clara (presentación, desarrollo, nudo, clímax, desenlace) o si la disposición de las ideas responde a una lógica orgánica coherente. No impone una estructura fija, pero verifica que la elegida funcione.
+- **Pacing (ritmo del discurso):** evalúa si el ritmo del texto es adecuado al propósito. El ritmo se controla con la longitud de párrafos y oraciones, la densidad descriptiva y la velocidad de los acontecimientos. Párrafos largos ralentizan; cortos aceleran. Detecta descompensaciones (p. ej., secciones excesivamente densas donde el lector pierde el hilo, o secciones demasiado fragmentadas que producen descohesión).
+
+### Nivel rítmico
+
+- **Variación de longitud oracional:** evalúa si hay variación en la longitud de las oraciones. La monotonía (oraciones de la misma longitud y estructura en serie) produce fatiga y aburre al lector. La mezcla de oraciones cortas (impacto, urgencia) y largas (atmósfera, profundidad) crea ritmo y mantiene el engagement.
+- **Variación de estructura sintáctica:** detecta secuencias de oraciones con la misma estructura (sujeto-verbo-complemento repetido) que producen efecto metrónomo. Sugiere alternar estructuras para crear interés.
+- **Ritmo y propósito:** evalúa si el ritmo sirve al propósito del texto. Un texto argumentativo puede beneficiarse de oraciones más largas y articuladas; uno informativo, de oraciones más directas. Detecta cuando el ritmo contradice la intención (p. ej., oraciones lentas y densas en un texto que debería ser ágil).
+- **Fatiga del lector:** identifica tramos del texto donde la acumulación de oraciones largas, subordinación profunda o densidad informativa puede producir fatiga. Sugiere puntos de respiro (oraciones cortas, párrafos breves) para aliviar la carga cognitiva.
 
 ### Nivel morfosintáctico
 
@@ -214,3 +223,7 @@ La revisión preserva la voz y el estilo del autor como principio general. **Cua
 - Paz, O. *El laberinto de la soledad*; *El arco y la lira*.
 - Azorín (J. Martínez Ruiz). *El escritor*; artículos en *ABC*.
 - Zambrano, M. *De la aurora*; *Claros del bosque*; cuadernos inéditos.
+- Gary Provost. "Sentence variety and rhythm" (variación de longitud oracional como recurso rítmico para evitar la fatiga del lector).
+- RAE-ASALE. *Ortografía de la lengua española*, cap. III, §3.1: "Puntuación y prosodia" (relación entre signos de puntuación, pausas y ritmo del enunciado).
+- Novela Studio. "How to use prose rhythm to keep readers hooked" (ritmo, pacing y estructura de párrafos).
+- Taller Internacional de Escritura Narrativa. "El ritmo narrativo: clave para novelas atrapantes" (longitud de párrafos y oraciones como control del ritmo).

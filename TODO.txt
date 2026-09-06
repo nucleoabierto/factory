@@ -8,7 +8,7 @@
 
 - [x] Investigar qué debe hacer un skill de revisión de redacción: qué principios aplica, qué transforma, qué no toca, qué recibe y qué devuelve. Realiza esta investigación en conjunto del usuario. Comienza por hacer preguntas para determinar el camino de la búsqueda y refinar el resultado hasta obtener la aprobación del usuario para documentar las descubrimientos. Escribir el resultado de la investigación en docs/research/revisar-redaccion-requirements.md
 - [x] Escribir un archivo llamado revisar-redaccion.md como instrucciones que un agente pueda seguir para revisar documentos usando la información generada durante la investigación
-- [ ] Investigar qué debe hacer un skill de pulido mecánico de escritura: qué corrige, qué no toca, qué recibe y qué devuelve. Realiza un proceso similar al de revisar redacción. Escribir los resultados de la investigación en docs/research/pulir-escritura-requirements.md
+- [x] Investigar qué debe hacer un skill de pulido mecánico de escritura: qué corrige, qué no toca, qué recibe y qué devuelve. Realiza un proceso similar al de revisar redacción. Escribir los resultados de la investigación en docs/research/pulir-escritura-requirements.md
 - [ ] Escribir pulir-escritura.md de forma similar al archivo de revisar redacción 
 - [ ] Aplicar revisar-redaccion.md y pulir-escritura.md sobre revisar-redaccion.md. Documenta los hallazgos en docs/reviews/revisar-redaccion-review.md junto a una lista de mejoras que se pueden aplicar
 - [ ] Usa la lista de mejoras en docs/reviews/revisar-redaccion-review.md y corrige el archivo de revisar-redaccion.md 
