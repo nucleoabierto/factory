@@ -5,4 +5,14 @@
   estado: [ ] pendiente, [~] en progreso, [x] completada, [!] bloqueada
 -->
 
-(no hay tareas pendientes)
+
+- [ ] Investigar qué debe hacer un skill de revisión de redacción: qué principios aplica, qué transforma, qué no toca, qué recibe y qué devuelve. Realiza esta investigación en conjunto del usuario. Comienza por hacer preguntas para determinar el camino de la búsqueda y refinar el resultado hasta obtener la aprobación del usuario para documentar las descubrimientos. Escribir el resultado de la investigación en docs/research/revisar-redaccion-requirements.md
+- [ ] Escribir un archivo llamado revisar-redaccion.md como instrucciones que un agente pueda seguir para revisar documentos usando la información generada durante la investigación
+- [ ] Investigar qué debe hacer un skill de pulido mecánico de escritura: qué corrige, qué no toca, qué recibe y qué devuelve. Realiza un proceso similar al de revisar redacción. Escribir los resultados de la investigación en docs/research/pulir-escritura-requirements.md
+- [ ] Escribir pulir-escritura.md de forma similar al archivo de revisar redacción 
+- [ ] Aplicar revisar-redaccion.md y pulir-escritura.md sobre revisar-redaccion.md. Documenta los hallazgos en docs/reviews/revisar-redaccion-review.md junto a una lista de mejoras que se pueden aplicar
+- [ ] Usa la lista de mejoras en docs/reviews/revisar-redaccion-review.md y corrige el archivo de revisar-redaccion.md 
+- [ ] Aplicar revisar-redaccion y pulir-escritura sobre pulir-escritura.md. Documentar los hallazgos en docs/reviews/pulir-escritura-review.md junto a una lista de mejoras que se pueden aplicar
+- [ ] Usa la lista de mejoras en docs/reviews/pulir-escritura-review.md y corrige el archivo de pulir-escritura.md 
+- [ ] Usando los principios de revisar-redaccion y pulir-escritura, y las lecciones que aprendiste al ejecutar las tareas anteriores, genera un formato de tareas que permita capturar el objetivo de una tarea, las dependencias y su resultado esperado, de forma que sea posible no solo ejecutarla sino también evaluar la calidad del resultado. Guarda la plantilla en docs/templates/task.txt
+- [ ] Ajusta TODO.txt para que sea una colección de tareas que se documentan usando la plantilla docs/templates/task.txt. Despues de este ajuste TODO.txt debe apuntar a los archivos de las tareas individuales para que el agente use el archivo como un control de avance y los detalles se conserven en un archivo individual. Antes de hacer el cambio, propón la estructura: cómo se nombra cada archivo de tarea, cómo TODO.txt los referencia, qué campos incluye cada archivo. Espera mi aprobación antes de realizar el cambio
