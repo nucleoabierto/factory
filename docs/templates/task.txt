@@ -1,0 +1,35 @@
+# [Título de la tarea]
+
+## Estado
+
+[ ] Pendiente | [~] En progreso | [x] Completada | [!] Bloqueada
+
+## Objetivo
+
+[Descripción concisa del objetivo de la tarea. Qué se quiere lograr y por qué.]
+
+## Dependencias
+
+- [Lista de tareas que deben completarse antes de empezar esta, o "Ninguna" si no tiene.]
+
+## Entrada
+
+- [Qué se necesita para ejecutar la tarea: archivos, contexto, decisiones del usuario, etc.]
+
+## Resultado esperado
+
+- [Descripción del resultado que se debe producir: archivo(s) a crear o modificar, contenido esperado, formato.]
+
+## Criterios de calidad
+
+- [Lista de criterios verificables que permiten evaluar si el resultado es correcto. Cada criterio debe ser objetivo y comprobable.]
+
+## Procedimiento sugerido
+
+1. [Paso 1]
+2. [Paso 2]
+3. [Paso 3]
+
+## Notas
+
+- [Observaciones, decisiones tomadas durante la ejecución, o instrucciones adicionales.]
