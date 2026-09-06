@@ -8,7 +8,7 @@ Cuando se necesite corregir ortografía, gramática evidente, puntuación, tipog
 
 ## Cuándo no usar
 
-- Para evaluar o mejorar el estilo (claridad, concisión, coherencia, cohesión, tono, riqueza léxica): usar el *skill* de revisión de redacción (ver `revisar-redaccion.md`).
+- Para evaluar o mejorar el estilo (claridad, concisión, coherencia, cohesión, tono, riqueza léxica): usar el skill de revisión de redacción.
 - Para reorganizar el orden de las ideas o reformular la progresión temática.
 - Para evaluar el contenido, la veracidad o la calidad sustantiva de las ideas.
 

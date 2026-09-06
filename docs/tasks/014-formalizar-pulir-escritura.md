@@ -17,7 +17,7 @@ Realizar el mismo proceso de transformación que con `revisar-redaccion.md`, apl
 
 - `docs/research/skills-best-practices.md`
 - `pulir-escritura.md`
-- `revisar-redaccion.md` (ya transformado, como referencia)
+- `.agents/skills/revisar-redaccion/SKILL.md` (ya transformado, como referencia)
 
 ## Resultado esperado
 
