@@ -45,3 +45,4 @@
 - [x] docs/tasks/026-definir-proyecto.md — Definir el proyecto
 - [ ] docs/tasks/027-escribir-vision-proyecto.md — Escribir documento de visión del proyecto
 - [ ] docs/tasks/028-escribir-readme.md — Escribir README del proyecto
+- [ ] docs/tasks/029-pulir-skill-commit.md — Pulir skill de commit para explicar qué y por qué, no el contenido
