@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -41,3 +41,8 @@ Crear un skill formal que enseñe a registrar decisiones de diseño siguiendo el
 ## Notas
 
 - El nombre del skill puede ajustarse durante la redacción (p. ej. `decisiones-diseno`, `registrar-decision`, `adr`).
+
+## Revisión
+
+- Subagente: 2026-09-07 — Aprueba
+- Usuario: 2026-09-07 — Aprueba
