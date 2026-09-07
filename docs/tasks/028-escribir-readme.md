@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -43,3 +43,8 @@ Escribir `README.md` a partir del documento de visión y de las decisiones de di
 ## Notas
 
 - El README es la puerta de entrada al proyecto: debe ser claro y conciso, no exhaustivo.
+
+## Revisión
+
+- Subagente: 2026-09-07 — Aprueba
+- Usuario: 2026-09-07 — Aprueba
