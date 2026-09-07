@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -39,3 +39,8 @@ Escribir un documento de visión del proyecto a partir de la definición de la t
 ## Notas
 
 - La visión es la dirección aspiracional del proyecto; la definición es el estado actual acordado. No confundir.
+
+## Revisión
+
+- Subagente: 2026-09-07 — Aprueba
+- Usuario: 2026-09-07 — Aprueba
