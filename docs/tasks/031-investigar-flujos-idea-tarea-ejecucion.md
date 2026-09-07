@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -21,7 +21,7 @@ Investigar los pasos y eventos de los primeros dos flujos del producto entregabl
 
 ## Resultado esperado
 
-- Investigación en `docs/research/flujos-idea-tarea-ejecucion.md` que mapee:
+- Investigación en `docs/research/2026-09-flujos-idea-tarea-ejecucion.md` que mapee:
   - Los pasos de cada flujo (idea → tarea, ejecución → commit).
   - Los puntos de control humano (dónde el usuario aprueba, dónde el agente avanza solo).
   - Qué skills existentes se reutilizan en cada paso.
@@ -45,7 +45,7 @@ Investigar los pasos y eventos de los primeros dos flujos del producto entregabl
 2. Analizar cada flujo paso a paso, identificando qué hace el agente y qué hace el usuario.
 3. Mapear los skills existentes a cada paso donde apliquen.
 4. Identificar los gaps: qué pasos no tienen skill y necesitan uno nuevo.
-5. Documentar los hallazgos en `docs/research/flujos-idea-tarea-ejecucion.md`.
+5. Documentar los hallazgos en `docs/research/2026-09-flujos-idea-tarea-ejecucion.md`.
 6. Aplicar revisión de redacción y pulido mecánico.
 7. Presentar al usuario para aprobación.
 
@@ -57,5 +57,5 @@ Investigar los pasos y eventos de los primeros dos flujos del producto entregabl
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-07 — Aprueba
+- Usuario: 2026-09-07 — Aprueba

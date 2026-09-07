@@ -47,4 +47,4 @@
 - [x] docs/tasks/028-escribir-readme.md — Escribir README del proyecto
 - [x] docs/tasks/029-pulir-skill-commit.md — Pulir skill de commit para explicar qué y por qué, no el contenido
 - [x] docs/tasks/030-crear-skill-investigacion.md — Crear skill de investigación
-- [ ] docs/tasks/031-investigar-flujos-idea-tarea-ejecucion.md — Investigar flujos de idea a tarea y de ejecución de tarea
+- [x] docs/tasks/031-investigar-flujos-idea-tarea-ejecucion.md — Investigar flujos de idea a tarea y de ejecución de tarea
