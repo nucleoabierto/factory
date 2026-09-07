@@ -37,7 +37,7 @@
 
 - [x] docs/tasks/019-investigar-organizacion-por-hitos.md — Investigar organización de tareas por hitos
 - [x] docs/tasks/020-reestructurar-todo-por-hitos.md — Reestructurar TODO.txt por hitos
-- [ ] docs/tasks/021-investigar-flujo-revision.md — Investigar flujo de revisión de tareas
+- [x] docs/tasks/021-investigar-flujo-revision.md — Investigar flujo de revisión de tareas
 - [ ] docs/tasks/022-implementar-flujo-revision.md — Implementar flujo de revisión de tareas
 - [ ] docs/tasks/023-investigar-formato-decisiones-diseno.md — Investigar formato para decisiones de diseño
 - [ ] docs/tasks/024-crear-skill-decisiones-diseno.md — Crear skill para registrar decisiones de diseño
