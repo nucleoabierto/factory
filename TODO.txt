@@ -24,4 +24,4 @@
 - [x] docs/tasks/014-formalizar-pulir-escritura.md — Transformar pulir-escritura.md en skill formal
 - [x] docs/tasks/015-investigar-commits.md — Investigar mejores prácticas para mensajes de commit
 - [x] docs/tasks/016-crear-skill-commit.md — Crear skill para realizar commits
-- [ ] docs/tasks/017-crear-skill-tareas.md — Crear skill para crear tareas
+- [x] docs/tasks/017-crear-skill-tareas.md — Crear skill para crear tareas
