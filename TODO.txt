@@ -5,8 +5,11 @@
      - [estado] docs/tasks/NNN-slug.md — título breve
        estado: [ ] pendiente, [~] en progreso, [x] completada, [!] bloqueada
      Para tareas bloqueadas, añadir sublista con las tareas bloqueantes.
+     Las tareas se agrupan por hito bajo encabezados ## Hito N: título.
 -->
 
+
+## Hito 1: Skills de redacción
 
 - [x] docs/tasks/001-investigar-revisar-redaccion.md — Investigar skill de revisión de redacción
 - [x] docs/tasks/002-escribir-revisar-redaccion.md — Escribir revisar-redaccion.md
@@ -16,6 +19,9 @@
 - [x] docs/tasks/006-aplicar-mejoras-revisar-redaccion.md — Aplicar mejoras a revisar-redaccion.md
 - [x] docs/tasks/007-revisar-pulir-escritura.md — Revisar pulir-escritura.md
 - [x] docs/tasks/008-aplicar-mejoras-pulir-escritura.md — Aplicar mejoras a pulir-escritura.md
+
+## Hito 2: Sistema de tareas y skills formales
+
 - [x] docs/tasks/009-crear-plantilla-tareas.md — Crear plantilla de tareas
 - [x] docs/tasks/010-reestructurar-todo.md — Reestructurar TODO.txt
 - [x] docs/tasks/011-mejorar-prompt.md — Mejorar PROMPT.txt
@@ -26,8 +32,11 @@
 - [x] docs/tasks/016-crear-skill-commit.md — Crear skill para realizar commits
 - [x] docs/tasks/017-crear-skill-tareas.md — Crear skill para crear tareas
 - [x] docs/tasks/018-formalizar-ejecutar-tareas.md — Formalizar skill ejecutar-tareas
+
+## Hito 3: Mejoras del sistema y documentación
+
 - [x] docs/tasks/019-investigar-organizacion-por-hitos.md — Investigar organización de tareas por hitos
-- [ ] docs/tasks/020-reestructurar-todo-por-hitos.md — Reestructurar TODO.txt por hitos
+- [x] docs/tasks/020-reestructurar-todo-por-hitos.md — Reestructurar TODO.txt por hitos
 - [ ] docs/tasks/021-investigar-flujo-revision.md — Investigar flujo de revisión de tareas
 - [ ] docs/tasks/022-implementar-flujo-revision.md — Implementar flujo de revisión de tareas
 - [ ] docs/tasks/023-investigar-formato-decisiones-diseno.md — Investigar formato para decisiones de diseño
