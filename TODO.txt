@@ -42,6 +42,6 @@
 - [x] docs/tasks/023-investigar-formato-decisiones-diseno.md — Investigar formato para decisiones de diseño
 - [x] docs/tasks/024-crear-skill-decisiones-diseno.md — Crear skill para registrar decisiones de diseño
 - [x] docs/tasks/025-backfill-decisiones-diseno.md — Backfill de decisiones de diseño del proyecto
-- [ ] docs/tasks/026-definir-proyecto.md — Definir el proyecto
+- [x] docs/tasks/026-definir-proyecto.md — Definir el proyecto
 - [ ] docs/tasks/027-escribir-vision-proyecto.md — Escribir documento de visión del proyecto
 - [ ] docs/tasks/028-escribir-readme.md — Escribir README del proyecto
