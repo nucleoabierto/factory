@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -39,3 +39,8 @@ Investigar formatos para registrar decisiones de diseño y proponer uno que enca
 ## Notas
 
 - Las decisiones de diseño son un registro vivo, no un documento de una sola vez. El formato debe permitir añadir nuevas decisiones a medida que el proyecto evoluciona.
+
+## Revisión
+
+- Subagente: 2026-09-07 — Aprueba
+- Usuario: 2026-09-07 — Aprueba
