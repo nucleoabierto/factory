@@ -30,7 +30,7 @@ Instrucciones para que un agente cree tareas validando con el usuario antes de g
 
 ## Salida
 
-- Uno o varios archivos de tarea en `docs/tasks/` siguiendo la plantilla.
+- Uno o varios archivos de tarea en `docs/tasks/` siguiendo la plantilla, con estado inicial `[ ]` y campo «Revisión» vacío.
 - Entradas correspondientes añadidas a `TODO.txt`.
 
 ## Procedimiento

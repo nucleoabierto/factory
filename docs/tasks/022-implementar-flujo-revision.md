@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -44,3 +44,8 @@ Implementar el flujo de revisión según la recomendación de la tarea 021: actu
 ## Notas
 
 - Verificar que el flujo de revisión no rompa las tareas ya completadas en `TODO.txt`.
+
+## Revisión
+
+- Subagente: 2026-09-07 — Aprueba (tras correcciones de descripción, salida, formato de campo Revisión y actualización de crear-tareas)
+- Usuario: 2026-09-07 — Aprueba
