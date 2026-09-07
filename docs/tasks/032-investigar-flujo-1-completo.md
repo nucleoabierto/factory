@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[x] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
 
 ## Objetivo
 
@@ -58,5 +58,5 @@ Investigar el flujo 1 (idea → tarea) completo, especificando el formato de la 
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-07 — Aprueba (5 rondas; la 1.ª solicitó 9 cambios, aplicados 7; la 3.ª solicitó 1, aplicado; la 4.ª solicitó 4, aplicados; la 5.ª aprueba)
+- Usuario: 2026-09-07 — Aprueba (tras solicitar borradores independientes, eliminar subcarpeta, función dual de crear-tareas y revisión de redacción en la promoción)
