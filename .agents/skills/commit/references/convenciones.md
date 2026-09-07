@@ -58,3 +58,35 @@ Antes de commitear, examinar el historial reciente con `git log --oneline -20` p
 1. Si el usuario indica una convención explícita, seguirla.
 2. Si el historial muestra convenciones consistentes, seguirlas.
 3. Si no hay convenciones claras o es el primer commit, aplicar las siete reglas universales sin Conventional Commits. No inventar convenciones.
+
+## El qué y el porqué, no el contenido
+
+El cuerpo del commit explica el *qué* y el *porqué* del cambio, no el contenido. El *qué* es la decisión o acción que se tomó; el *porqué* es la motivación. El contenido —archivos modificados, secciones creadas, detalle técnico— es visible en el diff y no debe repetirse en el cuerpo.
+
+### Ejemplo malo
+
+```text
+feat: añade skill de decisiones de diseño
+
+Crea el skill decisiones-diseno bajo .agents/skills/, con el
+cuerpo enfocado en el flujo (cuándo usar, entrada, salida,
+principios, procedimiento) y dos archivos de referencia: la
+definición de qué es una decisión de diseño y el formato con
+plantilla, reglas y ejemplo.
+```
+
+Por qué es malo: el cuerpo describe el contenido (qué archivos se crearon, qué secciones tienen). El diff ya muestra todo eso. No aporta contexto ni motivación.
+
+### Ejemplo bueno
+
+```text
+feat: añade skill de decisiones de diseño
+
+El proyecto necesitaba un mecanismo para registrar decisiones
+de diseño que dé forma a su estructura. Se adopta un formato
+híbrido: más ligero que el ADR canónico, con numeración
+secuencial y estado explícito que permite sustituir decisiones
+sin perder el historial.
+```
+
+Por qué es bueno: el cuerpo explica *qué* se decidió (formato híbrido) y *porqué* (el proyecto necesitaba registrar decisiones). No describe el contenido del cambio.

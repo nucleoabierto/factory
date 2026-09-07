@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -46,5 +46,5 @@ Revisar y corregir el skill `commit` para que sus mensajes expliquen el *qué* y
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-07 — Aprueba
+- Usuario: 2026-09-07 — Aprueba

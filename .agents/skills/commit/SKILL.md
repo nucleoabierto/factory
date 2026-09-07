@@ -2,7 +2,8 @@
 name: commit
 description: >
   Crea un commit en Git siguiendo las mejores prácticas: mensaje con asunto
-  en voz imperativa, máximo 50 caracteres, cuerpo que explica el porqué,
+  en voz imperativa, máximo 50 caracteres, cuerpo que explica el qué y
+  el porqué,
   commits atómicos y convenciones del proyecto.
   Usar cuando se pida explícita o implícitamente realizar un commit: al
   terminar una tarea, al completar un cambio lógico, o cuando el usuario
@@ -40,7 +41,7 @@ Un commit creado en el repositorio, con un mensaje que cumple las siete reglas y
 ## Principios rectores
 
 1. **Commits atómicos:** un commit hace una sola cosa. Si hay cambios no relacionados, dividir en commits separados.
-2. **Mensaje claro:** el asunto resume el cambio; el cuerpo explica el *porqué*, no el *qué* ni el *cómo*. Ver «Las siete reglas» para el detalle.
+2. **Mensaje claro:** el asunto resume el cambio; el cuerpo explica el *qué* y el *porqué*, no el contenido. El diff ya muestra el contenido; el cuerpo debe aportar el contexto que el diff no revela.
 3. **Convenciones del proyecto:** detectar y seguir las convenciones existentes antes de aplicar las reglas universales.
 4. **Mínima invención:** no inventar convenciones. Si no hay, aplicar las siete reglas universales.
 
@@ -52,7 +53,7 @@ Un commit creado en el repositorio, con un mensaje que cumple las siete reglas y
 4. No terminar el asunto con punto.
 5. Usar voz imperativa en el asunto.
 6. Envolver el cuerpo a 72 caracteres.
-7. Usar el cuerpo para explicar el *porqué*, no el *qué* ni el *cómo*.
+7. Usar el cuerpo para explicar el *qué* y el *porqué*, no el contenido. El *qué* es la decisión o acción que se tomó; el *porqué* es la motivación. El contenido —archivos modificados, secciones creadas, detalle técnico— es visible en el diff y no debe repetirse en el cuerpo.
 
 ## Procedimiento
 
@@ -62,7 +63,7 @@ Un commit creado en el repositorio, con un mensaje que cumple las siete reglas y
 4. **Preparar los cambios** correspondientes al commit actual con `git add`, añadiendo solo los archivos relacionados.
 5. **Redactar el mensaje:**
    - Asunto: voz imperativa, máximo 50 caracteres, con mayúscula inicial, sin punto final.
-   - Cuerpo (si el cambio lo justifica): explicar el *porqué* del cambio, envuelto a 72 caracteres.
+   - Cuerpo (si el cambio lo justifica): explicar el *qué* y el *porqué* del cambio, envuelto a 72 caracteres. El *qué* es la decisión o acción; el *porqué* es la motivación. No describir el contenido: el diff ya lo muestra.
    - Aplicar las convenciones detectadas en el paso 2.
    - Si el usuario proporcionó un mensaje, usarlo como base y ajustarlo a las reglas si es necesario.
 6. **Crear el commit** con `git commit`. Usar heredoc para mensajes con cuerpo:
@@ -70,7 +71,7 @@ Un commit creado en el repositorio, con un mensaje que cumple las siete reglas y
    git commit -m "$(cat <<'EOF'
    Asunto del commit
 
-   Cuerpo del commit que explica el porqué.
+   Cuerpo del commit que explica el qué y el porqué.
    EOF
    )"
    ```
