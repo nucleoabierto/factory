@@ -26,3 +26,13 @@
 - [x] docs/tasks/016-crear-skill-commit.md — Crear skill para realizar commits
 - [x] docs/tasks/017-crear-skill-tareas.md — Crear skill para crear tareas
 - [x] docs/tasks/018-formalizar-ejecutar-tareas.md — Formalizar skill ejecutar-tareas
+- [ ] docs/tasks/019-investigar-organizacion-por-hitos.md — Investigar organización de tareas por hitos
+- [ ] docs/tasks/020-reestructurar-todo-por-hitos.md — Reestructurar TODO.txt por hitos
+- [ ] docs/tasks/021-investigar-flujo-revision.md — Investigar flujo de revisión de tareas
+- [ ] docs/tasks/022-implementar-flujo-revision.md — Implementar flujo de revisión de tareas
+- [ ] docs/tasks/023-investigar-formato-decisiones-diseno.md — Investigar formato para decisiones de diseño
+- [ ] docs/tasks/024-crear-skill-decisiones-diseno.md — Crear skill para registrar decisiones de diseño
+- [ ] docs/tasks/025-backfill-decisiones-diseno.md — Backfill de decisiones de diseño del proyecto
+- [ ] docs/tasks/026-definir-proyecto.md — Definir el proyecto
+- [ ] docs/tasks/027-escribir-vision-proyecto.md — Escribir documento de visión del proyecto
+- [ ] docs/tasks/028-escribir-readme.md — Escribir README del proyecto
