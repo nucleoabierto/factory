@@ -50,3 +50,13 @@
 - [x] docs/tasks/031-investigar-flujos-idea-tarea-ejecucion.md — Investigar flujos de idea a tarea y de ejecución de tarea
 - [x] docs/tasks/032-investigar-flujo-1-completo.md — Investigar el flujo 1 completo
 - [x] docs/tasks/033-investigar-separacion-ejecutar-tareas.md — Investigar separación de ejecutar-tareas
+
+## Hito 4: Flujo 1 (idea → tarea)
+
+- [ ] docs/tasks/034-registrar-posponer-separacion.md — Registrar decisión de posponer separación de ejecutar-tareas
+- [ ] docs/tasks/035-registrar-decisiones-flujo-1.md — Registrar decisiones de diseño del flujo 1
+- [ ] docs/tasks/036-construir-descubrimiento-problema.md — Construir capacidad de descubrimiento del problema
+- [ ] docs/tasks/037-construir-propuesta-solucion.md — Construir capacidad de propuesta de forma de solución
+- [ ] docs/tasks/038-construir-refinamiento-borradores.md — Construir capacidad de refinamiento con borradores
+- [ ] docs/tasks/039-extender-crear-tareas-modo-flujo-1.md — Extender crear-tareas con modo flujo 1
+- [ ] docs/tasks/040-construir-orquestacion-flujo-1.md — Construir capacidad de orquestación del flujo 1
