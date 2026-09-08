@@ -49,4 +49,4 @@
 - [x] docs/tasks/030-crear-skill-investigacion.md — Crear skill de investigación
 - [x] docs/tasks/031-investigar-flujos-idea-tarea-ejecucion.md — Investigar flujos de idea a tarea y de ejecución de tarea
 - [x] docs/tasks/032-investigar-flujo-1-completo.md — Investigar el flujo 1 completo
-- [ ] docs/tasks/033-investigar-separacion-ejecutar-tareas.md — Investigar separación de ejecutar-tareas
+- [x] docs/tasks/033-investigar-separacion-ejecutar-tareas.md — Investigar separación de ejecutar-tareas
