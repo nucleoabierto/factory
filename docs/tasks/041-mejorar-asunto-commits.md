@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[x] Completada
 
 ## Objetivo
 
@@ -49,5 +49,5 @@ Mejorar la guía del skill `commit` para que los asuntos de commit sean autodesc
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-11 — Aprueba
+- Usuario: 2026-09-11 — Aprueba

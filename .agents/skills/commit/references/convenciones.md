@@ -59,6 +59,34 @@ Antes de commitear, examinar el historial reciente con `git log --oneline -20` p
 2. Si el historial muestra convenciones consistentes, seguirlas.
 3. Si no hay convenciones claras o es el primer commit, aplicar las siete reglas universales sin Conventional Commits. No inventar convenciones.
 
+## Asuntos autodescriptivos
+
+El asunto describe el tema concreto del cambio en términos que cualquier lector del historial entiende sin conocer la estructura interna del proyecto. La numeración interna —hitos, tareas, flujos numerados— es información de gestión, no de contenido: no pertenece al asunto como información principal.
+
+### Criterios
+
+- **No usar numeración interna como información principal.** Referencias como «tareas 032 y 033», «Hito 4» o «flujo 1» exigen conocer la organización del proyecto para entender de qué trata el cambio.
+- **Describir el tema del cambio, no la agrupación administrativa.** El asunto responde a «¿qué tema tiene este cambio?», no a «¿en qué grupo de tareas encaja?».
+- **Usar términos concretos que no requieran contexto del proyecto.** Si el cambio añade tareas para un flujo de descubrimiento de problemas, el asunto menciona «flujo de descubrimiento», no «Hito 4» ni «flujo 1».
+- **La numeración interna puede ir en el cuerpo** si aporta trazabilidad, pero no como información principal del asunto.
+- **Mantener el límite de 50 caracteres.** Si el asunto autodescriptivo excede el límite, priorizar la claridad del tema sobre el detalle y mover el detalle al cuerpo.
+
+### Ejemplo malo
+
+```text
+chore: añade tareas del Hito 4 (flujo 1)
+```
+
+Por qué es malo: «Hito 4» y «flujo 1» son referencias internas. Un lector del historial que no conozca la organización del proyecto no sabe de qué trata el cambio.
+
+### Ejemplo bueno
+
+```text
+chore: añade tareas del flujo de descubrimiento
+```
+
+Por qué es bueno: «flujo de descubrimiento» describe el tema del cambio en términos concretos. Cualquier lector del historial entiende de qué trata sin conocer la estructura del proyecto.
+
 ## El qué y el porqué, no el contenido
 
 El cuerpo del commit explica el *qué* y el *porqué* del cambio, no el contenido. El *qué* es la decisión o acción que se tomó; el *porqué* es la motivación. El contenido —archivos modificados, secciones creadas, detalle técnico— es visible en el diff y no debe repetirse en el cuerpo.
