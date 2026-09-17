@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[x] Completada
 
 ## Objetivo
 
@@ -42,5 +42,5 @@ Registrar una decisión de diseño (ADR) que documente que la separación de `ej
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-11 — Aprueba (tras corrección de título a frase nominal)
+- Usuario: 2026-09-11 — Aprueba
