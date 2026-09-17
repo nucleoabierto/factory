@@ -43,5 +43,5 @@ Registrar las cuatro decisiones de diseño que el flujo 1 (idea → tarea) requi
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-11 — Aprueba
+- Usuario: 2026-09-11 — Aprueba
