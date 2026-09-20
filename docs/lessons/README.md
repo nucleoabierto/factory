@@ -14,3 +14,6 @@
 - validacion.md
   - Disparadores: prueba de concepto, validación, tareas sin datos de entrada
   - Resumen: Probar con datos sintéticos cuando falte información para validar una tarea.
+- referencias-estables.md
+  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador
+  - Resumen: Referenciar flujos y procesos por nombre, no por número ni posición.
