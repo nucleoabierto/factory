@@ -1,5 +1,9 @@
 # Construir capacidad de propuesta de forma de solución
 
+## Estado
+
+[x] Completada
+
 ## Objetivo
 
 Construir la capacidad que, dado un problema formulado, determina la forma que tomaría la solución a alto nivel dentro del contexto del producto, sin entrar en detalles de implementación. Es la segunda fase del flujo 1.
@@ -44,5 +48,5 @@ Construir la capacidad que, dado un problema formulado, determina la forma que t
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba tras cambios menores
+- Usuario: 2026-09-20 — Aprueba

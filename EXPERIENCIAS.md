@@ -20,3 +20,10 @@
   Obtenido: el skill mencionaba «flujo 1» como invocador, una referencia frágil que deja de ser correcta si cambia la numeración de flujos
   Corrección: en los skills no se referencian flujos por número; se usa el nombre del flujo, que es auto-descriptivo y no depende de la numeración
   Estado: consolidada
+
+- Id: 20260920T144500
+  Tarea: docs/tasks/037-construir-propuesta-solucion.md
+  Esperado: que las listas de categorías declaradas en skills se presenten como taxonomías abiertas, extensibles y sin acoplamiento al origen
+  Obtenido: la referencia afirmaba que la forma de solución «cae en exactamente una de estas categorías», presentando como cerrada y canónica una lista que proviene de una investigación del proyecto
+  Corrección: las taxonomías en skills no se presentan como listas cerradas ni se justifican por su origen; se declaran abiertas y se contempla la extensión cuando un caso real no encaja
+  Estado: pendiente
