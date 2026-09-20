@@ -1,5 +1,9 @@
 # Construir capacidad de descubrimiento del problema
 
+## Estado
+
+[x] Completada
+
 ## Objetivo
 
 Construir la capacidad que transforma una idea suelta en un problema formulado con su oportunidad de mejora, sin proponer solución. Es la primera fase del flujo 1 (idea → tarea).
@@ -43,5 +47,5 @@ Construir la capacidad que transforma una idea suelta en un problema formulado c
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba
+- Usuario: 2026-09-20 — Aprueba
