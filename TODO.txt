@@ -61,3 +61,9 @@
 - [ ] docs/tasks/039-extender-crear-tareas-modo-flujo-1.md — Extender crear-tareas con modo flujo 1
 - [ ] docs/tasks/040-construir-orquestacion-flujo-1.md — Construir capacidad de orquestación del flujo 1
 - [x] docs/tasks/041-mejorar-asunto-commits.md — Mejorar explicitud del asunto en los commits
+
+## Hito 5: Sistema de aprendizaje
+
+- [x] docs/tasks/042-investigar-sistema-aprendizaje.md — Investigar sistema de aprendizaje por experiencias
+- [ ] docs/tasks/043-crear-skill-registro-experiencias.md — Crear skill de registro de experiencias
+- [ ] docs/tasks/044-crear-consolidacion-lecciones.md — Crear proceso de consolidación en lecciones
