@@ -21,6 +21,7 @@ Factory está en desarrollo. Lo que existe hoy son los skills de gestión de tar
 | `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta, la revisa y la commitea. |
 | `decisiones-diseno` | Registra decisiones de diseño con formato híbrido bajo `docs/decisions/`. |
 | `registrar-experiencias` | Anota en `EXPERIENCIAS.md` las correcciones del usuario al cerrar una tarea. |
+| `consolidar-lecciones` | Agrupa las experiencias pendientes por temas en notas bajo `docs/lessons/`. |
 
 Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/skills/<nombre>/SKILL.md`.
 
@@ -37,8 +38,10 @@ Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/
 ```
 .agents/skills/     Skills formales (SKILL.md + references/)
 docs/decisions/     Decisiones de diseño (DNNN-slug.md)
+docs/lessons/       Lecciones aprendidas consolidadas por tema
 docs/research/      Investigaciones
 docs/tasks/         Archivos de tarea individuales
+EXPERIENCIAS.md     Registro append-only de correcciones del usuario
 TODO.txt            Índice de tareas por hito
 ```
 
