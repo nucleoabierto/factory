@@ -65,5 +65,5 @@
 ## Hito 5: Sistema de aprendizaje
 
 - [x] docs/tasks/042-investigar-sistema-aprendizaje.md — Investigar sistema de aprendizaje por experiencias
-- [ ] docs/tasks/043-crear-skill-registro-experiencias.md — Crear skill de registro de experiencias
+- [x] docs/tasks/043-crear-skill-registro-experiencias.md — Crear skill de registro de experiencias
 - [ ] docs/tasks/044-crear-consolidacion-lecciones.md — Crear proceso de consolidación en lecciones

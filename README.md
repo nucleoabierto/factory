@@ -20,6 +20,7 @@ Factory está en desarrollo. Lo que existe hoy son los skills de gestión de tar
 | `crear-tareas` | Crea tareas validando con el usuario antes de generar los archivos. |
 | `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta, la revisa y la commitea. |
 | `decisiones-diseno` | Registra decisiones de diseño con formato híbrido bajo `docs/decisions/`. |
+| `registrar-experiencias` | Anota en `EXPERIENCIAS.md` las correcciones del usuario al cerrar una tarea. |
 
 Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/skills/<nombre>/SKILL.md`.
 

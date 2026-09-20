@@ -61,9 +61,10 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 11. **Si el subagente aprueba**, presentar el informe de revisión y un resumen del trabajo al usuario para aprobación final.
 12. **Si el usuario solicita cambios**, corregir y repetir desde el paso 8.
 13. **Si el usuario aprueba**, marcar la tarea como completada `[x]` en `TODO.txt` y en el campo «Estado» del archivo de tarea. Registrar la revisión en el campo «Revisión» del archivo de tarea con el formato: `Subagente: [fecha] — Aprueba` y `Usuario: [fecha] — Aprueba`.
-14. **Commitear la tarea completada** usando el skill `commit` antes de comenzar la siguiente. El commit debe registrar los cambios de la tarea y la actualización de estado en `TODO.txt`.
-15. **Volver al paso 1** y repetir el ciclo hasta que no queden tareas pendientes no bloqueadas.
-16. **Si no quedan tareas pendientes**, preguntar al usuario qué hacer y, si propone trabajo nuevo, usar el skill `crear-tareas`. Terminar el ciclo.
+14. **Si el usuario hizo correcciones durante la tarea**, invocar el skill `registrar-experiencias` para anotarlas en `EXPERIENCIAS.md` antes de commitear. Si no hubo correcciones, no se registra nada.
+15. **Commitear la tarea completada** usando el skill `commit` antes de comenzar la siguiente. El commit debe registrar los cambios de la tarea y la actualización de estado en `TODO.txt`.
+16. **Volver al paso 1** y repetir el ciclo hasta que no queden tareas pendientes no bloqueadas.
+17. **Si no quedan tareas pendientes**, preguntar al usuario qué hacer y, si propone trabajo nuevo, usar el skill `crear-tareas`. Terminar el ciclo.
 
 ## Formato de salida
 
