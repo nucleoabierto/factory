@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Tests — Lista de tareas</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/qunit@2.24.1/qunit/qunit.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qunit@2.24.1/qunit/qunit.js"></script>
+  <script src="app.js"></script>
+  <script>
+    QUnit.module('arnés', function () {
+      QUnit.test('el objeto de lógica App existe y expone init', function (assert) {
+        assert.ok(window.App, 'App está definido');
+        assert.strictEqual(typeof window.App.init, 'function',
+          'App.init es una función');
+      });
+    });
+  </script>
+</body>
+</html>

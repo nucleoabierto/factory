@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -47,7 +47,22 @@ Crear la base de la aplicación —el documento HTML con la estructura de la pá
 - QUnit se elige por funcionar sin toolchain y sin servidor: basta abrir `tests.html`, incluso por `file://`.
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
 
+## Plan técnico
+
+Subsistema: no hay código todavía; la tarea crea el andamiaje completo —página, estilo, punto de entrada de lógica y arnés de tests— sobre el que las tareas 003–005 colgarán comportamiento.
+
+1. Crear `index.html` con la estructura semántica de la página: encabezado, campo de entrada para nuevas tareas, lista vacía, pie con contador, filtros (todas / pendientes / completadas) y acción de limpieza; enlaza `style.css` y `app.js`. Aporta el esqueleto DOM al que se anclarán los comportamientos siguientes.
+2. Crear `style.css` con un estilo mínimo y legible. Aporta una presentación usable sin adelantar clases de estado que corresponden a tareas posteriores.
+3. Crear `app.js` como script clásico que define el objeto global `App` con un punto de entrada `init()` que se invoca al cargar el DOM, sin lógica de negocio aún. Aporta la costura donde 003–005 cuelgan la lógica, cumpliendo la decisión transversal de la épica: sin módulos ES, funciona por `file://`.
+4. Crear `tests.html` que carga QUnit por CDN, `app.js` y un test de humo. Aporta el arnés que las tareas siguientes alimentan, ejecutable sin toolchain ni servidor.
+
+## Suite de pruebas esperada
+
+- Al abrir `index.html` no hay errores en consola y la página muestra la estructura completa aunque sin comportamiento (caso de uso: abrir la aplicación).
+- La lista aparece vacía en el estado inicial, sin tareas preexistentes (caso de uso: consultar la lista sin haber creado nada).
+- Al abrir `tests.html`, QUnit se ejecuta y reporta al menos un test en verde: el objeto de lógica `App` existe y expone `init` (caso de uso: verificar el arnés antes de alimentarlo).
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba (tras una corrección menor: regla `.filters a.selected` eliminada para seguir el plan)
+- Usuario: 2026-09-21 — Aprueba

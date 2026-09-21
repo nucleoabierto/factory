@@ -2,7 +2,7 @@
 
 ## Estado
 
-[~] En progreso
+[x] Completada
 
 ## Objetivo
 

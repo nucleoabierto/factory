@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista de tareas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="todoapp">
+    <header class="header">
+      <h1>Tareas</h1>
+      <input id="new-todo" class="new-todo" type="text"
+             placeholder="¿Qué hay que hacer?" autofocus>
+    </header>
+
+    <section class="main">
+      <ul id="todo-list" class="todo-list"></ul>
+    </section>
+
+    <footer class="footer">
+      <span id="todo-count" class="todo-count">0 pendientes</span>
+      <ul class="filters">
+        <li><a href="#/" id="filter-all">Todas</a></li>
+        <li><a href="#/active" id="filter-active">Pendientes</a></li>
+        <li><a href="#/completed" id="filter-completed">Completadas</a></li>
+      </ul>
+      <button id="clear-completed" class="clear-completed">
+        Limpiar completadas
+      </button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
