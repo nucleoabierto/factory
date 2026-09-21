@@ -19,3 +19,8 @@
 
 - [x] docs/tasks/048-limpiar-hitos-completados-todo.md — Limpiar hitos completados de TODO.txt
 - [x] docs/tasks/049-actualizar-readme.md — Actualizar README con el estado real del proyecto
+
+## Hito 7: Validación externa
+
+- [ ] docs/tasks/050-investigar-todo-apps.md — Investigar todo apps como base de trabajo
+- [ ] docs/tasks/051-registrar-decision-todo-app-poc.md — Registrar decisión: todo app en vanilla JS como prueba del flujo externo
