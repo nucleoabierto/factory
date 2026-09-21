@@ -48,3 +48,24 @@
   Obtenido: la tarea citaba «los últimos 10 commits», una referencia relativa que cambia con cada commit nuevo
   Corrección: las referencias a commits se hacen por hash o rango de hashes, que son permanentes; las referencias relativas («los últimos N») dejan de apuntar a lo mismo en cuanto avanza el historial
   Estado: pendiente
+
+- Id: 20260921T011500
+  Tarea: docs/tasks/057-construir-capacidad-planificar.md
+  Esperado: que las plantillas nuevas mantengan coherencia y estructura común con las existentes, para que los formatos del proyecto sean consistentes entre sí —no seguir convenciones por seguirlas
+  Obtenido: la plantilla de épica tenía tres subsecciones ### bajo «Plan técnico» y alcance con estructura más pesada que la de las tareas
+  Corrección: buscar el balance entre el formato completo y el plano; la estructura interna detallada la decide quien planea, no la plantilla —los campos obligatorios se sugieren como bullets etiquetados, no como subsecciones
+  Estado: pendiente
+
+- Id: 20260921T011530
+  Tarea: docs/tasks/057-construir-capacidad-planificar.md
+  Esperado: que las reglas dentro de un skill se describan inline, de modo que el lector entienda qué hacer sin abrir otro documento
+  Obtenido: el skill citaba «(D019)» y «siguiendo la decisión D019» sin explicar qué decidía, obligando a abrir el archivo de decisión
+  Corrección: las citas desnudas a decisiones no aportan contexto; la regla se escribe inline y la referencia resoluble (ruta + descripción) va solo en la sección Referencias
+  Estado: pendiente
+
+- Id: 20260921T011600
+  Tarea: docs/tasks/057-construir-capacidad-planificar.md
+  Esperado: que la auditoría de referencias se limitara a los archivos del cambio de la tarea
+  Obtenido: al buscar otros casos de la regla se corrigió también un comentario de TODO.txt («(D017)»), fuera del alcance de la tarea
+  Corrección: al revisar casos de una regla durante una tarea, los hallazgos fuera de alcance se reportan al usuario o se registran como trabajo descubierto, no se corrigen directamente
+  Estado: pendiente

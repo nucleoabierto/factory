@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Objetivo
 
@@ -48,5 +48,5 @@ Construir la capacidad que produce la épica y el plan técnico de un conjunto d
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba
+- Usuario: 2026-09-21 — Aprueba
