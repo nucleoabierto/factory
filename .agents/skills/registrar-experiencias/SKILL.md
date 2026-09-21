@@ -48,7 +48,7 @@ Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que 
 
 1. **Identificar las correcciones** de la sesión: revisiones donde el usuario solicitó cambios, indicaciones que desviaron el rumbo del trabajo, o peticiones explícitas de registro.
 2. **Descartar lo que no es lección:** correcciones meramente mecánicas ya resueltas (una tilde, un nombre de variable) que no contienen nada transferible a tareas futuras. Ante la duda sobre si una corrección es transferible, preguntar al usuario.
-3. **Redactar una entrada por corrección** siguiendo el «Formato de la entrada»: un `Id` con el timestamp actual con precisión de segundo, la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
+3. **Redactar una entrada por corrección** siguiendo el «Formato de la entrada»: un `Id` generado por entrada con el mecanismo de unicidad descrito en «Formato de la entrada», la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
 4. **Comprobar duplicados:** si `EXPERIENCIAS.md` existe, verificar que no haya ya una entrada equivalente (misma tarea y misma corrección) antes de añadirla; el skill puede invocarse a mitad de sesión y otra vez al cierre de la tarea.
 5. **Presentar las entradas al usuario** para validación. Si pide ajustes, corregir y volver a presentar.
 6. **Crear `EXPERIENCIAS.md`** en la raíz del proyecto si no existe, con la cabecera que declara su naturaleza append-only.
@@ -66,7 +66,7 @@ Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que 
   Estado: pendiente | consolidada
 ```
 
-El `Id` es el timestamp de registro con precisión de segundo (`AAAAMMDDTHHMMSS`), suficiente para ser único en este proyecto. Las lecciones consolidadas referencian este `Id`, no la tarea, porque una tarea puede generar varias experiencias.
+El `Id` es el timestamp de registro con precisión de segundo (`AAAAMMDDTHHMMSS`), tomado nuevo antes de escribir cada entrada —nunca se reutiliza un mismo timestamp para varias entradas del mismo lote, porque pueden caer en el mismo segundo. Si el timestamp obtenido coincide con un `Id` ya presente en el archivo o ya asignado a otra entrada de esta ejecución, se incrementa un segundo (y se repite si sigue coincidiendo) hasta obtener un `Id` único. Las lecciones consolidadas referencian este `Id`, no la tarea, porque una tarea puede generar varias experiencias.
 
 Una corrección genera una entrada; varias correcciones en la misma tarea generan varias entradas con la misma referencia de tarea.
 

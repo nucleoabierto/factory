@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -45,5 +45,5 @@ Corregir el skill `registrar-experiencias` para que cada entrada registrada gene
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba
+- Usuario: 2026-09-21 — Aprueba
