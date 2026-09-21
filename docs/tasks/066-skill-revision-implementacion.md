@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Objetivo
 
@@ -43,5 +43,5 @@ Construir el skill de revisión técnica de una implementación: un subagente de
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba
+- Usuario: 2026-09-21 — Aprueba

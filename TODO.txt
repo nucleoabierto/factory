@@ -24,7 +24,7 @@
 - [x] docs/tasks/063-declarar-tipo-tarea-enrutado.md — Declarar el tipo de tarea para el enrutado
 - [x] docs/tasks/064-skill-planeacion-implementacion.md — Skill de planeación de implementación
 - [x] docs/tasks/065-skill-ejecucion-implementacion.md — Skill de ejecución de implementación
-- [ ] docs/tasks/066-skill-revision-implementacion.md — Skill de revisión de implementación
+- [x] docs/tasks/066-skill-revision-implementacion.md — Skill de revisión de implementación
 - [ ] docs/tasks/067-skill-desarrollo-orquestador.md — Skill especialista de desarrollo que orquesta el sub-flujo
 - [ ] docs/tasks/068-verificacion-plan-implementacion.md — Añadir la verificación plan↔implementación a la revisión
 

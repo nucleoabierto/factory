@@ -25,7 +25,7 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 
 - Para tareas que no modifican código: se ejecutan con el comportamiento general de `ejecutar-tareas`.
 - Si la tarea aún no tiene plan: corresponde primero a `planear-implementacion`.
-- Para revisar la implementación producida: eso corresponde a la fase de revisión de implementación del sub-flujo de desarrollo (skill pendiente de creación).
+- Para revisar la implementación producida: eso corresponde a `revisar-implementacion`.
 
 ## Entrada
 

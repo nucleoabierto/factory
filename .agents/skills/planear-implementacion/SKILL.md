@@ -25,7 +25,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 - Para tareas que no modifican código (investigación, documentación, mantenimiento de procesos): se ejecutan con el comportamiento general de `ejecutar-tareas`.
 - Para producir la guía de arquitectura de un conjunto de tareas: eso corresponde a `planificar`, en la épica.
-- Para ejecutar el plan ya redactado: eso corresponde a la fase de ejecución de implementación del sub-flujo de desarrollo (skill pendiente de creación).
+- Para ejecutar el plan ya redactado: eso corresponde a `ejecutar-implementacion`.
 
 ## Entrada
 
