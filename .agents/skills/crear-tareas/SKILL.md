@@ -38,8 +38,8 @@ Instrucciones para que un agente cree tareas definitivas en `docs/tasks/` y las 
 ## Salida
 
 - Uno o varios archivos de tarea en `docs/tasks/` siguiendo la plantilla, con estado inicial `[ ]` y la sección Revisión con los marcadores sin rellenar.
-- Entradas correspondientes añadidas a `TODO.txt`, bajo la agrupación de su épica cuando la tienen.
-- En modo flujo de idea a tarea, además: `propuesta.md` en estado `[a]` Aprobada con su índice de borradores actualizado a las tareas definitivas, la línea `[p]` retirada de la sección «Propuestas en revisión» de `TODO.txt` y el conjunto asignado a su agrupación por `planificar` (épica nueva, épica existente o encabezado ligero).
+- Entradas correspondientes añadidas a `TODO.txt`, bajo la agrupación correspondiente cuando la tienen y en `## General` en caso contrario.
+- En modo flujo de idea a tarea, además: `propuesta.md` en estado `[a]` Aprobada con su índice de borradores actualizado a las tareas definitivas y la línea `[p]` retirada de la sección «Propuestas en revisión» de `TODO.txt`. Las entradas de las tareas quedan en `## General`; la agrupación del conjunto la produce el orquestador del flujo invocando `planificar`.
 
 ## Principios rectores
 
@@ -70,16 +70,15 @@ Instrucciones para que un agente cree tareas definitivas en `docs/tasks/` y las 
    - Renumerar las dependencias: cada «Borrador NN» pasa al número de tarea definitivo que le correspondió —verificar que ya tiene número asignado—; las dependencias a tareas existentes (números de tarea) se conservan.
 7. **Actualizar el índice de `propuesta.md`** para que cada línea apunte a la tarea definitiva: `- docs/tasks/NNN-slug.md — título breve`.
 8. **Cambiar el estado de `propuesta.md`** a `[a]` Aprobada y eliminar su línea de la sección «Propuestas en revisión» de `TODO.txt`.
-9. **Asignar el conjunto a una agrupación** invocando `planificar` en modo promoción con la propuesta y las tareas recién creadas: las asigna a una épica nueva o existente, o las agrupa bajo un encabezado ligero si el conjunto no amerita épica. `planificar` coloca las entradas en `TODO.txt` bajo la agrupación resultante.
 
 ### 3. Núcleo común
 
-En modo flujo de idea a tarea, la promoción del paso 6 ya realizó el equivalente de los pasos 10 y 11, y el paso 9 ya colocó las entradas en `TODO.txt`; continuar directamente en el paso 13.
+En modo flujo de idea a tarea, la promoción del paso 6 ya realizó el equivalente de los pasos 9 y 10; continuar en el paso 11, que registra las entradas en `## General` a la espera de que el orquestador del flujo las agrupe invocando `planificar`.
 
-10. **Determinar el siguiente número de tarea** consultando `TODO.txt` y `docs/tasks/`. Si `TODO.txt` no existe, crearlo con la estructura del proyecto antes de continuar.
-11. **Crear cada archivo de tarea** en `docs/tasks/` usando `assets/task.txt`, con estado inicial `[ ]` y la sección Revisión con los marcadores de la plantilla sin rellenar.
-12. **Añadir las entradas a `TODO.txt`** con el formato `- [ ] docs/tasks/NNN-identificador.md — título breve`, donde el identificador es una versión en kebab-case del título. El destino es la agrupación correspondiente si la tarea pertenece a trabajo planificado —épica o encabezado ligero—, o la sección `## General` si es una tarea suelta sin agrupación propia; si la sección no existe, crearla antes de la primera agrupación. Si el destino no está claro, inferirlo del contexto de la solicitud o la propuesta y, si aun así hay duda, preguntar al usuario.
-13. **Informar al usuario** de las tareas creadas.
+9. **Determinar el siguiente número de tarea** consultando `TODO.txt` y `docs/tasks/`. Si `TODO.txt` no existe, crearlo con la estructura del proyecto antes de continuar.
+10. **Crear cada archivo de tarea** en `docs/tasks/` usando `assets/task.txt`, con estado inicial `[ ]` y la sección Revisión con los marcadores de la plantilla sin rellenar.
+11. **Añadir las entradas a `TODO.txt`** con el formato `- [ ] docs/tasks/NNN-identificador.md — título breve`, donde el identificador es una versión en kebab-case del título. El destino es la agrupación correspondiente si la tarea pertenece a trabajo planificado —épica o encabezado ligero—, o la sección `## General` si es una tarea suelta sin agrupación propia; si la sección no existe, crearla antes de la primera agrupación. Si el destino no está claro, inferirlo del contexto de la solicitud o la propuesta y, si aun así hay duda, preguntar al usuario.
+12. **Informar al usuario** de las tareas creadas. En modo flujo de idea a tarea, indicar que las entradas quedaron en `## General` a la espera de la agrupación: si el skill no fue invocado por el orquestador del flujo, ofrecer invocar `planificar` en modo promoción para cerrar la planeación del conjunto.
 
 ## Finalización
 

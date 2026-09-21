@@ -72,7 +72,7 @@ Instrucciones para que un agente cree la propuesta en `docs/proposals/NNN-slug/`
 
 Estas transiciones no las ejecuta este skill; se describen para contexto:
 
-- **Aprobación:** el usuario aprueba y se registra la decisión en el campo Revisión de `propuesta.md`. Entonces `crear-tareas`, en modo flujo de idea a tarea, promociona los borradores a tareas definitivas y la propuesta pasa a `[a]` Aprobada.
+- **Aprobación:** el usuario aprueba y se registra la decisión en el campo Revisión de `propuesta.md`. Entonces `crear-tareas`, en modo flujo de idea a tarea, promociona los borradores a tareas definitivas y la propuesta pasa a `[a]` Aprobada; a continuación `planificar` agrupa el conjunto en su épica o encabezado ligero, cerrando la planeación del flujo.
 - **Cambios solicitados:** se retira la línea `[p]` de `TODO.txt`, se actualiza la propuesta y los borradores, se vuelve a `[ ]` Borrador y se reenvía a revisión.
 - **Rechazo:** se elimina la línea de `TODO.txt` y la propuesta pasa a `[d]` Descartada. El directorio se conserva para trazabilidad.
 

@@ -4,8 +4,9 @@ description: >
   Orquesta el flujo de idea a tarea de principio a fin: retoma las
   propuestas pendientes de revisión en TODO.txt o, si no las hay,
   coordina el descubrimiento del problema, la propuesta de forma de
-  solución y el refinamiento con borradores, y gestiona la decisión
-  del usuario (aprobación, cambios o rechazo).
+  solución y el refinamiento con borradores, gestiona la decisión
+  del usuario (aprobación, cambios o rechazo) y cierra la planeación
+  agrupando el conjunto en su épica.
   Usar cuando el usuario traiga una idea suelta, cuando se quiera
   procesar una propuesta pendiente o al iniciar una sesión para
   retomar el flujo.
@@ -15,7 +16,7 @@ description: >
 
 # Idea a tarea
 
-Instrucciones para que un agente orqueste el flujo de idea a tarea: coordina las capacidades `descubrir-problema`, `proponer-forma-solucion` y `refinar-propuesta` en orden, retoma las propuestas pendientes de `TODO.txt` y gestiona la decisión del usuario sobre cada propuesta. Es análogo a `ejecutar-tareas`, pero para el flujo de idea a tarea.
+Instrucciones para que un agente orqueste el flujo de idea a tarea: coordina las capacidades `descubrir-problema`, `proponer-forma-solucion` y `refinar-propuesta` en orden, retoma las propuestas pendientes de `TODO.txt`, gestiona la decisión del usuario sobre cada propuesta y cierra la planeación invocando `planificar` tras la promoción de los borradores. Es análogo a `ejecutar-tareas`, pero para el flujo de idea a tarea.
 
 ## Cuándo usar
 
@@ -33,11 +34,11 @@ Instrucciones para que un agente orqueste el flujo de idea a tarea: coordina las
 
 - `TODO.txt` con su sección «Propuestas en revisión», si existe.
 - Una idea suelta del usuario, si no hay propuestas pendientes.
-- Las capacidades del flujo: `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta` y `crear-tareas` en modo flujo de idea a tarea.
+- Las capacidades del flujo: `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta`, `crear-tareas` en modo flujo de idea a tarea y `planificar` en modo promoción.
 
 ## Salida
 
-- Propuestas procesadas: aprobadas (materializadas en tareas definitivas por `crear-tareas`), devueltas a borrador con cambios o descartadas.
+- Propuestas procesadas: aprobadas (materializadas en tareas definitivas por `crear-tareas` y agrupadas en su épica o encabezado ligero por `planificar`), devueltas a borrador con cambios o descartadas.
 - O una propuesta nueva en `docs/proposals/NNN-slug/` enviada a revisión, si la idea suelta completó el flujo.
 - O la conclusión de que la idea se descartó en una capacidad temprana, comunicada al usuario.
 
@@ -56,7 +57,7 @@ Instrucciones para que un agente orqueste el flujo de idea a tarea: coordina las
 1. **Leer `TODO.txt`** y buscar líneas `[p]` en la sección «Propuestas en revisión».
 2. **Si hay varias,** procesarlas de una en una, en el orden en que figuran.
 3. **Por cada propuesta pendiente,** leer `docs/proposals/NNN-slug/propuesta.md` y sus borradores, y presentar el resumen al usuario para que decida: aprobar, solicitar cambios o rechazar.
-4. **Si el usuario aprueba:** comunicar la aprobación e invocar `crear-tareas` en modo flujo de idea a tarea, que registra la decisión en el campo Revisión de `propuesta.md` al verificar la propuesta, promueve los borradores a tareas definitivas y asigna el conjunto a una épica nueva o existente —o a un encabezado ligero si el conjunto no amerita épica— invocando `planificar` en modo promoción.
+4. **Si el usuario aprueba:** comunicar la aprobación e invocar `crear-tareas` en modo flujo de idea a tarea, que registra la decisión en el campo Revisión de `propuesta.md` al verificar la propuesta, promueve los borradores a tareas definitivas y registra sus entradas en `TODO.txt`. A continuación, invocar `planificar` en modo promoción con la propuesta y las tareas recién creadas: asigna el conjunto a una épica nueva o existente —o a un encabezado ligero si el conjunto no amerita épica— y coloca las entradas bajo la agrupación resultante. La épica es el último artefacto de la planeación: con ella el flujo queda cerrado. Si el usuario rechaza el borrador de épica, las tareas quedan en `## General` sin agrupar: informar de ello y considerar la propuesta procesada.
 5. **Si el usuario solicita cambios:** retirar la línea `[p]` de `TODO.txt`, registrar la decisión en el campo Revisión (`Usuario: [fecha] — Solicita cambios`), aplicar los cambios a `propuesta.md` y sus borradores, devolver la propuesta a `[ ]` Borrador y reenviarla a revisión siguiendo la sección 3 de `refinar-propuesta` (estado `[p]` y línea de nuevo en `TODO.txt`).
 6. **Si el usuario rechaza:** eliminar la línea `[p]` de `TODO.txt`, cambiar el estado de `propuesta.md` a `[d]` Descartada y registrar la decisión en el campo Revisión (`Usuario: [fecha] — Rechaza`). El directorio se conserva para trazabilidad.
 7. **Si no hay propuestas pendientes** y el usuario no trae una idea nueva, informar y terminar.
@@ -76,7 +77,7 @@ No hay un formato de salida fijo. El resultado del flujo es el estado de las pro
 
 El skill ha terminado cuando:
 
-- No quedan propuestas `[p]` sin procesar en `TODO.txt`: cada una fue aprobada y promocionada, devuelta a revisión con cambios o marcada como `[d]` Descartada.
+- No quedan propuestas `[p]` sin procesar en `TODO.txt`: cada una fue aprobada, promocionada y agrupada bajo su épica o encabezado (o con sus tareas en `## General` si se rechazó el borrador de épica), devuelta a revisión con cambios o marcada como `[d]` Descartada.
 - Si el usuario trajo una idea nueva, esta recorrió las tres capacidades del flujo y terminó en propuesta enviada a revisión, o se descartó en una capacidad temprana con la conclusión comunicada.
 
 ## Referencias

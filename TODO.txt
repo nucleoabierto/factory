@@ -18,7 +18,7 @@
 ## General
 
 - [x] docs/tasks/059-desacoplar-consulta-lecciones.md — Desacoplar la consulta de lecciones en un skill propio
-- [ ] docs/tasks/060-incluir-epica-en-flujo-idea-a-tarea.md — Incluir la épica en el flujo de idea a tarea
+- [x] docs/tasks/060-incluir-epica-en-flujo-idea-a-tarea.md — Incluir la épica en el flujo de idea a tarea
 - [ ] docs/tasks/061-investigar-flujo-desarrollo.md — Investigar el flujo de desarrollo y generar sus tareas
 
 ## Hito 6: Mantenimiento del sistema

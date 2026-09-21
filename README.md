@@ -21,6 +21,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `proponer-forma-solucion` | Determina la forma de la solución a alto nivel: categoría, alternativas y fuera de alcance. |
 | `refinar-propuesta` | Descompone la solución validada en borradores de tarea y los envía a revisión asíncrona. |
 | `crear-tareas` | Crea tareas desde una solicitud articulada o promociona los borradores de una propuesta aprobada. |
+| `planificar` | Produce la épica de un conjunto de trabajo y refleja su agrupación en `TODO.txt`; cierra la planeación del flujo. |
 
 **Ejecución y cierre**
 
@@ -53,7 +54,7 @@ De la idea a la tarea:
 
 1. El skill `idea-a-tarea` coordina el flujo: `descubrir-problema` formula el problema, `proponer-forma-solucion` decide la forma de la solución y `refinar-propuesta` produce la propuesta con sus borradores.
 2. La propuesta queda pendiente `[p]` en la sección «Propuestas en revisión» de **`TODO.txt`**, a la espera de la decisión del usuario.
-3. Si el usuario la aprueba, `crear-tareas` promociona los borradores a tareas definitivas; si la rechaza, la propuesta queda descartada pero conservada.
+3. Si el usuario la aprueba, `crear-tareas` promociona los borradores a tareas definitivas y `planificar` cierra la planeación agrupando el conjunto en su épica —o bajo un encabezado ligero si no amerita épica—; si la rechaza, la propuesta queda descartada pero conservada.
 
 De la tarea al commit:
 
@@ -68,6 +69,7 @@ De la tarea al commit:
 ```
 .agents/skills/     Skills formales (SKILL.md + references/)
 docs/decisions/     Decisiones de diseño (DNNN-slug.md)
+docs/epics/         Épicas: planeación de conjuntos de tareas
 docs/lessons/       Lecciones aprendidas consolidadas por tema
 docs/proposals/     Propuestas del flujo de idea a tarea y sus borradores
 docs/research/      Investigaciones
@@ -112,5 +114,5 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
 - [Visión del proyecto](docs/vision-proyecto.md) — dirección aspiracional.
-- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D018).
+- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D019).
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.

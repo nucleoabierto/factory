@@ -4,9 +4,10 @@ description: >
   Produce la épica de un conjunto de trabajo: el documento en
   docs/epics/ que declara objetivo, alcance, piezas y plan técnico
   (guía de arquitectura), y refleja el conjunto como agrupación en
-  TODO.txt. Tiene dos modos: en la promoción, invocado por
-  crear-tareas al materializar los borradores de una propuesta, y
-  bajo demanda, para agrupar tareas ya creadas.
+  TODO.txt. Tiene dos modos: en la promoción, invocado por el
+  orquestador del flujo de idea a tarea tras materializar los
+  borradores de una propuesta, y bajo demanda, para agrupar tareas
+  ya creadas.
   Usar cuando haya que dar hogar y dirección técnica a un conjunto
   de tareas, al promover una propuesta o al reunir trabajo existente.
   Sinónimos: planear, planificar épica, crear épica, agrupar
@@ -15,11 +16,11 @@ description: >
 
 # Planificar
 
-Instrucciones para que un agente produzca la épica de un conjunto de trabajo: el documento que declara el objetivo, el alcance, las piezas y la guía de arquitectura del conjunto, reflejado en `TODO.txt` como su agrupación visible. El skill tiene dos modos que comparten un núcleo común y se bifurcan solo en la entrada: el modo promoción, invocado por `crear-tareas` al materializar los borradores de una propuesta, y el modo bajo demanda, para agrupar tareas ya creadas.
+Instrucciones para que un agente produzca la épica de un conjunto de trabajo: el documento que declara el objetivo, el alcance, las piezas y la guía de arquitectura del conjunto, reflejado en `TODO.txt` como su agrupación visible. El skill tiene dos modos que comparten un núcleo común y se bifurcan solo en la entrada: el modo promoción, invocado por el orquestador del flujo de idea a tarea como cierre de la planeación tras materializar los borradores de una propuesta, y el modo bajo demanda, para agrupar tareas ya creadas.
 
 ## Cuándo usar
 
-- Cuando `crear-tareas` promociona los borradores de una propuesta y hay que asignar las tareas resultantes a una épica nueva o existente (modo promoción).
+- Cuando el flujo de idea a tarea ha promocionado los borradores de una propuesta a tareas y hay que cerrar la planeación asignando el conjunto a una épica nueva o existente (modo promoción).
 - Cuando el usuario pide agrupar tareas ya creadas bajo una épica nueva o existente (modo bajo demanda).
 - Cuando un conjunto de trabajo en ejecución necesita objetivo explícito o guía de arquitectura y aún no tiene épica.
 
@@ -32,7 +33,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 
 ## Entrada
 
-- **Modo promoción:** la propuesta aprobada en `docs/proposals/NNN-slug/` y las tareas definitivas recién creadas a partir de sus borradores, comunicadas por `crear-tareas`.
+- **Modo promoción:** la propuesta aprobada en `docs/proposals/NNN-slug/` y las tareas definitivas recién creadas a partir de sus borradores por `crear-tareas`, comunicadas por el orquestador del flujo de idea a tarea.
 - **Modo bajo demanda:** una intención de conjunto del usuario y la lista de tareas existentes a agrupar (sus números o archivos en `docs/tasks/`).
 - `TODO.txt` como índice actual de tareas.
 - `assets/epica.md` como plantilla del documento de épica.
@@ -41,7 +42,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 
 - Un documento de épica nuevo en `docs/epics/NNN-slug.md` con estado `Planificada`, o una épica existente actualizada con las piezas nuevas.
 - La agrupación correspondiente en `TODO.txt`: un encabezado con el título de la épica, las líneas de las tareas bajo él y un comentario `<!-- épica: docs/epics/NNN-slug.md -->` que enlaza la agrupación con el documento.
-- En modo bajo demanda, las líneas de las tareas agrupadas se mueven bajo el encabezado de la épica.
+- Las líneas de las tareas agrupadas se mueven bajo el encabezado de la épica desde su ubicación anterior (en modo promoción, `## General`; en modo bajo demanda, su sección previa).
 
 ## Principios rectores
 
@@ -55,13 +56,13 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 
 ### 1. Determinar el modo
 
-1. **Si la entrada llega de `crear-tareas`** tras promocionar borradores, continuar en modo promoción. **Si el usuario pide agrupar tareas existentes**, continuar en modo bajo demanda.
+1. **Si la entrada llega del orquestador del flujo de idea a tarea** tras promocionar borradores, continuar en modo promoción. **Si el usuario pide agrupar tareas existentes**, continuar en modo bajo demanda.
 
 ### 2. Reunir las piezas
 
 2. **Identificar las tareas del conjunto.** En modo promoción, son las tareas recién creadas de la propuesta; en modo bajo demanda, son las que el usuario lista.
 3. **Leer los archivos de tarea** para extraer objetivos, dependencias y resultados esperados. El plan se construye sobre ese contenido real.
-4. **Decidir si el conjunto amerita épica.** Si es trivial (pocas piezas, sin decisiones transversales), informar al usuario y agrupar bajo un encabezado ligero —un `## Hito N: título` sin documento de épica ni comentario de enlace—; terminar. En caso de duda, preguntar al usuario.
+4. **Decidir si el conjunto amerita épica.** Si es trivial (pocas piezas, sin decisiones transversales), informar al usuario y agrupar bajo un encabezado ligero —un `## Hito N: título` sin documento de épica ni comentario de enlace—, moviendo las entradas de las tareas bajo él; terminar. En caso de duda, preguntar al usuario.
 5. **Determinar si existe una épica destino.** Revisar `docs/epics/` y los encabezados de `TODO.txt`. Si el conjunto pertenece a una épica existente, el procedimiento actualiza esa épica en lugar de crear una nueva; en caso de duda, preguntar al usuario.
 
 ### 3. Redactar el borrador de épica
@@ -76,13 +77,13 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 
 ### 4. Puerta humana
 
-8. **Presentar el borrador al usuario** para aprobación. Si solicita cambios, ajustar y repetir desde el paso 6. Si lo rechaza, no crear ni modificar el documento de épica y terminar. En modo promoción, antes de terminar, colocar las entradas de las tareas en `TODO.txt` bajo un encabezado ligero o en la sección `## General`, para que no queden fuera del índice.
+8. **Presentar el borrador al usuario** para aprobación. Si solicita cambios, ajustar y repetir desde el paso 6. Si lo rechaza, no crear ni modificar el documento de épica y terminar. En modo promoción, las entradas de las tareas ya figuran en `## General` desde la promoción; informar de que el conjunto queda sin agrupar.
 
 ### 5. Materializar la épica
 
 9. **Si es épica nueva:** asignar el siguiente número disponible en `docs/epics/`, crear `docs/epics/NNN-slug.md` con estado `Planificada` y registrar la aprobación en su sección Revisión.
 10. **Si es épica existente:** añadir las piezas nuevas a su lista, actualizar objetivo, alcance o plan técnico solo si el conjunto nuevo lo exige, y registrar la incorporación en su sección Revisión.
-11. **Reflejar la agrupación en `TODO.txt`:** crear o reutilizar el encabezado de la épica con el formato de hito (`## Hito N: título de la épica`, donde `N` es el siguiente número de hito del índice) y añadir bajo él el comentario `<!-- épica: docs/epics/NNN-slug.md -->`. Colocar las líneas de las tareas del conjunto bajo ese encabezado, creándolas si aún no existen; en modo bajo demanda, moverlas desde su ubicación actual.
+11. **Reflejar la agrupación en `TODO.txt`:** crear o reutilizar el encabezado de la épica con el formato de hito (`## Hito N: título de la épica`, donde `N` es el siguiente número de hito del índice) y añadir bajo él el comentario `<!-- épica: docs/epics/NNN-slug.md -->`. Colocar las líneas de las tareas del conjunto bajo ese encabezado, creándolas si aún no existen y moviéndolas desde su ubicación actual si ya figuran en el índice.
 12. **Informar al usuario** de la épica creada o actualizada y de la agrupación resultante.
 
 ## Finalización
