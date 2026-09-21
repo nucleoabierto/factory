@@ -91,6 +91,8 @@ Por qué es bueno: «flujo de descubrimiento» describe el tema del cambio en t�
 
 El cuerpo del commit explica el *qué* y el *porqué* del cambio, no el contenido. El *qué* es la decisión o acción que se tomó; el *porqué* es la motivación. El contenido —archivos modificados, secciones creadas, detalle técnico— es visible en el diff y no debe repetirse en el cuerpo.
 
+El cuerpo expone el **razonamiento** del cambio, no el **proceso** que lo produjo. Narrar el flujo de trabajo, la sesión o los pasos seguidos («resultado del flujo X», «se registró la corrección», «primera aplicación de la decisión Y») describe cómo se llegó al cambio, no por qué existe. El proceso es efímero y depende del contexto de la sesión; el razonamiento es lo que el lector del historial necesita para entender la decisión.
+
 ### Ejemplo malo
 
 ```text
@@ -118,3 +120,41 @@ sin perder el historial.
 ```
 
 Por qué es bueno: el cuerpo explica *qué* se decidió (formato híbrido) y *porqué* (el proyecto necesitaba registrar decisiones). No describe el contenido del cambio.
+
+### Ejemplo malo (narración del proceso)
+
+```text
+docs: propone la app de lista de tareas
+
+Registra la propuesta resultado del flujo de idea a tarea,
+con el problema, la forma de solucion y la descomposicion en
+borradores. Queda pendiente de revision a la espera de la
+decision del usuario.
+```
+
+Por qué es malo: el cuerpo narra el proceso que produjo el cambio («resultado del flujo de idea a tarea», «queda pendiente de revisión») en lugar de explicar por qué la propuesta existe ni qué decide. El estado de revisión, además, queda obsoleto en cuanto se resuelve.
+
+### Ejemplo bueno (razonamiento, no proceso)
+
+```text
+docs: propone la app de lista de tareas
+
+El proyecto necesita validar el flujo de idea a tarea con una
+aplicacion ajena al sistema, para medir el proceso y no el
+stack. La propuesta adopta una todo app en vanilla JS
+conforme a la especificacion TodoMVC y la descompone en
+tareas ejecutables.
+```
+
+Por qué es bueno: el cuerpo explica la motivación (validar el flujo midiendo el proceso, no el stack) y la decisión (todo app en vanilla JS según TodoMVC). Es comprensible con solo el historial y no queda obsoleto.
+
+## Referencias explícitas en el cuerpo
+
+La regla de los asuntos autodescriptivos se extiende al cuerpo: toda referencia a un artefacto del proyecto —decisiones, tareas, propuestas, convenciones internas— debe ser comprensible para un lector que solo tiene el historial de git.
+
+### Criterios
+
+- **Describir el artefacto, no solo nombrarlo.** «D017 decide eliminar los hitos completados» exige abrir el registro de decisiones; mejor: «la limpieza de hitos completados (decisión registrada en docs/decisions/)…» o directamente describir la decisión sin nombrarla.
+- **La referencia resoluble es opcional; si se incluye, debe ser estable.** Si se cita un artefacto, usar su ruta (`docs/tasks/NNN-…`, `docs/decisions/…`) o un hash de commit, nunca referencias relativas como «los últimos commits» o «la tarea anterior».
+- **Evitar la jerga de sesión.** Términos como «la prueba externa», «la semilla» o marcadores internos (`[p]`, `[r]`) solo tienen sentido dentro del proyecto; en el cuerpo se describen («la prueba del flujo con una app externa al sistema») o se omiten.
+- **La numeración interna acompaña, no sustituye.** «La tarea de limpieza del índice (docs/tasks/048-…)» es resoluble; «la tarea 048» sola, no.
