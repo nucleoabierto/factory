@@ -14,6 +14,9 @@
 - validacion.md
   - Disparadores: prueba de concepto, validación, tareas sin datos de entrada
   - Resumen: Probar con datos sintéticos cuando falte información para validar una tarea.
-- referencias-estables.md
-  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador
-  - Resumen: Referenciar flujos y procesos por nombre, no por número ni posición.
+- estabilidad-temporal.md
+  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial
+  - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre y no editar retroactivamente los documentos de entrada.
+- flexibilidad-en-procesos.md
+  - Disparadores: skills, SKILL.md, categorías, taxonomía, lista de opciones, forma de solución
+  - Resumen: Declarar las listas de categorías de los skills como abiertas y extensibles para no volver rígidos los procesos.
