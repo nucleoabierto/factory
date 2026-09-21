@@ -24,10 +24,12 @@
     QUnit.module('create and list', function (hooks) {
       hooks.beforeEach(function () {
         localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
         window.App.tasks = [];
         window.App.nextId = 1;
         window.App.initialized = false;
         window.App.editingId = null;
+        window.App.filter = 'all';
         var fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
           '<input id="new-todo" type="text">' +
@@ -111,10 +113,12 @@
     QUnit.module('complete, edit and delete', function (hooks) {
       hooks.beforeEach(function () {
         localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
         window.App.tasks = [];
         window.App.nextId = 1;
         window.App.initialized = false;
         window.App.editingId = null;
+        window.App.filter = 'all';
         var fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
           '<input id="new-todo" type="text">' +
@@ -208,6 +212,135 @@
             'the done flag survived');
           assert.strictEqual(window.App.tasks[1].text, 'Edited',
             'the edit survived');
+        });
+    });
+
+    QUnit.module('filters and clear completed', function (hooks) {
+      hooks.beforeEach(function () {
+        localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
+        window.App.tasks = [];
+        window.App.nextId = 1;
+        window.App.initialized = false;
+        window.App.editingId = null;
+        window.App.filter = 'all';
+        var fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          '<input id="new-todo" type="text">' +
+          '<ul id="todo-list"></ul>' +
+          '<span id="todo-count"></span>' +
+          '<a id="filter-all" href="#/">Todas</a>' +
+          '<a id="filter-active" href="#/active">Pendientes</a>' +
+          '<a id="filter-completed" href="#/completed">Completadas</a>' +
+          '<button id="clear-completed">Limpiar completadas</button>';
+      });
+
+      function texts() {
+        return Array.prototype.map.call(
+          document.querySelectorAll('#todo-list li label'),
+          function (label) { return label.textContent; });
+      }
+
+      QUnit.test('each filter shows exactly its subset', function (assert) {
+        window.App.addTask('Pending one');
+        var done = window.App.addTask('Done one');
+        window.App.toggleTask(done.id);
+        window.App.setFilter('active');
+        assert.deepEqual(texts(), ['Pending one'],
+          'active shows only pending');
+        window.App.setFilter('completed');
+        assert.deepEqual(texts(), ['Done one'],
+          'completed shows only done');
+        window.App.setFilter('all');
+        assert.deepEqual(texts(), ['Pending one', 'Done one'],
+          'all shows everything');
+      });
+
+      QUnit.test('the active filter link carries the selected class',
+        function (assert) {
+          window.App.render();
+          assert.true(
+            document.getElementById('filter-all')
+              .classList.contains('selected'),
+            'all is selected by default');
+          window.App.setFilter('completed');
+          assert.false(
+            document.getElementById('filter-all')
+              .classList.contains('selected'));
+          assert.true(
+            document.getElementById('filter-completed')
+              .classList.contains('selected'),
+            'completed is marked after switching');
+          assert.false(
+            document.getElementById('filter-active')
+              .classList.contains('selected'));
+        });
+
+      QUnit.test('clearing removes all done tasks and keeps the pending',
+        function (assert) {
+          window.App.addTask('Stay');
+          var a = window.App.addTask('Go one');
+          var b = window.App.addTask('Go two');
+          window.App.toggleTask(a.id);
+          window.App.toggleTask(b.id);
+          window.App.clearCompleted();
+          assert.strictEqual(window.App.tasks.length, 1);
+          assert.strictEqual(window.App.tasks[0].text, 'Stay');
+          assert.deepEqual(texts(), ['Stay'],
+            'the view keeps only the pending task');
+          assert.strictEqual(localStorage.getItem('todoapp-tasks'),
+            JSON.stringify([{ id: 1, text: 'Stay', done: false }]),
+            'the storage keeps only the pending task');
+          window.App.tasks = [];
+          window.App.load();
+          assert.strictEqual(window.App.tasks.length, 1,
+            'a reload keeps the cleared result');
+          assert.strictEqual(window.App.tasks[0].text, 'Stay');
+        });
+
+      QUnit.test('operations keep working under an active filter',
+        function (assert) {
+          window.App.setFilter('active');
+          var t = window.App.addTask('Visible while pending');
+          assert.deepEqual(texts(), ['Visible while pending']);
+          window.App.editTask(t.id, 'Renamed');
+          assert.deepEqual(texts(), ['Renamed'],
+            'editing works under the filter');
+          window.App.toggleTask(t.id);
+          assert.deepEqual(texts(), [],
+            'a toggled task leaves the active view');
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the task still exists in the state');
+          window.App.deleteTask(t.id);
+          assert.strictEqual(window.App.tasks.length, 0,
+            'deleting works under the filter');
+        });
+
+      QUnit.test('the counter totals pending, not visible tasks',
+        function (assert) {
+          window.App.addTask('Pending');
+          var d = window.App.addTask('Done');
+          window.App.toggleTask(d.id);
+          window.App.setFilter('completed');
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '1 pendiente',
+            'the counter counts all pending, not the visible ones');
+        });
+
+      QUnit.test('the filter persists and tolerates corrupted values',
+        function (assert) {
+          window.App.setFilter('completed');
+          assert.strictEqual(localStorage.getItem('todoapp-filter'),
+            'completed', 'the filter is stored');
+          window.App.filter = 'all';
+          window.App.load();
+          assert.strictEqual(window.App.filter, 'completed',
+            'load restores the stored filter');
+          localStorage.setItem('todoapp-filter', 'nonsense');
+          window.App.load();
+          assert.strictEqual(window.App.filter, 'all',
+            'a corrupted value falls back to all');
         });
     });
   </script>

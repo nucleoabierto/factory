@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Planificada | [ ] Completada
+[x] Planificada | [x] Completada
 
 ## Objetivo
 
@@ -15,10 +15,10 @@ La aplicación de lista de tareas funciona en el navegador abriendo `index.html`
 
 ## Piezas
 
-- [ ] docs/tasks/002-estructura-base.md — Estructura de la página y arnés de tests
-- [ ] docs/tasks/003-crear-y-listar.md — Crear tareas, listarlas, contar pendientes y persistir
-- [ ] docs/tasks/004-completar-editar-borrar.md — Completar, editar y borrar tareas
-- [ ] docs/tasks/005-filtros-y-limpiar.md — Filtros de vista y limpieza de completadas
+- [x] docs/tasks/002-estructura-base.md — Estructura de la página y arnés de tests
+- [x] docs/tasks/003-crear-y-listar.md — Crear tareas, listarlas, contar pendientes y persistir
+- [x] docs/tasks/004-completar-editar-borrar.md — Completar, editar y borrar tareas
+- [x] docs/tasks/005-filtros-y-limpiar.md — Filtros de vista y limpieza de completadas
 
 ## Plan técnico
 

@@ -111,6 +111,10 @@ body {
   border-color: #b83f45;
 }
 
+.filters a.selected {
+  border-color: #b83f45;
+}
+
 .clear-completed {
   background: none;
   border: none;

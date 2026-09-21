@@ -2,15 +2,25 @@
   'use strict';
 
   var STORAGE_KEY = 'todoapp-tasks';
+  var FILTER_KEY = 'todoapp-filter';
+  var FILTERS = ['all', 'active', 'completed'];
 
   var App = {
     tasks: [],
     nextId: 1,
     initialized: false,
     editingId: null,
+    filter: 'all',
 
     load: function () {
       App.editingId = null;
+      var storedFilter;
+      try {
+        storedFilter = global.localStorage.getItem(FILTER_KEY);
+      } catch (e) {
+        storedFilter = null;
+      }
+      App.filter = FILTERS.indexOf(storedFilter) !== -1 ? storedFilter : 'all';
       var raw;
       try {
         raw = global.localStorage.getItem(STORAGE_KEY);
@@ -119,6 +129,35 @@
       return App.tasks.filter(function (t) { return !t.done; }).length;
     },
 
+    visibleTasks: function () {
+      if (App.filter === 'active') {
+        return App.tasks.filter(function (t) { return !t.done; });
+      }
+      if (App.filter === 'completed') {
+        return App.tasks.filter(function (t) { return t.done; });
+      }
+      return App.tasks;
+    },
+
+    setFilter: function (name) {
+      if (FILTERS.indexOf(name) === -1) {
+        return;
+      }
+      App.filter = name;
+      try {
+        global.localStorage.setItem(FILTER_KEY, name);
+      } catch (e) {
+        // Persistence unavailable: the filter still applies in memory.
+      }
+      App.render();
+    },
+
+    clearCompleted: function () {
+      App.tasks = App.tasks.filter(function (t) { return !t.done; });
+      App.save();
+      App.render();
+    },
+
     render: function () {
       var doc = global.document;
       if (!doc) {
@@ -127,7 +166,7 @@
       var list = doc.getElementById('todo-list');
       if (list) {
         list.innerHTML = '';
-        App.tasks.forEach(function (t) {
+        App.visibleTasks().forEach(function (t) {
           var li = doc.createElement('li');
           li.dataset.id = t.id;
           if (t.done) {
@@ -181,6 +220,21 @@
         var n = App.pendingCount();
         counter.textContent = n + (n === 1 ? ' pendiente' : ' pendientes');
       }
+      var filterLinks = {
+        all: doc.getElementById('filter-all'),
+        active: doc.getElementById('filter-active'),
+        completed: doc.getElementById('filter-completed')
+      };
+      FILTERS.forEach(function (name) {
+        var link = filterLinks[name];
+        if (link) {
+          if (name === App.filter) {
+            link.classList.add('selected');
+          } else {
+            link.classList.remove('selected');
+          }
+        }
+      });
     },
 
     init: function () {
@@ -199,6 +253,26 @@
                 input.value = '';
               }
             }
+          });
+        }
+        var filterClicks = {
+          'filter-all': 'all',
+          'filter-active': 'active',
+          'filter-completed': 'completed'
+        };
+        Object.keys(filterClicks).forEach(function (id) {
+          var link = doc.getElementById(id);
+          if (link) {
+            link.addEventListener('click', function (ev) {
+              ev.preventDefault();
+              App.setFilter(filterClicks[id]);
+            });
+          }
+        });
+        var clearButton = doc.getElementById('clear-completed');
+        if (clearButton) {
+          clearButton.addEventListener('click', function () {
+            App.clearCompleted();
           });
         }
       }
