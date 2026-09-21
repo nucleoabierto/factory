@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -42,5 +42,5 @@ Registrar la decisión de diseño que convierte `TODO.txt` en índice de trabajo
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba
+- Usuario: 2026-09-20 — Aprueba
