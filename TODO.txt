@@ -61,6 +61,7 @@
 - [x] docs/tasks/039-extender-crear-tareas-modo-flujo-1.md — Extender crear-tareas con modo flujo 1
 - [x] docs/tasks/040-construir-orquestacion-flujo-1.md — Construir capacidad de orquestación del flujo 1
 - [x] docs/tasks/041-mejorar-asunto-commits.md — Mejorar explicitud del asunto en los commits
+- [ ] docs/tasks/045-derivar-propuestas-a-idea-a-tarea.md — Derivar propuestas pendientes a idea-a-tarea desde ejecutar-tareas
 
 ## Hito 5: Sistema de aprendizaje
 
