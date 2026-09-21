@@ -1,5 +1,9 @@
 # Construir capacidad de orquestación del flujo 1
 
+## Estado
+
+[x] Completada
+
 ## Objetivo
 
 Construir la capacidad que coordina las transiciones del flujo 1 (idea → tarea): descubre el problema, propone la forma de solución, refina con borradores y, tras la aprobación, invoca la promoción de `crear-tareas`. Es análoga a `ejecutar-tareas` pero para el flujo 1.
@@ -49,5 +53,5 @@ Construir la capacidad que coordina las transiciones del flujo 1 (idea → tarea
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba
+- Usuario: 2026-09-20 — Aprueba
