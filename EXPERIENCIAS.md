@@ -41,3 +41,10 @@
   Obtenido: la semilla indicaba explícitamente invocar idea-a-tarea y ejecutar-tareas, revelando el procedimiento que la prueba debía medir
   Corrección: en una semilla de prueba no se da la pista del procedimiento; la entrada expresa la idea con sus restricciones y el agente debe inferir la ruta
   Estado: pendiente
+
+- Id: 20260921T000145
+  Tarea: docs/tasks/053-mejorar-cuerpo-commits.md
+  Esperado: que las referencias a conjuntos de commits sean estables y resolubles en el futuro
+  Obtenido: la tarea citaba «los últimos 10 commits», una referencia relativa que cambia con cada commit nuevo
+  Corrección: las referencias a commits se hacen por hash o rango de hashes, que son permanentes; las referencias relativas («los últimos N») dejan de apuntar a lo mismo en cuanto avanza el historial
+  Estado: pendiente

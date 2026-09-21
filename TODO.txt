@@ -19,6 +19,7 @@
 
 - [x] docs/tasks/048-limpiar-hitos-completados-todo.md — Limpiar hitos completados de TODO.txt
 - [x] docs/tasks/049-actualizar-readme.md — Actualizar README con el estado real del proyecto
+- [ ] docs/tasks/053-mejorar-cuerpo-commits.md — Mejorar el cuerpo de los mensajes de commit
 
 ## Hito 7: Validación externa
 
