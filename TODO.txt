@@ -58,7 +58,7 @@
 - [x] docs/tasks/036-construir-descubrimiento-problema.md — Construir capacidad de descubrimiento del problema
 - [x] docs/tasks/037-construir-propuesta-solucion.md — Construir capacidad de propuesta de forma de solución
 - [x] docs/tasks/038-construir-refinamiento-borradores.md — Construir capacidad de refinamiento con borradores
-- [ ] docs/tasks/039-extender-crear-tareas-modo-flujo-1.md — Extender crear-tareas con modo flujo 1
+- [x] docs/tasks/039-extender-crear-tareas-modo-flujo-1.md — Extender crear-tareas con modo flujo 1
 - [ ] docs/tasks/040-construir-orquestacion-flujo-1.md — Construir capacidad de orquestación del flujo 1
 - [x] docs/tasks/041-mejorar-asunto-commits.md — Mejorar explicitud del asunto en los commits
 

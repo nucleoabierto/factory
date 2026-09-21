@@ -1,5 +1,9 @@
 # Extender crear-tareas con modo flujo 1
 
+## Estado
+
+[x] Completada
+
 ## Objetivo
 
 Añadir a `crear-tareas` un segundo modo de operación que promocione los borradores aprobados de una propuesta a tareas definitivas, manteniendo el modo independiente actual.
@@ -45,5 +49,5 @@ Añadir a `crear-tareas` un segundo modo de operación que promocione los borrad
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba tras cambios
+- Usuario: 2026-09-20 — Aprueba
