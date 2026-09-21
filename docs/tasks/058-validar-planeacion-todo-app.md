@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Objetivo
 
@@ -41,7 +41,15 @@ Ejercitar la capacidad de planeación sobre trabajo real: generar la épica que 
 - Esta tarea es la primera aplicación real de la capacidad: los hallazgos alimentan el sistema de aprendizaje (`registrar-experiencias`) si el usuario corrige algo durante la validación.
 - La ejecución de las tareas de todo-app no forma parte de esta tarea: aquí solo se valida la planeación.
 
+### Observaciones de la validación (2026-09-21)
+
+- La propuesta `001-app-lista-tareas` llegó aún en revisión `[p]`; se promovió primero con `crear-tareas` en modo flujo tras la aprobación del usuario, como prevé el procedimiento de esta tarea.
+- La promoción movió los cuatro borradores a `docs/tasks/002–005` sin reformularlos y renumeró las dependencias (Borrador NN → número de tarea). Se añadió además la sección `## Tipo: desarrollo`, que los borradores no tenían porque la plantilla la incorporó después de escribirlos; fue necesaria para que el enrutado del sub-flujo de desarrollo funcione en la PoC (tarea 069).
+- `planificar` en modo promoción produjo la épica `docs/epics/001-app-lista-tareas.md` con plan técnico coherente con las dependencias en cadena ya declaradas (002→003→004→005) y reflejó la agrupación en `todo-app/TODO.txt` bajo «Hito 1» con el comentario de enlace.
+- La puerta humana de `planificar` funcionó: el borrador de épica se presentó al usuario antes de materializarla.
+- Sin brechas detectadas: la capacidad produjo el artefacto sin edición manual del contenido.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba
+- Usuario: 2026-09-21 — Aprueba

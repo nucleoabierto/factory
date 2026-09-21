@@ -2,7 +2,7 @@
 
 ## Estado
 
-[p] Pendiente de revisión
+[a] Aprobada
 
 ## Problema
 
@@ -46,11 +46,12 @@ La aplicación incluye una página de tests (`tests.html`) que usa QUnit cargado
 
 ## Borradores
 
-- `01-estructura-base.md` — Estructura de la página y arnés de tests
-- `02-crear-y-listar.md` — Crear tareas, listarlas, contar pendientes y persistir (depende de 01)
-- `03-completar-editar-borrar.md` — Completar, editar y borrar tareas (depende de 02)
-- `04-filtros-y-limpiar.md` — Filtros de vista y limpieza de completadas (depende de 03)
+- `docs/tasks/002-estructura-base.md` — Estructura de la página y arnés de tests
+- `docs/tasks/003-crear-y-listar.md` — Crear tareas, listarlas, contar pendientes y persistir (depende de 002)
+- `docs/tasks/004-completar-editar-borrar.md` — Completar, editar y borrar tareas (depende de 003)
+- `docs/tasks/005-filtros-y-limpiar.md` — Filtros de vista y limpieza de completadas (depende de 004)
 
 ## Revisión
 
 - Usuario: 2026-09-20 — Solicita cambios (persistencia al borrador 02; tests con QUnit integrados en cada borrador)
+- Usuario: 2026-09-21 — Aprueba

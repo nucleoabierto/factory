@@ -47,4 +47,4 @@
 - [x] docs/tasks/055-investigar-planeacion-epicas.md — Investigar formatos de épica y planeación técnica
 - [x] docs/tasks/056-registrar-decision-epica.md — Registrar la decisión de la épica como artefacto
 - [x] docs/tasks/057-construir-capacidad-planificar.md — Construir la capacidad de planeación
-- [ ] docs/tasks/058-validar-planeacion-todo-app.md — Validar la planeación sobre las tareas de todo-app
+- [x] docs/tasks/058-validar-planeacion-todo-app.md — Validar la planeación sobre las tareas de todo-app

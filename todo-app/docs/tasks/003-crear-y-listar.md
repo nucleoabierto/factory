@@ -1,16 +1,24 @@
 # Crear tareas, listarlas, contar pendientes y persistir
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
+## Tipo
+
+desarrollo
+
 ## Objetivo
 
 Permitir crear tareas desde el campo de entrada, mostrarlas en la lista, ver cuántas quedan pendientes y conservar la lista entre recargas. Cada comportamiento queda cubierto por tests.
 
 ## Dependencias
 
-- Borrador 01
+- 002
 
 ## Entrada
 
-- La estructura de la página y el arnés QUnit creados en el borrador 01.
+- La estructura de la página y el arnés QUnit creados en la tarea 002.
 
 ## Resultado esperado
 
@@ -31,7 +39,7 @@ Permitir crear tareas desde el campo de entrada, mostrarlas en la lista, ver cu�
 
 ## Procedimiento sugerido
 
-1. Definir el modelo de una tarea (texto, estado completada, identificador) y el estado en memoria, expuestos en el objeto de lógica del borrador 01.
+1. Definir el modelo de una tarea (texto, estado completada, identificador) y el estado en memoria, expuestos en el objeto de lógica de la tarea 002.
 2. Implementar la persistencia: guardar en `localStorage` en cada cambio y cargar al iniciar, con manejo de errores de parseo.
 3. Implementar el renderizado de la lista a partir del estado.
 4. Conectar el campo de entrada (formulario o tecla Enter) con la creación de tareas, validando texto no vacío.
@@ -41,3 +49,8 @@ Permitir crear tareas desde el campo de entrada, mostrarlas en la lista, ver cu�
 ## Notas
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

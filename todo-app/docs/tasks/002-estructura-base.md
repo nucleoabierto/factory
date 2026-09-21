@@ -1,8 +1,16 @@
 # Estructura de la página y arnés de tests
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
+## Tipo
+
+desarrollo
+
 ## Objetivo
 
-Crear la base de la aplicación —el documento HTML con la estructura de la página y el estilo mínimo— junto con el arnés de tests en el navegador que los borradores siguientes irán alimentando.
+Crear la base de la aplicación —el documento HTML con la estructura de la página y el estilo mínimo— junto con el arnés de tests en el navegador que las tareas siguientes irán alimentando.
 
 ## Dependencias
 
@@ -38,3 +46,8 @@ Crear la base de la aplicación —el documento HTML con la estructura de la pá
 
 - QUnit se elige por funcionar sin toolchain y sin servidor: basta abrir `tests.html`, incluso por `file://`.
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

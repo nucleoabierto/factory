@@ -1,16 +1,24 @@
 # Filtros de vista y limpieza de completadas
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
+## Tipo
+
+desarrollo
+
 ## Objetivo
 
 Permitir filtrar la lista por todas / pendientes / completadas y limpiar de una vez las tareas completadas, con tests que lo verifiquen.
 
 ## Dependencias
 
-- Borrador 03
+- 004
 
 ## Entrada
 
-- La aplicación con creación, listado, contador, operaciones sobre tareas y suite de tests de los borradores anteriores.
+- La aplicación con creación, listado, contador, operaciones sobre tareas y suite de tests de las tareas anteriores.
 
 ## Resultado esperado
 
@@ -30,7 +38,7 @@ Permitir filtrar la lista por todas / pendientes / completadas y limpiar de una 
 
 ## Procedimiento sugerido
 
-1. Añadir el estado de filtro activo y la lógica de filtrado y limpieza al objeto de lógica definido en el borrador 01, con sus tests QUnit.
+1. Añadir el estado de filtro activo y la lógica de filtrado y limpieza al objeto de lógica definido en la tarea 002, con sus tests QUnit.
 2. Conectar los controles de filtro, marcar el filtro activo y aplicar el filtro durante el renderizado.
 3. Implementar la limpieza de completadas sobre el estado y la persistencia.
 4. Verificar en el navegador la combinación de filtros con las operaciones existentes, la recarga y que la suite sigue en verde.
@@ -38,3 +46,8 @@ Permitir filtrar la lista por todas / pendientes / completadas y limpiar de una 
 ## Notas
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

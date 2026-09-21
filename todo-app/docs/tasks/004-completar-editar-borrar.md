@@ -1,16 +1,24 @@
 # Completar, editar y borrar tareas
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
+## Tipo
+
+desarrollo
+
 ## Objetivo
 
 Permitir marcar una tarea como completada, editar su texto y borrarla de la lista, con tests que lo verifiquen.
 
 ## Dependencias
 
-- Borrador 02
+- 003
 
 ## Entrada
 
-- La lista funcional con creación, contador, persistencia y tests del borrador 02.
+- La lista funcional con creación, contador, persistencia y tests de la tarea 003.
 
 ## Resultado esperado
 
@@ -38,3 +46,8 @@ Permitir marcar una tarea como completada, editar su texto y borrarla de la list
 ## Notas
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]
