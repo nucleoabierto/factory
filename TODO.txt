@@ -19,7 +19,14 @@
 
 - [x] docs/tasks/059-desacoplar-consulta-lecciones.md — Desacoplar la consulta de lecciones en un skill propio
 - [x] docs/tasks/060-incluir-epica-en-flujo-idea-a-tarea.md — Incluir la épica en el flujo de idea a tarea
-- [ ] docs/tasks/061-investigar-flujo-desarrollo.md — Investigar el flujo de desarrollo y generar sus tareas
+- [x] docs/tasks/061-investigar-flujo-desarrollo.md — Investigar el flujo de desarrollo y generar sus tareas
+- [ ] docs/tasks/062-registrar-decision-skill-desarrollo.md — Registrar la decisión: desarrollo como skill especialista
+- [ ] docs/tasks/063-declarar-tipo-tarea-enrutado.md — Declarar el tipo de tarea para el enrutado
+- [ ] docs/tasks/064-skill-planeacion-implementacion.md — Skill de planeación de implementación
+- [ ] docs/tasks/065-skill-ejecucion-implementacion.md — Skill de ejecución de implementación
+- [ ] docs/tasks/066-skill-revision-implementacion.md — Skill de revisión de implementación
+- [ ] docs/tasks/067-skill-desarrollo-orquestador.md — Skill especialista de desarrollo que orquesta el sub-flujo
+- [ ] docs/tasks/068-verificacion-plan-implementacion.md — Añadir la verificación plan↔implementación a la revisión
 
 ## Hito 6: Mantenimiento del sistema
 
