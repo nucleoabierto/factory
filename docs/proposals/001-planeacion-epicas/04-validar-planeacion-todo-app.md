@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Ejercitar la capacidad de planeación sobre trabajo real: generar la épica que agrupa las tareas de la aplicación de lista de tareas, incluido el caso de planeación retroactiva sobre tareas ya promovidas.
+Ejercitar la capacidad de planeación sobre trabajo real: generar la épica que agrupa las tareas de la aplicación, incluido el caso de planeación retroactiva sobre tareas ya promovidas.
 
 ## Dependencias
 

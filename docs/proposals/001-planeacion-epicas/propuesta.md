@@ -14,7 +14,7 @@ Afecta a quien planea el producto con el sistema, cada vez que el trabajo supera
 
 ## Oportunidad
 
-Resolverlo daría a cada conjunto de trabajo un objetivo propio explícito —con independencia de cuántas ideas lo originaron— y un momento de decisión anterior a la ejecución donde se fija el cómo del conjunto. Supera a la alternativa actual —la propuesta como contenedor improvisado más etiquetas sin contenido— porque aquella solo cubre trabajo nacido de una única idea y no registra las decisiones transversales; esta última solo gana en que no exige ningún paso adicional.
+Resolverlo daría a cada conjunto de trabajo un objetivo propio explícito —con independencia de cuántas ideas lo originaron— y un momento de decisión anterior a la ejecución donde se fija el cómo del conjunto. Supera a la alternativa actual —la propuesta como contenedor improvisado y las etiquetas sin contenido del índice— porque aquella solo cubre trabajo nacido de una única idea y no registra las decisiones transversales; su única ventaja es que no exige ningún paso adicional.
 
 ## Forma de solución
 
@@ -28,7 +28,7 @@ La épica se refleja en el índice de tareas como la agrupación del conjunto, d
 
 ## Alternativas consideradas
 
-- La propuesta como contenedor permanente del conjunto: se descarta porque solo alberga trabajo nacido de una única idea; las tareas sueltas y los esfuerzos que cruzan varias propuestas quedan sin hogar, y un documento de decisión no es un instrumento de planeación viva.
+- La propuesta como contenedor permanente del conjunto: se descarta porque solo alberga trabajo nacido de una única idea; las tareas sueltas y los esfuerzos que cruzan varias propuestas quedan sin hogar, y un documento que registra una decisión no sirve para planear de forma continua.
 - Enriquecer las agrupaciones del índice de tareas con más contenido: se descarta porque el índice es una lista de trabajo, no un documento; un objetivo con alcance y decisiones transversales no cabe en una etiqueta, y mantenerlo ahí duplicaría el índice con contenido que no es índice.
 - Planeación de producto completa con secuenciación de conjuntos: se descarta por ahora porque el problema observado es dar hogar y decisión técnica a un conjunto de trabajo; la ordenación de varios conjuntos en el tiempo es un problema posterior que aún no tiene evidencia en el proyecto.
 

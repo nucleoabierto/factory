@@ -16,7 +16,7 @@ Determinar con evidencia qué debe contener la épica como artefacto de planeaci
 ## Resultado esperado
 
 - Un documento en `docs/research/` que cubra:
-  - Qué campos suele tener una épica y cuáles aplican a un sistema gestionado por agente (objetivo, alcance, piezas, criterio de cierre).
+  - Qué campos suele tener una épica y cuáles aplican a un sistema gestionado por un agente (objetivo, alcance, piezas, criterio de cierre).
   - Cómo se produce un plan técnico de conjunto: orden de implementación, dependencias técnicas, decisiones transversales, y en qué momento del flujo se toman.
   - Cómo se relaciona la épica con las propuestas, las tareas existentes y los hitos del índice, incluido el caso de agrupar tareas ya creadas (planeación retroactiva).
   - Recomendaciones justificadas con referencias verificables.
