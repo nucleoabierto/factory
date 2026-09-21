@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Objetivo
 
@@ -44,8 +44,9 @@ Hacer que la consulta de lecciones aprendidas sea una capacidad independiente e 
 
 - La brecha se observó en la sesión de la tarea 057: al escribir el skill `planificar` no se consultaron las lecciones aplicables porque la consulta solo existe dentro de `ejecutar-tareas`.
 - Si el skill necesita que otros skills declaren cuándo invocarlo, documentarlo como parte del diseño o como trabajo descubierto con `crear-tareas`.
+- Decisión tomada: ningún skill declara la invocación; el descubrimiento depende de la `description` del skill `consultar-lecciones`. Si se observa que no se dispara cuando debería, dar de alta una tarea de seguimiento.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba
+- Usuario: 2026-09-21 — Aprueba

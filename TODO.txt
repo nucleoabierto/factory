@@ -17,7 +17,7 @@
 
 ## General
 
-- [ ] docs/tasks/059-desacoplar-consulta-lecciones.md — Desacoplar la consulta de lecciones en un skill propio
+- [x] docs/tasks/059-desacoplar-consulta-lecciones.md — Desacoplar la consulta de lecciones en un skill propio
 
 ## Hito 6: Mantenimiento del sistema
 
