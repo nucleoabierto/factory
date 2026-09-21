@@ -4,6 +4,10 @@
 
 [ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
 
+## Tipo
+
+[Tipo de la tarea para el enrutado de `ejecutar-tareas`, en minúsculas: desarrollo, investigación, mantenimiento u otro. La lista es abierta y extensible. Si se omite, la tarea se ejecuta con el comportamiento general.]
+
 ## Objetivo
 
 [Descripción concisa del objetivo de la tarea. Qué se quiere lograr y por qué.]

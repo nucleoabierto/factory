@@ -56,8 +56,8 @@ Instrucciones para que un agente cree tareas definitivas en `docs/tasks/` y las 
 
 ### 2a. Modo independiente
 
-2. **Descomponer la solicitud** del usuario en tareas. Cada tarea debe tener: título breve, objetivo conciso, dependencias si las hay, resultado esperado y criterios de calidad verificables.
-3. **Presentar al usuario** un resumen de las tareas propuestas antes de generar los archivos: para cada tarea, título, objetivo y dependencias. Si el usuario solicita cambios, ajustar y repetir. Si rechaza la propuesta, no crear archivos y terminar.
+2. **Descomponer la solicitud** del usuario en tareas. Cada tarea debe tener: título breve, tipo (para el enrutado de `ejecutar-tareas`; la lista es abierta y extensible), objetivo conciso, dependencias si las hay, resultado esperado y criterios de calidad verificables.
+3. **Presentar al usuario** un resumen de las tareas propuestas antes de generar los archivos: para cada tarea, título, tipo, objetivo y dependencias. Si el usuario solicita cambios, ajustar y repetir. Si rechaza la propuesta, no crear archivos y terminar.
 4. **Crear cada tarea** siguiendo el núcleo común.
 
 ### 2b. Modo flujo de idea a tarea

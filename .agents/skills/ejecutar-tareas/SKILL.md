@@ -55,6 +55,7 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 5. **Leer el archivo de tarea** referenciado y seguir su objetivo, procedimiento y criterios de calidad. Si el procedimiento sugiere validación con el usuario, pedir confirmación antes de continuar.
    - **Consultar las lecciones aplicables:** invocar el skill `consultar-lecciones` con una descripción de la tarea (archivos que tocará, comandos o palabras clave) para traer las notas correspondientes al contexto.
    - **Consultar la épica del conjunto:** si la tarea figura en `TODO.txt` bajo un encabezado con comentario `<!-- épica: docs/epics/NNN-slug.md -->`, leer ese documento: su plan técnico es la guía de arquitectura que la ejecución debe respetar. El plan detallado de la tarea se elabora al ejecutarla, dentro de esa guía.
+   - **Enrutar por tipo:** con las consultas anteriores hechas, si la tarea declara un `Tipo` con especialista registrado en la sección «Enrutado por tipo», invocar ese skill para ejecutar la tarea. Si no declara tipo o el tipo no tiene especialista, ejecutarla directamente con el comportamiento general. El ejecutor no conoce las fases del dominio: solo lee el tipo y delega.
 6. **Si durante la ejecución se descubren nuevas tareas**, usar el skill `crear-tareas` para darlas de alta. No ejecutarlas dentro de la iteración actual; se procesarán en iteraciones posteriores del ciclo.
 7. **Si la tarea no se puede realizar porque depende de otra aún no completada**, marcarla como bloqueada `[!]` en `TODO.txt` y, debajo de esa línea, crear una sublista con las tareas bloqueantes. Pasar a la siguiente tarea pendiente no bloqueada.
 8. **Al terminar la tarea**, marcarla como en revisión `[r]` en `TODO.txt` y en el campo «Estado» del archivo de tarea. No marcarla como completada todavía.
@@ -67,6 +68,12 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 15. **Commitear la tarea completada** usando el skill `commit` antes de comenzar la siguiente. El commit debe registrar los cambios de la tarea y la actualización de estado en `TODO.txt`.
 16. **Volver al paso 1** y repetir el ciclo hasta que no queden tareas pendientes no bloqueadas.
 17. **Si no quedan tareas pendientes**, preguntar al usuario qué hacer y, si propone trabajo nuevo, usar el skill `crear-tareas`. Terminar el ciclo.
+
+## Enrutado por tipo
+
+Registro de tipos de tarea que tienen skill especialista. Añadir un tipo nuevo solo exige registrarlo aquí; el procedimiento del orquestador no cambia.
+
+- `desarrollo` → skill especialista de desarrollo (pendiente de creación; hasta entonces se ejecuta con el comportamiento general)
 
 ## Formato de salida
 

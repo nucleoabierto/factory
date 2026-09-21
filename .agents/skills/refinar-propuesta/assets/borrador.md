@@ -1,5 +1,9 @@
 # [Título del borrador]
 
+## Tipo
+
+[Tipo de la futura tarea para el enrutado de `ejecutar-tareas`, en minúsculas: desarrollo, investigación, mantenimiento u otro. La lista es abierta y extensible. Si se omite, la tarea se ejecuta con el comportamiento general.]
+
 ## Objetivo
 
 [Descripción concisa del objetivo.]
