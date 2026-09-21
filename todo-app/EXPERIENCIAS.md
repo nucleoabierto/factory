@@ -15,3 +15,10 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Obtenido: el agente iba a registrar la corrección en el EXPERIENCIAS.md de la raíz del meta-proyecto.
   Corrección: el usuario indicó crear EXPERIENCIAS.md dentro de todo-app/.
   Estado: pendiente
+
+- Id: 20260921T172940
+  Tarea: docs/tasks/003-crear-y-listar.md
+  Esperado: que el código se escribiera en inglés —identificadores, claves, comentarios y también los tests— a diferencia de la documentación, que va en español.
+  Obtenido: el modelo, las funciones de App, la clave de localStorage y los nombres y mensajes de los tests se implementaron en español.
+  Corrección: el usuario indicó que para código es aceptable usar inglés, a diferencia de la documentación, y que los tests también cuentan como código.
+  Estado: pendiente

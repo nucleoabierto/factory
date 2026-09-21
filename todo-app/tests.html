@@ -13,12 +13,97 @@
   <script src="https://cdn.jsdelivr.net/npm/qunit@2.24.1/qunit/qunit.js"></script>
   <script src="app.js"></script>
   <script>
-    QUnit.module('arnés', function () {
-      QUnit.test('el objeto de lógica App existe y expone init', function (assert) {
-        assert.ok(window.App, 'App está definido');
+    QUnit.module('harness', function () {
+      QUnit.test('the App logic object exists and exposes init', function (assert) {
+        assert.ok(window.App, 'App is defined');
         assert.strictEqual(typeof window.App.init, 'function',
-          'App.init es una función');
+          'App.init is a function');
       });
+    });
+
+    QUnit.module('create and list', function (hooks) {
+      hooks.beforeEach(function () {
+        localStorage.removeItem('todoapp-tasks');
+        window.App.tasks = [];
+        window.App.nextId = 1;
+        window.App.initialized = false;
+        var fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          '<input id="new-todo" type="text">' +
+          '<ul id="todo-list"></ul>' +
+          '<span id="todo-count"></span>';
+      });
+
+      QUnit.test('creating a task adds it to the state and the list',
+        function (assert) {
+          var task = window.App.addTask('Comprar pan');
+          assert.ok(task, 'returns the created task');
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the state holds one task');
+          assert.strictEqual(window.App.tasks[0].text, 'Comprar pan');
+          assert.false(window.App.tasks[0].done,
+            'it starts as pending');
+          var items = document.querySelectorAll('#todo-list li');
+          assert.strictEqual(items.length, 1, 'the list shows one item');
+          assert.strictEqual(items[0].textContent, 'Comprar pan');
+        });
+
+      QUnit.test('empty or whitespace-only texts create no task',
+        function (assert) {
+          assert.strictEqual(window.App.addTask(''), null);
+          assert.strictEqual(window.App.addTask('   '), null);
+          assert.strictEqual(window.App.tasks.length, 0,
+            'the state stays empty');
+          assert.strictEqual(
+            document.querySelectorAll('#todo-list li').length, 0,
+            'the list stays empty');
+        });
+
+      QUnit.test('the counter reflects pending tasks after several adds',
+        function (assert) {
+          window.App.addTask('Una');
+          window.App.addTask('Dos');
+          window.App.addTask('Tres');
+          assert.strictEqual(window.App.pendingCount(), 3);
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '3 pendientes');
+        });
+
+      QUnit.test('adding persists and load restores the state',
+        function (assert) {
+          window.App.addTask('Persistirme');
+          var raw = localStorage.getItem('todoapp-tasks');
+          assert.ok(raw, 'the key exists in localStorage');
+          window.App.tasks = [];
+          window.App.load();
+          assert.strictEqual(window.App.tasks.length, 1);
+          assert.strictEqual(window.App.tasks[0].text, 'Persistirme');
+        });
+
+      QUnit.test('load tolerates missing key or corrupted data',
+        function (assert) {
+          window.App.load();
+          assert.deepEqual(window.App.tasks, [],
+            'missing key yields an empty list');
+          localStorage.setItem('todoapp-tasks', '{broken json');
+          window.App.tasks = [{ id: 9, text: 'x', done: false }];
+          window.App.load();
+          assert.deepEqual(window.App.tasks, [],
+            'broken JSON yields an empty list');
+        });
+
+      QUnit.test('Enter in the input creates the task and clears it',
+        function (assert) {
+          window.App.init();
+          var input = document.getElementById('new-todo');
+          input.value = 'Desde el teclado';
+          input.dispatchEvent(new KeyboardEvent('keydown',
+            { key: 'Enter' }));
+          assert.strictEqual(window.App.tasks.length, 1);
+          assert.strictEqual(input.value, '',
+            'the field is cleared after creating');
+        });
     });
   </script>
 </body>
