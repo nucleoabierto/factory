@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptada
+Sustituida por D020 en lo relativo al sub-flujo de desarrollo dentro de una tarea. La elección sobre el orquestador de entrega de código completo (separar o extender) permanece pospuesta.
 
 ## Contexto
 
@@ -25,3 +25,4 @@ La señal para reabrir la decisión es la construcción efectiva de los flujos d
 - Investigación «Separación de ejecutar-tareas: orquestación de desarrollo» — `docs/research/2026-09-separacion-ejecutar-tareas.md`
 - Definición del proyecto — `docs/definicion-proyecto.md`
 - D003, «Skills como unidades autocontenidas, no reglas sueltas» — `docs/decisions/D003-skills-como-unidades-autocontenidas.md`
+- D020, «Flujo de desarrollo encapsulado en un skill especialista» — `docs/decisions/D020-flujo-desarrollo-skill-especialista.md`

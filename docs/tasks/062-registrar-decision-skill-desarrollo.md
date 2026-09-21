@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Objetivo
 
@@ -40,5 +40,5 @@ Registrar la decisión de diseño de encapsular el flujo de desarrollo en un ski
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Solicita cambios → Aprueba tras corrección
+- Usuario: 2026-09-21 — Aprueba
