@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -42,7 +42,16 @@ Validar el pipeline de desarrollo extremo a extremo ejecutando una tarea real de
 
 - Esta tarea es la primera aplicación real del sub-flujo de desarrollo: los hallazgos alimentan el sistema de aprendizaje (`registrar-experiencias`) si el usuario corrige algo durante la validación.
 
+### Observaciones de la validación (2026-09-21)
+
+- El enrutado funcionó como se diseñó: la tarea 002 de todo-app declara `Tipo: desarrollo` y el ejecutor la derivó al skill `desarrollo` sin intervención manual, que orquestó `planear-implementacion` → `ejecutar-implementacion`; la revisión pasó por `revisar-implementacion`.
+- La puerta humana de la planeación funcionó: el plan técnico y la suite se presentaron al usuario antes de materializarse en el archivo de la tarea.
+- La revisión técnica detectó una desviación menor real (`style.css` adelantaba `.filters a.selected`, clase de estado de la tarea 005): el usuario pidió eliminarla y la re-revisión aprobó. El pipeline produjo una corrección verificable, no solo un visto bueno.
+- Brecha encontrada fuera del pipeline: la tarea semilla 001 de todo-app quedó marcada `[~]` aunque su trabajo (la planeación) ya se había completado y aprobado en la validación de la tarea 058; se cerró manualmente al inicio de esta PoC. El flujo no tiene hoy un paso que garantice cerrar la tarea semilla tras promover su propuesta.
+- Brecha de scope resuelta por el usuario: `registrar-experiencias` apunta al `EXPERIENCIAS.md` de la raíz del proyecto; para trabajo dentro de `todo-app/` el usuario pidió un `EXPERIENCIAS.md` propio, coherente con el `TODO.txt` propio. Las dos correcciones de la sesión quedaron registradas ahí.
+- Sin forzado manual del resultado: los artefactos (`## Plan técnico`, `## Suite de pruebas esperada`, código y test de humo) los produjo el sub-flujo; la edición manual se limitó a la corrección aprobada por el usuario.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba (hallazgo menor resuelto: Ids duplicados en EXPERIENCIAS.md de todo-app)
+- Usuario: 2026-09-21 — Aprueba

@@ -9,7 +9,7 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Corrección: el usuario pidió eliminar la regla para seguir el plan.
   Estado: pendiente
 
-- Id: 20260921T170817
+- Id: 20260921T170818
   Tarea: escenario todo-app (tarea meta 069 del proyecto padre)
   Esperado: que las experiencias generadas dentro de todo-app se registren en un EXPERIENCIAS.md propio, manteniendo el scope del subproyecto como hace TODO.txt.
   Obtenido: el agente iba a registrar la corrección en el EXPERIENCIAS.md de la raíz del meta-proyecto.
