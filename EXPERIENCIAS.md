@@ -27,3 +27,10 @@
   Obtenido: la referencia afirmaba que la forma de solución «cae en exactamente una de estas categorías», presentando como cerrada y canónica una lista que proviene de una investigación del proyecto
   Corrección: las taxonomías en skills no se presentan como listas cerradas ni se justifican por su origen; se declaran abiertas y se contempla la extensión cuando un caso real no encaja
   Estado: pendiente
+
+- Id: 20260920T180434
+  Tarea: docs/tasks/038-construir-refinamiento-borradores.md
+  Esperado: que las investigaciones se conserven como estaban cuando se produjeron, y que los cambios de formato posteriores se registren en decisiones nuevas
+  Obtenido: el agente editó la investigación 032 para sincronizarla con el formato final de la propuesta, reescribiendo el documento de entrada como si siempre hubiera sido correcto
+  Corrección: las investigaciones son información inicial y no se editan retroactivamente aunque resulten incorrectas o incompletas; lo que cambió se registra como decisión nueva, de modo que el historial preserve lo que se sabía al investigar
+  Estado: pendiente

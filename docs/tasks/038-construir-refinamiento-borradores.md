@@ -1,5 +1,9 @@
 # Construir capacidad de refinamiento con borradores
 
+## Estado
+
+[x] Completada
+
 ## Objetivo
 
 Construir la capacidad que, dado el problema y la forma de solución, crea la propuesta con los borradores de las tareas y los envía a revisión asíncrona. Es la tercera fase del flujo 1.
@@ -46,5 +50,5 @@ Construir la capacidad que, dado el problema y la forma de solución, crea la pr
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba (técnica y de redacción)
+- Usuario: 2026-09-20 — Aprueba
