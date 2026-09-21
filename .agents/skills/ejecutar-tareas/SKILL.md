@@ -59,7 +59,7 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 6. **Si durante la ejecución se descubren nuevas tareas**, usar el skill `crear-tareas` para darlas de alta. No ejecutarlas dentro de la iteración actual; se procesarán en iteraciones posteriores del ciclo.
 7. **Si la tarea no se puede realizar porque depende de otra aún no completada**, marcarla como bloqueada `[!]` en `TODO.txt` y, debajo de esa línea, crear una sublista con las tareas bloqueantes. Pasar a la siguiente tarea pendiente no bloqueada.
 8. **Al terminar la tarea**, marcarla como en revisión `[r]` en `TODO.txt` y en el campo «Estado» del archivo de tarea. No marcarla como completada todavía.
-9. **Lanzar un subagente independiente para revisión técnica.** El subagente arranca con contexto aislado: recibe el diff de los cambios (`git diff`) y el archivo de tarea (objetivo y criterios de calidad), pero no el razonamiento del agente ejecutor. Su rol es adversarial: verificar cada criterio de calidad contra el diff y buscar problemas no previstos. Produce un informe con un veredicto: aprueba o solicita cambios.
+9. **Lanzar un subagente independiente para revisión técnica.** El subagente arranca con contexto aislado: recibe el diff de los cambios (`git diff`) y el archivo de tarea (objetivo y criterios de calidad), pero no el razonamiento del agente ejecutor. Su rol es adversarial: verificar cada criterio de calidad contra el diff y buscar problemas no previstos. Produce un informe con un veredicto: aprueba o solicita cambios. Si la tarea es de tipo `desarrollo`, la revisión técnica se realiza invocando `revisar-implementacion` en lugar del subagente genérico.
 10. **Si el subagente solicita cambios**, corregir los problemas detectados y repetir desde el paso 8.
 11. **Si el subagente aprueba**, presentar el informe de revisión y un resumen del trabajo al usuario para aprobación final.
 12. **Si el usuario solicita cambios**, corregir y repetir desde el paso 8.
@@ -73,7 +73,7 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 
 Registro de tipos de tarea que tienen skill especialista. Añadir un tipo nuevo solo exige registrarlo aquí; el procedimiento del orquestador no cambia.
 
-- `desarrollo` → skill especialista de desarrollo (pendiente de creación; hasta entonces se ejecuta con el comportamiento general)
+- `desarrollo` → skill `desarrollo` (orquesta el sub-flujo: planeación y ejecución de la implementación)
 
 ## Formato de salida
 
