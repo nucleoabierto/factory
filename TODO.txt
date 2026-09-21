@@ -8,72 +8,14 @@
      Las tareas planificadas se agrupan por hito bajo encabezados
      ## Hito N: título. Las tareas sueltas, sin hito propio, viven en
      la sección ## General, que precede a los hitos.
+     El índice solo contiene trabajo activo (D017): los hitos completados
+     se eliminan; la limpieza se revisa al superar las 100 líneas.
+     Al final del archivo, la sección ## Propuestas en revisión lista las
+     propuestas del flujo de idea a tarea con el marcador [p].
 -->
 
 
-## Hito 1: Skills de redacción
-
-- [x] docs/tasks/001-investigar-revisar-redaccion.md — Investigar skill de revisión de redacción
-- [x] docs/tasks/002-escribir-revisar-redaccion.md — Escribir revisar-redaccion.md
-- [x] docs/tasks/003-investigar-pulir-escritura.md — Investigar skill de pulido mecánico
-- [x] docs/tasks/004-escribir-pulir-escritura.md — Escribir pulir-escritura.md
-- [x] docs/tasks/005-revisar-revisar-redaccion.md — Revisar revisar-redaccion.md
-- [x] docs/tasks/006-aplicar-mejoras-revisar-redaccion.md — Aplicar mejoras a revisar-redaccion.md
-- [x] docs/tasks/007-revisar-pulir-escritura.md — Revisar pulir-escritura.md
-- [x] docs/tasks/008-aplicar-mejoras-pulir-escritura.md — Aplicar mejoras a pulir-escritura.md
-
-## Hito 2: Sistema de tareas y skills formales
-
-- [x] docs/tasks/009-crear-plantilla-tareas.md — Crear plantilla de tareas
-- [x] docs/tasks/010-reestructurar-todo.md — Reestructurar TODO.txt
-- [x] docs/tasks/011-mejorar-prompt.md — Mejorar PROMPT.txt
-- [x] docs/tasks/012-investigar-skills.md — Investigar mejores prácticas para skills
-- [x] docs/tasks/013-formalizar-revisar-redaccion.md — Transformar revisar-redaccion.md en skill formal
-- [x] docs/tasks/014-formalizar-pulir-escritura.md — Transformar pulir-escritura.md en skill formal
-- [x] docs/tasks/015-investigar-commits.md — Investigar mejores prácticas para mensajes de commit
-- [x] docs/tasks/016-crear-skill-commit.md — Crear skill para realizar commits
-- [x] docs/tasks/017-crear-skill-tareas.md — Crear skill para crear tareas
-- [x] docs/tasks/018-formalizar-ejecutar-tareas.md — Formalizar skill ejecutar-tareas
-
-## Hito 3: Mejoras del sistema y documentación
-
-- [x] docs/tasks/019-investigar-organizacion-por-hitos.md — Investigar organización de tareas por hitos
-- [x] docs/tasks/020-reestructurar-todo-por-hitos.md — Reestructurar TODO.txt por hitos
-- [x] docs/tasks/021-investigar-flujo-revision.md — Investigar flujo de revisión de tareas
-- [x] docs/tasks/022-implementar-flujo-revision.md — Implementar flujo de revisión de tareas
-- [x] docs/tasks/023-investigar-formato-decisiones-diseno.md — Investigar formato para decisiones de diseño
-- [x] docs/tasks/024-crear-skill-decisiones-diseno.md — Crear skill para registrar decisiones de diseño
-- [x] docs/tasks/025-backfill-decisiones-diseno.md — Backfill de decisiones de diseño del proyecto
-- [x] docs/tasks/026-definir-proyecto.md — Definir el proyecto
-- [x] docs/tasks/027-escribir-vision-proyecto.md — Escribir documento de visión del proyecto
-- [x] docs/tasks/028-escribir-readme.md — Escribir README del proyecto
-- [x] docs/tasks/029-pulir-skill-commit.md — Pulir skill de commit para explicar qué y por qué, no el contenido
-- [x] docs/tasks/030-crear-skill-investigacion.md — Crear skill de investigación
-- [x] docs/tasks/031-investigar-flujos-idea-tarea-ejecucion.md — Investigar flujos de idea a tarea y de ejecución de tarea
-- [x] docs/tasks/032-investigar-flujo-1-completo.md — Investigar el flujo 1 completo
-- [x] docs/tasks/033-investigar-separacion-ejecutar-tareas.md — Investigar separación de ejecutar-tareas
-
-## Hito 4: Flujo 1 (idea → tarea)
-
-- [x] docs/tasks/034-registrar-posponer-separacion.md — Registrar decisión de posponer separación de ejecutar-tareas
-- [x] docs/tasks/035-registrar-decisiones-flujo-1.md — Registrar decisiones de diseño del flujo 1
-- [x] docs/tasks/036-construir-descubrimiento-problema.md — Construir capacidad de descubrimiento del problema
-- [x] docs/tasks/037-construir-propuesta-solucion.md — Construir capacidad de propuesta de forma de solución
-- [x] docs/tasks/038-construir-refinamiento-borradores.md — Construir capacidad de refinamiento con borradores
-- [x] docs/tasks/039-extender-crear-tareas-modo-flujo-1.md — Extender crear-tareas con modo flujo 1
-- [x] docs/tasks/040-construir-orquestacion-flujo-1.md — Construir capacidad de orquestación del flujo 1
-- [x] docs/tasks/041-mejorar-asunto-commits.md — Mejorar explicitud del asunto en los commits
-- [x] docs/tasks/045-derivar-propuestas-a-idea-a-tarea.md — Derivar propuestas pendientes a idea-a-tarea desde ejecutar-tareas
-
-## Hito 5: Sistema de aprendizaje
-
-- [x] docs/tasks/042-investigar-sistema-aprendizaje.md — Investigar sistema de aprendizaje por experiencias
-- [x] docs/tasks/043-crear-skill-registro-experiencias.md — Crear skill de registro de experiencias
-- [x] docs/tasks/044-crear-consolidacion-lecciones.md — Crear proceso de consolidación en lecciones
-
 ## Hito 6: Mantenimiento del sistema
 
-- [x] docs/tasks/046-registrar-decision-limpieza-todo.md — Registrar decisión de limpieza de TODO.txt
-- [x] docs/tasks/047-permitir-tareas-fuera-de-hito.md — Permitir tareas fuera de hito en TODO.txt
-- [ ] docs/tasks/048-limpiar-hitos-completados-todo.md — Limpiar hitos completados de TODO.txt
+- [x] docs/tasks/048-limpiar-hitos-completados-todo.md — Limpiar hitos completados de TODO.txt
 - [ ] docs/tasks/049-actualizar-readme.md — Actualizar README con el estado real del proyecto
