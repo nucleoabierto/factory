@@ -22,5 +22,5 @@
 
 ## Hito 7: Validación externa
 
-- [ ] docs/tasks/050-investigar-todo-apps.md — Investigar todo apps como base de trabajo
+- [x] docs/tasks/050-investigar-todo-apps.md — Investigar todo apps como base de trabajo
 - [ ] docs/tasks/051-registrar-decision-todo-app-poc.md — Registrar decisión: todo app en vanilla JS como prueba del flujo externo
