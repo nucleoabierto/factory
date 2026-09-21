@@ -12,11 +12,17 @@
 -->
 
 - validacion.md
-  - Disparadores: prueba de concepto, validación, tareas sin datos de entrada
-  - Resumen: Probar con datos sintéticos cuando falte información para validar una tarea.
+  - Disparadores: prueba de concepto, validación, tareas sin datos de entrada, semilla de prueba, escenario de validación, estímulo
+  - Resumen: Diseñar el estímulo de la prueba con objetivo y restricciones —y datos sintéticos si falta información— sin revelar el procedimiento esperado.
 - estabilidad-temporal.md
-  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial
-  - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre y no editar retroactivamente los documentos de entrada.
+  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial, commits, citas, referencias
+  - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre o hash, describir las reglas inline y no editar retroactivamente los documentos de entrada.
 - flexibilidad-en-procesos.md
   - Disparadores: skills, SKILL.md, categorías, taxonomía, lista de opciones, forma de solución
   - Resumen: Declarar las listas de categorías de los skills como abiertas y extensibles para no volver rígidos los procesos.
+- consistencia-de-formatos.md
+  - Disparadores: plantillas, assets, formato, nuevo documento, nuevo skill
+  - Resumen: Las plantillas nuevas mantienen la estructura común de los formatos del proyecto para que sean consistentes entre sí.
+- alcance.md
+  - Disparadores: alcance, auditoría, corrección transversal, archivos ajenos a la tarea, fuera de alcance
+  - Resumen: Los hallazgos fuera del alcance de la tarea se reportan o se registran como trabajo descubierto, no se corrigen directamente.

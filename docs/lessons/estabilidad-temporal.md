@@ -9,3 +9,11 @@
 - **No edites retroactivamente los documentos de entrada (investigaciones, registros históricos); registra los cambios como decisiones nuevas.** Por qué: la investigación 032 se editó para sincronizarla con el formato final de la propuesta, reescribiendo el documento como si siempre hubiera sido correcto. Los documentos de entrada preservan lo que se sabía al producirse; si cambian, el historial pierde fidelidad.
   Disparadores: investigaciones, docs/research, editar documentos existentes, cambio de formato, historial
   Origen: 20260920T180434
+
+- **Referencia los commits por hash o rango de hashes, no por posición relativa.** Por qué: una tarea citaba «los últimos 10 commits»; cada commit nuevo desplaza la referencia y deja de apuntar a lo mismo. El hash es permanente; la posición relativa no.
+  Disparadores: commits, git, referencia a commits, historial, tareas
+  Origen: 20260921T000145
+
+- **Describe las reglas inline en los skills; las citas a decisiones u otros documentos van resolubles (ruta y descripción) solo en la sección de referencias.** Por qué: un skill citaba «(D019)» sin explicar qué decidía, obligando a abrir el archivo de decisión para entender la regla. La cita desnuda no aporta contexto; la regla debe ser comprensible sin salir del documento.
+  Disparadores: skills, SKILL.md, referencia a decisión, DNNN, citas, referencias
+  Origen: 20260921T011530
