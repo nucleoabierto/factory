@@ -28,6 +28,7 @@
 - [x] docs/tasks/067-skill-desarrollo-orquestador.md — Skill especialista de desarrollo que orquesta el sub-flujo
 - [x] docs/tasks/068-verificacion-plan-implementacion.md — Añadir la verificación plan↔implementación a la revisión
 - [x] docs/tasks/069-ejecutar-desarrollo-poc-todo-app.md — Ejecutar el desarrollo de una tarea de todo-app como PoC
+- [ ] docs/tasks/070-id-unico-por-entrada-experiencias.md — Generar un Id único por entrada en registrar-experiencias
 
 ## Hito 6: Mantenimiento del sistema
 
