@@ -18,4 +18,4 @@
 ## Hito 6: Mantenimiento del sistema
 
 - [x] docs/tasks/048-limpiar-hitos-completados-todo.md — Limpiar hitos completados de TODO.txt
-- [ ] docs/tasks/049-actualizar-readme.md — Actualizar README con el estado real del proyecto
+- [x] docs/tasks/049-actualizar-readme.md — Actualizar README con el estado real del proyecto

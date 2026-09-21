@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -44,5 +44,5 @@ Sincronizar el README con el estado actual del proyecto: la tabla de skills est�
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Solicita cambios (banner de estado desactualizado; corregido)
+- Usuario: 2026-09-20 — Aprueba
