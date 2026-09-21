@@ -77,7 +77,7 @@ En modo flujo de idea a tarea, la promoción del paso 6 ya realizó el equivalen
 
 9. **Determinar el siguiente número de tarea** consultando `TODO.txt` y `docs/tasks/`. Si `TODO.txt` no existe, crearlo con la estructura del proyecto antes de continuar.
 10. **Crear cada archivo de tarea** en `docs/tasks/` usando `assets/task.txt`, con estado inicial `[ ]` y la sección Revisión con los marcadores de la plantilla sin rellenar.
-11. **Añadir las entradas a `TODO.txt`** bajo el hito correspondiente, con el formato `- [ ] docs/tasks/NNN-identificador.md — título breve`, donde el identificador es una versión en kebab-case del título. Si el hito no está claro, inferirlo del contexto de la solicitud o la propuesta y, si aun así hay duda, preguntar al usuario.
+11. **Añadir las entradas a `TODO.txt`** con el formato `- [ ] docs/tasks/NNN-identificador.md — título breve`, donde el identificador es una versión en kebab-case del título. El destino es el hito correspondiente si la tarea pertenece a trabajo planificado, o la sección `## General` si es una tarea suelta sin hito propio; si la sección no existe, crearla antes del primer hito. Si el destino no está claro, inferirlo del contexto de la solicitud o la propuesta y, si aun así hay duda, preguntar al usuario.
 12. **Informar al usuario** de las tareas creadas.
 
 ## Finalización

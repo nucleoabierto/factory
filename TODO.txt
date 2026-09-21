@@ -5,7 +5,9 @@
      - [estado] docs/tasks/NNN-slug.md — título breve
        estado: [ ] pendiente, [~] en progreso, [r] en revisión, [x] completada, [!] bloqueada
      Para tareas bloqueadas, añadir sublista con las tareas bloqueantes.
-     Las tareas se agrupan por hito bajo encabezados ## Hito N: título.
+     Las tareas planificadas se agrupan por hito bajo encabezados
+     ## Hito N: título. Las tareas sueltas, sin hito propio, viven en
+     la sección ## General, que precede a los hitos.
 -->
 
 
@@ -72,6 +74,6 @@
 ## Hito 6: Mantenimiento del sistema
 
 - [x] docs/tasks/046-registrar-decision-limpieza-todo.md — Registrar decisión de limpieza de TODO.txt
-- [ ] docs/tasks/047-permitir-tareas-fuera-de-hito.md — Permitir tareas fuera de hito en TODO.txt
+- [x] docs/tasks/047-permitir-tareas-fuera-de-hito.md — Permitir tareas fuera de hito en TODO.txt
 - [ ] docs/tasks/048-limpiar-hitos-completados-todo.md — Limpiar hitos completados de TODO.txt
 - [ ] docs/tasks/049-actualizar-readme.md — Actualizar README con el estado real del proyecto

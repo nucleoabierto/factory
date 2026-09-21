@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -44,5 +44,5 @@ Permitir que las tareas sueltas de mantenimiento vivan en `TODO.txt` fuera de un
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba
+- Usuario: 2026-09-20 — Aprueba
