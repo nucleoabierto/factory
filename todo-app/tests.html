@@ -27,6 +27,7 @@
         window.App.tasks = [];
         window.App.nextId = 1;
         window.App.initialized = false;
+        window.App.editingId = null;
         var fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
           '<input id="new-todo" type="text">' +
@@ -45,7 +46,8 @@
             'it starts as pending');
           var items = document.querySelectorAll('#todo-list li');
           assert.strictEqual(items.length, 1, 'the list shows one item');
-          assert.strictEqual(items[0].textContent, 'Comprar pan');
+          assert.strictEqual(
+            items[0].querySelector('label').textContent, 'Comprar pan');
         });
 
       QUnit.test('empty or whitespace-only texts create no task',
@@ -103,6 +105,109 @@
           assert.strictEqual(window.App.tasks.length, 1);
           assert.strictEqual(input.value, '',
             'the field is cleared after creating');
+        });
+    });
+
+    QUnit.module('complete, edit and delete', function (hooks) {
+      hooks.beforeEach(function () {
+        localStorage.removeItem('todoapp-tasks');
+        window.App.tasks = [];
+        window.App.nextId = 1;
+        window.App.initialized = false;
+        window.App.editingId = null;
+        var fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          '<input id="new-todo" type="text">' +
+          '<ul id="todo-list"></ul>' +
+          '<span id="todo-count"></span>';
+      });
+
+      QUnit.test('toggling a task marks it done and lowers the counter',
+        function (assert) {
+          var task = window.App.addTask('Toggle me');
+          window.App.toggleTask(task.id);
+          assert.true(window.App.tasks[0].done, 'state marks it done');
+          var li = document.querySelector('#todo-list li');
+          assert.strictEqual(li.className, 'done',
+            'the item carries the done class');
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '0 pendientes', 'the counter drops to zero');
+          window.App.toggleTask(task.id);
+          assert.false(window.App.tasks[0].done, 'untoggling reverts');
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '1 pendiente');
+        });
+
+      QUnit.test('editing a task updates state, view and storage',
+        function (assert) {
+          var task = window.App.addTask('Old text');
+          window.App.editTask(task.id, 'New text');
+          assert.strictEqual(window.App.tasks[0].text, 'New text');
+          assert.strictEqual(
+            document.querySelector('#todo-list li label').textContent,
+            'New text', 'the view shows the new text');
+          var stored = JSON.parse(localStorage.getItem('todoapp-tasks'));
+          assert.strictEqual(stored[0].text, 'New text',
+            'the storage holds the new text');
+        });
+
+      QUnit.test('confirming an empty edit deletes the task',
+        function (assert) {
+          var task = window.App.addTask('To be emptied');
+          window.App.editTask(task.id, '   ');
+          assert.strictEqual(window.App.tasks.length, 0,
+            'the task is gone from the state');
+          assert.strictEqual(
+            document.querySelectorAll('#todo-list li').length, 0,
+            'the task is gone from the view');
+        });
+
+      QUnit.test('Escape cancels the edit and keeps the original text',
+        function (assert) {
+          var task = window.App.addTask('Original');
+          window.App.startEdit(task.id);
+          var editInput = document.querySelector('#todo-list input.edit');
+          assert.ok(editInput, 'the item is in edit mode');
+          editInput.value = 'Changed';
+          editInput.dispatchEvent(new KeyboardEvent('keydown',
+            { key: 'Escape' }));
+          assert.strictEqual(window.App.tasks[0].text, 'Original',
+            'the text stays unchanged');
+          assert.strictEqual(window.App.editingId, null,
+            'edit mode is left');
+          assert.ok(document.querySelector('#todo-list li label'),
+            'the item renders as a label again');
+        });
+
+      QUnit.test('deleting a task removes it from state, view and storage',
+        function (assert) {
+          var task = window.App.addTask('Delete me');
+          window.App.deleteTask(task.id);
+          assert.strictEqual(window.App.tasks.length, 0);
+          assert.strictEqual(
+            document.querySelectorAll('#todo-list li').length, 0);
+          assert.strictEqual(localStorage.getItem('todoapp-tasks'),
+            '[]', 'the storage is empty');
+        });
+
+      QUnit.test('toggling, editing and deleting persist across reloads',
+        function (assert) {
+          var a = window.App.addTask('Keep done');
+          window.App.addTask('To edit');
+          var c = window.App.addTask('To delete');
+          window.App.toggleTask(a.id);
+          window.App.editTask(window.App.tasks[1].id, 'Edited');
+          window.App.deleteTask(c.id);
+          window.App.tasks = [];
+          window.App.load();
+          assert.strictEqual(window.App.tasks.length, 2,
+            'two tasks survive the reload');
+          assert.true(window.App.tasks[0].done,
+            'the done flag survived');
+          assert.strictEqual(window.App.tasks[1].text, 'Edited',
+            'the edit survived');
         });
     });
   </script>
