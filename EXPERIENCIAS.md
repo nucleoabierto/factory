@@ -34,3 +34,10 @@
   Obtenido: el agente editó la investigación 032 para sincronizarla con el formato final de la propuesta, reescribiendo el documento de entrada como si siempre hubiera sido correcto
   Corrección: las investigaciones son información inicial y no se editan retroactivamente aunque resulten incorrectas o incompletas; lo que cambió se registra como decisión nueva, de modo que el historial preserve lo que se sabía al investigar
   Estado: consolidada
+
+- Id: 20260920T222103
+  Tarea: docs/tasks/052-preparar-escenario-todo-app.md
+  Esperado: que la tarea semilla describa solo lo que se espera, como una tarea normal, y que el agente descubra por sí mismo que una idea suelta pasa por el flujo de idea a tarea
+  Obtenido: la semilla indicaba explícitamente invocar idea-a-tarea y ejecutar-tareas, revelando el procedimiento que la prueba debía medir
+  Corrección: en una semilla de prueba no se da la pista del procedimiento; la entrada expresa la idea con sus restricciones y el agente debe inferir la ruta
+  Estado: pendiente

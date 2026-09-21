@@ -24,4 +24,4 @@
 
 - [x] docs/tasks/050-investigar-todo-apps.md — Investigar todo apps como base de trabajo
 - [x] docs/tasks/051-registrar-decision-todo-app-poc.md — Registrar decisión: todo app en vanilla JS como prueba del flujo externo
-- [ ] docs/tasks/052-preparar-escenario-todo-app.md — Preparar el escenario de la prueba del flujo externo
+- [x] docs/tasks/052-preparar-escenario-todo-app.md — Preparar el escenario de la prueba del flujo externo

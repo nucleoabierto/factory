@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -22,7 +22,7 @@ Dejar lista la subcarpeta `todo-app/` para que la prueba de concepto pueda arran
 
 - La subcarpeta `todo-app/` creada en el repositorio.
 - `.agents/skills` dentro de `todo-app/` enlazado a los skills del proyecto, con una decisión explícita de cuáles entran y cuáles no (los de gestión interna del meta-proyecto podrían no aplicar).
-- Un `TODO.txt` en `todo-app/` con el comentario de formato del proyecto y una única **tarea semilla** `[ ]` cuya entrada lleve la idea que arranca el flujo («llevar la idea de una todo app por el flujo de idea a tarea hasta la implementación») y referencie la expectativa de la investigación.
+- Un `TODO.txt` en `todo-app/` con el comentario de formato del proyecto y una única **tarea semilla** `[ ]` cuya entrada lleve la idea que arranca el flujo («llevar la idea de una todo app por el flujo de idea a tarea hasta la implementación») con sus restricciones a nivel usuario, sin referenciar la investigación.
 - El archivo de la tarea semilla en `todo-app/docs/tasks/001-*.md`.
 
 ## Criterios de calidad
@@ -30,7 +30,7 @@ Dejar lista la subcarpeta `todo-app/` para que la prueba de concepto pueda arran
 - Entrar en `todo-app/` y lanzar un agente basta para iniciar el trabajo: la semilla apunta al flujo y los skills están accesibles.
 - La semilla describe la idea sin articular la solución: el agente debe recorrer `idea-a-tarea` (descubrimiento → propuesta → borradores → revisión) en lugar de recibir tareas ya hechas.
 - La decisión de qué skills se enlazan y cuáles se excluyen queda documentada en las notas de esta tarea.
-- Los commits de la app usan el prefijo `todo-app:` para distinguirlos del sistema.
+- Los commits de la app usan el ámbito `todo-app` (`tipo(todo-app): descripción`) para distinguirlos de los del sistema en el mismo repositorio.
 - Pasa revisión técnica por subagente independiente.
 
 ## Procedimiento sugerido
@@ -44,9 +44,11 @@ Dejar lista la subcarpeta `todo-app/` para que la prueba de concepto pueda arran
 ## Notas
 
 - El escenario usa enlace simbólico, no copia congelada: las correcciones a los skills que la prueba revele se propagan al sistema de inmediato. Una prueba de portabilidad estricta con copia puede hacerse después.
-- La semilla no debe contener la descomposición: solo la idea y dónde encontrar la expectativa (la investigación), para que el agente ejecute el flujo completo.
+- La semilla no debe contener la descomposición ni referenciar la investigación: solo la idea con sus restricciones, para que el agente descubra el spec recorriendo el flujo completo.
+- Decisión sobre los skills: se enlazan los 13. Ninguno es específico del meta-proyecto —todos operan sobre el ciclo de un producto cualquiera—, así que excluir alguno reduciría lo que la prueba valida.
+- La semilla expresa restricciones a nivel usuario (página única, sin frameworks, CRUD, contador, filtros, persistencia al recargar) sin prescribir implementación: cubre lo esencial de la especificación de referencia dejando que el flujo descubra los detalles (teclas, pluralización, estado vacío, routing por hash).
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba
+- Usuario: 2026-09-20 — Aprueba
