@@ -15,4 +15,9 @@
 
 ## General
 
-- [ ] docs/tasks/001-planificar-todo-app.md — Planificar todo app
+- [~] docs/tasks/001-planificar-todo-app.md — Planificar todo app
+
+
+## Propuestas en revisión
+
+- [p] docs/proposals/001-app-lista-tareas/ — Aplicación de lista de tareas (4 borradores)
