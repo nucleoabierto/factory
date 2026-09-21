@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Objetivo
 
@@ -38,5 +38,5 @@ Hacer que `ejecutar-tareas` detecte las propuestas `[p]` pendientes en `TODO.txt
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-20 — Aprueba
+- Usuario: 2026-09-20 — Aprueba

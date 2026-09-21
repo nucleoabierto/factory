@@ -48,7 +48,7 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 
 ## Procedimiento
 
-1. **Leer `TODO.txt`** para obtener el índice de tareas. Cada línea tiene el formato `- [estado] docs/tasks/NNN-slug.md — título`, donde el estado es `[ ]` pendiente, `[~]` en progreso, `[r]` en revisión, `[x]` completada o `[!]` bloqueada.
+1. **Leer `TODO.txt`** para obtener el índice de tareas. Cada línea tiene el formato `- [estado] docs/tasks/NNN-slug.md — título`, donde el estado es `[ ]` pendiente, `[~]` en progreso, `[r]` en revisión, `[x]` completada o `[!]` bloqueada. Las líneas `[p]` de la sección «Propuestas en revisión» no son tareas: son propuestas del flujo de idea a tarea que esperan la decisión del usuario; si hay alguna, informar al usuario y derivar su procesamiento a `idea-a-tarea` antes de tomar la próxima tarea pendiente, en lugar de ignorarlas.
 2. **Identificar la próxima tarea pendiente** (`[ ]`) que no esté bloqueada. Si hay una tarea ya en progreso (`[~]`), retomarla en lugar de empezar una nueva.
 3. **Si no hay tareas pendientes**, preguntar al usuario qué hacer y, si propone trabajo nuevo, usar el skill `crear-tareas` para darlo de alta. Terminar el ciclo.
 4. **Marcar la tarea como en progreso** cambiando `[ ]` a `[~]` tanto en `TODO.txt` como en el campo «Estado» del archivo de tarea, antes de empezar a trabajar. Esto evita que otra sesión tome la misma tarea.
