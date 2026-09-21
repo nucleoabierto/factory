@@ -1,5 +1,9 @@
 # Investigar formatos de épica y planeación técnica
 
+## Estado
+
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Objetivo
 
 Determinar con evidencia qué debe contener la épica como artefacto de planeación y cómo se produce un plan técnico de conjunto, antes de fijar el diseño en una decisión.
@@ -37,3 +41,8 @@ Determinar con evidencia qué debe contener la épica como artefacto de planeaci
 ## Notas
 
 - La investigación previa `docs/research/2026-09-flujos-idea-tarea-ejecucion.md` excluyó esta materia por alcance; este documento cubre ese vacío.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

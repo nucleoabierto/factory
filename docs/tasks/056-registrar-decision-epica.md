@@ -1,16 +1,20 @@
 # Registrar la decisión de la épica como artefacto
 
+## Estado
+
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Objetivo
 
 Fijar en una decisión de diseño el formato y la ubicación de la épica, su relación con propuestas, tareas e hitos del índice, y el lugar del paso de planeación en el flujo.
 
 ## Dependencias
 
-- Borrador 01
+- 055
 
 ## Entrada
 
-- La investigación producida por el borrador 01 en `docs/research/`.
+- La investigación producida por la tarea 055 en `docs/research/`.
 - `docs/decisions/` y la plantilla del skill `decisiones-diseno`.
 - `TODO.txt` y `docs/decisions/D008-organizacion-por-hitos-en-todo.md` como estado actual de la agrupación por hitos.
 
@@ -30,6 +34,11 @@ Fijar en una decisión de diseño el formato y la ubicación de la épica, su re
 
 ## Procedimiento sugerido
 
-1. Leer la investigación del borrador 01 y extraer la recomendación.
+1. Leer la investigación de la tarea 055 y extraer la recomendación.
 2. Invocar `decisiones-diseno` con el contexto y la decisión.
 3. Verificar que la decisión no contradice D008 o que la sustituye explícitamente.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

@@ -1,16 +1,20 @@
 # Construir la capacidad de planeación
 
+## Estado
+
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Objetivo
 
 Construir la capacidad que produce la épica y el plan técnico de un conjunto de trabajo, siguiendo la decisión registrada, de modo que el paso de planeación exista en el flujo.
 
 ## Dependencias
 
-- Borrador 02
+- 056
 
 ## Entrada
 
-- La decisión `DNNN` registrada por el borrador 02.
+- La decisión `DNNN` registrada por la tarea 056.
 - Los skills existentes como referencia de estructura: `ejecutar-tareas`, `crear-tareas`, `refinar-propuesta` (orquestación, plantillas en `assets/`, detalle en `references/`).
 - El estándar Agent Skills y las convenciones del proyecto (cuerpo por debajo de 500 líneas, español, `assets/` para plantillas).
 
@@ -40,4 +44,9 @@ Construir la capacidad que produce la épica y el plan técnico de un conjunto d
 
 ## Notas
 
-- Si la decisión exige cambios en `ejecutar-tareas` o `crear-tareas` (por ejemplo, para que la ejecución consulte la épica del hito), incluirlos como parte de este borrador o documentarlos como trabajo descubierto con `crear-tareas`.
+- Si la decisión exige cambios en `ejecutar-tareas` o `crear-tareas` (por ejemplo, para que la ejecución consulte la épica del hito), incluirlos como parte de esta tarea o documentarlos como trabajo descubierto con `crear-tareas`.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Borrador | [p] **Pendiente de revisión** | [a] Aprobada | [d] Descartada
+[ ] Borrador | [p] Pendiente de revisión | [a] **Aprobada** | [d] Descartada
 
 ## Problema
 
@@ -45,11 +45,11 @@ La épica se refleja en el índice de tareas como la agrupación del conjunto, d
 
 ## Borradores
 
-- `01-investigar-planeacion-epicas.md` — Investigar formatos de épica y planeación técnica
-- `02-registrar-decision-epica.md` — Registrar la decisión de la épica como artefacto (depende de 01)
-- `03-construir-capacidad-planificar.md` — Construir la capacidad de planeación (depende de 02)
-- `04-validar-planeacion-todo-app.md` — Validar la planeación sobre las tareas de todo-app (depende de 03)
+- docs/tasks/055-investigar-planeacion-epicas.md — Investigar formatos de épica y planeación técnica
+- docs/tasks/056-registrar-decision-epica.md — Registrar la decisión de la épica como artefacto (depende de 055)
+- docs/tasks/057-construir-capacidad-planificar.md — Construir la capacidad de planeación (depende de 056)
+- docs/tasks/058-validar-planeacion-todo-app.md — Validar la planeación sobre las tareas de todo-app (depende de 057)
 
 ## Revisión
 
-- Usuario: [fecha] — [Aprueba | Solicita cambios | Rechaza]
+- Usuario: 2026-09-21 — Aprueba (con ronda de redacción previa a la promoción)

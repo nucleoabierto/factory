@@ -1,16 +1,20 @@
 # Validar la planeación sobre las tareas de todo-app
 
+## Estado
+
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Objetivo
 
 Ejercitar la capacidad de planeación sobre trabajo real: generar la épica que agrupa las tareas de la aplicación, incluido el caso de planeación retroactiva sobre tareas ya promovidas.
 
 ## Dependencias
 
-- Borrador 03
+- 057
 
 ## Entrada
 
-- La capacidad de planeación construida por el borrador 03.
+- La capacidad de planeación construida por la tarea 057.
 - Las tareas de `todo-app/` promovidas desde la propuesta `todo-app/docs/proposals/001-app-lista-tareas/` (los cuatro borradores: estructura base, crear y listar, completar/editar/borrar, filtros y limpieza).
 
 ## Resultado esperado
@@ -35,4 +39,9 @@ Ejercitar la capacidad de planeación sobre trabajo real: generar la épica que 
 ## Notas
 
 - Esta tarea es la primera aplicación real de la capacidad: los hallazgos alimentan el sistema de aprendizaje (`registrar-experiencias`) si el usuario corrige algo durante la validación.
-- La ejecución de las tareas de todo-app no forma parte de este borrador: aquí solo se valida la planeación.
+- La ejecución de las tareas de todo-app no forma parte de esta tarea: aquí solo se valida la planeación.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]
