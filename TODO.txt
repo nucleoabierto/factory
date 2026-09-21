@@ -29,7 +29,7 @@
 
 ## Hito 8: Capacidad de planeación
 
-- [~] docs/tasks/054-procesar-planeacion-epicas.md — Procesar la planeación de épicas por el flujo de idea a tarea
+- [x] docs/tasks/054-procesar-planeacion-epicas.md — Procesar la planeación de épicas por el flujo de idea a tarea
 
 
 ## Propuestas en revisión

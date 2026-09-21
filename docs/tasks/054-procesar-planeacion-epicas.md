@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] **En progreso** | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] **Completada** | [!] Bloqueada
 
 ## Objetivo
 
@@ -43,5 +43,5 @@ Someter la idea «planeación de épicas y plan técnico» al flujo de idea a ta
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: — No aplica: la salida es una propuesta que sigue su propio ciclo de revisión
+- Usuario: 2026-09-21 — Aprueba
