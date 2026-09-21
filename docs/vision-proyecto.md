@@ -16,7 +16,7 @@ El principio *bootstrap* es permanente: cada nueva capacidad se construye usando
 
 1. **Cubrir el ciclo completo**: cada fase del ciclo de vida (refinamiento, creación, planeación, ejecución, revisión, corrección, integración) tendrá al menos un skill que la cubra.
 2. **Mantener la portabilidad**: los skills seguirán el estándar Agent Skills, sin depender de un arnés específico.
-3. **Validar externamente**: el producto entregable se validará construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo.
+3. **Validar externamente**: el producto entregable se validará construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo. La prueba adoptada es una todo app en vanilla JS conforme a la especificación TodoMVC (D018).
 4. **Preservar la trazabilidad**: cada decisión, cada tarea y cada investigación quedará documentada y referenciable.
 
 ## Alcance

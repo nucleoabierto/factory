@@ -100,7 +100,7 @@ El flujo no es autónomo: es asíncrono. El agente avanza el trabajo que puede e
 
 ### Validación externa
 
-El producto entregable se validará construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo.
+El producto entregable se validará construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo. La prueba de concepto adoptada es una **todo app en vanilla JS** conforme a la especificación TodoMVC, construida en la subcarpeta `todo-app/` del repositorio (ver [D018](docs/decisions/D018-todo-app-vanilla-js-prueba-flujo-externo.md)).
 
 ### Lo que Factory no es
 
@@ -112,5 +112,5 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
 - [Visión del proyecto](docs/vision-proyecto.md) — dirección aspiracional.
-- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D017).
+- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D018).
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.

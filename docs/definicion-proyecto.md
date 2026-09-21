@@ -80,4 +80,4 @@ Factory se documenta de forma pública para servir de referencia y ejemplo a la 
 - **Cobertura del ciclo**: cada fase del ciclo de vida (refinamiento, creación, planeación, ejecución, revisión, corrección, integración) tiene al menos un skill que la cubre.
 - **Autoproducción**: cada nueva capacidad se construye usando el propio sistema: la decisión queda registrada, la tarea se crea y ejecuta dentro del flujo, y el cambio se commitea siguiendo las convenciones del proyecto.
 - **Trazabilidad**: las decisiones de diseño están documentadas en `docs/decisions/`, las tareas en `docs/tasks/` y las investigaciones en `docs/research/`, con referencias cruzadas cuando aplica.
-- **Validación externa**: el producto entregable se valida construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo.
+- **Validación externa**: el producto entregable se valida construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo. La prueba adoptada es una todo app en vanilla JS conforme a la especificación TodoMVC, construida en la subcarpeta `todo-app/` del repositorio (D018).
