@@ -24,17 +24,16 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
 
 - Para tareas que no producen un diff de código (documentación, investigación, procesos): la revisión técnica general del ciclo las cubre.
 - Para ejecutar las puertas mecánicas del proyecto (tests, lint, build): esa capa de la revisión está pospuesta.
-- Para la verificación nominal plan↔implementación: es trabajo posterior, fuera del alcance de esta versión.
 
 ## Entrada
 
 - El diff de los cambios (`git diff`, incluidos los archivos nuevos).
-- El archivo de la tarea (`docs/tasks/NNN-slug.md`): objetivo, criterios de calidad y, si existen, `## Plan técnico`, `## Suite de pruebas esperada` y `## Desviaciones del plan`.
+- El archivo de la tarea (`docs/tasks/NNN-slug.md`): objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo —`## Plan técnico`, `## Suite de pruebas esperada` y `## Desviaciones del plan`—, que son el objeto de la verificación nominal cuando existen.
 - El código base del subsistema afectado, para la comparación con archivos hermanos.
 
 ## Salida
 
-- Un informe de revisión con: cada criterio de calidad verificado contra el diff, los hallazgos —cada uno citando la regla o el patrón concreto que infringe— y un veredicto: aprueba o solicita cambios.
+- Un informe de revisión con: cada criterio de calidad verificado contra el diff, la verificación nominal del plan —cada acción del `## Plan técnico` y cada expectativa de la `## Suite de pruebas esperada` contra su realización en el diff o su desviación registrada—, los hallazgos —cada uno citando la regla o el patrón concreto que infringe— y un veredicto: aprueba o solicita cambios.
 
 ## Principios rectores
 
@@ -57,8 +56,10 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
    - **Verificar cada criterio de calidad** del archivo de tarea contra el diff.
    - **Revisar la consistencia con el código base:** leer al menos los archivos hermanos o de funcionalidad similar relevantes y comprobar que el diff sigue los patrones vigentes (estructura, nombrado, manejo de errores, estilo).
    - **Revisar las reglas declaradas del proyecto** que apliquen al cambio.
+   - **Verificar el plan nominalmente:** confrontar cada acción del `## Plan técnico` con su realización en el diff y cada expectativa de la `## Suite de pruebas esperada` con la prueba que la cubre. Una acción no realizada solo es aceptable si figura en `## Desviaciones del plan` con su motivo y decisión: la desviación registrada cuenta como realización declarada, y el revisor verifica que el registro exista y sea coherente con el diff.
+   - **Distinguir en el veredicto:** «plan no seguido sin desviación registrada» es un hallazgo que solicita cambios; «desviación registrada» se reporta como tal y puede requerir confirmación del usuario en la aprobación final.
    - **Buscar problemas no previstos:** invariantes rotos, casos borde ignorados, discrepancias entre lo declarado en la tarea y lo implementado.
-   - **Producir el informe:** criterios verificados, hallazgos con la regla o patrón infringido citado, y veredicto.
+   - **Producir el informe:** criterios verificados, verificación nominal del plan, hallazgos con la regla o patrón infringido citado, y veredicto.
 
 ### 3. Interpretar el informe
 
@@ -74,6 +75,6 @@ El skill ha terminado cuando:
 
 ## Referencias
 
-- `docs/research/2026-09-flujo-desarrollo.md` — Fase de revisión contra convenciones y archivos hermanos, con las capas mecánica y de verificación formal pospuestas.
+- `docs/research/2026-09-flujo-desarrollo.md` — Fase de revisión contra convenciones, archivos hermanos y plan; la capa mecánica sigue pospuesta.
 - `docs/research/flujo-revision-tareas.md` — Revisión dual, separación de contextos y rol adversarial del revisor.
 - `docs/decisions/D020-flujo-desarrollo-skill-especialista.md` — La revisión de implementación como skill separado, invocado en el paso de revisión del ejecutor.
