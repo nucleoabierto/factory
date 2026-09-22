@@ -33,6 +33,7 @@
 - [x] docs/tasks/072-skill-documentar-dominio.md — Skill de documentación de dominio
 - [x] docs/tasks/073-skill-revisar-arquitectura.md — Skill de revisión de arquitectura
 - [x] docs/tasks/074-registrar-decision-dominio.md — Registrar la decisión de documentación de dominio y revisión de arquitectura
+- [x] docs/tasks/075-lecciones-en-revision-tecnica.md — Incluir las lecciones en la revisión técnica del subagente
 
 ## Hito 6: Mantenimiento del sistema
 

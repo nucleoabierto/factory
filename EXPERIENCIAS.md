@@ -83,3 +83,10 @@
   Obtenido: el glosario de la plantilla domain.txt ponía definición, ancla y origen en una sola línea por término
   Corrección: usar listas anidadas para los campos de cada entrada, manteniendo líneas cortas y legibles
   Estado: pendiente
+
+- Id: 20260922T123008
+  Tarea: docs/tasks/075-lecciones-en-revision-tecnica.md
+  Esperado: que la redacción use vocabulario estándar del español
+  Obtenido: el texto usaba «errores ya leccionados», una derivación forzada de «lección»
+  Corrección: usar «ya aprendidos»; no acuñar participios a partir de «lección» cuando existe la forma llana
+  Estado: pendiente
