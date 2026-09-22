@@ -65,9 +65,10 @@ Ejecuta iterativamente el ciclo de tareas del proyecto: lee el índice, toma la 
 12. **Si el usuario solicita cambios**, corregir y repetir desde el paso 8.
 13. **Si el usuario aprueba**, marcar la tarea como completada `[x]` en `TODO.txt` y en el campo «Estado» del archivo de tarea. Registrar la revisión en el campo «Revisión» del archivo de tarea con el formato: `Subagente: [fecha] — Aprueba` y `Usuario: [fecha] — Aprueba`.
 14. **Si el usuario hizo correcciones durante la tarea**, invocar el skill `registrar-experiencias` para anotarlas en `EXPERIENCIAS.md` antes de commitear. Si no hubo correcciones, no se registra nada.
-15. **Commitear la tarea completada** usando el skill `commit` antes de comenzar la siguiente. El commit debe registrar los cambios de la tarea y la actualización de estado en `TODO.txt`.
-16. **Volver al paso 1** y repetir el ciclo hasta que no queden tareas pendientes no bloqueadas.
-17. **Si no quedan tareas pendientes**, preguntar al usuario qué hacer y, si propone trabajo nuevo, usar el skill `crear-tareas`. Terminar el ciclo.
+15. **Si la tarea es de tipo `desarrollo`**, invocar el skill `documentar-dominio` con el diff de la tarea: evalúa si el cambio altera conceptos, invariantes o fronteras del dominio y actualiza `docs/domains/` solo si procede. Si el diff introdujo una decisión estructural implícita que merece registro, invocar también `decisiones-diseno`. Si `documentar-dominio` reporta divergencia estructural, comunicar la recomendación de `revisar-arquitectura` al usuario; no ejecutarla dentro de la iteración.
+16. **Commitear la tarea completada** usando el skill `commit` antes de comenzar la siguiente. El commit debe registrar los cambios de la tarea y la actualización de estado en `TODO.txt`.
+17. **Volver al paso 1** y repetir el ciclo hasta que no queden tareas pendientes no bloqueadas.
+18. **Si no quedan tareas pendientes**, preguntar al usuario qué hacer y, si propone trabajo nuevo, usar el skill `crear-tareas`. Terminar el ciclo.
 
 ## Enrutado por tipo
 

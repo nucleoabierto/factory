@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -50,5 +50,5 @@ Crear el skill `documentar-dominio`, que mantiene la documentación viva de los 
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Solicita cambios (criterios abiertos, numeración de dominios, «sin impacto» fuera de Cuándo no usar, finalización ambigua); corregido
+- Usuario: 2026-09-21 — Aprueba (tras ajustes: ancla al código con Origen opcional a tarea/épica; glosario en listas anidadas)

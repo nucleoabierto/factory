@@ -69,3 +69,17 @@
   Obtenido: al buscar otros casos de la regla se corrigió también un comentario de TODO.txt («(D017)»), fuera del alcance de la tarea
   Corrección: al revisar casos de una regla durante una tarea, los hallazgos fuera de alcance se reportan al usuario o se registran como trabajo descubierto, no se corrigen directamente
   Estado: consolidada
+
+- Id: 20260921T183814
+  Tarea: docs/tasks/072-skill-documentar-dominio.md
+  Esperado: que el diseño del ancla en la documentación de dominio considerara tanto la detección de deriva como la trazabilidad
+  Obtenido: el ancla apuntaba solo al código, sin referencia a la tarea o épica que introdujo el concepto
+  Corrección: distinguir el ancla (apunta a lo que cambia: el código, y sirve para detectar deriva) de la procedencia (apunta a la historia: tarea o épica, como campo «Origen» opcional)
+  Estado: pendiente
+
+- Id: 20260921T183815
+  Tarea: docs/tasks/072-skill-documentar-dominio.md
+  Esperado: que los campos de una entrada de plantilla no produzcan líneas excesivamente largas
+  Obtenido: el glosario de la plantilla domain.txt ponía definición, ancla y origen en una sola línea por término
+  Corrección: usar listas anidadas para los campos de cada entrada, manteniendo líneas cortas y legibles
+  Estado: pendiente
