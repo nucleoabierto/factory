@@ -90,3 +90,10 @@
   Obtenido: el texto usaba «errores ya leccionados», una derivación forzada de «lección»
   Corrección: usar «ya aprendidos»; no acuñar participios a partir de «lección» cuando existe la forma llana
   Estado: consolidada
+
+- Id: 20260922T123502
+  Tarea: todo-app/docs/tasks/006-documentar-dominio.md
+  Esperado: que la documentación de un dominio viva junto al código que describe
+  Obtenido: el documento de dominio de todo-app se creó en docs/domains/ de la raíz del repositorio, lejos del código en todo-app/
+  Corrección: el directorio docs/domains/ pertenece al proyecto que contiene el código del dominio; si el repo tiene sub-proyectos con su propio docs/, el dominio se documenta ahí
+  Estado: pendiente

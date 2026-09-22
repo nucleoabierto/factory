@@ -16,6 +16,8 @@
 ## General
 
 - [x] docs/tasks/001-planificar-todo-app.md — Planificar todo app
+- [x] docs/tasks/006-documentar-dominio.md — Documentar el dominio de la aplicación
+- [ ] docs/tasks/007-revisar-arquitectura.md — Revisar la arquitectura del dominio
 
 ## Hito 1: Aplicación de lista de tareas
 
