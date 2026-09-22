@@ -32,7 +32,7 @@
 - [x] docs/tasks/071-investigar-revision-arquitectura-dominio.md — Investigar revisión de arquitectura DDD y documentación de dominio
 - [x] docs/tasks/072-skill-documentar-dominio.md — Skill de documentación de dominio
 - [x] docs/tasks/073-skill-revisar-arquitectura.md — Skill de revisión de arquitectura
-- [ ] docs/tasks/074-registrar-decision-dominio.md — Registrar la decisión de documentación de dominio y revisión de arquitectura
+- [x] docs/tasks/074-registrar-decision-dominio.md — Registrar la decisión de documentación de dominio y revisión de arquitectura
 
 ## Hito 6: Mantenimiento del sistema
 

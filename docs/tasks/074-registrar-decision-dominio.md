@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -40,5 +40,5 @@ Registrar en `docs/decisions/` la decisión de mantenimiento continuo que adopta
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-21 — Aprueba (con una observación menor corregida: referencia resoluble a la tarea 072)
+- Usuario: 2026-09-21 — Aprueba (tras revisión contra las lecciones del proyecto)
