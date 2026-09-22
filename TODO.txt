@@ -29,7 +29,10 @@
 - [x] docs/tasks/068-verificacion-plan-implementacion.md — Añadir la verificación plan↔implementación a la revisión
 - [x] docs/tasks/069-ejecutar-desarrollo-poc-todo-app.md — Ejecutar el desarrollo de una tarea de todo-app como PoC
 - [x] docs/tasks/070-id-unico-por-entrada-experiencias.md — Generar un Id único por entrada en registrar-experiencias
-- [ ] docs/tasks/071-investigar-revision-arquitectura-dominio.md — Investigar revisión de arquitectura DDD y documentación de dominio
+- [x] docs/tasks/071-investigar-revision-arquitectura-dominio.md — Investigar revisión de arquitectura DDD y documentación de dominio
+- [ ] docs/tasks/072-skill-documentar-dominio.md — Skill de documentación de dominio
+- [ ] docs/tasks/073-skill-revisar-arquitectura.md — Skill de revisión de arquitectura
+- [ ] docs/tasks/074-registrar-decision-dominio.md — Registrar la decisión de documentación de dominio y revisión de arquitectura
 
 ## Hito 6: Mantenimiento del sistema
 
