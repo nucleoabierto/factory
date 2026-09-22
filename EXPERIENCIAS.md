@@ -75,18 +75,18 @@
   Esperado: que el diseño del ancla en la documentación de dominio considerara tanto la detección de deriva como la trazabilidad
   Obtenido: el ancla apuntaba solo al código, sin referencia a la tarea o épica que introdujo el concepto
   Corrección: distinguir el ancla (apunta a lo que cambia: el código, y sirve para detectar deriva) de la procedencia (apunta a la historia: tarea o épica, como campo «Origen» opcional)
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260921T183815
   Tarea: docs/tasks/072-skill-documentar-dominio.md
   Esperado: que los campos de una entrada de plantilla no produzcan líneas excesivamente largas
   Obtenido: el glosario de la plantilla domain.txt ponía definición, ancla y origen en una sola línea por término
   Corrección: usar listas anidadas para los campos de cada entrada, manteniendo líneas cortas y legibles
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260922T123008
   Tarea: docs/tasks/075-lecciones-en-revision-tecnica.md
   Esperado: que la redacción use vocabulario estándar del español
   Obtenido: el texto usaba «errores ya leccionados», una derivación forzada de «lección»
   Corrección: usar «ya aprendidos»; no acuñar participios a partir de «lección» cuando existe la forma llana
-  Estado: pendiente
+  Estado: consolidada

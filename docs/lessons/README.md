@@ -22,7 +22,13 @@
   - Resumen: Declarar las listas de categorías de los skills como abiertas y extensibles para no volver rígidos los procesos.
 - consistencia-de-formatos.md
   - Disparadores: plantillas, assets, formato, nuevo documento, nuevo skill
-  - Resumen: Las plantillas nuevas mantienen la estructura común de los formatos del proyecto para que sean consistentes entre sí.
+  - Resumen: Las plantillas nuevas mantienen la estructura común de los formatos del proyecto; las entradas con varios campos usan listas anidadas.
 - alcance.md
   - Disparadores: alcance, auditoría, corrección transversal, archivos ajenos a la tarea, fuera de alcance
   - Resumen: Los hallazgos fuera del alcance de la tarea se reportan o se registran como trabajo descubierto, no se corrigen directamente.
+- anclas-y-trazabilidad.md
+  - Disparadores: docs/domains, documentación de dominio, glosario, ancla, trazabilidad, deriva, referencia a código
+  - Resumen: El ancla de un documento de dominio apunta al código (lo que cambia) para detectar deriva; la procedencia es un campo «Origen» aparte.
+- vocabulario.md
+  - Disparadores: redacción, SKILL.md, documentos, texto en español, derivaciones, participios
+  - Resumen: Usar vocabulario llano del español; no acuñar derivaciones cuando existe la forma estándar.
