@@ -104,3 +104,10 @@
   Obtenido: `isValidTask` recibía el parámetro `t`, nombre que asume que el valor ya es una tarea
   Corrección: usar `candidate` para un valor cuya condición de tarea está en verificación; `t` es aceptable donde el valor ya es una tarea (filtros, búsquedas)
   Estado: pendiente
+
+- Id: 20260923T000000
+  Tarea: todo-app/docs/tasks/010-proteger-estado-del-modelo.md
+  Esperado: que los comentarios del código sean útiles a lo largo del tiempo
+  Obtenido: el comentario de `reset()` narraba el razonamiento del proceso de la sesión (operación del arnés, no del dominio)
+  Corrección: los comentarios explican la razón duradera del código; no se incluye narrativa transitoria de la sesión ni del proceso
+  Estado: pendiente

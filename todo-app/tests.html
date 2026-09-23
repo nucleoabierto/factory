@@ -25,8 +25,7 @@
       hooks.beforeEach(function () {
         localStorage.removeItem('todoapp-tasks');
         localStorage.removeItem('todoapp-filter');
-        window.App.tasks = [];
-        window.App.nextId = 1;
+        window.App.reset();
         window.App.initialized = false;
         window.App.editingId = null;
         window.App.filter = 'all';
@@ -79,7 +78,7 @@
           window.App.addTask('Persistirme');
           var raw = localStorage.getItem('todoapp-tasks');
           assert.ok(raw, 'the key exists in localStorage');
-          window.App.tasks = [];
+          window.App.reset();
           window.App.load();
           assert.strictEqual(window.App.tasks.length, 1);
           assert.strictEqual(window.App.tasks[0].text, 'Persistirme');
@@ -90,8 +89,8 @@
           window.App.load();
           assert.deepEqual(window.App.tasks, [],
             'missing key yields an empty list');
+          window.App.addTask('x');
           localStorage.setItem('todoapp-tasks', '{broken json');
-          window.App.tasks = [{ id: 9, text: 'x', done: false }];
           window.App.load();
           assert.deepEqual(window.App.tasks, [],
             'broken JSON yields an empty list');
@@ -134,8 +133,7 @@
       hooks.beforeEach(function () {
         localStorage.removeItem('todoapp-tasks');
         localStorage.removeItem('todoapp-filter');
-        window.App.tasks = [];
-        window.App.nextId = 1;
+        window.App.reset();
         window.App.initialized = false;
         window.App.editingId = null;
         window.App.filter = 'all';
@@ -224,7 +222,7 @@
           window.App.toggleTask(a.id);
           window.App.editTask(window.App.tasks[1].id, 'Edited');
           window.App.deleteTask(c.id);
-          window.App.tasks = [];
+          window.App.reset();
           window.App.load();
           assert.strictEqual(window.App.tasks.length, 2,
             'two tasks survive the reload');
@@ -239,8 +237,7 @@
       hooks.beforeEach(function () {
         localStorage.removeItem('todoapp-tasks');
         localStorage.removeItem('todoapp-filter');
-        window.App.tasks = [];
-        window.App.nextId = 1;
+        window.App.reset();
         window.App.initialized = false;
         window.App.editingId = null;
         window.App.filter = 'all';
@@ -311,7 +308,7 @@
           assert.strictEqual(localStorage.getItem('todoapp-tasks'),
             JSON.stringify([{ id: 1, text: 'Stay', done: false }]),
             'the storage keeps only the pending task');
-          window.App.tasks = [];
+          window.App.reset();
           window.App.load();
           assert.strictEqual(window.App.tasks.length, 1,
             'a reload keeps the cleared result');

@@ -7,104 +7,134 @@
 
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
-  // subscribers when the state changes.
-  var TaskList = {
-    tasks: [],
-    nextId: 1,
-    listeners: [],
+  // subscribers when the state changes. The state is private and
+  // only mutates through the operations below.
+  class TaskList {
+    #tasks = [];
+    #nextId = 1;
+    #listeners = [];
 
-    subscribe: function (fn) {
-      TaskList.listeners.push(fn);
-    },
+    subscribe(fn) {
+      this.#listeners.push(fn);
+    }
 
-    notify: function () {
-      TaskList.listeners.forEach(function (fn) {
+    #notify() {
+      this.#listeners.forEach(function (fn) {
         fn();
       });
-    },
+    }
 
-    isValidTask: function (candidate) {
+    // Resets the state without notifying subscribers.
+    reset() {
+      this.#tasks = [];
+      this.#nextId = 1;
+    }
+
+    // Public reads return copies: the private state (and each
+    // task object in it) can only change through the operations.
+    #snapshot(task) {
+      return { id: task.id, text: task.text, done: task.done };
+    }
+
+    tasks() {
+      return this.#tasks.map(this.#snapshot);
+    }
+
+    nextId() {
+      return this.#nextId;
+    }
+
+    isValidTask(candidate) {
       return !!candidate &&
         typeof candidate.id === 'number' && isFinite(candidate.id) &&
         typeof candidate.text === 'string' && candidate.text.trim() !== '' &&
         typeof candidate.done === 'boolean';
-    },
+    }
 
-    load: function (data) {
-      TaskList.tasks = data.filter(TaskList.isValidTask);
-      TaskList.nextId = TaskList.tasks.reduce(function (max, t) {
+    load(data) {
+      this.#tasks = data.filter(this.isValidTask);
+      this.#nextId = this.#tasks.reduce(function (max, t) {
         return Math.max(max, t.id);
       }, 0) + 1;
-    },
+    }
 
-    findTask: function (id) {
-      return TaskList.tasks.filter(function (t) { return t.id === id; })[0] || null;
-    },
+    findTask(id) {
+      var task = this.#find(id);
+      return task ? this.#snapshot(task) : null;
+    }
 
-    addTask: function (text) {
+    #find(id) {
+      return this.#tasks.filter(function (t) { return t.id === id; })[0] || null;
+    }
+
+    addTask(text) {
       var clean = (text || '').trim();
       if (!clean) {
         return null;
       }
-      var task = { id: TaskList.nextId++, text: clean, done: false };
-      TaskList.tasks.push(task);
-      TaskList.notify();
-      return task;
-    },
+      var task = { id: this.#nextId++, text: clean, done: false };
+      this.#tasks.push(task);
+      this.#notify();
+      return this.#snapshot(task);
+    }
 
-    toggleTask: function (id) {
-      var task = TaskList.findTask(id);
+    toggleTask(id) {
+      var task = this.#find(id);
       if (!task) {
         return null;
       }
       task.done = !task.done;
-      TaskList.notify();
-      return task;
-    },
+      this.#notify();
+      return this.#snapshot(task);
+    }
 
-    editTask: function (id, newText) {
-      var task = TaskList.findTask(id);
+    editTask(id, newText) {
+      var task = this.#find(id);
       if (!task) {
         return null;
       }
       var clean = (newText || '').trim();
       if (!clean) {
-        return TaskList.deleteTask(id);
+        return this.deleteTask(id);
       }
       task.text = clean;
-      TaskList.notify();
-      return task;
-    },
+      this.#notify();
+      return this.#snapshot(task);
+    }
 
-    deleteTask: function (id) {
-      var task = TaskList.findTask(id);
+    deleteTask(id) {
+      var task = this.#find(id);
       if (!task) {
         return null;
       }
-      TaskList.tasks = TaskList.tasks.filter(function (t) { return t.id !== id; });
-      TaskList.notify();
-      return task;
-    },
+      this.#tasks = this.#tasks.filter(function (t) { return t.id !== id; });
+      this.#notify();
+      return this.#snapshot(task);
+    }
 
-    pendingCount: function () {
-      return TaskList.tasks.filter(function (t) { return !t.done; }).length;
-    },
+    pendingCount() {
+      return this.#tasks.filter(function (t) { return !t.done; }).length;
+    }
 
-    visibleTasks: function (filter) {
+    visibleTasks(filter) {
       if (filter === 'active') {
-        return TaskList.tasks.filter(function (t) { return !t.done; });
+        return this.#tasks.filter(function (t) { return !t.done; })
+          .map(this.#snapshot);
       }
       if (filter === 'completed') {
-        return TaskList.tasks.filter(function (t) { return t.done; });
+        return this.#tasks.filter(function (t) { return t.done; })
+          .map(this.#snapshot);
       }
-      return TaskList.tasks;
-    },
-
-    clearCompleted: function () {
-      TaskList.tasks = TaskList.tasks.filter(function (t) { return !t.done; });
-      TaskList.notify();
+      return this.tasks();
     }
-  };
+
+    clearCompleted() {
+      this.#tasks = this.#tasks.filter(function (t) { return !t.done; });
+      this.#notify();
+    }
+  }
+
+  var taskList = new TaskList();
 
   // Infrastructure: persistence in localStorage, tolerant of
   // missing or corrupted data. It moves data in and out; it does
@@ -289,41 +319,41 @@
     load: function () {
       UI.editingId = null;
       App.filter = Storage.loadFilter();
-      TaskList.load(Storage.loadTasks());
+      taskList.load(Storage.loadTasks());
     },
 
     save: function () {
-      Storage.saveTasks(TaskList.tasks);
+      Storage.saveTasks(taskList.tasks());
     },
 
     addTask: function (text) {
-      return TaskList.addTask(text);
+      return taskList.addTask(text);
     },
 
     toggleTask: function (id) {
-      return TaskList.toggleTask(id);
+      return taskList.toggleTask(id);
     },
 
     editTask: function (id, newText) {
-      if (!TaskList.findTask(id)) {
+      if (!taskList.findTask(id)) {
         return null;
       }
       UI.editingId = null;
-      return TaskList.editTask(id, newText);
+      return taskList.editTask(id, newText);
     },
 
     deleteTask: function (id) {
-      if (!TaskList.findTask(id)) {
+      if (!taskList.findTask(id)) {
         return null;
       }
       if (UI.editingId === id) {
         UI.editingId = null;
       }
-      return TaskList.deleteTask(id);
+      return taskList.deleteTask(id);
     },
 
     startEdit: function (id) {
-      if (!TaskList.findTask(id)) {
+      if (!taskList.findTask(id)) {
         return;
       }
       UI.editingId = id;
@@ -336,11 +366,11 @@
     },
 
     pendingCount: function () {
-      return TaskList.pendingCount();
+      return taskList.pendingCount();
     },
 
     visibleTasks: function () {
-      return TaskList.visibleTasks(App.filter);
+      return taskList.visibleTasks(App.filter);
     },
 
     setFilter: function (name) {
@@ -353,7 +383,11 @@
     },
 
     clearCompleted: function () {
-      TaskList.clearCompleted();
+      taskList.clearCompleted();
+    },
+
+    reset: function () {
+      taskList.reset();
     },
 
     render: function () {
@@ -371,28 +405,25 @@
     }
   };
 
-  // The state fields live in the components; the facade delegates
-  // so existing callers keep working unchanged.
+  // The state lives in the components: the facade exposes it
+  // read-only for tasks/nextId and delegates editingId to the UI.
   Object.defineProperty(App, 'tasks', {
-    get: function () { return TaskList.tasks; },
-    set: function (value) { TaskList.tasks = value; }
+    get: function () { return taskList.tasks(); }
   });
   Object.defineProperty(App, 'nextId', {
-    get: function () { return TaskList.nextId; },
-    set: function (value) { TaskList.nextId = value; }
+    get: function () { return taskList.nextId(); }
   });
   Object.defineProperty(App, 'editingId', {
     get: function () { return UI.editingId; },
     set: function (value) { UI.editingId = value; }
   });
 
-  TaskList.subscribe(function () {
+  taskList.subscribe(function () {
     App.save();
     App.render();
   });
 
   global.App = App;
-  global.TaskList = TaskList;
 
   if (global.document) {
     global.document.addEventListener('DOMContentLoaded', App.init);

@@ -21,9 +21,9 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 
 ## Modelo
 
-- **Entidades / estado:** la tarea `{id, text, done}` es la única entidad; el estado es la lista `TaskList.tasks` más el contador derivado y el filtro activo.
-  - Ancla: `TaskList.tasks`, `TaskList.nextId` en `app.js`
-- **Invariantes:** no existen tareas con texto vacío o de solo espacios (Ancla: validación en `TaskList.addTask` y `TaskList.editTask`); los identificadores son únicos y crecientes (Ancla: `TaskList.nextId`); editar una tarea a texto vacío la borra (Ancla: `TaskList.editTask` delegando en `TaskList.deleteTask`); al cargar datos externos solo entran ítems con la forma `{id, text, done}` (Ancla: `TaskList.isValidTask` en `TaskList.load`).
+- **Entidades / estado:** la tarea `{id, text, done}` es la única entidad; el estado es la lista de tareas (privada en `TaskList`, consultable por `tasks()`) más el contador derivado y el filtro activo.
+  - Ancla: `class TaskList` con `#tasks`/`#nextId` y las consultas `tasks()`/`nextId()` en `app.js`
+- **Invariantes:** no existen tareas con texto vacío o de solo espacios (Ancla: validación en `TaskList.addTask` y `TaskList.editTask`); los identificadores son únicos y crecientes (Ancla: `TaskList.#nextId` y `nextId()`); editar una tarea a texto vacío la borra (Ancla: `TaskList.editTask` delegando en `TaskList.deleteTask`); al cargar datos externos solo entran ítems con la forma `{id, text, done}` (Ancla: `TaskList.isValidTask` en `TaskList.load`).
 - **Operaciones:** crear, completar, editar, borrar, filtrar, limpiar completadas y contar pendientes.
   - Ancla: `addTask`, `toggleTask`, `editTask`, `deleteTask`, `clearCompleted`, `pendingCount`, `visibleTasks` en `TaskList` y `setFilter` en `App`, en `app.js`
 
@@ -40,4 +40,4 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 ## Estado de salud
 
 - Última revisión: 2026-09-22
-- Divergencias conocidas: ninguna. La concentración de características se resolvió en la tarea 008: el dominio vive en `TaskList` y `App` actúa de fachada. El estado del modelo sigue accesible públicamente a través de la fachada (tarea 010 pendiente).
+- Divergencias conocidas: ninguna. La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`).
