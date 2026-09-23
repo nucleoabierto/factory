@@ -19,7 +19,7 @@ Hacer que `load` defienda las invariantes del modelo ante datos externos: los í
 ## Entrada
 
 - `app.js` — `App.load` acepta cualquier array persistido (líneas 35-47).
-- Informe `docs/reviews/001-revision-arquitectura-dominio.md` (tarea 007), hallazgo H2.
+- Informe `docs/architecture-reviews/001-revision-arquitectura-dominio.md` (tarea 007), hallazgo H2.
 
 ## Resultado esperado
 

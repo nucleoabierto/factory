@@ -20,7 +20,7 @@ Resolver la concentración de características en `App`: extraer el modelo de do
 
 - `app.js` — objeto `App` monolítico (dominio + persistencia + presentación).
 - `docs/domains/001-lista-de-tareas.md` — fronteras declaradas.
-- Informe `docs/reviews/001-revision-arquitectura-dominio.md` (tarea 007), hallazgo H1.
+- Informe `docs/architecture-reviews/001-revision-arquitectura-dominio.md` (tarea 007), hallazgo H1.
 - D018 — vanilla JS sin build ni framework (`docs/decisions/` del repositorio raíz).
 
 ## Resultado esperado

@@ -74,6 +74,7 @@ Todo hallazgo se reporta como orden de reparación, no como observación vaga:
 - **Restricciones:** qué debe respetarse (decisiones registradas, fuera de alcance, compatibilidad).
 - **Validación:** cómo comprobar que la corrección surtió efecto.
 - **Confianza:** alta / media / baja, según cuánta evidencia soporta el hallazgo.
+- **Derivado en:** ruta de la tarea o decisión que materializó el hallazgo; queda vacío hasta que el usuario apruebe la derivación.
 
 ## Referencias
 

@@ -5,7 +5,8 @@ description: >
   Driven Design —lenguaje ubicuo, capas, fronteras, invariantes,
   acoplamiento y catálogo de smells— y produce un informe con
   evidencia, hallazgos priorizados y recomendaciones como
-  órdenes de reparación, sin implementar cambios.
+  órdenes de reparación, persistido en docs/architecture-reviews/ del
+  proyecto evaluado, sin implementar cambios.
   Usar bajo demanda sobre un dominio, o cuando documentar-dominio
   detecte divergencia estructural entre el código y lo documentado.
   Sinónimos: revisar arquitectura, revisión de arquitectura,
@@ -14,7 +15,7 @@ description: >
 
 # Revisar arquitectura
 
-Instrucciones para que un agente evalúe la arquitectura de un dominio con criterios de Domain Driven Design. El resultado es un informe: no implementa cambios ni los ordena directamente —los hallazgos derivan en tareas vía `crear-tareas` o en decisiones vía `decisiones-diseno`, siempre con aprobación del usuario.
+Instrucciones para que un agente evalúe la arquitectura de un dominio con criterios de Domain Driven Design. El resultado es un informe persistido en `docs/architecture-reviews/` del proyecto evaluado: no implementa cambios ni los ordena directamente —los hallazgos derivan en tareas vía `crear-tareas` o en decisiones vía `decisiones-diseno`, siempre con aprobación del usuario.
 
 ## Cuándo usar
 
@@ -36,8 +37,14 @@ Instrucciones para que un agente evalúe la arquitectura de un dominio con crite
 
 ## Salida
 
-- Un informe de revisión de arquitectura con: el dominio evaluado y su alcance, un veredicto por criterio de la rúbrica (correcto, mejorable, deficiente, no evaluable) con su evidencia y nivel de confianza, los hallazgos priorizados como órdenes de reparación, y las recomendaciones.
-- El informe se presenta al usuario; no crea archivos ni modifica código por sí mismo.
+- Un informe de revisión de arquitectura persistido en `docs/architecture-reviews/` del proyecto que contiene el dominio evaluado —la misma regla que `docs/domains/`: junto al código del dominio. Nomenclatura `NNN-slug.md` con serie numerada propia, consistente con `docs/tasks/` y `docs/decisions/`; sin índice propio: la serie basta.
+- Contenido del informe:
+  - Cabecera con bullets etiquetados: fecha, dominio evaluado y su alcance, intención declarada (documento de dominio, si existe) y decisiones respetadas.
+  - Veredicto por criterio de la rúbrica (correcto, mejorable, deficiente, no evaluable) con su evidencia y nivel de confianza.
+  - Hallazgos priorizados como órdenes de reparación, con el formato de `references/rubrica.md`.
+  - Recomendaciones.
+- El informe persistido es el origen estable: las tareas y decisiones que se deriven lo referencian por su ruta, y cada hallazgo registra en su campo «Derivado en» la tarea o decisión que lo materializó (el único campo del informe que se actualiza tras la emisión).
+- El informe se presenta también al usuario en resumen; no modifica código por sí mismo.
 
 ## Principios rectores
 
@@ -53,14 +60,14 @@ Instrucciones para que un agente evalúe la arquitectura de un dominio con crite
 2. **Recopilar evidencia.** Recorrer el código del dominio: estructura de módulos, grafo de dependencias, nombres frente al glosario, dónde se defienden las invariantes, qué mezcla cada componente.
 3. **Evaluar por criterio.** Aplicar la rúbrica de `references/rubrica.md`: lenguaje ubicuo, separación de capas, fronteras, invariantes y modelo, acoplamiento y estructura, y el catálogo de smells. Cada veredicto con su evidencia y confianza; los criterios son abiertos y extensibles —si el dominio presenta una dimensión no cubierta, se evalúa y se propone su adición a la rúbrica.
 4. **Priorizar hallazgos.** Ordenar por impacto en la mantenibilidad del dominio: primero lo que contradice la intención declarada o hace cumplir fronteras, después lo que degrada el modelo, al final lo cosmético.
-5. **Emitir el informe** con la estructura de «Salida» y presentarlo al usuario.
-6. **Derivar con aprobación.** Si el usuario aprueba actuar sobre los hallazgos, darlos de alta con `crear-tareas` (correcciones) o `decisiones-diseno` (cambios de criterio arquitectónico). Sin aprobación, no se crea nada.
+5. **Emitir el informe** con la estructura de «Salida»: escribir el archivo en `docs/architecture-reviews/` y presentar un resumen al usuario.
+6. **Derivar con aprobación.** Si el usuario aprueba actuar sobre los hallazgos, darlos de alta con `crear-tareas` (correcciones) o `decisiones-diseno` (cambios de criterio arquitectónico); las tareas y decisiones creadas referencian el informe por su ruta, y el campo «Derivado en» de cada hallazgo se actualiza con lo creado. Sin aprobación, no se crea nada.
 
 ## Finalización
 
 El skill ha terminado cuando:
 
-- El informe está emitido con veredicto por criterio, evidencia y confianza.
+- El informe está persistido en `docs/architecture-reviews/` con veredicto por criterio, evidencia y confianza.
 - Los hallazgos están priorizados y redactados como órdenes de reparación.
 - El usuario decidió qué se deriva a tareas o decisiones (o nada).
 

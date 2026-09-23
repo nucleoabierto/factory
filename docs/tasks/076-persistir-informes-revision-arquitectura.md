@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -24,7 +24,7 @@ Extender el skill `revisar-arquitectura` para que el informe quede almacenado de
 
 ## Resultado esperado
 
-- El skill define dónde vive el informe (`docs/reviews/` del proyecto del dominio), su formato/nomenclatura (serie propia o fecha, consistente con las convenciones de documentación del proyecto) y si lleva índice.
+- El skill define dónde vive el informe (`docs/architecture-reviews/` del proyecto del dominio), su formato/nomenclatura (serie propia o fecha, consistente con las convenciones de documentación del proyecto) y si lleva índice.
 - Los hallazgos derivados referencian el informe almacenado.
 - La sección «Salida» del skill y la rúbrica quedan actualizadas.
 
@@ -36,5 +36,5 @@ Extender el skill `revisar-arquitectura` para que el informe quede almacenado de
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-23 — Aprueba
+- Usuario: 2026-09-23 — Aprueba (con corrección: directorio renombrado a `docs/architecture-reviews/` y migración del informe de todo-app)

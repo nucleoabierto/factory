@@ -90,3 +90,10 @@
   Obtenido: el texto usaba «errores ya leccionados», una derivación forzada de «lección»
   Corrección: usar «ya aprendidos»; no acuñar participios a partir de «lección» cuando existe la forma llana
   Estado: consolidada
+
+- Id: 20260923T151159
+  Tarea: docs/tasks/076-persistir-informes-revision-arquitectura.md
+  Esperado: que el directorio donde viven los informes declarara qué tipo de revisión contiene
+  Obtenido: se propuso `docs/reviews/`, un nombre genérico que no distingue revisiones de arquitectura de revisiones de planes, PRs, commits o redacción
+  Corrección: usar `docs/architecture-reviews/` —el nombre del directorio debe ser específico del artefacto que almacena
+  Estado: pendiente

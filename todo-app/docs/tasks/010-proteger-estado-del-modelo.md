@@ -19,7 +19,7 @@ Que el estado del dominio (`tasks`, `nextId`) solo pueda mutar a través de las 
 ## Entrada
 
 - `app.js` — `App.tasks` y `App.nextId` públicos y mutables (líneas 9-10).
-- Informe `docs/reviews/001-revision-arquitectura-dominio.md` (tarea 007), hallazgo H3.
+- Informe `docs/architecture-reviews/001-revision-arquitectura-dominio.md` (tarea 007), hallazgo H3.
 
 ## Resultado esperado
 
