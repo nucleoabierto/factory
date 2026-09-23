@@ -32,3 +32,6 @@
 - vocabulario.md
   - Disparadores: redacción, SKILL.md, documentos, texto en español, derivaciones, participios
   - Resumen: Usar vocabulario llano del español; no acuñar derivaciones cuando existe la forma estándar.
+- nomenclatura.md
+  - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice
+  - Resumen: Nombrar directorios y artefactos por el tipo específico de contenido que almacenan, no por la operación genérica.

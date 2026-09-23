@@ -96,4 +96,4 @@
   Esperado: que el directorio donde viven los informes declarara qué tipo de revisión contiene
   Obtenido: se propuso `docs/reviews/`, un nombre genérico que no distingue revisiones de arquitectura de revisiones de planes, PRs, commits o redacción
   Corrección: usar `docs/architecture-reviews/` —el nombre del directorio debe ser específico del artefacto que almacena
-  Estado: pendiente
+  Estado: consolidada
