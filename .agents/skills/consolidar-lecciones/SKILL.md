@@ -46,12 +46,13 @@ Instrucciones para que un agente tome las experiencias pendientes de `EXPERIENCI
 ## Procedimiento
 
 1. **Leer `EXPERIENCIAS.md`** y listar las entradas con `Estado: pendiente`. Si no hay, informar y terminar.
-2. **Proponer una agrupación por temas** y presentarla al usuario: para cada tema, el título de la nota y las experiencias que contiene. Si el usuario ajusta, repetir.
-3. **Para cada tema**, crear o actualizar `docs/lessons/<tema>.md` con las lecciones en el «Formato de la nota»: regla imperativa, porqué, disparadores y origen (los `Id` de las experiencias que la originaron).
-4. **Revisar las lecciones existentes** del tema: fusionar las que digan lo mismo, reescribir las que una experiencia nueva contradiga y mantener el resto.
-5. **Actualizar `docs/lessons/README.md`** con una entrada por tema, siguiendo el formato declarado en el comentario del propio índice.
-6. **Marcar las entradas consolidadas** cambiando `Estado: pendiente` a `Estado: consolidada` en `EXPERIENCIAS.md`, sin tocar nada más de la entrada. Si el usuario aprobó la agrupación solo en parte, marcar únicamente las entradas que efectivamente quedaron en notas; el resto permanece `pendiente`.
-7. **Informar al usuario** de las notas creadas o actualizadas.
+2. **Cotejar contra las lecciones existentes.** Leer el índice `docs/lessons/README.md` y mapear cada experiencia pendiente a las lecciones cuyos disparadores coincidan con su contenido (qué se corrigió y sobre qué archivos), con el mismo mecanismo léxico que `consultar-lecciones`. Clasificar cada experiencia: ya cubierta por una lección, refuerzo de una nota existente, contradicción con una lección, o tema nuevo.
+3. **Proponer una agrupación por temas** y presentarla al usuario junto con el mapeo del cotejo: para cada tema, el título de la nota, las experiencias que contiene y su clasificación. Las contradicciones se plantean en esta misma presentación. Si el usuario ajusta, repetir.
+4. **Para cada tema**, crear o actualizar `docs/lessons/<tema>.md` con las lecciones en el «Formato de la nota»: regla imperativa, porqué, disparadores y origen (los `Id` de las experiencias que la originaron). Las experiencias ya cubiertas no generan lección nueva; las de refuerzo se integran en la nota existente añadiendo su `Id` al `Origen`.
+5. **Revisar las lecciones existentes** del tema: fusionar las que digan lo mismo, reescribir las que una experiencia nueva contradiga (según lo acordado en el cotejo) y mantener el resto.
+6. **Actualizar `docs/lessons/README.md`** con una entrada por tema, siguiendo el formato declarado en el comentario del propio índice.
+7. **Marcar las entradas consolidadas** cambiando `Estado: pendiente` a `Estado: consolidada` en `EXPERIENCIAS.md`, sin tocar nada más de la entrada; las ya cubiertas también se marcan, aunque no generen lección nueva. Si el usuario aprobó la agrupación solo en parte, marcar únicamente las entradas procesadas; el resto permanece `pendiente`.
+8. **Informar al usuario** de las notas creadas o actualizadas.
 
 ## Formato de la nota
 
@@ -73,7 +74,7 @@ El formato de las entradas del índice se declara en el propio `docs/lessons/REA
 
 El skill ha terminado cuando:
 
-- El usuario aprobó la agrupación por temas.
+- El usuario aprobó la agrupación por temas, informada por el cotejo contra las lecciones existentes.
 - Cada tema tiene su nota en `docs/lessons/` con lecciones y disparadores.
 - El índice `docs/lessons/README.md` está actualizado.
 - Todas las entradas consolidadas están marcadas `consolidada` en `EXPERIENCIAS.md`, sin pérdida de información.

@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -34,5 +34,5 @@ Mejorar el skill `consolidar-lecciones` para que, antes de proponer la agrupaci�
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-23 — Aprueba
+- Usuario: 2026-09-23 — Aprueba
