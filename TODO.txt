@@ -35,6 +35,7 @@
 - [x] docs/tasks/074-registrar-decision-dominio.md — Registrar la decisión de documentación de dominio y revisión de arquitectura
 - [x] docs/tasks/075-lecciones-en-revision-tecnica.md — Incluir las lecciones en la revisión técnica del subagente
 - [ ] docs/tasks/076-persistir-informes-revision-arquitectura.md — Persistir los informes de revisión de arquitectura
+- [ ] docs/tasks/077-consolidar-contra-lecciones-existentes.md — Cotejar experiencias contra las lecciones existentes al consolidar
 
 ## Hito 6: Mantenimiento del sistema
 
