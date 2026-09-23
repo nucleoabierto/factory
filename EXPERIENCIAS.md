@@ -90,24 +90,3 @@
   Obtenido: el texto usaba «errores ya leccionados», una derivación forzada de «lección»
   Corrección: usar «ya aprendidos»; no acuñar participios a partir de «lección» cuando existe la forma llana
   Estado: consolidada
-
-- Id: 20260922T123502
-  Tarea: todo-app/docs/tasks/006-documentar-dominio.md
-  Esperado: que la documentación de un dominio viva junto al código que describe
-  Obtenido: el documento de dominio de todo-app se creó en docs/domains/ de la raíz del repositorio, lejos del código en todo-app/
-  Corrección: el directorio docs/domains/ pertenece al proyecto que contiene el código del dominio; si el repo tiene sub-proyectos con su propio docs/, el dominio se documenta ahí
-  Estado: pendiente
-
-- Id: 20260922T140000
-  Tarea: todo-app/docs/tasks/009-validar-tareas-al-cargar.md
-  Esperado: que el nombre del parámetro no presuponga lo que la función verifica
-  Obtenido: `isValidTask` recibía el parámetro `t`, nombre que asume que el valor ya es una tarea
-  Corrección: usar `candidate` para un valor cuya condición de tarea está en verificación; `t` es aceptable donde el valor ya es una tarea (filtros, búsquedas)
-  Estado: pendiente
-
-- Id: 20260923T000000
-  Tarea: todo-app/docs/tasks/010-proteger-estado-del-modelo.md
-  Esperado: que los comentarios del código sean útiles a lo largo del tiempo
-  Obtenido: el comentario de `reset()` narraba el razonamiento del proceso de la sesión (operación del arnés, no del dominio)
-  Corrección: los comentarios explican la razón duradera del código; no se incluye narrativa transitoria de la sesión ni del proceso
-  Estado: pendiente
