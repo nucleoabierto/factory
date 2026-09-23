@@ -8,7 +8,7 @@ Conjunto de skills que cubren el ciclo de vida completo del desarrollo de produc
 
 ## Estado actual
 
-Factory está en desarrollo. El motor interno está completo: cubre el ciclo desde una idea suelta hasta el commit, con revisión dual y aprendizaje. Lo que falta es el producto entregable: gestión a nivel de código, épicas y producto.
+Factory está en desarrollo. El motor interno está completo: cubre el ciclo desde una idea suelta hasta el commit, con revisión dual y aprendizaje. Lo que falta es el producto entregable: gestión a nivel de código, *roadmap* y producto.
 
 ### Skills disponibles
 
@@ -28,6 +28,10 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | Skill | Qué hace |
 |-------|----------|
 | `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta, la revisa y la commitea. |
+| `desarrollo` | Orquesta el sub-flujo de las tareas de tipo desarrollo: planeación de implementación, ejecución y revisión. |
+| `planear-implementacion` | Produce el plan de una tarea de desarrollo antes de escribir código, con su suite de pruebas esperada. |
+| `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |
+| `revisar-implementacion` | Revisión técnica adversarial del diff contra las convenciones del proyecto. |
 | `commit` | Crea commits siguiendo Conventional Commits en español. |
 
 **Memoria del proyecto**
@@ -38,6 +42,14 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `decisiones-diseno` | Registra decisiones de diseño con formato híbrido bajo `docs/decisions/`. |
 | `registrar-experiencias` | Anota en `EXPERIENCIAS.md` las correcciones del usuario al cerrar una tarea. |
 | `consolidar-lecciones` | Agrupa las experiencias pendientes por temas en notas bajo `docs/lessons/`. |
+| `consultar-lecciones` | Recupera las lecciones cuyos disparadores coinciden con el trabajo a realizar. |
+
+**Salud del dominio**
+
+| Skill | Qué hace |
+|-------|----------|
+| `documentar-dominio` | Mantiene la documentación viva de los dominios bajo `docs/domains/` tras cada tarea de desarrollo. |
+| `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
 
 **Calidad de escritura**
 
@@ -59,8 +71,8 @@ De la idea a la tarea:
 De la tarea al commit:
 
 1. **`TODO.txt`** es el índice de trabajo activo: tareas agrupadas por hito o sueltas en la sección «General», más las propuestas en revisión. Los hitos completados se eliminan del índice.
-2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta siguiendo su archivo.
-3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor.
+2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo`), le delega la ejecución.
+3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor, cotejándolo además contra las lecciones aprendidas.
 4. Si el subagente aprueba, se presenta el resultado al **usuario** para aprobación.
 5. Si ambos aprueban, la tarea se marca completada `[x]` y se commitea.
 
@@ -68,12 +80,16 @@ De la tarea al commit:
 
 ```
 .agents/skills/     Skills formales (SKILL.md + references/)
+docs/architecture-reviews/  Informes de revisión de arquitectura
 docs/decisions/     Decisiones de diseño (DNNN-slug.md)
+docs/domains/       Documentación viva de los dominios
 docs/epics/         Épicas: planeación de conjuntos de tareas
 docs/lessons/       Lecciones aprendidas consolidadas por tema
 docs/proposals/     Propuestas del flujo de idea a tarea y sus borradores
 docs/research/      Investigaciones
+docs/reviews/       Informes de revisión de escritura
 docs/tasks/         Archivos de tarea individuales
+todo-app/           Prueba del flujo externo: todo app en vanilla JS (D018)
 EXPERIENCIAS.md     Registro append-only de correcciones del usuario
 TODO.txt            Índice de trabajo activo: tareas y propuestas
 ```
@@ -114,5 +130,5 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
 - [Visión del proyecto](docs/vision-proyecto.md) — dirección aspiracional.
-- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D019).
+- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D021).
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.

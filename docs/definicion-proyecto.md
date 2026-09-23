@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Factory es un conjunto de skills que cubren el ciclo de vida completo del desarrollo de producto, desde el refinamiento de una idea descubierta al margen del flujo de trabajo hasta la integración del código en el repositorio. Su objetivo es ayudar a desarrolladores y *product managers* a gestionar un producto de principio a fin.
+Factory es un conjunto de skills que cubren el ciclo de vida completo del desarrollo de producto: desde una idea suelta, capturada al margen del trabajo en curso, hasta la integración del código en el repositorio. Su objetivo es ayudar a desarrolladores y *product managers* a gestionar ese ciclo con un agente de IA.
 
 El despliegue y el control de integración continua quedan fuera del alcance de los skills: se gestionan con los sistemas de CI/CD existentes en cada proyecto.
 
@@ -10,27 +10,28 @@ El despliegue y el control de integración continua quedan fuera del alcance de 
 
 Factory tiene dos niveles que conviven y se alimentan mutuamente:
 
-1. **El motor interno**: el sistema de gestión de tareas y documentación que se usa para construir el propio proyecto. Hoy cubre la creación y ejecución de tareas, la revisión dual, el versionado con Conventional Commits, el registro de decisiones de diseño y la investigación documentada. Es autoproductivo: cada nueva capacidad se construye usando el propio sistema.
+1. **El motor interno**: el sistema de gestión de tareas y documentación que se usa para construir el propio proyecto. Hoy cubre el flujo completo de la idea al commit —refinamiento, tareas, épicas, desarrollo y revisión dual—, el versionado con Conventional Commits, el registro de decisiones de diseño, la investigación documentada, la documentación de dominio y el aprendizaje por lecciones. Es autoproductivo: cada nueva capacidad se construye usando el propio sistema.
 
-2. **El producto entregable**: el conjunto de skills que cubren el ciclo completo de desarrollo de producto. Incluye lo que hoy tiene el motor interno, pero lo extiende con refinamiento de ideas, planeación de épicas y *roadmap*, gestión a nivel de código (branching, *pull requests*, revisión de código) y gestión a nivel de producto (*features*, *releases*, *feedback*).
+2. **El producto entregable**: el conjunto de skills que cubren el ciclo completo de desarrollo de producto. Incluye lo que hoy tiene el motor interno, pero lo extiende con planeación de *roadmap*, gestión a nivel de código (branching, *pull requests*, revisión de código) y gestión a nivel de producto (*features*, *releases*, *feedback*).
 
-El motor interno es la infraestructura de trabajo; el producto entregable es el objetivo final. El primero es necesario pero insuficiente: cubre tareas y documentación, un subconjunto del ciclo de desarrollo.
+El motor interno es la infraestructura de trabajo; el producto entregable es el objetivo final. El primero es necesario pero insuficiente: cubre el ciclo de la idea al commit y la memoria del proyecto, que sigue siendo un subconjunto del ciclo de desarrollo.
 
 ## Estado actual
 
-El motor interno está en marcha. Los skills existentes cubren:
+El motor interno está completo. Los skills existentes cubren:
 
-- **Gestión de tareas**: `crear-tareas` y `ejecutar-tareas`, con `TODO.txt` como índice y `docs/tasks/` como detalle.
+- **Flujo de idea a tarea**: `idea-a-tarea` orquesta `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta` y `crear-tareas`, con `planificar` cerrando la planeación en épicas.
+- **Gestión y ejecución de tareas**: `ejecutar-tareas`, con `TODO.txt` como índice y `docs/tasks/` como detalle; las tareas de tipo `desarrollo` se enrutan al sub-flujo `desarrollo` (`planear-implementacion`, `ejecutar-implementacion`, `revisar-implementacion`).
 - **Calidad de escritura**: `revisar-redaccion` y `pulir-escritura`, con revisión de estilo y corrección ortotipográfica.
 - **Versionado**: `commit`, con Conventional Commits en español.
-- **Decisiones de diseño**: `decisiones-diseno`, con formato híbrido bajo `docs/decisions/`.
+- **Memoria del proyecto**: `investigar`, `decisiones-diseno`, `registrar-experiencias`, `consolidar-lecciones` y `consultar-lecciones`.
+- **Salud del dominio**: `documentar-dominio` mantiene `docs/domains/` y `revisar-arquitectura` evalúa dominios con criterios DDD, persistiendo informes en `docs/architecture-reviews/`.
 
 El flujo de trabajo es: leer `TODO.txt`, tomar la siguiente tarea pendiente, ejecutarla siguiendo su archivo, marcarla en revisión, someterla a revisión dual (subagente independiente + usuario), marcarla como completada y commitear.
 
 Lo que falta para llegar al producto entregable:
 
-- **Refinamiento de ideas**: transformar ideas sueltas en propuestas accionables antes de convertirlas en tareas.
-- **Planeación de épicas y *roadmap***: gestionar el producto a nivel de visión, no solo de tareas individuales.
+- **Planeación de *roadmap***: gestionar el producto a nivel de visión, por encima de las épicas.
 - **Gestión a nivel de código**: *branching*, *pull requests*, revisión de código.
 - **Gestión a nivel de producto**: *features*, *releases*, *feedback* de usuarios.
 
@@ -57,9 +58,9 @@ Factory es un proyecto autónomo que también sirve como plantilla base para otr
 4. **Ejecución**: ejecutar tareas siguiendo su archivo de tarea y los skills relevantes.
 5. **Revisión**: verificar el resultado mediante revisión dual (subagente independiente + usuario).
 6. **Corrección**: resolver los hallazgos de la revisión.
-7. **Integración**: cerrar *pull requests* y hacer la integración al código base.
+7. **Integración**: cerrar los *pull requests* e integrar los cambios en la base de código.
 
-El despliegue y la operación post-integración quedan fuera del alcance, como se indica en el propósito.
+El despliegue y la operación posteriores a la integración quedan fuera del alcance, como se indica en el propósito.
 
 ## Audiencia
 

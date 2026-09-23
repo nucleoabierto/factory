@@ -2,13 +2,13 @@
 
 ## Propósito
 
-Factory existe para que un agente de IA pueda gestionar un producto de software de principio a fin: desde una idea suelta hasta un *pull request* integrado en el código base. Hoy los agentes de IA ejecutan tareas aisladas —escribir código, corregir un *bug*, redactar un documento— pero no gestionan el ciclo completo de desarrollo de producto. Factory aspira a cubrir esa necesidad.
+Factory existe para que un agente de IA pueda gestionar un producto de software de principio a fin: desde una idea suelta hasta un *pull request* integrado en la base de código. Hoy los agentes de IA ejecutan tareas aisladas —escribir código, corregir un *bug*, redactar un documento— pero no gestionan el ciclo completo de desarrollo de producto. Factory aspira a cubrir ese ciclo.
 
 El flujo no es autónomo: es asíncrono. El agente avanza el trabajo que puede ejecutar sin supervisión y se detiene en los puntos que requieren revisión o aprobación del usuario. El usuario delega la ejecución pero mantiene el control sobre lo que se hace. Pasamos de un *human-in-the-loop*, donde el usuario interviene en cada paso, a un *human-in-the-async-loop*, donde el usuario interviene solo en los puntos que importan.
 
 ## Dirección
 
-Factory avanza desde un motor interno autoproductivo hacia un producto entregable que cubre el ciclo completo de desarrollo. El motor interno ya está en marcha: gestiona tareas, documentación, decisiones de diseño y revisiones. El producto entregable extenderá ese motor con capacidades que hoy faltan: refinamiento de ideas, planeación de épicas y *roadmap*, gestión a nivel de código y gestión a nivel de producto.
+Factory avanza desde un motor interno autoproductivo hacia un producto entregable que cubre el ciclo completo de desarrollo. El motor interno ya está en marcha: cubre el ciclo de la idea al commit —refinamiento, tareas, épicas, desarrollo y revisión dual— y mantiene la documentación, las decisiones de diseño y el aprendizaje por lecciones. El producto entregable extenderá ese motor con lo que hoy falta: planeación de *roadmap*, gestión a nivel de código y gestión a nivel de producto.
 
 El principio *bootstrap* es permanente: cada nueva capacidad se construye usando el propio sistema, lo que asegura que el sistema se valida a sí mismo al evolucionar.
 
@@ -37,7 +37,7 @@ Fuera del alcance:
 
 ## Qué no construimos
 
-Factory no construye un IDE, un gestor de proyectos ni un sistema de CI/CD. Construye skills que un agente de IA usa dentro de las herramientas existentes. Factory no reemplaza las herramientas de desarrollo: las complementa con un agente que sabe gestionar el ciclo completo.
+Factory no construye un IDE, un gestor de proyectos ni un sistema de CI/CD: construye skills que un agente de IA usa dentro de las herramientas existentes. No las reemplaza; las complementa con un agente que sabe gestionar el ciclo completo.
 
 ## Audiencia
 
