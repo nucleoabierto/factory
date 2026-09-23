@@ -18,7 +18,7 @@
 - [x] docs/tasks/001-planificar-todo-app.md — Planificar todo app
 - [x] docs/tasks/006-documentar-dominio.md — Documentar el dominio de la aplicación
 - [x] docs/tasks/007-revisar-arquitectura.md — Revisar la arquitectura del dominio
-- [ ] docs/tasks/008-separar-modelo-de-presentacion.md — Separar el modelo de persistencia y presentación
+- [x] docs/tasks/008-separar-modelo-de-presentacion.md — Separar el modelo de persistencia y presentación
 - [ ] docs/tasks/009-validar-tareas-al-cargar.md — Validar la forma de las tareas al cargar
 - [ ] docs/tasks/010-proteger-estado-del-modelo.md — Dejar de exponer el estado mutable del modelo
 

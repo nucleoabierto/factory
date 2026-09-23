@@ -5,58 +5,33 @@
   var FILTER_KEY = 'todoapp-filter';
   var FILTERS = ['all', 'active', 'completed'];
 
-  var App = {
+  // Domain model: the task list, its invariants and its operations.
+  // It knows nothing about localStorage or the DOM; it notifies
+  // subscribers when the state changes.
+  var TaskList = {
     tasks: [],
     nextId: 1,
-    initialized: false,
-    editingId: null,
-    filter: 'all',
+    listeners: [],
 
-    load: function () {
-      App.editingId = null;
-      var storedFilter;
-      try {
-        storedFilter = global.localStorage.getItem(FILTER_KEY);
-      } catch (e) {
-        storedFilter = null;
-      }
-      App.filter = FILTERS.indexOf(storedFilter) !== -1 ? storedFilter : 'all';
-      var raw;
-      try {
-        raw = global.localStorage.getItem(STORAGE_KEY);
-      } catch (e) {
-        raw = null;
-      }
-      if (!raw) {
-        App.tasks = [];
-        App.nextId = 1;
-        return;
-      }
-      try {
-        var data = JSON.parse(raw);
-        if (!Array.isArray(data)) {
-          throw new Error('unexpected format');
-        }
-        App.tasks = data;
-        App.nextId = data.reduce(function (max, t) {
-          return Math.max(max, t.id || 0);
-        }, 0) + 1;
-      } catch (e) {
-        App.tasks = [];
-        App.nextId = 1;
-      }
+    subscribe: function (fn) {
+      TaskList.listeners.push(fn);
     },
 
-    save: function () {
-      try {
-        global.localStorage.setItem(STORAGE_KEY, JSON.stringify(App.tasks));
-      } catch (e) {
-        // Persistence unavailable: the app keeps working in memory.
-      }
+    notify: function () {
+      TaskList.listeners.forEach(function (fn) {
+        fn();
+      });
+    },
+
+    load: function (data) {
+      TaskList.tasks = data;
+      TaskList.nextId = data.reduce(function (max, t) {
+        return Math.max(max, t.id || 0);
+      }, 0) + 1;
     },
 
     findTask: function (id) {
-      return App.tasks.filter(function (t) { return t.id === id; })[0] || null;
+      return TaskList.tasks.filter(function (t) { return t.id === id; })[0] || null;
     },
 
     addTask: function (text) {
@@ -64,101 +39,124 @@
       if (!clean) {
         return null;
       }
-      var task = { id: App.nextId++, text: clean, done: false };
-      App.tasks.push(task);
-      App.save();
-      App.render();
+      var task = { id: TaskList.nextId++, text: clean, done: false };
+      TaskList.tasks.push(task);
+      TaskList.notify();
       return task;
     },
 
     toggleTask: function (id) {
-      var task = App.findTask(id);
+      var task = TaskList.findTask(id);
       if (!task) {
         return null;
       }
       task.done = !task.done;
-      App.save();
-      App.render();
+      TaskList.notify();
       return task;
     },
 
     editTask: function (id, newText) {
-      var task = App.findTask(id);
+      var task = TaskList.findTask(id);
       if (!task) {
         return null;
       }
       var clean = (newText || '').trim();
-      App.editingId = null;
       if (!clean) {
-        return App.deleteTask(id);
+        return TaskList.deleteTask(id);
       }
       task.text = clean;
-      App.save();
-      App.render();
+      TaskList.notify();
       return task;
     },
 
     deleteTask: function (id) {
-      var task = App.findTask(id);
+      var task = TaskList.findTask(id);
       if (!task) {
         return null;
       }
-      App.tasks = App.tasks.filter(function (t) { return t.id !== id; });
-      if (App.editingId === id) {
-        App.editingId = null;
-      }
-      App.save();
-      App.render();
+      TaskList.tasks = TaskList.tasks.filter(function (t) { return t.id !== id; });
+      TaskList.notify();
       return task;
     },
 
-    startEdit: function (id) {
-      if (!App.findTask(id)) {
-        return;
-      }
-      App.editingId = id;
-      App.render();
-    },
-
-    cancelEdit: function () {
-      App.editingId = null;
-      App.render();
-    },
-
     pendingCount: function () {
-      return App.tasks.filter(function (t) { return !t.done; }).length;
+      return TaskList.tasks.filter(function (t) { return !t.done; }).length;
     },
 
-    visibleTasks: function () {
-      if (App.filter === 'active') {
-        return App.tasks.filter(function (t) { return !t.done; });
+    visibleTasks: function (filter) {
+      if (filter === 'active') {
+        return TaskList.tasks.filter(function (t) { return !t.done; });
       }
-      if (App.filter === 'completed') {
-        return App.tasks.filter(function (t) { return t.done; });
+      if (filter === 'completed') {
+        return TaskList.tasks.filter(function (t) { return t.done; });
       }
-      return App.tasks;
+      return TaskList.tasks;
     },
 
-    setFilter: function (name) {
-      if (FILTERS.indexOf(name) === -1) {
-        return;
+    clearCompleted: function () {
+      TaskList.tasks = TaskList.tasks.filter(function (t) { return !t.done; });
+      TaskList.notify();
+    }
+  };
+
+  // Infrastructure: persistence in localStorage, tolerant of
+  // missing or corrupted data. It moves data in and out; it does
+  // not know the model or the DOM.
+  var Storage = {
+    loadTasks: function () {
+      var raw;
+      try {
+        raw = global.localStorage.getItem(STORAGE_KEY);
+      } catch (e) {
+        return [];
       }
-      App.filter = name;
+      if (!raw) {
+        return [];
+      }
+      try {
+        var data = JSON.parse(raw);
+        if (!Array.isArray(data)) {
+          throw new Error('unexpected format');
+        }
+        return data;
+      } catch (e) {
+        return [];
+      }
+    },
+
+    saveTasks: function (tasks) {
+      try {
+        global.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      } catch (e) {
+        // Persistence unavailable: the app keeps working in memory.
+      }
+    },
+
+    loadFilter: function () {
+      var stored;
+      try {
+        stored = global.localStorage.getItem(FILTER_KEY);
+      } catch (e) {
+        stored = null;
+      }
+      return FILTERS.indexOf(stored) !== -1 ? stored : 'all';
+    },
+
+    saveFilter: function (name) {
       try {
         global.localStorage.setItem(FILTER_KEY, name);
       } catch (e) {
         // Persistence unavailable: the filter still applies in memory.
       }
-      App.render();
-    },
+    }
+  };
 
-    clearCompleted: function () {
-      App.tasks = App.tasks.filter(function (t) { return !t.done; });
-      App.save();
-      App.render();
-    },
+  // Presentation: DOM rendering and event wiring. It reads the
+  // model through the App facade and calls its operations.
+  var UI = {
+    editingId: null,
 
-    render: function () {
+    render: function (App) {
       var doc = global.document;
       if (!doc) {
         return;
@@ -172,7 +170,7 @@
           if (t.done) {
             li.className = 'done';
           }
-          if (App.editingId === t.id) {
+          if (UI.editingId === t.id) {
             var editInput = doc.createElement('input');
             editInput.type = 'text';
             editInput.className = 'edit';
@@ -237,50 +235,157 @@
       });
     },
 
+    bindEvents: function (App) {
+      var doc = global.document;
+      if (!doc) {
+        return;
+      }
+      var input = doc.getElementById('new-todo');
+      if (input) {
+        input.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter') {
+            if (App.addTask(input.value)) {
+              input.value = '';
+            }
+          }
+        });
+      }
+      var filterClicks = {
+        'filter-all': 'all',
+        'filter-active': 'active',
+        'filter-completed': 'completed'
+      };
+      Object.keys(filterClicks).forEach(function (id) {
+        var link = doc.getElementById(id);
+        if (link) {
+          link.addEventListener('click', function (ev) {
+            ev.preventDefault();
+            App.setFilter(filterClicks[id]);
+          });
+        }
+      });
+      var clearButton = doc.getElementById('clear-completed');
+      if (clearButton) {
+        clearButton.addEventListener('click', function () {
+          App.clearCompleted();
+        });
+      }
+    }
+  };
+
+  // Composition root: wires model, persistence and presentation,
+  // and exposes the public API the page and the tests use.
+  var App = {
+    initialized: false,
+    filter: 'all',
+
+    load: function () {
+      UI.editingId = null;
+      App.filter = Storage.loadFilter();
+      TaskList.load(Storage.loadTasks());
+    },
+
+    save: function () {
+      Storage.saveTasks(TaskList.tasks);
+    },
+
+    addTask: function (text) {
+      return TaskList.addTask(text);
+    },
+
+    toggleTask: function (id) {
+      return TaskList.toggleTask(id);
+    },
+
+    editTask: function (id, newText) {
+      if (!TaskList.findTask(id)) {
+        return null;
+      }
+      UI.editingId = null;
+      return TaskList.editTask(id, newText);
+    },
+
+    deleteTask: function (id) {
+      if (!TaskList.findTask(id)) {
+        return null;
+      }
+      if (UI.editingId === id) {
+        UI.editingId = null;
+      }
+      return TaskList.deleteTask(id);
+    },
+
+    startEdit: function (id) {
+      if (!TaskList.findTask(id)) {
+        return;
+      }
+      UI.editingId = id;
+      App.render();
+    },
+
+    cancelEdit: function () {
+      UI.editingId = null;
+      App.render();
+    },
+
+    pendingCount: function () {
+      return TaskList.pendingCount();
+    },
+
+    visibleTasks: function () {
+      return TaskList.visibleTasks(App.filter);
+    },
+
+    setFilter: function (name) {
+      if (FILTERS.indexOf(name) === -1) {
+        return;
+      }
+      App.filter = name;
+      Storage.saveFilter(name);
+      App.render();
+    },
+
+    clearCompleted: function () {
+      TaskList.clearCompleted();
+    },
+
+    render: function () {
+      UI.render(App);
+    },
+
     init: function () {
       if (App.initialized) {
         return;
       }
       App.initialized = true;
       App.load();
-      var doc = global.document;
-      if (doc) {
-        var input = doc.getElementById('new-todo');
-        if (input) {
-          input.addEventListener('keydown', function (ev) {
-            if (ev.key === 'Enter') {
-              if (App.addTask(input.value)) {
-                input.value = '';
-              }
-            }
-          });
-        }
-        var filterClicks = {
-          'filter-all': 'all',
-          'filter-active': 'active',
-          'filter-completed': 'completed'
-        };
-        Object.keys(filterClicks).forEach(function (id) {
-          var link = doc.getElementById(id);
-          if (link) {
-            link.addEventListener('click', function (ev) {
-              ev.preventDefault();
-              App.setFilter(filterClicks[id]);
-            });
-          }
-        });
-        var clearButton = doc.getElementById('clear-completed');
-        if (clearButton) {
-          clearButton.addEventListener('click', function () {
-            App.clearCompleted();
-          });
-        }
-      }
+      UI.bindEvents(App);
       App.render();
     }
   };
 
+  // The state fields live in the components; the facade delegates
+  // so existing callers keep working unchanged.
+  Object.defineProperty(App, 'tasks', {
+    get: function () { return TaskList.tasks; },
+    set: function (value) { TaskList.tasks = value; }
+  });
+  Object.defineProperty(App, 'nextId', {
+    get: function () { return TaskList.nextId; },
+    set: function (value) { TaskList.nextId = value; }
+  });
+  Object.defineProperty(App, 'editingId', {
+    get: function () { return UI.editingId; },
+    set: function (value) { UI.editingId = value; }
+  });
+
+  TaskList.subscribe(function () {
+    App.save();
+    App.render();
+  });
+
   global.App = App;
+  global.TaskList = TaskList;
 
   if (global.document) {
     global.document.addEventListener('DOMContentLoaded', App.init);
