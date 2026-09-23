@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -35,7 +35,22 @@ Hacer que `load` defienda las invariantes del modelo ante datos externos: los í
 
 - Origen: hallazgo H2 de la revisión de arquitectura (tarea 007).
 
+## Plan técnico
+
+Subsistema: `Storage.loadTasks` devuelve cualquier array parseado; `TaskList.load` lo asigna tal cual, sin defender la forma `{id, text, done}` de cada ítem.
+
+Acciones:
+
+1. Añadir validación de ítems en `TaskList.load` (el modelo defiende las invariantes, no la infraestructura): descartar ítems sin `id` numérico, sin `text` no vacío o sin `done` booleano. `nextId` se recalcula sobre los ítems válidos.
+2. Añadir un test al arnés QUnit: storage con ítems corruptos mezclados con válidos carga solo los válidos.
+
+## Suite de pruebas esperada
+
+- Storage vacío o JSON roto → lista vacía (ya cubierto por tests existentes).
+- Storage con ítems corruptos mezclados con válidos → solo entran los válidos y `nextId` queda por encima del mayor id válido.
+- La suite existente sigue en verde.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-22 — Aprueba (blindaje `isFinite` aplicado)
+- Usuario: 2026-09-22 — Aprueba (renombrado el parámetro `t` a `candidate`)

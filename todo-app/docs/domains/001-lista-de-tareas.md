@@ -23,7 +23,7 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 
 - **Entidades / estado:** la tarea `{id, text, done}` es la única entidad; el estado es la lista `TaskList.tasks` más el contador derivado y el filtro activo.
   - Ancla: `TaskList.tasks`, `TaskList.nextId` en `app.js`
-- **Invariantes:** no existen tareas con texto vacío o de solo espacios (Ancla: validación en `TaskList.addTask` y `TaskList.editTask`); los identificadores son únicos y crecientes (Ancla: `TaskList.nextId`); editar una tarea a texto vacío la borra (Ancla: `TaskList.editTask` delegando en `TaskList.deleteTask`).
+- **Invariantes:** no existen tareas con texto vacío o de solo espacios (Ancla: validación en `TaskList.addTask` y `TaskList.editTask`); los identificadores son únicos y crecientes (Ancla: `TaskList.nextId`); editar una tarea a texto vacío la borra (Ancla: `TaskList.editTask` delegando en `TaskList.deleteTask`); al cargar datos externos solo entran ítems con la forma `{id, text, done}` (Ancla: `TaskList.isValidTask` en `TaskList.load`).
 - **Operaciones:** crear, completar, editar, borrar, filtrar, limpiar completadas y contar pendientes.
   - Ancla: `addTask`, `toggleTask`, `editTask`, `deleteTask`, `clearCompleted`, `pendingCount`, `visibleTasks` en `TaskList` y `setFilter` en `App`, en `app.js`
 

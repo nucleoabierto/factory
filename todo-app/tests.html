@@ -97,6 +97,26 @@
             'broken JSON yields an empty list');
         });
 
+      QUnit.test('load keeps only items with a valid task shape',
+        function (assert) {
+          localStorage.setItem('todoapp-tasks', JSON.stringify([
+            { id: 3, text: 'Válida', done: true },
+            { id: 'x', text: 'sin id numérico', done: false },
+            { id: 4, text: '', done: false },
+            { id: 5, text: 'sin done' },
+            null,
+            { id: 7, text: 'Otra válida', done: false }
+          ]));
+          window.App.load();
+          assert.strictEqual(window.App.tasks.length, 2,
+            'only valid items enter the state');
+          assert.deepEqual(
+            window.App.tasks.map(function (t) { return t.id; }),
+            [3, 7], 'the valid tasks keep their ids');
+          assert.strictEqual(window.App.nextId, 8,
+            'nextId stays above the highest valid id');
+        });
+
       QUnit.test('Enter in the input creates the task and clears it',
         function (assert) {
           window.App.init();

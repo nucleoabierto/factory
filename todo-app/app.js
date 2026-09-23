@@ -23,10 +23,17 @@
       });
     },
 
+    isValidTask: function (candidate) {
+      return !!candidate &&
+        typeof candidate.id === 'number' && isFinite(candidate.id) &&
+        typeof candidate.text === 'string' && candidate.text.trim() !== '' &&
+        typeof candidate.done === 'boolean';
+    },
+
     load: function (data) {
-      TaskList.tasks = data;
-      TaskList.nextId = data.reduce(function (max, t) {
-        return Math.max(max, t.id || 0);
+      TaskList.tasks = data.filter(TaskList.isValidTask);
+      TaskList.nextId = TaskList.tasks.reduce(function (max, t) {
+        return Math.max(max, t.id);
       }, 0) + 1;
     },
 
