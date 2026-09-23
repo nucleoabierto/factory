@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -20,7 +20,7 @@ Ejecutar el skill `revisar-arquitectura` sobre el dominio de todo-app como prime
 
 - El skill `revisar-arquitectura` y su `references/rubrica.md`.
 - `todo-app/app.js` como código del dominio.
-- El documento de dominio creado en la tarea 006 (`docs/domains/001-*.md` del proyecto raíz) y las decisiones `docs/decisions/` relevantes (p. ej. D018: vanilla JS como decisión de la PoC).
+- El documento de dominio creado en la tarea 006 (`todo-app/docs/domains/001-lista-de-tareas.md`) y las decisiones relevantes del repositorio raíz (D018: vanilla JS como decisión de la PoC).
 
 ## Resultado esperado
 
@@ -44,5 +44,5 @@ Ejecutar el skill `revisar-arquitectura` sobre el dominio de todo-app como prime
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-22 — Aprueba (evidencia verificada en app.js; observaciones menores)
+- Usuario: 2026-09-22 — Aprueba
