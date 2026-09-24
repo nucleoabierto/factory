@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -46,5 +46,5 @@ Investigar cuáles podrían ser los siguientes elementos a agregar al proyecto �
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-23 — Aprueba (segunda ronda; la primera solicitó cambios, corregidos)
+- Usuario: 2026-09-23 — Aprueba
