@@ -30,3 +30,7 @@
 - [x] docs/tasks/003-crear-y-listar.md — Crear tareas, listarlas, contar pendientes y persistir
 - [x] docs/tasks/004-completar-editar-borrar.md — Completar, editar y borrar tareas
 - [x] docs/tasks/005-filtros-y-limpiar.md — Filtros de vista y limpieza de completadas
+
+## Propuestas en revisión
+
+- [p] docs/proposals/002-multiples-listas/ — Múltiples listas: organizar las tareas por contexto (4 borradores)
