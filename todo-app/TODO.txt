@@ -49,3 +49,11 @@
 - [ ] docs/tasks/017-asignar-y-distinguir-fechas.md — Asignar, cambiar y quitar la fecha, con distinción visual
 - [ ] docs/tasks/018-vista-hoy-y-programacion.md — Vista «hoy» y exclusión de lo futuro de la vista principal
 - [ ] docs/tasks/019-tareas-recurrentes.md — Periodicidad simple que regenera la tarea al completarla
+
+## Hito 4: Portabilidad y compartir
+
+<!-- épica: docs/epics/004-portabilidad-y-compartir.md -->
+
+- [ ] docs/tasks/020-formato-de-exportacion.md — Formato versionado del estado y su serialización bidireccional validada
+- [ ] docs/tasks/021-exportar-contenido.md — Exportar el estado como archivo descargable y como enlace portable
+- [ ] docs/tasks/022-importar-contenido.md — Importar desde archivo o enlace, reemplazando o incorporando como copia
