@@ -1,5 +1,9 @@
 # Crear, renombrar, eliminar listas y mover tareas entre ellas
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,12 +14,12 @@ Dar a la persona el control sobre sus listas: crear una lista nueva, renombrarla
 
 ## Dependencias
 
-- Borrador 02.
+- 012
 
 ## Entrada
 
-- La navegación por lista activa del borrador 02.
-- La lista de entrada permanente del borrador 01.
+- La navegación por lista activa de la tarea 012.
+- La lista de entrada permanente de la tarea 011.
 
 ## Resultado esperado
 
@@ -23,7 +27,7 @@ Dar a la persona el control sobre sus listas: crear una lista nueva, renombrarla
 - Se puede renombrar una lista existente, salvo la lista de entrada.
 - Se puede eliminar una lista, salvo la de entrada: sus tareas pasan a la lista de entrada y, si era la activa, la vista vuelve a ella.
 - Se puede mover una tarea de la lista activa a otra lista existente (mecanismo de clasificación posterior a la captura).
-- Los nombres de lista no pueden quedar vacíos ni de solo espacios; se permite duplicados o se rechazan según se decida en la implementación, documentando la elección.
+- Los nombres de lista no pueden quedar vacíos ni de solo espacios; se permiten duplicados o se rechazan según se decida en la implementación, documentando la elección.
 
 ## Criterios de calidad
 
@@ -38,10 +42,15 @@ Dar a la persona el control sobre sus listas: crear una lista nueva, renombrarla
 
 1. Añadir al dominio las operaciones de lista: crear, renombrar, eliminar (con reasignación de sus tareas a la entrada) y mover tarea entre listas.
 2. Extender la persistencia si la forma de los datos lo requiere.
-3. Cablear en la interfaz: creación de lista, renombrado, eliminación con su consecuencia visible y el gesto de mover una tarea a otra lista.
+3. Cablear en la interfaz: creación de lista, renombrado, eliminación con su consecuencia visible y la acción de mover una tarea a otra lista.
 4. Escribir los tests de cada operación y de la protección de la lista de entrada; verificar en el navegador.
 
 ## Notas
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
-- El gesto de «mover tarea» es la pieza que hace real el flujo de vaciado de bandeja descrito en la idea: capturar en Entrada y clasificar después.
+- La acción de «mover tarea» es la pieza que hace real el flujo de vaciado de bandeja descrito en la idea: capturar en Entrada y clasificar después.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

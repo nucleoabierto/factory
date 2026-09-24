@@ -1,5 +1,9 @@
 # Archivar y reactivar listas sin perder su contenido
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,11 +14,11 @@ Permitir aparcar una lista —con todo su contenido— de modo que deje de apare
 
 ## Dependencias
 
-- Borrador 03.
+- 013
 
 ## Entrada
 
-- La gestión de listas del borrador 03 (crear, renombrar, eliminar, mover tareas).
+- La gestión de listas de la tarea 013 (crear, renombrar, eliminar, mover tareas).
 
 ## Resultado esperado
 
@@ -43,3 +47,8 @@ Permitir aparcar una lista —con todo su contenido— de modo que deje de apare
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
 - Este borrador cierra el flujo «cierre de proyecto» de la idea: aparcar un conjunto sin poda tarea a tarea.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

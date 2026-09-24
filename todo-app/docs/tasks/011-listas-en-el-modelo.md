@@ -1,5 +1,9 @@
 # Listas nombradas en el modelo y migración de la persistencia
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -21,7 +25,7 @@ Introducir en el dominio la lista (contexto) como agrupación exclusiva de tarea
 ## Resultado esperado
 
 - El dominio modela listas nombradas: cada lista tiene identificador y nombre; cada tarea pertenece a una lista concreta.
-- Existe una lista de entrada fija (por ejemplo, «Entrada») que no puede eliminarse ni quedarse sin existir.
+- Existe una lista de entrada fija (por ejemplo, «Entrada») que no puede eliminarse ni dejar de existir.
 - Las operaciones de tarea existentes (crear, completar, editar, borrar, filtrar, limpiar, contar) operan sobre una lista dada o conservan su comportamiento actuando sobre la lista de entrada.
 - Al cargar datos persistidos con el formato anterior (lista plana de tareas), todas las tareas quedan en la lista de entrada; datos corruptos siguen tolerados.
 - La interfaz sigue funcionando como antes: el usuario no percibe cambios.
@@ -39,9 +43,14 @@ Introducir en el dominio la lista (contexto) como agrupación exclusiva de tarea
 1. Decidir la representación: lista como entidad del dominio con sus tareas, o tarea con referencia a su lista; elegir la que preserve mejor las invariantes y el encapsulamiento actual.
 2. Extender el modelo con la lista de entrada y la pertenencia de cada tarea a una lista.
 3. Adaptar la carga: detectar el formato anterior y migrar las tareas a la lista de entrada; guardar con el formato nuevo.
-4. Mantener la fachada `App` compatible para que la presentación y los tests existentes sigan pasando sin tocar.
+4. Mantener la fachada `App` compatible para que la presentación y los tests existentes sigan pasando sin cambios.
 5. Escribir los tests de pertenencia, lista de entrada y migración, y verificar `index.html` y `tests.html` en el navegador.
 
 ## Notas
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]

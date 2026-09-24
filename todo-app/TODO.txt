@@ -31,6 +31,11 @@
 - [x] docs/tasks/004-completar-editar-borrar.md — Completar, editar y borrar tareas
 - [x] docs/tasks/005-filtros-y-limpiar.md — Filtros de vista y limpieza de completadas
 
-## Propuestas en revisión
+## Hito 2: Múltiples listas
 
-- [p] docs/proposals/002-multiples-listas/ — Múltiples listas: organizar las tareas por contexto (4 borradores)
+<!-- épica: docs/epics/002-multiples-listas.md -->
+
+- [ ] docs/tasks/011-listas-en-el-modelo.md — Listas nombradas en el modelo y migración de la persistencia
+- [ ] docs/tasks/012-navegacion-por-lista.md — Vista acotada a la lista activa con selector y contadores
+- [ ] docs/tasks/013-gestion-de-listas.md — Crear, renombrar, eliminar listas y mover tareas entre ellas
+- [ ] docs/tasks/014-archivar-listas.md — Archivar y reactivar listas sin perder su contenido

@@ -1,5 +1,9 @@
 # Vista acotada a la lista activa con selector y contadores
 
+## Estado
+
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,16 +14,16 @@ Permitir elegir la lista activa y trabajar dentro de ella: la vista muestra solo
 
 ## Dependencias
 
-- Borrador 01.
+- 011
 
 ## Entrada
 
-- El dominio con listas nombradas y la lista de entrada del borrador 01.
+- El dominio con listas nombradas y la lista de entrada de la tarea 011.
 - La persistencia de la lista activa, análoga a la del filtro (`loadFilter`/`saveFilter`).
 
 ## Resultado esperado
 
-- La interfaz ofrece un selector de listas (título de la lista activa con forma de cambiar a otra, o navegación equivalente) que lista las listas existentes.
+- La interfaz ofrece un selector de listas (título de la lista activa con opción de cambiar a otra, o navegación equivalente) que enumera las listas existentes.
 - Al cambiar de lista, la vista, los filtros todas/pendientes/completadas y el contador de pendientes se acotan a la lista elegida.
 - Crear una tarea la añade a la lista activa.
 - La lista activa se persiste y se restaura al recargar; si la persistida ya no existe, se vuelve a la lista de entrada.
@@ -44,3 +48,8 @@ Permitir elegir la lista activa y trabajar dentro de ella: la vista muestra solo
 ## Notas
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario: [fecha] — [Aprueba | Solicita cambios]
