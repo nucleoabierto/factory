@@ -38,6 +38,8 @@
 - [x] docs/tasks/077-consolidar-contra-lecciones-existentes.md — Cotejar experiencias contra las lecciones existentes al consolidar
 - [x] docs/tasks/078-revisar-vision-estado-actual.md — Revisar que la visión y los documentos de cabecera reflejen el estado actual
 - [x] docs/tasks/079-investigar-siguientes-elementos.md — Investigar los siguientes elementos del proyecto usando todo-app como PoC
+- [ ] docs/tasks/080-gestionar-roadmap-todo-app.md — Crear la gestión de roadmap para el motor externo y aplicarla a todo-app
+- [ ] docs/tasks/081-definir-semantica-mantenimiento.md — Definir la semántica del tipo de tarea `mantenimiento`
 
 ## Hito 6: Mantenimiento del sistema
 
