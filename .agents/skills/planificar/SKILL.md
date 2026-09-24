@@ -29,7 +29,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 - Para una sola tarea o un conjunto trivial que no amerita épica: las tareas se agrupan bajo un encabezado ligero del índice, sin documento de épica.
 - Para descomponer una propuesta en borradores: eso corresponde a `refinar-propuesta`.
 - Para producir el plan detallado de una tarea individual: eso ocurre en su ejecución, dentro de la guía de la épica.
-- Para secuenciar varios conjuntos en el tiempo (nivel *roadmap*): fuera de alcance.
+- Para secuenciar varios conjuntos en el tiempo (nivel *roadmap*): eso corresponde a `planificar-roadmap`.
 
 ## Entrada
 

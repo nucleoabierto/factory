@@ -8,7 +8,7 @@ Conjunto de skills que cubren el ciclo de vida completo del desarrollo de produc
 
 ## Estado actual
 
-Factory está en desarrollo. El motor interno está completo: cubre el ciclo desde una idea suelta hasta el commit, con revisión dual y aprendizaje. Lo que falta es el producto entregable: gestión a nivel de código, *roadmap* y producto.
+Factory está en desarrollo. El motor interno está completo: cubre el ciclo desde una idea suelta hasta el commit, con revisión dual y aprendizaje. Lo que falta es el producto entregable: gestión a nivel de código y de producto.
 
 ### Skills disponibles
 
@@ -22,6 +22,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `refinar-propuesta` | Descompone la solución validada en borradores de tarea y los envía a revisión asíncrona. |
 | `crear-tareas` | Crea tareas desde una solicitud articulada o promociona los borradores de una propuesta aprobada. |
 | `planificar` | Produce la épica de un conjunto de trabajo y refleja su agrupación en `TODO.txt`; cierra la planeación del flujo. |
+| `planificar-roadmap` | Ordena las líneas de trabajo del producto —épicas, hitos y tareas sueltas— en `ROADMAP.md` y refleja el orden en `TODO.txt`. |
 
 **Ejecución y cierre**
 
@@ -108,7 +109,6 @@ Para ejecutar una tarea, sigue el procedimiento del skill `ejecutar-tareas` o el
 
 Factory avanza hacia un **producto entregable** que cubre el ciclo completo de desarrollo de producto. Lo que existe hoy —del refinamiento de ideas a la ejecución de tareas con revisión dual— es un subconjunto del ciclo. El producto entregable lo extenderá:
 
-- **Planeación de épicas y *roadmap***: gestionar el producto a nivel de visión, no solo de tareas individuales.
 - **Gestión a nivel de código**: *branching*, *pull requests*, revisión de código.
 - **Gestión a nivel de producto**: *features*, *releases*, *feedback* de usuarios.
 
@@ -130,5 +130,5 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
 - [Visión del proyecto](docs/vision-proyecto.md) — dirección aspiracional.
-- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D021).
+- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D022).
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.

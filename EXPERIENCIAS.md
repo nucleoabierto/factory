@@ -97,3 +97,10 @@
   Obtenido: se propuso `docs/reviews/`, un nombre genérico que no distingue revisiones de arquitectura de revisiones de planes, PRs, commits o redacción
   Corrección: usar `docs/architecture-reviews/` —el nombre del directorio debe ser específico del artefacto que almacena
   Estado: consolidada
+
+- Id: 20260924T023719
+  Tarea: docs/tasks/080-gestionar-roadmap-todo-app.md
+  Esperado: que el modelo del artefacto (documento único en la raíz) y sus campos fueran coherentes
+  Obtenido: la plantilla del roadmap declaraba un campo Estado (Vigente/Superado) propio de una serie de documentos, imposible en un único archivo en la raíz
+  Corrección: el roadmap es un documento vivo — se actualiza in situ, la historia la da git; sin campo de estado ni serie de roadmaps
+  Estado: pendiente
