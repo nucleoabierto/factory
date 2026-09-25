@@ -4,6 +4,7 @@
   const STORAGE_KEY = 'todoapp-tasks';
   const FILTER_KEY = 'todoapp-filter';
   const FILTERS = ['all', 'active', 'completed'];
+  const INBOX = { id: 'inbox', name: 'Entrada' };
 
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
@@ -11,6 +12,7 @@
   // only mutates through the operations below.
   class TaskList {
     #tasks = [];
+    #lists = [{ ...INBOX }];
     #nextId = 1;
     #listeners = [];
 
@@ -22,16 +24,23 @@
       this.#listeners.forEach((fn) => fn());
     }
 
-    // Resets the state without notifying subscribers.
+    // Resets the state without notifying subscribers. The inbox
+    // list is permanent: it exists even in an empty state.
     reset() {
       this.#tasks = [];
+      this.#lists = [{ ...INBOX }];
       this.#nextId = 1;
     }
 
     // Public reads return copies: the private state (and each
     // task object in it) can only change through the operations.
     #snapshot(task) {
-      return { id: task.id, text: task.text, done: task.done };
+      return { id: task.id, text: task.text, done: task.done,
+        listId: task.listId };
+    }
+
+    lists() {
+      return this.#lists.map((list) => ({ ...list }));
     }
 
     tasks() {
@@ -49,8 +58,39 @@
         typeof candidate.done === 'boolean';
     }
 
+    isValidList(candidate) {
+      return !!candidate &&
+        typeof candidate.id === 'string' && candidate.id !== '' &&
+        candidate.id !== INBOX.id &&
+        typeof candidate.name === 'string' && candidate.name.trim() !== '';
+    }
+
+    // Accepts two persisted shapes: the legacy flat array, whose
+    // tasks all migrate to the inbox, and the current
+    // {lists, tasks} object. Tasks pointing to a missing list are
+    // dropped; the inbox is recreated when absent.
     load(data) {
-      this.#tasks = data.filter(this.isValidTask);
+      this.#lists = [{ ...INBOX }];
+      let tasks = [];
+      if (Array.isArray(data)) {
+        tasks = data;
+      } else if (data && typeof data === 'object') {
+        if (Array.isArray(data.lists)) {
+          const valid = data.lists.filter(this.isValidList);
+          const unique = valid.filter((list, i) =>
+            valid.findIndex((other) => other.id === list.id) === i);
+          this.#lists.push(...unique);
+        }
+        if (Array.isArray(data.tasks)) {
+          tasks = data.tasks;
+        }
+      }
+      const known = new Set(this.#lists.map((list) => list.id));
+      this.#tasks = tasks
+        .filter(this.isValidTask)
+        .filter((t) => !('listId' in t) || known.has(t.listId))
+        .map((t) => ({ id: t.id, text: t.text, done: t.done,
+          listId: 'listId' in t ? t.listId : INBOX.id }));
       this.#nextId = this.#tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;
     }
 
@@ -63,12 +103,12 @@
       return this.#tasks.find((t) => t.id === id) || null;
     }
 
-    addTask(text) {
+    addTask(text, listId = INBOX.id) {
       const clean = (text || '').trim();
-      if (!clean) {
+      if (!clean || !this.#lists.some((list) => list.id === listId)) {
         return null;
       }
-      const task = { id: this.#nextId++, text: clean, done: false };
+      const task = { id: this.#nextId++, text: clean, done: false, listId };
       this.#tasks.push(task);
       this.#notify();
       return this.#snapshot(task);
@@ -108,22 +148,28 @@
       return this.#snapshot(task);
     }
 
-    pendingCount() {
-      return this.#tasks.filter((t) => !t.done).length;
+    pendingCount(listId) {
+      return this.#tasks
+        .filter((t) => !t.done && (!listId || t.listId === listId))
+        .length;
     }
 
-    visibleTasks(filter) {
+    visibleTasks(filter, listId) {
+      const scoped = listId
+        ? this.#tasks.filter((t) => t.listId === listId)
+        : this.#tasks;
       if (filter === 'active') {
-        return this.#tasks.filter((t) => !t.done).map(this.#snapshot);
+        return scoped.filter((t) => !t.done).map(this.#snapshot);
       }
       if (filter === 'completed') {
-        return this.#tasks.filter((t) => t.done).map(this.#snapshot);
+        return scoped.filter((t) => t.done).map(this.#snapshot);
       }
-      return this.tasks();
+      return scoped.map(this.#snapshot);
     }
 
-    clearCompleted() {
-      this.#tasks = this.#tasks.filter((t) => !t.done);
+    clearCompleted(listId = INBOX.id) {
+      this.#tasks = this.#tasks
+        .filter((t) => !(t.done && t.listId === listId));
       this.#notify();
     }
   }
@@ -146,7 +192,7 @@
       }
       try {
         const data = JSON.parse(raw);
-        if (!Array.isArray(data)) {
+        if (!data || typeof data !== 'object') {
           throw new Error('unexpected format');
         }
         return data;
@@ -155,9 +201,9 @@
       }
     },
 
-    saveTasks(tasks) {
+    saveTasks(data) {
       try {
-        global.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+        global.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (e) {
         // Persistence unavailable: the app keeps working in memory.
       }
@@ -311,7 +357,10 @@
     },
 
     save() {
-      Storage.saveTasks(taskList.tasks());
+      Storage.saveTasks({
+        lists: taskList.lists(),
+        tasks: taskList.tasks()
+      });
     },
 
     addTask(text) {
@@ -354,11 +403,11 @@
     },
 
     pendingCount() {
-      return taskList.pendingCount();
+      return taskList.pendingCount(INBOX.id);
     },
 
     visibleTasks() {
-      return taskList.visibleTasks(App.filter);
+      return taskList.visibleTasks(App.filter, INBOX.id);
     },
 
     setFilter(name) {
@@ -371,7 +420,7 @@
     },
 
     clearCompleted() {
-      taskList.clearCompleted();
+      taskList.clearCompleted(INBOX.id);
     },
 
     reset() {
@@ -398,6 +447,11 @@
   Object.defineProperty(App, 'tasks', {
     get() {
       return taskList.tasks();
+    }
+  });
+  Object.defineProperty(App, 'lists', {
+    get() {
+      return taskList.lists();
     }
   });
   Object.defineProperty(App, 'nextId', {
