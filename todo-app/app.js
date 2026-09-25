@@ -66,6 +66,14 @@
         typeof candidate.name === 'string' && candidate.name.trim() !== '';
     }
 
+    // List names are unique case-insensitively: "Trabajo" and
+    // "trabajo" are the same list for the person managing them.
+    #nameTaken(name, exceptId = null) {
+      const wanted = name.trim().toLowerCase();
+      return this.#lists.some((list) =>
+        list.id !== exceptId && list.name.toLowerCase() === wanted);
+    }
+
     // Accepts two persisted shapes: the legacy flat array, whose
     // tasks all migrate to the inbox, and the current
     // {lists, tasks} object. Tasks pointing to a missing list are
@@ -166,6 +174,60 @@
         return scoped.filter((t) => t.done).map(this.#snapshot);
       }
       return scoped.map(this.#snapshot);
+    }
+
+    addList(name) {
+      const clean = (name || '').trim();
+      if (!clean || this.#nameTaken(clean)) {
+        return null;
+      }
+      let seq = 0;
+      let id;
+      do {
+        id = `list-${++seq}`;
+      } while (this.#lists.some((list) => list.id === id));
+      const list = { id, name: clean };
+      this.#lists.push(list);
+      this.#notify();
+      return { ...list };
+    }
+
+    renameList(id, name) {
+      const list = this.#lists.find((l) => l.id === id);
+      const clean = (name || '').trim();
+      if (!list || id === INBOX.id || !clean || this.#nameTaken(clean, id)) {
+        return null;
+      }
+      list.name = clean;
+      this.#notify();
+      return { ...list };
+    }
+
+    // Deleting a list never loses tasks: they move to the inbox.
+    deleteList(id) {
+      const list = this.#lists.find((l) => l.id === id);
+      if (!list || id === INBOX.id) {
+        return null;
+      }
+      const removed = { ...list };
+      this.#tasks.forEach((t) => {
+        if (t.listId === id) {
+          t.listId = INBOX.id;
+        }
+      });
+      this.#lists = this.#lists.filter((l) => l.id !== id);
+      this.#notify();
+      return removed;
+    }
+
+    moveTask(id, listId) {
+      const task = this.#find(id);
+      if (!task || !this.#lists.some((list) => list.id === listId)) {
+        return null;
+      }
+      task.listId = listId;
+      this.#notify();
+      return this.#snapshot(task);
     }
 
     clearCompleted(listId = INBOX.id) {
@@ -300,6 +362,27 @@
             });
             li.appendChild(toggle);
             li.appendChild(label);
+            const move = doc.createElement('select');
+            move.className = 'move';
+            move.setAttribute('aria-label', 'Mover a otra lista');
+            const placeholder = doc.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = 'Mover a…';
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            move.appendChild(placeholder);
+            App.lists.forEach((l) => {
+              if (l.id !== t.listId) {
+                const option = doc.createElement('option');
+                option.value = l.id;
+                option.textContent = l.name;
+                move.appendChild(option);
+              }
+            });
+            move.addEventListener('change', () => {
+              App.moveTask(t.id, move.value);
+            });
+            li.appendChild(move);
             li.appendChild(destroy);
           }
           list.appendChild(li);
@@ -312,13 +395,22 @@
       const select = doc.getElementById('list-select');
       if (select) {
         select.innerHTML = '';
-        App.lists.forEach((list) => {
+        App.lists.forEach((l) => {
           const option = doc.createElement('option');
-          option.value = list.id;
-          option.textContent = `${list.name} (${App.pendingCount(list.id)})`;
-          option.selected = list.id === App.activeListId;
+          option.value = l.id;
+          option.textContent = `${l.name} (${App.pendingCount(l.id)})`;
+          option.selected = l.id === App.activeListId;
           select.appendChild(option);
         });
+      }
+      const inboxActive = App.activeListId === INBOX.id;
+      const renameButton = doc.getElementById('rename-list');
+      if (renameButton) {
+        renameButton.disabled = inboxActive;
+      }
+      const deleteButton = doc.getElementById('delete-list');
+      if (deleteButton) {
+        deleteButton.disabled = inboxActive;
       }
       const counter = doc.getElementById('todo-count');
       if (counter) {
@@ -347,6 +439,33 @@
       if (select) {
         select.addEventListener('change', () => {
           App.setActiveList(select.value);
+        });
+      }
+      const addButton = doc.getElementById('add-list');
+      if (addButton) {
+        addButton.addEventListener('click', () => {
+          const name = global.prompt('Nombre de la lista');
+          if (name !== null) {
+            App.addList(name);
+          }
+        });
+      }
+      const renameButton = doc.getElementById('rename-list');
+      if (renameButton) {
+        renameButton.addEventListener('click', () => {
+          const current = App.lists
+            .find((list) => list.id === App.activeListId);
+          const name = global.prompt('Nuevo nombre de la lista',
+            current ? current.name : '');
+          if (name !== null) {
+            App.renameList(App.activeListId, name);
+          }
+        });
+      }
+      const deleteButton = doc.getElementById('delete-list');
+      if (deleteButton) {
+        deleteButton.addEventListener('click', () => {
+          App.deleteList(App.activeListId);
         });
       }
       const input = doc.getElementById('new-todo');
@@ -470,6 +589,35 @@
       App.filter = name;
       Storage.saveFilter(name);
       App.render();
+    },
+
+    addList(name) {
+      return taskList.addList(name);
+    },
+
+    renameList(id, name) {
+      return taskList.renameList(id, name);
+    },
+
+    // The active list is corrected before deleting so that the
+    // notification inside the model already renders the fallback.
+    deleteList(id) {
+      if (id === INBOX.id ||
+          !taskList.lists().some((list) => list.id === id)) {
+        return null;
+      }
+      if (App.activeListId === id) {
+        App.activeListId = INBOX.id;
+        Storage.saveActiveList(INBOX.id);
+      }
+      // A task being edited in a deleted list reappears in the
+      // inbox; leaving edit mode keeps the view consistent.
+      UI.editingId = null;
+      return taskList.deleteList(id);
+    },
+
+    moveTask(id, listId) {
+      return taskList.moveTask(id, listId);
     },
 
     clearCompleted() {

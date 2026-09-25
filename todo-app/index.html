@@ -10,8 +10,16 @@
   <main class="todoapp">
     <header class="header">
       <h1>Tareas</h1>
-      <select id="list-select" class="list-select"
-             aria-label="Lista activa"></select>
+      <div class="list-bar">
+        <select id="list-select" class="list-select"
+                aria-label="Lista activa"></select>
+        <button id="add-list" class="list-action" title="Nueva lista"
+                aria-label="Nueva lista">+</button>
+        <button id="rename-list" class="list-action"
+                title="Renombrar lista" aria-label="Renombrar lista">✎</button>
+        <button id="delete-list" class="list-action"
+                title="Eliminar lista" aria-label="Eliminar lista">×</button>
+      </div>
       <input id="new-todo" class="new-todo" type="text"
              placeholder="¿Qué hay que hacer?" autofocus>
     </header>

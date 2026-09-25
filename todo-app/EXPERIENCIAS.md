@@ -50,3 +50,10 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Obtenido: el `<select>` de listas se entregó sin regla CSS y sin nombre accesible; se veía con el estilo por defecto del navegador, desalineado con el diseño
   Corrección: el usuario pidió revisar la parte visual y de estilos antes de aprobar; se añadió la regla `.list-select` coherente con la paleta y el `aria-label`
   Estado: pendiente
+
+- Id: 20260925T121008
+  Tarea: todo-app/docs/tasks/013-gestion-de-listas.md
+  Esperado: que los controles nuevos llegaran con acabado visual uniforme, aunque sean glifos de texto
+  Obtenido: los botones +, ✎ y × tenían tamaños distintos por la métrica de cada carácter
+  Corrección: el usuario pidió cajas cuadradas del mismo tamaño; se resolvió con inline-flex centrado y dimensiones fijas
+  Estado: pendiente

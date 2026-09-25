@@ -677,6 +677,208 @@
             'the done task of the inbox survives');
         });
     });
+
+    QUnit.module('list management', (hooks) => {
+      let originalPrompt;
+      hooks.beforeEach(() => {
+        localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
+        localStorage.removeItem('todoapp-active-list');
+        originalPrompt = window.prompt;
+        window.App.reset();
+        window.App.initialized = false;
+        window.App.editingId = null;
+        window.App.filter = 'all';
+        const fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          `<input id="new-todo" type="text">
+          <select id="list-select"></select>
+          <button id="add-list">+</button>
+          <button id="rename-list">✎</button>
+          <button id="delete-list">×</button>
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>`;
+      });
+      hooks.afterEach(() => {
+        window.prompt = originalPrompt;
+      });
+
+      const texts = () =>
+        [...document.querySelectorAll('#todo-list li label')]
+          .map((label) => label.textContent);
+
+      QUnit.test('creating a list adds it, selects it and persists',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          assert.ok(list, 'returns the created list');
+          assert.strictEqual(list.name, 'Trabajo');
+          assert.deepEqual(
+            window.App.lists.map((l) => l.id), ['inbox', list.id],
+            'the model holds both lists');
+          window.App.render();
+          assert.strictEqual(
+            document.getElementById('list-select').options.length, 2,
+            'the selector shows the new list');
+          window.App.setActiveList(list.id);
+          assert.strictEqual(window.App.activeListId, list.id,
+            'the new list can be activated');
+          window.App.reset();
+          window.App.load();
+          assert.true(
+            window.App.lists.some((l) => l.name === 'Trabajo'),
+            'the list survives the reload');
+        });
+
+      QUnit.test('empty or whitespace-only names create no list',
+        (assert) => {
+          assert.strictEqual(window.App.addList(''), null);
+          assert.strictEqual(window.App.addList('   '), null);
+          assert.deepEqual(
+            window.App.lists.map((l) => l.id), ['inbox'],
+            'only the inbox remains');
+        });
+
+      QUnit.test('duplicate names are rejected case-insensitively',
+        (assert) => {
+          window.App.addList('Trabajo');
+          assert.strictEqual(window.App.addList('trabajo'), null,
+            'a case-variant duplicate is rejected');
+          assert.strictEqual(window.App.addList(' Trabajo '), null,
+            'a padded duplicate is rejected');
+          const other = window.App.addList('Ocio');
+          assert.strictEqual(
+            window.App.renameList(other.id, 'TRABAJO'), null,
+            'renaming to a taken name is rejected');
+          assert.strictEqual(
+            window.App.lists.find((l) => l.id === other.id).name,
+            'Ocio', 'the name stays unchanged');
+        });
+
+      QUnit.test('renaming a list updates it and persists', (assert) => {
+        const list = window.App.addList('Proyectos');
+        window.App.renameList(list.id, 'Personal');
+        assert.strictEqual(
+          window.App.lists.find((l) => l.id === list.id).name,
+          'Personal');
+        window.App.reset();
+        window.App.load();
+        assert.strictEqual(
+          window.App.lists.find((l) => l.id === list.id).name,
+          'Personal', 'the rename survives the reload');
+      });
+
+      QUnit.test('the inbox cannot be renamed or emptied', (assert) => {
+        assert.strictEqual(window.App.renameList('inbox', 'X'), null,
+          'the inbox keeps its name');
+        assert.strictEqual(window.App.lists[0].name, 'Entrada');
+        const list = window.App.addList('Trabajo');
+        assert.strictEqual(window.App.renameList(list.id, '  '), null,
+          'an empty rename is rejected');
+        assert.strictEqual(
+          window.App.lists.find((l) => l.id === list.id).name,
+          'Trabajo');
+      });
+
+      QUnit.test('deleting a list reassigns its tasks to the inbox',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.setActiveList(list.id);
+          window.App.addTask('Pending in work');
+          const gone = window.App.deleteList(list.id);
+          assert.ok(gone, 'the deletion returns the removed list');
+          assert.deepEqual(
+            window.App.lists.map((l) => l.id), ['inbox'],
+            'only the inbox remains');
+          assert.strictEqual(window.App.tasks[0].listId, 'inbox',
+            'the task moved to the inbox');
+          assert.strictEqual(window.App.activeListId, 'inbox',
+            'the view fell back to the inbox');
+          assert.deepEqual(texts(), ['Pending in work'],
+            'the reassigned task is visible');
+          assert.strictEqual(
+            localStorage.getItem('todoapp-active-list'), 'inbox',
+            'the corrected active list is persisted');
+        });
+
+      QUnit.test('the inbox cannot be deleted', (assert) => {
+        assert.strictEqual(window.App.deleteList('inbox'), null);
+        assert.deepEqual(
+          window.App.lists.map((l) => l.id), ['inbox']);
+      });
+
+      QUnit.test('moving a task relocates it to the target list',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const task = window.App.addTask('Clasificame');
+          const moved = window.App.moveTask(task.id, list.id);
+          assert.strictEqual(moved.listId, list.id,
+            'the task carries the target list');
+          assert.deepEqual(texts(), [],
+            'the task leaves the inbox view');
+          window.App.setActiveList(list.id);
+          assert.deepEqual(texts(), ['Clasificame'],
+            'the task appears in the target list');
+          window.App.reset();
+          window.App.load();
+          assert.strictEqual(window.App.tasks[0].listId, list.id,
+            'the move persists across reloads');
+          assert.strictEqual(
+            window.App.moveTask(999, list.id), null,
+            'a missing task cannot be moved');
+          assert.strictEqual(
+            window.App.moveTask(task.id, 'ghost'), null,
+            'a missing list cannot receive tasks');
+        });
+
+      QUnit.test('move select in a task row lists the other lists',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.addTask('Moverme');
+          const move = document.querySelector('#todo-list li .move');
+          assert.ok(move, 'the row carries the move control');
+          assert.deepEqual(
+            [...move.options].map((o) => o.value), ['', list.id],
+            'it offers every list except the current one');
+          move.value = list.id;
+          move.dispatchEvent(new Event('change'));
+          assert.strictEqual(window.App.tasks[0].listId, list.id,
+            'choosing a list moves the task');
+        });
+
+      QUnit.test('rename and delete buttons are disabled on the inbox',
+        (assert) => {
+          window.App.render();
+          assert.true(
+            document.getElementById('rename-list').disabled,
+            'rename is disabled on the inbox');
+          assert.true(
+            document.getElementById('delete-list').disabled,
+            'delete is disabled on the inbox');
+          const list = window.App.addList('Trabajo');
+          window.App.setActiveList(list.id);
+          assert.false(
+            document.getElementById('rename-list').disabled,
+            'rename is enabled on a regular list');
+          assert.false(
+            document.getElementById('delete-list').disabled,
+            'delete is enabled on a regular list');
+        });
+
+      QUnit.test('the add-list button creates the prompted list',
+        (assert) => {
+          window.prompt = () => 'Recados';
+          window.App.init();
+          document.getElementById('add-list').click();
+          assert.true(
+            window.App.lists.some((l) => l.name === 'Recados'),
+            'the prompted name becomes a list');
+          window.prompt = () => null;
+          const count = window.App.lists.length;
+          document.getElementById('add-list').click();
+          assert.strictEqual(window.App.lists.length, count,
+            'cancelling the prompt creates nothing');
+        });
+    });
   </script>
 </body>
 </html>

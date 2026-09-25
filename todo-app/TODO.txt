@@ -38,7 +38,7 @@
 
 - [x] docs/tasks/011-listas-en-el-modelo.md — Listas nombradas en el modelo y migración de la persistencia
 - [x] docs/tasks/012-navegacion-por-lista.md — Vista acotada a la lista activa con selector y contadores
-- [ ] docs/tasks/013-gestion-de-listas.md — Crear, renombrar, eliminar listas y mover tareas entre ellas
+- [x] docs/tasks/013-gestion-de-listas.md — Crear, renombrar, eliminar listas y mover tareas entre ellas
 - [ ] docs/tasks/014-archivar-listas.md — Archivar y reactivar listas sin perder su contenido
 
 ## Hito 3: Planificación temporal
