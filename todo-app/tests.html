@@ -379,11 +379,11 @@
       QUnit.test('an empty app always holds the permanent inbox list',
         (assert) => {
           assert.deepEqual(window.App.lists,
-            [{ id: 'inbox', name: 'Entrada' }],
+            [{ id: 'inbox', name: 'Entrada', archived: false }],
             'the inbox exists with its name');
           window.App.load();
           assert.deepEqual(window.App.lists,
-            [{ id: 'inbox', name: 'Entrada' }],
+            [{ id: 'inbox', name: 'Entrada', archived: false }],
             'loading empty storage keeps the inbox');
         });
 
@@ -485,7 +485,7 @@
           window.App.load();
           assert.deepEqual(window.App.tasks, []);
           assert.deepEqual(window.App.lists,
-            [{ id: 'inbox', name: 'Entrada' }],
+            [{ id: 'inbox', name: 'Entrada', archived: false }],
             'the inbox still exists');
           localStorage.setItem('todoapp-tasks', '"a string"');
           window.App.load();
@@ -877,6 +877,147 @@
           document.getElementById('add-list').click();
           assert.strictEqual(window.App.lists.length, count,
             'cancelling the prompt creates nothing');
+        });
+    });
+
+    QUnit.module('archiving lists', (hooks) => {
+      hooks.beforeEach(() => {
+        localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
+        localStorage.removeItem('todoapp-active-list');
+        window.App.reset();
+        window.App.initialized = false;
+        window.App.editingId = null;
+        window.App.filter = 'all';
+        const fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          `<input id="new-todo" type="text">
+          <select id="list-select"></select>
+          <button id="add-list">+</button>
+          <button id="rename-list">✎</button>
+          <button id="archive-list">↓</button>
+          <button id="delete-list">×</button>
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>
+          <details id="archived-section">
+            <summary></summary>
+            <ul id="archived-list"></ul>
+          </details>`;
+      });
+
+      const texts = () =>
+        [...document.querySelectorAll('#todo-list li label')]
+          .map((label) => label.textContent);
+
+      const selectorValues = () =>
+        [...document.getElementById('list-select').options]
+          .map((o) => o.value);
+
+      QUnit.test('archiving hides the list but keeps its tasks',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.setActiveList(list.id);
+          window.App.addTask('Parked one');
+          window.App.archiveList(list.id);
+          assert.deepEqual(selectorValues(), ['inbox'],
+            'the selector only shows live lists');
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the task is kept in the state');
+          assert.deepEqual(texts(), [],
+            'nothing of the archived list is visible');
+          window.App.setFilter('all');
+          assert.deepEqual(texts(), [],
+            'no view shows the archived tasks');
+        });
+
+      QUnit.test('archiving the active list falls back to the inbox',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.setActiveList(list.id);
+          window.App.archiveList(list.id);
+          assert.strictEqual(window.App.activeListId, 'inbox',
+            'the view returns to the inbox');
+          assert.strictEqual(
+            localStorage.getItem('todoapp-active-list'), 'inbox',
+            'the correction is persisted');
+        });
+
+      QUnit.test('reactivating restores the list as it was',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.setActiveList(list.id);
+          window.App.addTask('Still pending');
+          const done = window.App.addTask('Already done');
+          window.App.toggleTask(done.id);
+          window.App.archiveList(list.id);
+          assert.strictEqual(
+            document.getElementById('archived-section').hidden, false,
+            'the archived access appears');
+          const item = document.querySelector('#archived-list li');
+          assert.ok(item.textContent.includes('Trabajo (1)'),
+            'the archived row shows its pending count');
+          item.querySelector('.reactivate').click();
+          assert.deepEqual(selectorValues(), ['inbox', list.id],
+            'the list is back in the selector');
+          window.App.setActiveList(list.id);
+          assert.deepEqual(texts(), ['Still pending', 'Already done'],
+            'its tasks come back untouched');
+          assert.strictEqual(window.App.pendingCount(), 1,
+            'the counter is as before archiving');
+        });
+
+      QUnit.test('the archived flag persists across reloads',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.archiveList(list.id);
+          window.App.reset();
+          window.App.load();
+          assert.true(
+            window.App.lists.find((l) => l.id === list.id).archived,
+            'the list stays archived');
+          window.App.render();
+          assert.deepEqual(selectorValues(), ['inbox']);
+        });
+
+      QUnit.test('lists persisted without the flag load as live',
+        (assert) => {
+          localStorage.setItem('todoapp-tasks', JSON.stringify({
+            lists: [{ id: 'work', name: 'Trabajo' }],
+            tasks: []
+          }));
+          window.App.load();
+          assert.false(
+            window.App.lists.find((l) => l.id === 'work').archived,
+            'a missing flag means not archived');
+        });
+
+      QUnit.test('the inbox cannot be archived', (assert) => {
+        assert.strictEqual(window.App.archiveList('inbox'), null);
+        window.App.render();
+        assert.true(
+          document.getElementById('archive-list').disabled,
+          'the button is disabled on the inbox');
+      });
+
+      QUnit.test('archived lists are not offered anywhere',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.addTask('In inbox');
+          window.App.archiveList(list.id);
+          assert.strictEqual(window.App.setActiveList(list.id),
+            undefined, 'an archived list cannot be activated');
+          assert.strictEqual(window.App.activeListId, 'inbox');
+          const move = document.querySelector('#todo-list li .move');
+          assert.deepEqual(
+            [...move.options].map((o) => o.value), [''],
+            'the move select offers no archived list');
+          assert.strictEqual(
+            window.App.moveTask(window.App.tasks[0].id, list.id),
+            null, 'the model itself refuses a move to an archived list');
+          localStorage.setItem('todoapp-active-list', list.id);
+          window.App.load();
+          assert.strictEqual(window.App.activeListId, 'inbox',
+            'a stored archived list falls back to the inbox');
         });
     });
   </script>

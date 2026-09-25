@@ -17,6 +17,8 @@
                 aria-label="Nueva lista">+</button>
         <button id="rename-list" class="list-action"
                 title="Renombrar lista" aria-label="Renombrar lista">✎</button>
+        <button id="archive-list" class="list-action"
+                title="Archivar lista" aria-label="Archivar lista">↓</button>
         <button id="delete-list" class="list-action"
                 title="Eliminar lista" aria-label="Eliminar lista">×</button>
       </div>
@@ -27,6 +29,11 @@
     <section class="main">
       <ul id="todo-list" class="todo-list"></ul>
     </section>
+
+    <details id="archived-section" class="archived" hidden>
+      <summary>Archivadas</summary>
+      <ul id="archived-list" class="archived-list"></ul>
+    </details>
 
     <footer class="footer">
       <span id="todo-count" class="todo-count">0 pendientes</span>

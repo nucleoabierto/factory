@@ -5,7 +5,7 @@
   const FILTER_KEY = 'todoapp-filter';
   const ACTIVE_LIST_KEY = 'todoapp-active-list';
   const FILTERS = ['all', 'active', 'completed'];
-  const INBOX = { id: 'inbox', name: 'Entrada' };
+  const INBOX = { id: 'inbox', name: 'Entrada', archived: false };
 
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
@@ -88,7 +88,11 @@
           const valid = data.lists.filter(this.isValidList);
           const unique = valid.filter((list, i) =>
             valid.findIndex((other) => other.id === list.id) === i);
-          this.#lists.push(...unique);
+          // Data persisted before archiving lacks the flag;
+          // absent means not archived.
+          this.#lists.push(...unique.map((list) =>
+            ({ id: list.id, name: list.name,
+              archived: list.archived === true })));
         }
         if (Array.isArray(data.tasks)) {
           tasks = data.tasks;
@@ -186,7 +190,7 @@
       do {
         id = `list-${++seq}`;
       } while (this.#lists.some((list) => list.id === id));
-      const list = { id, name: clean };
+      const list = { id, name: clean, archived: false };
       this.#lists.push(list);
       this.#notify();
       return { ...list };
@@ -220,9 +224,33 @@
       return removed;
     }
 
+    // Archiving parks a list with its tasks intact: it leaves the
+    // navigation but nothing is destroyed.
+    archiveList(id) {
+      const list = this.#lists.find((l) => l.id === id);
+      if (!list || id === INBOX.id || list.archived) {
+        return null;
+      }
+      list.archived = true;
+      this.#notify();
+      return { ...list };
+    }
+
+    unarchiveList(id) {
+      const list = this.#lists.find((l) => l.id === id);
+      if (!list || !list.archived) {
+        return null;
+      }
+      list.archived = false;
+      this.#notify();
+      return { ...list };
+    }
+
+    // Archived lists are parked: tasks cannot be moved into them.
     moveTask(id, listId) {
       const task = this.#find(id);
-      if (!task || !this.#lists.some((list) => list.id === listId)) {
+      if (!task || !this.#lists
+          .some((list) => list.id === listId && !list.archived)) {
         return null;
       }
       task.listId = listId;
@@ -372,7 +400,7 @@
             placeholder.selected = true;
             move.appendChild(placeholder);
             App.lists.forEach((l) => {
-              if (l.id !== t.listId) {
+              if (l.id !== t.listId && !l.archived) {
                 const option = doc.createElement('option');
                 option.value = l.id;
                 option.textContent = l.name;
@@ -396,6 +424,9 @@
       if (select) {
         select.innerHTML = '';
         App.lists.forEach((l) => {
+          if (l.archived) {
+            return;
+          }
           const option = doc.createElement('option');
           option.value = l.id;
           option.textContent = `${l.name} (${App.pendingCount(l.id)})`;
@@ -408,9 +439,40 @@
       if (renameButton) {
         renameButton.disabled = inboxActive;
       }
+      const archiveButton = doc.getElementById('archive-list');
+      if (archiveButton) {
+        archiveButton.disabled = inboxActive;
+      }
       const deleteButton = doc.getElementById('delete-list');
       if (deleteButton) {
         deleteButton.disabled = inboxActive;
+      }
+      const archivedSection = doc.getElementById('archived-section');
+      if (archivedSection) {
+        const archived = App.lists.filter((l) => l.archived);
+        archivedSection.hidden = archived.length === 0;
+        const summary = archivedSection.querySelector('summary');
+        if (summary) {
+          summary.textContent = `Archivadas (${archived.length})`;
+        }
+        const archivedItems = doc.getElementById('archived-list');
+        if (archivedItems) {
+          archivedItems.innerHTML = '';
+          archived.forEach((l) => {
+            const li = doc.createElement('li');
+            const name = doc.createElement('span');
+            name.textContent = `${l.name} (${App.pendingCount(l.id)})`;
+            const reactivate = doc.createElement('button');
+            reactivate.className = 'reactivate';
+            reactivate.textContent = 'Reactivar';
+            reactivate.addEventListener('click', () => {
+              App.unarchiveList(l.id);
+            });
+            li.appendChild(name);
+            li.appendChild(reactivate);
+            archivedItems.appendChild(li);
+          });
+        }
       }
       const counter = doc.getElementById('todo-count');
       if (counter) {
@@ -460,6 +522,12 @@
           if (name !== null) {
             App.renameList(App.activeListId, name);
           }
+        });
+      }
+      const archiveButton = doc.getElementById('archive-list');
+      if (archiveButton) {
+        archiveButton.addEventListener('click', () => {
+          App.archiveList(App.activeListId);
         });
       }
       const deleteButton = doc.getElementById('delete-list');
@@ -513,7 +581,8 @@
       // The stored active list is only valid once the model knows
       // which lists exist; anything else falls back to the inbox.
       const stored = Storage.loadActiveList();
-      App.activeListId = taskList.lists().some((list) => list.id === stored)
+      App.activeListId = taskList.lists()
+        .some((list) => list.id === stored && !list.archived)
         ? stored
         : INBOX.id;
     },
@@ -573,7 +642,8 @@
     },
 
     setActiveList(id) {
-      if (!taskList.lists().some((list) => list.id === id)) {
+      if (!taskList.lists()
+          .some((list) => list.id === id && !list.archived)) {
         return;
       }
       App.activeListId = id;
@@ -618,6 +688,26 @@
 
     moveTask(id, listId) {
       return taskList.moveTask(id, listId);
+    },
+
+    // Same ordering as deleteList: the active list is corrected
+    // before the model notifies, so the render is already right.
+    archiveList(id) {
+      if (id === INBOX.id ||
+          !taskList.lists()
+            .some((list) => list.id === id && !list.archived)) {
+        return null;
+      }
+      if (App.activeListId === id) {
+        App.activeListId = INBOX.id;
+        Storage.saveActiveList(INBOX.id);
+      }
+      UI.editingId = null;
+      return taskList.archiveList(id);
+    },
+
+    unarchiveList(id) {
+      return taskList.unarchiveList(id);
     },
 
     clearCompleted() {
