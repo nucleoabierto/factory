@@ -6,7 +6,7 @@ description: >
   contra las convenciones del proyecto y los archivos hermanos
   o de funcionalidad similar, y produce un informe con veredicto.
   Usar en el paso de revisión del ciclo de tareas cuando la tarea
-  es de tipo desarrollo.
+  es de tipo desarrollo o mantenimiento (refactoring).
   Sinónimos: revisar implementación, revisión de código,
   revisión técnica del diff, revisión adversarial.
 ---
@@ -17,7 +17,7 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
 
 ## Cuándo usar
 
-- En el paso de revisión del ciclo de `ejecutar-tareas`, cuando la tarea en revisión es de tipo desarrollo.
+- En el paso de revisión del ciclo de `ejecutar-tareas`, cuando la tarea en revisión se enrutó al sub-flujo de desarrollo (tipo `desarrollo` o `mantenimiento (refactoring)`).
 - Cuando el usuario pida revisar una implementación concreta contra las convenciones del proyecto.
 
 ## Cuándo no usar

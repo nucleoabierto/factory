@@ -6,7 +6,7 @@
 
 ## Tipo
 
-mantenimiento
+mantenimiento (refactoring)
 
 ## Objetivo
 

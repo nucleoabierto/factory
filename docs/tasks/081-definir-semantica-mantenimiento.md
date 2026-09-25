@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -48,6 +48,37 @@ Definir la semántica del tipo `mantenimiento`, que ya existe en la lista abiert
 - Origen: prioridad 2 de la investigación de siguientes elementos, junto con el descubrimiento de oportunidades — encontrar deuda y ejecutarla con criterios propios forman un ciclo.
 - Se descartó una tarea de investigación previa: la carencia está diagnosticada con precisión y existe un espécimen (015) suficiente para generalizar.
 
+## Plan técnico
+
+**Subsistema:** el tipo se declara en dos puntos y se enruta en uno: las plantillas `crear-tareas/assets/task.txt` y `refinar-propuesta/assets/borrador.md` listan `mantenimiento` en la lista abierta de tipos del campo `## Tipo`, y `ejecutar-tareas` enruta por el tipo declarado hacia un especialista registrado —hoy solo `desarrollo`→`desarrollo`—; el tipo `mantenimiento` existe en la lista pero sin contenido: ni criterio de pertenencia, ni criterios de calidad, ni sub-flujo.
+
+**Decisión perfil vs. tipo:** un solo tipo `mantenimiento` con dos perfiles, como prefija la opción por defecto de la tarea. El criterio de pertenencia común es preservar el sistema en lugar de extenderlo —ninguna tarea de mantenimiento añade capacidad observable—; lo que difiere es el criterio de aceptación y el sub-flujo, que es exactamente lo que un perfil declara sin multiplicar el registro de tipos. Un tipo `refactoring` separado añadiría una entrada más al enrutado sin ganar nada que el calificador no dé.
+
+**Perfiles:**
+
+- `mantenimiento (refactoring)` — código con comportamiento a preservar: modernizaciones y reparaciones de deuda. Criterio de aceptación verificable: misma API pública, misma suite en verde, mismo comportamiento observable. Se enruta al especialista `desarrollo`, cuyo pipeline ya produce plan y suite —la red que verifica la invariancia—. Las tareas 008–010 del PoC son evidencia de este perfil pese a haberse clasificado como `desarrollo`; se citan sin reclasificarlas.
+- `mantenimiento` sin calificador — trabajo de proceso sin comportamiento observable (documentar dominio, revisar arquitectura, limpieza; 006 y 007 de todo-app). Criterio de aceptación: el del procedimiento de la capacidad invocada. Se ejecuta con el comportamiento general.
+
+**Acciones:**
+
+1. Declarar la semántica en las plantillas `task.txt` y `borrador.md`: el campo `## Tipo` explica el criterio de pertenencia y los dos perfiles, manteniendo la lista abierta.
+2. Registrar en el «Enrutado por tipo» de `ejecutar-tareas` la entrada `mantenimiento (refactoring)` → `desarrollo`, con la nota de que `mantenimiento` sin perfil sigue el comportamiento general.
+3. Ajustar el «Cuándo no usar» de `planear-implementacion`, que hoy excluye «mantenimiento de procesos», para no contradecir el perfil refactoring que sí pasa por planeación.
+
+## Suite de pruebas esperada
+
+- Una tarea `mantenimiento (refactoring)` es enrutada por el ejecutor al sub-flujo de desarrollo sin interpretación del ejecutor — caso de uso: enrutar por tipo declarado.
+- Una tarea `mantenimiento` sin perfil se ejecuta con el comportamiento general — caso de uso: mantenimiento de proceso.
+- El criterio de aceptación del perfil refactoring queda verificable en la definición: misma API pública, misma suite, mismo comportamiento observable — caso de uso: aceptar una modernización como la 015 de todo-app.
+- Las plantillas de tarea y borrador guían la clasificación entre los dos perfiles — caso de uso: crear una tarea de mantenimiento.
+
+## Desviaciones del plan
+
+- El «Cuándo usar» de `desarrollo` seguía diciendo que el especialista se invoca solo con tipo `desarrollo`; se actualizó para incluir `mantenimiento (refactoring)`, coherente con el enrutado registrado.
+- La tarea 015 de todo-app declaraba `mantenimiento` a secas pese a ser el espécimen del perfil refactoring; se actualizó su campo `Tipo` a `mantenimiento (refactoring)` para que el enrutado la lleve al sub-flujo correcto cuando se ejecute.
+- Los pasos 9 y 15 de `ejecutar-tareas` y las menciones de tipo en `desarrollo`, `planear-implementacion`, `ejecutar-implementacion` y `revisar-implementacion` discriminaban por el literal `desarrollo`; la revisión técnica detectó que una tarea `mantenimiento (refactoring)` se habría perdido `revisar-implementacion` y `documentar-dominio`. Se cambió la discriminación al conjunto de tipos enrutados al sub-flujo de desarrollo.
+
 ## Revisión
 
--
+- Subagente: 2026-09-24 — Aprueba (primera pasada solicitó cambios: discriminación por el literal `desarrollo` en los pasos 9 y 15 y en las capacidades del sub-flujo; resueltos y registrados como desviaciones)
+- Usuario: 2026-09-24 — Aprueba

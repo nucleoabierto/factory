@@ -5,9 +5,10 @@ description: >
   código: entendimiento del subsistema afectado, plan técnico
   conceptual con storytelling y suite de pruebas esperada guiada
   internamente por ZOMBIE.
-  Usar al ejecutar una tarea de tipo desarrollo, invocado por el
-  skill especialista del sub-flujo de desarrollo o directamente,
-  cuando hay que planear la implementación antes de codificar.
+  Usar al ejecutar una tarea de tipo desarrollo o mantenimiento
+  (refactoring), invocado por el skill especialista del sub-flujo
+  de desarrollo o directamente, cuando hay que planear la
+  implementación antes de codificar.
   Sinónimos: planear implementación, plan técnico de la tarea,
   planeación de desarrollo, plan antes del código.
 ---
@@ -18,12 +19,12 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ## Cuándo usar
 
-- Al ejecutar una tarea de tipo desarrollo, antes de escribir código: invocado por el skill especialista que orquesta el sub-flujo de desarrollo dentro de la tarea.
+- Al ejecutar una tarea de tipo `desarrollo` o `mantenimiento (refactoring)`, antes de escribir código: invocado por el skill especialista que orquesta el sub-flujo de desarrollo dentro de la tarea.
 - Cuando el usuario pida planear la implementación de una tarea concreta, fuera del ciclo de ejecución.
 
 ## Cuándo no usar
 
-- Para tareas que no modifican código (investigación, documentación, mantenimiento de procesos): se ejecutan con el comportamiento general de `ejecutar-tareas`.
+- Para tareas que no modifican código (investigación, documentación, mantenimiento de proceso): se ejecutan con el comportamiento general de `ejecutar-tareas`. El mantenimiento sobre código sí pasa por este skill: es el perfil `refactoring` del tipo `mantenimiento`, enrutado al sub-flujo de desarrollo.
 - Para producir la guía de arquitectura de un conjunto de tareas: eso corresponde a `planificar`, en la épica.
 - Para ejecutar el plan ya redactado: eso corresponde a `ejecutar-implementacion`.
 
