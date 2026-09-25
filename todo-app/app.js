@@ -1,9 +1,9 @@
-(function (global) {
+((global) => {
   'use strict';
 
-  var STORAGE_KEY = 'todoapp-tasks';
-  var FILTER_KEY = 'todoapp-filter';
-  var FILTERS = ['all', 'active', 'completed'];
+  const STORAGE_KEY = 'todoapp-tasks';
+  const FILTER_KEY = 'todoapp-filter';
+  const FILTERS = ['all', 'active', 'completed'];
 
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
@@ -19,9 +19,7 @@
     }
 
     #notify() {
-      this.#listeners.forEach(function (fn) {
-        fn();
-      });
+      this.#listeners.forEach((fn) => fn());
     }
 
     // Resets the state without notifying subscribers.
@@ -46,40 +44,38 @@
 
     isValidTask(candidate) {
       return !!candidate &&
-        typeof candidate.id === 'number' && isFinite(candidate.id) &&
+        typeof candidate.id === 'number' && Number.isFinite(candidate.id) &&
         typeof candidate.text === 'string' && candidate.text.trim() !== '' &&
         typeof candidate.done === 'boolean';
     }
 
     load(data) {
       this.#tasks = data.filter(this.isValidTask);
-      this.#nextId = this.#tasks.reduce(function (max, t) {
-        return Math.max(max, t.id);
-      }, 0) + 1;
+      this.#nextId = this.#tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;
     }
 
     findTask(id) {
-      var task = this.#find(id);
+      const task = this.#find(id);
       return task ? this.#snapshot(task) : null;
     }
 
     #find(id) {
-      return this.#tasks.filter(function (t) { return t.id === id; })[0] || null;
+      return this.#tasks.find((t) => t.id === id) || null;
     }
 
     addTask(text) {
-      var clean = (text || '').trim();
+      const clean = (text || '').trim();
       if (!clean) {
         return null;
       }
-      var task = { id: this.#nextId++, text: clean, done: false };
+      const task = { id: this.#nextId++, text: clean, done: false };
       this.#tasks.push(task);
       this.#notify();
       return this.#snapshot(task);
     }
 
     toggleTask(id) {
-      var task = this.#find(id);
+      const task = this.#find(id);
       if (!task) {
         return null;
       }
@@ -89,11 +85,11 @@
     }
 
     editTask(id, newText) {
-      var task = this.#find(id);
+      const task = this.#find(id);
       if (!task) {
         return null;
       }
-      var clean = (newText || '').trim();
+      const clean = (newText || '').trim();
       if (!clean) {
         return this.deleteTask(id);
       }
@@ -103,45 +99,43 @@
     }
 
     deleteTask(id) {
-      var task = this.#find(id);
+      const task = this.#find(id);
       if (!task) {
         return null;
       }
-      this.#tasks = this.#tasks.filter(function (t) { return t.id !== id; });
+      this.#tasks = this.#tasks.filter((t) => t.id !== id);
       this.#notify();
       return this.#snapshot(task);
     }
 
     pendingCount() {
-      return this.#tasks.filter(function (t) { return !t.done; }).length;
+      return this.#tasks.filter((t) => !t.done).length;
     }
 
     visibleTasks(filter) {
       if (filter === 'active') {
-        return this.#tasks.filter(function (t) { return !t.done; })
-          .map(this.#snapshot);
+        return this.#tasks.filter((t) => !t.done).map(this.#snapshot);
       }
       if (filter === 'completed') {
-        return this.#tasks.filter(function (t) { return t.done; })
-          .map(this.#snapshot);
+        return this.#tasks.filter((t) => t.done).map(this.#snapshot);
       }
       return this.tasks();
     }
 
     clearCompleted() {
-      this.#tasks = this.#tasks.filter(function (t) { return !t.done; });
+      this.#tasks = this.#tasks.filter((t) => !t.done);
       this.#notify();
     }
   }
 
-  var taskList = new TaskList();
+  const taskList = new TaskList();
 
   // Infrastructure: persistence in localStorage, tolerant of
   // missing or corrupted data. It moves data in and out; it does
   // not know the model or the DOM.
-  var Storage = {
-    loadTasks: function () {
-      var raw;
+  const Storage = {
+    loadTasks() {
+      let raw;
       try {
         raw = global.localStorage.getItem(STORAGE_KEY);
       } catch (e) {
@@ -151,7 +145,7 @@
         return [];
       }
       try {
-        var data = JSON.parse(raw);
+        const data = JSON.parse(raw);
         if (!Array.isArray(data)) {
           throw new Error('unexpected format');
         }
@@ -161,7 +155,7 @@
       }
     },
 
-    saveTasks: function (tasks) {
+    saveTasks(tasks) {
       try {
         global.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
       } catch (e) {
@@ -169,17 +163,17 @@
       }
     },
 
-    loadFilter: function () {
-      var stored;
+    loadFilter() {
+      let stored;
       try {
         stored = global.localStorage.getItem(FILTER_KEY);
       } catch (e) {
         stored = null;
       }
-      return FILTERS.indexOf(stored) !== -1 ? stored : 'all';
+      return FILTERS.includes(stored) ? stored : 'all';
     },
 
-    saveFilter: function (name) {
+    saveFilter(name) {
       try {
         global.localStorage.setItem(FILTER_KEY, name);
       } catch (e) {
@@ -190,29 +184,29 @@
 
   // Presentation: DOM rendering and event wiring. It reads the
   // model through the App facade and calls its operations.
-  var UI = {
+  const UI = {
     editingId: null,
 
-    render: function (App) {
-      var doc = global.document;
+    render(App) {
+      const doc = global.document;
       if (!doc) {
         return;
       }
-      var list = doc.getElementById('todo-list');
+      const list = doc.getElementById('todo-list');
       if (list) {
         list.innerHTML = '';
-        App.visibleTasks().forEach(function (t) {
-          var li = doc.createElement('li');
+        App.visibleTasks().forEach((t) => {
+          const li = doc.createElement('li');
           li.dataset.id = t.id;
           if (t.done) {
             li.className = 'done';
           }
           if (UI.editingId === t.id) {
-            var editInput = doc.createElement('input');
+            const editInput = doc.createElement('input');
             editInput.type = 'text';
             editInput.className = 'edit';
             editInput.value = t.text;
-            editInput.addEventListener('keydown', function (ev) {
+            editInput.addEventListener('keydown', (ev) => {
               if (ev.key === 'Enter') {
                 App.editTask(t.id, editInput.value);
               } else if (ev.key === 'Escape') {
@@ -221,22 +215,22 @@
             });
             li.appendChild(editInput);
           } else {
-            var toggle = doc.createElement('input');
+            const toggle = doc.createElement('input');
             toggle.type = 'checkbox';
             toggle.className = 'toggle';
             toggle.checked = t.done;
-            toggle.addEventListener('change', function () {
+            toggle.addEventListener('change', () => {
               App.toggleTask(t.id);
             });
-            var label = doc.createElement('label');
+            const label = doc.createElement('label');
             label.textContent = t.text;
-            label.addEventListener('dblclick', function () {
+            label.addEventListener('dblclick', () => {
               App.startEdit(t.id);
             });
-            var destroy = doc.createElement('button');
+            const destroy = doc.createElement('button');
             destroy.className = 'destroy';
             destroy.textContent = '×';
-            destroy.addEventListener('click', function () {
+            destroy.addEventListener('click', () => {
               App.deleteTask(t.id);
             });
             li.appendChild(toggle);
@@ -245,65 +239,59 @@
           }
           list.appendChild(li);
         });
-        var editing = list.querySelector('input.edit');
+        const editing = list.querySelector('input.edit');
         if (editing) {
           editing.focus();
         }
       }
-      var counter = doc.getElementById('todo-count');
+      const counter = doc.getElementById('todo-count');
       if (counter) {
-        var n = App.pendingCount();
-        counter.textContent = n + (n === 1 ? ' pendiente' : ' pendientes');
+        const n = App.pendingCount();
+        counter.textContent = `${n} pendiente${n === 1 ? '' : 's'}`;
       }
-      var filterLinks = {
+      const filterLinks = {
         all: doc.getElementById('filter-all'),
         active: doc.getElementById('filter-active'),
         completed: doc.getElementById('filter-completed')
       };
-      FILTERS.forEach(function (name) {
-        var link = filterLinks[name];
+      FILTERS.forEach((name) => {
+        const link = filterLinks[name];
         if (link) {
-          if (name === App.filter) {
-            link.classList.add('selected');
-          } else {
-            link.classList.remove('selected');
-          }
+          link.classList.toggle('selected', name === App.filter);
         }
       });
     },
 
-    bindEvents: function (App) {
-      var doc = global.document;
+    bindEvents(App) {
+      const doc = global.document;
       if (!doc) {
         return;
       }
-      var input = doc.getElementById('new-todo');
+      const input = doc.getElementById('new-todo');
       if (input) {
-        input.addEventListener('keydown', function (ev) {
-          if (ev.key === 'Enter') {
-            if (App.addTask(input.value)) {
-              input.value = '';
-            }
+        input.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' && App.addTask(input.value)) {
+            input.value = '';
           }
         });
       }
-      var filterClicks = {
+      const filterClicks = {
         'filter-all': 'all',
         'filter-active': 'active',
         'filter-completed': 'completed'
       };
-      Object.keys(filterClicks).forEach(function (id) {
-        var link = doc.getElementById(id);
+      Object.entries(filterClicks).forEach(([id, name]) => {
+        const link = doc.getElementById(id);
         if (link) {
-          link.addEventListener('click', function (ev) {
+          link.addEventListener('click', (ev) => {
             ev.preventDefault();
-            App.setFilter(filterClicks[id]);
+            App.setFilter(name);
           });
         }
       });
-      var clearButton = doc.getElementById('clear-completed');
+      const clearButton = doc.getElementById('clear-completed');
       if (clearButton) {
-        clearButton.addEventListener('click', function () {
+        clearButton.addEventListener('click', () => {
           App.clearCompleted();
         });
       }
@@ -312,29 +300,29 @@
 
   // Composition root: wires model, persistence and presentation,
   // and exposes the public API the page and the tests use.
-  var App = {
+  const App = {
     initialized: false,
     filter: 'all',
 
-    load: function () {
+    load() {
       UI.editingId = null;
       App.filter = Storage.loadFilter();
       taskList.load(Storage.loadTasks());
     },
 
-    save: function () {
+    save() {
       Storage.saveTasks(taskList.tasks());
     },
 
-    addTask: function (text) {
+    addTask(text) {
       return taskList.addTask(text);
     },
 
-    toggleTask: function (id) {
+    toggleTask(id) {
       return taskList.toggleTask(id);
     },
 
-    editTask: function (id, newText) {
+    editTask(id, newText) {
       if (!taskList.findTask(id)) {
         return null;
       }
@@ -342,7 +330,7 @@
       return taskList.editTask(id, newText);
     },
 
-    deleteTask: function (id) {
+    deleteTask(id) {
       if (!taskList.findTask(id)) {
         return null;
       }
@@ -352,7 +340,7 @@
       return taskList.deleteTask(id);
     },
 
-    startEdit: function (id) {
+    startEdit(id) {
       if (!taskList.findTask(id)) {
         return;
       }
@@ -360,21 +348,21 @@
       App.render();
     },
 
-    cancelEdit: function () {
+    cancelEdit() {
       UI.editingId = null;
       App.render();
     },
 
-    pendingCount: function () {
+    pendingCount() {
       return taskList.pendingCount();
     },
 
-    visibleTasks: function () {
+    visibleTasks() {
       return taskList.visibleTasks(App.filter);
     },
 
-    setFilter: function (name) {
-      if (FILTERS.indexOf(name) === -1) {
+    setFilter(name) {
+      if (!FILTERS.includes(name)) {
         return;
       }
       App.filter = name;
@@ -382,19 +370,19 @@
       App.render();
     },
 
-    clearCompleted: function () {
+    clearCompleted() {
       taskList.clearCompleted();
     },
 
-    reset: function () {
+    reset() {
       taskList.reset();
     },
 
-    render: function () {
+    render() {
       UI.render(App);
     },
 
-    init: function () {
+    init() {
       if (App.initialized) {
         return;
       }
@@ -408,17 +396,25 @@
   // The state lives in the components: the facade exposes it
   // read-only for tasks/nextId and delegates editingId to the UI.
   Object.defineProperty(App, 'tasks', {
-    get: function () { return taskList.tasks(); }
+    get() {
+      return taskList.tasks();
+    }
   });
   Object.defineProperty(App, 'nextId', {
-    get: function () { return taskList.nextId(); }
+    get() {
+      return taskList.nextId();
+    }
   });
   Object.defineProperty(App, 'editingId', {
-    get: function () { return UI.editingId; },
-    set: function (value) { UI.editingId = value; }
+    get() {
+      return UI.editingId;
+    },
+    set(value) {
+      UI.editingId = value;
+    }
   });
 
-  taskList.subscribe(function () {
+  taskList.subscribe(() => {
     App.save();
     App.render();
   });

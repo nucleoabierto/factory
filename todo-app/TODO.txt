@@ -21,7 +21,7 @@
 - [x] docs/tasks/008-separar-modelo-de-presentacion.md — Separar el modelo de persistencia y presentación
 - [x] docs/tasks/009-validar-tareas-al-cargar.md — Validar la forma de las tareas al cargar
 - [x] docs/tasks/010-proteger-estado-del-modelo.md — Dejar de exponer el estado mutable del modelo
-- [ ] docs/tasks/015-migrar-es5-a-es2024.md — Migrar el código de ES5 a ES2024
+- [x] docs/tasks/015-migrar-es5-a-es2024.md — Migrar el código de ES5 a ES2024
 
 ## Hito 1: Aplicación de lista de tareas
 
