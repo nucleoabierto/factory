@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -49,7 +49,37 @@ Permitir elegir la lista activa y trabajar dentro de ella: la vista muestra solo
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
 
+## Plan técnico
+
+El subsistema es `app.js`: `TaskList` (dominio, ya con listas nombradas desde la tarea 011), `Storage` (persistencia tolerante), `UI` (render y eventos) y `App` (fachada y raíz de composición). Hoy `App` acota `visibleTasks`, `pendingCount` y `clearCompleted` con `INBOX.id` fijo y `addTask` cae en la entrada por defecto; el cambio sustituye ese fijo por una lista activa persistida y añade el selector a la interfaz.
+
+- [x] Añadir `loadActiveList`/`saveActiveList` a `Storage` con la clave `todoapp-active-list`
+  - Aporta: la elección de lista sobrevive entre visitas, al estilo del filtro
+  - Contexto: el almacenamiento devuelve el id crudo sin validar existencia — la forma es de la capa de persistencia, la pertenencia la verifica el modelo en `App.load`
+- [x] Añadir a `App` el estado `activeListId` y la operación `setActiveList(id)`
+  - Aporta: la fachada conoce la lista activa y permite cambiarla con validación contra el modelo, persistencia, cancelación de la edición en curso y re-render
+  - Contexto: `App.load` debe resolver la activa después de `taskList.load(...)`, porque la validez del id persistido depende de las listas cargadas; id ausente o inexistente → `INBOX.id`
+- [x] Acotar `addTask`, `visibleTasks`, `pendingCount` y `clearCompleted` de `App` a `activeListId`
+  - Aporta: la vista, el contador, los filtros y la creación se acotan a la lista elegida en lugar de la entrada fija
+- [x] Renderizar el selector de listas con contadores en `UI.render` y cablear `change` en `UI.bindEvents`
+  - Aporta: la interfaz ofrece la navegación entre listas con el pendiente de cada una visible
+  - Contexto: el elemento es un `<select id="list-select">` nuevo en el header de `index.html`; cada opción muestra nombre y contador de pendientes propio
+- [x] Escribir los tests del acotado, la captura en la lista activa y la restauración al cargar
+  - Aporta: la suite cubre los criterios de calidad de la tarea
+  - Contexto: módulo nuevo en `tests.html` cuyo fixture incluye el `#list-select`, siguiendo el patrón de `beforeEach` de los módulos existentes
+
+## Suite de pruebas esperada
+
+- Cambiar a otra lista muestra solo sus tareas y las de otras listas desaparecen de la vista (acotar la vista).
+- El contador de pendientes refleja solo la lista activa (acotar el contador).
+- Los filtros todas/pendientes/completadas operan dentro de la lista activa (acotar los filtros).
+- Crear una tarea con otra lista activa la asigna a esa lista, no a la entrada (captura en la lista activa).
+- El selector enumera todas las listas, marca la activa y muestra el contador de pendientes de cada una (navegar entre listas).
+- Al recargar se restaura la lista activa persistida (persistencia de la elección).
+- Con el id persistido ausente, corrupto o de una lista inexistente, la activa vuelve a la entrada (tolerancia de persistencia).
+- Limpiar completadas solo vacía la lista activa y conserva las de las demás (acotar operaciones).
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-25 — Aprueba
+- Usuario: 2026-09-25 — Aprueba

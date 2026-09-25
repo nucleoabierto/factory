@@ -43,3 +43,10 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Obtenido: el comentario de `reset()` narraba el razonamiento del proceso de la sesión (operación del arnés, no del dominio)
   Corrección: los comentarios explican la razón duradera del código; no se incluye narrativa transitoria de la sesión ni del proceso
   Estado: consolidada
+
+- Id: 20260925T114828
+  Tarea: todo-app/docs/tasks/012-navegacion-por-lista.md
+  Esperado: que un elemento nuevo de la interfaz llegara terminado también en lo visual, no solo en lo funcional
+  Obtenido: el `<select>` de listas se entregó sin regla CSS y sin nombre accesible; se veía con el estilo por defecto del navegador, desalineado con el diseño
+  Corrección: el usuario pidió revisar la parte visual y de estilos antes de aprobar; se añadió la regla `.list-select` coherente con la paleta y el `aria-label`
+  Estado: pendiente

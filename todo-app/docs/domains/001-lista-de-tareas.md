@@ -24,10 +24,13 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 - **Limpiar completadas:** descartar de la lista las tareas completadas.
   - Ancla: `TaskList.clearCompleted` en `app.js`
   - Origen: `docs/tasks/005-filtros-y-limpiar.md`
+- **Lista activa:** la lista elegida sobre la que trabaja la vista: acota las tareas visibles, los filtros, el contador y la captura de tareas nuevas; persiste entre visitas y cae a la entrada si el valor guardado no existe.
+  - Ancla: `App.activeListId`, `App.setActiveList` y `Storage.loadActiveList`/`saveActiveList` en `app.js`
+  - Origen: `docs/tasks/012-navegacion-por-lista.md`
 
 ## Modelo
 
-- **Entidades / estado:** la tarea `{id, text, done, listId}` y la lista `{id, name}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado y el filtro activo.
+- **Entidades / estado:** la tarea `{id, text, done, listId}` y la lista `{id, name}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado, el filtro activo y la lista activa.
   - Ancla: `class TaskList` con `#tasks`/`#lists`/`#nextId` y las consultas `tasks()`/`lists()`/`nextId()` en `app.js`
 - **Invariantes:** no existen tareas con texto vacío o de solo espacios (Ancla: validación en `TaskList.addTask` y `TaskList.editTask`); los identificadores son únicos y crecientes (Ancla: `TaskList.#nextId` y `nextId()`); editar una tarea a texto vacío la borra (Ancla: `TaskList.editTask` delegando en `TaskList.deleteTask`); toda tarea pertenece a una lista existente, sin huérfanas (Ancla: `listId` en `TaskList.addTask` y el filtro de pertenencia en `TaskList.load`); la entrada existe siempre, tiene identificador único y los identificadores de lista no se duplican (Ancla: `INBOX`, `TaskList.isValidList` y la deduplicación en `TaskList.load`); al cargar datos externos solo entran ítems con forma válida (Ancla: `TaskList.isValidTask`/`isValidList` en `TaskList.load`); el formato persistido es `{lists, tasks}` y el array plano antiguo migra a la entrada (Ancla: discriminación de formato en `TaskList.load` y serialización en `App.save`).
 - **Operaciones:** crear, completar, editar, borrar, filtrar, limpiar completadas y contar pendientes.
@@ -36,7 +39,7 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 ## Fronteras
 
 - **Dentro:** el modelo de tarea y de lista, sus invariantes y las operaciones sobre ellas; la noción de pendiente y el filtro como consulta sobre el estado, acotable por lista. Vive en el objeto `TaskList`, que notifica cambios a suscriptores sin conocer persistencia ni DOM.
-- **Fuera:** el renderizado DOM y los eventos (presentación, objeto `UI` con `render` y `bindEvents`) y la persistencia en `localStorage` (infraestructura, objeto `Storage` con `loadTasks`/`saveTasks`/`loadFilter`/`saveFilter`). La fachada `App` compone los tres y mantiene la API pública.
+- **Fuera:** el renderizado DOM y los eventos (presentación, objeto `UI` con `render` y `bindEvents`) y la persistencia en `localStorage` (infraestructura, objeto `Storage` con `loadTasks`/`saveTasks`/`loadFilter`/`saveFilter`/`loadActiveList`/`saveActiveList`). La fachada `App` compone los tres y mantiene la API pública.
 - **Relaciones:** el almacenamiento del navegador (`localStorage`) como dependencia de infraestructura con tolerancia a datos ausentes o corruptos.
 
 ## Decisiones relevantes
@@ -46,4 +49,4 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 ## Estado de salud
 
 - Última revisión: 2026-09-25
-- Divergencias conocidas: ninguna. La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la navegación por lista activa aún no existe (tarea 012).
+- Divergencias conocidas: ninguna. La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista.

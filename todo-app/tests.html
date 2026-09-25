@@ -493,6 +493,190 @@
             'a non-object payload is tolerated too');
         });
     });
+
+    QUnit.module('active list navigation', (hooks) => {
+      hooks.beforeEach(() => {
+        localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
+        localStorage.removeItem('todoapp-active-list');
+        window.App.reset();
+        window.App.initialized = false;
+        window.App.editingId = null;
+        window.App.filter = 'all';
+        const fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          `<input id="new-todo" type="text">
+          <select id="list-select"></select>
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>
+          <a id="filter-all" href="#/">Todas</a>
+          <a id="filter-active" href="#/active">Pendientes</a>
+          <a id="filter-completed" href="#/completed">Completadas</a>
+          <button id="clear-completed">Limpiar completadas</button>`;
+      });
+
+      const texts = () =>
+        [...document.querySelectorAll('#todo-list li label')]
+          .map((label) => label.textContent);
+
+      const seedTwoLists = () => {
+        localStorage.setItem('todoapp-tasks', JSON.stringify({
+          lists: [
+            { id: 'inbox', name: 'Entrada' },
+            { id: 'work', name: 'Trabajo' }
+          ],
+          tasks: [
+            { id: 1, text: 'Inbox one', done: false, listId: 'inbox' },
+            { id: 2, text: 'Inbox done', done: true, listId: 'inbox' },
+            { id: 3, text: 'Work one', done: false, listId: 'work' },
+            { id: 4, text: 'Work two', done: false, listId: 'work' },
+            { id: 5, text: 'Work done', done: true, listId: 'work' }
+          ]
+        }));
+        window.App.load();
+        window.App.render();
+      };
+
+      QUnit.test('switching lists shows exactly its tasks', (assert) => {
+        seedTwoLists();
+        assert.deepEqual(texts(), ['Inbox one', 'Inbox done'],
+          'the inbox is active by default');
+        window.App.setActiveList('work');
+        assert.deepEqual(texts(), ['Work one', 'Work two', 'Work done'],
+          'the view shows only the tasks of the chosen list');
+        window.App.setActiveList('inbox');
+        assert.deepEqual(texts(), ['Inbox one', 'Inbox done'],
+          'switching back restores the inbox view');
+      });
+
+      QUnit.test('the counter counts only the active list',
+        (assert) => {
+          seedTwoLists();
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '1 pendiente', 'the inbox has one pending task');
+          window.App.setActiveList('work');
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '2 pendientes', 'the counter is scoped to work');
+        });
+
+      QUnit.test('filters operate within the active list', (assert) => {
+        seedTwoLists();
+        window.App.setActiveList('work');
+        window.App.setFilter('completed');
+        assert.deepEqual(texts(), ['Work done'],
+          'completed shows only work done tasks');
+        window.App.setFilter('active');
+        assert.deepEqual(texts(), ['Work one', 'Work two'],
+          'active shows only work pending tasks');
+        window.App.setFilter('all');
+        assert.deepEqual(texts(),
+          ['Work one', 'Work two', 'Work done']);
+      });
+
+      QUnit.test('new tasks land in the active list', (assert) => {
+        seedTwoLists();
+        const inboxTask = window.App.addTask('For inbox');
+        assert.strictEqual(inboxTask.listId, 'inbox');
+        window.App.setActiveList('work');
+        const workTask = window.App.addTask('For work');
+        assert.strictEqual(workTask.listId, 'work',
+          'the task is captured by the active list');
+        assert.deepEqual(
+          JSON.parse(localStorage.getItem('todoapp-tasks'))
+            .tasks.map((t) => t.listId).filter((id) => id === 'work')
+            .length,
+          4, 'storage reflects the membership');
+      });
+
+      QUnit.test('the selector lists all lists and marks the active',
+        (assert) => {
+          seedTwoLists();
+          const select = document.getElementById('list-select');
+          const options = [...select.options];
+          assert.strictEqual(options.length, 2, 'one option per list');
+          assert.strictEqual(options[0].textContent, 'Entrada (1)');
+          assert.strictEqual(options[1].textContent, 'Trabajo (2)',
+            'each option carries its pending count');
+          assert.strictEqual(select.value, 'inbox',
+            'the active list is selected');
+          window.App.setActiveList('work');
+          assert.strictEqual(select.value, 'work');
+          window.App.toggleTask(
+            window.App.tasks.find((t) => t.listId === 'work').id);
+          assert.strictEqual(
+            document.getElementById('list-select').options[1]
+              .textContent,
+            'Trabajo (1)', 'the counter follows model changes');
+        });
+
+      QUnit.test('changing the selector switches the active list',
+        (assert) => {
+          seedTwoLists();
+          window.App.init();
+          const select = document.getElementById('list-select');
+          select.value = 'work';
+          select.dispatchEvent(new Event('change'));
+          assert.strictEqual(window.App.activeListId, 'work',
+            'the change event reaches the facade');
+          assert.deepEqual(texts(),
+            ['Work one', 'Work two', 'Work done']);
+        });
+
+      QUnit.test('the active list persists across reloads',
+        (assert) => {
+          seedTwoLists();
+          window.App.setActiveList('work');
+          assert.strictEqual(
+            localStorage.getItem('todoapp-active-list'), 'work',
+            'the choice is stored');
+          window.App.reset();
+          window.App.load();
+          assert.strictEqual(window.App.activeListId, 'work',
+            'load restores the stored list');
+          window.App.render();
+          assert.deepEqual(texts(),
+            ['Work one', 'Work two', 'Work done'],
+            'the restored view is scoped to work');
+        });
+
+      QUnit.test('a missing or stale stored list falls back to inbox',
+        (assert) => {
+          seedTwoLists();
+          assert.strictEqual(window.App.activeListId, 'inbox',
+            'no stored value means the inbox');
+          localStorage.setItem('todoapp-active-list', 'ghost');
+          window.App.load();
+          assert.strictEqual(window.App.activeListId, 'inbox',
+            'a list that does not exist falls back to the inbox');
+        });
+
+      QUnit.test('switching lists cancels the edit in progress',
+        (assert) => {
+          seedTwoLists();
+          window.App.startEdit(window.App.tasks[0].id);
+          assert.strictEqual(window.App.editingId, 1);
+          window.App.setActiveList('work');
+          assert.strictEqual(window.App.editingId, null,
+            'the edit mode is left when the list changes');
+        });
+
+      QUnit.test('clear completed empties only the active list',
+        (assert) => {
+          seedTwoLists();
+          window.App.setActiveList('work');
+          window.App.clearCompleted();
+          assert.deepEqual(
+            window.App.tasks
+              .filter((t) => t.listId === 'work')
+              .map((t) => t.id),
+            [3, 4], 'work keeps only its pending tasks');
+          assert.true(
+            window.App.tasks.some((t) => t.id === 2),
+            'the done task of the inbox survives');
+        });
+    });
   </script>
 </body>
 </html>

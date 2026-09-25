@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = 'todoapp-tasks';
   const FILTER_KEY = 'todoapp-filter';
+  const ACTIVE_LIST_KEY = 'todoapp-active-list';
   const FILTERS = ['all', 'active', 'completed'];
   const INBOX = { id: 'inbox', name: 'Entrada' };
 
@@ -225,6 +226,24 @@
       } catch (e) {
         // Persistence unavailable: the filter still applies in memory.
       }
+    },
+
+    // The stored value is a raw string: whether the list exists
+    // is for the model to decide after loading.
+    loadActiveList() {
+      try {
+        return global.localStorage.getItem(ACTIVE_LIST_KEY);
+      } catch (e) {
+        return null;
+      }
+    },
+
+    saveActiveList(id) {
+      try {
+        global.localStorage.setItem(ACTIVE_LIST_KEY, id);
+      } catch (e) {
+        // Persistence unavailable: the choice still applies in memory.
+      }
     }
   };
 
@@ -290,6 +309,17 @@
           editing.focus();
         }
       }
+      const select = doc.getElementById('list-select');
+      if (select) {
+        select.innerHTML = '';
+        App.lists.forEach((list) => {
+          const option = doc.createElement('option');
+          option.value = list.id;
+          option.textContent = `${list.name} (${App.pendingCount(list.id)})`;
+          option.selected = list.id === App.activeListId;
+          select.appendChild(option);
+        });
+      }
       const counter = doc.getElementById('todo-count');
       if (counter) {
         const n = App.pendingCount();
@@ -312,6 +342,12 @@
       const doc = global.document;
       if (!doc) {
         return;
+      }
+      const select = doc.getElementById('list-select');
+      if (select) {
+        select.addEventListener('change', () => {
+          App.setActiveList(select.value);
+        });
       }
       const input = doc.getElementById('new-todo');
       if (input) {
@@ -349,11 +385,18 @@
   const App = {
     initialized: false,
     filter: 'all',
+    activeListId: INBOX.id,
 
     load() {
       UI.editingId = null;
       App.filter = Storage.loadFilter();
       taskList.load(Storage.loadTasks());
+      // The stored active list is only valid once the model knows
+      // which lists exist; anything else falls back to the inbox.
+      const stored = Storage.loadActiveList();
+      App.activeListId = taskList.lists().some((list) => list.id === stored)
+        ? stored
+        : INBOX.id;
     },
 
     save() {
@@ -364,7 +407,7 @@
     },
 
     addTask(text) {
-      return taskList.addTask(text);
+      return taskList.addTask(text, App.activeListId);
     },
 
     toggleTask(id) {
@@ -402,12 +445,22 @@
       App.render();
     },
 
-    pendingCount() {
-      return taskList.pendingCount(INBOX.id);
+    pendingCount(listId = App.activeListId) {
+      return taskList.pendingCount(listId);
     },
 
     visibleTasks() {
-      return taskList.visibleTasks(App.filter, INBOX.id);
+      return taskList.visibleTasks(App.filter, App.activeListId);
+    },
+
+    setActiveList(id) {
+      if (!taskList.lists().some((list) => list.id === id)) {
+        return;
+      }
+      App.activeListId = id;
+      UI.editingId = null;
+      Storage.saveActiveList(id);
+      App.render();
     },
 
     setFilter(name) {
@@ -420,11 +473,12 @@
     },
 
     clearCompleted() {
-      taskList.clearCompleted(INBOX.id);
+      taskList.clearCompleted(App.activeListId);
     },
 
     reset() {
       taskList.reset();
+      App.activeListId = INBOX.id;
     },
 
     render() {

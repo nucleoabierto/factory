@@ -37,7 +37,7 @@
 <!-- épica: docs/epics/002-multiples-listas.md -->
 
 - [x] docs/tasks/011-listas-en-el-modelo.md — Listas nombradas en el modelo y migración de la persistencia
-- [ ] docs/tasks/012-navegacion-por-lista.md — Vista acotada a la lista activa con selector y contadores
+- [x] docs/tasks/012-navegacion-por-lista.md — Vista acotada a la lista activa con selector y contadores
 - [ ] docs/tasks/013-gestion-de-listas.md — Crear, renombrar, eliminar listas y mover tareas entre ellas
 - [ ] docs/tasks/014-archivar-listas.md — Archivar y reactivar listas sin perder su contenido
 
