@@ -118,3 +118,17 @@
   Obtenido: la delegación se diseñó como «el subagente devuelve un diff que el ejecutor aplica y verifica».
   Corrección: el retorno es la explicación de cambios más los archivos, no un diff; la decisión revisar/confiar es del ejecutor según complejidad.
   Estado: pendiente
+
+- Id: 20260925T145156
+  Tarea: docs/proposals/002-documentacion-producto-y-direccion/propuesta.md
+  Esperado: que el registro de decisiones de diseño viva dentro de cada tarea que consolida una decisión
+  Obtenido: la propuesta descomponía el trabajo en una tarea independiente de «registrar decisiones» que dependía de todas las demás
+  Corrección: cada tarea registra en su propio cierre la decisión que consolida; una tarea transversal de registro rompe la autonomía de las piezas y retrasa decisiones que ya están maduras
+  Estado: pendiente
+
+- Id: 20260925T145157
+  Tarea: docs/proposals/002-documentacion-producto-y-direccion/propuesta.md
+  Esperado: que el concepto del sistema (ancla doc↔pruebas) sea genérico —«la suite de pruebas del proyecto»— y que la tecnología concreta de la PoC aparezca solo como dato de entrada
+  Obtenido: la épica y la tarea 084 hablaban de «anclar a la suite QUnit», acoplando el diseño de Factory a la implementación concreta de todo-app
+  Corrección: Factory es genérico y todo-app es una PoC; los artefactos del sistema no mencionan tecnologías del producto validado —la instancia concreta vive en la Entrada de la tarea, no en el concepto
+  Estado: pendiente
