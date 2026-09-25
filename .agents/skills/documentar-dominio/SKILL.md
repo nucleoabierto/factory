@@ -26,6 +26,7 @@ Instrucciones para que un agente mantenga la documentación viva de los dominios
 ## Cuándo no usar
 
 - Para evaluar la calidad de la arquitectura: eso corresponde a `revisar-arquitectura`, que este skill puede recomendar pero no ejecuta.
+- Para documentar el comportamiento observable del producto —funcionalidades, flujos del usuario, referencia de uso—: eso corresponde a `documentar-producto`. La frontera es de audiencia y contenido: un hecho de modelo vive en `docs/domains/`; un hecho de comportamiento, en el directorio de documentación de producto; cada documento referencia al otro, no lo copia.
 - Para registrar decisiones de diseño: usar `decisiones-diseno`.
 
 ## Entrada

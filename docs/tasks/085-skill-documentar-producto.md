@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -49,7 +49,37 @@ Crear el skill que mantiene viva la documentación de producto del proyecto eval
 
 - Si el análisis muestra que una extensión de `documentar-dominio` cubre el caso sin mezclar audiencias, documentar la divergencia y discutirla con el usuario antes de decidir; la propuesta asume skill separado por la justificación ya validada (audiencias y ritmos distintos).
 
+## Plan técnico
+
+Subsistema: los skills son directorios `.agents/skills/<nombre>/` con `SKILL.md` (secciones comunes: cuándo usar/no usar, entrada, salida, principios rectores, procedimiento, finalización, referencias) y `assets/` opcional de plantillas. `ejecutar-tareas` invoca `documentar-dominio` en el paso de cierre de las tareas de desarrollo; `product-docs/` (D024) es la instancia que el sensor nuevo mantendrá, aunque el skill habla del directorio de documentación de producto del proyecto evaluado de forma genérica.
+
+- [x] Crear `.agents/skills/documentar-producto/SKILL.md` siguiendo la forma de `documentar-dominio`: sensor tras cada tarea de desarrollo con veredicto «sin impacto» dominante; evalúa si el diff altera funcionalidades, flujos o referencia de uso y solo entonces actualiza el directorio de documentación de producto (índice incluido)
+  - Aporta: es el sensor de producto, simétrico al de dominio por la división ya validada (audiencias y ritmos distintos, D021).
+  - Contexto: `description` a nivel de resultado (lección de contratos); las listas de señales de impacto se declaran abiertas y extensibles (lección de flexibilidad); reglas inline y citas solo en Referencias (lección de estabilidad temporal). Delimitación explícita: dominio = modelo e invariantes; producto = comportamiento observable, flujos y referencia de uso.
+- [x] Crear `assets/feature.txt` como plantilla del documento de funcionalidad (nombre, flujo del usuario, reglas, escenarios anclados a la suite por nombre, estado), al estilo de `assets/domain.txt` del skill hermano
+  - Aporta: fija el formato que el sensor crea o actualiza, coherente con los documentos que la tarea 084 dejó en `product-docs/funcionalidades/`.
+- [x] Cablear la invocación en `ejecutar-tareas` junto a la de `documentar-dominio`, en el mismo punto del cierre de tareas de desarrollo
+  - Aporta: el sensor corre en el ciclo, no solo bajo demanda.
+- [x] Actualizar `documentar-dominio` declarando la frontera en sentido contrario (un hecho de comportamiento vive en la doc de producto; se referencia, no se copia)
+  - Aporta: la delimitación queda escrita en ambos documentos, como exige el criterio de calidad.
+- [x] Registrar el skill en la tabla del README, renombrando la sección a «Salud del dominio y del producto»
+  - Aporta: el índice de skills refleja la capacidad nueva y el nombre de la sección sigue declarando su contenido.
+- [x] Registrar en `docs/decisions/` la decisión consolidada: el sensor de documentación de producto y su delimitación frente a `documentar-dominio`
+  - Aporta: la división sensor continuo de dominio / sensor continuo de producto queda trazada.
+
+## Suite de pruebas esperada
+
+- El skill nuevo tiene el formato común completo (cuándo usar, cuándo no, entrada, salida, principios, procedimiento, finalización, referencias) y es invocable por nombre.
+- `ejecutar-tareas` invoca ambos sensores en el mismo punto del cierre de una tarea de desarrollo.
+- `documentar-dominio` y `documentar-producto` declaran la frontera dominio↔producto y se referencian mutuamente.
+- La plantilla `feature.txt` produce un documento de funcionalidad compatible con los que existen en `todo-app/product-docs/funcionalidades/` (escenarios con ancla a la suite por nombre).
+- El README lista `documentar-producto`.
+
+## Desviaciones del plan
+
+- La plantilla `feature.txt` quedó más simple que lo descrito en el plan (solo nombre y escenarios, sin secciones de flujo, reglas ni estado). Motivo: coincide con los documentos reales que la tarea 084 produjo y con la lección de consistencia de formatos (declarar solo los campos coherentes con el artefacto). Decisión: mantener la plantilla simple (desviación menor).
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-25 — Aprueba
+- Usuario: 2026-09-25 — Aprueba

@@ -45,11 +45,12 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `consolidar-lecciones` | Agrupa las experiencias pendientes por temas en notas bajo `docs/lessons/`. |
 | `consultar-lecciones` | Recupera las lecciones cuyos disparadores coinciden con el trabajo a realizar. |
 
-**Salud del dominio**
+**Salud del dominio y del producto**
 
 | Skill | Qué hace |
 |-------|----------|
 | `documentar-dominio` | Mantiene la documentación viva de los dominios bajo `docs/domains/` tras cada tarea de desarrollo. |
+| `documentar-producto` | Mantiene la documentación de producto del proyecto evaluado tras cada tarea de desarrollo, con escenarios anclados a su suite de pruebas. |
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
 
 **Calidad de escritura**
