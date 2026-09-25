@@ -35,3 +35,9 @@
 - nomenclatura.md
   - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice
   - Resumen: Nombrar directorios y artefactos por el tipo específico de contenido que almacenan, no por la operación genérica.
+- contratos-de-skills.md
+  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, subagente, delegar, delegación, checklist
+  - Resumen: El contrato que un skill declara va a nivel de resultado —la description habla de capacidad, no de mecánica; la delegación devuelve explicación + archivos y el ejecutor decide revisar o confiar.
+- diseno-de-artefactos.md
+  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla
+  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión y la tecnología del producto validado es dato de entrada, no parte del concepto.

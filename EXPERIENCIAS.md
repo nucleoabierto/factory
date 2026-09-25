@@ -103,32 +103,32 @@
   Esperado: que el modelo del artefacto (documento único en la raíz) y sus campos fueran coherentes
   Obtenido: la plantilla del roadmap declaraba un campo Estado (Vigente/Superado) propio de una serie de documentos, imposible en un único archivo en la raíz
   Corrección: el roadmap es un documento vivo — se actualiza in situ, la historia la da git; sin campo de estado ni serie de roadmaps
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260925T113207
   Tarea: docs/tasks/082-acciones-plan-checklist-delegable.md
   Esperado: la `description` del front-matter de un skill declara la capacidad y su resultado, como hacen los demás skills del proyecto.
   Obtenido: la descripción de `ejecutar-implementacion` narraba la mecánica interna («marcando cada acción de la checklist… delegando a subagentes…»), acoplando el contrato al procedimiento.
   Corrección: la descripción va a nivel de resultado («devuelve el diff con el registro de desviaciones»); el procedimiento vive en el cuerpo del skill.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260925T113208
   Tarea: docs/tasks/082-acciones-plan-checklist-delegable.md
   Esperado: al delegar una acción, el subagente realiza el cambio y devuelve la explicación de lo que hizo más la lista de archivos que tocó; el ejecutor valora la complejidad según la explicación y el tamaño de la acción y decide si revisa o confía antes de marcar.
   Obtenido: la delegación se diseñó como «el subagente devuelve un diff que el ejecutor aplica y verifica».
   Corrección: el retorno es la explicación de cambios más los archivos, no un diff; la decisión revisar/confiar es del ejecutor según complejidad.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260925T145156
   Tarea: docs/proposals/002-documentacion-producto-y-direccion/propuesta.md
   Esperado: que el registro de decisiones de diseño viva dentro de cada tarea que consolida una decisión
   Obtenido: la propuesta descomponía el trabajo en una tarea independiente de «registrar decisiones» que dependía de todas las demás
   Corrección: cada tarea registra en su propio cierre la decisión que consolida; una tarea transversal de registro rompe la autonomía de las piezas y retrasa decisiones que ya están maduras
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260925T145157
   Tarea: docs/proposals/002-documentacion-producto-y-direccion/propuesta.md
   Esperado: que el concepto del sistema (ancla doc↔pruebas) sea genérico —«la suite de pruebas del proyecto»— y que la tecnología concreta de la PoC aparezca solo como dato de entrada
   Obtenido: la épica y la tarea 084 hablaban de «anclar a la suite QUnit», acoplando el diseño de Factory a la implementación concreta de todo-app
   Corrección: Factory es genérico y todo-app es una PoC; los artefactos del sistema no mencionan tecnologías del producto validado —la instancia concreta vive en la Entrada de la tarea, no en el concepto
-  Estado: pendiente
+  Estado: consolidada
