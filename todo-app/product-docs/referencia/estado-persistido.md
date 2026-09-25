@@ -1,0 +1,42 @@
+# Estado persistido
+
+Todo el estado de todo-app vive en `localStorage` del navegador, bajo tres claves. Los datos se escriben en cada operación y se leen al abrir la página. Si `localStorage` no está disponible —modo privado restrictivo, cuota llena—, la aplicación funciona igualmente en memoria durante la sesión.
+
+## Claves
+
+- **`todoapp-tasks`** — el estado completo: listas y tareas.
+- **`todoapp-filter`** — el filtro activo: `all`, `active` o `completed`. Un valor distinto se ignora y se usa `all`.
+- **`todoapp-active-list`** — el identificador de la lista activa. Si la lista ya no existe o está archivada, se vuelve a `inbox`.
+
+## Formato de `todoapp-tasks`
+
+```json
+{
+  "lists": [
+    { "id": "inbox", "name": "Entrada", "archived": false },
+    { "id": "list-1", "name": "Trabajo", "archived": true }
+  ],
+  "tasks": [
+    { "id": 1, "text": "Comprar pan", "done": false, "listId": "list-1" }
+  ]
+}
+```
+
+- `id` de tarea: número entero único y creciente.
+- `id` de lista: cadena única; la Entrada siempre usa `inbox`.
+- `archived`: booleano; las listas guardadas antes de existir el archivado carecen del campo y cargan como vivas.
+- `listId`: identificador de la lista a la que pertenece la tarea.
+
+## Tolerancia y migración
+
+Al cargar se aplican estas reglas:
+
+- Datos ausentes, JSON roto o de un tipo inesperado producen un estado vacío con la Entrada, nunca un error visible.
+- Solo entran tareas con la forma válida (`id` numérico, `text` no vacío, `done` booleano) y listas válidas con identificadores únicos; las duplicadas colapsan a la primera.
+- Una tarea cuya `listId` apunta a una lista inexistente se descarta; una tarea sin `listId` va a la Entrada.
+- Si los datos no contienen la Entrada, se recrea.
+- El formato antiguo —un array plano de tareas— se migra: todas sus tareas pasan a la Entrada y el siguiente guardado escribe ya el formato `{lists, tasks}`.
+
+## Dónde vive la lógica
+
+La lectura y escritura están en el objeto `Storage` de `app.js` (las tres claves y la tolerancia a errores); la validación de forma y la migración están en `TaskList.load` e `isValidTask`/`isValidList`. Las invariantes del modelo están en el documento de dominio `docs/domains/001-lista-de-tareas.md`.
