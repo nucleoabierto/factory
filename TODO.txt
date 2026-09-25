@@ -40,7 +40,7 @@
 - [x] docs/tasks/079-investigar-siguientes-elementos.md — Investigar los siguientes elementos del proyecto usando todo-app como PoC
 - [x] docs/tasks/080-gestionar-roadmap-todo-app.md — Crear la gestión de roadmap para el motor externo y aplicarla a todo-app
 - [x] docs/tasks/081-definir-semantica-mantenimiento.md — Definir la semántica del tipo de tarea `mantenimiento`
-- [ ] docs/tasks/082-acciones-plan-checklist-delegable.md — Acciones del plan como checklist delegable a subagentes
+- [x] docs/tasks/082-acciones-plan-checklist-delegable.md — Acciones del plan como checklist delegable a subagentes
 
 ## Hito 6: Mantenimiento del sistema
 

@@ -49,7 +49,7 @@ Instrucciones para que un agente orqueste el sub-flujo de desarrollo dentro de u
 1. **Leer el archivo de la tarea** para confirmar que su tipo enruta a este especialista (`desarrollo` o `mantenimiento (refactoring)`) y fijar objetivo y criterios de calidad.
 2. **Si la tarea no tiene `## Plan técnico` y `## Suite de pruebas esperada` aprobados** —ninguna de las dos o solo una—, invocar `planear-implementacion` para producir lo que falte. Si el usuario rechaza el plan, informar al ejecutor general de que la tarea no pudo ejecutarse y terminar.
 3. **Si la tarea ya tiene ambas secciones aprobadas** —por una invocación anterior o por una ejecución interrumpida—, no replanificar: continuar con el plan existente.
-4. **Invocar `ejecutar-implementacion`** con el archivo de la tarea. La capacidad implementa el plan, registra las desviaciones y escala al usuario las que cambian objetivo, alcance o guía de la épica; si el usuario no confirma una desviación mayor, informar al ejecutor general y terminar.
+4. **Invocar `ejecutar-implementacion`** con el archivo de la tarea. La capacidad implementa el plan —marca cada acción de la checklist y puede delegar las independientes a subagentes—, registra las desviaciones y escala al usuario las que cambian objetivo, alcance o guía de la épica; si el usuario no confirma una desviación mayor, informar al ejecutor general y terminar.
 5. **Devolver el control al ejecutor general** informando del diff producido y de las desviaciones registradas. La revisión dual posterior —subagente y usuario— corre a cargo del ciclo de tareas; para tareas de este tipo, la revisión técnica la realiza `revisar-implementacion` en el paso de revisión del ejecutor.
 
 ## Finalización

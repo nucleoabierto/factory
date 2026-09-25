@@ -3,8 +3,7 @@ name: ejecutar-implementacion
 description: >
   Ejecuta el desarrollo de una tarea siguiendo el plan técnico y
   la suite de pruebas esperada que la planeación dejó en su
-  archivo, confrontando el trabajo con el plan a medida que
-  avanza y registrando las desviaciones.
+  archivo, y devuelve el diff con el registro de desviaciones.
   Usar al ejecutar una tarea de tipo desarrollo o mantenimiento
   (refactoring) que ya tiene plan, invocado por el skill
   especialista del sub-flujo de desarrollo o directamente.
@@ -14,7 +13,7 @@ description: >
 
 # Ejecutar implementación
 
-Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el plan técnico y la suite de pruebas esperada registrados en su archivo. El skill implementa las acciones del plan en orden, confronta el trabajo con el plan a medida que avanza —no solo al final— y trata la desviación como señal de detenerse y reexaminar: cada desviación queda registrada y se replanifica o se pide confirmación al usuario. La salida es el diff de los cambios junto con el registro de desviaciones.
+Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el plan técnico y la suite de pruebas esperada registrados en su archivo. El skill implementa las acciones del plan en orden, confronta el trabajo con el plan a medida que avanza —no solo al final— y trata la desviación como señal de detenerse y reexaminar: cada desviación queda registrada y se replanifica o se pide confirmación al usuario. La salida es el diff de los cambios junto con el plan marcado y el registro de desviaciones.
 
 ## Cuándo usar
 
@@ -36,6 +35,7 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 ## Salida
 
 - El diff de los cambios de código que implementan la tarea.
+- El `## Plan técnico` del archivo de la tarea con cada acción marcada `[x]` al verificarla.
 - Una sección `## Desviaciones del plan` agregada al archivo de la tarea cuando hubo desviaciones, con cada desviación, su motivo y la decisión tomada. Si no hubo, no se agrega nada.
 
 ## Principios rectores
@@ -55,23 +55,28 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 
 ### 2. Implementar siguiendo el plan
 
-3. **Ejecutar las acciones del plan en su orden**, escribiendo el código que cada una declara. Al terminar cada acción, confrontar lo hecho con lo planeado: si coincide, continuar; si no, pasar al manejo de desviaciones (paso 5).
-4. **Cubrir la suite de pruebas esperada** a medida que el comportamiento existe: escribir o completar las pruebas que expresan las expectativas de la suite, trazables a los mismos casos de uso.
-5. **Manejo de desviaciones:** al detectar que el trabajo se aparta del plan —una acción inviable, una acción que falta, un alcance que crece—, detenerse y:
+3. **Ejecutar las acciones del plan en su orden**, escribiendo el código que cada una declara. Al terminar cada acción, confrontar lo hecho con lo planeado: si coincide, marcarla `[x]` en `## Plan técnico` y continuar; si no, pasar al manejo de desviaciones (paso 6). La checklist es el estado del avance: una ejecución interrumpida se retoma desde el primer ítem sin marcar, sin replanificar.
+4. **Delegación de acciones a subagentes:** una acción puede delegarse a un subagente cuando es independiente y autocontenida —la lista de criterios es abierta y extensible—; las acciones acopladas entre sí o que dependen del entendimiento acumulado del subsistema las ejecuta el propio agente. Cuando el orden de las acciones importa, una acción delegada no adelanta a las que la preceden; dos acciones delegadas en paralelo deben tocar archivos disjuntos, porque ambas trabajan sobre el mismo árbol de trabajo. Al delegar:
+   - **Handoff:** pasar al subagente la acción y su `Contexto:` inline —no debe tener que adivinar qué parte del plan le toca—, más las rutas del archivo de la tarea y de la épica para el contexto general.
+   - **Retorno:** el subagente realiza el cambio en el código y devuelve la explicación de lo que hizo con la lista de archivos que tocó; no devuelve un diff para que el ejecutor lo aplique.
+   - **Verificación y marcado:** el ejecutor valora la complejidad del cambio a partir de la explicación devuelta y del tamaño de la acción, y con eso decide si revisa los cambios o confía en ellos; solo después marca la acción. El subagente no marca su propio trabajo.
+   - **Desviaciones del subagente:** si el subagente reporta que la acción se aparta del plan, la desviación entra al manejo del paso 6 como cualquier otra.
+5. **Cubrir la suite de pruebas esperada** a medida que el comportamiento existe: escribir o completar las pruebas que expresan las expectativas de la suite, trazables a los mismos casos de uso.
+6. **Manejo de desviaciones:** al detectar que el trabajo se aparta del plan —una acción inviable, una acción que falta, un alcance que crece—, detenerse y:
    - **Registrar la desviación:** qué se apartó, qué evidencia lo motivó.
-   - **Decidir el camino:** si la desviación es menor y no cambia el objetivo ni los criterios de la tarea, replanificar la acción afectada actualizando `## Plan técnico` y continuar; si cambia el objetivo, el alcance o la guía de la épica, pedir confirmación al usuario antes de continuar.
+   - **Decidir el camino:** si la desviación es menor y no cambia el objetivo ni los criterios de la tarea, replanificar la acción afectada actualizando `## Plan técnico` —el ítem nuevo mantiene el formato de checklist con sus `Aporta:` y `Contexto:`— y continuar; si cambia el objetivo, el alcance o la guía de la épica, pedir confirmación al usuario antes de continuar.
 
 ### 3. Cerrar la ejecución
 
-6. **Verificación final contra el plan:** recorrer las acciones del plan y las expectativas de la suite y confirmar que cada una quedó realizada o registrada como desviación.
-7. **Registrar las desviaciones:** si hubo, agregar `## Desviaciones del plan` al archivo de la tarea, antes de la sección Revisión, con una lista de desviaciones y para cada una su motivo y la decisión tomada.
-8. **Informar al usuario** del diff producido y de las desviaciones registradas, listo para la fase de revisión.
+7. **Verificación final contra el plan:** recorrer las acciones del plan y las expectativas de la suite y confirmar que cada ítem quedó marcado o registrado como desviación.
+8. **Registrar las desviaciones:** si hubo, agregar `## Desviaciones del plan` al archivo de la tarea, antes de la sección Revisión, con una lista de desviaciones y para cada una su motivo y la decisión tomada.
+9. **Informar al usuario** del diff producido y de las desviaciones registradas, listo para la fase de revisión.
 
 ## Finalización
 
 El skill ha terminado cuando:
 
-- Las acciones del plan quedaron implementadas o registradas como desviaciones.
+- Las acciones del plan quedaron marcadas `[x]` o registradas como desviaciones.
 - La suite de pruebas esperada quedó cubierta por pruebas que expresan sus expectativas.
 - Las desviaciones, si las hubo, constan en `## Desviaciones del plan` del archivo de la tarea con motivo y decisión.
 

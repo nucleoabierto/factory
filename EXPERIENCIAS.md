@@ -104,3 +104,17 @@
   Obtenido: la plantilla del roadmap declaraba un campo Estado (Vigente/Superado) propio de una serie de documentos, imposible en un único archivo en la raíz
   Corrección: el roadmap es un documento vivo — se actualiza in situ, la historia la da git; sin campo de estado ni serie de roadmaps
   Estado: pendiente
+
+- Id: 20260925T113207
+  Tarea: docs/tasks/082-acciones-plan-checklist-delegable.md
+  Esperado: la `description` del front-matter de un skill declara la capacidad y su resultado, como hacen los demás skills del proyecto.
+  Obtenido: la descripción de `ejecutar-implementacion` narraba la mecánica interna («marcando cada acción de la checklist… delegando a subagentes…»), acoplando el contrato al procedimiento.
+  Corrección: la descripción va a nivel de resultado («devuelve el diff con el registro de desviaciones»); el procedimiento vive en el cuerpo del skill.
+  Estado: pendiente
+
+- Id: 20260925T113208
+  Tarea: docs/tasks/082-acciones-plan-checklist-delegable.md
+  Esperado: al delegar una acción, el subagente realiza el cambio y devuelve la explicación de lo que hizo más la lista de archivos que tocó; el ejecutor valora la complejidad según la explicación y el tamaño de la acción y decide si revisa o confía antes de marcar.
+  Obtenido: la delegación se diseñó como «el subagente devuelve un diff que el ejecutor aplica y verifica».
+  Corrección: el retorno es la explicación de cambios más los archivos, no un diff; la decisión revisar/confiar es del ejecutor según complejidad.
+  Estado: pendiente

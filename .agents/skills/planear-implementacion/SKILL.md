@@ -37,7 +37,12 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 ## Salida
 
 - Dos secciones agregadas al archivo de la tarea, antes de la sección Revisión:
-  - `## Plan técnico`: el entendimiento del subsistema y la lista de acciones a nivel conceptual, cada una con la explicación de cómo aporta al desarrollo.
+  - `## Plan técnico`: el entendimiento del subsistema como contexto general —incluidas las decisiones transversales que aplican a varias acciones— y la checklist de acciones a nivel conceptual. Cada acción es un ítem `- [ ]` con sub-bullets: `Aporta:` —cómo contribuye al desarrollo— y, solo cuando omitirlo haría probable un error, `Contexto:` —lo que un ejecutor sin contexto previo necesita y no está en el código ni en la tarea. Ejemplo de ítem:
+    ```
+    - [ ] Relajar `Storage.loadTasks` para devolver el valor parseado sin exigir array
+      - Aporta: la persistencia tolera corrupción sin conocer la forma; la validación es del modelo
+      - Contexto: la validación de forma vive en `isValidTask`; no duplicarla en la capa de almacenamiento
+    ```
   - `## Suite de pruebas esperada`: las expectativas sobre lo que el sistema hace, cada una trazable a un caso de uso.
 
 ## Principios rectores
@@ -46,8 +51,10 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 2. **La épica guía, la tarea detalla:** el plan técnico de la épica fija los patrones y las decisiones transversales; el plan de la tarea los sigue y los baja a las acciones de esa pieza. Si la tarea contradice la guía, se plantea la discrepancia al usuario en lugar de desviarse en silencio.
 3. **Nivel conceptual como norma:** las acciones se expresan como operaciones sobre el diseño (crear una clase, agregar un método, dividir un módulo; la lista es abierta, no exhaustiva), sin rutas ni fragmentos de código. Se admiten referencias a archivos concretos solo cuando el detalle previene un error costoso.
 4. **Storytelling técnico:** cada acción declara cómo aporta al desarrollo de la tarea; una acción sin justificación es ruido en el plan.
-5. **Las pruebas describen el qué, no el cómo:** la suite expresa expectativas sobre el comportamiento del sistema ante estímulos, ancladas en casos de uso, no en la implementación. Una prueba sin caso de uso asociado es de baja calidad.
-6. **ZOMBIE es guía de generación, no taxonomía:** el acrónimo (*zero, one, many, boundary, interface, exception*) sirve para rebanar el problema y descubrir casos, de forma parcialmente secuencial; la suite resultante no declara su relación con ZOMBIE ni con la implementación.
+5. **Contexto declarado, no derivable:** el resumen del subsistema es el contexto general común a todas las acciones; el `Contexto:` de un ítem registra solo lo que la planeación descubrió y el ejecutor no puede inferir —un archivo hermano a imitar, una decisión tomada, una dependencia de orden entre acciones. Si la acción no lo necesita, el campo no se escribe.
+6. **Acciones como unidades delegables:** la checklist hace visible el avance y permite que `ejecutar-implementacion` delegue ítems a subagentes; cada acción se formula como una unidad de trabajo comprensible por sí misma, apoyada en el contexto general y en su `Contexto:` propio.
+7. **Las pruebas describen el qué, no el cómo:** la suite expresa expectativas sobre el comportamiento del sistema ante estímulos, ancladas en casos de uso, no en la implementación. Una prueba sin caso de uso asociado es de baja calidad.
+8. **ZOMBIE es guía de generación, no taxonomía:** el acrónimo (*zero, one, many, boundary, interface, exception*) sirve para rebanar el problema y descubrir casos, de forma parcialmente secuencial; la suite resultante no declara su relación con ZOMBIE ni con la implementación.
 
 ## Procedimiento
 
@@ -60,8 +67,8 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ### 2. Redactar el plan técnico
 
-5. **Listar las acciones a nivel conceptual** que realizan el objetivo de la tarea, en orden de implementación cuando el orden importe. Cada acción va acompañada de su explicación: cómo aporta al desarrollo.
-6. **Añadir detalle solo donde previene errores costosos:** una referencia a archivo o una decisión de implementación concreta se incluye cuando omitirla haría probable un error; no porque el plan parezca más minucioso.
+5. **Listar las acciones como checklist** que realizan el objetivo de la tarea, en orden de implementación cuando el orden importe. Cada ítem `- [ ]` declara la acción a nivel conceptual y lleva sub-bullets anidados: `Aporta:` con la explicación de cómo contribuye al desarrollo, y `Contexto:` solo cuando la planeación descubrió algo que el ejecutor no puede inferir del código ni de la tarea y cuya omisión haría probable un error.
+6. **Añadir detalle solo donde previene errores costosos:** una referencia a archivo o una decisión de implementación concreta se incluye cuando omitirla haría probable un error; no porque el plan parezca más minucioso. El `Contexto:` por ítem sigue esta misma regla.
 7. **Verificar la guía de la épica:** cada acción del plan sigue los patrones y decisiones transversales que la épica declara; si el plan necesita apartarse, se explicita la discrepancia al usuario.
 
 ### 3. Redactar la suite de pruebas esperada
@@ -78,7 +85,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ### 5. Materializar el plan
 
-14. **Agregar las dos secciones al archivo de la tarea**, antes de la sección Revisión: `## Plan técnico` con el resumen del subsistema y las acciones justificadas, y `## Suite de pruebas esperada` con las expectativas trazadas.
+14. **Agregar las dos secciones al archivo de la tarea**, antes de la sección Revisión: `## Plan técnico` con el resumen del subsistema y la checklist de acciones con sus `Aporta:` y `Contexto:`, y `## Suite de pruebas esperada` con las expectativas trazadas.
 15. **Informar al usuario** de que el plan quedó en el archivo de la tarea, listo para la fase de ejecución.
 
 ## Finalización

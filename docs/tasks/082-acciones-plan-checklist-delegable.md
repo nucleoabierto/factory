@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -54,5 +54,6 @@ Convertir las acciones del `## Plan técnico` —hoy una lista numerada— en un
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-25 — Aprueba (primera pasada, con hallazgos menores resueltos)
+- Subagente: 2026-09-25 — Aprueba (segunda pasada tras correcciones del usuario: descripción a nivel de resultado, retorno del subagente como explicación + archivos, y valoración de complejidad del ejecutor; hallazgos menores resueltos: intro actualizada, lugar de notas transversales, ejemplo canónico, límite de delegación en paralelo)
+- Usuario: 2026-09-25 — Aprueba
