@@ -179,8 +179,8 @@
       return taskList.unarchiveList(id);
     },
 
-    clearCompleted() {
-      taskList.clearCompleted(App.activeListId);
+    clearCompleted(today) {
+      taskList.clearCompleted(App.activeListId, App.view, today);
     },
 
     reset() {

@@ -198,10 +198,10 @@
     // scheduled for later; the 'today' view crosses live lists
     // and admits only what is overdue or due on the reference
     // day — an archived list is out of every view.
-    visibleTasks(filter, listId, view = 'main', today = currentDay()) {
+    #scopedTasks(listId, view, today) {
       const archivedIds = new Set(
         this.#lists.filter((l) => l.archived).map((l) => l.id));
-      const scoped = view === 'today'
+      return view === 'today'
         ? this.#tasks.filter((t) => {
             if (archivedIds.has(t.listId)) {
               return false;
@@ -212,6 +212,10 @@
         : this.#tasks
             .filter((t) => !listId || t.listId === listId)
             .filter((t) => this.dateStatus(t.date, today) !== 'future');
+    }
+
+    visibleTasks(filter, listId, view = 'main', today = currentDay()) {
+      const scoped = this.#scopedTasks(listId, view, today);
       if (filter === 'active') {
         return scoped.filter((t) => !t.done).map(this.#snapshot);
       }
@@ -299,9 +303,14 @@
       return this.#snapshot(task);
     }
 
-    clearCompleted(listId = INBOX.id) {
+    // Clearing removes what the active view shows as completed:
+    // the same scope the read applies, so a completed task scheduled
+    // for later is never reached — it is visible in neither view.
+    clearCompleted(listId = INBOX.id, view = 'main', today = currentDay()) {
+      const scoped = new Set(
+        this.#scopedTasks(listId, view, today).map((t) => t.id));
       this.#tasks = this.#tasks
-        .filter((t) => !(t.done && t.listId === listId));
+        .filter((t) => !(t.done && scoped.has(t.id)));
       this.#notify();
     }
   }

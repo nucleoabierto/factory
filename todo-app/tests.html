@@ -1493,6 +1493,86 @@
           assert.deepEqual(TestKit.texts(), ['Parked today'],
             'the task reappears in today once the list is live');
         });
+
+      QUnit.test('clearing in today with nothing completed keeps all',
+        (assert) => {
+          const today = window.App.addTask('Due today');
+          window.App.setTaskDate(today.id, TestKit.day(0));
+          window.App.setView('today');
+          window.App.clearCompleted();
+          assert.strictEqual(window.App.tasks.length, 1,
+            'nothing is removed when no completed task is visible');
+        });
+
+      QUnit.test('clearing in today reaches completed of other lists',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const done = window.App.addTask('Done elsewhere');
+          window.App.setTaskDate(done.id, TestKit.day(0));
+          window.App.toggleTask(done.id);
+          window.App.moveTask(done.id, list.id);
+          window.App.setView('today');
+          window.App.clearCompleted();
+          assert.deepEqual(window.App.tasks, [],
+            'the completed task of another list is cleared too');
+        });
+
+      QUnit.test('clearing in today clears across lists but keeps the rest',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const archived = window.App.addList('Casa');
+          const doneHere = window.App.addTask('Done inbox overdue');
+          const doneThere = window.App.addTask('Done Trabajo today');
+          const pending = window.App.addTask('Pending Trabajo today');
+          const doneParked = window.App.addTask('Done Casa today');
+          window.App.setTaskDate(doneHere.id, TestKit.day(-1));
+          window.App.setTaskDate(doneThere.id, TestKit.day(0));
+          window.App.setTaskDate(pending.id, TestKit.day(0));
+          window.App.setTaskDate(doneParked.id, TestKit.day(0));
+          window.App.toggleTask(doneHere.id);
+          window.App.toggleTask(doneThere.id);
+          window.App.toggleTask(doneParked.id);
+          window.App.moveTask(doneThere.id, list.id);
+          window.App.moveTask(pending.id, list.id);
+          window.App.moveTask(doneParked.id, archived.id);
+          window.App.archiveList(archived.id);
+          window.App.setView('today');
+          window.App.clearCompleted();
+          assert.deepEqual(
+            window.App.tasks.map((t) => t.text).sort(),
+            ['Done Casa today', 'Pending Trabajo today'],
+            'overdue and today completed of live lists go; pending and ' +
+            'archived-list tasks stay');
+        });
+
+      QUnit.test('a completed future task is never reached by clearing',
+        (assert) => {
+          const future = window.App.addTask('Done future');
+          window.App.setTaskDate(future.id, TestKit.day(4));
+          window.App.toggleTask(future.id);
+          window.App.clearCompleted();
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the main view does not reach future completed tasks');
+          window.App.setView('today');
+          window.App.clearCompleted();
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the today view does not reach them either');
+        });
+
+      QUnit.test('clearing in the main view keeps other lists untouched',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const doneHere = window.App.addTask('Done inbox');
+          const doneThere = window.App.addTask('Done Trabajo');
+          window.App.toggleTask(doneHere.id);
+          window.App.toggleTask(doneThere.id);
+          window.App.moveTask(doneThere.id, list.id);
+          window.App.clearCompleted();
+          assert.deepEqual(
+            window.App.tasks.map((t) => t.text),
+            ['Done Trabajo'],
+            'only the completed of the active list is cleared');
+        });
     });
   </script>
 </body>

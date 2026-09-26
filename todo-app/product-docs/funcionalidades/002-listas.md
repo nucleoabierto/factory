@@ -28,7 +28,7 @@ Cada escenario está verificado por la suite de pruebas del proyecto (`tests.htm
 - **El selector enumera las listas vivas y marca la activa; cambiarlo cambia de lista.** — módulo `active list navigation`, «the selector lists all lists and marks the active» y «changing the selector switches the active list»
 - **La lista activa persiste entre visitas; un valor guardado inválido o archivado vuelve a la Entrada.** — módulo `active list navigation`, «the active list persists across reloads» y «a missing or stale stored list falls back to inbox»
 - **Cambiar de lista cancela la edición en curso.** — módulo `active list navigation`, «switching lists cancels the edit in progress»
-- **Limpiar completadas solo vacía la lista activa.** — módulo `active list navigation`, «clear completed empties only the active list»
+- **Limpiar completadas solo vacía la lista activa en la vista principal.** En la vista «hoy» el alcance es transversal: ver [Vista «hoy»](004-vista-hoy.md). — módulo `active list navigation`, «clear completed empties only the active list»
 
 ### Mover tareas
 

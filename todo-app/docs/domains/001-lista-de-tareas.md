@@ -25,8 +25,8 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
   - **Vista:** eje de consulta independiente del filtro y de la lista activa: la vista principal (`main`) muestra, de la lista activa, lo sin fecha, lo vencido y lo de hoy —lo futuro permanece oculto hasta su día—; la vista «hoy» (`today`) es transversal y muestra exactamente lo vencido y lo del día de todas las listas vivas —las archivadas no aportan nada a ninguna vista. Persiste entre visitas y cae a `main` si el valor guardado no es válido.
     - Ancla: `VIEWS` en `todo-core.js`, `App.view`/`App.setView` en `app.js`, `Storage.loadView`/`saveView` en `todo-storage.js` y el parámetro `view` de `TaskList.visibleTasks`/`pendingCount` en `todo-domain.js`
     - Origen: `docs/tasks/018-vista-hoy-y-programacion.md`
-  - **Limpiar completadas:** descartar de la lista las tareas completadas.
-    - Ancla: `TaskList.clearCompleted` en `todo-domain.js`
+  - **Limpiar completadas:** descartar las tareas completadas que la vista activa muestra —en la vista principal, las visibles de la lista activa; en «hoy», las de todas las listas vivas—. Lo completado con fecha futura nunca se alcanza: no es visible en ninguna vista.
+    - Ancla: `TaskList.clearCompleted` y `#scopedTasks` en `todo-domain.js`
     - Origen: `docs/tasks/005-filtros-y-limpiar.md`
   - **Lista activa:** la lista elegida sobre la que trabaja la vista: acota las tareas visibles, los filtros, el contador y la captura de tareas nuevas; persiste entre visitas y cae a la entrada si el valor guardado no existe o está archivado.
     - Ancla: `App.activeListId` y `App.setActiveList` en `app.js`, y `Storage.loadActiveList`/`saveActiveList` en `todo-storage.js`

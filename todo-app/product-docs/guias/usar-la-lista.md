@@ -14,7 +14,7 @@ Escribe en el campo «¿Qué hay que hacer?» y pulsa Enter. La tarea aparece en
 
 ## Filtrar y limpiar
 
-Los enlaces del pie —Todas, Pendientes, Completadas— acotan lo que se ve sin tocar el estado: el contador sigue contando los pendientes de la lista activa, no solo los visibles. «Limpiar completadas» descarta de la lista activa las tareas ya terminadas.
+Los enlaces del pie —Todas, Pendientes, Completadas— acotan lo que se ve sin tocar el estado: el contador sigue contando los pendientes de la lista activa, no solo los visibles. «Limpiar completadas» descarta las tareas terminadas que la vista activa muestra: en la vista principal, las de la lista activa; en la vista «hoy», las de todas las listas. Una tarea completada con fecha futura no se alcanza nunca al limpiar: no es visible en ninguna vista.
 
 ## Organizar con listas
 
