@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -14,7 +14,7 @@ Que el setup común de la suite —vaciado de `localStorage`, reset de `App`, he
 
 ## Dependencias
 
-- 029
+- Ninguna (el usuario decidió ejecutarla antes que la 029; la separación de `app.js` retocará las etiquetas `<script>` de `tests.html` después)
 
 ## Entrada
 
@@ -45,7 +45,47 @@ Que el setup común de la suite —vaciado de `localStorage`, reset de `App`, he
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
 
+## Contexto
+
+- Archivos similares:
+  - `tests.html` — los 11 módulos QUnit (`harness`, `create and list`, `complete, edit and delete`, `filters and clear completed`, `lists and migration`, `active list navigation`, `list management`, `archiving lists`, `view contract`, `task dates`, `views: main and today`) con sus `beforeEach` repetidos y fixtures inline.
+  - `app.js` — `App.reset`, `App.initialized`, `App.editingId`, `App.filter`, `App.view` y las claves `todoapp-*` de `localStorage` que el setup común debe limpiar.
+- Patrones:
+  - Cada módulo limpia `localStorage`, reinicia `App` (`reset`, `initialized`, `editingId`, `filter`, a veces `view`) y fija `qunit-fixture.innerHTML` con su HTML particular.
+  - Helpers locales duplicados: `texts()` en 5 módulos, `day()` solo en el último; `selectorValues()` es propio del módulo de archivado.
+  - El módulo `view contract` es la excepción: no reinicia `App` porque renderiza view-models literales.
+  - QUnit por CDN y scripts clásicos sobre `file://`; los documentos de producto se anclan a nombres de módulo y título de prueba, que no pueden cambiar.
+- Lecciones:
+  - `idioma-del-codigo`: helpers y tests en inglés.
+  - `comunicacion-en-codigo`: nombres de helpers que no presuponen lo que verifican.
+  - `fidelidad-al-plan`: refactoring con comportamiento invariante —misma suite en verde, sin extras no declarados.
+  - `scope-del-subproyecto`: artefactos en `todo-app/`.
+- Decisiones:
+  - Ninguna propia del subproyecto; la tarea 028 registrará la de scripts clásicos, pero esta tarea ya opera bajo esa pauta porque `file://` lo exige.
+
+## Conectividad
+
+- Veredicto: **conectada**.
+- Justificación: todo lo necesario existe: QUnit soporta `hooks.beforeEach`/`afterEach` por módulo; los scripts clásicos comparten el scope global (igual que `app.js` ya expone `window.App`), así que un `tests-helpers.js` cargado antes del script inline puede proveer el setup y los helpers sin build ni servidor. Las claves de `localStorage` a limpiar son cuatro (`tasks`, `filter`, `active-list`, `view`) y son conocidas. No falta capacidad base.
+
+## Plan técnico
+
+`tests.html` carga QUnit y `app.js` como scripts clásicos y define los módulos inline; cada `beforeEach` repite el mismo reset y fija un fixture propio. La fachada ya es global (`window.App`), así que un script clásico previo puede exponer un namespace de helpers.
+
+- [x] Crear `tests-helpers.js` con el namespace global `TestKit`: `resetApp()` (limpia las cuatro claves `todoapp-*`, `App.reset()` y defaults de `initialized`/`editingId`/`filter`/`view`), `fixture(html)`, `texts()` y `day(offset)`
+  - Aporta: el setup y los helpers quedan definidos una sola vez, compartidos por scope global sin ES modules (compatible con `file://`)
+  - Contexto: `view` solo existe desde la épica 003; limpiar las cuatro claves siempre es seguro aunque un módulo no las use
+- [x] Sustituir en cada módulo el bloque repetido por `TestKit.resetApp()` + `TestKit.fixture(...)`, y los helpers locales por `TestKit.*`
+  - Aporta: cada `beforeEach` declara solo lo particular; desaparecen las ~24 líneas de limpieza y los `texts()` duplicados
+  - Contexto: `harness` no tiene setup; `view contract` solo fija fixture (no reinicia `App`, renderiza view-models literales); `list management` conserva su `afterEach` de `window.prompt`
+- [x] Cargar `tests-helpers.js` desde `tests.html` entre `app.js` y el script inline
+  - Aporta: los helpers existen antes de que los módulos se definan
+
+## Suite de pruebas esperada
+
+Refactoring: la aceptación es la suite existente en verde, intacta —mismos módulos, mismos títulos de prueba (los documentos de producto se anclan a ellos), mismo comportamiento— ejecutada sobre el nuevo arnés.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-26 — Aprueba (observaciones cosméticas: líneas en blanco dobles y «10»→«11» módulos en Contexto, corregidas)
+- Usuario: 2026-09-26 — Aprueba

@@ -12,6 +12,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/qunit@2.24.1/qunit/qunit.js"></script>
   <script src="app.js"></script>
+  <script src="tests-helpers.js"></script>
   <script>
     QUnit.module('harness', () => {
       QUnit.test('the App logic object exists and exposes init', (assert) => {
@@ -23,17 +24,11 @@
 
     QUnit.module('create and list', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
-          <span id="todo-count"></span>`;
+          <span id="todo-count"></span>`);
       });
 
       QUnit.test('creating a task adds it to the state and the list',
@@ -131,17 +126,11 @@
 
     QUnit.module('complete, edit and delete', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
-          <span id="todo-count"></span>`;
+          <span id="todo-count"></span>`);
       });
 
       QUnit.test('toggling a task marks it done and lowers the counter',
@@ -236,14 +225,8 @@
 
     QUnit.module('filters and clear completed', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>
@@ -255,25 +238,21 @@
              data-action="set-filter"
              data-filter="completed">Completadas</a>
           <button id="clear-completed"
-                  data-action="clear-completed">Limpiar completadas</button>`;
+                  data-action="clear-completed">Limpiar completadas</button>`);
       });
-
-      const texts = () =>
-        [...document.querySelectorAll('#todo-list li label')]
-          .map((label) => label.textContent);
 
       QUnit.test('each filter shows exactly its subset', (assert) => {
         window.App.addTask('Pending one');
         const done = window.App.addTask('Done one');
         window.App.toggleTask(done.id);
         window.App.setFilter('active');
-        assert.deepEqual(texts(), ['Pending one'],
+        assert.deepEqual(TestKit.texts(), ['Pending one'],
           'active shows only pending');
         window.App.setFilter('completed');
-        assert.deepEqual(texts(), ['Done one'],
+        assert.deepEqual(TestKit.texts(), ['Done one'],
           'completed shows only done');
         window.App.setFilter('all');
-        assert.deepEqual(texts(), ['Pending one', 'Done one'],
+        assert.deepEqual(TestKit.texts(), ['Pending one', 'Done one'],
           'all shows everything');
       });
 
@@ -307,7 +286,7 @@
           window.App.clearCompleted();
           assert.strictEqual(window.App.tasks.length, 1);
           assert.strictEqual(window.App.tasks[0].text, 'Stay');
-          assert.deepEqual(texts(), ['Stay'],
+          assert.deepEqual(TestKit.texts(), ['Stay'],
             'the view keeps only the pending task');
           assert.deepEqual(
             JSON.parse(localStorage.getItem('todoapp-tasks')).tasks,
@@ -325,12 +304,12 @@
         (assert) => {
           window.App.setFilter('active');
           const t = window.App.addTask('Visible while pending');
-          assert.deepEqual(texts(), ['Visible while pending']);
+          assert.deepEqual(TestKit.texts(), ['Visible while pending']);
           window.App.editTask(t.id, 'Renamed');
-          assert.deepEqual(texts(), ['Renamed'],
+          assert.deepEqual(TestKit.texts(), ['Renamed'],
             'editing works under the filter');
           window.App.toggleTask(t.id);
-          assert.deepEqual(texts(), [],
+          assert.deepEqual(TestKit.texts(), [],
             'a toggled task leaves the active view');
           assert.strictEqual(window.App.tasks.length, 1,
             'the task still exists in the state');
@@ -369,17 +348,11 @@
 
     QUnit.module('lists and migration', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
-          <span id="todo-count"></span>`;
+          <span id="todo-count"></span>`);
       });
 
       QUnit.test('an empty app always holds the permanent inbox list',
@@ -502,15 +475,8 @@
 
     QUnit.module('active list navigation', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        localStorage.removeItem('todoapp-active-list');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <select id="list-select" data-action="set-active-list"></select>
           <ul id="todo-list"></ul>
@@ -523,12 +489,8 @@
              data-action="set-filter"
              data-filter="completed">Completadas</a>
           <button id="clear-completed"
-                  data-action="clear-completed">Limpiar completadas</button>`;
+                  data-action="clear-completed">Limpiar completadas</button>`);
       });
-
-      const texts = () =>
-        [...document.querySelectorAll('#todo-list li label')]
-          .map((label) => label.textContent);
 
       const seedTwoLists = () => {
         localStorage.setItem('todoapp-tasks', JSON.stringify({
@@ -550,13 +512,13 @@
 
       QUnit.test('switching lists shows exactly its tasks', (assert) => {
         seedTwoLists();
-        assert.deepEqual(texts(), ['Inbox one', 'Inbox done'],
+        assert.deepEqual(TestKit.texts(), ['Inbox one', 'Inbox done'],
           'the inbox is active by default');
         window.App.setActiveList('work');
-        assert.deepEqual(texts(), ['Work one', 'Work two', 'Work done'],
+        assert.deepEqual(TestKit.texts(), ['Work one', 'Work two', 'Work done'],
           'the view shows only the tasks of the chosen list');
         window.App.setActiveList('inbox');
-        assert.deepEqual(texts(), ['Inbox one', 'Inbox done'],
+        assert.deepEqual(TestKit.texts(), ['Inbox one', 'Inbox done'],
           'switching back restores the inbox view');
       });
 
@@ -576,13 +538,13 @@
         seedTwoLists();
         window.App.setActiveList('work');
         window.App.setFilter('completed');
-        assert.deepEqual(texts(), ['Work done'],
+        assert.deepEqual(TestKit.texts(), ['Work done'],
           'completed shows only work done tasks');
         window.App.setFilter('active');
-        assert.deepEqual(texts(), ['Work one', 'Work two'],
+        assert.deepEqual(TestKit.texts(), ['Work one', 'Work two'],
           'active shows only work pending tasks');
         window.App.setFilter('all');
-        assert.deepEqual(texts(),
+        assert.deepEqual(TestKit.texts(),
           ['Work one', 'Work two', 'Work done']);
       });
 
@@ -631,7 +593,7 @@
           select.dispatchEvent(new Event('change', { bubbles: true }));
           assert.strictEqual(window.App.activeListId, 'work',
             'the change event reaches the facade');
-          assert.deepEqual(texts(),
+          assert.deepEqual(TestKit.texts(),
             ['Work one', 'Work two', 'Work done']);
         });
 
@@ -647,7 +609,7 @@
           assert.strictEqual(window.App.activeListId, 'work',
             'load restores the stored list');
           window.App.render();
-          assert.deepEqual(texts(),
+          assert.deepEqual(TestKit.texts(),
             ['Work one', 'Work two', 'Work done'],
             'the restored view is scoped to work');
         });
@@ -692,31 +654,20 @@
     QUnit.module('list management', (hooks) => {
       let originalPrompt;
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        localStorage.removeItem('todoapp-active-list');
         originalPrompt = window.prompt;
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <select id="list-select" data-action="set-active-list"></select>
           <button id="add-list" data-action="add-list">+</button>
           <button id="rename-list" data-action="rename-list">✎</button>
           <button id="delete-list" data-action="delete-list">×</button>
           <ul id="todo-list"></ul>
-          <span id="todo-count"></span>`;
+          <span id="todo-count"></span>`);
       });
       hooks.afterEach(() => {
         window.prompt = originalPrompt;
       });
-
-      const texts = () =>
-        [...document.querySelectorAll('#todo-list li label')]
-          .map((label) => label.textContent);
 
       QUnit.test('creating a list adds it, selects it and persists',
         (assert) => {
@@ -804,7 +755,7 @@
             'the task moved to the inbox');
           assert.strictEqual(window.App.activeListId, 'inbox',
             'the view fell back to the inbox');
-          assert.deepEqual(texts(), ['Pending in work'],
+          assert.deepEqual(TestKit.texts(), ['Pending in work'],
             'the reassigned task is visible');
           assert.strictEqual(
             localStorage.getItem('todoapp-active-list'), 'inbox',
@@ -824,10 +775,10 @@
           const moved = window.App.moveTask(task.id, list.id);
           assert.strictEqual(moved.listId, list.id,
             'the task carries the target list');
-          assert.deepEqual(texts(), [],
+          assert.deepEqual(TestKit.texts(), [],
             'the task leaves the inbox view');
           window.App.setActiveList(list.id);
-          assert.deepEqual(texts(), ['Clasificame'],
+          assert.deepEqual(TestKit.texts(), ['Clasificame'],
             'the task appears in the target list');
           window.App.reset();
           window.App.load();
@@ -893,15 +844,8 @@
 
     QUnit.module('archiving lists', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        localStorage.removeItem('todoapp-active-list');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <select id="list-select" data-action="set-active-list"></select>
           <button id="add-list" data-action="add-list">+</button>
@@ -913,12 +857,8 @@
           <details id="archived-section">
             <summary></summary>
             <ul id="archived-list"></ul>
-          </details>`;
+          </details>`);
       });
-
-      const texts = () =>
-        [...document.querySelectorAll('#todo-list li label')]
-          .map((label) => label.textContent);
 
       const selectorValues = () =>
         [...document.getElementById('list-select').options]
@@ -934,10 +874,10 @@
             'the selector only shows live lists');
           assert.strictEqual(window.App.tasks.length, 1,
             'the task is kept in the state');
-          assert.deepEqual(texts(), [],
+          assert.deepEqual(TestKit.texts(), [],
             'nothing of the archived list is visible');
           window.App.setFilter('all');
-          assert.deepEqual(texts(), [],
+          assert.deepEqual(TestKit.texts(), [],
             'no view shows the archived tasks');
         });
 
@@ -971,7 +911,7 @@
           assert.deepEqual(selectorValues(), ['inbox', list.id],
             'the list is back in the selector');
           window.App.setActiveList(list.id);
-          assert.deepEqual(texts(), ['Still pending', 'Already done'],
+          assert.deepEqual(TestKit.texts(), ['Still pending', 'Already done'],
             'its tasks come back untouched');
           assert.strictEqual(window.App.pendingCount(), 1,
             'the counter is as before archiving');
@@ -1034,8 +974,7 @@
 
     QUnit.module('view contract', (hooks) => {
       hooks.beforeEach(() => {
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.fixture(
           `<select id="list-select" data-action="set-active-list"></select>
           <button id="rename-list" data-action="rename-list"></button>
           <button id="archive-list" data-action="archive-list"></button>
@@ -1052,7 +991,7 @@
           <a id="filter-completed" href="#/completed"
              data-action="set-filter" data-filter="completed"></a>
           <button id="clear-completed"
-                  data-action="clear-completed"></button>`;
+                  data-action="clear-completed"></button>`);
       });
 
       QUnit.test('rendering a literal view-model produces the DOM',
@@ -1153,18 +1092,11 @@
 
     QUnit.module('task dates', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        localStorage.removeItem('todoapp-active-list');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
-          <span id="todo-count"></span>`;
+          <span id="todo-count"></span>`);
       });
 
       QUnit.test('a new task has no date and accepts one', (assert) => {
@@ -1266,13 +1198,6 @@
             'overdue', 'classification works across year boundaries');
         });
 
-      // Days relative to the real today, as ISO strings.
-      const day = (offset) => {
-        const d = new Date();
-        d.setDate(d.getDate() + offset);
-        const p = (n) => String(n).padStart(2, '0');
-        return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
-      };
       const dueInput = () =>
         document.querySelector('#todo-list li .due-date');
       const changeDate = (value) => {
@@ -1284,23 +1209,23 @@
       QUnit.test('the date control assigns and persists the date',
         (assert) => {
           window.App.addTask('Fechable');
-          changeDate(day(0));
-          assert.strictEqual(window.App.tasks[0].date, day(0),
+          changeDate(TestKit.day(0));
+          assert.strictEqual(window.App.tasks[0].date, TestKit.day(0),
             'the task carries the chosen day');
-          assert.strictEqual(dueInput().value, day(0),
+          assert.strictEqual(dueInput().value, TestKit.day(0),
             'the re-rendered control shows the date');
           window.App.reset();
           window.App.load();
-          assert.strictEqual(window.App.tasks[0].date, day(0),
+          assert.strictEqual(window.App.tasks[0].date, TestKit.day(0),
             'the date persists across reloads');
         });
 
       QUnit.test('the date control changes and removes the date',
         (assert) => {
           window.App.addTask('Modificable');
-          changeDate(day(-1));
-          changeDate(day(0));
-          assert.strictEqual(window.App.tasks[0].date, day(0),
+          changeDate(TestKit.day(-1));
+          changeDate(TestKit.day(0));
+          assert.strictEqual(window.App.tasks[0].date, TestKit.day(0),
             'the new value replaces the old');
           changeDate('');
           assert.strictEqual(window.App.tasks[0].date, null,
@@ -1324,8 +1249,8 @@
             controls()[i]
               .dispatchEvent(new Event('change', { bubbles: true }));
           };
-          pick(0, day(-1));
-          pick(1, day(0));
+          pick(0, TestKit.day(-1));
+          pick(1, TestKit.day(0));
           assert.true(rows()[0].classList.contains('due-overdue'),
             'the overdue task is marked');
           assert.true(rows()[1].classList.contains('due-today'),
@@ -1336,7 +1261,7 @@
         (assert) => {
           window.UI.render({
             tasks: [{ id: 1, text: 'Futura', done: false,
-              listId: 'inbox', date: day(2), dateStatus: 'future',
+              listId: 'inbox', date: TestKit.day(2), dateStatus: 'future',
               moveTargets: [] }],
             navigableLists: [
               { id: 'inbox', name: 'Entrada', pendingCount: 0 }
@@ -1365,7 +1290,7 @@
       QUnit.test('text editing still works alongside the date control',
         (assert) => {
           const task = window.App.addTask('Editable');
-          window.App.setTaskDate(task.id, day(0));
+          window.App.setTaskDate(task.id, TestKit.day(0));
           document.querySelector('#todo-list li label')
             .dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
           const editInput =
@@ -1376,24 +1301,15 @@
             { key: 'Enter', bubbles: true }));
           assert.strictEqual(window.App.tasks[0].text, 'Renombrada',
             'the text edit is applied');
-          assert.strictEqual(window.App.tasks[0].date, day(0),
+          assert.strictEqual(window.App.tasks[0].date, TestKit.day(0),
             'the date survives the text edit');
         });
     });
 
     QUnit.module('views: main and today', (hooks) => {
       hooks.beforeEach(() => {
-        localStorage.removeItem('todoapp-tasks');
-        localStorage.removeItem('todoapp-filter');
-        localStorage.removeItem('todoapp-active-list');
-        localStorage.removeItem('todoapp-view');
-        window.App.reset();
-        window.App.initialized = false;
-        window.App.editingId = null;
-        window.App.filter = 'all';
-        window.App.view = 'main';
-        const fixture = document.getElementById('qunit-fixture');
-        fixture.innerHTML =
+        TestKit.resetApp();
+        TestKit.fixture(
           `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>
@@ -1407,29 +1323,18 @@
              data-filter="active">Pendientes</a>
           <a id="filter-completed" href="#/completed"
              data-action="set-filter"
-             data-filter="completed">Completadas</a>`;
+             data-filter="completed">Completadas</a>`);
       });
-
-      // Days relative to the real today, as ISO strings.
-      const day = (offset) => {
-        const d = new Date();
-        d.setDate(d.getDate() + offset);
-        const p = (n) => String(n).padStart(2, '0');
-        return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
-      };
-      const texts = () =>
-        [...document.querySelectorAll('#todo-list li label')]
-          .map((label) => label.textContent);
 
       QUnit.test('the main view hides future tasks only', (assert) => {
         window.App.addTask('Undated');
         const overdue = window.App.addTask('Overdue');
         const today = window.App.addTask('Today');
         const future = window.App.addTask('Future');
-        window.App.setTaskDate(overdue.id, day(-1));
-        window.App.setTaskDate(today.id, day(0));
-        window.App.setTaskDate(future.id, day(3));
-        assert.deepEqual(texts(), ['Undated', 'Overdue', 'Today'],
+        window.App.setTaskDate(overdue.id, TestKit.day(-1));
+        window.App.setTaskDate(today.id, TestKit.day(0));
+        window.App.setTaskDate(future.id, TestKit.day(3));
+        assert.deepEqual(TestKit.texts(), ['Undated', 'Overdue', 'Today'],
           'future work stays out of the main view');
       });
 
@@ -1439,11 +1344,11 @@
           const overdue = window.App.addTask('Overdue');
           const today = window.App.addTask('Today');
           const future = window.App.addTask('Future');
-          window.App.setTaskDate(overdue.id, day(-1));
-          window.App.setTaskDate(today.id, day(0));
-          window.App.setTaskDate(future.id, day(3));
+          window.App.setTaskDate(overdue.id, TestKit.day(-1));
+          window.App.setTaskDate(today.id, TestKit.day(0));
+          window.App.setTaskDate(future.id, TestKit.day(3));
           window.App.setView('today');
-          assert.deepEqual(texts(), ['Overdue', 'Today'],
+          assert.deepEqual(TestKit.texts(), ['Overdue', 'Today'],
             'only what the day holds is present');
         });
 
@@ -1452,13 +1357,13 @@
         const here = window.App.addTask('In inbox');
         const there = window.App.addTask('In Trabajo');
         window.App.moveTask(there.id, 'list-1');
-        window.App.setTaskDate(here.id, day(0));
-        window.App.setTaskDate(there.id, day(-2));
+        window.App.setTaskDate(here.id, TestKit.day(0));
+        window.App.setTaskDate(there.id, TestKit.day(-2));
         window.App.setView('today');
-        assert.deepEqual(texts(), ['In inbox', 'In Trabajo'],
+        assert.deepEqual(TestKit.texts(), ['In inbox', 'In Trabajo'],
           'today mixes tasks from every list');
         window.App.setView('main');
-        assert.deepEqual(texts(), ['In inbox'],
+        assert.deepEqual(TestKit.texts(), ['In inbox'],
           'the main view stays scoped to the active list');
       });
 
@@ -1481,15 +1386,15 @@
         (assert) => {
           const pending = window.App.addTask('Pending today');
           const done = window.App.addTask('Done today');
-          window.App.setTaskDate(pending.id, day(0));
-          window.App.setTaskDate(done.id, day(0));
+          window.App.setTaskDate(pending.id, TestKit.day(0));
+          window.App.setTaskDate(done.id, TestKit.day(0));
           window.App.toggleTask(done.id);
           window.App.setView('today');
           window.App.setFilter('active');
-          assert.deepEqual(texts(), ['Pending today'],
+          assert.deepEqual(TestKit.texts(), ['Pending today'],
             'active filters today to the pending');
           window.App.setFilter('completed');
-          assert.deepEqual(texts(), ['Done today'],
+          assert.deepEqual(TestKit.texts(), ['Done today'],
             'completed filters today to the done');
         });
 
@@ -1498,8 +1403,8 @@
           window.App.addTask('Undated pending');
           const future = window.App.addTask('Future pending');
           const today = window.App.addTask('Today pending');
-          window.App.setTaskDate(future.id, day(5));
-          window.App.setTaskDate(today.id, day(0));
+          window.App.setTaskDate(future.id, TestKit.day(5));
+          window.App.setTaskDate(today.id, TestKit.day(0));
           assert.strictEqual(
             document.getElementById('todo-count').textContent,
             '2 pendientes',
@@ -1531,12 +1436,12 @@
       QUnit.test('switching views through the dispatched click',
         (assert) => {
           const today = window.App.addTask('Due today');
-          window.App.setTaskDate(today.id, day(0));
+          window.App.setTaskDate(today.id, TestKit.day(0));
           document.getElementById('view-today')
             .dispatchEvent(new MouseEvent('click', { bubbles: true }));
           assert.strictEqual(window.App.view, 'today',
             'the click switches the view');
-          assert.deepEqual(texts(), ['Due today']);
+          assert.deepEqual(TestKit.texts(), ['Due today']);
           document.getElementById('view-main')
             .dispatchEvent(new MouseEvent('click', { bubbles: true }));
           assert.strictEqual(window.App.view, 'main',
@@ -1549,24 +1454,24 @@
           const live = window.App.addTask('Live today');
           const parked = window.App.addTask('Parked overdue');
           const done = window.App.addTask('Parked done');
-          window.App.setTaskDate(live.id, day(0));
-          window.App.setTaskDate(parked.id, day(-1));
-          window.App.setTaskDate(done.id, day(0));
+          window.App.setTaskDate(live.id, TestKit.day(0));
+          window.App.setTaskDate(parked.id, TestKit.day(-1));
+          window.App.setTaskDate(done.id, TestKit.day(0));
           window.App.toggleTask(done.id);
           window.App.moveTask(parked.id, list.id);
           window.App.moveTask(done.id, list.id);
           window.App.archiveList(list.id);
           window.App.setView('today');
-          assert.deepEqual(texts(), ['Live today'],
+          assert.deepEqual(TestKit.texts(), ['Live today'],
             'only live lists feed the today view');
           window.App.setFilter('completed');
-          assert.deepEqual(texts(), [],
+          assert.deepEqual(TestKit.texts(), [],
             'completed tasks of archived lists stay out too');
           window.App.setFilter('all');
           assert.strictEqual(window.App.pendingCount(), 1,
             'the counter ignores pending tasks of archived lists');
           window.App.setView('main');
-          assert.deepEqual(texts(), ['Live today'],
+          assert.deepEqual(TestKit.texts(), ['Live today'],
             'the main view keeps showing the active list');
         });
 
@@ -1574,14 +1479,14 @@
         (assert) => {
           const list = window.App.addList('Trabajo');
           const parked = window.App.addTask('Parked today');
-          window.App.setTaskDate(parked.id, day(0));
+          window.App.setTaskDate(parked.id, TestKit.day(0));
           window.App.moveTask(parked.id, list.id);
           window.App.archiveList(list.id);
           window.App.setView('today');
-          assert.deepEqual(texts(), [],
+          assert.deepEqual(TestKit.texts(), [],
             'the archived task is out while the list is parked');
           window.App.unarchiveList(list.id);
-          assert.deepEqual(texts(), ['Parked today'],
+          assert.deepEqual(TestKit.texts(), ['Parked today'],
             'the task reappears in today once the list is live');
         });
     });
