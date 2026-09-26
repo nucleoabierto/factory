@@ -1,11 +1,9 @@
 ---
 name: consultar-lecciones
 description: >
-  Recupera las lecciones aprendidas que aplican a un trabajo concreto:
-  dada una descripción de lo que se va a hacer (archivos que se tocarán,
-  tipo de acción, palabras clave), busca los disparadores aplicables en
-  el índice docs/lessons/README.md y trae las notas correspondientes al
-  contexto.
+  Recupera las lecciones aprendidas que aplican a un trabajo concreto
+  —qué aprendió el proyecto de sus correcciones— y las trae al contexto
+  para que el trabajo no repita errores conocidos.
   Usar al comenzar cualquier trabajo del proyecto —una tarea, una
   investigación, la creación de un skill, la edición de documentos— o
   cuando el usuario lo pida.
