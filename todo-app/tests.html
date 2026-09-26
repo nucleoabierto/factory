@@ -1020,6 +1020,108 @@
             'a stored archived list falls back to the inbox');
         });
     });
+
+    QUnit.module('view contract', (hooks) => {
+      hooks.beforeEach(() => {
+        const fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          `<select id="list-select"></select>
+          <button id="rename-list"></button>
+          <button id="archive-list"></button>
+          <button id="delete-list"></button>
+          <ul id="todo-list"></ul>
+          <details id="archived-section"><summary></summary>
+            <ul id="archived-list"></ul>
+          </details>
+          <span id="todo-count"></span>
+          <a id="filter-all" href="#/"></a>
+          <a id="filter-active" href="#/active"></a>
+          <a id="filter-completed" href="#/completed"></a>
+          <button id="clear-completed"></button>`;
+      });
+
+      QUnit.test('rendering a literal view-model produces the DOM',
+        (assert) => {
+          const vm = {
+            tasks: [
+              { id: 1, text: 'Pending', done: false, listId: 'inbox' },
+              { id: 2, text: 'Done', done: true, listId: 'inbox' }
+            ],
+            lists: [
+              { id: 'inbox', name: 'Entrada', archived: false },
+              { id: 'list-1', name: 'Work', archived: false },
+              { id: 'list-2', name: 'Old', archived: true }
+            ],
+            activeListId: 'inbox',
+            filter: 'all',
+            editingId: null,
+            pendingCount: () => 1
+          };
+          window.UI.render(vm);
+          assert.strictEqual(
+            document.querySelectorAll('#todo-list li').length, 2,
+            'each task becomes a list item');
+          assert.true(
+            document.querySelectorAll('#todo-list li')[1]
+              .classList.contains('done'),
+            'a done task renders with its class');
+          const options =
+            [...document.getElementById('list-select').options];
+          assert.deepEqual(options.map((o) => o.value),
+            ['inbox', 'list-1'],
+            'the selector lists the active lists');
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '1 pendiente', 'the counter uses the view-model count');
+          assert.strictEqual(
+            document.getElementById('archived-section').hidden, false,
+            'the archived section shows the archived list');
+        });
+
+      QUnit.test('rendering with editingId shows the edit input',
+        (assert) => {
+          const vm = {
+            tasks: [{ id: 1, text: 'Edit me', done: false,
+              listId: 'inbox' }],
+            lists: [{ id: 'inbox', name: 'Entrada', archived: false }],
+            activeListId: 'inbox',
+            filter: 'all',
+            editingId: 1,
+            pendingCount: () => 0
+          };
+          window.UI.render(vm);
+          const input = document.querySelector('#todo-list input.edit');
+          assert.ok(input, 'the task renders as an edit input');
+          assert.strictEqual(input.value, 'Edit me',
+            'the input carries the task text');
+          assert.strictEqual(document.activeElement, input,
+            'the edit input keeps the focus');
+        });
+
+      QUnit.test('view events dispatch the bound actions',
+        (assert) => {
+          const calls = [];
+          window.UI.bind({
+            toggleTask: (id) => calls.push(['toggleTask', id]),
+            deleteTask: (id) => calls.push(['deleteTask', id])
+          });
+          window.UI.render({
+            tasks: [{ id: 7, text: 'Hit me', done: false,
+              listId: 'inbox' }],
+            lists: [{ id: 'inbox', name: 'Entrada', archived: false }],
+            activeListId: 'inbox',
+            filter: 'all',
+            editingId: null,
+            pendingCount: () => 0
+          });
+          document.querySelector('#todo-list .toggle').click();
+          document.querySelector('#todo-list .destroy').click();
+          assert.deepEqual(calls,
+            [['toggleTask', 7], ['deleteTask', 7]],
+            'each event reaches its declared action');
+          window.UI.bind(window.App.actions);
+        });
+    });
   </script>
 </body>
 </html>

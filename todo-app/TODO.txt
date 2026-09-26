@@ -22,7 +22,7 @@
 - [x] docs/tasks/009-validar-tareas-al-cargar.md — Validar la forma de las tareas al cargar
 - [x] docs/tasks/010-proteger-estado-del-modelo.md — Dejar de exponer el estado mutable del modelo
 - [x] docs/tasks/015-migrar-es5-a-es2024.md — Migrar el código de ES5 a ES2024
-- [ ] docs/tasks/023-contrato-de-vista.md — Contrato de vista: snapshot y dispatch de acciones
+- [x] docs/tasks/023-contrato-de-vista.md — Contrato de vista: snapshot y dispatch de acciones
 - [ ] docs/tasks/024-proyeccion-y-eventos-unificados.md — Proyección de colecciones y mecanismo único de eventos
 
 ## Hito 1: Aplicación de lista de tareas
