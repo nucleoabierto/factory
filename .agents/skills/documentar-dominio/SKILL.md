@@ -15,7 +15,7 @@ description: >
 
 # Documentar dominio
 
-Instrucciones para que un agente mantenga la documentación viva de los dominios. Los dominios se documentan en el `docs/domains/` del proyecto que contiene el código del dominio —la documentación vive junto al código que describe—: un documento por dominio y un índice obligatorio. La documentación describe el modelo (entidades, invariantes), el lenguaje ubicuo y las fronteras del dominio, y ancla sus afirmaciones a elementos de código para poder detectar deriva.
+Instrucciones para que un agente mantenga la documentación viva de los dominios. Los dominios se documentan en el `docs/domains/` del proyecto que contiene el código del dominio —la documentación vive junto al código que describe—: un documento por dominio y un índice obligatorio. La documentación separa la referencia del modelo (lenguaje ubicuo, entidades, invariantes, operaciones) de la explicación del dominio (propósito, fronteras, decisiones) y ancla sus afirmaciones a elementos de código para poder detectar deriva.
 
 ## Cuándo usar
 

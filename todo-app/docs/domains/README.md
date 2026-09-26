@@ -1,6 +1,6 @@
 # Dominios
 
-Índice de los dominios de todo-app, mantenido por el skill `documentar-dominio`. Cada dominio se documenta en un archivo `NNN-slug.md` siguiendo la plantilla del skill: propósito, lenguaje ubicuo con anclas al código, modelo, fronteras, decisiones relevantes y estado de salud.
+Índice de los dominios de todo-app, mantenido por el skill `documentar-dominio`. Cada dominio se documenta en un archivo `NNN-slug.md` siguiendo la plantilla del skill: propósito, referencia del modelo (lenguaje ubicuo, entidades, invariantes y operaciones, con anclas al código), explicación del dominio (fronteras y decisiones relevantes) y estado de salud.
 
 Reglas del índice:
 
