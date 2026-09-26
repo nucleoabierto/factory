@@ -7,6 +7,29 @@
   const FILTERS = ['all', 'active', 'completed'];
   const INBOX = { id: 'inbox', name: 'Entrada', archived: false };
 
+  // Task dates are calendar days as ISO strings ('YYYY-MM-DD'):
+  // comparing them as strings orders like dates, so classification
+  // needs no Date arithmetic and the reference day is injectable.
+  function currentDay() {
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}` +
+      `-${pad(now.getDate())}`;
+  }
+
+  // A valid date is a real calendar day, not just a matching shape:
+  // '2026-02-30' parses but does not exist.
+  function isValidDate(candidate) {
+    if (typeof candidate !== 'string' ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(candidate)) {
+      return false;
+    }
+    const [year, month, day] = candidate.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.getFullYear() === year && date.getMonth() === month - 1 &&
+      date.getDate() === day;
+  }
+
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
   // subscribers when the state changes. The state is private and
@@ -37,7 +60,7 @@
     // task object in it) can only change through the operations.
     #snapshot(task) {
       return { id: task.id, text: task.text, done: task.done,
-        listId: task.listId };
+        listId: task.listId, date: task.date };
     }
 
     lists() {
@@ -99,11 +122,14 @@
         }
       }
       const known = new Set(this.#lists.map((list) => list.id));
+      // Data persisted before task dates lacks the field, and a
+      // malformed date drops alone: the task survives either way.
       this.#tasks = tasks
         .filter(this.isValidTask)
         .filter((t) => !('listId' in t) || known.has(t.listId))
         .map((t) => ({ id: t.id, text: t.text, done: t.done,
-          listId: 'listId' in t ? t.listId : INBOX.id }));
+          listId: 'listId' in t ? t.listId : INBOX.id,
+          date: isValidDate(t.date) ? t.date : null }));
       this.#nextId = this.#tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;
     }
 
@@ -121,7 +147,8 @@
       if (!clean || !this.#lists.some((list) => list.id === listId)) {
         return null;
       }
-      const task = { id: this.#nextId++, text: clean, done: false, listId };
+      const task = { id: this.#nextId++, text: clean, done: false, listId,
+        date: null };
       this.#tasks.push(task);
       this.#notify();
       return this.#snapshot(task);
@@ -159,6 +186,35 @@
       this.#tasks = this.#tasks.filter((t) => t.id !== id);
       this.#notify();
       return this.#snapshot(task);
+    }
+
+    setTaskDate(id, date) {
+      const task = this.#find(id);
+      if (!task || !isValidDate(date)) {
+        return null;
+      }
+      task.date = date;
+      this.#notify();
+      return this.#snapshot(task);
+    }
+
+    clearTaskDate(id) {
+      const task = this.#find(id);
+      if (!task) {
+        return null;
+      }
+      task.date = null;
+      this.#notify();
+      return this.#snapshot(task);
+    }
+
+    // Where a task's day stands relative to the reference day —
+    // injectable so tests pin "today" instead of the clock.
+    dateStatus(date, today = currentDay()) {
+      if (!isValidDate(date)) {
+        return null;
+      }
+      return date < today ? 'overdue' : date > today ? 'future' : 'today';
     }
 
     pendingCount(listId) {
@@ -708,6 +764,18 @@
 
     moveTask(id, listId) {
       return taskList.moveTask(id, listId);
+    },
+
+    setTaskDate(id, date) {
+      return taskList.setTaskDate(id, date);
+    },
+
+    clearTaskDate(id) {
+      return taskList.clearTaskDate(id);
+    },
+
+    dateStatus(date, today) {
+      return taskList.dateStatus(date, today);
     },
 
     // Same ordering as deleteList: the active list is corrected

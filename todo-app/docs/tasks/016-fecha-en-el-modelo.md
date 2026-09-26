@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -52,7 +52,32 @@ Introducir en el dominio la fecha opcional de la tarea —día, sin hora— con 
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
 
+## Plan técnico
+
+La tarea es `{id, text, done, listId}`; `isValidTask` valida la forma al cargar y `load` migra los formatos anteriores. La fecha entra como día calendario sin hora, campo opcional que la presentación aún no consume: el usuario no percibe cambios.
+
+- [x] Fijar la representación de la fecha: cadena de día ISO `YYYY-MM-DD` en un campo `date` opcional de la tarea (`null` cuando ausente), con `isValidDate` que exige forma y día real de calendario, y un helper `currentDay()` que produce el día local
+  - Aporta: la representación y la comprobabilidad que la épica exige —la clasificación acepta el día de referencia como parámetro
+  - Contexto: comparar cadenas ISO ordena igual que fechas; la clasificación no necesita `Date`
+- [x] Extender la tarea y la carga: `#snapshot` incluye `date`, `isValidTask` tolera ausencia o fecha bien formada, `load` descarta fechas malformadas conservando la tarea, `App.save` persiste el campo
+  - Aporta: los datos del formato anterior sobreviven a la carga y la fecha persiste entre recargas
+- [x] Añadir las operaciones de fecha al modelo: `setTaskDate(id, date)` y `clearTaskDate(id)` con las garantías del resto de operaciones (snapshot de salida, notificación), más sus pasarelas en la fachada `App`
+  - Aporta: asignar, cambiar y quitar la fecha con la API del dominio
+- [x] Añadir la consulta de clasificación: `dateStatus(date, today = currentDay())` devuelve `'overdue' | 'today' | 'future'`, o `null` sin fecha; consulta del dominio expuesta por la fachada
+  - Aporta: la clasificación vencida/hoy/futura que las vistas consumirán, decidida en el dominio y comprobable con el día inyectado
+- [x] Escribir los tests nuevos en `tests.html`: asignación, cambio y retirada, persistencia y recarga, tolerancia (sin fecha y malformada) y clasificación en los tres bordes
+  - Aporta: cubre la suite esperada sin tocar la presentación; la suite existente queda intacta
+
+## Suite de pruebas esperada
+
+- Una tarea nueva no tiene fecha; asignarle una la muestra, cambiarla la sustituye y quitarla la deja como al crearse (caso de uso: asignar fecha a una tarea).
+- La fecha asignada persiste tras guardar y recargar (caso de uso: conservar la planificación entre visitas).
+- Las tareas persistidas sin fecha cargan y operan con normalidad (caso de uso: migración del formato anterior).
+- Una fecha malformada en los datos cargados se descarta sin romper la tarea ni la carga (caso de uso: tolerancia a datos corruptos).
+- La clasificación devuelve vencida, hoy o futura para el día anterior, el mismo y el siguiente, y nada sin fecha (caso de uso: distinguir el momento de cada tarea).
+- La suite existente sigue en verde: la interfaz funciona como antes (caso de uso: ninguno nuevo — cambio interno).
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-25 — Aprueba (observaciones menores: tolerancia de fecha en `load` en vez de `isValidTask`; `dateStatus` clasifica la cadena, no la tarea)
+- Usuario: 2026-09-25 — Aprueba

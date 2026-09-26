@@ -311,7 +311,8 @@
             'the view keeps only the pending task');
           assert.deepEqual(
             JSON.parse(localStorage.getItem('todoapp-tasks')).tasks,
-            [{ id: 1, text: 'Stay', done: false, listId: 'inbox' }],
+            [{ id: 1, text: 'Stay', done: false, listId: 'inbox',
+              date: null }],
             'the storage keeps only the pending task');
           window.App.reset();
           window.App.load();
@@ -1147,6 +1148,122 @@
             [['toggleTask', 7], ['deleteTask', 7], ['startEdit', 7]],
             'each event reaches its declared action');
           window.UI.bind(window.App.actions);
+        });
+    });
+
+    QUnit.module('task dates', (hooks) => {
+      hooks.beforeEach(() => {
+        localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
+        localStorage.removeItem('todoapp-active-list');
+        window.App.reset();
+        window.App.initialized = false;
+        window.App.editingId = null;
+        window.App.filter = 'all';
+        const fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>`;
+      });
+
+      QUnit.test('a new task has no date and accepts one', (assert) => {
+        const task = window.App.addTask('Con fecha');
+        assert.strictEqual(task.date, null, 'the date starts absent');
+        const dated = window.App.setTaskDate(task.id, '2026-10-01');
+        assert.strictEqual(dated.date, '2026-10-01',
+          'the task carries the assigned day');
+        assert.strictEqual(window.App.tasks[0].date, '2026-10-01',
+          'the state reflects the date');
+      });
+
+      QUnit.test('the date can be changed and removed', (assert) => {
+        const task = window.App.addTask('Cambiable');
+        window.App.setTaskDate(task.id, '2026-10-01');
+        window.App.setTaskDate(task.id, '2026-10-05');
+        assert.strictEqual(window.App.tasks[0].date, '2026-10-05',
+          'the new date replaces the old');
+        const cleared = window.App.clearTaskDate(task.id);
+        assert.strictEqual(cleared.date, null,
+          'clearing leaves the task without a date');
+        assert.strictEqual(window.App.tasks[0].text, 'Cambiable',
+          'the rest of the task is untouched');
+      });
+
+      QUnit.test('invalid dates are rejected', (assert) => {
+        const task = window.App.addTask('Blindada');
+        assert.strictEqual(
+          window.App.setTaskDate(task.id, 'next friday'), null,
+          'a malformed date is refused');
+        assert.strictEqual(
+          window.App.setTaskDate(task.id, '2026-02-30'), null,
+          'a nonexistent day is refused');
+        assert.strictEqual(window.App.setTaskDate(999, '2026-10-01'),
+          null, 'a missing task cannot be dated');
+        assert.strictEqual(window.App.tasks[0].date, null,
+          'the task keeps having no date');
+      });
+
+      QUnit.test('the date persists across reloads', (assert) => {
+        const task = window.App.addTask('Persistente');
+        window.App.setTaskDate(task.id, '2026-10-01');
+        window.App.reset();
+        window.App.load();
+        assert.strictEqual(window.App.tasks[0].date, '2026-10-01',
+          'the date comes back');
+      });
+
+      QUnit.test('tasks without a date from older data load fine',
+        (assert) => {
+          localStorage.setItem('todoapp-tasks', JSON.stringify({
+            lists: [{ id: 'inbox', name: 'Entrada' }],
+            tasks: [{ id: 1, text: 'Antigua', done: false,
+              listId: 'inbox' }]
+          }));
+          window.App.load();
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the task loads');
+          assert.strictEqual(window.App.tasks[0].date, null,
+            'a missing date means none');
+        });
+
+      QUnit.test('a malformed stored date drops but the task survives',
+        (assert) => {
+          localStorage.setItem('todoapp-tasks', JSON.stringify({
+            lists: [{ id: 'inbox', name: 'Entrada' }],
+            tasks: [
+              { id: 1, text: 'Rota', done: false, listId: 'inbox',
+                date: 'not a date' },
+              { id: 2, text: 'Sana', done: false, listId: 'inbox',
+                date: '2026-10-01' }
+            ]
+          }));
+          window.App.load();
+          assert.strictEqual(window.App.tasks.length, 2,
+            'both tasks load');
+          assert.strictEqual(window.App.tasks[0].date, null,
+            'the malformed date is dropped');
+          assert.strictEqual(window.App.tasks[1].date, '2026-10-01',
+            'the well-formed date is kept');
+        });
+
+      QUnit.test('dates classify as overdue, today or future',
+        (assert) => {
+          const today = '2026-09-25';
+          assert.strictEqual(
+            window.App.dateStatus('2026-09-24', today), 'overdue',
+            'the day before is overdue');
+          assert.strictEqual(
+            window.App.dateStatus('2026-09-25', today), 'today',
+            'the same day is today');
+          assert.strictEqual(
+            window.App.dateStatus('2026-09-26', today), 'future',
+            'the day after is future');
+          assert.strictEqual(window.App.dateStatus(null, today), null,
+            'no date means no status');
+          assert.strictEqual(
+            window.App.dateStatus('2025-12-31', '2026-01-01'),
+            'overdue', 'classification works across year boundaries');
         });
     });
   </script>

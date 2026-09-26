@@ -31,8 +31,14 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
   - **Lista archivada:** una lista aparcada con todo su contenido: sale de la navegación y de las vistas sin perder tareas ni estado, y puede reactivarse; solo las vivas pueden ser activas o recibir tareas movidas.
     - Ancla: el flag `archived` de la lista y `TaskList.archiveList`/`unarchiveList` en `app.js`
     - Origen: `docs/tasks/014-archivar-listas.md`
+  - **Fecha de la tarea:** día calendario opcional (cadena ISO `YYYY-MM-DD`, sin hora), ausente por defecto; puede asignarse, cambiarse y quitarse.
+    - Ancla: el campo `date` de la tarea, `isValidDate` y `TaskList.setTaskDate`/`clearTaskDate` en `app.js`
+    - Origen: `docs/tasks/016-fecha-en-el-modelo.md`
+  - **Vencida / de hoy / futura:** clasificación de una fecha respecto al día actual; la consulta del dominio recibe el día de referencia y la decide el modelo, no la presentación.
+    - Ancla: `TaskList.dateStatus` y `currentDay` en `app.js`
+    - Origen: `docs/tasks/016-fecha-en-el-modelo.md`
 - **Entidades / estado:**
-  - La tarea `{id, text, done, listId}` y la lista `{id, name, archived}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado, el filtro activo y la lista activa.
+  - La tarea `{id, text, done, listId, date}` y la lista `{id, name, archived}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado, el filtro activo y la lista activa.
     - Ancla: `class TaskList` con `#tasks`/`#lists`/`#nextId` y las consultas `tasks()`/`lists()`/`nextId()` en `app.js`
 - **Invariantes:**
   - No existen tareas con texto vacío o de solo espacios.
@@ -51,8 +57,8 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
     - Ancla: `!list.archived` en `App.setActiveList`, `App.load` y `TaskList.moveTask`
   - Eliminar una lista nunca destruye tareas: pasan a la entrada.
     - Ancla: reasignación en `TaskList.deleteList`
-  - Al cargar datos externos solo entran ítems con forma válida.
-    - Ancla: `TaskList.isValidTask`/`isValidList` en `TaskList.load`
+  - Al cargar datos externos solo entran ítems con forma válida; una fecha malformada se descarta sola y la tarea sobrevive.
+    - Ancla: `TaskList.isValidTask`/`isValidList` y el saneado de `date` en `TaskList.load`
   - El formato persistido es `{lists, tasks}` y el array plano antiguo migra a la entrada.
     - Ancla: discriminación de formato en `TaskList.load` y serialización en `App.save`
 - **Operaciones:**
@@ -66,6 +72,8 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
     - Ancla: `archiveList`, `unarchiveList` en `TaskList`
   - Elegir la lista activa.
     - Ancla: `App.setActiveList`
+  - Asignar, cambiar y quitar la fecha de una tarea; clasificar una fecha como vencida, de hoy o futura.
+    - Ancla: `setTaskDate`, `clearTaskDate`, `dateStatus` en `TaskList` y sus pasarelas en `App`
 
 ## Explicación del dominio
 
@@ -79,4 +87,4 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 ## Estado de salud
 
 - Última revisión: 2026-09-25
-- Divergencias conocidas: ninguna. La revisión de arquitectura 002 detectó un ciclo `App` ↔ `UI` y un contrato de vista implícito; la tarea 023 lo resolvió con el contrato view-model/dispatch y el estado de vista de poseedor único (`viewState`). La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista; la tarea 013 la gestión de listas con unicidad de nombre y reasignación al eliminar; la tarea 014 el estado archivado —la lista `{id, name, archived}`— con exclusión de la navegación y veto de la entrada; la tarea 024 cerró el contrato de vista: la proyección de colecciones vive en `App.viewModel` y los eventos usan un solo mecanismo delegado.
+- Divergencias conocidas: ninguna. La revisión de arquitectura 002 detectó un ciclo `App` ↔ `UI` y un contrato de vista implícito; la tarea 023 lo resolvió con el contrato view-model/dispatch y el estado de vista de poseedor único (`viewState`). La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista; la tarea 013 la gestión de listas con unicidad de nombre y reasignación al eliminar; la tarea 014 el estado archivado —la lista `{id, name, archived}`— con exclusión de la navegación y veto de la entrada; la tarea 024 cerró el contrato de vista: la proyección de colecciones vive en `App.viewModel` y los eventos usan un solo mecanismo delegado. La tarea 016 introdujo la fecha opcional de la tarea como día calendario y la clasificación temporal como consulta del dominio.
