@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Planificada | [ ] Completada
+[x] Planificada | [x] Completada
 
 ## Objetivo
 
@@ -15,12 +15,12 @@ Factory gana la capa de documentación de producto y un roadmap por horizontes d
 
 ## Piezas
 
-- [ ] docs/tasks/083-investigar-ssg-markdown.md — Investigar generadores de sitio Markdown-first de configuración progresiva
-- [ ] docs/tasks/084-docs-producto-todo-app.md — Crear el directorio de documentación de producto de todo-app con contenido inicial
-- [ ] docs/tasks/085-skill-documentar-producto.md — Crear el skill que mantiene la documentación de producto
-- [ ] docs/tasks/086-reestructurar-plantilla-documento-dominio.md — Reestructurar la plantilla del documento de dominio
-- [ ] docs/tasks/087-roadmap-por-horizontes.md — Extender el roadmap a horizontes Now/Next/Later
-- [ ] docs/tasks/088-aplicar-roadmap-horizontes-todo-app.md — Reescribir el roadmap de todo-app con horizontes
+- [x] docs/tasks/083-investigar-ssg-markdown.md — Investigar generadores de sitio Markdown-first de configuración progresiva
+- [x] docs/tasks/084-docs-producto-todo-app.md — Crear el directorio de documentación de producto de todo-app con contenido inicial
+- [x] docs/tasks/085-skill-documentar-producto.md — Crear el skill que mantiene la documentación de producto
+- [x] docs/tasks/086-reestructurar-plantilla-documento-dominio.md — Reestructurar la plantilla del documento de dominio
+- [x] docs/tasks/087-roadmap-por-horizontes.md — Extender el roadmap a horizontes Now/Next/Later
+- [x] docs/tasks/088-aplicar-roadmap-horizontes-todo-app.md — Reescribir el roadmap de todo-app con horizontes
 
 ## Plan técnico
 
