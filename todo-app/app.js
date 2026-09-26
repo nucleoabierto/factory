@@ -224,11 +224,17 @@
     }
 
     // The 'main' view stays scoped to a list and hides tasks
-    // scheduled for later; the 'today' view crosses lists and
-    // admits only what is overdue or due on the reference day.
+    // scheduled for later; the 'today' view crosses live lists
+    // and admits only what is overdue or due on the reference
+    // day — an archived list is out of every view.
     visibleTasks(filter, listId, view = 'main', today = currentDay()) {
+      const archivedIds = new Set(
+        this.#lists.filter((l) => l.archived).map((l) => l.id));
       const scoped = view === 'today'
         ? this.#tasks.filter((t) => {
+            if (archivedIds.has(t.listId)) {
+              return false;
+            }
             const status = this.dateStatus(t.date, today);
             return status === 'overdue' || status === 'today';
           })

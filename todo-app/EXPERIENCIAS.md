@@ -64,3 +64,10 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Obtenido: el campo de fecha quedó siempre visible, rompiendo el patrón de la fila.
   Corrección: el usuario señaló que el campo no se oculta como el de mover o eliminar; se resolvió con visibility hidden por defecto y visible al hover o cuando la tarea tiene fecha.
   Estado: pendiente
+
+- Id: 20260926T125650
+  Tarea: docs/tasks/027-vista-hoy-y-listas-archivadas.md
+  Esperado: que las consultas de contexto de la tarea se limitaran a los artefactos del subproyecto todo-app.
+  Obtenido: al consultar decisiones de diseño se leyó el índice de la raíz del repositorio (factory-2/docs/decisions/) y se citaron decisiones raíz como aplicables.
+  Corrección: el usuario pidió mantenerse en el contexto del subproyecto, sin usar contexto de la raíz del repositorio.
+  Estado: pendiente

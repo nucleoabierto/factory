@@ -1542,6 +1542,48 @@
           assert.strictEqual(window.App.view, 'main',
             'the click switches back to main');
         });
+
+      QUnit.test('the today view excludes archived lists',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const live = window.App.addTask('Live today');
+          const parked = window.App.addTask('Parked overdue');
+          const done = window.App.addTask('Parked done');
+          window.App.setTaskDate(live.id, day(0));
+          window.App.setTaskDate(parked.id, day(-1));
+          window.App.setTaskDate(done.id, day(0));
+          window.App.toggleTask(done.id);
+          window.App.moveTask(parked.id, list.id);
+          window.App.moveTask(done.id, list.id);
+          window.App.archiveList(list.id);
+          window.App.setView('today');
+          assert.deepEqual(texts(), ['Live today'],
+            'only live lists feed the today view');
+          window.App.setFilter('completed');
+          assert.deepEqual(texts(), [],
+            'completed tasks of archived lists stay out too');
+          window.App.setFilter('all');
+          assert.strictEqual(window.App.pendingCount(), 1,
+            'the counter ignores pending tasks of archived lists');
+          window.App.setView('main');
+          assert.deepEqual(texts(), ['Live today'],
+            'the main view keeps showing the active list');
+        });
+
+      QUnit.test('reactivating a list brings its tasks back to today',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const parked = window.App.addTask('Parked today');
+          window.App.setTaskDate(parked.id, day(0));
+          window.App.moveTask(parked.id, list.id);
+          window.App.archiveList(list.id);
+          window.App.setView('today');
+          assert.deepEqual(texts(), [],
+            'the archived task is out while the list is parked');
+          window.App.unarchiveList(list.id);
+          assert.deepEqual(texts(), ['Parked today'],
+            'the task reappears in today once the list is live');
+        });
     });
   </script>
 </body>
