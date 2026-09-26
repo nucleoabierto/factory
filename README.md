@@ -61,6 +61,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | Skill | Qué hace |
 |-------|----------|
 | `documentar-guia-estilo` | Genera y mantiene la guía de estilo del proyecto evaluado (`DESIGN.md` como contrato + tokens CSS), en diálogo con el usuario o como sensor al cerrar tareas de frontend. |
+| `aplicar-guia-estilo` | Aplica la guía al escribir frontend —tokens antes que literales— y valida el cumplimiento con evidencia estática y renderizada. |
 
 **Calidad de escritura**
 
