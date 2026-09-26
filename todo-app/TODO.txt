@@ -30,6 +30,7 @@
 - [x] docs/tasks/028-decidir-modularizacion-scripts-clasicos.md — Registrar la decisión de modularizar con scripts clásicos
 - [x] docs/tasks/029-separar-app-js-en-archivos.md — Separar app.js en archivos por capa con scripts clásicos
 - [x] docs/tasks/030-reducir-repeticion-del-arnes-de-tests.md — Reducir la repetición del arnés de tests y dividir tests.html
+- [ ] docs/tasks/031-aplicar-guia-estilo-a-la-app.md — Aplicar la guía de estilo a la aplicación
 
 ## Hito 1: Aplicación de lista de tareas
 
