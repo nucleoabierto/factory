@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -46,8 +46,9 @@ Añadir al sub-flujo de desarrollo una fase previa a `planear-implementacion` qu
 ## Notas
 
 - Inspirado en `generar-brief-contexto` del proyecto hermano `../factory`, adaptado a la simplicidad de este proyecto.
+- Se optó por un skill propio (`recopilar-contexto`) frente a una fase acotada dentro de `desarrollo`: la recolección es una capacidad con entradas y salida propias —la sección `## Contexto`—, invocable también fuera del sub-flujo y reutilizable por `planear-implementacion` cuando se llama directamente; una fase interna la escondería dentro del orquestador y duplicaría su invocación. Sigue el patrón orquestador/especialistas ya aplicado en el sub-flujo.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-26 — Aprueba
+- Usuario: 2026-09-26 — Aprueba
