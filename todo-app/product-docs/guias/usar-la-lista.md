@@ -33,6 +33,10 @@ El botón ↓ aparca la lista activa: desaparece del selector pero conserva toda
 
 Cada tarea lleva un desplegable «Mover a…» con el resto de listas vivas. Elegir una la traslada al instante.
 
+## Repetir tareas
+
+Una tarea con fecha ofrece el desplegable «Repetir»: Semanal o Mensual. Al completar una tarea recurrente, la que marcaste queda hecha como registro —la verás en «Completadas» y «Limpiar completadas» la descarta como a cualquier otra— y aparece una copia pendiente con la próxima fecha: la semana siguiente, o el mismo día del mes siguiente (si ese día no existe, el último día del mes). Si la rutina quedó vencida, la copia salta hasta la primera fecha futura. Elegir «No repetir» o quitar la fecha devuelve la tarea a lo normal.
+
 ## Persistencia
 
 La aplicación guarda todo en el navegador al momento: tareas, listas, filtro elegido y lista activa. Al volver, todo está como se dejó. Si los datos guardados están corruptos o incompletos, la aplicación arranca limpia con la Entrada en lugar de fallar. El detalle del formato está en [Estado persistido](../referencia/estado-persistido.md).

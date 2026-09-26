@@ -12,6 +12,7 @@
   Todo.VIEW_KEY = 'todoapp-view';
   Todo.FILTERS = ['all', 'active', 'completed'];
   Todo.VIEWS = ['main', 'today'];
+  Todo.RECURS = ['weekly', 'monthly'];
   Todo.INBOX = { id: 'inbox', name: 'Entrada', archived: false };
 
   // Task dates are calendar days as ISO strings ('YYYY-MM-DD'):

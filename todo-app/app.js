@@ -48,8 +48,8 @@
         App.view === 'today' ? currentDay() : null);
     },
 
-    toggleTask(id) {
-      return taskList.toggleTask(id);
+    toggleTask(id, today) {
+      return taskList.toggleTask(id, today);
     },
 
     editTask(id, newText) {
@@ -159,6 +159,10 @@
       return taskList.clearTaskDate(id);
     },
 
+    setTaskRecur(id, recur) {
+      return taskList.setTaskRecur(id, recur);
+    },
+
     dateStatus(date, today) {
       return taskList.dateStatus(date, today);
     },
@@ -238,6 +242,7 @@
       moveTask: (id, listId) => App.moveTask(id, listId),
       setTaskDate: (id, date) => App.setTaskDate(id, date),
       clearTaskDate: (id) => App.clearTaskDate(id),
+      setTaskRecur: (id, recur) => App.setTaskRecur(id, recur),
       setActiveList: (id) => App.setActiveList(id),
       setFilter: (name) => App.setFilter(name),
       setView: (name) => App.setView(name),

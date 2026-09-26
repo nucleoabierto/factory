@@ -50,7 +50,10 @@
       // An emptied date field means removing the date.
       'set-task-date': (el, ev, actions) => el.value
         ? actions.setTaskDate(Number(el.dataset.id), el.value)
-        : actions.clearTaskDate(Number(el.dataset.id))
+        : actions.clearTaskDate(Number(el.dataset.id)),
+      // An emptied repeat field means a plain task again.
+      'set-task-recur': (el, ev, actions) =>
+        actions.setTaskRecur(Number(el.dataset.id), el.value || null)
     },
     keydown: {
       'add-task': (el, ev, actions) => {
@@ -159,6 +162,11 @@
         li.appendChild(toggle);
         li.appendChild(label);
         li.appendChild(due);
+        // Recurrence needs a date to repeat from: the control only
+        // exists while the task has one.
+        if (t.date) {
+          li.appendChild(recurSelect(doc, t));
+        }
         li.appendChild(moveSelect(doc, t));
         li.appendChild(destroy);
       }
@@ -168,6 +176,23 @@
     if (editing) {
       editing.focus();
     }
+  }
+
+  function recurSelect(doc, t) {
+    const recur = doc.createElement('select');
+    recur.className = 'recur';
+    recur.dataset.action = 'set-task-recur';
+    recur.dataset.id = t.id;
+    recur.setAttribute('aria-label', 'Repetir');
+    [['', 'No repetir'], ['weekly', 'Semanal'], ['monthly', 'Mensual']]
+      .forEach(([value, text]) => {
+        const option = doc.createElement('option');
+        option.value = value;
+        option.textContent = text;
+        option.selected = (t.recur || null) === (value || null);
+        recur.appendChild(option);
+      });
+    return recur;
   }
 
   function moveSelect(doc, t) {

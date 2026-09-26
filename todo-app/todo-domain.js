@@ -1,7 +1,7 @@
 ((global) => {
   'use strict';
 
-  const { INBOX, currentDay, isValidDate } = global.Todo;
+  const { INBOX, RECURS, currentDay, isValidDate } = global.Todo;
 
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
@@ -33,7 +33,7 @@
     // task object in it) can only change through the operations.
     #snapshot(task) {
       return { id: task.id, text: task.text, done: task.done,
-        listId: task.listId, date: task.date };
+        listId: task.listId, date: task.date, recur: task.recur };
     }
 
     lists() {
@@ -97,12 +97,18 @@
       const known = new Set(this.#lists.map((list) => list.id));
       // Data persisted before task dates lacks the field, and a
       // malformed date drops alone: the task survives either way.
+      // Recurrence is bound to the date: without a valid one, or with
+      // an unknown periodicity, it drops alone the same way.
       this.#tasks = tasks
         .filter(this.isValidTask)
         .filter((t) => !('listId' in t) || known.has(t.listId))
-        .map((t) => ({ id: t.id, text: t.text, done: t.done,
-          listId: 'listId' in t ? t.listId : INBOX.id,
-          date: isValidDate(t.date) ? t.date : null }));
+        .map((t) => {
+          const date = isValidDate(t.date) ? t.date : null;
+          return { id: t.id, text: t.text, done: t.done,
+            listId: 'listId' in t ? t.listId : INBOX.id,
+            date,
+            recur: date && RECURS.includes(t.recur) ? t.recur : null };
+        });
       this.#nextId = this.#tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;
     }
 
@@ -122,20 +128,56 @@
         return null;
       }
       const task = { id: this.#nextId++, text: clean, done: false, listId,
-        date: isValidDate(date) ? date : null };
+        date: isValidDate(date) ? date : null, recur: null };
       this.#tasks.push(task);
       this.#notify();
       return this.#snapshot(task);
     }
 
-    toggleTask(id) {
+    // Completing a recurring task leaves the completed one as the
+    // record of what was done and spawns a live copy — same text,
+    // list and recurrence — dated at the next occurrence.
+    toggleTask(id, today = currentDay()) {
       const task = this.#find(id);
       if (!task) {
         return null;
       }
       task.done = !task.done;
+      if (task.done && task.recur && task.date) {
+        const copy = { id: this.#nextId++, text: task.text,
+          done: false, listId: task.listId,
+          date: this.#nextOccurrence(task.date, task.recur, today),
+          recur: task.recur };
+        this.#tasks.push(copy);
+      }
       this.#notify();
       return this.#snapshot(task);
+    }
+
+    // The next occurrence is computed from the task's own date and
+    // advanced in steps until it lands strictly after the reference
+    // day, so an overdue recurring task resumes at its next future
+    // slot. Monthly keeps the day of month, clamping to the last
+    // day when the month is shorter ('2026-01-31' → '2026-02-28');
+    // each step starts from the resulting date.
+    #nextOccurrence(date, recur, today) {
+      let next = date;
+      while (next <= today) {
+        const [year, month, day] = next.split('-').map(Number);
+        let d;
+        if (recur === 'weekly') {
+          d = new Date(year, month - 1, day + 7);
+        } else {
+          d = new Date(year, month, day);
+          if (d.getDate() !== day) {
+            d.setDate(0);
+          }
+        }
+        const pad = (n) => String(n).padStart(2, '0');
+        next = `${d.getFullYear()}-${pad(d.getMonth() + 1)}` +
+          `-${pad(d.getDate())}`;
+      }
+      return next;
     }
 
     editTask(id, newText) {
@@ -178,6 +220,21 @@
         return null;
       }
       task.date = null;
+      // Recurrence requires a date: removing one removes the other.
+      task.recur = null;
+      this.#notify();
+      return this.#snapshot(task);
+    }
+
+    // Recurrence needs a date to repeat from: a task without one
+    // cannot be recurring. Pass null to make the task plain again.
+    setTaskRecur(id, recur) {
+      const task = this.#find(id);
+      if (!task || !task.date ||
+          (recur !== null && !RECURS.includes(recur))) {
+        return null;
+      }
+      task.recur = recur;
       this.#notify();
       return this.#snapshot(task);
     }

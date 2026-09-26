@@ -295,7 +295,7 @@
           assert.deepEqual(
             JSON.parse(localStorage.getItem('todoapp-tasks')).tasks,
             [{ id: 1, text: 'Stay', done: false, listId: 'inbox',
-              date: null }],
+              date: null, recur: null }],
             'the storage keeps only the pending task');
           window.App.reset();
           window.App.load();
@@ -1608,6 +1608,157 @@
           assert.strictEqual(task.date, null,
             'the main view keeps creating undated tasks');
           assert.deepEqual(TestKit.texts(), ['Plain capture']);
+        });
+    });
+
+    QUnit.module('recurring tasks', (hooks) => {
+      hooks.beforeEach(() => {
+        TestKit.resetApp();
+        TestKit.fixture(
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>
+          <a id="filter-completed" href="#/completed"
+             data-action="set-filter" data-filter="completed"></a>`);
+      });
+
+      QUnit.test('an undated task cannot be recurring', (assert) => {
+        const task = window.App.addTask('Undated');
+        assert.strictEqual(window.App.setTaskRecur(task.id, 'weekly'),
+          null, 'recurrence is rejected without a date');
+        assert.strictEqual(window.App.tasks[0].recur, null);
+      });
+
+      QUnit.test('completing a weekly task spawns next week\'s copy',
+        (assert) => {
+          const task = window.App.addTask('Water plants');
+          window.App.setTaskDate(task.id, TestKit.day(0));
+          window.App.setTaskRecur(task.id, 'weekly');
+          window.App.toggleTask(task.id, TestKit.day(0));
+          assert.true(window.App.tasks.find((t) => t.id === task.id).done,
+            'the original stays completed as the record');
+          const copy = window.App.tasks
+            .find((t) => t.id !== task.id);
+          assert.strictEqual(copy.done, false, 'the copy is pending');
+          assert.strictEqual(copy.date, TestKit.day(7),
+            'the copy is dated one week later');
+          assert.strictEqual(copy.text, 'Water plants');
+          assert.strictEqual(copy.listId, 'inbox');
+          assert.strictEqual(copy.recur, 'weekly',
+            'the copy keeps the recurrence');
+        });
+
+      QUnit.test('completing a monthly task keeps the day of month',
+        (assert) => {
+          const task = window.App.addTask('Rent');
+          window.App.setTaskDate(task.id, '2026-03-15');
+          window.App.setTaskRecur(task.id, 'monthly');
+          window.App.toggleTask(task.id, '2026-03-15');
+          const copy = window.App.tasks.find((t) => t.id !== task.id);
+          assert.strictEqual(copy.date, '2026-04-15');
+        });
+
+      QUnit.test('a monthly occurrence clamps to a shorter month',
+        (assert) => {
+          const task = window.App.addTask('Month end');
+          window.App.setTaskDate(task.id, '2026-01-31');
+          window.App.setTaskRecur(task.id, 'monthly');
+          window.App.toggleTask(task.id, '2026-01-31');
+          const copy = window.App.tasks.find((t) => t.id !== task.id);
+          assert.strictEqual(copy.date, '2026-02-28',
+            'January 31 repeats on February\'s last day');
+        });
+
+      QUnit.test('an overdue recurring task resumes at the next future slot',
+        (assert) => {
+          const task = window.App.addTask('Overdue weekly');
+          window.App.setTaskDate(task.id, TestKit.day(-10));
+          window.App.setTaskRecur(task.id, 'weekly');
+          window.App.toggleTask(task.id, TestKit.day(0));
+          const copy = window.App.tasks.find((t) => t.id !== task.id);
+          assert.strictEqual(copy.date, TestKit.day(4),
+            'steps skip past dates until the first future slot');
+        });
+
+      QUnit.test('the completed record is cleanable, the copy never done',
+        (assert) => {
+          const task = window.App.addTask('Recurring');
+          window.App.setTaskDate(task.id, TestKit.day(0));
+          window.App.setTaskRecur(task.id, 'weekly');
+          window.App.toggleTask(task.id, TestKit.day(0));
+          window.App.setFilter('completed');
+          assert.deepEqual(TestKit.texts(), ['Recurring'],
+            'the record shows under the completed filter');
+          window.App.clearCompleted();
+          assert.strictEqual(window.App.tasks.length, 1,
+            'clearing removes the record, not the live copy');
+          assert.false(window.App.tasks[0].done,
+            'the live copy stays pending');
+        });
+
+      QUnit.test('removing the date drops the recurrence too', (assert) => {
+        const task = window.App.addTask('Dated');
+        window.App.setTaskDate(task.id, TestKit.day(0));
+        window.App.setTaskRecur(task.id, 'weekly');
+        window.App.clearTaskDate(task.id);
+        assert.strictEqual(window.App.tasks[0].recur, null,
+          'no date means no recurrence');
+        window.App.toggleTask(task.id);
+        assert.strictEqual(window.App.tasks.length, 1,
+          'the task then behaves like a plain one');
+      });
+
+      QUnit.test('removing the recurrence restores plain completion',
+        (assert) => {
+          const task = window.App.addTask('Once');
+          window.App.setTaskDate(task.id, TestKit.day(0));
+          window.App.setTaskRecur(task.id, 'weekly');
+          window.App.setTaskRecur(task.id, null);
+          window.App.toggleTask(task.id);
+          assert.true(window.App.tasks[0].done);
+          assert.strictEqual(window.App.tasks.length, 1,
+            'no copy is spawned without recurrence');
+        });
+
+      QUnit.test('recurrence survives a reload and bad values drop alone',
+        (assert) => {
+          const task = window.App.addTask('Weekly');
+          window.App.setTaskDate(task.id, TestKit.day(0));
+          window.App.setTaskRecur(task.id, 'weekly');
+          window.App.load();
+          assert.strictEqual(window.App.tasks[0].recur, 'weekly',
+            'a valid recurrence persists');
+          const stored = JSON.parse(localStorage.getItem('todoapp-tasks'));
+          stored.tasks[0].recur = 'fortnightly';
+          localStorage.setItem('todoapp-tasks', JSON.stringify(stored));
+          window.App.load();
+          assert.strictEqual(window.App.tasks[0].recur, null,
+            'an unknown periodicity drops without losing the task');
+          assert.strictEqual(window.App.tasks[0].text, 'Weekly');
+          stored.tasks[0].recur = 'weekly';
+          stored.tasks[0].date = null;
+          localStorage.setItem('todoapp-tasks', JSON.stringify(stored));
+          window.App.load();
+          assert.strictEqual(window.App.tasks[0].recur, null,
+            'a recurrence without a date drops without losing the task');
+        });
+
+      QUnit.test('the repeat selector exists only on dated tasks',
+        (assert) => {
+          const plain = window.App.addTask('Plain');
+          const dated = window.App.addTask('Dated');
+          window.App.setTaskDate(dated.id, TestKit.day(0));
+          const rows = document.querySelectorAll('#todo-list li');
+          assert.strictEqual(
+            rows[0].querySelector('select.recur'), null,
+            'an undated task shows no repeat control');
+          const select = rows[1].querySelector('select.recur');
+          assert.ok(select, 'a dated task offers the repeat control');
+          window.App.setTaskRecur(dated.id, 'monthly');
+          assert.strictEqual(
+            document.querySelector('#todo-list li:nth-child(2) select.recur')
+              .value, 'monthly',
+            'the control reflects the recurrence');
         });
     });
   </script>

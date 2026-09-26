@@ -11,6 +11,7 @@ todo-app es una lista de tareas que funciona en el navegador, sin instalación n
   - [Listas](funcionalidades/002-listas.md) — crear, renombrar, eliminar, mover tareas y lista activa
   - [Archivar listas](funcionalidades/003-archivar-listas.md) — aparcar y reactivar listas sin perder contenido
   - [Vista «hoy» y programación](funcionalidades/004-vista-hoy.md) — lo futuro oculto de la vista principal y la consulta acotada a la jornada
+  - [Tareas recurrentes](funcionalidades/005-tareas-recurrentes.md) — periodicidad semanal o mensual que regenera la aparición al completar
 - **Referencia**
   - [Estado persistido](referencia/estado-persistido.md) — qué guarda la aplicación en el navegador y en qué formato
 

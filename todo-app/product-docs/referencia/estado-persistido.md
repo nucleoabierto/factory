@@ -19,7 +19,7 @@ Todo el estado de todo-app vive en `localStorage` del navegador, bajo cuatro cla
   ],
   "tasks": [
     { "id": 1, "text": "Comprar pan", "done": false, "listId": "list-1",
-      "date": null }
+      "date": null, "recur": null }
   ]
 }
 ```
@@ -29,6 +29,7 @@ Todo el estado de todo-app vive en `localStorage` del navegador, bajo cuatro cla
 - `archived`: booleano; las listas guardadas antes de existir el archivado carecen del campo y cargan como vivas.
 - `listId`: identificador de la lista a la que pertenece la tarea.
 - `date`: día de la tarea como cadena ISO `YYYY-MM-DD`, o `null` si no tiene; las tareas guardadas antes de existir la fecha carecen del campo y cargan sin ella.
+- `recur`: periodicidad de la tarea —`weekly` o `monthly`—, o `null` si no se repite; solo es válida junto a una `date` válida y las tareas anteriores a la recurrencia carecen del campo.
 
 ## Tolerancia y migración
 
@@ -38,6 +39,7 @@ Al cargar se aplican estas reglas:
 - Solo entran tareas con la forma válida (`id` numérico, `text` no vacío, `done` booleano) y listas válidas con identificadores únicos; las duplicadas colapsan a la primera.
 - Una tarea cuya `listId` apunta a una lista inexistente se descarta; una tarea sin `listId` va a la Entrada.
 - Una `date` malformada se descarta sola: la tarea se conserva sin fecha.
+- Un `recur` desconocido, o uno sin `date` válida, se descarta solo: la tarea se conserva sin repetición.
 - Si los datos no contienen la Entrada, se recrea.
 - El formato antiguo —un array plano de tareas— se migra: todas sus tareas pasan a la Entrada y el siguiente guardado escribe ya el formato `{lists, tasks}`.
 
