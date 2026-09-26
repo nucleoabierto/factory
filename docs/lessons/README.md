@@ -15,8 +15,8 @@
   - Disparadores: prueba de concepto, validación, tareas sin datos de entrada, semilla de prueba, escenario de validación, estímulo
   - Resumen: Diseñar el estímulo de la prueba con objetivo y restricciones —y datos sintéticos si falta información— sin revelar el procedimiento esperado.
 - estabilidad-temporal.md
-  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial, commits, citas, referencias
-  - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre o hash, describir las reglas inline y no editar retroactivamente los documentos de entrada.
+  - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial, commits
+  - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre o hash y no editar retroactivamente los documentos de entrada.
 - flexibilidad-en-procesos.md
   - Disparadores: skills, SKILL.md, categorías, taxonomía, lista de opciones, forma de solución
   - Resumen: Declarar las listas de categorías de los skills como abiertas y extensibles para no volver rígidos los procesos.
@@ -36,8 +36,8 @@
   - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice
   - Resumen: Nombrar directorios y artefactos por el tipo específico de contenido que almacenan, no por la operación genérica.
 - contratos-de-skills.md
-  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, subagente, delegar, delegación, checklist
-  - Resumen: El contrato que un skill declara va a nivel de resultado —la description habla de capacidad, no de mecánica; la delegación devuelve explicación + archivos y el ejecutor decide revisar o confiar.
+  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, subagente, delegar, delegación, checklist, referencia a decisión, citas, reglas inline
+  - Resumen: El contrato que un skill declara va a nivel de resultado —la description habla de capacidad, no de mecánica; las reglas van inline y la delegación devuelve explicación + archivos y el ejecutor decide revisar o confiar.
 - diseno-de-artefactos.md
   - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla
   - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión y la tecnología del producto validado es dato de entrada, no parte del concepto.

@@ -138,4 +138,4 @@
   Esperado: la `description` del front-matter declara la capacidad y el resultado del skill, sin narrar la mecánica interna.
   Obtenido: la descripción de `consultar-decisiones` narraba el procedimiento («dada una descripción… busca los disparadores… trae las decisiones»), heredando el patrón de `consultar-lecciones`.
   Corrección: la descripción describe la funcionalidad («recupera las decisiones vigentes que rigen un trabajo… para que el trabajo las respete»); el mecanismo de índice y disparadores vive en el cuerpo del skill.
-  Estado: pendiente
+  Estado: consolidada
