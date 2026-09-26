@@ -18,5 +18,5 @@
 ## General
 
 - [x] docs/tasks/097-investigar-guias-estilo-frontend.md — Investigar guías de estilo de diseño para agentes IA
-- [ ] docs/tasks/098-skill-documentar-guia-estilo.md — Crear el skill documentar-guia-estilo
+- [x] docs/tasks/098-skill-documentar-guia-estilo.md — Crear el skill documentar-guia-estilo
 - [ ] docs/tasks/099-skill-aplicar-guia-estilo.md — Crear el skill aplicar-guia-estilo

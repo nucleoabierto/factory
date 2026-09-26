@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -47,8 +47,9 @@ Crear el skill `documentar-guia-estilo`: genera la guía de estilo de diseño de
 ## Notas
 
 - La categorización del skill en el README es abierta; puede crear su propio grupo («Diseño») o alojarse junto a la salud del dominio y del producto, según quede más claro.
+- Corrección del usuario en revisión: el skill debe admitir un modo interactivo en el que la guía se define o actualiza por diálogo con el usuario, no solo a partir del código —las decisiones de diseño pueden decidirse en discusión y aplicarse después; sin ese modo todo el diseño queda en manos de la ejecución—. Incorporado al skill: modo interactivo, creación por extracción y mantenimiento sensor como tres entradas combinables.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-26 — Aprueba
+- Usuario: 2026-09-26 — Solicita cambios (añadir modo interactivo de definición/actualización por diálogo) → incorporado; description reescrita a nivel de capacidad → Aprueba

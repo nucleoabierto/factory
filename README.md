@@ -56,6 +56,12 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `documentar-producto` | Mantiene la documentación de producto del proyecto evaluado tras cada tarea de desarrollo, con escenarios anclados a su suite de pruebas. |
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
 
+**Diseño**
+
+| Skill | Qué hace |
+|-------|----------|
+| `documentar-guia-estilo` | Genera y mantiene la guía de estilo del proyecto evaluado (`DESIGN.md` como contrato + tokens CSS), en diálogo con el usuario o como sensor al cerrar tareas de frontend. |
+
 **Calidad de escritura**
 
 | Skill | Qué hace |

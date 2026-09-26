@@ -146,3 +146,10 @@
   Obtenido: el documento llamó `generar-guia-estilo` al skill, nombre acoplado al acto inicial de generar que no refleja el mantenimiento posterior.
   Corrección: el usuario señaló que «generar» se confunde con el propósito amplio; el skill se renombró `documentar-guia-estilo`, simétrico a `documentar-dominio`. Un skill que crea y mantiene un artefacto vivo debe nombrarse por el artefacto mantenido, no por la acción inicial.
   Estado: pendiente
+
+- Id: 20260926T135837
+  Tarea: docs/tasks/098-skill-documentar-guia-estilo.md
+  Esperado: que un skill de «documentar» un artefacto vivo admita definir o actualizar el artefacto en diálogo con el usuario, no solo a partir del código o del diff.
+  Obtenido: `documentar-guia-estilo` solo contemplaba crear la guía por extracción del código y mantenerla como sensor; toda decisión de diseño quedaba subordinada a la ejecución.
+  Corrección: los skills que mantienen artefactos decididos por humanos deben incluir un modo interactivo —primero se decide en discusión, después se materializa—; la ejecución consume la decisión, no la sustituye.
+  Estado: pendiente
