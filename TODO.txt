@@ -47,7 +47,7 @@
 - [x] docs/tasks/092-lista-control-subflujo-desarrollo.md — Lista de control de ejecución en el sub-flujo de desarrollo
 - [x] docs/tasks/093-descripcion-capacidad-consultar-lecciones.md — Descripción a nivel de capacidad en consultar-lecciones
 - [x] docs/tasks/094-actualizar-readme-skills.md — Actualizar el README con los skills del sub-flujo de desarrollo
-- [ ] docs/tasks/095-anotar-letra-zombie-en-suites.md — Declarar la letra ZOMBIE en las suites de pruebas
+- [x] docs/tasks/095-anotar-letra-zombie-en-suites.md — Declarar la letra ZOMBIE en las suites de pruebas
 - [x] docs/tasks/096-revision-implementacion-sin-diff-pasado.md — Revisión de implementación sin diff pasado al subagente
 
 ## Hito 6: Mantenimiento del sistema

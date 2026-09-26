@@ -121,3 +121,7 @@
   - Disparadores: roadmap, horizontes, Now, Next, Later, No ahora, ROADMAP.md, líneas comprometidas
   - Resumen: `ROADMAP.md` organiza las líneas en horizontes de confianza —Now, Next, Later y No ahora—; `TODO.txt` refleja solo los horizontes comprometidos y una propuesta `[p]` no entra al roadmap hasta aprobarse y planificarse.
   - Estado: Aceptada
+- D028-letra-zombie-declarada-en-suite.md
+  - Disparadores: ZOMBIE, suite de pruebas, planear-implementacion, expectativa, anotación, casos de prueba
+  - Resumen: Cada expectativa de la `## Suite de pruebas esperada` declara la letra ZOMBIE que la derivó cuando aplica —las de regresión o arnés no— y la convención aplica solo hacia adelante sin reanotar suites históricas.
+  - Estado: Aceptada

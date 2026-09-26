@@ -4,7 +4,7 @@ description: >
   Produce el plan de una tarea de desarrollo antes de escribir
   código: entendimiento del subsistema afectado, plan técnico
   conceptual con storytelling y suite de pruebas esperada guiada
-  internamente por ZOMBIE.
+  por ZOMBIE con su letra declarada por expectativa.
   Usar al ejecutar una tarea de tipo desarrollo o mantenimiento
   (refactoring), invocado por el skill especialista del sub-flujo
   de desarrollo o directamente, cuando hay que planear la
@@ -44,7 +44,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
       - Aporta: la persistencia tolera corrupción sin conocer la forma; la validación es del modelo
       - Contexto: la validación de forma vive en `isValidTask`; no duplicarla en la capa de almacenamiento
     ```
-  - `## Suite de pruebas esperada`: las expectativas sobre lo que el sistema hace, cada una trazable a un caso de uso.
+  - `## Suite de pruebas esperada`: las expectativas sobre lo que el sistema hace, cada una trazable a un caso de uso y anotada con la letra ZOMBIE que la derivó cuando aplica.
 
 ## Principios rectores
 
@@ -55,7 +55,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 5. **Contexto declarado, no derivable:** el resumen del subsistema es el contexto general común a todas las acciones; el `Contexto:` de un ítem registra solo lo que la planeación descubrió y el ejecutor no puede inferir —un archivo hermano a imitar, una decisión tomada, una dependencia de orden entre acciones. Si la acción no lo necesita, el campo no se escribe.
 6. **Acciones como unidades delegables:** la checklist hace visible el avance y permite que `ejecutar-implementacion` delegue ítems a subagentes; cada acción se formula como una unidad de trabajo comprensible por sí misma, apoyada en el contexto general y en su `Contexto:` propio.
 7. **Las pruebas describen el qué, no el cómo:** la suite expresa expectativas sobre el comportamiento del sistema ante estímulos, ancladas en casos de uso, no en la implementación. Una prueba sin caso de uso asociado es de baja calidad.
-8. **ZOMBIE es guía de generación, no taxonomía:** el acrónimo (*zero, one, many, boundary, interface, exception*) sirve para rebanar el problema y descubrir casos, de forma parcialmente secuencial; la suite resultante no declara su relación con ZOMBIE ni con la implementación.
+8. **ZOMBIE es guía de generación, no taxonomía:** el acrónimo (*zero, one, many, boundary, interface, exception*) sirve para rebanar el problema y descubrir casos, de forma parcialmente secuencial; la suite declara qué letra derivó cada expectativa cuando aplica —la cobertura de los ejes queda visible— pero sigue sin acoplarse a la implementación.
 
 ## Procedimiento
 
@@ -76,7 +76,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 8. **Extraer los casos de uso** del objetivo y los criterios de calidad de la tarea.
 9. **Generar casos con ZOMBIE como guía interna:** para cada comportamiento, recorrer el eje de progresión (*zero, one, many*) y el de bordes (*boundary, interface, exception*), empezando por el caso más simple y actualizando la lista de forma iterativa.
-10. **Expresar cada caso como expectativa de comportamiento:** qué hace el sistema ante qué estímulo, con el resultado observable; sin nombrar funciones, clases ni detalles internos, y sin declarar su relación con ZOMBIE.
+10. **Expresar cada caso como expectativa de comportamiento:** qué hace el sistema ante qué estímulo, con el resultado observable; sin nombrar funciones, clases ni detalles internos. La expectativa termina con la letra ZOMBIE que la derivó entre paréntesis —`(Z)`, `(O)`, `(M)`, `(B)`, `(I)` o `(E)`— cuando un parámetro ZOMBIE aplicó de verdad; las pruebas de regresión o de arnés van sin anotar.
 11. **Trazar cada prueba a su caso de uso:** cada expectativa indica de qué caso de uso deriva; si una prueba no encuentra anclaje, se descarta o se plantea el caso de uso que falta.
 
 ### 4. Puerta humana
