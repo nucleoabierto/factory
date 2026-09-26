@@ -13,7 +13,7 @@ description: >
 
 # Revisar implementación
 
-Instrucciones para que un agente someta la implementación de una tarea de desarrollo a revisión técnica por un subagente independiente. El revisor arranca con contexto aislado —recibe el diff y el archivo de la tarea, no el razonamiento del ejecutor—, con un rol explícitamente adversarial: verifica los criterios de calidad y la consistencia del diff con las convenciones del proyecto y con los archivos hermanos o de funcionalidad similar, y produce un informe con veredicto.
+Instrucciones para que un agente someta la implementación de una tarea de desarrollo a revisión técnica por un subagente independiente. El revisor arranca con contexto aislado —recibe el archivo de la tarea y dónde están los cambios, no el razonamiento del ejecutor— y reconstruye el diff por sí mismo desde git, con un rol explícitamente adversarial: verifica los criterios de calidad y la consistencia del diff con las convenciones del proyecto y con los archivos hermanos o de funcionalidad similar, y produce un informe con veredicto.
 
 ## Cuándo usar
 
@@ -27,8 +27,8 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
 
 ## Entrada
 
-- El diff de los cambios (`git diff`, incluidos los archivos nuevos).
-- El archivo de la tarea (`docs/tasks/NNN-slug.md`): objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo —`## Plan técnico`, `## Suite de pruebas esperada` y `## Desviaciones del plan`—, que son el objeto de la verificación nominal cuando existen.
+- La ubicación de los cambios de la tarea: árbol de trabajo sin commitear (`git status` y `git diff`, incluidos los archivos nuevos) o el rango de commits de la tarea si ya están commiteados.
+- El archivo de la tarea (`docs/tasks/NNN-slug.md`): objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo —`## Contexto`, `## Conectividad`, `## Plan técnico`, `## Suite de pruebas esperada` y `## Desviaciones del plan`—, que son el objeto de la verificación nominal cuando existen.
 - El código base del subsistema afectado, para la comparación con archivos hermanos.
 
 ## Salida
@@ -45,14 +45,15 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
 
 ## Procedimiento
 
-### 1. Preparar el paquete de revisión
+### 1. Preparar el encargo
 
-1. **Reunir el diff** de los cambios de la tarea, incluidos los archivos nuevos.
-2. **Reunir el archivo de la tarea** con su objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo que existan (plan técnico, suite, desviaciones).
+1. **Determinar dónde están los cambios** de la tarea: si están sin commitear, el árbol de trabajo (`git status`, `git diff`); si ya están commiteados, el rango de commits de la tarea por sus hashes. Esa ubicación —no el contenido del diff— es lo que se pasa al revisor.
+2. **Reunir el archivo de la tarea** con su objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo que existan (contexto, conectividad, plan técnico, suite, desviaciones).
 
 ### 2. Lanzar el revisor independiente
 
-3. **Lanzar un subagente de contexto aislado** que recibe únicamente el diff y el archivo de la tarea, sin el razonamiento del ejecutor. Su encargo:
+3. **Lanzar un subagente de contexto aislado** que recibe únicamente el archivo de la tarea y la ubicación de los cambios, sin el razonamiento del ejecutor. Su encargo:
+   - **Obtener el diff por sí mismo** con git a partir de la ubicación indicada, incluidos los archivos nuevos.
    - **Verificar cada criterio de calidad** del archivo de tarea contra el diff.
    - **Revisar la consistencia con el código base:** leer al menos los archivos hermanos o de funcionalidad similar relevantes y comprobar que el diff sigue los patrones vigentes (estructura, nombrado, manejo de errores, estilo).
    - **Revisar las reglas declaradas del proyecto** que apliquen al cambio.
