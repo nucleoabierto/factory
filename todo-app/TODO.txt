@@ -27,8 +27,9 @@
 - [x] docs/tasks/027-vista-hoy-y-listas-archivadas.md — La vista «hoy» y las listas archivadas
 - [ ] docs/tasks/025-limpiar-completadas-en-vista-hoy.md — Limpiar completadas coherente con la vista activa
 - [ ] docs/tasks/026-crear-tarea-en-vista-hoy.md — La tarea creada desde la vista «hoy» no desaparece al crearla
-- [ ] docs/tasks/028-decidir-modularizacion-scripts-clasicos.md — Registrar la decisión de modularizar con scripts clásicos
+- [x] docs/tasks/028-decidir-modularizacion-scripts-clasicos.md — Registrar la decisión de modularizar con scripts clásicos
 - [ ] docs/tasks/029-separar-app-js-en-archivos.md — Separar app.js en archivos por capa con scripts clásicos
+  - Bloqueada por: docs/tasks/028-decidir-modularizacion-scripts-clasicos.md
 - [x] docs/tasks/030-reducir-repeticion-del-arnes-de-tests.md — Reducir la repetición del arnés de tests y dividir tests.html
 
 ## Hito 1: Aplicación de lista de tareas

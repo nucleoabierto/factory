@@ -23,7 +23,7 @@
 - **Restricciones:** vanilla JS sin build; la app se abre como `index.html` sobre `file://`, donde los ES modules no cargan (CORS del navegador). Dividir exige scripts clásicos que comparten un namespace global —lo que debilita la encapsulación que hoy da el scope único— o aceptar servir la app con un servidor local, lo que contradice la forma de uso declarada. Es una disyuntiva de diseño, no una corrección directa.
 - **Validación:** `index.html` sigue funcionando abierto como archivo; la suite pasa en verde; cada capa vive en su propio archivo o se decide conscientemente mantener el archivo único.
 - **Confianza:** media — el tamaño no es problema hoy; lo será si las capas siguen creciendo.
-- **Derivado en:** `docs/tasks/028-decidir-modularizacion-scripts-clasicos.md` (registrar la decisión: scripts clásicos), `docs/tasks/029-separar-app-js-en-archivos.md` (ejecutar la separación)
+- **Derivado en:** `docs/decisions/D001-division-app-js-scripts-clasicos.md` (decisión registrada por la tarea 028), `docs/tasks/029-separar-app-js-en-archivos.md` (ejecutar la separación)
 
 ### H2 — Repetición del arnés de pruebas
 
