@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -43,5 +43,5 @@ Actualizar el README raíz para que las tablas de skills reflejen las capacidade
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-26 — Aprueba
+- Usuario: 2026-09-26 — Aprueba
