@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -49,5 +49,5 @@ Extender `planificar-roadmap` y la plantilla `assets/roadmap.md` para que el roa
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-30 — Aprueba (observación menor: el frontmatter no declaraba el reflejo parcial; corregida en la misma revisión)
+- Usuario: 2026-09-30 — Aprueba

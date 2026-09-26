@@ -22,7 +22,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `refinar-propuesta` | Descompone la solución validada en borradores de tarea y los envía a revisión asíncrona. |
 | `crear-tareas` | Crea tareas desde una solicitud articulada o promociona los borradores de una propuesta aprobada. |
 | `planificar` | Produce la épica de un conjunto de trabajo y refleja su agrupación en `TODO.txt`; cierra la planeación del flujo. |
-| `planificar-roadmap` | Ordena las líneas de trabajo del producto —épicas, hitos y tareas sueltas— en `ROADMAP.md` y refleja el orden en `TODO.txt`. |
+| `planificar-roadmap` | Organiza las líneas de trabajo del producto —épicas, hitos y tareas sueltas— en `ROADMAP.md` por horizontes Now/Next/Later y refleja los comprometidos en `TODO.txt`. |
 
 **Ejecución y cierre**
 
