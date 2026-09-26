@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -47,8 +47,9 @@ Añadir al sub-flujo de desarrollo un gate de conectividad técnica entre la rec
 ## Notas
 
 - Adaptación ligera de `evaluar-conectividad-tecnica` de `../factory`: allí vive en el track de descubrimiento con assessments y roadmaps puente; aquí es un veredicto dentro de la ejecución de una tarea ya creada.
+- El gate se implementa como skill propio (`evaluar-conectividad`), por la misma razón que `recopilar-contexto` en la tarea 090: capacidad con entrada y salida propias —la sección `## Conectividad`— invocable también fuera del sub-flujo; `desarrollo` se mantiene como orquestador que decide si el flujo continúa según el veredicto, sin contener la lógica de evaluación.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-26 — Aprueba
+- Usuario: 2026-09-26 — Aprueba
