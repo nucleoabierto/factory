@@ -139,3 +139,10 @@
   Obtenido: la descripción de `consultar-decisiones` narraba el procedimiento («dada una descripción… busca los disparadores… trae las decisiones»), heredando el patrón de `consultar-lecciones`.
   Corrección: la descripción describe la funcionalidad («recupera las decisiones vigentes que rigen un trabajo… para que el trabajo las respete»); el mecanismo de índice y disparadores vive en el cuerpo del skill.
   Estado: consolidada
+
+- Id: 20260926T134312
+  Tarea: docs/tasks/097-investigar-guias-estilo-frontend.md
+  Esperado: que el nombre propuesto para un skill describa su capacidad completa — generar y mantener viva la guía de estilo.
+  Obtenido: el documento llamó `generar-guia-estilo` al skill, nombre acoplado al acto inicial de generar que no refleja el mantenimiento posterior.
+  Corrección: el usuario señaló que «generar» se confunde con el propósito amplio; el skill se renombró `documentar-guia-estilo`, simétrico a `documentar-dominio`. Un skill que crea y mantiene un artefacto vivo debe nombrarse por el artefacto mantenido, no por la acción inicial.
+  Estado: pendiente

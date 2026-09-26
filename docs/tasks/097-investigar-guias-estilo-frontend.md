@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -48,5 +48,5 @@ Recopilar y sintetizar las mejores prácticas para que agentes IA trabajen con g
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-26 — Solicita cambios (referencia huérfana, vocabulario «gatean», atribución ambigua) → corregido
+- Usuario: 2026-09-26 — Aprueba (con corrección: el skill generador se renombra a `documentar-guia-estilo` para reflejar que mantiene, no solo genera)

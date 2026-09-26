@@ -17,4 +17,4 @@
 
 ## General
 
-- [ ] docs/tasks/097-investigar-guias-estilo-frontend.md — Investigar guías de estilo de diseño para agentes IA
+- [x] docs/tasks/097-investigar-guias-estilo-frontend.md — Investigar guías de estilo de diseño para agentes IA
