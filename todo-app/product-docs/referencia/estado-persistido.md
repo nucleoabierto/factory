@@ -43,4 +43,4 @@ Al cargar se aplican estas reglas:
 
 ## Dónde vive la lógica
 
-La lectura y escritura están en el objeto `Storage` de `app.js` (las tres claves y la tolerancia a errores); la validación de forma y la migración están en `TaskList.load` e `isValidTask`/`isValidList`. Las invariantes del modelo están en el documento de dominio `docs/domains/001-lista-de-tareas.md`.
+La lectura y escritura están en el objeto `Storage` de `todo-storage.js` (las claves y la tolerancia a errores); la validación de forma y la migración están en `TaskList.load` e `isValidTask`/`isValidList` de `todo-domain.js`. Las invariantes del modelo están en el documento de dominio `docs/domains/001-lista-de-tareas.md`.
