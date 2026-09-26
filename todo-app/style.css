@@ -210,7 +210,8 @@ body {
   border-top: 1px solid #e6e6e6;
 }
 
-.filters {
+.filters,
+.views {
   display: flex;
   gap: 8px;
   list-style: none;
@@ -218,7 +219,8 @@ body {
   padding: 0;
 }
 
-.filters a {
+.filters a,
+.views a {
   color: inherit;
   text-decoration: none;
   padding: 3px 7px;
@@ -226,11 +228,13 @@ body {
   border-radius: 3px;
 }
 
-.filters a:hover {
+.filters a:hover,
+.views a:hover {
   border-color: #b83f45;
 }
 
-.filters a.selected {
+.filters a.selected,
+.views a.selected {
   border-color: #b83f45;
 }
 

@@ -1284,23 +1284,23 @@
       QUnit.test('the date control assigns and persists the date',
         (assert) => {
           window.App.addTask('Fechable');
-          changeDate(day(3));
-          assert.strictEqual(window.App.tasks[0].date, day(3),
+          changeDate(day(0));
+          assert.strictEqual(window.App.tasks[0].date, day(0),
             'the task carries the chosen day');
-          assert.strictEqual(dueInput().value, day(3),
+          assert.strictEqual(dueInput().value, day(0),
             'the re-rendered control shows the date');
           window.App.reset();
           window.App.load();
-          assert.strictEqual(window.App.tasks[0].date, day(3),
+          assert.strictEqual(window.App.tasks[0].date, day(0),
             'the date persists across reloads');
         });
 
       QUnit.test('the date control changes and removes the date',
         (assert) => {
           window.App.addTask('Modificable');
-          changeDate(day(1));
-          changeDate(day(4));
-          assert.strictEqual(window.App.tasks[0].date, day(4),
+          changeDate(day(-1));
+          changeDate(day(0));
+          assert.strictEqual(window.App.tasks[0].date, day(0),
             'the new value replaces the old');
           changeDate('');
           assert.strictEqual(window.App.tasks[0].date, null,
@@ -1315,7 +1315,6 @@
         (assert) => {
           window.App.addTask('Vencida');
           window.App.addTask('De hoy');
-          window.App.addTask('Futura');
           const rows = () =>
             [...document.querySelectorAll('#todo-list li')];
           const controls = () =>
@@ -1327,13 +1326,32 @@
           };
           pick(0, day(-1));
           pick(1, day(0));
-          pick(2, day(2));
           assert.true(rows()[0].classList.contains('due-overdue'),
             'the overdue task is marked');
           assert.true(rows()[1].classList.contains('due-today'),
             'the today task is marked');
-          assert.true(rows()[2].classList.contains('due-future'),
-            'the future task is marked');
+        });
+
+      QUnit.test('a future task renders with its class in the view-model',
+        (assert) => {
+          window.UI.render({
+            tasks: [{ id: 1, text: 'Futura', done: false,
+              listId: 'inbox', date: day(2), dateStatus: 'future',
+              moveTargets: [] }],
+            navigableLists: [
+              { id: 'inbox', name: 'Entrada', pendingCount: 0 }
+            ],
+            archivedLists: [],
+            activeListId: 'inbox',
+            filter: 'all',
+            view: 'main',
+            editingId: null,
+            pendingCount: 0
+          });
+          assert.true(
+            document.querySelector('#todo-list li')
+              .classList.contains('due-future'),
+            'the future status renders as its class');
         });
 
       QUnit.test('undated items carry no temporal class', (assert) => {
@@ -1347,7 +1365,7 @@
       QUnit.test('text editing still works alongside the date control',
         (assert) => {
           const task = window.App.addTask('Editable');
-          window.App.setTaskDate(task.id, day(1));
+          window.App.setTaskDate(task.id, day(0));
           document.querySelector('#todo-list li label')
             .dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
           const editInput =
@@ -1358,8 +1376,171 @@
             { key: 'Enter', bubbles: true }));
           assert.strictEqual(window.App.tasks[0].text, 'Renombrada',
             'the text edit is applied');
-          assert.strictEqual(window.App.tasks[0].date, day(1),
+          assert.strictEqual(window.App.tasks[0].date, day(0),
             'the date survives the text edit');
+        });
+    });
+
+    QUnit.module('views: main and today', (hooks) => {
+      hooks.beforeEach(() => {
+        localStorage.removeItem('todoapp-tasks');
+        localStorage.removeItem('todoapp-filter');
+        localStorage.removeItem('todoapp-active-list');
+        localStorage.removeItem('todoapp-view');
+        window.App.reset();
+        window.App.initialized = false;
+        window.App.editingId = null;
+        window.App.filter = 'all';
+        window.App.view = 'main';
+        const fixture = document.getElementById('qunit-fixture');
+        fixture.innerHTML =
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>
+          <a id="view-main" href="#/main" data-action="set-view"
+             data-view="main">Lista</a>
+          <a id="view-today" href="#/today" data-action="set-view"
+             data-view="today">Hoy</a>
+          <a id="filter-all" href="#/" data-action="set-filter"
+             data-filter="all">Todas</a>
+          <a id="filter-active" href="#/active" data-action="set-filter"
+             data-filter="active">Pendientes</a>
+          <a id="filter-completed" href="#/completed"
+             data-action="set-filter"
+             data-filter="completed">Completadas</a>`;
+      });
+
+      // Days relative to the real today, as ISO strings.
+      const day = (offset) => {
+        const d = new Date();
+        d.setDate(d.getDate() + offset);
+        const p = (n) => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+      };
+      const texts = () =>
+        [...document.querySelectorAll('#todo-list li label')]
+          .map((label) => label.textContent);
+
+      QUnit.test('the main view hides future tasks only', (assert) => {
+        window.App.addTask('Undated');
+        const overdue = window.App.addTask('Overdue');
+        const today = window.App.addTask('Today');
+        const future = window.App.addTask('Future');
+        window.App.setTaskDate(overdue.id, day(-1));
+        window.App.setTaskDate(today.id, day(0));
+        window.App.setTaskDate(future.id, day(3));
+        assert.deepEqual(texts(), ['Undated', 'Overdue', 'Today'],
+          'future work stays out of the main view');
+      });
+
+      QUnit.test('the today view shows exactly overdue and today tasks',
+        (assert) => {
+          window.App.addTask('Undated');
+          const overdue = window.App.addTask('Overdue');
+          const today = window.App.addTask('Today');
+          const future = window.App.addTask('Future');
+          window.App.setTaskDate(overdue.id, day(-1));
+          window.App.setTaskDate(today.id, day(0));
+          window.App.setTaskDate(future.id, day(3));
+          window.App.setView('today');
+          assert.deepEqual(texts(), ['Overdue', 'Today'],
+            'only what the day holds is present');
+        });
+
+      QUnit.test('the today view crosses lists', (assert) => {
+        window.App.addList('Trabajo');
+        const here = window.App.addTask('In inbox');
+        const there = window.App.addTask('In Trabajo');
+        window.App.moveTask(there.id, 'list-1');
+        window.App.setTaskDate(here.id, day(0));
+        window.App.setTaskDate(there.id, day(-2));
+        window.App.setView('today');
+        assert.deepEqual(texts(), ['In inbox', 'In Trabajo'],
+          'today mixes tasks from every list');
+        window.App.setView('main');
+        assert.deepEqual(texts(), ['In inbox'],
+          'the main view stays scoped to the active list');
+      });
+
+      QUnit.test('the view persists and tolerates corrupted values',
+        (assert) => {
+          window.App.setView('today');
+          assert.strictEqual(localStorage.getItem('todoapp-view'),
+            'today', 'the view is stored');
+          window.App.view = 'main';
+          window.App.load();
+          assert.strictEqual(window.App.view, 'today',
+            'load restores the stored view');
+          localStorage.setItem('todoapp-view', 'nonsense');
+          window.App.load();
+          assert.strictEqual(window.App.view, 'main',
+            'a corrupted value falls back to main');
+        });
+
+      QUnit.test('filters keep working inside the today view',
+        (assert) => {
+          const pending = window.App.addTask('Pending today');
+          const done = window.App.addTask('Done today');
+          window.App.setTaskDate(pending.id, day(0));
+          window.App.setTaskDate(done.id, day(0));
+          window.App.toggleTask(done.id);
+          window.App.setView('today');
+          window.App.setFilter('active');
+          assert.deepEqual(texts(), ['Pending today'],
+            'active filters today to the pending');
+          window.App.setFilter('completed');
+          assert.deepEqual(texts(), ['Done today'],
+            'completed filters today to the done');
+        });
+
+      QUnit.test('the counter reflects the pending of the active view',
+        (assert) => {
+          window.App.addTask('Undated pending');
+          const future = window.App.addTask('Future pending');
+          const today = window.App.addTask('Today pending');
+          window.App.setTaskDate(future.id, day(5));
+          window.App.setTaskDate(today.id, day(0));
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '2 pendientes',
+            'the main view counts only the present pending');
+          window.App.setView('today');
+          assert.strictEqual(
+            document.getElementById('todo-count').textContent,
+            '1 pendiente',
+            'the today view counts only its own pending');
+        });
+
+      QUnit.test('the active view link carries the selected class',
+        (assert) => {
+          window.App.render();
+          assert.true(
+            document.getElementById('view-main')
+              .classList.contains('selected'),
+            'main is selected by default');
+          window.App.setView('today');
+          assert.false(
+            document.getElementById('view-main')
+              .classList.contains('selected'));
+          assert.true(
+            document.getElementById('view-today')
+              .classList.contains('selected'),
+            'today is marked after switching');
+        });
+
+      QUnit.test('switching views through the dispatched click',
+        (assert) => {
+          const today = window.App.addTask('Due today');
+          window.App.setTaskDate(today.id, day(0));
+          document.getElementById('view-today')
+            .dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          assert.strictEqual(window.App.view, 'today',
+            'the click switches the view');
+          assert.deepEqual(texts(), ['Due today']);
+          document.getElementById('view-main')
+            .dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          assert.strictEqual(window.App.view, 'main',
+            'the click switches back to main');
         });
     });
   </script>

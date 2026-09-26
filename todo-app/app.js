@@ -4,7 +4,9 @@
   const STORAGE_KEY = 'todoapp-tasks';
   const FILTER_KEY = 'todoapp-filter';
   const ACTIVE_LIST_KEY = 'todoapp-active-list';
+  const VIEW_KEY = 'todoapp-view';
   const FILTERS = ['all', 'active', 'completed'];
+  const VIEWS = ['main', 'today'];
   const INBOX = { id: 'inbox', name: 'Entrada', archived: false };
 
   // Task dates are calendar days as ISO strings ('YYYY-MM-DD'):
@@ -217,16 +219,22 @@
       return date < today ? 'overdue' : date > today ? 'future' : 'today';
     }
 
-    pendingCount(listId) {
-      return this.#tasks
-        .filter((t) => !t.done && (!listId || t.listId === listId))
-        .length;
+    pendingCount(listId, view = 'main', today = currentDay()) {
+      return this.visibleTasks('active', listId, view, today).length;
     }
 
-    visibleTasks(filter, listId) {
-      const scoped = listId
-        ? this.#tasks.filter((t) => t.listId === listId)
-        : this.#tasks;
+    // The 'main' view stays scoped to a list and hides tasks
+    // scheduled for later; the 'today' view crosses lists and
+    // admits only what is overdue or due on the reference day.
+    visibleTasks(filter, listId, view = 'main', today = currentDay()) {
+      const scoped = view === 'today'
+        ? this.#tasks.filter((t) => {
+            const status = this.dateStatus(t.date, today);
+            return status === 'overdue' || status === 'today';
+          })
+        : this.#tasks
+            .filter((t) => !listId || t.listId === listId)
+            .filter((t) => this.dateStatus(t.date, today) !== 'future');
       if (filter === 'active') {
         return scoped.filter((t) => !t.done).map(this.#snapshot);
       }
@@ -374,6 +382,24 @@
       }
     },
 
+    loadView() {
+      let stored;
+      try {
+        stored = global.localStorage.getItem(VIEW_KEY);
+      } catch (e) {
+        stored = null;
+      }
+      return VIEWS.includes(stored) ? stored : 'main';
+    },
+
+    saveView(name) {
+      try {
+        global.localStorage.setItem(VIEW_KEY, name);
+      } catch (e) {
+        // Persistence unavailable: the view still applies in memory.
+      }
+    },
+
     // The stored value is a raw string: whether the list exists
     // is for the model to decide after loading.
     loadActiveList() {
@@ -409,6 +435,10 @@
       'set-filter': (el, ev, actions) => {
         ev.preventDefault();
         actions.setFilter(el.dataset.filter);
+      },
+      'set-view': (el, ev, actions) => {
+        ev.preventDefault();
+        actions.setView(el.dataset.view);
       },
       'clear-completed': (el, ev, actions) => actions.clearCompleted(),
       'add-list': (el, ev, actions) => {
@@ -651,6 +681,16 @@
         link.classList.toggle('selected', name === vm.filter);
       }
     });
+    const viewLinks = {
+      main: doc.getElementById('view-main'),
+      today: doc.getElementById('view-today')
+    };
+    VIEWS.forEach((name) => {
+      const link = viewLinks[name];
+      if (link) {
+        link.classList.toggle('selected', name === vm.view);
+      }
+    });
   }
 
   // View state: owned by the composition root, which decides when an
@@ -663,11 +703,13 @@
   const App = {
     initialized: false,
     filter: 'all',
+    view: 'main',
     activeListId: INBOX.id,
 
     load() {
       viewState.editingId = null;
       App.filter = Storage.loadFilter();
+      App.view = Storage.loadView();
       taskList.load(Storage.loadTasks());
       // The stored active list is only valid once the model knows
       // which lists exist; anything else falls back to the inbox.
@@ -725,11 +767,12 @@
     },
 
     pendingCount(listId = App.activeListId) {
-      return taskList.pendingCount(listId);
+      return taskList.pendingCount(listId, App.view);
     },
 
     visibleTasks() {
-      return taskList.visibleTasks(App.filter, App.activeListId);
+      return taskList
+        .visibleTasks(App.filter, App.activeListId, App.view);
     },
 
     setActiveList(id) {
@@ -749,6 +792,16 @@
       }
       App.filter = name;
       Storage.saveFilter(name);
+      App.render();
+    },
+
+    setView(name) {
+      if (!VIEWS.includes(name)) {
+        return;
+      }
+      App.view = name;
+      viewState.editingId = null;
+      Storage.saveView(name);
       App.render();
     },
 
@@ -851,8 +904,10 @@
         archivedLists,
         activeListId: App.activeListId,
         filter: App.filter,
+        view: App.view,
         editingId: viewState.editingId,
-        pendingCount: taskList.pendingCount(App.activeListId)
+        pendingCount: taskList
+          .pendingCount(App.activeListId, App.view)
       };
     },
 
@@ -868,6 +923,7 @@
       clearTaskDate: (id) => App.clearTaskDate(id),
       setActiveList: (id) => App.setActiveList(id),
       setFilter: (name) => App.setFilter(name),
+      setView: (name) => App.setView(name),
       addList: (name) => App.addList(name),
       activeListName() {
         const current = App.lists

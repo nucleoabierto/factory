@@ -22,6 +22,9 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
   - **Filtro:** vista de la lista restringida a todas, pendientes o completadas.
     - Ancla: `FILTERS`, `App.filter` y `TaskList.visibleTasks` en `app.js`
     - Origen: `docs/tasks/005-filtros-y-limpiar.md`
+  - **Vista:** eje de consulta independiente del filtro y de la lista activa: la vista principal (`main`) muestra, de la lista activa, lo sin fecha, lo vencido y lo de hoy —lo futuro permanece oculto hasta su día—; la vista «hoy» (`today`) es transversal y muestra exactamente lo vencido y lo del día de todas las listas. Persiste entre visitas y cae a `main` si el valor guardado no es válido.
+    - Ancla: `VIEWS`, `App.view`/`App.setView`, `Storage.loadView`/`saveView` y el parámetro `view` de `TaskList.visibleTasks`/`pendingCount` en `app.js`
+    - Origen: `docs/tasks/018-vista-hoy-y-programacion.md`
   - **Limpiar completadas:** descartar de la lista las tareas completadas.
     - Ancla: `TaskList.clearCompleted` en `app.js`
     - Origen: `docs/tasks/005-filtros-y-limpiar.md`
@@ -38,7 +41,7 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
     - Ancla: `TaskList.dateStatus` y `currentDay` en `app.js`
     - Origen: `docs/tasks/016-fecha-en-el-modelo.md`
 - **Entidades / estado:**
-  - La tarea `{id, text, done, listId, date}` y la lista `{id, name, archived}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado, el filtro activo y la lista activa.
+  - La tarea `{id, text, done, listId, date}` y la lista `{id, name, archived}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado, el filtro activo, la vista activa y la lista activa.
     - Ancla: `class TaskList` con `#tasks`/`#lists`/`#nextId` y las consultas `tasks()`/`lists()`/`nextId()` en `app.js`
 - **Invariantes:**
   - No existen tareas con texto vacío o de solo espacios.
@@ -66,6 +69,8 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
     - Ancla: `addTask`, `toggleTask`, `editTask`, `deleteTask` en `TaskList`
   - Filtrar la vista, limpiar completadas y contar pendientes.
     - Ancla: `visibleTasks`, `clearCompleted`, `pendingCount` en `TaskList` y `App.setFilter`
+  - Elegir la vista (principal u «hoy»); el contador de pendientes cuenta lo presente en la vista activa.
+    - Ancla: `App.setView` y los parámetros `view`/`today` de `TaskList.visibleTasks`/`pendingCount`
   - Crear, renombrar, eliminar listas y mover tareas entre ellas.
     - Ancla: `addList`, `renameList`, `deleteList`, `moveTask` en `TaskList`
   - Archivar y reactivar listas.
@@ -79,12 +84,12 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 
 - **Fronteras:**
   - Dentro: el modelo de tarea y de lista, sus invariantes y las operaciones sobre ellas; la noción de pendiente y el filtro como consulta sobre el estado, acotable por lista. Vive en el objeto `TaskList`, que notifica cambios a suscriptores sin conocer persistencia ni DOM.
-  - Fuera: el renderizado DOM y los eventos (presentación, objeto `UI` con `render`/`bind` y las funciones de región `renderTasks`/`renderListBar`/`renderArchived`/`renderFooter`) y la persistencia en `localStorage` (infraestructura, objeto `Storage` con `loadTasks`/`saveTasks`/`loadFilter`/`saveFilter`/`loadActiveList`/`saveActiveList`). La fachada `App` compone los tres y mantiene la API pública: la vista consume un view-model de datos planos con las colecciones ya proyectadas (`App.viewModel`: `navigableLists`, `archivedLists`, `moveTargets` por tarea) y despacha acciones declaradas (`App.actions`) por un único mecanismo de delegación sobre `data-action` (`dispatchTable`), sin conocer la fachada ni re-decidir las reglas de pertenencia; el estado de vista vive en `viewState`, con un solo poseedor.
+  - Fuera: el renderizado DOM y los eventos (presentación, objeto `UI` con `render`/`bind` y las funciones de región `renderTasks`/`renderListBar`/`renderArchived`/`renderFooter`) y la persistencia en `localStorage` (infraestructura, objeto `Storage` con `loadTasks`/`saveTasks`/`loadFilter`/`saveFilter`/`loadView`/`saveView`/`loadActiveList`/`saveActiveList`). La fachada `App` compone los tres y mantiene la API pública: la vista consume un view-model de datos planos con las colecciones ya proyectadas (`App.viewModel`: `navigableLists`, `archivedLists`, `moveTargets` por tarea) y despacha acciones declaradas (`App.actions`) por un único mecanismo de delegación sobre `data-action` (`dispatchTable`), sin conocer la fachada ni re-decidir las reglas de pertenencia; el estado de vista vive en `viewState`, con un solo poseedor.
   - Relaciones: el almacenamiento del navegador (`localStorage`) como dependencia de infraestructura con tolerancia a datos ausentes o corruptos.
 - **Decisiones relevantes:**
   - D018 «todo-app en vanilla JS como prueba del flujo externo» (`docs/decisions/` del repositorio raíz) — la aplicación es una PoC en vanilla JS sin build ni framework.
 
 ## Estado de salud
 
-- Última revisión: 2026-09-25
-- Divergencias conocidas: ninguna. La revisión de arquitectura 002 detectó un ciclo `App` ↔ `UI` y un contrato de vista implícito; la tarea 023 lo resolvió con el contrato view-model/dispatch y el estado de vista de poseedor único (`viewState`). La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista; la tarea 013 la gestión de listas con unicidad de nombre y reasignación al eliminar; la tarea 014 el estado archivado —la lista `{id, name, archived}`— con exclusión de la navegación y veto de la entrada; la tarea 024 cerró el contrato de vista: la proyección de colecciones vive en `App.viewModel` y los eventos usan un solo mecanismo delegado. La tarea 016 introdujo la fecha opcional de la tarea como día calendario y la clasificación temporal como consulta del dominio.
+- Última revisión: 2026-09-26
+- Divergencias conocidas: la vista «hoy» es transversal e incluye tareas de listas archivadas —el concepto de lista archivada la declara fuera «de las vistas»—; la revisión de la tarea 018 lo detectó y la decisión se trata en `docs/tasks/027-vista-hoy-y-listas-archivadas.md`. La revisión de arquitectura 002 detectó un ciclo `App` ↔ `UI` y un contrato de vista implícito; la tarea 023 lo resolvió con el contrato view-model/dispatch y el estado de vista de poseedor único (`viewState`). La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista; la tarea 013 la gestión de listas con unicidad de nombre y reasignación al eliminar; la tarea 014 el estado archivado —la lista `{id, name, archived}`— con exclusión de la navegación y veto de la entrada; la tarea 024 cerró el contrato de vista: la proyección de colecciones vive en `App.viewModel` y los eventos usan un solo mecanismo delegado. La tarea 016 introdujo la fecha opcional de la tarea como día calendario y la clasificación temporal como consulta del dominio.

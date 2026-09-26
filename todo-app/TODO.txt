@@ -24,6 +24,9 @@
 - [x] docs/tasks/015-migrar-es5-a-es2024.md — Migrar el código de ES5 a ES2024
 - [x] docs/tasks/023-contrato-de-vista.md — Contrato de vista: snapshot y dispatch de acciones
 - [x] docs/tasks/024-proyeccion-y-eventos-unificados.md — Proyección de colecciones y mecanismo único de eventos
+- [ ] docs/tasks/025-limpiar-completadas-en-vista-hoy.md — Limpiar completadas coherente con la vista activa
+- [ ] docs/tasks/026-crear-tarea-en-vista-hoy.md — La tarea creada desde la vista «hoy» no desaparece al crearla
+- [ ] docs/tasks/027-vista-hoy-y-listas-archivadas.md — La vista «hoy» y las listas archivadas
 
 ## Hito 1: Aplicación de lista de tareas
 
@@ -49,7 +52,7 @@
 
 - [x] docs/tasks/016-fecha-en-el-modelo.md — Fecha opcional en la tarea y migración de la persistencia
 - [x] docs/tasks/017-asignar-y-distinguir-fechas.md — Asignar, cambiar y quitar la fecha, con distinción visual
-- [ ] docs/tasks/018-vista-hoy-y-programacion.md — Vista «hoy» y exclusión de lo futuro de la vista principal
+- [x] docs/tasks/018-vista-hoy-y-programacion.md — Vista «hoy» y exclusión de lo futuro de la vista principal
 - [ ] docs/tasks/019-tareas-recurrentes.md — Periodicidad simple que regenera la tarea al completarla
 
 ## Hito 4: Portabilidad y compartir

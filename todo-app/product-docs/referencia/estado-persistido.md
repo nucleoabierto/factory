@@ -1,11 +1,12 @@
 # Estado persistido
 
-Todo el estado de todo-app vive en `localStorage` del navegador, bajo tres claves. Los datos se escriben en cada operación y se leen al abrir la página. Si `localStorage` no está disponible —modo privado restrictivo, cuota llena—, la aplicación funciona igualmente en memoria durante la sesión.
+Todo el estado de todo-app vive en `localStorage` del navegador, bajo cuatro claves. Los datos se escriben en cada operación y se leen al abrir la página. Si `localStorage` no está disponible —modo privado restrictivo, cuota llena—, la aplicación funciona igualmente en memoria durante la sesión.
 
 ## Claves
 
 - **`todoapp-tasks`** — el estado completo: listas y tareas.
 - **`todoapp-filter`** — el filtro activo: `all`, `active` o `completed`. Un valor distinto se ignora y se usa `all`.
+- **`todoapp-view`** — la vista activa: `main` o `today`. Un valor distinto se ignora y se usa `main`.
 - **`todoapp-active-list`** — el identificador de la lista activa. Si la lista ya no existe o está archivada, se vuelve a `inbox`.
 
 ## Formato de `todoapp-tasks`
