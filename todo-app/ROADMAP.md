@@ -2,20 +2,27 @@
 
 ## Dirección
 
-Completar la todo app en vanilla JS conforme a TodoMVC (D018 del repositorio raíz) hasta un producto usable y portable: consolidar primero el contrato de la vista, después las capacidades de planificación temporal, y por último la portabilidad del estado.
+Completar la todo app en vanilla JS conforme a TodoMVC (D018 del repositorio raíz) hasta un producto usable y portable: con el contrato de la vista ya cerrado, consolidar la planificación temporal corrigiendo primero la coherencia de la vista «hoy», y por último la portabilidad del estado.
 
 ## Now
 
-- 1. docs/tasks/024-proyeccion-y-eventos-unificados.md — Proyección de colecciones y mecanismo único de eventos
+- 1. docs/tasks/027-vista-hoy-y-listas-archivadas.md — La vista «hoy» y las listas archivadas
   - Estado: pendiente de arrancar
-  - Justificación: completa el contrato de la vista que la tarea 023 estableció en una primera entrega —moviendo la proyección de colecciones al view-model y unificando la vinculación de eventos (hallazgos H2 y H3 de `docs/architecture-reviews/002-revision-arquitectura-vista.md`)—. Va ahora porque la épica 003 construye regiones de vista nuevas que deben nacer sobre el contrato cerrado, no sobre el render monolítico.
+  - Justificación: decide el alcance de la consulta transversal «hoy» —si incluye o no las listas archivadas—, y esa decisión condiciona qué muestran y sobre qué actúan las otras dos correcciones de la vista. Va primero porque fija el conjunto de tareas que 025 y 026 manejan.
+- 2. docs/tasks/025-limpiar-completadas-en-vista-hoy.md — Limpiar completadas coherente con la vista activa
+  - Estado: pendiente de arrancar
+  - Justificación: alinea «Limpiar completadas» con lo que el filtro «Completadas» muestra en «hoy». Va después de 027 porque su dominio de actuación es exactamente el conjunto que 027 define.
+- 3. docs/tasks/026-crear-tarea-en-vista-hoy.md — La tarea creada desde la vista «hoy» no desaparece al crearla
+  - Estado: pendiente de arrancar
+  - Justificación: caso borde acotado e independiente; se resuelve sobre la semántica de «hoy» ya fijada por las dos anteriores.
+- 4. docs/tasks/019-tareas-recurrentes.md — Periodicidad simple que regenera la tarea al completarla
+  - Estado: pendiente de arrancar
+  - Justificación: cierra la épica 003. Modifica el flujo de completar y de limpiar completadas, así que conviene construirla sobre el comportamiento ya corregido y no encima de los hallazgos abiertos.
 
 ## Next
 
-- 1. docs/epics/003-planificacion-temporal.md — Planificación temporal: fechas límite, programación y vista de hoy
-  - Justificación: extiende el modelo con la fecha sin reestructurarlo y añade regiones de vista que, tras el par de refactor, se construyen sobre el contrato declarado. Es la siguiente línea validada cuando Now se vacía.
-- 2. docs/epics/004-portabilidad-y-compartir.md — Portabilidad y listas compartidas sin servidor
-  - Justificación: su plan técnico declara que el formato de exportación tolera las épicas anteriores según el orden de ejecución; ejecutarla última exporta el estado con su forma final y evita redefinir el formato versionado a mitad de camino.
+- 1. docs/epics/004-portabilidad-y-compartir.md — Portabilidad y listas compartidas sin servidor
+  - Justificación: su plan técnico declara que el formato de exportación tolera las épicas anteriores según el orden de ejecución; ejecutarla última exporta el estado con su forma final —incluida la recurrencia de la épica 003— y evita redefinir el formato versionado a mitad de camino.
 
 ## Later
 
@@ -30,4 +37,4 @@ Completar la todo app en vanilla JS conforme a TodoMVC (D018 del repositorio ra�
 
 ## Revisión
 
-- Usuario: 2026-09-25 — Aprueba
+- Usuario: 2026-09-26 — Aprueba
