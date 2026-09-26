@@ -12,18 +12,23 @@
       <h1>Tareas</h1>
       <div class="list-bar">
         <select id="list-select" class="list-select"
-                aria-label="Lista activa"></select>
+                aria-label="Lista activa"
+                data-action="set-active-list"></select>
         <button id="add-list" class="list-action" title="Nueva lista"
-                aria-label="Nueva lista">+</button>
+                aria-label="Nueva lista" data-action="add-list">+</button>
         <button id="rename-list" class="list-action"
-                title="Renombrar lista" aria-label="Renombrar lista">✎</button>
+                title="Renombrar lista" aria-label="Renombrar lista"
+                data-action="rename-list">✎</button>
         <button id="archive-list" class="list-action"
-                title="Archivar lista" aria-label="Archivar lista">↓</button>
+                title="Archivar lista" aria-label="Archivar lista"
+                data-action="archive-list">↓</button>
         <button id="delete-list" class="list-action"
-                title="Eliminar lista" aria-label="Eliminar lista">×</button>
+                title="Eliminar lista" aria-label="Eliminar lista"
+                data-action="delete-list">×</button>
       </div>
       <input id="new-todo" class="new-todo" type="text"
-             placeholder="¿Qué hay que hacer?" autofocus>
+             placeholder="¿Qué hay que hacer?" autofocus
+             data-action="add-task">
     </header>
 
     <section class="main">
@@ -38,11 +43,16 @@
     <footer class="footer">
       <span id="todo-count" class="todo-count">0 pendientes</span>
       <ul class="filters">
-        <li><a href="#/" id="filter-all">Todas</a></li>
-        <li><a href="#/active" id="filter-active">Pendientes</a></li>
-        <li><a href="#/completed" id="filter-completed">Completadas</a></li>
+        <li><a href="#/" id="filter-all" data-action="set-filter"
+               data-filter="all">Todas</a></li>
+        <li><a href="#/active" id="filter-active" data-action="set-filter"
+               data-filter="active">Pendientes</a></li>
+        <li><a href="#/completed" id="filter-completed"
+               data-action="set-filter"
+               data-filter="completed">Completadas</a></li>
       </ul>
-      <button id="clear-completed" class="clear-completed">
+      <button id="clear-completed" class="clear-completed"
+              data-action="clear-completed">
         Limpiar completadas
       </button>
     </footer>

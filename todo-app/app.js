@@ -341,80 +341,87 @@
   // function of the view-model it receives; user events go out through
   // the actions bound at init. It knows nothing about the model or
   // persistence.
+  // The single event mechanism: delegated listeners on the document
+  // dispatch by data-action. Static controls and dynamic rows share
+  // the same contract, so the render attaches no listeners at all.
+  const dispatchTable = {
+    click: {
+      'destroy-task': (el, ev, actions) =>
+        actions.deleteTask(Number(el.dataset.id)),
+      'reactivate-list': (el, ev, actions) =>
+        actions.unarchiveList(el.dataset.id),
+      'set-filter': (el, ev, actions) => {
+        ev.preventDefault();
+        actions.setFilter(el.dataset.filter);
+      },
+      'clear-completed': (el, ev, actions) => actions.clearCompleted(),
+      'add-list': (el, ev, actions) => {
+        const name = global.prompt('Nombre de la lista');
+        if (name !== null) {
+          actions.addList(name);
+        }
+      },
+      'rename-list': (el, ev, actions) => {
+        const name = global.prompt('Nuevo nombre de la lista',
+          actions.activeListName());
+        if (name !== null) {
+          actions.renameActiveList(name);
+        }
+      },
+      'archive-list': (el, ev, actions) => actions.archiveActiveList(),
+      'delete-list': (el, ev, actions) => actions.deleteActiveList()
+    },
+    change: {
+      'set-active-list': (el, ev, actions) => actions.setActiveList(el.value),
+      'toggle-task': (el, ev, actions) =>
+        actions.toggleTask(Number(el.dataset.id)),
+      'move-task': (el, ev, actions) =>
+        actions.moveTask(Number(el.dataset.id), el.value)
+    },
+    keydown: {
+      'add-task': (el, ev, actions) => {
+        if (ev.key === 'Enter' && actions.addTask(el.value)) {
+          el.value = '';
+        }
+      },
+      'edit-task': (el, ev, actions) => {
+        if (ev.key === 'Enter') {
+          actions.editTask(Number(el.dataset.id), el.value);
+        } else if (ev.key === 'Escape') {
+          actions.cancelEdit();
+        }
+      }
+    },
+    dblclick: {
+      'start-edit': (el, ev, actions) =>
+        actions.startEdit(Number(el.dataset.id))
+    }
+  };
+
   const UI = {
     actions: {},
+    bound: false,
 
+    // bind may run again with fresh actions; the document listeners
+    // are attached once and always dispatch to the current actions.
     bind(actions) {
       UI.actions = actions;
       const doc = global.document;
-      if (!doc) {
+      if (!doc || UI.bound) {
         return;
       }
-      const select = doc.getElementById('list-select');
-      if (select) {
-        select.addEventListener('change', () => {
-          actions.setActiveList(select.value);
-        });
-      }
-      const addButton = doc.getElementById('add-list');
-      if (addButton) {
-        addButton.addEventListener('click', () => {
-          const name = global.prompt('Nombre de la lista');
-          if (name !== null) {
-            actions.addList(name);
+      UI.bound = true;
+      Object.entries(dispatchTable).forEach(([type, table]) => {
+        doc.addEventListener(type, (ev) => {
+          const el = ev.target.closest
+            ? ev.target.closest('[data-action]')
+            : null;
+          const handle = el && table[el.dataset.action];
+          if (handle) {
+            handle(el, ev, UI.actions);
           }
         });
-      }
-      const renameButton = doc.getElementById('rename-list');
-      if (renameButton) {
-        renameButton.addEventListener('click', () => {
-          const name = global.prompt('Nuevo nombre de la lista',
-            actions.activeListName());
-          if (name !== null) {
-            actions.renameActiveList(name);
-          }
-        });
-      }
-      const archiveButton = doc.getElementById('archive-list');
-      if (archiveButton) {
-        archiveButton.addEventListener('click', () => {
-          actions.archiveActiveList();
-        });
-      }
-      const deleteButton = doc.getElementById('delete-list');
-      if (deleteButton) {
-        deleteButton.addEventListener('click', () => {
-          actions.deleteActiveList();
-        });
-      }
-      const input = doc.getElementById('new-todo');
-      if (input) {
-        input.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter' && actions.addTask(input.value)) {
-            input.value = '';
-          }
-        });
-      }
-      const filterClicks = {
-        'filter-all': 'all',
-        'filter-active': 'active',
-        'filter-completed': 'completed'
-      };
-      Object.entries(filterClicks).forEach(([id, name]) => {
-        const link = doc.getElementById(id);
-        if (link) {
-          link.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            actions.setFilter(name);
-          });
-        }
       });
-      const clearButton = doc.getElementById('clear-completed');
-      if (clearButton) {
-        clearButton.addEventListener('click', () => {
-          actions.clearCompleted();
-        });
-      }
     },
 
     render(vm) {
@@ -422,14 +429,14 @@
       if (!doc) {
         return;
       }
-      renderTasks(doc, vm, UI.actions);
+      renderTasks(doc, vm);
       renderListBar(doc, vm);
-      renderArchived(doc, vm, UI.actions);
+      renderArchived(doc, vm);
       renderFooter(doc, vm);
     }
   };
 
-  function renderTasks(doc, vm, actions) {
+  function renderTasks(doc, vm) {
     const list = doc.getElementById('todo-list');
     if (!list) {
       return;
@@ -446,36 +453,28 @@
         editInput.type = 'text';
         editInput.className = 'edit';
         editInput.value = t.text;
-        editInput.addEventListener('keydown', (ev) => {
-          if (ev.key === 'Enter') {
-            actions.editTask(t.id, editInput.value);
-          } else if (ev.key === 'Escape') {
-            actions.cancelEdit();
-          }
-        });
+        editInput.dataset.action = 'edit-task';
+        editInput.dataset.id = t.id;
         li.appendChild(editInput);
       } else {
         const toggle = doc.createElement('input');
         toggle.type = 'checkbox';
         toggle.className = 'toggle';
         toggle.checked = t.done;
-        toggle.addEventListener('change', () => {
-          actions.toggleTask(t.id);
-        });
+        toggle.dataset.action = 'toggle-task';
+        toggle.dataset.id = t.id;
         const label = doc.createElement('label');
         label.textContent = t.text;
-        label.addEventListener('dblclick', () => {
-          actions.startEdit(t.id);
-        });
+        label.dataset.action = 'start-edit';
+        label.dataset.id = t.id;
         const destroy = doc.createElement('button');
         destroy.className = 'destroy';
         destroy.textContent = '×';
-        destroy.addEventListener('click', () => {
-          actions.deleteTask(t.id);
-        });
+        destroy.dataset.action = 'destroy-task';
+        destroy.dataset.id = t.id;
         li.appendChild(toggle);
         li.appendChild(label);
-        li.appendChild(moveSelect(doc, t, vm, actions));
+        li.appendChild(moveSelect(doc, t));
         li.appendChild(destroy);
       }
       list.appendChild(li);
@@ -486,9 +485,11 @@
     }
   }
 
-  function moveSelect(doc, t, vm, actions) {
+  function moveSelect(doc, t) {
     const move = doc.createElement('select');
     move.className = 'move';
+    move.dataset.action = 'move-task';
+    move.dataset.id = t.id;
     move.setAttribute('aria-label', 'Mover a otra lista');
     const placeholder = doc.createElement('option');
     placeholder.value = '';
@@ -496,16 +497,11 @@
     placeholder.disabled = true;
     placeholder.selected = true;
     move.appendChild(placeholder);
-    vm.lists.forEach((l) => {
-      if (l.id !== t.listId && !l.archived) {
-        const option = doc.createElement('option');
-        option.value = l.id;
-        option.textContent = l.name;
-        move.appendChild(option);
-      }
-    });
-    move.addEventListener('change', () => {
-      actions.moveTask(t.id, move.value);
+    t.moveTargets.forEach((l) => {
+      const option = doc.createElement('option');
+      option.value = l.id;
+      option.textContent = l.name;
+      move.appendChild(option);
     });
     return move;
   }
@@ -514,13 +510,10 @@
     const select = doc.getElementById('list-select');
     if (select) {
       select.innerHTML = '';
-      vm.lists.forEach((l) => {
-        if (l.archived) {
-          return;
-        }
+      vm.navigableLists.forEach((l) => {
         const option = doc.createElement('option');
         option.value = l.id;
-        option.textContent = `${l.name} (${vm.pendingCount(l.id)})`;
+        option.textContent = `${l.name} (${l.pendingCount})`;
         option.selected = l.id === vm.activeListId;
         select.appendChild(option);
       });
@@ -540,12 +533,12 @@
     }
   }
 
-  function renderArchived(doc, vm, actions) {
+  function renderArchived(doc, vm) {
     const archivedSection = doc.getElementById('archived-section');
     if (!archivedSection) {
       return;
     }
-    const archived = vm.lists.filter((l) => l.archived);
+    const archived = vm.archivedLists;
     archivedSection.hidden = archived.length === 0;
     const summary = archivedSection.querySelector('summary');
     if (summary) {
@@ -557,13 +550,12 @@
       archived.forEach((l) => {
         const li = doc.createElement('li');
         const name = doc.createElement('span');
-        name.textContent = `${l.name} (${vm.pendingCount(l.id)})`;
+        name.textContent = `${l.name} (${l.pendingCount})`;
         const reactivate = doc.createElement('button');
         reactivate.className = 'reactivate';
         reactivate.textContent = 'Reactivar';
-        reactivate.addEventListener('click', () => {
-          actions.unarchiveList(l.id);
-        });
+        reactivate.dataset.action = 'reactivate-list';
+        reactivate.dataset.id = l.id;
         li.appendChild(name);
         li.appendChild(reactivate);
         archivedItems.appendChild(li);
@@ -574,7 +566,7 @@
   function renderFooter(doc, vm) {
     const counter = doc.getElementById('todo-count');
     if (counter) {
-      const n = vm.pendingCount();
+      const n = vm.pendingCount;
       counter.textContent = `${n} pendiente${n === 1 ? '' : 's'}`;
     }
     const filterLinks = {
@@ -748,18 +740,35 @@
     },
 
     // The view contract: the view-model carries every datum the
-    // render needs, and the actions map declares the events the
-    // view can dispatch. The view never sees this facade.
+    // render needs as plain data — collections arrive already
+    // projected, so the render never re-decides membership rules
+    // the model defends — and the actions map declares the events
+    // the view can dispatch. The view never sees this facade.
     viewModel() {
+      const project = (list) => ({
+        id: list.id,
+        name: list.name,
+        pendingCount: taskList.pendingCount(list.id)
+      });
+      const navigableLists = taskList.lists()
+        .filter((list) => !list.archived)
+        .map(project);
+      const archivedLists = taskList.lists()
+        .filter((list) => list.archived)
+        .map(project);
       return {
-        tasks: App.visibleTasks(),
-        lists: taskList.lists(),
+        tasks: App.visibleTasks().map((t) => ({
+          ...t,
+          moveTargets: navigableLists
+            .filter((l) => l.id !== t.listId)
+            .map((l) => ({ id: l.id, name: l.name }))
+        })),
+        navigableLists,
+        archivedLists,
         activeListId: App.activeListId,
         filter: App.filter,
         editingId: viewState.editingId,
-        pendingCount(listId) {
-          return taskList.pendingCount(listId || App.activeListId);
-        }
+        pendingCount: taskList.pendingCount(App.activeListId)
       };
     },
 

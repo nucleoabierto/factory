@@ -31,7 +31,7 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
+          `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>`;
       });
@@ -122,7 +122,7 @@
           const input = document.getElementById('new-todo');
           input.value = 'Desde el teclado';
           input.dispatchEvent(new KeyboardEvent('keydown',
-            { key: 'Enter' }));
+            { key: 'Enter', bubbles: true }));
           assert.strictEqual(window.App.tasks.length, 1);
           assert.strictEqual(input.value, '',
             'the field is cleared after creating');
@@ -139,7 +139,7 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
+          `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>`;
       });
@@ -194,7 +194,7 @@
           assert.ok(editInput, 'the item is in edit mode');
           editInput.value = 'Changed';
           editInput.dispatchEvent(new KeyboardEvent('keydown',
-            { key: 'Escape' }));
+            { key: 'Escape', bubbles: true }));
           assert.strictEqual(window.App.tasks[0].text, 'Original',
             'the text stays unchanged');
           assert.strictEqual(window.App.editingId, null,
@@ -244,13 +244,18 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
+          `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>
-          <a id="filter-all" href="#/">Todas</a>
-          <a id="filter-active" href="#/active">Pendientes</a>
-          <a id="filter-completed" href="#/completed">Completadas</a>
-          <button id="clear-completed">Limpiar completadas</button>`;
+          <a id="filter-all" href="#/" data-action="set-filter"
+             data-filter="all">Todas</a>
+          <a id="filter-active" href="#/active" data-action="set-filter"
+             data-filter="active">Pendientes</a>
+          <a id="filter-completed" href="#/completed"
+             data-action="set-filter"
+             data-filter="completed">Completadas</a>
+          <button id="clear-completed"
+                  data-action="clear-completed">Limpiar completadas</button>`;
       });
 
       const texts = () =>
@@ -371,7 +376,7 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
+          `<input id="new-todo" type="text" data-action="add-task">
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>`;
       });
@@ -505,14 +510,19 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
-          <select id="list-select"></select>
+          `<input id="new-todo" type="text" data-action="add-task">
+          <select id="list-select" data-action="set-active-list"></select>
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>
-          <a id="filter-all" href="#/">Todas</a>
-          <a id="filter-active" href="#/active">Pendientes</a>
-          <a id="filter-completed" href="#/completed">Completadas</a>
-          <button id="clear-completed">Limpiar completadas</button>`;
+          <a id="filter-all" href="#/" data-action="set-filter"
+             data-filter="all">Todas</a>
+          <a id="filter-active" href="#/active" data-action="set-filter"
+             data-filter="active">Pendientes</a>
+          <a id="filter-completed" href="#/completed"
+             data-action="set-filter"
+             data-filter="completed">Completadas</a>
+          <button id="clear-completed"
+                  data-action="clear-completed">Limpiar completadas</button>`;
       });
 
       const texts = () =>
@@ -617,7 +627,7 @@
           window.App.init();
           const select = document.getElementById('list-select');
           select.value = 'work';
-          select.dispatchEvent(new Event('change'));
+          select.dispatchEvent(new Event('change', { bubbles: true }));
           assert.strictEqual(window.App.activeListId, 'work',
             'the change event reaches the facade');
           assert.deepEqual(texts(),
@@ -691,11 +701,11 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
-          <select id="list-select"></select>
-          <button id="add-list">+</button>
-          <button id="rename-list">✎</button>
-          <button id="delete-list">×</button>
+          `<input id="new-todo" type="text" data-action="add-task">
+          <select id="list-select" data-action="set-active-list"></select>
+          <button id="add-list" data-action="add-list">+</button>
+          <button id="rename-list" data-action="rename-list">✎</button>
+          <button id="delete-list" data-action="delete-list">×</button>
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>`;
       });
@@ -840,7 +850,7 @@
             [...move.options].map((o) => o.value), ['', list.id],
             'it offers every list except the current one');
           move.value = list.id;
-          move.dispatchEvent(new Event('change'));
+          move.dispatchEvent(new Event('change', { bubbles: true }));
           assert.strictEqual(window.App.tasks[0].listId, list.id,
             'choosing a list moves the task');
         });
@@ -891,12 +901,12 @@
         window.App.filter = 'all';
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<input id="new-todo" type="text">
-          <select id="list-select"></select>
-          <button id="add-list">+</button>
-          <button id="rename-list">✎</button>
-          <button id="archive-list">↓</button>
-          <button id="delete-list">×</button>
+          `<input id="new-todo" type="text" data-action="add-task">
+          <select id="list-select" data-action="set-active-list"></select>
+          <button id="add-list" data-action="add-list">+</button>
+          <button id="rename-list" data-action="rename-list">✎</button>
+          <button id="archive-list" data-action="archive-list">↓</button>
+          <button id="delete-list" data-action="delete-list">×</button>
           <ul id="todo-list"></ul>
           <span id="todo-count"></span>
           <details id="archived-section">
@@ -1025,37 +1035,45 @@
       hooks.beforeEach(() => {
         const fixture = document.getElementById('qunit-fixture');
         fixture.innerHTML =
-          `<select id="list-select"></select>
-          <button id="rename-list"></button>
-          <button id="archive-list"></button>
-          <button id="delete-list"></button>
+          `<select id="list-select" data-action="set-active-list"></select>
+          <button id="rename-list" data-action="rename-list"></button>
+          <button id="archive-list" data-action="archive-list"></button>
+          <button id="delete-list" data-action="delete-list"></button>
           <ul id="todo-list"></ul>
           <details id="archived-section"><summary></summary>
             <ul id="archived-list"></ul>
           </details>
           <span id="todo-count"></span>
-          <a id="filter-all" href="#/"></a>
-          <a id="filter-active" href="#/active"></a>
-          <a id="filter-completed" href="#/completed"></a>
-          <button id="clear-completed"></button>`;
+          <a id="filter-all" href="#/" data-action="set-filter"
+             data-filter="all"></a>
+          <a id="filter-active" href="#/active" data-action="set-filter"
+             data-filter="active"></a>
+          <a id="filter-completed" href="#/completed"
+             data-action="set-filter" data-filter="completed"></a>
+          <button id="clear-completed"
+                  data-action="clear-completed"></button>`;
       });
 
       QUnit.test('rendering a literal view-model produces the DOM',
         (assert) => {
           const vm = {
             tasks: [
-              { id: 1, text: 'Pending', done: false, listId: 'inbox' },
-              { id: 2, text: 'Done', done: true, listId: 'inbox' }
+              { id: 1, text: 'Pending', done: false, listId: 'inbox',
+                moveTargets: [{ id: 'list-1', name: 'Work' }] },
+              { id: 2, text: 'Done', done: true, listId: 'inbox',
+                moveTargets: [{ id: 'list-1', name: 'Work' }] }
             ],
-            lists: [
-              { id: 'inbox', name: 'Entrada', archived: false },
-              { id: 'list-1', name: 'Work', archived: false },
-              { id: 'list-2', name: 'Old', archived: true }
+            navigableLists: [
+              { id: 'inbox', name: 'Entrada', pendingCount: 1 },
+              { id: 'list-1', name: 'Work', pendingCount: 1 }
+            ],
+            archivedLists: [
+              { id: 'list-2', name: 'Old', pendingCount: 1 }
             ],
             activeListId: 'inbox',
             filter: 'all',
             editingId: null,
-            pendingCount: () => 1
+            pendingCount: 1
           };
           window.UI.render(vm);
           assert.strictEqual(
@@ -1082,12 +1100,15 @@
         (assert) => {
           const vm = {
             tasks: [{ id: 1, text: 'Edit me', done: false,
-              listId: 'inbox' }],
-            lists: [{ id: 'inbox', name: 'Entrada', archived: false }],
+              listId: 'inbox', moveTargets: [] }],
+            navigableLists: [
+              { id: 'inbox', name: 'Entrada', pendingCount: 0 }
+            ],
+            archivedLists: [],
             activeListId: 'inbox',
             filter: 'all',
             editingId: 1,
-            pendingCount: () => 0
+            pendingCount: 0
           };
           window.UI.render(vm);
           const input = document.querySelector('#todo-list input.edit');
@@ -1103,21 +1124,27 @@
           const calls = [];
           window.UI.bind({
             toggleTask: (id) => calls.push(['toggleTask', id]),
-            deleteTask: (id) => calls.push(['deleteTask', id])
+            deleteTask: (id) => calls.push(['deleteTask', id]),
+            startEdit: (id) => calls.push(['startEdit', id])
           });
           window.UI.render({
             tasks: [{ id: 7, text: 'Hit me', done: false,
-              listId: 'inbox' }],
-            lists: [{ id: 'inbox', name: 'Entrada', archived: false }],
+              listId: 'inbox', moveTargets: [] }],
+            navigableLists: [
+              { id: 'inbox', name: 'Entrada', pendingCount: 0 }
+            ],
+            archivedLists: [],
             activeListId: 'inbox',
             filter: 'all',
             editingId: null,
-            pendingCount: () => 0
+            pendingCount: 0
           });
           document.querySelector('#todo-list .toggle').click();
           document.querySelector('#todo-list .destroy').click();
+          document.querySelector('#todo-list label')
+            .dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
           assert.deepEqual(calls,
-            [['toggleTask', 7], ['deleteTask', 7]],
+            [['toggleTask', 7], ['deleteTask', 7], ['startEdit', 7]],
             'each event reaches its declared action');
           window.UI.bind(window.App.actions);
         });
