@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -46,5 +46,5 @@ Reescribir `todo-app/ROADMAP.md` con el formato de horizontes producido por la t
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-25 — Solicita cambios (épica 002 marcada Completada con las piezas sin marcar; corregido junto al matiz «dejó a medias». Sugerencia aceptada: «No ahora» dio hogar a las líneas aparcadas que las épicas declaran fuera)
+- Usuario: 2026-09-25 — Aprueba

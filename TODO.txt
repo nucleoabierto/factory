@@ -71,5 +71,5 @@
 - [x] docs/tasks/085-skill-documentar-producto.md — Crear el skill que mantiene la documentación de producto
 - [x] docs/tasks/086-reestructurar-plantilla-documento-dominio.md — Reestructurar la plantilla del documento de dominio
 - [x] docs/tasks/087-roadmap-por-horizontes.md — Extender el roadmap a horizontes Now/Next/Later
-- [ ] docs/tasks/088-aplicar-roadmap-horizontes-todo-app.md — Reescribir el roadmap de todo-app con horizontes
+- [x] docs/tasks/088-aplicar-roadmap-horizontes-todo-app.md — Reescribir el roadmap de todo-app con horizontes
 

@@ -50,5 +50,5 @@ Mejorar la estructura del documento de dominio separando con claridad la referen
 
 ## Revisión
 
-- Subagente: 2026-09-30 — Aprueba (hallazgo menor pre-existente sobre el ancla `UI.bindEvents`, resuelto en la misma revisión; referencia histórica a la sección «Fronteras» en `todo-app/docs/architecture-reviews/002`, intocable por estabilidad temporal)
-- Usuario: 2026-09-30 — Aprueba (desagregó además «Operaciones» en sub-bullets con ancla propia, por simetría con invariantes y glosario)
+- Subagente: 2026-09-25 — Aprueba (hallazgo menor pre-existente sobre el ancla `UI.bindEvents`, resuelto en la misma revisión; referencia histórica a la sección «Fronteras» en `todo-app/docs/architecture-reviews/002`, intocable por estabilidad temporal)
+- Usuario: 2026-09-25 — Aprueba (desagregó además «Operaciones» en sub-bullets con ancla propia, por simetría con invariantes y glosario)

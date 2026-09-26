@@ -49,5 +49,5 @@ Extender `planificar-roadmap` y la plantilla `assets/roadmap.md` para que el roa
 
 ## Revisión
 
-- Subagente: 2026-09-30 — Aprueba (observación menor: el frontmatter no declaraba el reflejo parcial; corregida en la misma revisión)
-- Usuario: 2026-09-30 — Aprueba
+- Subagente: 2026-09-25 — Aprueba (observación menor: el frontmatter no declaraba el reflejo parcial; corregida en la misma revisión)
+- Usuario: 2026-09-25 — Aprueba
