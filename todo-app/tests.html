@@ -1573,6 +1573,42 @@
             ['Done Trabajo'],
             'only the completed of the active list is cleared');
         });
+
+      QUnit.test('creating an empty task in today still adds nothing',
+        (assert) => {
+          window.App.setView('today');
+          assert.strictEqual(window.App.addTask('   '), null,
+            'blank text creates no task');
+          assert.strictEqual(window.App.tasks.length, 0);
+        });
+
+      QUnit.test('a task created in today stays visible and in the list',
+        (assert) => {
+          window.App.setView('today');
+          const task = window.App.addTask('Captured today');
+          assert.deepEqual(TestKit.texts(), ['Captured today'],
+            'the new task is present in the today view at once');
+          assert.strictEqual(task.listId, 'inbox',
+            'the task belongs to the active list');
+        });
+
+      QUnit.test('a task created in today carries today\'s date',
+        (assert) => {
+          window.App.setView('today');
+          const task = window.App.addTask('Dated by capture');
+          assert.strictEqual(task.date, TestKit.day(0),
+            'the domain assigns the current calendar day');
+          assert.strictEqual(window.App.dateStatus(task.date), 'today',
+            'the assigned date is a valid calendar day');
+        });
+
+      QUnit.test('a task created in the main view stays undated',
+        (assert) => {
+          const task = window.App.addTask('Plain capture');
+          assert.strictEqual(task.date, null,
+            'the main view keeps creating undated tasks');
+          assert.deepEqual(TestKit.texts(), ['Plain capture']);
+        });
     });
   </script>
 </body>

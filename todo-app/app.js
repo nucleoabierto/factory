@@ -1,7 +1,8 @@
 ((global) => {
   'use strict';
 
-  const { INBOX, FILTERS, VIEWS, TaskList, Storage } = global.Todo;
+  const { INBOX, FILTERS, VIEWS, TaskList, Storage, currentDay } =
+    global.Todo;
   const UI = global.UI;
 
   // Composition root: wires model, persistence and presentation,
@@ -40,8 +41,11 @@
       });
     },
 
+    // Tasks captured in the today view are due today, so they stay
+    // visible where they were captured.
     addTask(text) {
-      return taskList.addTask(text, App.activeListId);
+      return taskList.addTask(text, App.activeListId,
+        App.view === 'today' ? currentDay() : null);
     },
 
     toggleTask(id) {

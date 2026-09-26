@@ -115,13 +115,14 @@
       return this.#tasks.find((t) => t.id === id) || null;
     }
 
-    addTask(text, listId = INBOX.id) {
+    // A malformed date degrades to undated, same tolerance as load.
+    addTask(text, listId = INBOX.id, date = null) {
       const clean = (text || '').trim();
       if (!clean || !this.#lists.some((list) => list.id === listId)) {
         return null;
       }
       const task = { id: this.#nextId++, text: clean, done: false, listId,
-        date: null };
+        date: isValidDate(date) ? date : null };
       this.#tasks.push(task);
       this.#notify();
       return this.#snapshot(task);

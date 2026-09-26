@@ -34,7 +34,7 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
   - **Lista archivada:** una lista aparcada con todo su contenido: sale de la navegación y de las vistas sin perder tareas ni estado, y puede reactivarse; solo las vivas pueden ser activas o recibir tareas movidas.
     - Ancla: el flag `archived` de la lista y `TaskList.archiveList`/`unarchiveList` en `todo-domain.js`
     - Origen: `docs/tasks/014-archivar-listas.md`
-  - **Fecha de la tarea:** día calendario opcional (cadena ISO `YYYY-MM-DD`, sin hora), ausente por defecto; puede asignarse, cambiarse y quitarse.
+  - **Fecha de la tarea:** día calendario opcional (cadena ISO `YYYY-MM-DD`, sin hora), ausente por defecto; puede asignarse, cambiarse y quitarse. La tarea capturada en la vista «hoy» nace con la fecha del día, para quedar visible donde se creó.
     - Ancla: el campo `date` de la tarea y `TaskList.setTaskDate`/`clearTaskDate` en `todo-domain.js`, e `isValidDate` en `todo-core.js`
     - Origen: `docs/tasks/016-fecha-en-el-modelo.md`
   - **Vencida / de hoy / futura:** clasificación de una fecha respecto al día actual; la consulta del dominio recibe el día de referencia y la decide el modelo, no la presentación.
