@@ -132,3 +132,10 @@
   Obtenido: la épica y la tarea 084 hablaban de «anclar a la suite QUnit», acoplando el diseño de Factory a la implementación concreta de todo-app
   Corrección: Factory es genérico y todo-app es una PoC; los artefactos del sistema no mencionan tecnologías del producto validado —la instancia concreta vive en la Entrada de la tarea, no en el concepto
   Estado: consolidada
+
+- Id: 20260926T102400
+  Tarea: docs/tasks/089-skill-consultar-decisiones.md
+  Esperado: la `description` del front-matter declara la capacidad y el resultado del skill, sin narrar la mecánica interna.
+  Obtenido: la descripción de `consultar-decisiones` narraba el procedimiento («dada una descripción… busca los disparadores… trae las decisiones»), heredando el patrón de `consultar-lecciones`.
+  Corrección: la descripción describe la funcionalidad («recupera las decisiones vigentes que rigen un trabajo… para que el trabajo las respete»); el mecanismo de índice y disparadores vive en el cuerpo del skill.
+  Estado: pendiente

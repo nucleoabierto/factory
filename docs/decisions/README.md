@@ -1,0 +1,123 @@
+# Decisiones de diseño
+
+Índice de las decisiones de diseño del proyecto, registradas y mantenidas por el skill `decisiones-diseno`. `consultar-decisiones` lo consulta para recuperar las decisiones que aplican a un trabajo.
+
+<!-- Formato de cada entrada: el archivo de la decisión en su línea y los
+     datos como sub-bullets, con los disparadores siempre en la primera
+     posición para que una búsqueda los encuentre sin arrastrar el resumen.
+     El estado refleja la sección «Estado» del archivo de la decisión.
+
+     - DNNN-slug.md
+       - Disparadores: [archivos, artefactos, palabras clave]
+       - Resumen: [una frase]
+       - Estado: [Aceptada | Sustituida por DNNN | Obsoleta]
+-->
+
+- D001-todo-txt-como-indice-unico.md
+  - Disparadores: TODO.txt, índice de tareas, índice único, estado de tareas, línea por tarea
+  - Resumen: `TODO.txt` es el índice único de tareas; cada tarea se documenta en su archivo bajo `docs/tasks/` y se referencia con una línea por tarea.
+  - Estado: Aceptada
+- D002-tareas-individuales-en-docs-tasks.md
+  - Disparadores: docs/tasks, archivo de tarea, plantilla de tarea, nueva tarea, campos de tarea, NNN-slug
+  - Resumen: Una tarea por archivo bajo `docs/tasks/NNN-slug.md`, con plantilla de objetivo, dependencias, entrada, resultado esperado, criterios de calidad, procedimiento y notas.
+  - Estado: Aceptada
+- D003-skills-como-unidades-autocontenidas.md
+  - Disparadores: skills, SKILL.md, nuevo skill, reglas, AGENTS.md, instrucciones del agente, contexto
+  - Resumen: La funcionalidad del agente se empaqueta en skills autocontenidos que se cargan solo cuando son relevantes; las reglas siempre activas viven fuera, en `AGENTS.md` o en el sistema de reglas del arnés.
+  - Estado: Aceptada
+- D004-estandar-agent-skills.md
+  - Disparadores: .agents/skills, frontmatter, name, description, SKILL.md, estándar Agent Skills, portabilidad, arnés
+  - Resumen: Los skills siguen el estándar Agent Skills: viven en `.agents/skills/` con `SKILL.md` y frontmatter YAML con `name` y `description`, sin campos fuera del estándar.
+  - Estado: Aceptada
+- D005-division-progresiva-con-references.md
+  - Disparadores: references/, skill largo, material de referencia, SKILL.md, división progresiva, carga bajo demanda
+  - Resumen: El cuerpo de `SKILL.md` se mantiene por debajo de 500 líneas; el material de referencia detallado vive en `references/` y se carga solo cuando el cuerpo lo indica.
+  - Estado: Aceptada
+- D006-skills-redaccion-separados.md
+  - Disparadores: redacción, pulido, revisar-redaccion, pulir-escritura, corrección ortotipográfica, estilo
+  - Resumen: Revisión de estilo (`revisar-redaccion`) y pulido mecánico (`pulir-escritura`) son skills separados; el pulido exige que el texto haya pasado antes por la revisión.
+  - Estado: Aceptada
+- D007-skill-de-commit-con-conventional-commits.md
+  - Disparadores: commit, commitear, mensaje de commit, Conventional Commits, skill commit, voz imperativa, 50 caracteres
+  - Resumen: El procedimiento de commit vive en el skill `commit`, que aplica Conventional Commits en español con asunto imperativo de máximo 50 caracteres y cuerpo que explica el porqué.
+  - Estado: Aceptada
+- D008-organizacion-por-hitos-en-todo.md
+  - Disparadores: TODO.txt, hito, encabezado de hito, agrupación de tareas, secciones del índice
+  - Resumen: Las tareas se agrupan bajo encabezados `## Hito N: título` dentro de `TODO.txt`, sin cambiar el formato de línea ni el procesamiento del índice.
+  - Estado: Aceptada
+- D009-flujo-revision-dual.md
+  - Disparadores: revisión dual, subagente, estado en revisión, aprobación, ejecutar-tareas, sesgo de autoaprobación
+  - Resumen: Toda tarea pasa por revisión dual antes de completarse: un subagente con contexto aislado hace la revisión técnica y el usuario da la aprobación final, con estado intermedio `[r]`.
+  - Estado: Aceptada
+- D010-decisiones-diseno-formato-hibrido.md
+  - Disparadores: docs/decisions, decisión de diseño, ADR, DNNN-slug, formato de decisión, registrar decisión, estado de decisión
+  - Resumen: Un archivo por decisión bajo `docs/decisions/DNNN-slug.md`, numerado, con estado explícito y las secciones contexto, decisión y justificación, más referencias opcionales.
+  - Estado: Aceptada
+- D011-posponer-separacion-ejecutar-tareas.md
+  - Disparadores: ejecutar-tareas, orquestador de desarrollo, pipeline de entrega, branching, pull request, merge, flujos de código
+  - Resumen: La separación del orquestador de entrega de código queda pospuesta hasta que existan los flujos de gestión a nivel de código; la parte del sub-flujo de desarrollo quedó resuelta por D020.
+  - Estado: Sustituida por D020 en lo relativo al sub-flujo de desarrollo dentro de una tarea; el resto permanece pospuesto
+- D012-formato-y-ubicacion-de-las-propuestas.md
+  - Disparadores: propuesta, borrador, docs/proposals, propuesta.md, flujo de idea a tarea, numeración de propuestas
+  - Resumen: Cada propuesta vive en `docs/proposals/NNN-slug/` con `propuesta.md` y borradores `MM-titulo.md` independientes con los campos de la plantilla de tarea, sin Estado ni Revisión.
+  - Estado: Aceptada
+- D013-mecanismo-borradores-reflejo-todo.md
+  - Disparadores: propuestas en revisión, marcador [p], TODO.txt, ciclo de vida de propuesta, revisión asíncrona, borradores
+  - Resumen: `TODO.txt` lleva una sección «Propuestas en revisión» con el marcador `[p]`; la propuesta —no cada borrador— es la unidad de revisión, con ciclo borrador → pendiente → aprobada o descartada.
+  - Estado: Aceptada
+- D014-funcion-dual-crear-tareas.md
+  - Disparadores: crear-tareas, promoción de borradores, modos del skill, modo independiente, flujo de idea a tarea
+  - Resumen: `crear-tareas` tiene dos modos con núcleo común —el independiente desde una solicitud articulada y el de promoción de borradores aprobados— que se bifurcan solo en la entrada.
+  - Estado: Aceptada
+- D015-extension-de-d001-para-indice-de-propuestas.md
+  - Disparadores: TODO.txt, índice, propuestas, extensión de decisión, índice único
+  - Resumen: `TODO.txt` indexa tareas y propuestas en revisión; extiende D001 sin sustituirla, usando el marcador `[p]` para distinguir las propuestas.
+  - Estado: Aceptada
+- D016-campos-de-propuesta-md.md
+  - Disparadores: propuesta.md, campos de propuesta, sección Solución, sección Origen, dependencias de borrador, refinamiento
+  - Resumen: `propuesta.md` incluye la sección «Solución» —qué se hará concretamente, sin código ni procesos— y no incluye «Origen»; los borradores pueden depender de tareas existentes por su número.
+  - Estado: Aceptada
+- D017-todo-txt-indice-de-trabajo-activo.md
+  - Disparadores: TODO.txt, limpieza del índice, hito completado, trabajo activo, líneas completadas, 100 líneas
+  - Resumen: `TODO.txt` solo indexa trabajo activo: al completarse un hito se eliminan su encabezado y sus líneas, sin archivo de archivo; la limpieza se revisa al superar las 100 líneas.
+  - Estado: Aceptada
+- D018-todo-app-vanilla-js-prueba-flujo-externo.md
+  - Disparadores: todo-app, PoC, TodoMVC, vanilla JS, validación externa, proyecto de prueba, subcarpeta
+  - Resumen: La validación externa del sistema es una todo app conforme a la especificación TodoMVC, en vanilla JS y en la subcarpeta `todo-app/` del repositorio.
+  - Estado: Aceptada
+- D019-epica-como-artefacto-de-planeacion.md
+  - Disparadores: épica, docs/epics, plan técnico, guía de arquitectura, agrupación de tareas, promoción, encabezado ligero
+  - Resumen: La épica es un documento `docs/epics/NNN-slug.md` con objetivo, alcance, piezas, plan técnico —guía de arquitectura del conjunto—, criterio de cierre y estado; los conjuntos que no la ameritan se agrupan bajo un encabezado ligero.
+  - Estado: Aceptada
+- D020-flujo-desarrollo-skill-especialista.md
+  - Disparadores: desarrollo, skill especialista, enrutado por tipo, tipo de tarea, sub-flujo de desarrollo, ejecutar-tareas, mantenimiento (refactoring)
+  - Resumen: El flujo de desarrollo vive en un skill especialista que orquesta el sub-flujo dentro de la tarea; `ejecutar-tareas` sigue general y enruta por el tipo de tarea declarado.
+  - Estado: Aceptada
+- D021-documentacion-dominio-y-revision-arquitectura.md
+  - Disparadores: docs/domains, documentar-dominio, revisar-arquitectura, sensor, documentación de dominio, revisión bajo demanda, DDD
+  - Resumen: `documentar-dominio` es el sensor continuo que mantiene `docs/domains/` al cerrar cada tarea de desarrollo; `revisar-arquitectura` es la evaluación profunda bajo demanda cuando el sensor detecta divergencia o el usuario la invoca.
+  - Estado: Aceptada
+- D022-roadmap-como-nivel-de-direccion.md
+  - Disparadores: roadmap, ROADMAP.md, planificar-roadmap, prioridad, dirección, líneas de trabajo, orden de épicas
+  - Resumen: `ROADMAP.md` en la raíz del repositorio del producto es la fuente de verdad de prioridad y dirección —líneas de trabajo ordenadas con justificación de posición— y `TODO.txt` refleja ese orden mecánicamente.
+  - Estado: Aceptada
+- D023-mkdocs-ssg-documentacion-producto.md
+  - Disparadores: MkDocs, mkdocs.yml, sitio de documentación, SSG, generador de sitio, documentación de producto, site_name
+  - Resumen: MkDocs genera el sitio de la documentación de producto con un `mkdocs.yml` mínimo —solo `site_name`— fuera del directorio de documentos, que sigue siendo Markdown puro.
+  - Estado: Aceptada
+- D024-documentacion-producto-separada-anclas-suite.md
+  - Disparadores: product-docs, documentación de producto, anclas, escenarios, suite de pruebas, Diátaxis, separación de docs
+  - Resumen: La documentación de producto vive en `product-docs/`, separada del `docs/` de proceso; los escenarios se anclan a la suite por nombre de módulo y título de prueba, y los hechos de dominio se referencian sin duplicarse.
+  - Estado: Aceptada
+- D025-sensor-documentacion-producto.md
+  - Disparadores: documentar-producto, sensor, documentación de producto, cierre de tarea, ejecutar-tareas, frontera dominio-producto
+  - Resumen: `documentar-producto` es el sensor simétrico a `documentar-dominio`, invocado en el mismo punto del cierre: el dominio documenta el modelo y sus invariantes, el producto el comportamiento observable y la referencia de uso.
+  - Estado: Aceptada
+- D026-documento-dominio-referencia-explicacion.md
+  - Disparadores: documento de dominio, plantilla de dominio, referencia del modelo, explicación del dominio, glosario, invariantes
+  - Resumen: El documento de dominio agrupa sus campos en «Referencia del modelo» —qué es cierto, con anclas al código— y «Explicación del dominio» —fronteras y decisiones—.
+  - Estado: Aceptada
+- D027-roadmap-horizontes-now-next-later.md
+  - Disparadores: roadmap, horizontes, Now, Next, Later, No ahora, ROADMAP.md, líneas comprometidas
+  - Resumen: `ROADMAP.md` organiza las líneas en horizontes de confianza —Now, Next, Later y No ahora—; `TODO.txt` refleja solo los horizontes comprometidos y una propuesta `[p]` no entra al roadmap hasta aprobarse y planificarse.
+  - Estado: Aceptada

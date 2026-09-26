@@ -38,6 +38,7 @@ Instrucciones para que un agente registre una decisión de diseño siguiendo el 
 
 - Un archivo `docs/decisions/DNNN-slug.md` con la decisión redactada según el formato del proyecto.
 - Estado inicial `Aceptada`.
+- `docs/decisions/README.md` actualizado con la entrada de la nueva decisión.
 
 ## Principios rectores
 
@@ -59,16 +60,17 @@ Instrucciones para que un agente registre una decisión de diseño siguiendo el 
 7. **Revisar la redacción y pulir mecánicamente** el borrador antes de presentarlo al usuario. Si el arnés lo permite, invocar primero el skill `revisar-redaccion` en modo preventivo y, con su salida, el skill `pulir-escritura` en modo preventivo; de lo contrario, realizar el equivalente manualmente.
 8. **Presentar el borrador al usuario** para aprobación. Si solicita cambios, ajustar y repetir desde el paso 2. Si lo rechaza, no crear archivo y terminar.
 9. **Tras la aprobación, crear el archivo** en `docs/decisions/DNNN-slug.md`, donde `DNNN` es el identificador completo (prefijo `D` más el número de tres dígitos) y `slug` es una versión en kebab-case del título.
-10. **Si la nueva decisión sustituye o deja obsoleta una decisión existente**, actualizar el archivo anterior: cambiar su línea de `Estado` a `Sustituida por DNNN` o `Obsoleta`, y añadir el enlace a la nueva decisión en la sección `Referencias`. La decisión original no se reescribe: solo se cambia el estado y se enlaza.
+10. **Registrar la decisión en el índice** `docs/decisions/README.md`: añadir una entrada con el nombre del archivo, sus disparadores —archivos, artefactos y palabras clave que hagan aplicable la decisión—, un resumen de una frase y su estado, siguiendo el formato declarado en el propio índice.
+11. **Si la nueva decisión sustituye o deja obsoleta una decisión existente**, actualizar el archivo anterior: cambiar su línea de `Estado` a `Sustituida por DNNN` o `Obsoleta`, y añadir el enlace a la nueva decisión en la sección `Referencias`. La decisión original no se reescribe: solo se cambia el estado y se enlaza. Actualizar también su entrada del índice: el campo `Estado` refleja la sustitución o la obsolescencia, y el resumen se ajusta si la aplicabilidad cambió.
 
 ## Finalización
 
 El skill ha terminado cuando:
 
 - El usuario ha aprobado la decisión.
-- El archivo de decisión está creado en `docs/decisions/`.
+- El archivo de decisión está creado en `docs/decisions/` y registrado en `docs/decisions/README.md`.
 - El contenido sigue el formato y las reglas.
-- Si la decisión sustituye a una anterior, el archivo anterior está actualizado.
+- Si la decisión sustituye a una anterior, el archivo anterior y su entrada del índice están actualizados.
 
 ## Referencias
 

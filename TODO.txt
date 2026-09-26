@@ -41,7 +41,7 @@
 - [x] docs/tasks/080-gestionar-roadmap-todo-app.md — Crear la gestión de roadmap para el motor externo y aplicarla a todo-app
 - [x] docs/tasks/081-definir-semantica-mantenimiento.md — Definir la semántica del tipo de tarea `mantenimiento`
 - [x] docs/tasks/082-acciones-plan-checklist-delegable.md — Acciones del plan como checklist delegable a subagentes
-- [ ] docs/tasks/089-skill-consultar-decisiones.md — Skill de consulta de decisiones e índice mantenido
+- [x] docs/tasks/089-skill-consultar-decisiones.md — Skill de consulta de decisiones e índice mantenido
 - [ ] docs/tasks/090-paso-contexto-subflujo-desarrollo.md — Paso 0 de recolección de contexto en el sub-flujo de desarrollo
 - [ ] docs/tasks/091-gate-conectividad-desarrollo.md — Gate de conectividad técnica en el sub-flujo de desarrollo
 - [ ] docs/tasks/092-lista-control-subflujo-desarrollo.md — Lista de control de ejecución en el sub-flujo de desarrollo
