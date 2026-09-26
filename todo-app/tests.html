@@ -1265,6 +1265,102 @@
             window.App.dateStatus('2025-12-31', '2026-01-01'),
             'overdue', 'classification works across year boundaries');
         });
+
+      // Days relative to the real today, as ISO strings.
+      const day = (offset) => {
+        const d = new Date();
+        d.setDate(d.getDate() + offset);
+        const p = (n) => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+      };
+      const dueInput = () =>
+        document.querySelector('#todo-list li .due-date');
+      const changeDate = (value) => {
+        const control = dueInput();
+        control.value = value;
+        control.dispatchEvent(new Event('change', { bubbles: true }));
+      };
+
+      QUnit.test('the date control assigns and persists the date',
+        (assert) => {
+          window.App.addTask('Fechable');
+          changeDate(day(3));
+          assert.strictEqual(window.App.tasks[0].date, day(3),
+            'the task carries the chosen day');
+          assert.strictEqual(dueInput().value, day(3),
+            'the re-rendered control shows the date');
+          window.App.reset();
+          window.App.load();
+          assert.strictEqual(window.App.tasks[0].date, day(3),
+            'the date persists across reloads');
+        });
+
+      QUnit.test('the date control changes and removes the date',
+        (assert) => {
+          window.App.addTask('Modificable');
+          changeDate(day(1));
+          changeDate(day(4));
+          assert.strictEqual(window.App.tasks[0].date, day(4),
+            'the new value replaces the old');
+          changeDate('');
+          assert.strictEqual(window.App.tasks[0].date, null,
+            'an emptied field removes the date');
+          const li = document.querySelector('#todo-list li');
+          assert.false(
+            [...li.classList].some((c) => c.startsWith('due-')),
+            'the item returns to its undated look');
+        });
+
+      QUnit.test('items show their date status with a class',
+        (assert) => {
+          window.App.addTask('Vencida');
+          window.App.addTask('De hoy');
+          window.App.addTask('Futura');
+          const rows = () =>
+            [...document.querySelectorAll('#todo-list li')];
+          const controls = () =>
+            [...document.querySelectorAll('#todo-list .due-date')];
+          const pick = (i, value) => {
+            controls()[i].value = value;
+            controls()[i]
+              .dispatchEvent(new Event('change', { bubbles: true }));
+          };
+          pick(0, day(-1));
+          pick(1, day(0));
+          pick(2, day(2));
+          assert.true(rows()[0].classList.contains('due-overdue'),
+            'the overdue task is marked');
+          assert.true(rows()[1].classList.contains('due-today'),
+            'the today task is marked');
+          assert.true(rows()[2].classList.contains('due-future'),
+            'the future task is marked');
+        });
+
+      QUnit.test('undated items carry no temporal class', (assert) => {
+        window.App.addTask('Sin fecha');
+        const li = document.querySelector('#todo-list li');
+        assert.false(
+          [...li.classList].some((c) => c.startsWith('due-')),
+          'no temporal distinction without a date');
+      });
+
+      QUnit.test('text editing still works alongside the date control',
+        (assert) => {
+          const task = window.App.addTask('Editable');
+          window.App.setTaskDate(task.id, day(1));
+          document.querySelector('#todo-list li label')
+            .dispatchEvent(new MouseEvent('dblclick', { bubbles: true }));
+          const editInput =
+            document.querySelector('#todo-list input.edit');
+          assert.ok(editInput, 'double click enters edit mode');
+          editInput.value = 'Renombrada';
+          editInput.dispatchEvent(new KeyboardEvent('keydown',
+            { key: 'Enter', bubbles: true }));
+          assert.strictEqual(window.App.tasks[0].text, 'Renombrada',
+            'the text edit is applied');
+          assert.strictEqual(window.App.tasks[0].date, day(1),
+            'the date survives the text edit');
+        });
     });
   </script>
 </body>

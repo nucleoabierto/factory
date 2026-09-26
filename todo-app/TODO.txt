@@ -48,7 +48,7 @@
 <!-- épica: docs/epics/003-planificacion-temporal.md -->
 
 - [x] docs/tasks/016-fecha-en-el-modelo.md — Fecha opcional en la tarea y migración de la persistencia
-- [ ] docs/tasks/017-asignar-y-distinguir-fechas.md — Asignar, cambiar y quitar la fecha, con distinción visual
+- [x] docs/tasks/017-asignar-y-distinguir-fechas.md — Asignar, cambiar y quitar la fecha, con distinción visual
 - [ ] docs/tasks/018-vista-hoy-y-programacion.md — Vista «hoy» y exclusión de lo futuro de la vista principal
 - [ ] docs/tasks/019-tareas-recurrentes.md — Periodicidad simple que regenera la tarea al completarla
 

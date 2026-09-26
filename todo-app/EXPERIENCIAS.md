@@ -57,3 +57,10 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Obtenido: los botones +, ✎ y × tenían tamaños distintos por la métrica de cada carácter
   Corrección: el usuario pidió cajas cuadradas del mismo tamaño; se resolvió con inline-flex centrado y dimensiones fijas
   Estado: pendiente
+
+- Id: 20260925T213000
+  Tarea: todo-app/docs/tasks/017-asignar-y-distinguir-fechas.md
+  Esperado: que un control nuevo por fila siguiera el patrón visual de sus hermanos (mover, eliminar): oculto hasta el hover.
+  Obtenido: el campo de fecha quedó siempre visible, rompiendo el patrón de la fila.
+  Corrección: el usuario señaló que el campo no se oculta como el de mover o eliminar; se resolvió con visibility hidden por defecto y visible al hover o cuando la tarea tiene fecha.
+  Estado: pendiente

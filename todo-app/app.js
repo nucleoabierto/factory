@@ -432,7 +432,11 @@
       'toggle-task': (el, ev, actions) =>
         actions.toggleTask(Number(el.dataset.id)),
       'move-task': (el, ev, actions) =>
-        actions.moveTask(Number(el.dataset.id), el.value)
+        actions.moveTask(Number(el.dataset.id), el.value),
+      // An emptied date field means removing the date.
+      'set-task-date': (el, ev, actions) => el.value
+        ? actions.setTaskDate(Number(el.dataset.id), el.value)
+        : actions.clearTaskDate(Number(el.dataset.id))
     },
     keydown: {
       'add-task': (el, ev, actions) => {
@@ -504,6 +508,9 @@
       if (t.done) {
         li.className = 'done';
       }
+      if (t.dateStatus) {
+        li.classList.add(`due-${t.dateStatus}`);
+      }
       if (vm.editingId === t.id) {
         const editInput = doc.createElement('input');
         editInput.type = 'text';
@@ -528,8 +535,16 @@
         destroy.textContent = '×';
         destroy.dataset.action = 'destroy-task';
         destroy.dataset.id = t.id;
+        const due = doc.createElement('input');
+        due.type = 'date';
+        due.className = 'due-date';
+        due.value = t.date || '';
+        due.dataset.action = 'set-task-date';
+        due.dataset.id = t.id;
+        due.setAttribute('aria-label', 'Fecha de la tarea');
         li.appendChild(toggle);
         li.appendChild(label);
+        li.appendChild(due);
         li.appendChild(moveSelect(doc, t));
         li.appendChild(destroy);
       }
@@ -827,6 +842,7 @@
       return {
         tasks: App.visibleTasks().map((t) => ({
           ...t,
+          dateStatus: taskList.dateStatus(t.date),
           moveTargets: navigableLists
             .filter((l) => l.id !== t.listId)
             .map((l) => ({ id: l.id, name: l.name }))
@@ -848,6 +864,8 @@
       editTask: (id, text) => App.editTask(id, text),
       deleteTask: (id) => App.deleteTask(id),
       moveTask: (id, listId) => App.moveTask(id, listId),
+      setTaskDate: (id, date) => App.setTaskDate(id, date),
+      clearTaskDate: (id) => App.clearTaskDate(id),
       setActiveList: (id) => App.setActiveList(id),
       setFilter: (name) => App.setFilter(name),
       addList: (name) => App.addList(name),

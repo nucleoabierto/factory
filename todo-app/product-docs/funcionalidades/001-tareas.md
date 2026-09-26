@@ -30,3 +30,11 @@ Cada escenario está verificado por la suite de pruebas del proyecto (`tests.htm
 - **Las operaciones siguen funcionando con un filtro activo.** — módulo `filters and clear completed`, «operations keep working under an active filter»
 - **El contador cuenta los pendientes de la lista, no solo los visibles.** — módulo `filters and clear completed`, «the counter totals pending, not visible tasks»
 - **El filtro elegido persiste; un valor guardado inválido vuelve a «todas».** — módulo `filters and clear completed`, «the filter persists and tolerates corrupted values»
+
+### Fechas
+
+- **Cada tarea ofrece un campo de día para asignarle fecha; la elegida queda en el estado y persiste al recargar.** — módulo `task dates`, «the date control assigns and persists the date»
+- **El campo permite cambiar la fecha, y vaciarlo la quita devolviendo el ítem a su aspecto sin fecha.** — módulo `task dates`, «the date control changes and removes the date»
+- **La fecha se distingue a simple vista según su situación: vencida, de hoy o futura.** — módulo `task dates`, «items show their date status with a class»
+- **Una tarea sin fecha no lleva distinción temporal alguna.** — módulo `task dates`, «undated items carry no temporal class»
+- **La fecha convive con la edición de texto por doble clic.** — módulo `task dates`, «text editing still works alongside the date control»

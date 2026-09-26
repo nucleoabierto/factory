@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -49,7 +49,32 @@ Permitir a la persona poner fecha a una tarea, cambiarla o quitarla desde la int
 
 - Los commits de este proyecto llevan el ámbito `todo-app` en Conventional Commits (`tipo(todo-app): descripción`).
 
+## Plan técnico
+
+Cada fila de tarea se renderiza en `renderTasks` desde `vm.tasks` (ya proyectadas tras la 024) y sus eventos salen por la tabla de dispatch delegada en `document`. `TaskList.dateStatus` ya clasifica la fecha en el dominio.
+
+- [x] Proyectar la situación temporal en el view-model: cada tarea de `vm.tasks` lleva `dateStatus` (`overdue`/`today`/`future`/`null`) calculado por `TaskList.dateStatus`; añadir `setTaskDate`/`clearTaskDate` a `App.actions`
+  - Aporta: la vista renderiza la clase sin evaluar reglas, coherente con el contrato cerrado en la tarea 024
+- [x] Añadir el control de fecha a la fila: `<input type="date" class="due-date">` en el modo normal del ítem, con `data-action="set-task-date"` y `data-id`; su `value` es la fecha o vacío, y el `li` recibe `due-overdue`/`due-today`/`due-future` según `dateStatus`
+  - Aporta: asignar, ver y cambiar la fecha; vaciar el campo la quita
+  - Contexto: el modo edición sigue mostrando solo el input de texto; la fecha no interfiere con él
+- [x] Registrar la entrada en la tabla de dispatch: `change → 'set-task-date'` llama `setTaskDate(id, value)`, o `clearTaskDate(id)` si el campo quedó vacío
+  - Aporta: el cableado usa el mecanismo único de eventos, sin listeners por fila
+- [x] Dar estilos a la distinción en `style.css`: color del campo de fecha según la clase del `li` (vencida destacada, hoy marcada, futura neutra), con la paleta existente
+  - Aporta: la distinción a simple vista que exige el objetivo
+- [x] Escribir los tests de la interacción en `tests.html`: asignar y persistir desde la vista, quitar, las tres clases de distinción con días relativos al día real, y regresión de la edición por doble clic
+  - Aporta: cubre la suite esperada sobre el cableado nuevo
+
+## Suite de pruebas esperada
+
+- Asignar una fecha desde el control del ítem la deja en el estado y persiste al recargar (caso de uso: poner fecha a una tarea).
+- Cambiar la fecha desde el control actualiza el estado (caso de uso: cambiar la fecha).
+- Vaciar el control quita la fecha y el ítem vuelve a su aspecto sin fecha (caso de uso: quitar la fecha).
+- El ítem lleva la clase `due-overdue`, `due-today` o `due-future` según su fecha respecto a hoy, y ninguna si no tiene fecha (caso de uso: distinguir la situación de cada tarea).
+- Doble clic en la etiqueta y Enter/Escape siguen editando el texto (caso de uso: editar una tarea — regresión).
+- La suite completa pasa en verde sin errores en consola.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-25 — Aprueba (observaciones: distinción hoy/vencida reforzada con color ámbar)
+- Usuario: 2026-09-25 — Aprueba (pidió que el campo de fecha se oculte hasta el hover como sus hermanos; corregido)
