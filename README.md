@@ -131,5 +131,5 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
 - [Visión del proyecto](docs/vision-proyecto.md) — dirección aspiracional.
-- [Decisiones de diseño](docs/decisions/) — registro de decisiones (D001–D022).
+- [Decisiones de diseño](docs/decisions/) — registro de decisiones.
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.
