@@ -150,6 +150,8 @@
         const destroy = doc.createElement('button');
         destroy.className = 'destroy';
         destroy.textContent = '×';
+        destroy.setAttribute('aria-label', 'Eliminar tarea');
+        destroy.title = 'Eliminar tarea';
         destroy.dataset.action = 'destroy-task';
         destroy.dataset.id = t.id;
         const due = doc.createElement('input');
@@ -278,6 +280,10 @@
     if (counter) {
       const n = vm.pendingCount;
       counter.textContent = `${n} pendiente${n === 1 ? '' : 's'}`;
+    }
+    const clearCompleted = doc.getElementById('clear-completed');
+    if (clearCompleted) {
+      clearCompleted.hidden = !vm.hasCompleted;
     }
     const filterLinks = {
       all: doc.getElementById('filter-all'),

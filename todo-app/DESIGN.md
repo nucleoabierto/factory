@@ -22,7 +22,7 @@ Utilitaria y compacta, fiel a la estética TodoMVC: una lista centrada sin decor
 - `--color-border-strong` `#999999` — borde del campo de edición
 - `--color-shadow` `rgba(0, 0, 0, 0.15)` — sombra de la tarjeta
 
-Reglas de combinación: el acento solo en título, foco, hover, estado seleccionado, acciones destructivas y fechas vencidas — nunca como fondo de superficie. El warning solo para la fecha «hoy». Texto principal siempre sobre `--color-background` o `--color-surface`.
+Reglas de combinación: el acento solo en título, foco, hover, estado seleccionado, acciones destructivas y fechas vencidas — nunca como fondo de superficie salvo el seleccionado del control segmentado (`.views`), donde lleva texto `--color-surface`. El warning solo para la fecha «hoy». Texto principal siempre sobre `--color-background` o `--color-surface`.
 
 ## Tipografía
 
@@ -47,9 +47,10 @@ Reglas: una sola familia en toda la app; el peso 600 solo para estados de fecha 
 ## Componentes
 
 - **Acción-icono** (`.list-action`, `.destroy`, `.reactivate`): botón sin fondo ni borde, 32×32, texto en `--color-text-muted` o `--color-accent` según sea secundaria o destructiva; hover cambia el color, no el fondo. Las acciones de lista usan etiquetas legibles, no glifos crípticos.
-- **Píldora** (`.due-date`, `.move`): 13px, borde `--color-border`, radio `--radius`, fondo `--color-surface`.
+- **Píldora** (`.due-date`, `.move`, `.recur`): 13px, borde `--color-border`, radio `--radius`, fondo `--color-surface`, texto `--color-text-muted`.
+- **Toggle** (`.toggle`): checkbox nativo con `accent-color: --color-accent` — ningún color fuera de la paleta.
 - **Campo de texto** (`.new-todo`, `.edit`): sin borde salvo el inferior en `--color-border` (o `--color-border-strong` en edición); foco con `outline`/`box-shadow` en `--color-accent`, nunca el azul por defecto del navegador.
-- **Controles segmentados** (`.views`, `.filters`): enlaces con padding `3px 7px`, borde transparente y radio `--radius`; hover y `.selected` muestran borde en `--color-accent`.
+- **Controles segmentados**: `.views` es la navegación primaria — píldora contenedora con borde `--color-border`; el seleccionado lleva fondo `--color-accent` y texto `--color-surface`; hover en acento de texto. `.filters` son enlaces con padding `4px 8px`, borde transparente y radio `--radius`; hover y `.selected` muestran borde en `--color-accent`.
 
 ## Estados
 
@@ -60,7 +61,7 @@ Reglas: una sola familia en toda la app; el peso 600 solo para estados de fecha 
 - **Fecha «hoy»:** texto `--color-warning`, fondo `--color-warning-bg`, borde `--color-warning-border`, peso 600.
 - **Fecha vencida:** texto y borde `--color-accent`, peso 600.
 - **Empty:** la lista vacía muestra un mensaje en `--color-text-muted` («Sin tareas.») centrado con padding, no un área en blanco.
-- **Acciones contextuales** (`.due-date`, `.move`, `.destroy`): visibles con opacidad reducida en reposo y opacidad plena en `:hover`/`:focus`, en lugar de `visibility: hidden` — deben ser descubribles también en táctil.
+- **Acciones contextuales** (`.due-date`, `.move`, `.recur`, `.destroy`): visibles con opacidad reducida en reposo y opacidad plena en `:hover`/`:focus`, en lugar de `visibility: hidden` — deben ser descubribles también en táctil.
 
 ## Layout
 

@@ -228,7 +228,10 @@
         view: App.view,
         editingId: viewState.editingId,
         pendingCount: taskList
-          .pendingCount(App.activeListId, App.view)
+          .pendingCount(App.activeListId, App.view),
+        hasCompleted: taskList
+          .visibleTasks('completed', App.activeListId, App.view)
+          .length > 0
       };
     },
 

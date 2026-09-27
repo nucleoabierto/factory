@@ -18,13 +18,13 @@
                 aria-label="Nueva lista" data-action="add-list">+</button>
         <button id="rename-list" class="list-action"
                 title="Renombrar lista" aria-label="Renombrar lista"
-                data-action="rename-list">✎</button>
+                data-action="rename-list">Renombrar</button>
         <button id="archive-list" class="list-action"
                 title="Archivar lista" aria-label="Archivar lista"
-                data-action="archive-list">↓</button>
+                data-action="archive-list">Archivar</button>
         <button id="delete-list" class="list-action"
                 title="Eliminar lista" aria-label="Eliminar lista"
-                data-action="delete-list">×</button>
+                data-action="delete-list">Eliminar</button>
       </div>
       <input id="new-todo" class="new-todo" type="text"
              placeholder="¿Qué hay que hacer?" autofocus
@@ -41,13 +41,15 @@
     </details>
 
     <footer class="footer">
-      <span id="todo-count" class="todo-count">0 pendientes</span>
+      <div class="views-row">
       <ul class="views">
         <li><a href="#/main" id="view-main" data-action="set-view"
                data-view="main">Lista</a></li>
         <li><a href="#/today" id="view-today" data-action="set-view"
                data-view="today">Hoy</a></li>
       </ul>
+      </div>
+      <div class="filters-row">
       <ul class="filters">
         <li><a href="#/" id="filter-all" data-action="set-filter"
                data-filter="all">Todas</a></li>
@@ -57,10 +59,14 @@
                data-action="set-filter"
                data-filter="completed">Completadas</a></li>
       </ul>
-      <button id="clear-completed" class="clear-completed"
-              data-action="clear-completed">
-        Limpiar completadas
-      </button>
+      </div>
+      <div class="footer-row">
+        <span id="todo-count" class="todo-count">0 pendientes</span>
+        <button id="clear-completed" class="clear-completed"
+                data-action="clear-completed">
+          Limpiar completadas
+        </button>
+      </div>
     </footer>
   </main>
 

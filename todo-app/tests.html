@@ -5,6 +5,7 @@
   <title>Tests — Lista de tareas</title>
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/qunit@2.24.1/qunit/qunit.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="qunit"></div>
@@ -1759,6 +1760,78 @@
             document.querySelector('#todo-list li:nth-child(2) select.recur')
               .value, 'monthly',
             'the control reflects the recurrence');
+        });
+    });
+
+    QUnit.module('design guide', (hooks) => {
+      hooks.beforeEach(() => {
+        TestKit.resetApp();
+        TestKit.fixture(
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list" class="todo-list"></ul>
+          <span id="todo-count"></span>
+          <button id="clear-completed"></button>`);
+      });
+
+      QUnit.test('the root block declares the guide tokens', (assert) => {
+        const styles = getComputedStyle(document.documentElement);
+        assert.strictEqual(
+          styles.getPropertyValue('--color-accent').trim(), '#b83f45');
+        assert.strictEqual(
+          styles.getPropertyValue('--radius').trim(), '3px');
+        assert.strictEqual(
+          styles.getPropertyValue('--font-task').trim(), '20px');
+      });
+
+      QUnit.test('the empty list shows the empty-state message', (assert) => {
+        const list = document.getElementById('todo-list');
+        assert.true(list.matches(':empty'), 'the list is empty (Z)');
+        const content =
+          getComputedStyle(list, '::after').content;
+        assert.ok(content.includes('Sin tareas'),
+          'the empty message renders');
+      });
+
+      QUnit.test('a non-empty list does not show the empty state',
+        (assert) => {
+          window.App.addTask('Comprar pan');
+          const list = document.getElementById('todo-list');
+          assert.false(list.matches(':empty'), 'a task exists (O)');
+          assert.strictEqual(
+            getComputedStyle(list, '::after').content, 'none',
+            'no empty message');
+        });
+
+      QUnit.test('contextual actions rest dimmed, never hidden',
+        (assert) => {
+          window.App.addTask('Moverme');
+          const due = document.querySelector('#todo-list .due-date');
+          const destroy = document.querySelector('#todo-list .destroy');
+          [due, destroy].forEach((el) => {
+            assert.ok(parseFloat(getComputedStyle(el).opacity) < 1,
+              `${el.className} rests at reduced opacity`);
+            assert.notStrictEqual(
+              getComputedStyle(el).visibility, 'hidden',
+              `${el.className} is not hidden`);
+          });
+        });
+
+      QUnit.test('the focus ring uses the accent color', (assert) => {
+        const input = document.getElementById('new-todo');
+        input.focus();
+        assert.strictEqual(
+          getComputedStyle(input).outlineColor, 'rgb(184, 63, 69)',
+          'the outline is the accent color');
+      });
+
+      QUnit.test('clear completed stays hidden until a task is done',
+        (assert) => {
+          const task = window.App.addTask('Done soon');
+          const button = document.getElementById('clear-completed');
+          assert.true(button.hidden, 'hidden with no completed tasks');
+          window.App.toggleTask(task.id);
+          assert.false(button.hidden,
+            'visible once a task is completed');
         });
     });
   </script>
