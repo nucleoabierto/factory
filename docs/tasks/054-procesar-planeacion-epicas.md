@@ -14,7 +14,7 @@ Someter la idea «planeación de épicas y plan técnico» al flujo de idea a ta
 
 ## Entrada
 
-- Idea suelta: el producto necesita una capacidad de planeación que agrupe propuestas y tareas en épicas y produzca un plan técnico antes de la ejecución. La visión la lista como capacidad faltante («planeación de épicas y roadmap», `docs/vision-proyecto.md`, `docs/definicion-proyecto.md`).
+- Idea suelta: el producto necesita una capacidad de planeación que agrupe propuestas y tareas en épicas y produzca un plan técnico antes de la ejecución. La visión la lista como capacidad faltante («planeación de épicas y roadmap», `product-docs/vision.md`, `docs/definicion-proyecto.md`).
 - La investigación `docs/research/2026-09-flujos-idea-tarea-ejecucion.md` excluyó la planeación por alcance: no hay alternativas evaluadas.
 - Caso de uso de validación: la épica generada debe poder albergar las tareas ya existentes de `todo-app/` (las promovidas desde la propuesta `todo-app/docs/proposals/001-app-lista-tareas/`), incluido el caso de planificar tareas sueltas ya creadas.
 

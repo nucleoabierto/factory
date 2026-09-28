@@ -101,6 +101,7 @@ docs/proposals/     Propuestas del flujo de idea a tarea y sus borradores
 docs/research/      Investigaciones
 docs/reviews/       Informes de revisión de escritura
 docs/tasks/         Archivos de tarea individuales
+product-docs/       Documentación de producto de Factory (sitio MkDocs)
 todo-app/           Prueba del flujo externo: todo app en vanilla JS (D018)
 EXPERIENCIAS.md     Registro append-only de correcciones del usuario
 TODO.txt            Índice de trabajo activo: tareas y propuestas
@@ -140,6 +141,6 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 ## Documentación
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
-- [Visión del proyecto](docs/vision-proyecto.md) — dirección aspiracional.
+- [Visión del proyecto](product-docs/vision.md) — dirección aspiracional.
 - [Decisiones de diseño](docs/decisions/) — registro de decisiones.
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.

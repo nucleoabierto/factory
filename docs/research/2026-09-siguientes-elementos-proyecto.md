@@ -145,7 +145,7 @@ El orden de las prioridades no es solo por evidencia: forma un arco. Primero se 
 
 ## Referencias
 
-- [1] docs/definicion-proyecto.md, docs/vision-proyecto.md — repositorio propio
+- [1] docs/definicion-proyecto.md, product-docs/vision.md — repositorio propio
 - [2] todo-app/EXPERIENCIAS.md, todo-app/docs/lessons/ — evidencia del PoC
 - [3] todo-app/docs/architecture-reviews/001 — informe de revisión de arquitectura del PoC
 - [4] Encyclopedia of Agentic Patterns, «Entropy Reduction Agents» — agentpatterns.ai/workflows/entropy-reduction-agents/

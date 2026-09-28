@@ -125,3 +125,7 @@
   - Disparadores: ZOMBIE, suite de pruebas, planear-implementacion, expectativa, anotación, casos de prueba
   - Resumen: Cada expectativa de la `## Suite de pruebas esperada` declara la letra ZOMBIE que la derivó cuando aplica —las de regresión o arnés no— y la convención aplica solo hacia adelante sin reanotar suites históricas.
   - Estado: Aceptada
+- D029-documentacion-producto-factory-en-raiz.md
+  - Disparadores: product-docs, documentación de producto, visión, mkdocs.yml, raíz del repositorio, docs/vision-proyecto
+  - Resumen: La documentación de producto de Factory vive en `product-docs/` en la raíz, separada del `docs/` de proceso, con `mkdocs.yml` mínimo; todas las referencias a la ruta antigua de la visión se actualizan.
+  - Estado: Aceptada

@@ -15,7 +15,7 @@ Determinar con evidencia qué debe contener la épica como artefacto de planeaci
 ## Entrada
 
 - Propuesta `docs/proposals/001-planeacion-epicas/propuesta.md`.
-- Contexto interno: `docs/definicion-proyecto.md`, `docs/vision-proyecto.md`, `docs/decisions/D008-organizacion-por-hitos-en-todo.md`, el ciclo de vida de las propuestas (D012-D016) y la estructura actual de `TODO.txt`.
+- Contexto interno: `docs/definicion-proyecto.md`, `product-docs/vision.md`, `docs/decisions/D008-organizacion-por-hitos-en-todo.md`, el ciclo de vida de las propuestas (D012-D016) y la estructura actual de `TODO.txt`.
 
 ## Resultado esperado
 

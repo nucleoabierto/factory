@@ -21,7 +21,7 @@ Dotar al motor externo del nivel por encima de la épica —decidir la forma que
 - `docs/research/2026-09-siguientes-elementos-proyecto.md` — prioridad 3 (roadmap y releases) con patrones externos de referencia: roadmap en el repositorio como fuente única, backlogs git-native con jerarquía iniciativa → épica → feature.
 - `todo-app/TODO.txt`, `todo-app/docs/epics/` y `todo-app/docs/tasks/` — estado actual: dos épicas planificadas e independientes entre sí, un conjunto de tareas (020–022) que forma una épica de facto sin agrupar, y una tarea de mantenimiento (015) que reescribe `app.js` completo.
 - `.agents/skills/planificar/` — la capacidad de épica existente, nivel inmediatamente inferior al que se construye.
-- `docs/definicion-proyecto.md` y `docs/vision-proyecto.md` — encaje con la trayectoria del motor externo.
+- `docs/definicion-proyecto.md` y `product-docs/vision.md` — encaje con la trayectoria del motor externo.
 
 ## Resultado esperado
 

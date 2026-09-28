@@ -21,6 +21,6 @@ El alcance de la validación queda delimitado: cubre la portabilidad de los skil
 ## Referencias
 
 - TodoMVC, especificación de la aplicación (`app-spec.md`) — github.com/tastejs/todomvc
-- Visión del proyecto, «Validar externamente» — `docs/vision-proyecto.md`
+- Visión del proyecto, «Validar externamente» — `product-docs/vision.md`
 - Investigación «Todo apps como base de trabajo para la prueba de concepto» — `docs/research/2026-09-todo-apps-base-trabajo.md`
 - Tarea 051 — `docs/tasks/051-registrar-decision-todo-app-poc.md`
