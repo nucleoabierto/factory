@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptada
+Sustituida por D031
 
 ## Contexto
 

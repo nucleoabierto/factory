@@ -79,4 +79,4 @@ El skill ha terminado cuando:
 
 - `docs/research/2026-09-flujo-desarrollo.md` — Fase de revisión contra convenciones, archivos hermanos y plan; la capa mecánica sigue pospuesta.
 - `docs/research/flujo-revision-tareas.md` — Revisión dual, separación de contextos y rol adversarial del revisor.
-- `docs/decisions/D020-flujo-desarrollo-skill-especialista.md` — La revisión de implementación como skill separado, invocado en el paso de revisión del ejecutor.
+- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — La revisión de implementación como skill separado, invocado en el paso de revisión del ejecutor (sustituye a D020).

@@ -6,7 +6,7 @@ description: >
   conceptual con storytelling y suite de pruebas esperada guiada
   por ZOMBIE con su letra declarada por expectativa.
   Usar al ejecutar una tarea de tipo desarrollo o mantenimiento
-  (refactoring), invocado por el skill especialista del sub-flujo
+  (refactoring), invocado por `planear-tarea`, la mitad de planeación del flujo
   de desarrollo o directamente, cuando hay que planear la
   implementación antes de codificar.
   Sinónimos: planear implementación, plan técnico de la tarea,
@@ -19,7 +19,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ## Cuándo usar
 
-- Al ejecutar una tarea de tipo `desarrollo` o `mantenimiento (refactoring)`, antes de escribir código: invocado por el skill especialista que orquesta el sub-flujo de desarrollo dentro de la tarea.
+- Al ejecutar una tarea de tipo `desarrollo` o `mantenimiento (refactoring)`, antes de escribir código: invocado por `planear-tarea`, la mitad de planeación del flujo de desarrollo dentro de la tarea.
 - Cuando el usuario pida planear la implementación de una tarea concreta, fuera del ciclo de ejecución.
 
 ## Cuándo no usar
@@ -100,5 +100,5 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `docs/research/2026-09-flujo-desarrollo.md` — Fases de planeación técnica y de testing, con los ajustes aprobados (entendimiento previo, granularidad flexible).
-- `docs/decisions/D020-flujo-desarrollo-skill-especialista.md` — Encapsulación del flujo de desarrollo en skills especialistas.
+- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — El flujo de desarrollo dividido en `planear-tarea` y `desarrollar-tarea` (sustituye a D020).
 - James Grenning, «TDD Guided by ZOMBIES» — blog.wingman-sw.com/tdd-guided-by-zombies — Guía de generación de casos de prueba.

@@ -19,7 +19,7 @@ Instrucciones para que un agente reúna el contexto que una tarea de desarrollo 
 
 ## Cuándo usar
 
-- Como paso previo a la planeación en el sub-flujo de desarrollo, invocado por el skill especialista antes de `planear-implementacion`.
+- Como paso previo a la planeación en el sub-flujo de desarrollo, invocado por `planear-tarea` antes de `planear-implementacion`.
 - Cuando el usuario pida preparar el contexto de una tarea concreta, dentro o fuera del ciclo de ejecución.
 
 ## Cuándo no usar

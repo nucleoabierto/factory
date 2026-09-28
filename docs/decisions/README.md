@@ -92,7 +92,7 @@
 - D020-flujo-desarrollo-skill-especialista.md
   - Disparadores: desarrollo, skill especialista, enrutado por tipo, tipo de tarea, sub-flujo de desarrollo, ejecutar-tareas, mantenimiento (refactoring)
   - Resumen: El flujo de desarrollo vive en un skill especialista que orquesta el sub-flujo dentro de la tarea; `ejecutar-tareas` sigue general y enruta por el tipo de tarea declarado.
-  - Estado: Aceptada
+  - Estado: Sustituida por D031
 - D021-documentacion-dominio-y-revision-arquitectura.md
   - Disparadores: docs/domains, documentar-dominio, revisar-arquitectura, sensor, documentación de dominio, revisión bajo demanda, DDD
   - Resumen: `documentar-dominio` es el sensor continuo que mantiene `docs/domains/` al cerrar cada tarea de desarrollo; `revisar-arquitectura` es la evaluación profunda bajo demanda cuando el sensor detecta divergencia o el usuario la invoca.
@@ -132,4 +132,8 @@
 - D030-ideas-persistidas-en-docs-ideas.md
   - Disparadores: docs/ideas, archivo de idea, lluvia-de-ideas, idea persistida, Procesada en, Orden sugerido, entrada del flujo
   - Resumen: Las ideas se persisten en `docs/ideas/NNN-slug.md` —un archivo por idea— como entrada del flujo; `idea-a-tarea` consume las sin procesar en el orden sugerido y marca la consumida en su propia cabecera.
+  - Estado: Aceptada
+- D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md
+  - Disparadores: planear-tarea, desarrollar-tarea, sub-flujo de desarrollo, enrutado por tipo, estado de planeación, plan aprobado, ejecutar-tareas
+  - Resumen: El flujo de desarrollo se divide en `planear-tarea` y `desarrollar-tarea`, con el skill `desarrollo` eliminado; `ejecutar-tareas` elige el punto de entrada por el estado de planeación del archivo de la tarea.
   - Estado: Aceptada

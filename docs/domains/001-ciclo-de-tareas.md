@@ -18,7 +18,7 @@ Ejecutar el trabajo definido del proyecto de principio a fin: tomar la próxima 
     - Origen: `docs/decisions/D009-flujo-revision-dual.md`
   - **Enrutado por tipo:** el campo «Tipo» del archivo de tarea decide si la ejecución se delega a un skill especialista registrado en la sección «Enrutado por tipo».
     - Ancla: sección «Enrutado por tipo» de `.agents/skills/ejecutar-tareas/SKILL.md`
-    - Origen: `docs/decisions/D020-flujo-desarrollo-skill-especialista.md`
+    - Origen: `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` (sustituye a D020)
 - **Entidades / estado:**
   - El estado de una tarea vive en dos sitios sincronizados: el marcador de su línea en `TODO.txt` y el campo «Estado» de su archivo en `docs/tasks/`; ambos se actualizan juntos en cada transición.
     - Ancla: paso 4 del procedimiento en `.agents/skills/ejecutar-tareas/SKILL.md`
@@ -46,7 +46,7 @@ Ejecutar el trabajo definido del proyecto de principio a fin: tomar la próxima 
   - `docs/decisions/D008-organizacion-por-hitos-en-todo.md`
   - `docs/decisions/D009-flujo-revision-dual.md`
   - `docs/decisions/D017-todo-txt-indice-de-trabajo-activo.md`
-  - `docs/decisions/D020-flujo-desarrollo-skill-especialista.md`
+  - `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` (sustituye a D020)
 
 ## Estado de salud
 

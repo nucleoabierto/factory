@@ -6,7 +6,7 @@ description: >
   archivo, y devuelve el diff con el registro de desviaciones.
   Usar al ejecutar una tarea de tipo desarrollo o mantenimiento
   (refactoring) que ya tiene plan, invocado por el skill
-  especialista del sub-flujo de desarrollo o directamente.
+  especialista `desarrollar-tarea` o directamente.
   Sinónimos: ejecutar implementación, implementar el plan,
   desarrollo siguiendo el plan, codificar la tarea.
 ---
@@ -17,7 +17,7 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 
 ## Cuándo usar
 
-- Al ejecutar una tarea de tipo `desarrollo` o `mantenimiento (refactoring)` cuyo archivo ya contiene las secciones `## Plan técnico` y `## Suite de pruebas esperada`: invocado por el skill especialista que orquesta el sub-flujo de desarrollo dentro de la tarea.
+- Al ejecutar una tarea de tipo `desarrollo` o `mantenimiento (refactoring)` cuyo archivo ya contiene las secciones `## Plan técnico` y `## Suite de pruebas esperada`: invocado por `desarrollar-tarea`, la mitad de ejecución del flujo de desarrollo.
 - Cuando el usuario pida implementar el plan de una tarea concreta.
 
 ## Cuándo no usar
@@ -84,4 +84,4 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `docs/research/2026-09-flujo-desarrollo.md` — Fase de ejecución con el ajuste aprobado de revisión del plan durante el desarrollo.
-- `docs/decisions/D020-flujo-desarrollo-skill-especialista.md` — Encapsulación del flujo de desarrollo en skills especialistas.
+- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — El flujo de desarrollo dividido en `planear-tarea` y `desarrollar-tarea` (sustituye a D020).

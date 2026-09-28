@@ -19,7 +19,7 @@ Instrucciones para que un agente contraste lo que una tarea de desarrollo asume 
 
 ## Cuándo usar
 
-- En el sub-flujo de desarrollo, tras `recopilar-contexto` y antes de `planear-implementacion`, invocado por el skill especialista.
+- En el sub-flujo de desarrollo, tras `recopilar-contexto` y antes de `planear-implementacion`, invocado por `planear-tarea`.
 - Cuando el usuario pida evaluar la conectividad de una tarea concreta.
 
 ## Cuándo no usar
