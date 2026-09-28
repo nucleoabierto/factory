@@ -7,6 +7,11 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
 ## Referencia del modelo
 
 - **Lenguaje ubicuo:**
+  - **Idea persistida:** archivo `docs/ideas/NNN-slug.md` producido por `lluvia-de-ideas`, con Problema, Qué desbloquea (equivalente a la Oportunidad de `descubrir-problema`), Flujos viables, Ventajas como producto y Tensión con el roadmap; entrada persistida del flujo, anterior a la propuesta.
+    - Ancla: `.agents/skills/lluvia-de-ideas/SKILL.md` y `references/formato-idea.md`
+    - Origen: `docs/tasks/101-skill-lluvia-de-ideas.md`
+  - **Idea procesada:** idea de `docs/ideas/` cuya cabecera lleva la marca `Procesada en: docs/proposals/NNN-slug/`, añadida por `idea-a-tarea` al generar su propuesta; las ideas sin marca se presentan como pendientes siguiendo el «Orden sugerido» de sus cabeceras.
+    - Ancla: pasos 7 y 11 del procedimiento en `.agents/skills/idea-a-tarea/SKILL.md`
   - **Propuesta:** unidad de revisión del flujo; vive en `docs/proposals/NNN-slug/` con un `propuesta.md` —problema, solución, alternativas, fuera de alcance— y sus borradores de tarea.
     - Ancla: directorios bajo `docs/proposals/`; campos descritos en `.agents/skills/refinar-propuesta/SKILL.md`
     - Origen: `docs/decisions/D012-formato-y-ubicacion-de-las-propuestas.md`, `docs/decisions/D016-campos-de-propuesta-md.md`
@@ -29,7 +34,9 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - La propuesta —no cada borrador— es la unidad de revisión: el usuario decide sobre el conjunto completo.
   - Una propuesta `[p]` no entra al roadmap ni se ejecuta hasta aprobarse y planificarse.
   - `TODO.txt` refleja solo los horizontes comprometidos del roadmap.
+  - La descomposición de una propuesta en varias ideas se escribe solo tras confirmación del usuario; una idea ya procesada no se reprocesa.
 - **Operaciones:**
+  - Explorar y persistir ideas: `.agents/skills/lluvia-de-ideas/SKILL.md`.
   - Orquestar el flujo: `.agents/skills/idea-a-tarea/SKILL.md`.
   - Descubrir el problema: `.agents/skills/descubrir-problema/SKILL.md`.
   - Proponer la forma de solución: `.agents/skills/proponer-forma-solucion/SKILL.md`.
@@ -40,7 +47,7 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
 ## Explicación del dominio
 
 - **Fronteras:**
-  - Dentro: propuestas y sus borradores, las capacidades de descubrimiento/propuesta/refinamiento, la promoción de borradores, la épica y el roadmap.
+  - Dentro: las ideas persistidas (`docs/ideas/`), propuestas y sus borradores, las capacidades de descubrimiento/propuesta/refinamiento, la promoción de borradores, la épica y el roadmap.
   - Fuera: la ejecución de las tareas ya creadas (dominio del ciclo de tareas); la implementación concreta (sub-flujo de desarrollo).
   - Relaciones: entrega tareas listas al ciclo de tareas vía `TODO.txt`; la épica deja la guía de arquitectura que la ejecución respeta.
 - **Decisiones relevantes:**
@@ -51,8 +58,9 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - `docs/decisions/D019-epica-como-artefacto-de-planeacion.md`
   - `docs/decisions/D022-roadmap-como-nivel-de-direccion.md`
   - `docs/decisions/D027-roadmap-horizontes-now-next-later.md`
+  - `docs/decisions/D030-ideas-persistidas-en-docs-ideas.md`
 
 ## Estado de salud
 
-- Última revisión: 2026-09-28
+- Última revisión: 2026-09-28 (añadido el artefacto de idea persistida y su consumo)
 - Divergencias conocidas: Ninguna

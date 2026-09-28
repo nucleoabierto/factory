@@ -153,3 +153,10 @@
   Obtenido: `documentar-guia-estilo` solo contemplaba crear la guía por extracción del código y mantenerla como sensor; toda decisión de diseño quedaba subordinada a la ejecución.
   Corrección: los skills que mantienen artefactos decididos por humanos deben incluir un modo interactivo —primero se decide en discusión, después se materializa—; la ejecución consume la decisión, no la sustituye.
   Estado: pendiente
+
+- Id: 20260928T160034
+  Tarea: docs/tasks/101-skill-lluvia-de-ideas.md
+  Esperado: material de referencia de un skill autocontenido y general, portable a cualquier proyecto evaluado.
+  Obtenido: `references/` citaba `todo-app/docs/ideas/` como modelo y ejemplo, una ruta que solo existe en este repositorio.
+  Corrección: eliminar las referencias a todo-app de los archivos de referencia; el skill debe funcionar en proyectos donde esa carpeta no existe.
+  Estado: pendiente

@@ -21,5 +21,5 @@
 - [x] docs/tasks/098-skill-documentar-guia-estilo.md — Crear el skill documentar-guia-estilo
 - [x] docs/tasks/099-skill-aplicar-guia-estilo.md — Crear el skill aplicar-guia-estilo
 - [x] docs/tasks/100-documentacion-producto-y-dominios-factory.md — Actualizar documentación de producto y dominios de Factory
-- [ ] docs/tasks/101-skill-lluvia-de-ideas.md — Crear el skill lluvia-de-ideas
+- [x] docs/tasks/101-skill-lluvia-de-ideas.md — Crear el skill lluvia-de-ideas
 - [ ] docs/tasks/102-separar-flujos-planear-y-ejecutar.md — Separar el flujo de tareas en «planear» y «ejecutar»

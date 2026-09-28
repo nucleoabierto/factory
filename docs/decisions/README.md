@@ -129,3 +129,7 @@
   - Disparadores: product-docs, documentación de producto, visión, mkdocs.yml, raíz del repositorio, docs/vision-proyecto
   - Resumen: La documentación de producto de Factory vive en `product-docs/` en la raíz, separada del `docs/` de proceso, con `mkdocs.yml` mínimo; todas las referencias a la ruta antigua de la visión se actualizan.
   - Estado: Aceptada
+- D030-ideas-persistidas-en-docs-ideas.md
+  - Disparadores: docs/ideas, archivo de idea, lluvia-de-ideas, idea persistida, Procesada en, Orden sugerido, entrada del flujo
+  - Resumen: Las ideas se persisten en `docs/ideas/NNN-slug.md` —un archivo por idea— como entrada del flujo; `idea-a-tarea` consume las sin procesar en el orden sugerido y marca la consumida en su propia cabecera.
+  - Estado: Aceptada

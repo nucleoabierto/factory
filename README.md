@@ -16,7 +16,8 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 
 | Skill | Qué hace |
 |-------|----------|
-| `idea-a-tarea` | Orquesta el flujo completo: retoma propuestas pendientes o coordina las capacidades en orden. |
+| `lluvia-de-ideas` | Acompaña una conversación de lluvia de ideas y la convierte en un archivo por idea en `docs/ideas/`. |
+| `idea-a-tarea` | Orquesta el flujo completo: retoma propuestas pendientes e ideas persistidas, o coordina las capacidades en orden. |
 | `descubrir-problema` | Transforma una idea suelta en un problema formulado con su oportunidad, sin proponer solución. |
 | `proponer-forma-solucion` | Determina la forma de la solución a alto nivel: categoría, alternativas y fuera de alcance. |
 | `refinar-propuesta` | Descompone la solución validada en borradores de tarea y los envía a revisión asíncrona. |
