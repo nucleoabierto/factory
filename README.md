@@ -32,7 +32,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta, la revisa y la commitea. |
 | `planear-tarea` | Ejecuta la mitad de planeación del flujo de desarrollo: contexto, conectividad y plan con suite, y se detiene. |
 | `desarrollar-tarea` | Ejecuta la mitad de ejecución: toma una tarea con plan aprobado y completa la implementación con desviaciones. |
-| `recopilar-contexto` | Reúne el contexto que una tarea de desarrollo necesita —archivos similares, patrones, lecciones y decisiones— y lo registra en la tarea. |
+| `recopilar-contexto` | Reúne el contexto que una tarea de desarrollo necesita —archivos similares, patrones, documentación de dominio y producto, lecciones y decisiones— y lo registra en la tarea. |
 | `evaluar-conectividad` | Evalúa si lo que la tarea asume está conectado con el codebase y produce un veredicto antes de la planeación. |
 | `planear-implementacion` | Produce el plan de una tarea de desarrollo antes de escribir código, con su suite de pruebas esperada. |
 | `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |

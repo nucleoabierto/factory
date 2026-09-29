@@ -160,3 +160,10 @@
   Obtenido: `references/` citaba `todo-app/docs/ideas/` como modelo y ejemplo, una ruta que solo existe en este repositorio.
   Corrección: eliminar las referencias a todo-app de los archivos de referencia; el skill debe funcionar en proyectos donde esa carpeta no existe.
   Estado: pendiente
+
+- Id: 20260928T185609
+  Tarea: docs/tasks/103-docs-producto-y-dominio-en-contexto.md
+  Esperado: que el contrato del skill quedara flexible: la lista de fuentes como guía abierta y la `description` a nivel de capacidad y resultado.
+  Obtenido: la lista de seis fuentes quedó como requisito cerrado en salida, principios y finalización, y la `description` las enumeraba, acoplando el contrato a la implementación.
+  Corrección: declarar las listas de fuentes como abiertas y extensibles, y mantener la `description` a nivel de capacidad —qué reúne y dónde queda— sin enumerar fuentes ni mecánica.
+  Estado: pendiente

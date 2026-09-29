@@ -7,7 +7,7 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 ## Referencia del modelo
 
 - **Lenguaje ubicuo:**
-  - **Contexto de la tarea:** conjunto de archivos similares, patrones vigentes, lecciones y decisiones aplicables, registrado en la sección «Contexto» del archivo de tarea.
+  - **Contexto de la tarea:** conjunto de archivos similares, patrones vigentes, documentación de dominio y de producto aplicable, lecciones y decisiones aplicables, registrado en la sección «Contexto» del archivo de tarea.
     - Ancla: `.agents/skills/recopilar-contexto/SKILL.md`
   - **Veredicto de conectividad:** evaluación —conectada, parcialmente conectada o desconectada— de si lo que la tarea asume existe en el codebase, registrada en el archivo de la tarea antes de planear.
     - Ancla: `.agents/skills/evaluar-conectividad/SKILL.md`
@@ -46,5 +46,5 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 
 ## Estado de salud
 
-- Última revisión: 2026-09-28 (división del flujo en `planear-tarea` y `desarrollar-tarea`, eliminación de `desarrollo`)
+- Última revisión: 2026-09-28 (contexto de la tarea ampliado con documentación de dominio y de producto)
 - Divergencias conocidas: Ninguna

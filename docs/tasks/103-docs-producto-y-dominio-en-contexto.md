@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Pendiente | [ ] En progreso | [ ] En revisión | [ ] Completada | [ ] Bloqueada
+[ ] Pendiente | [ ] En progreso | [ ] En revisión | [x] Completada | [ ] Bloqueada
 
 ## Tipo
 
@@ -48,9 +48,9 @@ Ampliar el skill `recopilar-contexto` para que la recopilación incluya la docum
 
 ## Notas
 
--
+- Corrección del usuario en revisión: la lista de fuentes queda como guía abierta y extensible, no limitativa a las seis, y la `description` del skill se reescribió a nivel de capacidad —enumerar las fuentes acoplaba el contrato a la implementación—. Incorporado: la description habla de «el terreno del codebase y lo que la documentación y la memoria del proyecto ya declaran» y el cuerpo declara la lista de fuentes como abierta.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-28 — Solicita cambios (planear-implementacion, README y glosario de dominio desfasados con el contrato de cuatro fuentes) → incorporados → Aprueba
+- Usuario: 2026-09-28 — Solicita cambios (lista de fuentes abierta, no limitativa; description a nivel de capacidad) → incorporado → Aprueba
