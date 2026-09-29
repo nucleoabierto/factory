@@ -23,3 +23,4 @@
 - [x] docs/tasks/100-documentacion-producto-y-dominios-factory.md — Actualizar documentación de producto y dominios de Factory
 - [x] docs/tasks/101-skill-lluvia-de-ideas.md — Crear el skill lluvia-de-ideas
 - [x] docs/tasks/102-separar-flujos-planear-y-ejecutar.md — Separar el flujo de tareas en «planear» y «ejecutar»
+- [ ] docs/tasks/103-docs-producto-y-dominio-en-contexto.md — Incluir documentación de producto y dominio en recopilar-contexto
