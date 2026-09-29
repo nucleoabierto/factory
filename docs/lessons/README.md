@@ -18,8 +18,8 @@
   - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial, commits
   - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre o hash y no editar retroactivamente los documentos de entrada.
 - flexibilidad-en-procesos.md
-  - Disparadores: skills, SKILL.md, categorías, taxonomía, lista de opciones, forma de solución
-  - Resumen: Declarar las listas de categorías de los skills como abiertas y extensibles para no volver rígidos los procesos.
+  - Disparadores: skills, SKILL.md, categorías, taxonomía, lista de opciones, lista de fuentes, forma de solución, contexto de la tarea
+  - Resumen: Declarar las listas declarativas de los skills como abiertas y extensibles para no volver rígidos los procesos.
 - consistencia-de-formatos.md
   - Disparadores: plantillas, assets, formato, nuevo documento, nuevo skill
   - Resumen: Las plantillas nuevas mantienen la estructura común de los formatos del proyecto; las entradas con varios campos usan listas anidadas.
@@ -36,8 +36,8 @@
   - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice
   - Resumen: Nombrar directorios y artefactos por el tipo específico de contenido que almacenan, no por la operación genérica.
 - contratos-de-skills.md
-  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, subagente, delegar, delegación, checklist, referencia a decisión, citas, reglas inline
-  - Resumen: El contrato que un skill declara va a nivel de resultado —la description habla de capacidad, no de mecánica; las reglas van inline y la delegación devuelve explicación + archivos y el ejecutor decide revisar o confiar.
+  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, nombre de skill, modo interactivo, subagente, delegar, delegación, checklist, referencia a decisión, citas, reglas inline
+  - Resumen: El contrato que un skill declara va a nivel de resultado —nombre y description hablan de la capacidad completa, no de la acción inicial ni de la mecánica; las reglas van inline, la delegación devuelve explicación + archivos y los artefactos decididos por humanos piden modo interactivo.
 - diseno-de-artefactos.md
-  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla
-  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión y la tecnología del producto validado es dato de entrada, no parte del concepto.
+  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla, ruta de proyecto, references/
+  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión y la tecnología o las rutas del proyecto validado son datos de entrada, no parte del concepto.

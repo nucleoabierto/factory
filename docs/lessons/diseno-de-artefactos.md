@@ -6,6 +6,6 @@
   Disparadores: descomposición de tareas, borradores, propuestas, épica, registrar decisión, decisiones-diseno, docs/decisions, autonomía de tareas
   Origen: 20260925T145156
 
-- **Diseña los artefactos del sistema de forma genérica: la tecnología del producto validado es dato de entrada, no parte del concepto.** Por qué: la épica y una tarea hablaban de anclar escenarios «a la suite QUnit», acoplando el diseño de Factory a la implementación de la PoC; el concepto es «la suite de pruebas del proyecto», y la instancia concreta (tests.html, QUnit) vive en la Entrada de la tarea.
-  Disparadores: artefactos del sistema, épicas, tareas, propuestas, concepto genérico, PoC, todo-app, tecnología concreta, ancla, acoplamiento a implementación
-  Origen: 20260925T145157
+- **Diseña los artefactos del sistema de forma genérica: la tecnología y las rutas del proyecto validado son datos de entrada, no parte del concepto.** Por qué: la épica y una tarea hablaban de anclar escenarios «a la suite QUnit», y el material de referencia de un skill citaba `todo-app/docs/ideas/` como modelo, una ruta que solo existe en este repositorio; ambos acoplan el diseño de Factory a la PoC. El concepto es «la suite de pruebas del proyecto» o «el directorio de ideas del proyecto evaluado», y la instancia concreta (tests.html, QUnit, la ruta de todo-app) vive en la Entrada de la tarea o queda fuera del artefacto.
+  Disparadores: artefactos del sistema, épicas, tareas, propuestas, concepto genérico, PoC, todo-app, tecnología concreta, ruta de proyecto, references/, ancla, acoplamiento a implementación
+  Origen: 20260925T145157, 20260928T160034

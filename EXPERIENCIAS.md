@@ -145,25 +145,25 @@
   Esperado: que el nombre propuesto para un skill describa su capacidad completa — generar y mantener viva la guía de estilo.
   Obtenido: el documento llamó `generar-guia-estilo` al skill, nombre acoplado al acto inicial de generar que no refleja el mantenimiento posterior.
   Corrección: el usuario señaló que «generar» se confunde con el propósito amplio; el skill se renombró `documentar-guia-estilo`, simétrico a `documentar-dominio`. Un skill que crea y mantiene un artefacto vivo debe nombrarse por el artefacto mantenido, no por la acción inicial.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260926T135837
   Tarea: docs/tasks/098-skill-documentar-guia-estilo.md
   Esperado: que un skill de «documentar» un artefacto vivo admita definir o actualizar el artefacto en diálogo con el usuario, no solo a partir del código o del diff.
   Obtenido: `documentar-guia-estilo` solo contemplaba crear la guía por extracción del código y mantenerla como sensor; toda decisión de diseño quedaba subordinada a la ejecución.
   Corrección: los skills que mantienen artefactos decididos por humanos deben incluir un modo interactivo —primero se decide en discusión, después se materializa—; la ejecución consume la decisión, no la sustituye.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260928T160034
   Tarea: docs/tasks/101-skill-lluvia-de-ideas.md
   Esperado: material de referencia de un skill autocontenido y general, portable a cualquier proyecto evaluado.
   Obtenido: `references/` citaba `todo-app/docs/ideas/` como modelo y ejemplo, una ruta que solo existe en este repositorio.
   Corrección: eliminar las referencias a todo-app de los archivos de referencia; el skill debe funcionar en proyectos donde esa carpeta no existe.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260928T185609
   Tarea: docs/tasks/103-docs-producto-y-dominio-en-contexto.md
   Esperado: que el contrato del skill quedara flexible: la lista de fuentes como guía abierta y la `description` a nivel de capacidad y resultado.
   Obtenido: la lista de seis fuentes quedó como requisito cerrado en salida, principios y finalización, y la `description` las enumeraba, acoplando el contrato a la implementación.
   Corrección: declarar las listas de fuentes como abiertas y extensibles, y mantener la `description` a nivel de capacidad —qué reúne y dónde queda— sin enumerar fuentes ni mecánica.
-  Estado: pendiente
+  Estado: consolidada
