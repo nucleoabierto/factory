@@ -1,8 +1,8 @@
 ((global) => {
   'use strict';
 
-  const { INBOX, FILTERS, VIEWS, TaskList, Storage, currentDay } =
-    global.Todo;
+  const { INBOX, FILTERS, VIEWS, TaskList, Storage, currentDay,
+    documentLink } = global.Todo;
   const UI = global.UI;
 
   // Composition root: wires model, persistence and presentation,
@@ -43,6 +43,19 @@
 
     exportDocument() {
       return taskList.toDocument();
+    },
+
+    exportFile() {
+      UI.downloadFile('todo-app.json',
+        JSON.stringify(App.exportDocument(), null, 2));
+    },
+
+    // The link base is the current address minus its fragment, so it
+    // points back to this same app wherever the file is served from.
+    exportLink() {
+      const base = (global.location && global.location.href || '')
+        .split('#')[0] || 'index.html';
+      return documentLink(App.exportDocument(), base);
     },
 
     // The model notifies subscribers during the import, so a first
@@ -287,7 +300,9 @@
       archiveActiveList: () => App.archiveList(App.activeListId),
       deleteActiveList: () => App.deleteList(App.activeListId),
       unarchiveList: (id) => App.unarchiveList(id),
-      clearCompleted: () => App.clearCompleted()
+      clearCompleted: () => App.clearCompleted(),
+      exportFile: () => App.exportFile(),
+      exportLink: () => App.exportLink()
     },
 
     render() {

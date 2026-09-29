@@ -12,8 +12,10 @@ todo-app es una lista de tareas que funciona en el navegador, sin instalación n
   - [Archivar listas](funcionalidades/003-archivar-listas.md) — aparcar y reactivar listas sin perder contenido
   - [Vista «hoy» y programación](funcionalidades/004-vista-hoy.md) — lo futuro oculto de la vista principal y la consulta acotada a la jornada
   - [Tareas recurrentes](funcionalidades/005-tareas-recurrentes.md) — periodicidad semanal o mensual que regenera la aparición al completar
+  - [Exportar contenido](funcionalidades/006-exportar.md) — sacar el estado como archivo descargable o como enlace portable
 - **Referencia**
   - [Estado persistido](referencia/estado-persistido.md) — qué guarda la aplicación en el navegador y en qué formato
+  - [Formato de exportación](referencia/formato-exportacion.md) — el documento que llevan el archivo descargado y el enlace
 
 ## Qué hay detrás
 

@@ -347,3 +347,21 @@ body {
 .clear-completed:hover {
   text-decoration: underline;
 }
+
+.export-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.export-action {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--font-label);
+  padding: 0;
+}
+
+.export-action:hover {
+  color: var(--color-accent);
+}

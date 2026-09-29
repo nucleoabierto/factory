@@ -2133,6 +2133,164 @@
             ['Imported'], 'the imported content is persisted');
         });
     });
+
+    QUnit.module('export file and link', (hooks) => {
+      let originalPrompt, originalAlert, originalCreateObjectURL,
+        originalRevokeObjectURL, originalAnchorClick, download;
+
+      hooks.beforeEach(() => {
+        originalPrompt = window.prompt;
+        originalAlert = window.alert;
+        originalCreateObjectURL = URL.createObjectURL;
+        originalRevokeObjectURL = URL.revokeObjectURL;
+        originalAnchorClick = HTMLAnchorElement.prototype.click;
+        download = null;
+        URL.createObjectURL = (blob) => {
+          download = { blob };
+          return 'blob:test';
+        };
+        URL.revokeObjectURL = () => {};
+        HTMLAnchorElement.prototype.click = function () {
+          if (download) {
+            download.anchor = this;
+          }
+        };
+        TestKit.resetApp();
+        TestKit.fixture(
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>
+          <button id="export-file" data-action="export-file">Exportar</button>
+          <button id="export-link" data-action="export-link">Enlace</button>`);
+        window.App.init();
+      });
+      hooks.afterEach(() => {
+        window.prompt = originalPrompt;
+        window.alert = originalAlert;
+        URL.createObjectURL = originalCreateObjectURL;
+        URL.revokeObjectURL = originalRevokeObjectURL;
+        HTMLAnchorElement.prototype.click = originalAnchorClick;
+      });
+
+      QUnit.test('exporting downloads the document of the whole state',
+        async (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.addTask('In inbox');
+          window.App.setActiveList(list.id);
+          const dated = window.App.addTask('Con fecha');
+          window.App.setTaskDate(dated.id, '2026-10-01');
+          window.App.setTaskRecur(dated.id, 'weekly');
+          document.getElementById('export-file').click();
+          assert.ok(download, 'a download was produced');
+          assert.strictEqual(download.anchor.download, 'todo-app.json',
+            'the file has a recognizable name');
+          const doc = JSON.parse(await download.blob.text());
+          assert.deepEqual(doc, window.App.exportDocument(),
+            'the file carries the same document exportDocument gives');
+          assert.strictEqual(doc.tasks.length, 2,
+            'tasks from both lists are in');
+        });
+
+      QUnit.test('the empty state still downloads a valid document',
+        async (assert) => {
+          document.getElementById('export-file').click();
+          const doc = JSON.parse(await download.blob.text());
+          assert.strictEqual(doc.app, 'todo-app');
+          assert.strictEqual(doc.version, 1);
+          assert.deepEqual(doc.lists.map((l) => l.id), ['inbox'],
+            'only the inbox travels');
+          assert.deepEqual(doc.tasks, [], 'no tasks');
+        });
+
+      QUnit.test('the link carries the same document as the file',
+        (assert) => {
+          window.App.addTask('Algo');
+          const storedBefore = localStorage.getItem('todoapp-tasks');
+          let shown = null;
+          window.prompt = (message, value) => { shown = value; };
+          document.getElementById('export-link').click();
+          assert.ok(shown, 'the link is offered to copy');
+          assert.strictEqual(localStorage.getItem('todoapp-tasks'),
+            storedBefore, 'producing the link touches no storage');
+          const [base, hash] = shown.split('#');
+          assert.strictEqual(base, location.href.split('#')[0],
+            'the link points back to this page');
+          assert.ok(hash.startsWith('export='),
+            'the document rides in the fragment');
+          assert.deepEqual(window.Todo.decodeDocument(hash.slice(7)),
+            window.App.exportDocument(),
+            'the decoded payload is the same document');
+        });
+
+      QUnit.test('non-ASCII task text survives the link intact',
+        (assert) => {
+          window.App.addTask('Caña 🍺 y tildes');
+          let shown = null;
+          window.prompt = (message, value) => { shown = value; };
+          document.getElementById('export-link').click();
+          const doc =
+            window.Todo.decodeDocument(shown.split('#export=')[1]);
+          assert.strictEqual(doc.tasks[0].text, 'Caña 🍺 y tildes',
+            'tildes and emoji round-trip through the payload');
+        });
+
+      QUnit.test('the link transports the whole multi-list state',
+        (assert) => {
+          const work = window.App.addList('Trabajo');
+          window.App.setActiveList(work.id);
+          const recur = window.App.addTask('Semanal');
+          window.App.setTaskDate(recur.id, '2026-10-01');
+          window.App.setTaskRecur(recur.id, 'weekly');
+          window.App.archiveList(work.id);
+          window.App.addTask('De entrada');
+          let shown = null;
+          window.prompt = (message, value) => { shown = value; };
+          document.getElementById('export-link').click();
+          const doc =
+            window.Todo.decodeDocument(shown.split('#export=')[1]);
+          assert.deepEqual(doc, window.App.exportDocument(),
+            'the payload equals the exported document');
+          assert.strictEqual(doc.lists.length, 2,
+            'the archived list travels too');
+          assert.strictEqual(
+            doc.tasks.find((t) => t.id === recur.id).recur, 'weekly',
+            'recurrence travels');
+        });
+
+      QUnit.test('a state too large for a link is reported, not ' +
+          'truncated', (assert) => {
+        window.App.addTask('x'.repeat(6000));
+        let shown = null;
+        let alerted = null;
+        window.prompt = (message, value) => { shown = value; };
+        window.alert = (message) => { alerted = message; };
+        document.getElementById('export-link').click();
+        assert.ok(alerted, 'the app says the state is too large');
+        assert.strictEqual(shown, null, 'no link was produced');
+      });
+
+      QUnit.test('the link limit measures the complete URL, base ' +
+          'included', (assert) => {
+        const doc = window.App.exportDocument();
+        const small =
+          window.Todo.documentLink(doc, 'file:///app/index.html');
+        assert.true(small.ok, 'a short base yields a link');
+        const longBase = 'x'.repeat(window.Todo.EXPORT_LINK_MAX);
+        const result = window.Todo.documentLink(doc, longBase);
+        assert.false(result.ok, 'a long base alone overflows');
+        assert.strictEqual(result.reason, 'link-too-large');
+      });
+
+      QUnit.test('the footer exposes the two export actions',
+        (assert) => {
+          assert.strictEqual(
+            document.getElementById('export-file').dataset.action,
+            'export-file');
+          assert.strictEqual(
+            document.getElementById('export-link').dataset.action,
+            'export-link');
+        });
+    });
   </script>
 </body>
 </html>

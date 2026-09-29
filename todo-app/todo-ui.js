@@ -25,6 +25,18 @@
         actions.setView(el.dataset.view);
       },
       'clear-completed': (el, ev, actions) => actions.clearCompleted(),
+      'export-file': (el, ev, actions) => actions.exportFile(),
+      // A prompt, not the clipboard: navigator.clipboard is not
+      // guaranteed over file://, and a prompt lets the user copy the
+      // link by hand like the other dialogs of the app.
+      'export-link': (el, ev, actions) => {
+        const result = actions.exportLink();
+        if (result.ok) {
+          global.prompt('Copia el enlace', result.url);
+        } else {
+          global.alert('El estado es demasiado grande para un enlace.');
+        }
+      },
       'add-list': (el, ev, actions) => {
         const name = global.prompt('Nombre de la lista');
         if (name !== null) {
@@ -110,6 +122,27 @@
       renderListBar(doc, vm);
       renderArchived(doc, vm);
       renderFooter(doc, vm);
+    },
+
+    // Downloading is a DOM effect like the dialogs: a temporary
+    // anchor carries the blob out of the page and nothing renders.
+    downloadFile(filename, text) {
+      const doc = global.document;
+      const URL = global.URL;
+      if (!doc || !URL || !URL.createObjectURL || !global.Blob) {
+        return;
+      }
+      const url = URL.createObjectURL(
+        new Blob([text], { type: 'application/json' }));
+      const anchor = doc.createElement('a');
+      anchor.href = url;
+      anchor.download = filename;
+      doc.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      if (URL.revokeObjectURL) {
+        URL.revokeObjectURL(url);
+      }
     }
   };
 

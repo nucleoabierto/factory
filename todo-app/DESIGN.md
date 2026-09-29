@@ -67,7 +67,7 @@ Reglas: una sola familia en toda la app; el peso 600 solo para estados de fecha 
 
 - Una sola columna: cabecera (título, barra de lista, campo nuevo), lista, sección de archivadas, footer.
 - La lista tiene `min-height` suficiente para que el footer no quede pegado al campo de entrada cuando está vacía.
-- **El footer se organiza en varias filas:** navegación de vistas (Lista/Hoy) y filtros (Todas/Pendientes/Completadas) ocupan filas propias; la fila inferior lleva el contador a la izquierda y la acción «Limpiar completadas» a la derecha, esta última como texto pequeño en `--color-accent` y solo cuando hay completadas.
+- **El footer se organiza en varias filas:** navegación de vistas (Lista/Hoy) y filtros (Todas/Pendientes/Completadas) ocupan filas propias; la fila inferior lleva el contador a la izquierda y la acción «Limpiar completadas» a la derecha, esta última como texto pequeño en `--color-accent` y solo cuando hay completadas. Una fila propia (`.export-row`) lleva las acciones de portabilidad —«Exportar» y «Enlace»— como botones de texto en `--font-label` y `--color-text-muted`, con hover en `--color-accent`.
 - No hay layout responsive declarado más allá del ancho máximo de 550px; la app se lee completa hasta ~360px sin scroll horizontal.
 
 ## Movimiento
