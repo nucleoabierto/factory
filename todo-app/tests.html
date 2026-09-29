@@ -1834,6 +1834,305 @@
             'visible once a task is completed');
         });
     });
+
+    QUnit.module('export and import documents', (hooks) => {
+      hooks.beforeEach(() => {
+        TestKit.resetApp();
+        TestKit.fixture(
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>`);
+      });
+
+      QUnit.test('the exported document covers the whole state',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          window.App.addTask('In inbox');
+          const dated = window.App.addTask('Con fecha');
+          window.App.setTaskDate(dated.id, '2026-10-01');
+          window.App.setTaskRecur(dated.id, 'weekly');
+          window.App.setActiveList(list.id);
+          window.App.addTask('In work');
+          window.App.archiveList(list.id);
+          const doc = window.App.exportDocument();
+          assert.strictEqual(doc.app, 'todo-app',
+            'carries the app marker');
+          assert.strictEqual(doc.version, 1, 'carries version 1');
+          assert.strictEqual(doc.lists.length, 2,
+            'inbox and the work list are in');
+          assert.strictEqual(
+            doc.lists.find((l) => l.id === list.id).archived, true,
+            'the archived flag travels');
+          assert.strictEqual(doc.tasks.length, 3, 'every task is in');
+          const exported = doc.tasks.find((t) => t.id === dated.id);
+          assert.strictEqual(exported.date, '2026-10-01');
+          assert.strictEqual(exported.recur, 'weekly',
+            'date and recurrence travel too');
+        });
+
+      QUnit.test('a valid document replaces the whole state',
+        (assert) => {
+          window.App.addTask('Old task');
+          const old = window.App.addList('Vieja');
+          window.App.setActiveList(old.id);
+          const result = window.App.importDocument({
+            app: 'todo-app', version: 1,
+            lists: [
+              { id: 'inbox', name: 'Entrada', archived: false },
+              { id: 'remote', name: 'Remota', archived: false }
+            ],
+            tasks: [
+              { id: 5, text: 'Imported', done: true, listId: 'remote',
+                date: null, recur: null },
+              { id: 6, text: 'In entrada', done: false,
+                listId: 'inbox', date: null, recur: null }
+            ]
+          }, 'replace');
+          assert.true(result.ok, 'the import succeeds');
+          assert.deepEqual(window.App.tasks.map((t) => t.id), [5, 6],
+            'only the document tasks remain');
+          assert.strictEqual(window.App.tasks[0].listId, 'remote',
+            'the task keeps its list');
+          assert.deepEqual(window.App.lists.map((l) => l.id),
+            ['inbox', 'remote'],
+            'the document lists replaced the old ones');
+          assert.strictEqual(window.App.activeListId, 'inbox',
+            'the vanished active list falls back to the inbox');
+          assert.strictEqual(
+            document.querySelectorAll('#todo-list li').length, 1,
+            'the render shows the corrected view, not the stale one');
+          assert.strictEqual(
+            document.querySelector('#todo-list li label').textContent,
+            'In entrada', 'the inbox task of the document is rendered');
+        });
+
+      QUnit.test('exporting and reimporting yields an equivalent state',
+        (assert) => {
+          const list = window.App.addList('Trabajo');
+          const dated = window.App.addTask('Con fecha');
+          window.App.setTaskDate(dated.id, '2026-10-01');
+          window.App.setTaskRecur(dated.id, 'monthly');
+          window.App.archiveList(list.id);
+          const doc = window.App.exportDocument();
+          const before = {
+            lists: window.App.lists, tasks: window.App.tasks
+          };
+          window.App.reset();
+          const result = window.App.importDocument(doc, 'replace');
+          assert.true(result.ok);
+          assert.deepEqual(window.App.lists, before.lists,
+            'the lists come back identical');
+          assert.deepEqual(window.App.tasks, before.tasks,
+            'the tasks come back identical');
+        });
+
+      QUnit.test('an empty document leaves the minimal state',
+        (assert) => {
+          window.App.addTask('Something');
+          const result = window.App.importDocument(
+            { app: 'todo-app', version: 1, lists: [], tasks: [] },
+            'replace');
+          assert.true(result.ok);
+          assert.deepEqual(window.App.tasks, []);
+          assert.deepEqual(window.App.lists,
+            [{ id: 'inbox', name: 'Entrada', archived: false }],
+            'only the permanent inbox remains');
+        });
+
+      QUnit.test('a document without the optional fields still imports',
+        (assert) => {
+          const result = window.App.importDocument({
+            app: 'todo-app', version: 1,
+            lists: [{ id: 'work', name: 'Trabajo' }],
+            tasks: [
+              { id: 1, text: 'Old export', done: false, listId: 'work' }
+            ]
+          }, 'replace');
+          assert.true(result.ok,
+            'fields absent before they existed are fine');
+          assert.strictEqual(window.App.tasks[0].date, null);
+          assert.strictEqual(window.App.tasks[0].recur, null);
+          assert.strictEqual(window.App.lists[1].archived, false);
+        });
+
+      QUnit.test('copying reassigns task ids without colliding',
+        (assert) => {
+          window.App.addTask('Mine');
+          window.App.addTask('Mine too');
+          const doc = window.App.exportDocument();
+          const result = window.App.importDocument(doc, 'copy');
+          assert.true(result.ok);
+          assert.strictEqual(window.App.tasks.length, 4,
+            'the copies join the existing tasks');
+          assert.deepEqual(window.App.tasks.map((t) => t.id),
+            [1, 2, 3, 4],
+            'copies get fresh ids above the highest existing one');
+        });
+
+      QUnit.test('copied tasks keep their fields', (assert) => {
+        const dated = window.App.addTask('Recurrente');
+        window.App.setTaskDate(dated.id, '2026-10-01');
+        window.App.setTaskRecur(dated.id, 'monthly');
+        const doc = window.App.exportDocument();
+        window.App.importDocument(doc, 'copy');
+        const copy = window.App.tasks.find((t) => t.id !== dated.id);
+        assert.strictEqual(copy.text, 'Recurrente');
+        assert.strictEqual(copy.date, '2026-10-01');
+        assert.strictEqual(copy.recur, 'monthly',
+          'text, date and recurrence survive the copy');
+      });
+
+      QUnit.test('a colliding list enters with fresh id and name',
+        (assert) => {
+          const own = window.App.addList('Trabajo');
+          const result = window.App.importDocument({
+            app: 'todo-app', version: 1,
+            lists: [
+              { id: 'inbox', name: 'Entrada', archived: false },
+              { id: 'list-1', name: 'Trabajo', archived: false }
+            ],
+            tasks: [
+              { id: 1, text: 'Foreign', done: false, listId: 'list-1',
+                date: null, recur: null }
+            ]
+          }, 'copy');
+          assert.true(result.ok);
+          const copy = window.App.lists.find(
+            (l) => l.id !== 'inbox' && l.id !== own.id);
+          assert.ok(copy, 'the imported list exists');
+          assert.notStrictEqual(copy.id, 'list-1',
+            'its id was reassigned');
+          assert.strictEqual(copy.name, 'Trabajo (copia)',
+            'its name got the copy suffix');
+          const task = window.App.tasks
+            .find((t) => t.text === 'Foreign');
+          assert.strictEqual(task.listId, copy.id,
+            'the task points at the new list');
+        });
+
+      QUnit.test('document inbox tasks merge into the existing inbox',
+        (assert) => {
+          const result = window.App.importDocument({
+            app: 'todo-app', version: 1,
+            lists: [{ id: 'inbox', name: 'Entrada', archived: false }],
+            tasks: [
+              { id: 1, text: 'Foreign inbox', done: false,
+                listId: 'inbox', date: null, recur: null }
+            ]
+          }, 'copy');
+          assert.true(result.ok);
+          assert.strictEqual(
+            window.App.lists.filter((l) => l.id === 'inbox').length, 1,
+            'the inbox is never duplicated');
+          assert.strictEqual(window.App.tasks[0].listId, 'inbox',
+            'the task lands in the inbox');
+        });
+
+      QUnit.test('malformed input is rejected without touching the state',
+        (assert) => {
+          window.App.addTask('Keep me');
+          ['{broken', '42', '"a string"', [], null]
+            .forEach((candidate) => {
+              const result = window.App
+                .importDocument(candidate, 'replace');
+              assert.false(result.ok,
+                `rejected: ${JSON.stringify(candidate)}`);
+              assert.ok(result.reason, 'a reason is reported');
+            });
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the state is untouched');
+          assert.strictEqual(window.App.tasks[0].text, 'Keep me');
+        });
+
+      QUnit.test('foreign formats and unknown versions are rejected',
+        (assert) => {
+          window.App.addTask('Keep me');
+          let result = window.App.importDocument(
+            { app: 'other-app', version: 1, lists: [], tasks: [] },
+            'replace');
+          assert.false(result.ok);
+          assert.strictEqual(result.reason, 'unknown-format');
+          result = window.App.importDocument(
+            { app: 'todo-app', version: 99, lists: [], tasks: [] },
+            'replace');
+          assert.false(result.ok);
+          assert.strictEqual(result.reason, 'unsupported-version');
+          result = window.App.importDocument(
+            { app: 'todo-app', lists: [], tasks: [] }, 'replace');
+          assert.false(result.ok, 'a missing version is unknown too');
+          assert.strictEqual(window.App.tasks.length, 1,
+            'the state is untouched');
+        });
+
+      QUnit.test('one invalid item rejects the whole document',
+        (assert) => {
+          window.App.addTask('Keep me');
+          [
+            { lists: [{ id: 'work', name: '' }], tasks: [] },
+            { lists: [], tasks: [
+              { id: 1, text: '  ', done: false }] },
+            { lists: [], tasks: [
+              { id: 1, text: 'Ok', done: false, listId: 'ghost' }] },
+            { lists: [], tasks: [
+              { id: 1, text: 'A', done: false },
+              { id: 1, text: 'B', done: false }] },
+            { lists: [], tasks: [
+              { id: 1, text: 'A', done: false, recur: 'weekly' }] },
+            { lists: [{ id: 'w', name: 'entrada' }], tasks: [] }
+          ].forEach((fields) => {
+            const result = window.App.importDocument(
+              { app: 'todo-app', version: 1, ...fields }, 'copy');
+            assert.false(result.ok,
+              `rejected: ${JSON.stringify(fields)}`);
+          });
+          assert.strictEqual(window.App.tasks.length, 1,
+            'nothing entered partially');
+        });
+
+      QUnit.test('list references survive exotic ids', (assert) => {
+        const result = window.App.importDocument({
+          app: 'todo-app', version: 1,
+          lists: [{ id: '__proto__', name: 'Extraña', archived: false }],
+          tasks: [
+            { id: 1, text: 'Foreign', done: false, listId: '__proto__',
+              date: null, recur: null }
+          ]
+        }, 'copy');
+        assert.true(result.ok);
+        const copy = window.App.lists.find((l) => l.name === 'Extraña');
+        const task = window.App.tasks.find((t) => t.text === 'Foreign');
+        assert.strictEqual(task.listId, copy.id,
+          'the task points at the remapped list');
+      });
+
+      QUnit.test('an unknown import mode is rejected', (assert) => {
+        window.App.addTask('Keep me');
+        const doc = window.App.exportDocument();
+        const result = window.App
+          .importDocument(doc, 'merge-everything');
+        assert.false(result.ok);
+        assert.strictEqual(result.reason, 'unknown-mode');
+        assert.strictEqual(window.App.tasks.length, 1,
+          'the state is untouched');
+      });
+
+      QUnit.test('an accepted import persists like any other change',
+        (assert) => {
+          const result = window.App.importDocument({
+            app: 'todo-app', version: 1,
+            lists: [{ id: 'inbox', name: 'Entrada', archived: false }],
+            tasks: [
+              { id: 1, text: 'Imported', done: false, listId: 'inbox',
+                date: null, recur: null }
+            ]
+          }, 'replace');
+          assert.true(result.ok);
+          const stored = JSON.parse(
+            localStorage.getItem('todoapp-tasks'));
+          assert.deepEqual(stored.tasks.map((t) => t.text),
+            ['Imported'], 'the imported content is persisted');
+        });
+    });
   </script>
 </body>
 </html>

@@ -15,6 +15,13 @@
   Todo.RECURS = ['weekly', 'monthly'];
   Todo.INBOX = { id: 'inbox', name: 'Entrada', archived: false };
 
+  // The export document is a second data contract — versioned and
+  // self-contained — distinct from the persisted state. Its marker
+  // and version let imports reject foreign or future payloads.
+  Todo.EXPORT_APP = 'todo-app';
+  Todo.EXPORT_VERSION = 1;
+  Todo.IMPORT_MODES = ['replace', 'copy'];
+
   // Task dates are calendar days as ISO strings ('YYYY-MM-DD'):
   // comparing them as strings orders like dates, so classification
   // needs no Date arithmetic and the reference day is injectable.

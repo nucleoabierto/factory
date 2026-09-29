@@ -43,6 +43,12 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
   - **Recurrencia:** periodicidad simple de una tarea con fecha —semanal (`weekly`) o mensual (`monthly`)—, ausente por defecto (`null`). Al completar una recurrente, la tarea queda completada como registro histórico y el dominio crea una copia pendiente —mismo texto, lista y recurrencia, identificador nuevo— con la próxima ocurrencia: semanal avanza siete días; mensual, el mismo día del mes siguiente cayendo al último día del mes si no existe; si el resultado no es posterior al día de referencia, el paso se repite sobre la fecha resultante hasta quedar a futuro.
     - Ancla: el campo `recur` de la tarea, `RECURS` en `todo-core.js` y `TaskList.setTaskRecur`/`TaskList.#nextOccurrence` en `todo-domain.js`
     - Origen: `docs/tasks/019-tareas-recurrentes.md`
+  - **Documento de exportación:** forma serializada, legible y versionada del estado completo —`{app, version, lists, tasks}`— pensada para salir de la aplicación y volver a entrar; la entrada viaja en el documento como una lista más.
+    - Ancla: `EXPORT_APP`/`EXPORT_VERSION` en `todo-core.js` y `TaskList.toDocument` en `todo-domain.js`
+    - Origen: `docs/tasks/020-formato-de-exportacion.md`
+  - **Importar:** entrada de un documento de exportación al estado, en dos tiempos: la validación es estricta y sin tocar el estado —un ítem inválido rechaza el documento entero informando del motivo— y la aplicación ofrece dos semánticas: reemplazar (`'replace'`), que hace del documento el estado completo, y copiar (`'copy'`), que incorpora el contenido como copias con identificadores reasignados, nombres de lista liberados por sufijo y la entrada del documento integrada en la permanente.
+    - Ancla: `TaskList.parseDocument`/`importDocument`/`#validateDocument`/`#importCopy`/`#freeName` en `todo-domain.js` e `IMPORT_MODES` en `todo-core.js`
+    - Origen: `docs/tasks/020-formato-de-exportacion.md`
 - **Entidades / estado:**
   - La tarea `{id, text, done, listId, date, recur}` y la lista `{id, name, archived}`; el estado es el conjunto de tareas y de listas (privado en `TaskList`, consultable por `tasks()`/`lists()`) más el contador derivado, el filtro activo, la vista activa y la lista activa.
     - Ancla: `class TaskList` con `#tasks`/`#lists`/`#nextId` y las consultas `tasks()`/`lists()`/`nextId()` en `todo-domain.js`
@@ -69,6 +75,10 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
     - Ancla: discriminación de formato en `TaskList.load` y serialización en `App.save`
   - Sin fecha válida no hay recurrencia: `recur` solo admite `weekly`/`monthly` con fecha presente; cualquier otro valor, o una fecha que se quita, lo degrada a `null` sin tocar la tarea.
     - Ancla: `RECURS` en `todo-core.js` y el saneado de `recur` en `TaskList.load`, `setTaskRecur` y `clearTaskDate`
+  - El documento de exportación se valida estricto antes de entrar —a diferencia del `load` tolerante—: ítem inválido, referencia colgante, identificador o nombre de lista duplicado, nombre igual al de la entrada, marcador o versión desconocidos rechazan el documento entero sin tocar el estado; los campos opcionales ausentes (`archived`, `date`, `recur`) se toleran por compatibilidad.
+    - Ancla: `TaskList.parseDocument` y `TaskList.#validateDocument` en `todo-domain.js`
+  - Al incorporar un documento como copia no quedan identificadores ni nombres duplicados: las listas reciben ids frescos `list-N` y nombres liberados con el sufijo « (copia)», las tareas ids nuevos de `#nextId` con su `listId` remapeado, y la entrada nunca se duplica.
+    - Ancla: `TaskList.#importCopy` y `TaskList.#freeName` en `todo-domain.js`
 - **Operaciones:**
   - Crear, completar, editar y borrar tareas.
     - Ancla: `addTask`, `toggleTask`, `editTask`, `deleteTask` en `TaskList`
@@ -86,6 +96,8 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
     - Ancla: `setTaskDate`, `clearTaskDate`, `dateStatus` en `TaskList` y sus pasarelas en `App`
   - Declarar y quitar la periodicidad de una tarea con fecha; al completar una recurrente, generar su copia pendiente con la próxima ocurrencia.
     - Ancla: `setTaskRecur`, `#nextOccurrence` y la rama de copia de `toggleTask` en `TaskList`, con la pasarela `App.setTaskRecur`
+  - Exportar el estado como documento versionado e importar un documento validado reemplazando el estado o incorporándolo como copia.
+    - Ancla: `toDocument`, `parseDocument`, `importDocument` en `TaskList` y las pasarelas `App.exportDocument`/`App.importDocument`
 
 ## Explicación del dominio
 
@@ -99,5 +111,5 @@ Un único lugar donde una persona apunta lo que tiene que hacer, consulta qué s
 
 ## Estado de salud
 
-- Última revisión: 2026-09-26
-- Divergencias conocidas: ninguna abierta. La tarea 019 introdujo la recurrencia como dato ligado a la fecha —`recur` en la tarea, copia viva al completar—. La vista «hoy» incluía tareas de listas archivadas pese a que el concepto las declara fuera de las vistas; la revisión de la tarea 018 lo detectó y la tarea 027 lo resolvió excluyéndolas de la consulta transversal. La revisión de arquitectura 002 detectó un ciclo `App` ↔ `UI` y un contrato de vista implícito; la tarea 023 lo resolvió con el contrato view-model/dispatch y el estado de vista de poseedor único (`viewState`). La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista; la tarea 013 la gestión de listas con unicidad de nombre y reasignación al eliminar; la tarea 014 el estado archivado —la lista `{id, name, archived}`— con exclusión de la navegación y veto de la entrada; la tarea 024 cerró el contrato de vista: la proyección de colecciones vive en `App.viewModel` y los eventos usan un solo mecanismo delegado. La tarea 016 introdujo la fecha opcional de la tarea como día calendario y la clasificación temporal como consulta del dominio.
+- Última revisión: 2026-09-28
+- Divergencias conocidas: ninguna abierta. La tarea 020 introdujo el documento de exportación como segundo contrato de datos del dominio —versionado, autocontenido y de validación estricta, frente al `load` tolerante— con las dos semánticas de importación: reemplazar y copiar con reasignación de identificadores. La tarea 019 introdujo la recurrencia como dato ligado a la fecha —`recur` en la tarea, copia viva al completar—. La vista «hoy» incluía tareas de listas archivadas pese a que el concepto las declara fuera de las vistas; la revisión de la tarea 018 lo detectó y la tarea 027 lo resolvió excluyéndolas de la consulta transversal. La revisión de arquitectura 002 detectó un ciclo `App` ↔ `UI` y un contrato de vista implícito; la tarea 023 lo resolvió con el contrato view-model/dispatch y el estado de vista de poseedor único (`viewState`). La concentración de características se resolvió en la tarea 008 (dominio en `TaskList`, `App` como fachada) y el estado quedó privado en la tarea 010 (campos `#` de la clase; lectura por `tasks()`/`nextId()`, reinicio por `reset()`). La tarea 011 introdujo la lista como agrupación exclusiva y la entrada permanente; la tarea 012 añadió la lista activa persistida que acota la vista; la tarea 013 la gestión de listas con unicidad de nombre y reasignación al eliminar; la tarea 014 el estado archivado —la lista `{id, name, archived}`— con exclusión de la navegación y veto de la entrada; la tarea 024 cerró el contrato de vista: la proyección de colecciones vive en `App.viewModel` y los eventos usan un solo mecanismo delegado. La tarea 016 introdujo la fecha opcional de la tarea como día calendario y la clasificación temporal como consulta del dominio.

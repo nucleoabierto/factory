@@ -63,6 +63,6 @@
 
 <!-- épica: docs/epics/004-portabilidad-y-compartir.md -->
 
-- [ ] docs/tasks/020-formato-de-exportacion.md — Formato versionado del estado y su serialización bidireccional validada
+- [x] docs/tasks/020-formato-de-exportacion.md — Formato versionado del estado y su serialización bidireccional validada
 - [ ] docs/tasks/021-exportar-contenido.md — Exportar el estado como archivo descargable y como enlace portable
 - [ ] docs/tasks/022-importar-contenido.md — Importar desde archivo o enlace, reemplazando o incorporando como copia

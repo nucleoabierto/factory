@@ -41,6 +41,34 @@
       });
     },
 
+    exportDocument() {
+      return taskList.toDocument();
+    },
+
+    // The model notifies subscribers during the import, so a first
+    // render already ran. If the import invalidated the view state —
+    // an editing session or an active list that no longer exists —
+    // the correction is followed by a second render.
+    importDocument(candidate, mode) {
+      const result = taskList.importDocument(candidate, mode);
+      if (!result.ok) {
+        return result;
+      }
+      let staleView = viewState.editingId !== null;
+      viewState.editingId = null;
+      if (!taskList.lists()
+          .some((list) => list.id === App.activeListId &&
+            !list.archived)) {
+        App.activeListId = INBOX.id;
+        Storage.saveActiveList(INBOX.id);
+        staleView = true;
+      }
+      if (staleView) {
+        App.render();
+      }
+      return result;
+    },
+
     // Tasks captured in the today view are due today, so they stay
     // visible where they were captured.
     addTask(text) {

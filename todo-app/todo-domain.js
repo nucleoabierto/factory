@@ -1,7 +1,8 @@
 ((global) => {
   'use strict';
 
-  const { INBOX, RECURS, currentDay, isValidDate } = global.Todo;
+  const { INBOX, RECURS, EXPORT_APP, EXPORT_VERSION, IMPORT_MODES,
+    currentDay, isValidDate } = global.Todo;
 
   // Domain model: the task list, its invariants and its operations.
   // It knows nothing about localStorage or the DOM; it notifies
@@ -110,6 +111,149 @@
             recur: date && RECURS.includes(t.recur) ? t.recur : null };
         });
       this.#nextId = this.#tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;
+    }
+
+    // The export document is self-contained and versioned: lists
+    // and tasks ride in the same shape the state persists, inbox
+    // included.
+    toDocument() {
+      return {
+        app: EXPORT_APP,
+        version: EXPORT_VERSION,
+        lists: this.lists(),
+        tasks: this.tasks()
+      };
+    }
+
+    // Strict gate for foreign payloads: unlike load, which salvages
+    // item by item, a single invalid item rejects the whole document
+    // and the state is never touched. The optional fields (archived,
+    // date, recur) may be absent so documents exported before they
+    // existed still import; when present they must be valid.
+    parseDocument(candidate) {
+      let doc = candidate;
+      if (typeof doc === 'string') {
+        try {
+          doc = JSON.parse(doc);
+        } catch (e) {
+          return { ok: false, reason: 'malformed-json' };
+        }
+      }
+      if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
+        return { ok: false, reason: 'not-a-document' };
+      }
+      if (doc.app !== EXPORT_APP) {
+        return { ok: false, reason: 'unknown-format' };
+      }
+      if (doc.version !== EXPORT_VERSION) {
+        return { ok: false, reason: 'unsupported-version' };
+      }
+      if (!Array.isArray(doc.lists) || !Array.isArray(doc.tasks)) {
+        return { ok: false, reason: 'not-a-document' };
+      }
+      return this.#validateDocument(doc);
+    }
+
+    // List ids and names (case-insensitive) are unique within the
+    // document. The inbox may appear once — never archived — and is
+    // the only list allowed to carry its reserved id. Since the
+    // imported state always contains the permanent inbox, no other
+    // list may carry its name.
+    #validateDocument(doc) {
+      const listIds = new Set();
+      const listNames = new Set();
+      for (const list of doc.lists) {
+        const valid = !!list && typeof list === 'object' &&
+          typeof list.name === 'string' && list.name.trim() !== '' &&
+          (!('archived' in list) || typeof list.archived === 'boolean') &&
+          (list.id === INBOX.id
+            ? list.archived !== true
+            : this.isValidList(list));
+        const key = valid && list.name.trim().toLowerCase();
+        if (!valid || listIds.has(list.id) || listNames.has(key) ||
+            (list.id !== INBOX.id &&
+              key === INBOX.name.trim().toLowerCase())) {
+          return { ok: false, reason: 'invalid-lists' };
+        }
+        listIds.add(list.id);
+        listNames.add(key);
+      }
+      const taskIds = new Set();
+      for (const task of doc.tasks) {
+        const valid = this.isValidTask(task) &&
+          (!('listId' in task) || listIds.has(task.listId)) &&
+          (task.date === undefined || task.date === null ||
+            isValidDate(task.date)) &&
+          (task.recur === undefined || task.recur === null ||
+            (RECURS.includes(task.recur) && isValidDate(task.date)));
+        if (!valid || taskIds.has(task.id)) {
+          return { ok: false, reason: 'invalid-tasks' };
+        }
+        taskIds.add(task.id);
+      }
+      return { ok: true, document: doc };
+    }
+
+    // Importing always goes through the strict gate. 'replace' makes
+    // the document the whole state — load's per-item sanitation is
+    // harmless on an already validated document; 'copy' adds the
+    // content next to the existing state. Either way the subscribers
+    // get a single notification.
+    importDocument(candidate, mode) {
+      if (!IMPORT_MODES.includes(mode)) {
+        return { ok: false, reason: 'unknown-mode' };
+      }
+      const parsed = this.parseDocument(candidate);
+      if (!parsed.ok) {
+        return parsed;
+      }
+      if (mode === 'replace') {
+        this.load(parsed.document);
+      } else {
+        this.#importCopy(parsed.document);
+      }
+      this.#notify();
+      return { ok: true };
+    }
+
+    // Copying adds the document's content next to the existing state:
+    // each list gets a fresh id and a free name, the document's inbox
+    // merges into the permanent one and tasks are recreated with new
+    // ids and their list reference remapped.
+    #importCopy(doc) {
+      // A Map, not a plain object: document ids are foreign strings
+      // like '__proto__', which would corrupt an object's prototype.
+      const idMap = new Map([[INBOX.id, INBOX.id]]);
+      doc.lists.forEach((list) => {
+        if (list.id === INBOX.id) {
+          return;
+        }
+        let seq = 0;
+        let id;
+        do {
+          id = `list-${++seq}`;
+        } while (this.#lists.some((l) => l.id === id));
+        this.#lists.push({ id, name: this.#freeName(list.name),
+          archived: list.archived === true });
+        idMap.set(list.id, id);
+      });
+      doc.tasks.forEach((task) => {
+        this.#tasks.push({ id: this.#nextId++, text: task.text,
+          done: task.done,
+          listId: 'listId' in task ? idMap.get(task.listId) : INBOX.id,
+          date: task.date || null, recur: task.recur || null });
+      });
+    }
+
+    // A copied list keeps its name unless it collides: names are
+    // unique case-insensitively, so a numbered '(copia)' suffix makes
+    // room without merging content.
+    #freeName(name) {
+      let candidate = name;
+      for (let seq = 1; this.#nameTaken(candidate); seq++) {
+        candidate = seq === 1 ? `${name} (copia)` : `${name} (copia ${seq})`;
+      }
+      return candidate;
     }
 
     findTask(id) {
