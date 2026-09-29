@@ -2291,6 +2291,249 @@
             'export-link');
         });
     });
+
+    QUnit.module('import file and link', (hooks) => {
+      let originalAlert, originalLinkPayload, originalReplaceState,
+        alerted, consumed;
+
+      const receivedDoc = () => ({
+        app: 'todo-app', version: 1,
+        lists: [
+          { id: 'inbox', name: 'Entrada', archived: false },
+          { id: 'work', name: 'Trabajo', archived: false }
+        ],
+        tasks: [
+          { id: 7, text: 'Received task', done: false, listId: 'work',
+            date: null, recur: null }
+        ]
+      });
+
+      // A File is injected into the hidden input and a change is
+      // dispatched. The handler reads asynchronously, so the helper
+      // resolves when the offer actually reaches the actions seam —
+      // a fixed tick would race the file read.
+      const offerFile = (text) => new Promise((resolve) => {
+        const input = document.getElementById('import-file-input');
+        const original = window.App.actions.offerImport;
+        window.App.actions.offerImport = (candidate) => {
+          window.App.actions.offerImport = original;
+          const result = original(candidate);
+          resolve(result);
+          return result;
+        };
+        const transfer = new DataTransfer();
+        transfer.items.add(new File([text], 'import.json',
+          { type: 'application/json' }));
+        input.files = transfer.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+
+      hooks.beforeEach(() => {
+        originalAlert = window.alert;
+        originalLinkPayload = window.Todo.linkPayload;
+        originalReplaceState = history.replaceState;
+        alerted = null;
+        consumed = null;
+        window.alert = (message) => { alerted = message; };
+        window.Todo.linkPayload = () => null;
+        history.replaceState = (...args) => { consumed = args; };
+        TestKit.resetApp();
+        TestKit.fixture(
+          `<input id="new-todo" type="text" data-action="add-task">
+          <ul id="todo-list"></ul>
+          <span id="todo-count"></span>
+          <section id="import-section" hidden>
+            <span id="import-summary"></span>
+            <button id="import-replace" data-action="import-apply"
+                    data-mode="replace">Reemplazar</button>
+            <button id="import-copy" data-action="import-apply"
+                    data-mode="copy">Copiar</button>
+            <button id="import-dismiss"
+                    data-action="import-dismiss">Descartar</button>
+          </section>
+          <button id="export-file" data-action="export-file">Exportar</button>
+          <button id="export-link" data-action="export-link">Enlace</button>
+          <button id="import-file"
+                  data-action="pick-import-file">Importar</button>
+          <input id="import-file-input" type="file"
+                 data-action="import-file" hidden>`);
+        window.App.init();
+      });
+      hooks.afterEach(() => {
+        window.alert = originalAlert;
+        window.Todo.linkPayload = originalLinkPayload;
+        history.replaceState = originalReplaceState;
+      });
+
+      QUnit.test('a valid file proposes the import without touching ' +
+          'the state', async (assert) => {
+        window.App.addTask('Mine');
+        await offerFile(JSON.stringify(receivedDoc()));
+        const section = document.getElementById('import-section');
+        assert.false(section.hidden, 'the proposal is shown');
+        assert.strictEqual(
+          document.getElementById('import-summary').textContent,
+          'Contenido recibido: 1 tarea · 2 listas',
+          'the summary describes the received content');
+        assert.deepEqual(TestKit.texts(), ['Mine'],
+          'the state is untouched until a choice is made');
+        assert.strictEqual(alerted, null, 'no warning is shown');
+      });
+
+      QUnit.test('a second file replaces the pending proposal',
+        async (assert) => {
+          await offerFile(JSON.stringify(receivedDoc()));
+          const bigger = receivedDoc();
+          bigger.tasks.push({ id: 8, text: 'Another', done: false,
+            listId: 'work', date: null, recur: null });
+          await offerFile(JSON.stringify(bigger));
+          assert.strictEqual(
+            document.getElementById('import-summary').textContent,
+            'Contenido recibido: 2 tareas · 2 listas',
+            'the proposal reflects the last file offered');
+        });
+
+      QUnit.test('opening the app with a valid link proposes the ' +
+          'import', (assert) => {
+        window.App.addTask('Mine');
+        window.Todo.linkPayload =
+          () => window.Todo.encodeDocument(receivedDoc());
+        window.App.initialized = false;
+        window.App.init();
+        assert.ok(consumed, 'the link fragment is consumed');
+        assert.false(document.getElementById('import-section').hidden,
+          'the proposal is shown');
+        assert.deepEqual(TestKit.texts(), ['Mine'],
+          'the link content is not applied until confirmed');
+      });
+
+      QUnit.test('the exported link is recognized and decodes back',
+        (assert) => {
+          window.App.addTask('Caña 🍺');
+          const produced = window.Todo.documentLink(
+            window.App.exportDocument(), 'file:///app/index.html');
+          assert.true(produced.ok);
+          // The module stubs window.Todo.linkPayload in beforeEach;
+          // the real one is what this test exercises.
+          const payload = originalLinkPayload(produced.url);
+          assert.deepEqual(window.Todo.decodeDocument(payload),
+            window.App.exportDocument(),
+            'the payload decodes to the same document');
+          assert.strictEqual(
+            originalLinkPayload('file:///app/index.html#/active'),
+            null, 'a filter fragment proposes nothing');
+          assert.strictEqual(
+            originalLinkPayload('file:///app/index.html'),
+            null, 'no fragment proposes nothing');
+        });
+
+      QUnit.test('opening without a link starts without a proposal',
+        (assert) => {
+          assert.true(
+            document.getElementById('import-section').hidden,
+            'no proposal is shown');
+          assert.strictEqual(consumed, null,
+            'no fragment was consumed');
+        });
+
+      QUnit.test('replacing applies the document and clears the ' +
+          'proposal', async (assert) => {
+        window.App.addTask('Mine');
+        await offerFile(JSON.stringify(receivedDoc()));
+        document.getElementById('import-replace').click();
+        assert.deepEqual(window.App.tasks.map((t) => t.id), [7],
+          'only the document content remains');
+        assert.deepEqual(window.App.lists.map((l) => l.id),
+          ['inbox', 'work'], 'the document lists replaced the state');
+        assert.true(
+          document.getElementById('import-section').hidden,
+          'the proposal is cleared');
+      });
+
+      QUnit.test('copying adds the content next to the existing',
+        async (assert) => {
+          window.App.addTask('Mine');
+          await offerFile(JSON.stringify(receivedDoc()));
+          document.getElementById('import-copy').click();
+          assert.deepEqual(window.App.tasks.map((t) => t.text),
+            ['Mine', 'Received task'],
+            'both contents remain');
+          assert.ok(
+            window.App.lists.some((l) => l.name === 'Trabajo'),
+            'the received list joins as a copy');
+          assert.true(
+            document.getElementById('import-section').hidden,
+            'the proposal is cleared');
+        });
+
+      QUnit.test('dismissing clears the proposal untouched',
+        async (assert) => {
+          window.App.addTask('Mine');
+          await offerFile(JSON.stringify(receivedDoc()));
+          document.getElementById('import-dismiss').click();
+          assert.deepEqual(window.App.tasks.map((t) => t.text),
+            ['Mine'], 'the state is untouched');
+          assert.true(
+            document.getElementById('import-section').hidden,
+            'the proposal is gone');
+        });
+
+      QUnit.test('an applied import persists like any other change',
+        async (assert) => {
+          await offerFile(JSON.stringify(receivedDoc()));
+          document.getElementById('import-copy').click();
+          const stored = JSON.parse(
+            localStorage.getItem('todoapp-tasks'));
+          assert.ok(
+            stored.tasks.some((t) => t.text === 'Received task'),
+            'the imported content is persisted');
+        });
+
+      QUnit.test('a malformed file warns and leaves the state ' +
+          'intact', async (assert) => {
+        window.App.addTask('Keep me');
+        await offerFile('{broken');
+        assert.ok(alerted, 'a clear notice is shown');
+        assert.true(
+          document.getElementById('import-section').hidden,
+          'no proposal appears');
+        assert.deepEqual(window.App.tasks.map((t) => t.text),
+          ['Keep me'], 'the state is intact');
+      });
+
+      QUnit.test('a link that does not decode or validate warns',
+        (assert) => {
+          window.App.addTask('Keep me');
+          window.Todo.linkPayload = () => 'not-valid-base64!!!';
+          window.App.initialized = false;
+          window.App.init();
+          assert.ok(alerted, 'a clear notice is shown');
+          assert.true(
+            document.getElementById('import-section').hidden,
+            'no proposal appears');
+          assert.deepEqual(window.App.tasks.map((t) => t.text),
+            ['Keep me'], 'the state is intact');
+          alerted = null;
+          window.Todo.linkPayload = () =>
+            window.Todo.encodeDocument({ app: 'other', version: 1,
+              lists: [], tasks: [] });
+          window.App.initialized = false;
+          window.App.init();
+          assert.ok(alerted, 'a foreign document warns the same');
+          assert.true(
+            document.getElementById('import-section').hidden,
+            'still no proposal');
+        });
+
+      QUnit.test('the footer exposes the import action', (assert) => {
+        assert.strictEqual(
+          document.getElementById('import-file').dataset.action,
+          'pick-import-file');
+        assert.strictEqual(
+          document.getElementById('import-file-input').dataset.action,
+          'import-file');
+      });
+    });
   </script>
 </body>
 </html>

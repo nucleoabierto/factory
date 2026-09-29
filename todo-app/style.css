@@ -365,3 +365,38 @@ body {
 .export-action:hover {
   color: var(--color-accent);
 }
+
+.import {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-ui);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+.import[hidden] {
+  display: none;
+}
+
+.import-summary {
+  flex: 1;
+}
+
+.import-action {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--font-label);
+  padding: 0;
+}
+
+.import-action:hover {
+  color: var(--color-accent);
+}
+
+.import-replace {
+  color: var(--color-accent);
+}

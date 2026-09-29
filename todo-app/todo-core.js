@@ -66,6 +66,18 @@
       : { ok: false, reason: 'link-too-large' };
   };
 
+  // The inverse of documentLink: reads the payload out of a URL's
+  // fragment. The fragment is a shared channel — the '#/…' hrefs of
+  // filters and views live in the same space — so only the 'export'
+  // key is recognized. The raw payload is returned for the caller
+  // to decode: an undecodable one must still surface as a rejected
+  // import, which is why absence is the only null here.
+  Todo.linkPayload = function linkPayload(url) {
+    const key = `${Todo.EXPORT_HASH}=`;
+    const fragment = (url || '').split('#')[1] || '';
+    return fragment.startsWith(key) ? fragment.slice(key.length) : null;
+  };
+
   // Task dates are calendar days as ISO strings ('YYYY-MM-DD'):
   // comparing them as strings orders like dates, so classification
   // needs no Date arithmetic and the reference day is injectable.

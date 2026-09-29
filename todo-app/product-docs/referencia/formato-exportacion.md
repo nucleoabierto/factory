@@ -25,8 +25,8 @@ La acción «Exportar» del pie produce un archivo `todo-app.json` y la acción 
 
 ## El enlace
 
-El enlace apunta a la propia página y lleva el documento codificado en el fragmento tras `#export=`, en base64url: quien lo abre no necesita nada del navegador que lo creó. La dirección completa tiene un límite de tamaño —8000 caracteres— para que sobreviva a los canales por los que se comparte; un estado que lo excede no produce enlace y la aplicación lo indica.
+El enlace apunta a la propia página y lleva el documento codificado en el fragmento tras `#export=`, en base64url: quien lo abre no necesita nada del navegador que lo creó. La dirección completa tiene un límite de tamaño —8000 caracteres— para que sobreviva a los canales por los que se comparte; un estado que lo excede no produce enlace y la aplicación lo indica. Al abrirlo, la aplicación propone importar su contenido —ver [Importar contenido](../funcionalidades/007-importar.md)—; la entrada por archivo produce el mismo documento y sigue el mismo camino.
 
 ## Dónde vive la lógica
 
-La composición del documento está en `TaskList.toDocument` (`todo-domain.js`); la codificación del enlace y el límite, en `todo-core.js` (`encodeDocument`, `decodeDocument`, `documentLink`, `EXPORT_LINK_MAX`); la descarga y el diálogo, en `todo-ui.js` (`UI.downloadFile`, acciones `export-file`/`export-link`).
+La composición del documento está en `TaskList.toDocument` (`todo-domain.js`); la validación estricta y las dos semánticas de entrada, en `TaskList.parseDocument`/`TaskList.importDocument` del mismo archivo; la codificación del enlace, su lectura y el límite, en `todo-core.js` (`encodeDocument`, `decodeDocument`, `documentLink`, `linkPayload`, `EXPORT_LINK_MAX`); la descarga, la lectura del archivo y los avisos, en `todo-ui.js` (`UI.downloadFile`, `UI.reportImportError`, acciones `export-file`/`export-link`/`pick-import-file`/`import-file`/`import-apply`/`import-dismiss`); la propuesta de importación y la detección del enlace al arrancar, en `app.js` (`viewState.pendingImport`, `App.offerImport`/`applyImport`/`dismissImport`, `App.init`).

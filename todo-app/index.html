@@ -40,6 +40,21 @@
       <ul id="archived-list" class="archived-list"></ul>
     </details>
 
+    <section id="import-section" class="import" hidden>
+      <span id="import-summary" class="import-summary"></span>
+      <button id="import-replace" class="import-action import-replace"
+              title="Reemplazar el contenido actual"
+              data-action="import-apply"
+              data-mode="replace">Reemplazar</button>
+      <button id="import-copy" class="import-action"
+              title="Añadir el contenido como copia"
+              data-action="import-apply"
+              data-mode="copy">Copiar</button>
+      <button id="import-dismiss" class="import-action"
+              title="Descartar el contenido recibido"
+              data-action="import-dismiss">Descartar</button>
+    </section>
+
     <footer class="footer">
       <div class="views-row">
       <ul class="views">
@@ -67,6 +82,12 @@
         <button id="export-link" class="export-action"
                 title="Obtener un enlace con el contenido"
                 data-action="export-link">Enlace</button>
+        <button id="import-file" class="export-action"
+                title="Importar un archivo con el contenido"
+                data-action="pick-import-file">Importar</button>
+        <input id="import-file-input" type="file"
+               accept=".json,application/json"
+               data-action="import-file" hidden>
       </div>
       <div class="footer-row">
         <span id="todo-count" class="todo-count">0 pendientes</span>

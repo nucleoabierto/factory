@@ -51,6 +51,7 @@ Reglas: una sola familia en toda la app; el peso 600 solo para estados de fecha 
 - **Toggle** (`.toggle`): checkbox nativo con `accent-color: --color-accent` — ningún color fuera de la paleta.
 - **Campo de texto** (`.new-todo`, `.edit`): sin borde salvo el inferior en `--color-border` (o `--color-border-strong` en edición); foco con `outline`/`box-shadow` en `--color-accent`, nunca el azul por defecto del navegador.
 - **Controles segmentados**: `.views` es la navegación primaria — píldora contenedora con borde `--color-border`; el seleccionado lleva fondo `--color-accent` y texto `--color-surface`; hover en acento de texto. `.filters` son enlaces con padding `4px 8px`, borde transparente y radio `--radius`; hover y `.selected` muestran borde en `--color-accent`.
+- **Bloque condicional** (`.archived`, `.import`): franja de ancho completo bajo la lista, oculta con `hidden` cuando no tiene contenido; texto `--font-ui` en `--color-text-muted` y borde superior en `--color-border`; sus acciones son botones de texto en `--font-label`, en `--color-text-muted` con hover en acento, o en `--color-accent` cuando la acción es destructiva.
 
 ## Estados
 
@@ -65,9 +66,9 @@ Reglas: una sola familia en toda la app; el peso 600 solo para estados de fecha 
 
 ## Layout
 
-- Una sola columna: cabecera (título, barra de lista, campo nuevo), lista, sección de archivadas, footer.
+- Una sola columna: cabecera (título, barra de lista, campo nuevo), lista, sección de archivadas, bloque de propuesta de importación, footer.
 - La lista tiene `min-height` suficiente para que el footer no quede pegado al campo de entrada cuando está vacía.
-- **El footer se organiza en varias filas:** navegación de vistas (Lista/Hoy) y filtros (Todas/Pendientes/Completadas) ocupan filas propias; la fila inferior lleva el contador a la izquierda y la acción «Limpiar completadas» a la derecha, esta última como texto pequeño en `--color-accent` y solo cuando hay completadas. Una fila propia (`.export-row`) lleva las acciones de portabilidad —«Exportar» y «Enlace»— como botones de texto en `--font-label` y `--color-text-muted`, con hover en `--color-accent`.
+- **El footer se organiza en varias filas:** navegación de vistas (Lista/Hoy) y filtros (Todas/Pendientes/Completadas) ocupan filas propias; la fila inferior lleva el contador a la izquierda y la acción «Limpiar completadas» a la derecha, esta última como texto pequeño en `--color-accent` y solo cuando hay completadas. Una fila propia (`.export-row`) lleva las acciones de portabilidad —«Exportar», «Enlace» e «Importar»— como botones de texto en `--font-label` y `--color-text-muted`, con hover en `--color-accent`; el selector de archivo de «Importar» permanece oculto.
 - No hay layout responsive declarado más allá del ancho máximo de 550px; la app se lee completa hasta ~360px sin scroll horizontal.
 
 ## Movimiento

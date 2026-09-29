@@ -51,7 +51,17 @@
         }
       },
       'archive-list': (el, ev, actions) => actions.archiveActiveList(),
-      'delete-list': (el, ev, actions) => actions.deleteActiveList()
+      'delete-list': (el, ev, actions) => actions.deleteActiveList(),
+      'pick-import-file': (el, ev, actions) => {
+        const input =
+          el.ownerDocument.getElementById('import-file-input');
+        if (input) {
+          input.click();
+        }
+      },
+      'import-apply': (el, ev, actions) =>
+        actions.applyImport(el.dataset.mode),
+      'import-dismiss': (el, ev, actions) => actions.dismissImport()
     },
     change: {
       'set-active-list': (el, ev, actions) => actions.setActiveList(el.value),
@@ -65,7 +75,27 @@
         : actions.clearTaskDate(Number(el.dataset.id)),
       // An emptied repeat field means a plain task again.
       'set-task-recur': (el, ev, actions) =>
-        actions.setTaskRecur(Number(el.dataset.id), el.value || null)
+        actions.setTaskRecur(Number(el.dataset.id), el.value || null),
+      // The input resets so picking the same file again fires a
+      // fresh change.
+      'import-file': async (el, ev, actions) => {
+        const file = el.files && el.files[0];
+        el.value = '';
+        if (!file) {
+          return;
+        }
+        let text;
+        try {
+          text = await file.text();
+        } catch (e) {
+          UI.reportImportError({ reason: 'unreadable-file' });
+          return;
+        }
+        const offered = actions.offerImport(text);
+        if (!offered.ok) {
+          UI.reportImportError(offered);
+        }
+      }
     },
     keydown: {
       'add-task': (el, ev, actions) => {
@@ -121,7 +151,27 @@
       renderTasks(doc, vm);
       renderListBar(doc, vm);
       renderArchived(doc, vm);
+      renderImport(doc, vm);
       renderFooter(doc, vm);
+    },
+
+    // Rejected imports surface like the other dialogs, with the
+    // reason translated to a clear notice.
+    reportImportError(result) {
+      const messages = {
+        'unreadable-file': 'El archivo no se pudo leer.',
+        'malformed-json':
+          'El contenido está corrupto y no se puede leer.',
+        'not-a-document':
+          'El contenido recibido no es un documento válido.',
+        'unknown-format': 'El documento no es de esta aplicación.',
+        'unsupported-version':
+          'El documento es de una versión no admitida.',
+        'invalid-lists': 'El documento contiene listas inválidas.',
+        'invalid-tasks': 'El documento contiene tareas inválidas.'
+      };
+      global.alert(messages[result.reason] ||
+        'El contenido recibido no es válido.');
     },
 
     // Downloading is a DOM effect like the dialogs: a temporary
@@ -305,6 +355,22 @@
         li.appendChild(reactivate);
         archivedItems.appendChild(li);
       });
+    }
+  }
+
+  function renderImport(doc, vm) {
+    const section = doc.getElementById('import-section');
+    if (!section) {
+      return;
+    }
+    const pending = vm.pendingImport;
+    section.hidden = !pending;
+    const summary = doc.getElementById('import-summary');
+    if (summary && pending) {
+      summary.textContent =
+        `Contenido recibido: ${pending.tasks} ` +
+        `tarea${pending.tasks === 1 ? '' : 's'} · ` +
+        `${pending.lists} lista${pending.lists === 1 ? '' : 's'}`;
     }
   }
 

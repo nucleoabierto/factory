@@ -12,7 +12,7 @@
   // View state: owned by the composition root, which decides when an
   // operation ends the editing session. The view only reads it
   // through the view-model.
-  const viewState = { editingId: null };
+  const viewState = { editingId: null, pendingImport: null };
 
   const App = {
     initialized: false,
@@ -80,6 +80,35 @@
         App.render();
       }
       return result;
+    },
+
+    // Both entrances —file and link— converge here: a candidate is
+    // validated strictly before it becomes a proposal, so foreign
+    // or malformed content never touches the state and never shows.
+    offerImport(candidate) {
+      const parsed = taskList.parseDocument(candidate);
+      if (!parsed.ok) {
+        return parsed;
+      }
+      viewState.pendingImport = parsed.document;
+      App.render();
+      return { ok: true };
+    },
+
+    // The proposal is cleared before applying, so the render that
+    // the import triggers already shows the resolved state.
+    applyImport(mode) {
+      const pending = viewState.pendingImport;
+      if (!pending) {
+        return { ok: false, reason: 'no-pending-import' };
+      }
+      viewState.pendingImport = null;
+      return App.importDocument(pending, mode);
+    },
+
+    dismissImport() {
+      viewState.pendingImport = null;
+      App.render();
     },
 
     // Tasks captured in the today view are due today, so they stay
@@ -235,6 +264,7 @@
     reset() {
       taskList.reset();
       App.activeListId = INBOX.id;
+      viewState.pendingImport = null;
     },
 
     // The view contract: the view-model carries every datum the
@@ -270,6 +300,10 @@
         editingId: viewState.editingId,
         pendingCount: taskList
           .pendingCount(App.activeListId, App.view),
+        pendingImport: viewState.pendingImport
+          ? { tasks: viewState.pendingImport.tasks.length,
+              lists: viewState.pendingImport.lists.length }
+          : null,
         hasCompleted: taskList
           .visibleTasks('completed', App.activeListId, App.view)
           .length > 0
@@ -302,7 +336,10 @@
       unarchiveList: (id) => App.unarchiveList(id),
       clearCompleted: () => App.clearCompleted(),
       exportFile: () => App.exportFile(),
-      exportLink: () => App.exportLink()
+      exportLink: () => App.exportLink(),
+      offerImport: (candidate) => App.offerImport(candidate),
+      applyImport: (mode) => App.applyImport(mode),
+      dismissImport: () => App.dismissImport()
     },
 
     render() {
@@ -316,9 +353,36 @@
       App.initialized = true;
       App.load();
       UI.bind(App.actions);
+      // A portable link proposes its content instead of applying
+      // it: the payload becomes a pending import the person
+      // resolves. linkPayload and decodeDocument are read off the
+      // namespace at call time so tests can substitute them.
+      const payload = global.Todo.linkPayload(
+        global.location && global.location.href);
+      if (payload !== null) {
+        consumeLinkFragment();
+        const offered =
+          App.offerImport(global.Todo.decodeDocument(payload));
+        if (!offered.ok) {
+          UI.reportImportError(offered);
+        }
+      }
       App.render();
     }
   };
+
+  // A consumed link leaves the address bar clean: a reload does not
+  // propose again what was already offered. Some browsers veto
+  // replaceState over file:// — then the link stays and a reload
+  // simply proposes it again, so the failure degrades silently.
+  function consumeLinkFragment() {
+    try {
+      global.history.replaceState(null, '',
+        global.location.href.split('#')[0]);
+    } catch (e) {
+      // The proposal stands either way.
+    }
+  }
 
   // The state lives in the components: the facade exposes it
   // read-only for tasks/nextId and delegates editingId to the
