@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] **Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -49,8 +49,10 @@ Recopilar y sintetizar las mejores prácticas para mantener un changelog generad
 ## Notas
 
 - El alcance acordado con el usuario es doble: prácticas del changelog en sí y prácticas de su gestión (control de volumen, agregación, promoción de versiones). Quedan fuera la generación automática desde mensajes de commit como solución principal —puede aparecer como comparativa— y cualquier integración con plataformas concretas de publicación.
+- Resultado: `docs/research/2026-09-changelog-y-versionado-semantico.md`. La recomendación central es el modelo de dos momentos —registro al cerrar la tarea y nueva curación al liberar— con agregación por agrupación (épica, propuesta, encabezado ligero); esa agregación es una extrapolación de la regla de fusionar cambios relacionados, declarada como inferencia en las Limitaciones del documento.
+- La revisión por subagente no se ejecutó porque la sesión no dispone de subagentes; el usuario revisó y aprobó el borrador completo antes de crear el archivo.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-29 — No ejecutada (sesión sin subagentes; ver Notas)
+- Usuario: 2026-09-29 — Aprueba
