@@ -57,6 +57,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `documentar-dominio` | Mantiene la documentación viva de los dominios bajo `docs/domains/` tras cada tarea de desarrollo. |
 | `documentar-producto` | Mantiene la documentación de producto del proyecto evaluado tras cada tarea de desarrollo, con escenarios anclados a su suite de pruebas. |
 | `mantener-changelog` | Mantiene el changelog del proyecto evaluado: registra en los no liberados los cambios con impacto observable, agregados por épica o propuesta. |
+| `liberar-version` | Libera una versión del proyecto evaluado: cura los no liberados, propone el bump semver justificado y promueve la sección con la confirmación del usuario. |
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
 
 **Diseño**

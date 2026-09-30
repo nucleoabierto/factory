@@ -174,3 +174,10 @@
   Obtenido: el paso de cierre y el skill de changelog declaraban «el diff de la tarea» como entrada materializada.
   Corrección: no pasar el diff; pasar la ubicación de los cambios (árbol de trabajo o rango de commits) y apoyarse en git para revisarlos, al igual que los demás skills.
   Estado: pendiente
+
+- Id: 20260929T190800
+  Tarea: docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md
+  Esperado: que la entrada añadida a EXPERIENCIAS.md respetara el formato vigente del archivo: un campo por línea, sin envolver.
+  Obtenido: la entrada se escribió con los campos envueltos en varias líneas cortas, rompiendo el formato del resto de entradas.
+  Corrección: revisar el tamaño de las líneas del archivo antes de escribir y ajustarse a su formato; si coincide, continuar, y si no, corregir primero.
+  Estado: pendiente

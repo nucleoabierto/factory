@@ -23,7 +23,7 @@ Instrucciones para que un agente mantenga el changelog del proyecto evaluado. El
 
 ## Cuándo no usar
 
-- Para liberar una versión —promover los no liberados a `X.Y.Z`, calcular el bump o actualizar los enlaces comparativos—: eso corresponde al skill de liberación de versiones.
+- Para liberar una versión —promover los no liberados a `X.Y.Z`, calcular el bump o actualizar los enlaces comparativos—: eso corresponde a `liberar-version`.
 - Para registrar decisiones de diseño, correcciones del usuario o documentación de dominio y producto: corresponde a `decisiones-diseno`, `registrar-experiencias`, `documentar-dominio` y `documentar-producto`.
 - Para cambios sin impacto observable: el skill los evalúa y emite el veredicto «sin entrada», no los registra.
 

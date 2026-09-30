@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] **Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -53,5 +53,5 @@ Crear el skill que gestiona la liberación de versiones del proyecto evaluado de
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-29 — Aprueba
+- Usuario: 2026-09-29 — Aprueba
