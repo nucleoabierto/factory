@@ -4,18 +4,23 @@ Aplicación de lista de tareas moderna — segunda prueba de concepto del proyec
 
 ## Requisitos
 
-- Node.js 24
+- Node.js 24.15 o superior — `.nvmrc` declara `lts/krypton`; con nvm instalado, `nvm use` en este directorio selecciona la versión
 - npm 11
 
 ## Comandos
 
-| Comando | Acción |
-| --- | --- |
-| `npm install` | Instala las dependencias fijadas en `package-lock.json` |
-| `npm run dev` | Arranca el servidor de desarrollo |
-| `npm run build` | Comprueba los tipos y compila la aplicación a `dist/` |
-| `npm run typecheck` | Comprueba los tipos en modo estricto sin compilar |
-| `npm run preview` | Sirve la salida de `dist/` para inspección local |
+| Comando                | Acción                                                             |
+| ---------------------- | ------------------------------------------------------------------ |
+| `npm install`          | Instala las dependencias fijadas en `package-lock.json`            |
+| `npm run dev`          | Arranca el servidor de desarrollo                                  |
+| `npm run build`        | Comprueba los tipos y compila la aplicación a `dist/`              |
+| `npm run typecheck`    | Comprueba los tipos en modo estricto sin compilar                  |
+| `npm run lint`         | Comprueba el código con ESLint                                     |
+| `npm run format:check` | Comprueba el formato con Prettier                                  |
+| `npm run format`       | Normaliza el formato con Prettier                                  |
+| `npm test`             | Ejecuta la suite de pruebas (Vitest + Testing Library + jsdom)     |
+| `npm run verify`       | Verificación completa: tipos, lint, formato, pruebas y compilación |
+| `npm run preview`      | Sirve la salida de `dist/` para inspección local                   |
 
 ## Estructura
 

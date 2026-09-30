@@ -1,0 +1,5 @@
+dist
+docs
+CHANGELOG.md
+TODO.txt
+package-lock.json

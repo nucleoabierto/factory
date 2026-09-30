@@ -24,7 +24,7 @@
 
 - [x] docs/tasks/001-decidir-pila-andamiaje.md — Decidir la pila tecnológica del andamiaje
 - [x] docs/tasks/002-inicializar-proyecto-toolchain.md — Inicializar el proyecto con la pila decidida
-- [ ] docs/tasks/003-verificacion-ejecutable.md — Establecer la verificación ejecutable
+- [x] docs/tasks/003-verificacion-ejecutable.md — Establecer la verificación ejecutable
 - [ ] docs/tasks/004-pantalla-minima-propia.md — Pantalla mínima propia verificada de extremo a extremo
 
 ## Propuestas en revisión
