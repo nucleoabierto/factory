@@ -18,7 +18,7 @@ Aplicación de lista de tareas moderna — segunda prueba de concepto del proyec
 | `npm run lint`         | Comprueba el código con ESLint                                     |
 | `npm run format:check` | Comprueba el formato con Prettier                                  |
 | `npm run format`       | Normaliza el formato con Prettier                                  |
-| `npm test`             | Ejecuta la suite de pruebas (Vitest + Testing Library + jsdom)     |
+| `npm test`             | Ejecuta la suite con cobertura — el umbral exigido es el 100%      |
 | `npm run verify`       | Verificación completa: tipos, lint, formato, pruebas y compilación |
 | `npm run preview`      | Sirve la salida de `dist/` para inspección local                   |
 
@@ -26,7 +26,6 @@ Aplicación de lista de tareas moderna — segunda prueba de concepto del proyec
 
 - `src/main.tsx` — punto de entrada
 - `src/components/` — componentes de la aplicación
-- `src/assets/` — recursos estáticos importados por el código
 - `public/` — recursos estáticos servidos tal cual
 - `docs/` — documentación del proceso (ideas, propuestas, tareas, épicas, decisiones)
 - `TODO.txt` — índice de tareas del subproyecto

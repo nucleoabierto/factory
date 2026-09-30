@@ -9,4 +9,4 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ### Added
 
-- Andamiaje del proyecto: aplicación web instalable, compilable y servible con React + TypeScript estricto + Vite, cuya verificación completa —tipos, lint, formato, pruebas y compilación— corre con un solo comando `npm run verify` ([docs/epics/001-andamiaje-proyecto.md](docs/epics/001-andamiaje-proyecto.md))
+- Andamiaje del proyecto: aplicación web instalable, compilable y servible con React + TypeScript estricto + Vite, que muestra una pantalla propia y cuya verificación completa —tipos, lint, formato, pruebas con cobertura exigida al 100% y compilación— corre con un solo comando `npm run verify` ([docs/epics/001-andamiaje-proyecto.md](docs/epics/001-andamiaje-proyecto.md))

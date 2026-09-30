@@ -1,20 +1,19 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from './App'
 
 describe('App', () => {
-  it('muestra la pantalla inicial del scaffolding', () => {
+  it('muestra la identidad de la aplicación', () => {
     render(<App />)
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Get started',
+      'Modern Todo App',
     )
   })
 
-  it('incrementa el contador al hacer click', () => {
+  it('muestra el estado vacío de la lista de tareas', () => {
     render(<App />)
-    const button = screen.getByRole('button', { name: /count is/i })
-    expect(button).toHaveTextContent('Count is 0')
-    fireEvent.click(button)
-    expect(button).toHaveTextContent('Count is 1')
+    expect(
+      screen.getByRole('region', { name: 'Lista de tareas' }),
+    ).toHaveTextContent('No hay tareas todavía.')
   })
 })

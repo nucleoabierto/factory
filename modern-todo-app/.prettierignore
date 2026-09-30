@@ -1,4 +1,5 @@
 dist
+coverage
 docs
 CHANGELOG.md
 TODO.txt
