@@ -3,6 +3,7 @@
 > **Tipo:** idea de andamiaje — tamaño épica (complejidad media)
 > **Fecha:** 2026-09
 > **Orden sugerido:** 1 de 5 — estructura a todas las demás: sin proyecto con toolchain no hay dónde construir nada
+> **Procesada en:** docs/proposals/001-andamiaje-proyecto/
 
 ## Problema
 

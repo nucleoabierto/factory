@@ -1,0 +1,30 @@
+# TODO
+
+<!-- Índice de tareas. Cada tarea se documenta en un archivo individual en docs/tasks/.
+     Formato de cada línea:
+     - [estado] docs/tasks/NNN-slug.md — título breve
+       estado: [ ] pendiente, [~] en progreso, [r] en revisión, [x] completada, [!] bloqueada
+     Para tareas bloqueadas, añadir sublista con las tareas bloqueantes.
+     Las tareas planificadas se agrupan por épica bajo encabezados
+     ## Épica: título. Las tareas sueltas, sin épica propia, viven en
+     la sección ## General, que precede a las épicas.
+     El índice solo contiene trabajo activo: los conjuntos completados
+     se eliminan; la limpieza se revisa al superar las 100 líneas.
+     Al final del archivo, la sección ## Propuestas en revisión lista las
+     propuestas del flujo de idea a tarea con el marcador [p].
+-->
+
+
+## General
+
+
+## Hito 1: Andamiaje del proyecto
+
+<!-- épica: docs/epics/001-andamiaje-proyecto.md -->
+
+- [ ] docs/tasks/001-decidir-pila-andamiaje.md — Decidir la pila tecnológica del andamiaje
+- [ ] docs/tasks/002-inicializar-proyecto-toolchain.md — Inicializar el proyecto con la pila decidida
+- [ ] docs/tasks/003-verificacion-ejecutable.md — Establecer la verificación ejecutable
+- [ ] docs/tasks/004-pantalla-minima-propia.md — Pantalla mínima propia verificada de extremo a extremo
+
+## Propuestas en revisión
