@@ -28,6 +28,7 @@ Crear la estructura del proyecto en `modern-todo-app/` con la pila elegida: mani
 ## Criterios de calidad
 
 - El proyecto se instala desde cero con el gestor de paquetes elegido y las versiones quedan fijadas.
+- Las versiones fijadas son estables publicadas con antelación suficiente, no recién salidas.
 - La compilación y el servidor de desarrollo funcionan por comando.
 - El tipado estático está configurado en modo estricto.
 - El código fuente vive en una estructura de módulos, no en un único archivo.

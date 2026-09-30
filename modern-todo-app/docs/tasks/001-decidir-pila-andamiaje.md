@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Tipo
 
@@ -49,5 +49,5 @@ Elegir y justificar la pila del proyecto —framework de componentes, lenguaje c
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-29 — Aprueba
+- Usuario: 2026-09-29 — Aprueba
