@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] **Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -52,5 +52,5 @@ Crear el skill que mantiene el changelog del proyecto evaluado: invocable al cer
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-29 — Aprueba
+- Usuario: 2026-09-29 — Aprueba
