@@ -23,7 +23,7 @@
 <!-- épica: docs/epics/001-andamiaje-proyecto.md -->
 
 - [x] docs/tasks/001-decidir-pila-andamiaje.md — Decidir la pila tecnológica del andamiaje
-- [ ] docs/tasks/002-inicializar-proyecto-toolchain.md — Inicializar el proyecto con la pila decidida
+- [x] docs/tasks/002-inicializar-proyecto-toolchain.md — Inicializar el proyecto con la pila decidida
 - [ ] docs/tasks/003-verificacion-ejecutable.md — Establecer la verificación ejecutable
 - [ ] docs/tasks/004-pantalla-minima-propia.md — Pantalla mínima propia verificada de extremo a extremo
 
