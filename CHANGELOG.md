@@ -7,6 +7,8 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-09-29
+
 ### Added
 
 - Flujo de idea a tarea: `lluvia-de-ideas` persiste ideas sueltas en `docs/ideas/`, `descubrir-problema`, `proponer-forma-solucion` y `refinar-propuesta` las refinan en una propuesta con borradores de tarea progresivos, e `idea-a-tarea` orquesta las tres fases; `crear-tareas` promociona los borradores aprobados a tareas definitivas
