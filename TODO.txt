@@ -24,3 +24,7 @@
 - [x] docs/tasks/101-skill-lluvia-de-ideas.md — Crear el skill lluvia-de-ideas
 - [x] docs/tasks/102-separar-flujos-planear-y-ejecutar.md — Separar el flujo de tareas en «planear» y «ejecutar»
 - [x] docs/tasks/103-docs-producto-y-dominio-en-contexto.md — Incluir documentación de producto y dominio en recopilar-contexto
+- [ ] docs/tasks/104-investigar-changelog-y-versionado.md — Investigar mejores prácticas de changelogs y versionado semántico
+- [ ] docs/tasks/105-skill-mantener-changelog.md — Crear el skill de mantenimiento del changelog
+- [ ] docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md — Integrar el changelog en el cierre de tareas
+- [ ] docs/tasks/107-skill-liberar-version.md — Crear el skill de liberación de versiones
