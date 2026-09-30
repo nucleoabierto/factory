@@ -17,7 +17,7 @@ Instrucciones para que un agente mantenga el changelog del proyecto evaluado. El
 
 ## Cuándo usar
 
-- Al cerrar una tarea del proyecto evaluado, con su diff como entrada.
+- Al cerrar una tarea del proyecto evaluado, con la ubicación de sus cambios como entrada.
 - Cuando el usuario pida registrar un cambio o actualizar el changelog.
 - Cuando el proyecto evaluado no tenga changelog y haya que inicializarlo.
 
@@ -29,7 +29,7 @@ Instrucciones para que un agente mantenga el changelog del proyecto evaluado. El
 
 ## Entrada
 
-- El diff del cambio producido por la tarea, o del conjunto de cambios a registrar.
+- La ubicación de los cambios a registrar —árbol de trabajo sin commitear o rango de commits de la tarea—: el skill reconstruye el diff con git a partir de ella, no lo recibe ya materializado.
 - El changelog del proyecto evaluado: `CHANGELOG.md` en la raíz es la convención; si el proyecto lo ubica en otra parte o usa otro nombre, esa ubicación es un dato de entrada. Si no existe, se inicializa solo cuando hay algo que registrar.
 - Los artefactos de agrupación del sistema de tareas del proyecto evaluado, cuando existen —épicas, propuestas, encabezados del índice de tareas—, para resolver la agregación.
 - `references/formato-y-agregacion.md`: la estructura del formato, la plantilla de inicialización, los criterios de notabilidad y la política de agregación. Cargarlo al inicializar el changelog o al redactar y fusionar entradas.
@@ -49,7 +49,7 @@ Instrucciones para que un agente mantenga el changelog del proyecto evaluado. El
 
 ## Procedimiento
 
-1. **Evaluar la notabilidad.** Con el diff, decidir si el cambio tiene impacto observable para el consumidor —funcionalidad nueva, comportamiento cambiado, corrección, eliminación, deprecación o seguridad— según los criterios de la referencia. Si no aplica, emitir «sin entrada» y terminar sin modificar archivos.
+1. **Evaluar la notabilidad.** Reconstruir el diff con git a partir de la ubicación indicada —`git status` y `git diff` en el árbol de trabajo, o el rango de commits por sus hashes— y decidir si el cambio tiene impacto observable para el consumidor —funcionalidad nueva, comportamiento cambiado, corrección, eliminación, deprecación o seguridad— según los criterios de la referencia. Si no aplica, emitir «sin entrada» y terminar sin modificar archivos.
 2. **Localizar o inicializar el changelog.** Buscar `CHANGELOG.md` en la raíz del proyecto evaluado; si no está, localizar el archivo equivalente que el proyecto use. Si no existe, crearlo con la plantilla de `references/formato-y-agregacion.md`.
 3. **Resolver la agregación.** Determinar si el cambio pertenece a una agrupación —épica, propuesta o encabezado ligero— y si esa agrupación ya tiene entrada en los no liberados: si la tiene, fusionar el cambio en ella reformulando la línea si la nueva contribución la amplía, o no escribir nada si ya está cubierta; si no la tiene y el conjunto es notable como unidad, crear la entrada de la agrupación; si el cambio no pertenece a ninguna agrupación —o su agrupación no es notable como unidad—, crear entrada propia. El enlace de la entrada apunta al artefacto de la agrupación cuando existe, no a cada tarea.
 4. **Clasificar y redactar.** Asignar la categoría —`Added`, `Changed`, `Deprecated`, `Removed`, `Fixed` o `Security`— y prefijar con `**Breaking:**` en línea cuando el cambio sea incompatible con la interfaz pública que el proyecto declare. Redactar una línea autodescriptiva en el idioma del changelog, con la referencia al artefacto de origen entre paréntesis.

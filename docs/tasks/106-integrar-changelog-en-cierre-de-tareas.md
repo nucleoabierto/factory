@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | [x] **Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -48,5 +48,5 @@ Conectar el skill de mantenimiento del changelog al cierre del ciclo de tareas, 
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-09-29 — Aprueba
+- Usuario: 2026-09-29 — Aprueba

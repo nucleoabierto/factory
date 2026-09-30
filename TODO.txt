@@ -26,5 +26,5 @@
 - [x] docs/tasks/103-docs-producto-y-dominio-en-contexto.md — Incluir documentación de producto y dominio en recopilar-contexto
 - [x] docs/tasks/104-investigar-changelog-y-versionado.md — Investigar mejores prácticas de changelogs y versionado semántico
 - [x] docs/tasks/105-skill-mantener-changelog.md — Crear el skill de mantenimiento del changelog
-- [ ] docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md — Integrar el changelog en el cierre de tareas
+- [x] docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md — Integrar el changelog en el cierre de tareas
 - [ ] docs/tasks/107-skill-liberar-version.md — Crear el skill de liberación de versiones

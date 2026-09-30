@@ -167,3 +167,10 @@
   Obtenido: la lista de seis fuentes quedó como requisito cerrado en salida, principios y finalización, y la `description` las enumeraba, acoplando el contrato a la implementación.
   Corrección: declarar las listas de fuentes como abiertas y extensibles, y mantener la `description` a nivel de capacidad —qué reúne y dónde queda— sin enumerar fuentes ni mecánica.
   Estado: consolidada
+
+- Id: 20260929T185349
+  Tarea: docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md
+  Esperado: que la invocación del sensor de cierre pase la ubicación de los cambios y el skill invocado reconstruya el diff con git, como hace revisar-implementacion.
+  Obtenido: el paso de cierre y el skill de changelog declaraban «el diff de la tarea» como entrada materializada.
+  Corrección: no pasar el diff; pasar la ubicación de los cambios (árbol de trabajo o rango de commits) y apoyarse en git para revisarlos, al igual que los demás skills.
+  Estado: pendiente
