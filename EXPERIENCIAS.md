@@ -173,18 +173,18 @@
   Esperado: que la invocación del sensor de cierre pase la ubicación de los cambios y el skill invocado reconstruya el diff con git, como hace revisar-implementacion.
   Obtenido: el paso de cierre y el skill de changelog declaraban «el diff de la tarea» como entrada materializada.
   Corrección: no pasar el diff; pasar la ubicación de los cambios (árbol de trabajo o rango de commits) y apoyarse en git para revisarlos, al igual que los demás skills.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260929T190800
   Tarea: docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md
   Esperado: que la entrada añadida a EXPERIENCIAS.md respetara el formato vigente del archivo: un campo por línea, sin envolver.
   Obtenido: la entrada se escribió con los campos envueltos en varias líneas cortas, rompiendo el formato del resto de entradas.
   Corrección: revisar el tamaño de las líneas del archivo antes de escribir y ajustarse a su formato; si coincide, continuar, y si no, corregir primero.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20261002T123944
   Tarea: docs/tasks/112-documentar-conexion-flujos.md
   Esperado: que la actualización de `docs/definicion-proyecto.md` —desfasada respecto al cableado que la propia tarea documentaba— se hiciera dentro del alcance de la tarea
   Obtenido: el agente la reportó como hallazgo fuera de alcance y propuso darla de alta como tarea nueva en lugar de actualizarla en la tarea en curso
   Corrección: cuando un hallazgo toca el mismo tema que la tarea —un documento desfasado que describe justo lo que se está documentando—, la frontera del alcance no está cerrada; ofrecer absorberlo en la tarea además de registrarlo aparte
-  Estado: pendiente
+  Estado: consolidada

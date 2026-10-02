@@ -21,3 +21,7 @@
 - **Un skill que mantiene un artefacto decidido por humanos incluye un modo interactivo de definición o actualización por diálogo con el usuario.** Por qué: `documentar-guia-estilo` solo contemplaba crear la guía por extracción del código y mantenerla como sensor; sin el modo interactivo toda decisión de diseño quedaba subordinada a la ejecución —primero se decide en discusión, después se materializa: la ejecución consume la decisión, no la sustituye.
   Disparadores: skills, SKILL.md, modo interactivo, diálogo con el usuario, documentar, artefacto vivo, sensor
   Origen: 20260926T135837
+
+- **La entrada de un skill que opera sobre cambios es la ubicación de los cambios —árbol de trabajo o rango de commits—, no un diff materializado: el skill lo reconstruye con git.** Por qué: el paso de cierre y el skill de changelog declaraban «el diff de la tarea» como entrada, cuando el resto de los skills reciben la ubicación y reconstruyen el diff ellos mismos; materializar el diff acopla el contrato a un artefacto que el invocador tendría que producir.
+  Disparadores: skills, SKILL.md, entrada de skill, diff, ubicación de cambios, sensor de cierre, revisar-implementacion
+  Origen: 20260929T185349

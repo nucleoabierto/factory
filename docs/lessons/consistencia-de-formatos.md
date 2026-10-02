@@ -13,3 +13,7 @@
 - **Declara en una plantilla solo los campos coherentes con el modelo del artefacto, no los heredados por inercia de otros formatos.** Por qué: la plantilla del roadmap incluía un campo Estado (Vigente/Superado) propio de una serie de documentos numerados, imposible en un documento vivo único en la raíz que se actualiza in situ y cuya historia la da git.
   Disparadores: plantillas, assets, formato, campos, campo de estado, serie de documentos, documento vivo, nuevo artefacto
   Origen: 20260924T023719
+
+- **Antes de escribir en un archivo con formato establecido, revisa el formato vigente y ajústate a él.** Por qué: una entrada de `EXPERIENCIAS.md` se escribió con los campos envueltos en varias líneas cortas, cuando el formato del archivo es un campo por línea sin envolver; el desajuste rompía la uniformidad del registro.
+  Disparadores: formato, archivo existente, entrada de registro, append-only, EXPERIENCIAS.md, líneas largas
+  Origen: 20260929T190800
