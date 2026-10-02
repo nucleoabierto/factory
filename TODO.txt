@@ -31,6 +31,7 @@
 - [x] docs/tasks/108-armonizar-entrada-sensores-cierre.md — Armonizar la entrada de los sensores de cierre
 - [x] docs/tasks/112-documentar-conexion-flujos.md — Documentar la conexión de los skills en flujos
 - [x] docs/tasks/118-paquete-teleprompter-factory.md — Empaquetar Factory como paquete de teleprompter
+- [ ] docs/tasks/119-install-por-skill-teleprompter.md — Instalar cada skill por separado en el manifiesto de teleprompter
 
 ## Hito 10: Coherencia del roadmap con la ejecución
 <!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->
