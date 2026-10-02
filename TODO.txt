@@ -29,3 +29,20 @@
 - [x] docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md — Integrar el changelog en el cierre de tareas
 - [x] docs/tasks/107-skill-liberar-version.md — Crear el skill de liberación de versiones
 - [x] docs/tasks/108-armonizar-entrada-sensores-cierre.md — Armonizar la entrada de los sensores de cierre
+- [ ] docs/tasks/112-documentar-conexion-flujos.md — Documentar la conexión de los skills en flujos
+
+## Hito 10: Coherencia del roadmap con la ejecución
+<!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->
+
+- [ ] docs/tasks/109-skill-cierre-conjunto.md — Crear el skill de cierre de conjunto
+- [ ] docs/tasks/110-skill-mantener-roadmap.md — Crear el skill reflector del roadmap
+- [ ] docs/tasks/111-cablear-cierre-conjunto-y-roadmap.md — Cablear el cierre de conjunto y el reflejo del roadmap en el ciclo
+
+## Hito 11: Delegación de pasos mecánicos a scripts
+<!-- épica: docs/epics/003-delegacion-mecanica-scripts.md -->
+
+- [ ] docs/tasks/113-delegacion-mecanica-scripts.md — Delegación mecánica a scripts: decisión y contrato
+- [ ] docs/tasks/114-skill-consultar-artefactos.md — Crear el skill de consulta de artefactos
+- [ ] docs/tasks/115-skill-actualizar-artefactos.md — Crear el skill de actualización de artefactos
+- [ ] docs/tasks/116-skill-operar-experiencias.md — Crear el skill de operación de experiencias
+- [ ] docs/tasks/117-skill-operar-changelog.md — Crear el skill de operación del changelog
