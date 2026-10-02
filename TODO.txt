@@ -30,7 +30,7 @@
 - [x] docs/tasks/107-skill-liberar-version.md — Crear el skill de liberación de versiones
 - [x] docs/tasks/108-armonizar-entrada-sensores-cierre.md — Armonizar la entrada de los sensores de cierre
 - [x] docs/tasks/112-documentar-conexion-flujos.md — Documentar la conexión de los skills en flujos
-- [ ] docs/tasks/118-paquete-teleprompter-factory.md — Empaquetar Factory como paquete de teleprompter
+- [x] docs/tasks/118-paquete-teleprompter-factory.md — Empaquetar Factory como paquete de teleprompter
 
 ## Hito 10: Coherencia del roadmap con la ejecución
 <!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->

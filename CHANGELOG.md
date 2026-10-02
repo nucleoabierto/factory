@@ -10,6 +10,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 ### Added
 
 - Documentación del cableado de los skills: `docs/mapa-de-flujos.md` describe los orquestadores, las capacidades en orden, los sensores de cierre, los artefactos que transportan el estado y las puertas humanas, con su resumen en el README ([docs/tasks/112-documentar-conexion-flujos.md](docs/tasks/112-documentar-conexion-flujos.md))
+- Empaquetado como paquete teleprompter: `teleprompter.json` declara el paquete `factory` 0.1.0 —primer release público— que instala los 32 skills en `.agents/skills/` del repositorio destino, con `PERSONALIZE.md` como guía para el agente instalador y licencia MIT ([docs/tasks/118-paquete-teleprompter-factory.md](docs/tasks/118-paquete-teleprompter-factory.md))
 
 ## [0.1.0] - 2026-09-29
 

@@ -1,0 +1,25 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "factory",
+  "version": "0.1.0",
+  "description": "Colección autocontenida de skills de agente que cubre el ciclo de desarrollo de producto: de la idea a la tarea, ejecución con revisión dual, memoria del proyecto, documentación viva y liberación de versiones",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": ".agents/skills/",
+      "target": ".agents/skills/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      { "path": ".agents/skills/", "create": true }
+    ]
+  },
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}
