@@ -20,12 +20,16 @@ El motor interno es la infraestructura de trabajo; el producto entregable es el 
 
 El motor interno está completo. Los skills existentes cubren:
 
-- **Flujo de idea a tarea**: `idea-a-tarea` orquesta `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta` y `crear-tareas`, con `planificar` cerrando la planeación en épicas y `planificar-roadmap` ordenando las líneas de trabajo en `ROADMAP.md`.
-- **Gestión y ejecución de tareas**: `ejecutar-tareas`, con `TODO.txt` como índice y `docs/tasks/` como detalle; las tareas de tipo `desarrollo` se enrutan al sub-flujo `desarrollo` (`planear-implementacion`, `ejecutar-implementacion`, `revisar-implementacion`).
+- **Flujo de idea a tarea**: `lluvia-de-ideas` persiste ideas en `docs/ideas/`; `idea-a-tarea` orquesta `descubrir-problema`, `proponer-forma-solucion` y `refinar-propuesta`, con `crear-tareas` promocionando los borradores aprobados, `planificar` cerrando la planeación en épicas y `planificar-roadmap` ordenando las líneas de trabajo en `ROADMAP.md`.
+- **Gestión y ejecución de tareas**: `ejecutar-tareas`, con `TODO.txt` como índice y `docs/tasks/` como detalle; las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` se enrutan al sub-flujo de desarrollo, dividido en `planear-tarea` —contexto, conectividad y plan con suite de pruebas esperada— y `desarrollar-tarea` —implementación con registro de desviaciones—, con `revisar-implementacion` en la revisión técnica.
 - **Calidad de escritura**: `revisar-redaccion` y `pulir-escritura`, con revisión de estilo y corrección ortotipográfica.
 - **Versionado**: `commit`, con Conventional Commits en español.
-- **Memoria del proyecto**: `investigar`, `decisiones-diseno`, `registrar-experiencias`, `consolidar-lecciones` y `consultar-lecciones`.
-- **Salud del dominio**: `documentar-dominio` mantiene `docs/domains/` y `revisar-arquitectura` evalúa dominios con criterios DDD, persistiendo informes en `docs/architecture-reviews/`.
+- **Changelog y liberación**: `mantener-changelog` registra en el changelog del proyecto evaluado los cambios con impacto observable al cerrar cada tarea, y `liberar-version` promueve los no liberados a una versión bajo demanda.
+- **Memoria del proyecto**: `investigar`, `decisiones-diseno`, `registrar-experiencias`, `consolidar-lecciones`, `consultar-lecciones` y `consultar-decisiones`.
+- **Salud del dominio y del producto**: `documentar-dominio` mantiene `docs/domains/` y `documentar-producto` la documentación de producto en `product-docs/`; `revisar-arquitectura` evalúa dominios con criterios DDD, persistiendo informes en `docs/architecture-reviews/`.
+- **Diseño**: `documentar-guia-estilo` mantiene el `DESIGN.md` del proyecto evaluado y `aplicar-guia-estilo` lo aplica al escribir frontend; ambos se activan por convención del arnés, sin invocación del ciclo de tareas.
+
+La conexión completa de los skills —quién invoca a quién, qué artefactos llevan el estado y dónde están las puertas humanas— está documentada en `docs/mapa-de-flujos.md`.
 
 El flujo de trabajo es: leer `TODO.txt`, tomar la siguiente tarea pendiente, ejecutarla siguiendo su archivo, marcarla en revisión, someterla a revisión dual (subagente independiente + usuario), marcarla como completada y commitear.
 

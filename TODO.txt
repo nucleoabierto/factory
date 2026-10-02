@@ -29,7 +29,7 @@
 - [x] docs/tasks/106-integrar-changelog-en-cierre-de-tareas.md — Integrar el changelog en el cierre de tareas
 - [x] docs/tasks/107-skill-liberar-version.md — Crear el skill de liberación de versiones
 - [x] docs/tasks/108-armonizar-entrada-sensores-cierre.md — Armonizar la entrada de los sensores de cierre
-- [ ] docs/tasks/112-documentar-conexion-flujos.md — Documentar la conexión de los skills en flujos
+- [x] docs/tasks/112-documentar-conexion-flujos.md — Documentar la conexión de los skills en flujos
 
 ## Hito 10: Coherencia del roadmap con la ejecución
 <!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->

@@ -78,6 +78,8 @@ Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/
 
 ### Cómo funciona el ciclo de trabajo
 
+Dos orquestadores cubren el ciclo completo: `idea-a-tarea` convierte una idea en tareas planificadas y `ejecutar-tareas` ejecuta las tareas de `TODO.txt` hasta el commit. El estado entre pasos y entre sesiones viaja en artefactos —`TODO.txt`, el archivo de cada tarea, la propuesta, la épica—, no en la conversación, de modo que cualquier flujo se puede retomar donde quedó. El mapa exhaustivo de conexiones —quién invoca a quién, qué sensores corren al cierre, qué skills se activan por convención— vive en [docs/mapa-de-flujos.md](docs/mapa-de-flujos.md).
+
 De la idea a la tarea:
 
 1. El skill `idea-a-tarea` coordina el flujo: `descubrir-problema` formula el problema, `proponer-forma-solucion` decide la forma de la solución y `refinar-propuesta` produce la propuesta con sus borradores.
@@ -87,10 +89,10 @@ De la idea a la tarea:
 De la tarea al commit:
 
 1. **`TODO.txt`** es el índice de trabajo activo: tareas agrupadas por hito o sueltas en la sección «General», más las propuestas en revisión. Los hitos completados se eliminan del índice.
-2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
+2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo` y `mantenimiento (refactoring)`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
 3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor, cotejándolo además contra las lecciones aprendidas.
 4. Si el subagente aprueba, se presenta el resultado al **usuario** para aprobación.
-5. Si ambos aprueban, la tarea se marca completada `[x]` y se commitea.
+5. Si ambos aprueban, la tarea se marca completada `[x]` y corren los sensores de cierre antes del commit: `mantener-changelog` para toda tarea; `documentar-dominio` y `documentar-producto` para las del sub-flujo de desarrollo; `registrar-experiencias` si el usuario corrigió algo durante la tarea.
 
 ### Estructura del repositorio
 
@@ -145,6 +147,7 @@ Factory no es un IDE, ni un gestor de proyectos, ni un sistema de CI/CD. Son ski
 ## Documentación
 
 - [Definición del proyecto](docs/definicion-proyecto.md) — propósito, alcance, estado actual y proceso de trabajo.
+- [Mapa de flujos](docs/mapa-de-flujos.md) — conexión exhaustiva de los skills: orquestadores, capacidades, sensores, artefactos de estado y puertas humanas.
 - [Visión del proyecto](product-docs/vision.md) — dirección aspiracional.
 - [Decisiones de diseño](docs/decisions/) — registro de decisiones.
 - [Investigaciones](docs/research/) — análisis que motivan las decisiones.

@@ -7,6 +7,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+### Added
+
+- Documentación del cableado de los skills: `docs/mapa-de-flujos.md` describe los orquestadores, las capacidades en orden, los sensores de cierre, los artefactos que transportan el estado y las puertas humanas, con su resumen en el README ([docs/tasks/112-documentar-conexion-flujos.md](docs/tasks/112-documentar-conexion-flujos.md))
+
 ## [0.1.0] - 2026-09-29
 
 ### Added

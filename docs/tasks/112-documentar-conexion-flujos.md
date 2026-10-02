@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -42,8 +42,9 @@ Dejar escrito el mapa de cómo se conectan los skills en flujos, hoy implícito 
 ## Notas
 
 - El mapa documenta el cableado actual; los cambios en curso (tareas 109-111) se incorporan cuando aterricen, no por adelantado.
+- Ampliación de alcance aprobada por el usuario durante la revisión: actualizar también la sección «Estado actual» de `docs/definicion-proyecto.md`, que describía el sub-flujo de desarrollo con los nombres antiguos y no listaba los skills más recientes.
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-02 — Aprueba
+- Usuario: 2026-10-02 — Aprueba
