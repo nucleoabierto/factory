@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente
+[x] Completada
 
 ## Tipo
 
@@ -41,5 +41,5 @@ Decidir y registrar cómo se representa el estado del dominio en React —estado
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-03 — Aprueba
+- Usuario: 2026-10-03 — Aprueba

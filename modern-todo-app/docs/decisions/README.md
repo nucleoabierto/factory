@@ -17,3 +17,7 @@
   - Disparadores: pila, stack, React, TypeScript, Vite, Vitest, ESLint, Prettier, npm, toolchain, dependencias, package.json
   - Resumen: La pila del subproyecto es npm + TypeScript estricto + React + Vite + Vitest (Testing Library + jsdom) + ESLint + Prettier, elegida por representatividad del proyecto moderno.
   - Estado: Aceptada
+- D002-estado-dominio-modulo-puro.md
+  - Disparadores: modelo de estado, dominio, useReducer, Context, store, Zustand, Redux, server state, persistencia local, estado serializable
+  - Resumen: El estado del dominio es un módulo TypeScript puro —transiciones sobre estado serializable— consumido por useReducer + Context, con la persistencia tras un puerto; sin store externa ni librería de server state.
+  - Estado: Aceptada
