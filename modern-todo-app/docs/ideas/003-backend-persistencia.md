@@ -3,6 +3,7 @@
 > **Tipo:** idea de funcionalidad — tamaño épica (complejidad alta)
 > **Fecha:** 2026-09
 > **Orden sugerido:** 3 de 5 — primera frontera externa del proyecto; la sincronización la presupone y la organización se beneficia de su modelo
+> **Procesada en:** docs/proposals/003-backend-persistencia/
 
 ## Problema
 

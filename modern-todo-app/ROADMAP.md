@@ -26,6 +26,7 @@ El nivel de sofisticación esperado no es el de una demo: cada estación es un p
 ## Next
 
 - 1. `docs/ideas/003-backend-persistencia.md` — Backend y persistencia real
+  - Estado: aprobada y planificada (épica `docs/epics/003-backend-persistencia.md`, tareas 011–015); su ejecución presupone el cierre de la épica 002.
   - Justificación: antes que 004 por su efecto cruzado —con la frontera cliente-servidor ya real, cada capacidad nueva se diseña una vez contra el modelo distribuido; al revés, la API nacería completa pero a ciegas—. Además es la única pieza que 005 puede sincronizar.
 - 2. `docs/ideas/004-organizacion-avanzada.md` — Organización avanzada
   - Justificación: entre 003 y 005. Concentra los invariantes más densos del arco —prioridad, etiquetas, búsqueda, deshacer— y su conflicto con la cola de sincronización («deshacer» local frente a operaciones encoladas) se decide aquí, cuando más barato sale.

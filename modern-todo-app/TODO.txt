@@ -29,4 +29,14 @@
 - [ ] docs/tasks/009-edicion-inline.md — Edición inline de tareas
 - [ ] docs/tasks/010-pie-filtros-conformidad.md — Pie de lista, filtros con routing y conformidad TodoMVC
 
+## Hito 2: Backend y persistencia real
+
+<!-- épica: docs/epics/003-backend-persistencia.md -->
+
+- [ ] docs/tasks/011-decidir-pila-servicio.md — Decidir la pila del servicio
+- [ ] docs/tasks/012-dominio-servicio-almacenamiento.md — Dominio del servicio y almacenamiento real
+- [ ] docs/tasks/013-api-contrato.md — API del ciclo de vida con contrato
+- [ ] docs/tasks/014-cliente-remoto.md — Cliente como vista del estado remoto
+- [ ] docs/tasks/015-verificacion-e2e.md — Verificación de extremo a extremo del sistema distribuido
+
 ## Propuestas en revisión
