@@ -16,11 +16,8 @@ El nivel de sofisticación esperado no es el de una demo: cada estación es un p
 
 ## Now
 
-- 1. `docs/ideas/001-andamiaje-react-pipeline.md` — Andamiaje del proyecto
-  - Estado: completada (épica `001-andamiaje-proyecto`, commit `da74a2b`).
-  - Justificación: punto de partida del arco. Entregó el proyecto instalable, la verificación por comando único con cobertura al 100% y la pantalla propia; todo lo demás lo presupone.
-- 2. `docs/ideas/002-nucleo-todomvc.md` — Núcleo TodoMVC
-  - Estado: aprobada y planificada (épica `docs/epics/002-nucleo-todomvc.md`, tareas 005–010).
+- 1. `docs/ideas/002-nucleo-todomvc.md` — Núcleo TodoMVC
+  - Estado: en curso (épica `docs/epics/002-nucleo-todomvc.md`, tareas 005–010).
   - Justificación: primera línea de dominio y la que todas las demás necesitan —sin ciclo de vida de la tarea no hay nada que persistir, organizar ni sincronizar—. Además es donde se decide el modelo de estado en React, la decisión que más condiciona el coste de 003 y 005. Su propuesta incluye la definición de la guía de estilo, que la superficie visual del núcleo ya justifica.
 
 ## Next

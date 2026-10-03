@@ -1,24 +1,25 @@
 .app {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
+  width: min(var(--container-max), calc(100% - 2 * var(--space-3)));
+  margin: var(--space-8) auto;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
 }
 
 .app-header h1 {
-  font-size: 2rem;
-  margin: 0 0 0.5rem;
-}
-
-.app-tagline {
-  color: #666;
-  margin: 0;
+  font-size: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 var(--space-1);
 }
 
 .task-list {
-  margin-top: 3rem;
+  margin-top: var(--space-6);
 }
 
 .empty-state {
-  color: #888;
+  color: var(--color-text-muted);
   font-style: italic;
+  text-align: center;
 }
