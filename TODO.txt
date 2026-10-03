@@ -34,13 +34,6 @@
 - [x] docs/tasks/119-install-por-skill-teleprompter.md — Instalar cada skill por separado en el manifiesto de teleprompter
 - [x] docs/tasks/120-revisor-con-capacidad-ejecucion.md — Dotar al subagente revisor de capacidad de ejecución
 
-## Hito 10: Coherencia del roadmap con la ejecución
-<!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->
-
-- [x] docs/tasks/109-skill-cierre-conjunto.md — Crear el skill de cierre de conjunto
-- [x] docs/tasks/110-skill-mantener-roadmap.md — Crear el skill reflector del roadmap
-- [ ] docs/tasks/111-cablear-cierre-conjunto-y-roadmap.md — Cablear el cierre de conjunto y el reflejo del roadmap en el ciclo
-
 ## Hito 11: Delegación de pasos mecánicos a scripts
 <!-- épica: docs/epics/003-delegacion-mecanica-scripts.md -->
 

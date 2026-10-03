@@ -61,22 +61,23 @@ Corre dentro de una tarea del ciclo cuando su tipo es `desarrollo` o `mantenimie
 
 ## Sensores de cierre
 
-Invocaciones que `ejecutar-tareas` dispara al cerrar una tarea, tras la doble aprobación y antes del commit. Los sensores de diff —`mantener-changelog`, `documentar-dominio` y `documentar-producto`— reciben la ubicación de los cambios, árbol de trabajo sin commitear, y reconstruyen el diff por sí mismos; `registrar-experiencias` trabaja sobre la conversación de la sesión y `decisiones-diseno` sobre la decisión estructural que el ejecutor identifica en el diff.
+Invocaciones que `ejecutar-tareas` dispara al cerrar una tarea, tras la doble aprobación y antes del commit. Los sensores de diff —`mantener-changelog`, `documentar-dominio` y `documentar-producto`— reciben la ubicación de los cambios, árbol de trabajo sin commitear, y reconstruyen el diff por sí mismos; `registrar-experiencias` trabaja sobre la conversación de la sesión y `decisiones-diseno` sobre la decisión estructural que el ejecutor identifica en el diff. `mantener-roadmap` y `cerrar-conjunto` leen el índice y las épicas, no el diff.
 
-- **Para todo tipo de tarea:** `registrar-experiencias` —solo si el usuario corrigió durante la tarea— y `mantener-changelog`, que evalúa si el cambio tiene impacto observable para el consumidor y emite «sin entrada» cuando no.
+- **Para todo tipo de tarea:** `registrar-experiencias` —solo si el usuario corrigió durante la tarea—, `mantener-changelog`, que evalúa si el cambio tiene impacto observable para el consumidor y emite «sin entrada» cuando no, y `mantener-roadmap`, que refleja el estado real de las líneas comprometidas del roadmap e invoca `planificar-roadmap` ante divergencia de dirección.
 - **Solo para el sub-flujo de desarrollo:** `documentar-dominio`, `documentar-producto` y, cuando procede, `decisiones-diseno`.
+- **Cierre de conjunto:** si la agrupación de la tarea completada quedó agotada —detección por el encabezado del índice y el comentario de épica, sin leer el interior del documento—, `cerrar-conjunto` verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación del índice. Corre después del reflector: una línea del roadmap sin épica enlazada deja de poder verificar su cierre una vez la agrupación sale del índice.
 - **Commit:** el skill `commit` registra los cambios de la tarea y la actualización de `TODO.txt`.
 
 ## Artefactos que transportan estado
 
 El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en la conversación:
 
-- **`TODO.txt`:** índice único de trabajo activo. `refinar-propuesta` añade las líneas `[p]`; `idea-a-tarea` las procesa; `crear-tareas` añade las entradas de tarea; `planificar` las agrupa bajo encabezados con comentario de épica; `planificar-roadmap` reordena las agrupaciones para reflejar los horizontes Now y Next del roadmap; `ejecutar-tareas` mantiene los marcadores de estado. Los hitos completados se eliminan del índice.
+- **`TODO.txt`:** índice único de trabajo activo. `refinar-propuesta` añade las líneas `[p]`; `idea-a-tarea` las procesa; `crear-tareas` añade las entradas de tarea; `planificar` las agrupa bajo encabezados con comentario de épica; `planificar-roadmap` reordena las agrupaciones para reflejar los horizontes Now y Next del roadmap; `ejecutar-tareas` mantiene los marcadores de estado y `cerrar-conjunto` elimina las agrupaciones agotadas.
 - **`docs/tasks/NNN-slug.md`:** el archivo de la tarea porta su estado interno: «Estado» sincronizado con `TODO.txt`, «Tipo» para el enrutado, las secciones acumulativas del sub-flujo de desarrollo (`## Contexto`, `## Conectividad`, `## Plan técnico`, `## Suite de pruebas esperada`, `## Desviaciones del plan`) y «Revisión».
 - **`docs/proposals/NNN-slug/`:** `propuesta.md` con su ciclo de vida en el campo Estado y las decisiones del usuario en «Revisión»; los borradores `MM-titulo.md` se mueven a `docs/tasks/` sin reescritura al promocionar.
 - **`docs/ideas/NNN-slug.md`:** entrada persistida del flujo de idea a tarea, escrita por `lluvia-de-ideas`; `idea-a-tarea` la marca «Procesada en» al consumirla.
-- **`docs/epics/NNN-slug.md`:** objetivo, alcance, piezas, plan técnico —la guía de arquitectura que `planear-implementacion` y `ejecutar-implementacion` respetan—, criterio de cierre y estado. Enlazada desde el encabezado de su agrupación en `TODO.txt`.
-- **`ROADMAP.md`:** líneas de trabajo por horizontes de confianza, escrito por `planificar-roadmap`; `TODO.txt` refleja mecánicamente solo Now y Next.
+- **`docs/epics/NNN-slug.md`:** objetivo, alcance, piezas, plan técnico —la guía de arquitectura que `planear-implementacion` y `ejecutar-implementacion` respetan—, criterio de cierre y estado —`Completada` lo marca `cerrar-conjunto` al agotarse su agrupación—. Enlazada desde el encabezado de su agrupación en `TODO.txt`.
+- **`ROADMAP.md`:** líneas de trabajo por horizontes de confianza; `planificar-roadmap` escribe la dirección con su puerta humana y `mantener-roadmap` refleja mecánicamente el estado de las líneas de Now al cerrar cada tarea. `TODO.txt` refleja solo Now y Next.
 - **`EXPERIENCIAS.md`:** log append-only de correcciones del usuario; `registrar-experiencias` lo escribe al cierre y `consolidar-lecciones` lo lee y marca las entradas consolidadas, sin borrarlas.
 - **`docs/lessons/` y su `README.md`:** lecciones consolidadas por tema con disparadores; `consultar-lecciones` las recupera al inicio de cada tarea y el subagente de revisión las coteja contra el diff.
 - **`docs/decisions/` y su `README.md`:** decisiones vigentes con disparadores y estado; `consultar-decisiones` las recupera, invocado por `recopilar-contexto` o en cualquier punto de una sesión.
@@ -106,4 +107,5 @@ El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en l
 - `docs/decisions/D022-roadmap-como-nivel-de-direccion.md` y `docs/decisions/D027-roadmap-horizontes-now-next-later.md` — El roadmap como nivel de dirección y su reflejo en el índice.
 - `docs/decisions/D030-ideas-persistidas-en-docs-ideas.md` — `docs/ideas/` como entrada persistida del flujo.
 - `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — El sub-flujo de desarrollo dividido en `planear-tarea` y `desarrollar-tarea` (sustituye a D020).
+- `docs/decisions/D032-orden-sensores-cierre-reflector-antes-cierre.md` — El orden declarado de los sensores de cierre: el reflector del roadmap antes que el cierre de conjunto.
 - `docs/decisions/D006-skills-redaccion-separados.md` — La cadena revisar-redaccion → pulir-escritura.

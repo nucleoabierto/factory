@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Planificada | [ ] Completada
+[x] Planificada | [x] Completada
 
 ## Objetivo
 
@@ -15,9 +15,9 @@ El roadmap refleja la ejecución real sin reintervención manual: al agotarse un
 
 ## Piezas
 
-- [ ] docs/tasks/109-skill-cierre-conjunto.md — Crear el skill de cierre de conjunto
-- [ ] docs/tasks/110-skill-mantener-roadmap.md — Crear el skill reflector del roadmap
-- [ ] docs/tasks/111-cablear-cierre-conjunto-y-roadmap.md — Cablear el cierre de conjunto y el reflejo del roadmap en el ciclo
+- [x] docs/tasks/109-skill-cierre-conjunto.md — Crear el skill de cierre de conjunto
+- [x] docs/tasks/110-skill-mantener-roadmap.md — Crear el skill reflector del roadmap
+- [x] docs/tasks/111-cablear-cierre-conjunto-y-roadmap.md — Cablear el cierre de conjunto y el reflejo del roadmap en el ciclo
 
 ## Plan técnico
 

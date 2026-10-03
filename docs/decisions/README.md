@@ -137,3 +137,7 @@
   - Disparadores: planear-tarea, desarrollar-tarea, sub-flujo de desarrollo, enrutado por tipo, estado de planeación, plan aprobado, ejecutar-tareas
   - Resumen: El flujo de desarrollo se divide en `planear-tarea` y `desarrollar-tarea`, con el skill `desarrollo` eliminado; `ejecutar-tareas` elige el punto de entrada por el estado de planeación del archivo de la tarea.
   - Estado: Aceptada
+- D032-orden-sensores-cierre-reflector-antes-cierre.md
+  - Disparadores: sensores de cierre, ejecutar-tareas, mantener-roadmap, cerrar-conjunto, orden de invocación, agrupación agotada, divergencia de dirección
+  - Resumen: Al completarse una tarea, el ciclo invoca primero el reflector del roadmap —para todo tipo de tarea— y después, solo si la agrupación quedó agotada, el cierre de conjunto; la detección del agotamiento usa el encabezado del índice sin leer la épica.
+  - Estado: Aceptada

@@ -24,6 +24,7 @@ Instrucciones para que un agente produzca el roadmap de un producto: el document
 - Cuando el producto tiene varias líneas de trabajo abiertas —épicas planificadas, hitos ligeros, tareas sueltas— sin orden ni dirección declarados.
 - Cuando aparece una línea nueva o se cierra una existente y hay que replantear el orden.
 - Cuando una decisión cambia el costo relativo entre líneas —por ejemplo, un refactor transversal cuya posición altera el costo de las demás— y el orden declarado hay que revisarlo.
+- Cuando `mantener-roadmap` detecta divergencia de dirección al reflejar la ejecución —un horizonte comprometido agotado con sucesores esperando, trabajo comprometido sin línea en el roadmap, una épica completada aún listada—: la replanificación es suya y la puerta humana sigue decidiendo la dirección.
 
 ## Cuándo no usar
 
