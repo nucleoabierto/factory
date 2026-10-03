@@ -38,6 +38,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |
 | `revisar-implementacion` | Revisión técnica adversarial del diff contra las convenciones del proyecto. |
 | `cerrar-conjunto` | Cierra un conjunto de trabajo agotado: verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación de `TODO.txt`. |
+| `mantener-roadmap` | Mantiene `ROADMAP.md` fiel a la ejecución: refleja el estado de las líneas de Now, retira las completadas e invoca `planificar-roadmap` ante divergencia de dirección. |
 | `commit` | Crea commits siguiendo Conventional Commits en español. |
 
 **Memoria del proyecto**
