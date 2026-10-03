@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -47,5 +47,5 @@ Cambiar `teleprompter.json` para que `install` declare una entrada por cada skil
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-02 — Aprueba
+- Usuario: 2026-10-02 — Aprueba

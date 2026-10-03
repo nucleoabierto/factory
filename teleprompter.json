@@ -8,10 +8,38 @@
     "name": "Gildardo Adrian Maravilla Jacome"
   },
   "install": [
-    {
-      "source": ".agents/skills/",
-      "target": ".agents/skills/"
-    }
+    { "source": ".agents/skills/aplicar-guia-estilo", "target": ".agents/skills/aplicar-guia-estilo" },
+    { "source": ".agents/skills/commit", "target": ".agents/skills/commit" },
+    { "source": ".agents/skills/consolidar-lecciones", "target": ".agents/skills/consolidar-lecciones" },
+    { "source": ".agents/skills/consultar-decisiones", "target": ".agents/skills/consultar-decisiones" },
+    { "source": ".agents/skills/consultar-lecciones", "target": ".agents/skills/consultar-lecciones" },
+    { "source": ".agents/skills/crear-tareas", "target": ".agents/skills/crear-tareas" },
+    { "source": ".agents/skills/decisiones-diseno", "target": ".agents/skills/decisiones-diseno" },
+    { "source": ".agents/skills/desarrollar-tarea", "target": ".agents/skills/desarrollar-tarea" },
+    { "source": ".agents/skills/descubrir-problema", "target": ".agents/skills/descubrir-problema" },
+    { "source": ".agents/skills/documentar-dominio", "target": ".agents/skills/documentar-dominio" },
+    { "source": ".agents/skills/documentar-guia-estilo", "target": ".agents/skills/documentar-guia-estilo" },
+    { "source": ".agents/skills/documentar-producto", "target": ".agents/skills/documentar-producto" },
+    { "source": ".agents/skills/ejecutar-implementacion", "target": ".agents/skills/ejecutar-implementacion" },
+    { "source": ".agents/skills/ejecutar-tareas", "target": ".agents/skills/ejecutar-tareas" },
+    { "source": ".agents/skills/evaluar-conectividad", "target": ".agents/skills/evaluar-conectividad" },
+    { "source": ".agents/skills/idea-a-tarea", "target": ".agents/skills/idea-a-tarea" },
+    { "source": ".agents/skills/investigar", "target": ".agents/skills/investigar" },
+    { "source": ".agents/skills/liberar-version", "target": ".agents/skills/liberar-version" },
+    { "source": ".agents/skills/lluvia-de-ideas", "target": ".agents/skills/lluvia-de-ideas" },
+    { "source": ".agents/skills/mantener-changelog", "target": ".agents/skills/mantener-changelog" },
+    { "source": ".agents/skills/planear-implementacion", "target": ".agents/skills/planear-implementacion" },
+    { "source": ".agents/skills/planear-tarea", "target": ".agents/skills/planear-tarea" },
+    { "source": ".agents/skills/planificar", "target": ".agents/skills/planificar" },
+    { "source": ".agents/skills/planificar-roadmap", "target": ".agents/skills/planificar-roadmap" },
+    { "source": ".agents/skills/proponer-forma-solucion", "target": ".agents/skills/proponer-forma-solucion" },
+    { "source": ".agents/skills/pulir-escritura", "target": ".agents/skills/pulir-escritura" },
+    { "source": ".agents/skills/recopilar-contexto", "target": ".agents/skills/recopilar-contexto" },
+    { "source": ".agents/skills/refinar-propuesta", "target": ".agents/skills/refinar-propuesta" },
+    { "source": ".agents/skills/registrar-experiencias", "target": ".agents/skills/registrar-experiencias" },
+    { "source": ".agents/skills/revisar-arquitectura", "target": ".agents/skills/revisar-arquitectura" },
+    { "source": ".agents/skills/revisar-implementacion", "target": ".agents/skills/revisar-implementacion" },
+    { "source": ".agents/skills/revisar-redaccion", "target": ".agents/skills/revisar-redaccion" }
   ],
   "requires": {
     "paths": [
