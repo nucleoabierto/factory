@@ -11,6 +11,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 - Coherencia del roadmap con la ejecución: el skill `cerrar-conjunto` cierra los conjuntos agotados del índice de tareas —verifica el criterio de cierre de la épica contra el resultado real, la marca `Completada` y elimina la agrupación— y el skill `mantener-roadmap` refleja mecánicamente el estado de las líneas comprometidas del roadmap, retira las completadas e invoca la replanificación ante divergencia de dirección ([docs/epics/002-coherencia-roadmap-ejecucion.md](docs/epics/002-coherencia-roadmap-ejecucion.md))
 
+### Fixed
+
+- El subagente revisor del ciclo se lanza con capacidad de ejecutar comandos —git para reconstruir el diff por sí mismo—; sin ella la revisión se degradaba a inspección del árbol sin diff ([docs/tasks/120-revisor-con-capacidad-ejecucion.md](docs/tasks/120-revisor-con-capacidad-ejecucion.md))
+
 ## [0.2.0] - 2026-10-03
 
 ### Added

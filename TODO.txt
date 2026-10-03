@@ -32,6 +32,7 @@
 - [x] docs/tasks/112-documentar-conexion-flujos.md — Documentar la conexión de los skills en flujos
 - [x] docs/tasks/118-paquete-teleprompter-factory.md — Empaquetar Factory como paquete de teleprompter
 - [x] docs/tasks/119-install-por-skill-teleprompter.md — Instalar cada skill por separado en el manifiesto de teleprompter
+- [x] docs/tasks/120-revisor-con-capacidad-ejecucion.md — Dotar al subagente revisor de capacidad de ejecución
 
 ## Hito 10: Coherencia del roadmap con la ejecución
 <!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->
