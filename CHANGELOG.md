@@ -7,6 +7,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+### Added
+
+- Cierre de conjuntos agotados del índice de tareas: el skill `cerrar-conjunto` detecta la agrupación agotada al completarse una tarea, verifica el criterio de cierre de la épica contra el resultado real —elevando al usuario cuando no se cumple—, la marca `Completada` y elimina la agrupación del índice ([docs/epics/002-coherencia-roadmap-ejecucion.md](docs/epics/002-coherencia-roadmap-ejecucion.md))
+
 ## [0.2.0] - 2026-10-03
 
 ### Added

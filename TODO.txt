@@ -36,7 +36,7 @@
 ## Hito 10: Coherencia del roadmap con la ejecución
 <!-- épica: docs/epics/002-coherencia-roadmap-ejecucion.md -->
 
-- [ ] docs/tasks/109-skill-cierre-conjunto.md — Crear el skill de cierre de conjunto
+- [x] docs/tasks/109-skill-cierre-conjunto.md — Crear el skill de cierre de conjunto
 - [ ] docs/tasks/110-skill-mantener-roadmap.md — Crear el skill reflector del roadmap
 - [ ] docs/tasks/111-cablear-cierre-conjunto-y-roadmap.md — Cablear el cierre de conjunto y el reflejo del roadmap en el ciclo
 

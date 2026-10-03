@@ -37,6 +37,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `planear-implementacion` | Produce el plan de una tarea de desarrollo antes de escribir código, con su suite de pruebas esperada. |
 | `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |
 | `revisar-implementacion` | Revisión técnica adversarial del diff contra las convenciones del proyecto. |
+| `cerrar-conjunto` | Cierra un conjunto de trabajo agotado: verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación de `TODO.txt`. |
 | `commit` | Crea commits siguiendo Conventional Commits en español. |
 
 **Memoria del proyecto**
