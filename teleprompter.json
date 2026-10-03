@@ -1,7 +1,7 @@
 {
   "format": "teleprompter-package@1",
   "name": "factory",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Colección autocontenida de skills de agente que cubre el ciclo de desarrollo de producto: de la idea a la tarea, ejecución con revisión dual, memoria del proyecto, documentación viva y liberación de versiones",
   "license": "MIT",
   "author": {
