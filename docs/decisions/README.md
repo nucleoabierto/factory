@@ -141,3 +141,7 @@
   - Disparadores: sensores de cierre, ejecutar-tareas, mantener-roadmap, cerrar-conjunto, orden de invocación, agrupación agotada, divergencia de dirección
   - Resumen: Al completarse una tarea, el ciclo invoca primero el reflector del roadmap —para todo tipo de tarea— y después, solo si la agrupación quedó agotada, el cierre de conjunto; la detección del agotamiento usa el encabezado del índice sin leer la épica.
   - Estado: Aceptada
+- D033-pasos-mecanicos-skills-utilidad-scripts.md
+  - Disparadores: scripts bash, pasos mecánicos, skill de utilidad, delegación, assets/, contrato de scripts, stdout, stderr, ## Estado, ## Desviaciones del plan, forma canónica, parser
+  - Resumen: Los pasos mecánicos compartidos se encapsulan en skills de utilidad con scripts bash propios en `assets/` bajo un contrato único de entrada y salida; se fija la forma canónica de `## Estado` y de la posición de `## Desviaciones del plan`, aplicable hacia adelante con parsers tolerantes a las variantes históricas.
+  - Estado: Aceptada

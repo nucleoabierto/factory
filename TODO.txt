@@ -37,7 +37,7 @@
 ## Hito 11: Delegación de pasos mecánicos a scripts
 <!-- épica: docs/epics/003-delegacion-mecanica-scripts.md -->
 
-- [ ] docs/tasks/113-delegacion-mecanica-scripts.md — Delegación mecánica a scripts: decisión y contrato
+- [x] docs/tasks/113-delegacion-mecanica-scripts.md — Delegación mecánica a scripts: decisión y contrato
 - [ ] docs/tasks/114-skill-consultar-artefactos.md — Crear el skill de consulta de artefactos
 - [ ] docs/tasks/115-skill-actualizar-artefactos.md — Crear el skill de actualización de artefactos
 - [ ] docs/tasks/116-skill-operar-experiencias.md — Crear el skill de operación de experiencias
