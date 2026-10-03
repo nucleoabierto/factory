@@ -3,6 +3,7 @@
 > **Tipo:** idea de funcionalidad — tamaño épica (complejidad media)
 > **Fecha:** 2026-09
 > **Orden sugerido:** 2 de 5 — primera funcionalidad del producto; todo lo demás es dominio construido sobre este núcleo
+> **Procesada en:** docs/proposals/002-nucleo-todomvc/
 
 ## Problema
 
