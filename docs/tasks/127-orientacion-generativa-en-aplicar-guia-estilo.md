@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -42,5 +42,5 @@ La guía de estilo mejorada (tarea 126) añadió la capa de orientación generat
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (revisión acotada; observaciones menores de título literal y Finalización corregidas)
+- Usuario: 2026-10-04 — Aprueba
