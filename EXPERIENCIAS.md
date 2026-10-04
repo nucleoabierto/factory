@@ -213,3 +213,9 @@
   Obtenido: el usuario precisó que hay dos formas de resolver evidencia —la teórica con `investigar` y la activa con una prueba de concepto que valide vía código—; nombrar solo la primera dejaba fuera la validación empírica
   Corrección: al resolver evidencia durante la planeación, contemplar ambas formas —teórica y activa— y elegir la que el tipo de incertidumbre pide
   Estado: pendiente
+- Id: 20261004T183000
+  Tarea: docs/tasks/124-investigacion-prd-planeacion.md
+  Esperado: que la profundidad media de la investigación bastara para presentarla al usuario
+  Obtenido: el usuario pidió extenderla a profundidad profunda antes de aprobarla; la investigación que fundamenta la materialización de un artefacto merece el nivel profundo desde el inicio
+  Corrección: al investigar para materializar un skill o una decisión, acordar la profundidad al inicio y asumir profunda por defecto
+  Estado: pendiente

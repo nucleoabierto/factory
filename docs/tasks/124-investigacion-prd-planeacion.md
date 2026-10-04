@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -45,5 +45,5 @@ Investigar cómo incorporar el PRD al sistema en dos frentes. Externo: mejores p
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (revisión acotada; afirmaciones internas verificadas contra el repo y externa contra arXiv)
+- Usuario: 2026-10-04 — Aprueba (con ampliación a profundidad profunda antes de materializar)
