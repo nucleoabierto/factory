@@ -14,7 +14,6 @@
      propuestas del flujo de idea a tarea con el marcador [p].
 -->
 
-
 ## General
 
 - [x] docs/tasks/097-investigar-guias-estilo-frontend.md — Investigar guías de estilo de diseño para agentes IA
@@ -33,6 +32,12 @@
 - [x] docs/tasks/118-paquete-teleprompter-factory.md — Empaquetar Factory como paquete de teleprompter
 - [x] docs/tasks/119-install-por-skill-teleprompter.md — Instalar cada skill por separado en el manifiesto de teleprompter
 - [x] docs/tasks/120-revisor-con-capacidad-ejecucion.md — Dotar al subagente revisor de capacidad de ejecución
+- [x] docs/tasks/121-delegar-implementacion-subagentes.md — Delegar la ejecución de implementación a subagentes
+- [ ] docs/tasks/122-investigacion-en-propuesta.md — Investigación dentro del proceso de propuesta
+- [ ] docs/tasks/123-skill-prueba-concepto.md — Crear el skill de prueba de concepto
+- [ ] docs/tasks/124-investigacion-prd-planeacion.md — Investigación: PRD y planeación de producto
+- [ ] docs/tasks/125-skill-prd.md — Crear el skill de PRD
+- [ ] docs/tasks/126-fundamentar-guia-estilo.md — Fundamentar la guía de estilo en el skill
 
 ## Hito 11: Delegación de pasos mecánicos a scripts
 <!-- épica: docs/epics/003-delegacion-mecanica-scripts.md -->
