@@ -40,6 +40,10 @@
 - [x] docs/tasks/126-fundamentar-guia-estilo.md — Fundamentar la guía de estilo en el skill
 - [x] docs/tasks/127-orientacion-generativa-en-aplicar-guia-estilo.md — Consumir la orientación generativa en aplicar-guia-estilo
 - [x] docs/tasks/128-pie-primera-version-changelog.md — Pie de primera versión en el changelog
+- [ ] docs/tasks/129-investigacion-prs-punto-revision.md — Investigación: PRs como punto de revisión
+- [ ] docs/tasks/130-materializar-aprobacion-via-pr.md — Materializar la aprobación vía PR
+
+
 
 
 
