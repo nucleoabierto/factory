@@ -75,7 +75,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ### 3. Redactar la suite de pruebas esperada
 
-9. **Extraer los casos de uso** del objetivo y los criterios de calidad de la tarea.
+9. **Tomar los casos de uso del PRD del conjunto:** si la épica tiene PRD —`docs/prd/NNN-slug.md`—, los casos de uso que la tarea toca se extraen de él, no se inventan desde el objetivo; cada expectativa de la suite traza a su `CU-N`. Si la tarea necesita un caso de uso que el PRD no declara, es una laguna: se eleva al usuario o se actualiza el PRD, nunca se inventa. Si el conjunto no tiene PRD, extraer los casos de uso del objetivo y los criterios de calidad de la tarea.
 10. **Generar casos con ZOMBIE como guía interna:** para cada comportamiento, recorrer el eje de progresión (*zero, one, many*) y el de bordes (*boundary, interface, exception*), empezando por el caso más simple y actualizando la lista de forma iterativa.
 11. **Expresar cada caso como expectativa de comportamiento:** qué hace el sistema ante qué estímulo, con el resultado observable; sin nombrar funciones, clases ni detalles internos. La expectativa termina con la letra ZOMBIE que la derivó entre paréntesis —`(Z)`, `(O)`, `(M)`, `(B)`, `(I)` o `(E)`— cuando un parámetro ZOMBIE aplicó de verdad; las pruebas de regresión o de arnés van sin anotar.
 12. **Trazar cada prueba a su caso de uso:** cada expectativa indica de qué caso de uso deriva; si una prueba no encuentra anclaje, se descarta o se plantea el caso de uso que falta.

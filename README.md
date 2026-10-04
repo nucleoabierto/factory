@@ -61,6 +61,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 |-------|----------|
 | `documentar-dominio` | Mantiene la documentación viva de los dominios bajo `docs/domains/` tras cada tarea de desarrollo. |
 | `documentar-producto` | Mantiene la documentación de producto del proyecto evaluado tras cada tarea de desarrollo, con escenarios anclados a su suite de pruebas. |
+| `mantener-prd` | Crea y mantiene el PRD del conjunto: casos de uso con ID y comportamiento esperado, declarados antes de planear y sincronizados con las desviaciones. |
 | `mantener-changelog` | Mantiene el changelog del proyecto evaluado: registra en los no liberados los cambios con impacto observable, agregados por épica o propuesta. |
 | `liberar-version` | Libera una versión del proyecto evaluado: cura los no liberados, propone el bump semver justificado y promueve la sección con la confirmación del usuario. |
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
@@ -97,7 +98,7 @@ De la tarea al commit:
 2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo` y `mantenimiento (refactoring)`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
 3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor, cotejándolo además contra las lecciones aprendidas.
 4. Si el subagente aprueba, se presenta el resultado al **usuario** para aprobación.
-5. Si ambos aprueban, la tarea se marca completada `[x]` y corren los sensores de cierre antes del commit: `mantener-changelog` para toda tarea; `documentar-dominio` y `documentar-producto` para las del sub-flujo de desarrollo; `registrar-experiencias` si el usuario corrigió algo durante la tarea.
+5. Si ambos aprueban, la tarea se marca completada `[x]` y corren los sensores de cierre antes del commit: `mantener-changelog` para toda tarea; `documentar-dominio`, `documentar-producto` y `mantener-prd` para las del sub-flujo de desarrollo; `registrar-experiencias` si el usuario corrigió algo durante la tarea.
 
 ### Estructura del repositorio
 

@@ -50,7 +50,8 @@ Instrucciones para que un agente mantenga viva la documentación de producto del
 2. **Un hogar por hecho:** cada hecho se define una sola vez. Los hechos del modelo no se repiten en la doc de producto: se referencia el documento de dominio correspondiente.
 3. **Indexado o no existe:** todo documento de producto está listado en el índice del directorio; un documento huérfano se da de alta o se elimina.
 4. **Anclado a la suite:** cada escenario nombra la prueba que lo verifica —módulo y título, no número de línea— de modo que una funcionalidad no puede quedar obsoleta sin que una prueba lo delate. La suite concreta (archivo, framework) es dato del proyecto evaluado, no parte del formato.
-5. **Lenguaje de uso, no de implementación:** los escenarios y las guías describen lo que el usuario observa y hace, no aserciones ni símbolos internos.
+5. **Trazado por el ancla, no por identificadores:** cuando el PRD del conjunto declara los casos de uso (`CU-N` en `docs/prd/`), los escenarios se redactan desde ese comportamiento declarado —mismo vocabulario de negocio—, pero el documento público queda limpio de identificadores internos: la remontada al PRD corre por el ancla a la prueba, que traza a su `CU-N` en la suite. El lector público lee producto; quien necesita la intención la remonta por la cadena escenario → prueba → caso de uso.
+6. **Lenguaje de uso, no de implementación:** los escenarios y las guías describen lo que el usuario observa y hace, no aserciones ni símbolos internos.
 
 ## Procedimiento
 

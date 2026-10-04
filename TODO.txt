@@ -36,7 +36,7 @@
 - [x] docs/tasks/122-investigacion-en-propuesta.md — Investigación dentro del proceso de propuesta
 - [x] docs/tasks/123-skill-prueba-concepto.md — Crear el skill de prueba de concepto
 - [x] docs/tasks/124-investigacion-prd-planeacion.md — Investigación: PRD y planeación de producto
-- [ ] docs/tasks/125-skill-prd.md — Crear el skill de PRD
+- [x] docs/tasks/125-skill-prd.md — Crear el skill de PRD
 - [x] docs/tasks/126-fundamentar-guia-estilo.md — Fundamentar la guía de estilo en el skill
 - [ ] docs/tasks/127-orientacion-generativa-en-aplicar-guia-estilo.md — Consumir la orientación generativa en aplicar-guia-estilo
 

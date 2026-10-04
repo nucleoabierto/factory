@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -43,7 +43,11 @@ Materializar el skill encargado de generar el PRD según lo que determine la inv
 
 - Ninguna
 
+## Desviaciones del plan
+
+- A petición del usuario, durante la revisión: `recopilar-contexto` incorpora el PRD del conjunto como fuente de contexto —Entrada, lista de fuentes y localización—, y la trazabilidad se ajusta para mantener la documentación de producto pública limpia: el escenario se redacta desde el vocabulario del PRD sin imprimir identificadores; la remontada corre por el ancla a la prueba, que traza al CU-N en la suite.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (segunda revisión; la primera solicitó cambios —el eslabón documentar-producto de la trazabilidad— y se corrigió; las absorciones del usuario validadas sin perder validez)
+- Usuario: 2026-10-04 — Aprueba (con dos absorciones: el PRD como fuente de recopilar-contexto y la documentación de producto pública limpia de identificadores)
