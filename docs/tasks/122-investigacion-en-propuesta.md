@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -43,5 +43,5 @@ mantenimiento
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (revisión acotada; observaciones menores de lista abierta, puerta humana y rechazo corregidas)
+- Usuario: 2026-10-04 — Aprueba (con nota: la evidencia también se resuelve con prueba de concepto, forma activa además de la teórica)

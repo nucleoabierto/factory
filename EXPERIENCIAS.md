@@ -207,3 +207,9 @@
   Obtenido: el usuario pidió máximo explícito en la parte cualitativa y el impacto en UX además del UI simple; las razones de una dimensión quedaban cortas para derivar el efecto de una decisión en quien la usa
   Corrección: al fundamentar decisiones de diseño, escribir la razón en dos dimensiones —qué protege en la interfaz y qué cambia en la experiencia del usuario: percepción, acción, error, aprendizaje o accesibilidad—
   Estado: pendiente
+- Id: 20261004T173000
+  Tarea: docs/tasks/122-investigacion-en-propuesta.md
+  Esperado: que la evidencia del refinamiento se resolviera solo con investigación teórica
+  Obtenido: el usuario precisó que hay dos formas de resolver evidencia —la teórica con `investigar` y la activa con una prueba de concepto que valide vía código—; nombrar solo la primera dejaba fuera la validación empírica
+  Corrección: al resolver evidencia durante la planeación, contemplar ambas formas —teórica y activa— y elegir la que el tipo de incertidumbre pide
+  Estado: pendiente
