@@ -201,3 +201,9 @@
   Obtenido: la primera revisión lanzada sin acotar el alcance tardó tanto que el usuario la interrumpió y pidió relanzarla con el esfuerzo de revisión acotado; la versión acotada —solo los puntos de mayor riesgo y una muestra del cableado— completó rápido y con el mismo veredicto útil
   Corrección: al lanzar revisiones de subagente, acotar el alcance desde el inicio —puntos de mayor riesgo, muestra de consumidores y formato de informe breve— en lugar de pedir cobertura exhaustiva
   Estado: pendiente
+- Id: 20261004T161500
+  Tarea: docs/tasks/126-fundamentar-guia-estilo.md
+  Esperado: que las razones de la guía explicaran qué protege cada decisión en la interfaz
+  Obtenido: el usuario pidió máximo explícito en la parte cualitativa y el impacto en UX además del UI simple; las razones de una dimensión quedaban cortas para derivar el efecto de una decisión en quien la usa
+  Corrección: al fundamentar decisiones de diseño, escribir la razón en dos dimensiones —qué protege en la interfaz y qué cambia en la experiencia del usuario: percepción, acción, error, aprendizaje o accesibilidad—
+  Estado: pendiente

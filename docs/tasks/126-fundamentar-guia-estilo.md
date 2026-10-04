@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -46,7 +46,13 @@ Las secciones que el skill `documentar-guia-estilo` produce —Componentes, Esta
 
 - Si la mejora revela ajustes necesarios en `aplicar-guia-estilo`, se registran como tarea descubierta en lugar de ampliar el alcance.
 
+## Desviaciones del plan
+
+- La segunda revisión encontró que la guía declaraba como vigente UI que el código no renderiza —pie con contador, filtros, limpiar completadas: la lógica de dominio existe pero falta la interfaz—; contenido aspiracional preexistente a esta tarea. Resuelto marcándolos «(pendiente de implementación)» con la convención nueva de la plantilla, que el validador trata como brecha del código, no como deriva.
+- A petición del usuario se añadió `references/ejemplo-design-md.md`: un ejemplo completo de guía que cumple las reglas —proyecto ficticio para no duplicar la guía real de MTA y evitar deriva entre copias—, con el mapeo de cada sección a la regla que demuestra; cableado en la Entrada y Referencias del skill y en el encabezado de la plantilla.
+
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (iteración 3; la iteración 2 solicitó cambios —UI aspiracional declarada como vigente— corregidos con el marcador «pendiente de implementación»)
+- Usuario: 2026-10-04 — Aprueba (con dos absorciones durante la revisión: razones en dos dimensiones UI+UX y ejemplo de referencia)
