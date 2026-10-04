@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -46,5 +46,5 @@ Crear el skill `prueba-concepto`: ejecuta pruebas de validación vía código �
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (revisión acotada; puerta humana de refinar-propuesta alineada con el comportamiento real de cada skill)
+- Usuario: 2026-10-04 — Aprueba

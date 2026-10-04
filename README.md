@@ -35,6 +35,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `recopilar-contexto` | Reúne el contexto que una tarea de desarrollo necesita —archivos similares, patrones, documentación de dominio y producto, lecciones y decisiones— y lo registra en la tarea. |
 | `evaluar-conectividad` | Evalúa si lo que la tarea asume está conectado con el codebase y produce un veredicto antes de la planeación. |
 | `planear-implementacion` | Produce el plan de una tarea de desarrollo antes de escribir código, con su suite de pruebas esperada. |
+| `prueba-concepto` | Valida una hipótesis técnica con código desechable —test, script temporal, prototipo— y alimenta con la conclusión al plan o la propuesta. |
 | `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |
 | `revisar-implementacion` | Revisión técnica adversarial del diff contra las convenciones del proyecto. |
 | `cerrar-conjunto` | Cierra un conjunto de trabajo agotado: verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación de `TODO.txt`. |

@@ -34,7 +34,7 @@
 - [x] docs/tasks/120-revisor-con-capacidad-ejecucion.md — Dotar al subagente revisor de capacidad de ejecución
 - [x] docs/tasks/121-delegar-implementacion-subagentes.md — Delegar la ejecución de implementación a subagentes
 - [x] docs/tasks/122-investigacion-en-propuesta.md — Investigación dentro del proceso de propuesta
-- [ ] docs/tasks/123-skill-prueba-concepto.md — Crear el skill de prueba de concepto
+- [x] docs/tasks/123-skill-prueba-concepto.md — Crear el skill de prueba de concepto
 - [ ] docs/tasks/124-investigacion-prd-planeacion.md — Investigación: PRD y planeación de producto
 - [ ] docs/tasks/125-skill-prd.md — Crear el skill de PRD
 - [x] docs/tasks/126-fundamentar-guia-estilo.md — Fundamentar la guía de estilo en el skill
