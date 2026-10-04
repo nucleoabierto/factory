@@ -39,6 +39,8 @@
 - [x] docs/tasks/125-skill-prd.md — Crear el skill de PRD
 - [x] docs/tasks/126-fundamentar-guia-estilo.md — Fundamentar la guía de estilo en el skill
 - [x] docs/tasks/127-orientacion-generativa-en-aplicar-guia-estilo.md — Consumir la orientación generativa en aplicar-guia-estilo
+- [x] docs/tasks/128-pie-primera-version-changelog.md — Pie de primera versión en el changelog
+
 
 
 ## Hito 11: Delegación de pasos mecánicos a scripts
