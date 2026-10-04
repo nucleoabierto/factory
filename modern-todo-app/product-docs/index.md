@@ -5,7 +5,7 @@ modern-todo-app es una aplicación web de lista de tareas que funciona en el nav
 ## Índice
 
 - **Funcionalidades**
-  - [Lista de tareas](funcionalidades/001-lista-de-tareas.md) — capturar, completar, eliminar y marcar todas
+  - [Lista de tareas](funcionalidades/001-lista-de-tareas.md) — capturar, completar, editar inline, eliminar y marcar todas
 - **Referencia**
   - [Estado persistido](referencia/estado-persistido.md) — qué guarda la aplicación en el navegador y en qué formato
 

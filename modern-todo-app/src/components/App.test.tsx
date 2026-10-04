@@ -197,4 +197,114 @@ describe('App', () => {
       within(screen.getByRole('list')).getAllByRole('listitem'),
     ).toHaveLength(1)
   })
+
+  it('enters edit mode on double click', () => {
+    renderApp()
+    capture('Comprar leche')
+
+    fireEvent.doubleClick(screen.getByText('Comprar leche'))
+
+    expect(screen.getByRole('listitem')).toHaveClass('editing')
+    const field = screen.getByRole('textbox', { name: 'Editar Comprar leche' })
+    expect(field).toHaveValue('Comprar leche')
+    expect(field).toHaveFocus()
+
+    fireEvent.keyDown(field, { key: 'a' })
+    expect(screen.getByRole('listitem')).toHaveClass('editing')
+
+    expect(
+      screen.queryByRole('checkbox', { name: 'Comprar leche' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: 'Eliminar Comprar leche' }),
+    ).not.toBeInTheDocument()
+  })
+
+  it('saves the trimmed title on Enter and leaves edit mode', () => {
+    renderApp()
+    capture('Comprar leche')
+    fireEvent.doubleClick(screen.getByText('Comprar leche'))
+
+    const field = screen.getByRole('textbox', { name: 'Editar Comprar leche' })
+    fireEvent.change(field, { target: { value: '  Comprar pan  ' } })
+    fireEvent.keyDown(field, { key: 'Enter' })
+
+    expect(
+      screen.getByRole('checkbox', { name: 'Comprar pan' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByRole('textbox', { name: 'Editar Comprar leche' }),
+    ).not.toBeInTheDocument()
+  })
+
+  it.each(['', '   '])(
+    'destroys the task when the edit is confirmed empty %j',
+    (title) => {
+      renderApp()
+      capture('Comprar leche')
+      fireEvent.doubleClick(screen.getByText('Comprar leche'))
+
+      const field = screen.getByRole('textbox', {
+        name: 'Editar Comprar leche',
+      })
+      fireEvent.change(field, { target: { value: title } })
+      fireEvent.keyDown(field, { key: 'Enter' })
+
+      expect(list()).not.toBeInTheDocument()
+      expect(screen.getByText('No hay tareas todavía.')).toBeInTheDocument()
+    },
+  )
+
+  it('cancels the edit on Escape keeping the original title', () => {
+    renderApp()
+    capture('Comprar leche')
+    fireEvent.doubleClick(screen.getByText('Comprar leche'))
+
+    const field = screen.getByRole('textbox', { name: 'Editar Comprar leche' })
+    fireEvent.change(field, { target: { value: 'Otra cosa' } })
+    fireEvent.keyDown(field, { key: 'Escape' })
+
+    expect(
+      screen.getByRole('checkbox', { name: 'Comprar leche' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByRole('textbox', { name: 'Editar Comprar leche' }),
+    ).not.toBeInTheDocument()
+  })
+
+  it('saves the edited title when the field loses focus', () => {
+    renderApp()
+    capture('Primera')
+    fireEvent.doubleClick(screen.getByText('Primera'))
+
+    const field = screen.getByRole('textbox', { name: 'Editar Primera' })
+    fireEvent.change(field, { target: { value: 'Renombrada' } })
+    fireEvent.blur(field)
+
+    expect(
+      screen.getByRole('checkbox', { name: 'Renombrada' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByRole('textbox', { name: 'Editar Primera' }),
+    ).not.toBeInTheDocument()
+  })
+
+  it('does not persist the in-progress edit across remounts', () => {
+    const first = renderApp()
+    capture('Persistida')
+    fireEvent.doubleClick(screen.getByText('Persistida'))
+
+    const field = screen.getByRole('textbox', { name: 'Editar Persistida' })
+    fireEvent.change(field, { target: { value: 'Borrador no guardado' } })
+    first.unmount()
+
+    renderApp()
+
+    expect(
+      screen.getByRole('checkbox', { name: 'Persistida' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByRole('checkbox', { name: 'Borrador no guardado' }),
+    ).not.toBeInTheDocument()
+  })
 })

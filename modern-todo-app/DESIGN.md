@@ -48,6 +48,7 @@ Reglas: una sola familia en toda la app (`--font-sans`: `system-ui, 'Segoe UI', 
 ## Componentes
 
 - **Campo de captura** (`new-todo`): ancho completo de la tarjeta, fondo `--color-surface`, borde `--color-border`, radio `--radius`, padding `--space-1` vertical y `--space-2` horizontal; foco con anillo en `--color-accent`.
+- **Campo de edición** (`edit`): como el campo de captura —fondo `--color-surface`, radio `--radius`, padding `--space-1` vertical y `--space-2` horizontal, foco con anillo en `--color-accent`, tipografía de tarea— pero con borde `--color-border-strong`; se activa con doble clic sobre el título del ítem y, mientras un ítem edita, se muestra solo el campo —toggle y destroy no se renderizan.
 - **Ítem de lista**: fila con checkbox en `--size-toggle`, texto en `--font-task`, separador inferior `--color-border` entre ítems —el último no lo lleva—, padding `--space-2`; el texto completada usa `--color-text-done` con tachado.
 - **Toggle** (`toggle`): checkbox nativo con `accent-color: var(--color-accent)` y tamaño `--size-toggle` — ningún color fuera de la paleta.
 - **Acción discreta**: botón de texto en `--color-text-muted`, tamaño `--font-label`; hover cambia el color a `--color-text`, nunca el fondo.

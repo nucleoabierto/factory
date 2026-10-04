@@ -26,7 +26,7 @@
 - [x] docs/tasks/006-decidir-modelo-estado.md — Decidir el modelo de estado del dominio
 - [x] docs/tasks/007-dominio-tarea-persistencia.md — Dominio de la tarea y persistencia local
 - [x] docs/tasks/008-lista-operable.md — Lista operable: captura, completar, eliminar y marcar todas
-- [ ] docs/tasks/009-edicion-inline.md — Edición inline de tareas
+- [x] docs/tasks/009-edicion-inline.md — Edición inline de tareas
 - [ ] docs/tasks/010-pie-filtros-conformidad.md — Pie de lista, filtros con routing y conformidad TodoMVC
 
 ## Hito 2: Backend y persistencia real

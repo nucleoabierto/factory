@@ -13,4 +13,4 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ### Changed
 
-- La pantalla se construye sobre el sistema de diseño del producto —guía de estilo declarada en `DESIGN.md`, tokens como custom properties y tema claro y oscuro— y se convierte en una lista de tareas operable: captura con Enter, ítems que se completan y se eliminan, casilla de «marcar todas» y conservación entre visitas ([docs/epics/002-nucleo-todomvc.md](docs/epics/002-nucleo-todomvc.md))
+- La pantalla se construye sobre el sistema de diseño del producto —guía de estilo declarada en `DESIGN.md`, tokens como custom properties y tema claro y oscuro— y se convierte en una lista de tareas operable: captura con Enter, ítems que se completan, editan inline y se eliminan, casilla de «marcar todas» y conservación entre visitas ([docs/epics/002-nucleo-todomvc.md](docs/epics/002-nucleo-todomvc.md))

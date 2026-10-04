@@ -76,6 +76,17 @@
   border-bottom: none;
 }
 
+.edit {
+  flex: 1;
+  font-size: var(--font-task);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-surface);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+
 .todo-list label {
   flex: 1;
   font-size: var(--font-task);
