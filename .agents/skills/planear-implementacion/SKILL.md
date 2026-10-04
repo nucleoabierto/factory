@@ -86,7 +86,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ### 5. Materializar el plan
 
-14. **Agregar las dos secciones al archivo de la tarea**, antes de la sección Revisión: `## Plan técnico` con el resumen del subsistema y la checklist de acciones con sus `Aporta:` y `Contexto:`, y `## Suite de pruebas esperada` con las expectativas trazadas.
+14. **Agregar las dos secciones al archivo de la tarea** con `tarea.sh insertar-seccion` de `actualizar-artefactos` —cada una queda inmediatamente antes de `## Revisión`—: `## Plan técnico` con el resumen del subsistema y la checklist de acciones con sus `Aporta:` y `Contexto:`, y `## Suite de pruebas esperada` con las expectativas trazadas.
 15. **Informar al usuario** de que el plan quedó en el archivo de la tarea, listo para la fase de ejecución.
 
 ## Finalización

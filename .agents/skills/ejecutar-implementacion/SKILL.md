@@ -56,7 +56,7 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 
 ### 2. Implementar siguiendo el plan
 
-4. **Ejecutar las acciones del plan en su orden**, escribiendo el código que cada una declara. Al terminar cada acción, confrontar lo hecho con lo planeado: si coincide, marcarla `[x]` en `## Plan técnico` y completada en la lista de control —que mantiene exactamente un ítem en progreso— y continuar; si no, pasar al manejo de desviaciones (paso 7). La checklist es el estado del avance: una ejecución interrumpida se retoma desde el primer ítem sin marcar, sin replanificar.
+4. **Ejecutar las acciones del plan en su orden**, escribiendo el código que cada una declara. Al terminar cada acción, confrontar lo hecho con lo planeado: si coincide, marcarla `[x]` en `## Plan técnico` con `tarea.sh marcar-item` de `actualizar-artefactos` y completada en la lista de control —que mantiene exactamente un ítem en progreso— y continuar; si no, pasar al manejo de desviaciones (paso 7). La checklist es el estado del avance: una ejecución interrumpida se retoma desde el primer ítem sin marcar, sin replanificar.
 5. **Delegación de acciones a subagentes:** una acción puede delegarse a un subagente cuando es independiente y autocontenida —la lista de criterios es abierta y extensible—; las acciones acopladas entre sí o que dependen del entendimiento acumulado del subsistema las ejecuta el propio agente. Cuando el orden de las acciones importa, una acción delegada no adelanta a las que la preceden; dos acciones delegadas en paralelo deben tocar archivos disjuntos, porque ambas trabajan sobre el mismo árbol de trabajo. Al delegar:
    - **Handoff:** pasar al subagente la acción y su `Contexto:` inline —no debe tener que adivinar qué parte del plan le toca—, más las rutas del archivo de la tarea y de la épica para el contexto general.
    - **Retorno:** el subagente realiza el cambio en el código y devuelve la explicación de lo que hizo con la lista de archivos que tocó; no devuelve un diff para que el ejecutor lo aplique.
@@ -65,12 +65,12 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 6. **Cubrir la suite de pruebas esperada** a medida que el comportamiento existe: escribir o completar las pruebas que expresan las expectativas de la suite, trazables a los mismos casos de uso.
 7. **Manejo de desviaciones:** al detectar que el trabajo se aparta del plan —una acción inviable, una acción que falta, un alcance que crece—, detenerse y:
    - **Registrar la desviación:** qué se apartó, qué evidencia lo motivó.
-   - **Decidir el camino:** si la desviación es menor y no cambia el objetivo ni los criterios de la tarea, replanificar la acción afectada actualizando `## Plan técnico` —el ítem nuevo mantiene el formato de checklist con sus `Aporta:` y `Contexto:`— y la lista de control en consecuencia: el ítem desviado se sustituye por los nuevos; si cambia el objetivo, el alcance o la guía de la épica, pedir confirmación al usuario antes de continuar.
+   - **Decidir el camino:** si la desviación es menor y no cambia el objetivo ni los criterios de la tarea, replanificar la acción afectada sustituyendo su ítem del `## Plan técnico` con `tarea.sh sustituir-item` de `actualizar-artefactos` —los ítems nuevos mantienen el formato de checklist con sus `Aporta:` y `Contexto:`— y la lista de control en consecuencia: el ítem desviado se sustituye por los nuevos; si cambia el objetivo, el alcance o la guía de la épica, pedir confirmación al usuario antes de continuar.
 
 ### 3. Cerrar la ejecución
 
 8. **Verificación final contra el plan:** recorrer las acciones del plan y las expectativas de la suite y confirmar que cada ítem quedó marcado o registrado como desviación.
-9. **Registrar las desviaciones:** si hubo, agregar `## Desviaciones del plan` al archivo de la tarea, antes de la sección Revisión, con una lista de desviaciones y para cada una su motivo y la decisión tomada.
+9. **Registrar las desviaciones:** si hubo, agregar `## Desviaciones del plan` al archivo de la tarea con `tarea.sh insertar-seccion` de `actualizar-artefactos` —la operación la coloca inmediatamente antes de `## Revisión`—, con una lista de desviaciones y para cada una su motivo y la decisión tomada.
 10. **Informar al usuario** del diff producido y de las desviaciones registradas, listo para la fase de revisión.
 
 ## Finalización

@@ -64,8 +64,8 @@ Instrucciones para que un agente cree la propuesta en `docs/proposals/NNN-slug/`
 
 ### 3. Enviar a revisión
 
-9. **Cambiar el estado de `propuesta.md`** a `[p]` Pendiente de revisión.
-10. **Añadir la línea a `TODO.txt`** en la sección «Propuestas en revisión» (al final del archivo, después de los hitos; crear la sección si no existe): `- [p] docs/proposals/NNN-slug/ — título (N borradores)`.
+9. **Cambiar el estado de `propuesta.md`** a «Pendiente de revisión» con `tarea.sh estado` de `actualizar-artefactos`.
+10. **Añadir la línea a `TODO.txt`** con `todo.sh añadir` de `actualizar-artefactos` sobre la sección de propuestas —la operación la crea al final del archivo si no existe—: `- [p] docs/proposals/NNN-slug/ — título (N borradores)`.
 11. **Informar al usuario** de que la propuesta espera revisión y **detenerse**. La puerta humana asíncrona queda activa.
 
 ### Ciclo de vida posterior

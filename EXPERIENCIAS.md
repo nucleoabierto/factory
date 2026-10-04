@@ -195,3 +195,9 @@
   Obtenido: las pruebas cubrían las formas felices de cada convención pero no que el marcador activo pudiera caer en cualquier posición: el parser mapeaba marcador→estado y devolvía `completada` ante `[x] En revisión`; la batería de pruebas reales pedida por el usuario tras la aprobación detectó el bug
   Corrección: al probar parsers de formatos con variantes, ejercitar cada variante en todas sus posiciones significativas —no solo la forma canónica de cada una— y hacerlo antes de presentar la tarea a aprobación
   Estado: consolidada
+- Id: 20261004T133821
+  Tarea: docs/tasks/115-skill-actualizar-artefactos.md
+  Esperado: que la revisión técnica independiente del subagente cubriera todos los puntos con esfuerzo abierto y terminara en un plazo razonable
+  Obtenido: la primera revisión lanzada sin acotar el alcance tardó tanto que el usuario la interrumpió y pidió relanzarla con el esfuerzo de revisión acotado; la versión acotada —solo los puntos de mayor riesgo y una muestra del cableado— completó rápido y con el mismo veredicto útil
+  Corrección: al lanzar revisiones de subagente, acotar el alcance desde el inicio —puntos de mayor riesgo, muestra de consumidores y formato de informe breve— en lugar de pedir cobertura exhaustiva
+  Estado: pendiente

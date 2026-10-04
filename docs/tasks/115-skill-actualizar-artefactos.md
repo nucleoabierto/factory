@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -47,7 +47,16 @@ Crear el skill de utilidad que ejecuta las escrituras mecánicas sobre los artef
 - La promoción de borradores es el bloque mecánico mayor del sistema; si el SKILL.md crece por ella, su detalle va a `references/` (D005).
 - Las decisiones que el script no toma —qué estado poner, qué sección escribir, el destino de una línea— las declara el consumidor en la orden delegada.
 
+## Desviaciones del plan
+
+- El contenido multilínea —sublistas de bloqueantes, cuerpos de sección, sustituciones de ítems— viaja por variables de entorno en lugar de «awk -v»: la implementación de awk rechaza valores multilínea literales.
+- La batería temporal reveló que «estado» preservaba el marcador histórico de cada opción —sobre la variante de casillas producía «**[ ] Completada**»—; corregido para escribir el marcador canónico de cada etiqueta conocida.
+- La revisión técnica dejó observaciones no bloqueantes que se corrigieron: compatibilidad con bash 3.2 en «promocion.sh», tolerancia de la línea de revisión sin guion, anclaje de la regex del índice mixto y validación de borradores sin secciones o con «## Estado»/«## Revisión» previos.
+
+
+
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-04 — Aprueba (observaciones no bloqueantes corregidas: compatibilidad bash 3.2 en promocion.sh, tolerancia de línea sin guion en registrar-revision, regex de índice mixto y validación de borradores sin secciones o con Estado/Revisión previos)
+- Usuario: 2026-10-04 — Aprueba

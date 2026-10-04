@@ -54,7 +54,7 @@ Instrucciones para que un agente reúna el contexto que una tarea de desarrollo 
 3. **Resumir los patrones vigentes** observados en esos archivos: estructura, convenciones y puntos de extensión que la tarea debe seguir.
 4. **Localizar la documentación aplicable** partiendo de los índices de cada directorio: los documentos de `docs/domains/` —con su `README.md` como índice— que describen el dominio que la tarea toca y los del directorio de documentación de producto —funcionalidades, guías, referencia— que describen el comportamiento afectado. Si el proyecto no tiene esos directorios, la fuente correspondiente se declara sin aportación.
 5. **Recuperar lecciones y decisiones** invocando `consultar-lecciones` y `consultar-decisiones` con la descripción del trabajo —archivos a tocar, tipo de acción, palabras clave.
-6. **Escribir la sección `## Contexto`** en el archivo de la tarea, con un bullet por fuente y sub-bullets para sus elementos:
+6. **Escribir la sección `## Contexto`** en el archivo de la tarea —cuando no existe, insertada antes de `## Revisión` con `tarea.sh insertar-seccion` de `actualizar-artefactos`; cuando ya existe, enriquecida en su sitio—, con un bullet por fuente y sub-bullets para sus elementos:
    - `Archivos similares:` rutas de los archivos hermanos que sirven de modelo, con una frase de qué aportan.
    - `Patrones:` las convenciones vigentes que la implementación debe seguir.
    - `Dominio:` los documentos de `docs/domains/` aplicables, citados por ruta, con el concepto, invariante o frontera que rige el cambio.
