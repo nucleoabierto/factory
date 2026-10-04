@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -51,5 +51,5 @@ Crear el skill de utilidad que responde consultas deterministas sobre los artefa
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-03 — Aprueba tras corrección (el parser de `## Estado` moría ante la variante de negrita solo en etiqueta; corregido y re-verificado)
+- Usuario: 2026-10-03 — Aprueba

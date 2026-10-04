@@ -50,7 +50,7 @@ Instrucciones para que un agente cree la propuesta en `docs/proposals/NNN-slug/`
 
 ### 1. Crear la propuesta
 
-1. **Determinar el siguiente número de propuesta.** Listar `docs/proposals/` y tomar el número siguiente al más alto existente, con formato `NNN`. Si el directorio no existe, crearlo y empezar en `001`.
+1. **Determinar el siguiente número de propuesta** con la operación `siguiente` de `consultar-artefactos` sobre `docs/proposals/`, con formato `NNN`. Si el directorio no existe, crearlo y empezar en `001`.
 2. **Crear el directorio `docs/proposals/NNN-slug/`** con un slug breve derivado del título.
 3. **Redactar `propuesta.md`** siguiendo `assets/propuesta.md`: problema, oportunidad, forma de solución, solución, alternativas, fuera de alcance e investigaciones de apoyo («Ninguna» si aún no hay). Verificar que hay al menos dos alternativas documentadas. Dejar el estado en `[ ]` Borrador y la sección Borradores vacía.
 

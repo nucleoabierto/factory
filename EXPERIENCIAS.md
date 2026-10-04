@@ -188,3 +188,10 @@
   Obtenido: el agente la reportó como hallazgo fuera de alcance y propuso darla de alta como tarea nueva en lugar de actualizarla en la tarea en curso
   Corrección: cuando un hallazgo toca el mismo tema que la tarea —un documento desfasado que describe justo lo que se está documentando—, la frontera del alcance no está cerrada; ofrecer absorberlo en la tarea además de registrarlo aparte
   Estado: consolidada
+
+- Id: 20261003T150000
+  Tarea: docs/tasks/114-skill-consultar-artefactos.md
+  Esperado: que las pruebas del parser de `## Estado` cubrieran las variantes semánticas de cada convención antes de pedir aprobación
+  Obtenido: las pruebas cubrían las formas felices de cada convención pero no que el marcador activo pudiera caer en cualquier posición: el parser mapeaba marcador→estado y devolvía `completada` ante `[x] En revisión`; la batería de pruebas reales pedida por el usuario tras la aprobación detectó el bug
+  Corrección: al probar parsers de formatos con variantes, ejercitar cada variante en todas sus posiciones significativas —no solo la forma canónica de cada una— y hacerlo antes de presentar la tarea a aprobación
+  Estado: pendiente

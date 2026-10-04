@@ -58,7 +58,7 @@ Instrucciones para que un agente produzca el roadmap de un producto: el document
 
 ### 1. Reunir las líneas
 
-1. **Inventariar las líneas de trabajo abiertas:** recorrer `docs/epics/` con estado `Planificada`, los hitos ligeros de `TODO.txt` sin épica enlazada y las tareas sueltas pendientes de `## General`.
+1. **Inventariar las líneas de trabajo abiertas** con la operación `inventario` de `consultar-artefactos`, que devuelve las épicas con su estado, las agrupaciones del índice —con o sin épica enlazada— y las tareas sueltas no completadas de `## General`.
 2. **Leer el contenido real de cada línea:** los planes técnicos de las épicas y los objetivos de las tareas sueltas, buscando las interacciones —qué línea cambia el costo de qué otra, qué formato o estructura asume una forma del sistema que otra línea todavía puede alterar.
 3. **Si hay una sola línea abierta**, informar de que no hay orden que decidir y terminar sin crear el documento.
 

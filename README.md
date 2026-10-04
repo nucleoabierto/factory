@@ -51,6 +51,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `consolidar-lecciones` | Agrupa las experiencias pendientes por temas en notas bajo `docs/lessons/`. |
 | `consultar-lecciones` | Recupera las lecciones aprendidas que aplican al trabajo a realizar. |
 | `consultar-decisiones` | Recupera las decisiones de diseño vigentes que rigen el trabajo a realizar. |
+| `consultar-artefactos` | Responde consultas mecánicas sobre los artefactos del sistema —índice, tareas, índices de decisiones y lecciones, ideas y series— que los demás skills le delegan. |
 
 **Salud del dominio y del producto**
 

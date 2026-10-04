@@ -45,7 +45,7 @@ Instrucciones para que un agente reúna el contexto que una tarea de desarrollo 
 2. **Un solo artefacto por tarea:** el contexto vive en el archivo de la tarea, no en documentos paralelos.
 3. **Las fuentes son guía, no corsé:** la lista —archivos similares, patrones, documentación de dominio, documentación de producto, lecciones y decisiones— es abierta y extensible; una fuente pertinente al trabajo que no figure se recopila igual. Si una fuente no aporta nada, se declara en lugar de forzar contenido.
 4. **Sin repetir lo indexado:** documentos, lecciones y decisiones se citan por su ruta, nombre o identificador con una frase de por qué aplican; su contenido completo vive en sus archivos.
-5. **Recolección idempotente:** si la tarea ya tiene `## Contexto`, no se rehace desde cero; se revisa y se enriquece solo donde falte.
+5. **Recolección idempotente:** si la tarea ya tiene `## Contexto` —su presencia se consulta con la operación `secciones` de `consultar-artefactos`—, no se rehace desde cero; se revisa y se enriquece solo donde falte.
 
 ## Procedimiento
 

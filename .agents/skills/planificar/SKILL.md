@@ -81,9 +81,9 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 
 ### 5. Materializar la épica
 
-9. **Si es épica nueva:** asignar el siguiente número disponible en `docs/epics/`, crear `docs/epics/NNN-slug.md` con estado `Planificada` y registrar la aprobación en su sección Revisión.
+9. **Si es épica nueva:** asignar el siguiente número disponible en `docs/epics/` —operación `siguiente` de `consultar-artefactos`—, crear `docs/epics/NNN-slug.md` con estado `Planificada` y registrar la aprobación en su sección Revisión.
 10. **Si es épica existente:** añadir las piezas nuevas a su lista, actualizar objetivo, alcance o plan técnico solo si el conjunto nuevo lo exige, y registrar la incorporación en su sección Revisión.
-11. **Reflejar la agrupación en `TODO.txt`:** crear o reutilizar el encabezado de la épica con el formato de hito (`## Hito N: título de la épica`, donde `N` es el siguiente número de hito del índice) y añadir bajo él el comentario `<!-- épica: docs/epics/NNN-slug.md -->`. Colocar las líneas de las tareas del conjunto bajo ese encabezado, creándolas si aún no existen y moviéndolas desde su ubicación actual si ya figuran en el índice.
+11. **Reflejar la agrupación en `TODO.txt`:** crear o reutilizar el encabezado de la épica con el formato de hito (`## Hito N: título de la épica`, donde `N` es el siguiente número de hito del índice, resuelto con la operación `siguiente-hito` de `consultar-artefactos`) y añadir bajo él el comentario `<!-- épica: docs/epics/NNN-slug.md -->`. Colocar las líneas de las tareas del conjunto bajo ese encabezado, creándolas si aún no existen y moviéndolas desde su ubicación actual si ya figuran en el índice.
 12. **Informar al usuario** de la épica creada o actualizada y de la agrupación resultante.
 
 ## Finalización

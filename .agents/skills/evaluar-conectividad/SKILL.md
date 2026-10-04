@@ -47,7 +47,7 @@ Instrucciones para que un agente contraste lo que una tarea de desarrollo asume 
 
 ## Procedimiento
 
-1. **Leer el archivo de la tarea** y su sección `## Contexto` para fijar qué asume la tarea: archivos, módulos, interfaces o patrones que el objetivo presupone.
+1. **Leer el archivo de la tarea** y su sección `## Contexto` —cuya presencia se verifica con la operación `secciones` de `consultar-artefactos`— para fijar qué asume la tarea: archivos, módulos, interfaces o patrones que el objetivo presupone.
 2. **Contrastar cada supuesto con el codebase:** para cada elemento que la tarea necesita, verificar que existe y tiene la forma que la tarea espera, usando los archivos ya identificados en el contexto.
 3. **Emitir el veredicto:**
    - `Conectada`: todo lo que la tarea asume existe en el codebase; el sub-flujo puede continuar a la planeación.

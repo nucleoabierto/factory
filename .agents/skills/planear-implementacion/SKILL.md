@@ -62,7 +62,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 ### 1. Entender el subsistema
 
 1. **Leer el archivo de la tarea** para fijar objetivo, alcance y criterios de calidad.
-2. **Leer el plan técnico de la épica**, si la tarea figura bajo un encabezado con comentario `<!-- épica: ... -->` en `TODO.txt` o referencia una épica; esa guía de arquitectura es el marco del plan.
+2. **Leer el plan técnico de la épica**, si la tarea figura bajo un encabezado con épica enlazada en el índice —la operación `grupos` de `consultar-artefactos` resuelve los encabezados y sus enlaces— o referencia una épica; esa guía de arquitectura es el marco del plan.
 3. **Apoyarse en la sección `## Contexto` de la tarea:** lo ya recopilado por `recopilar-contexto` es el punto de partida. Completar la exploración solo donde el contexto tenga vacíos respecto a lo que el plan necesita —una pieza del subsistema no cubierta, un patrón dudoso—, sin repetir desde cero lo ya recopilado.
 4. **Redactar el resumen del subsistema** en dos o tres frases: qué hace, qué patrón sigue y dónde encaja el cambio. Si la lectura revela un malentendido en la propia tarea, plantearlo al usuario antes de seguir.
 
