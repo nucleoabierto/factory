@@ -194,4 +194,4 @@
   Esperado: que las pruebas del parser de `## Estado` cubrieran las variantes semánticas de cada convención antes de pedir aprobación
   Obtenido: las pruebas cubrían las formas felices de cada convención pero no que el marcador activo pudiera caer en cualquier posición: el parser mapeaba marcador→estado y devolvía `completada` ante `[x] En revisión`; la batería de pruebas reales pedida por el usuario tras la aprobación detectó el bug
   Corrección: al probar parsers de formatos con variantes, ejercitar cada variante en todas sus posiciones significativas —no solo la forma canónica de cada una— y hacerlo antes de presentar la tarea a aprobación
-  Estado: pendiente
+  Estado: consolidada

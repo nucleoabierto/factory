@@ -12,8 +12,8 @@
 -->
 
 - validacion.md
-  - Disparadores: prueba de concepto, validación, tareas sin datos de entrada, semilla de prueba, escenario de validación, estímulo
-  - Resumen: Diseñar el estímulo de la prueba con objetivo y restricciones —y datos sintéticos si falta información— sin revelar el procedimiento esperado.
+  - Disparadores: prueba de concepto, validación, tareas sin datos de entrada, semilla de prueba, escenario de validación, estímulo, parser, formato con variantes, pruebas de scripts, tolerancia a formatos históricos
+  - Resumen: Diseñar el estímulo de la prueba con objetivo y restricciones —y datos sintéticos si falta información— sin revelar el procedimiento esperado; ejercitar cada variante de formato en todas sus posiciones significativas antes de aprobación.
 - estabilidad-temporal.md
   - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial, commits
   - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre o hash y no editar retroactivamente los documentos de entrada.
