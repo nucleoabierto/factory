@@ -1,0 +1,3 @@
+# Sitio de documentación de producto. Compilar: uvx --with mkdocs mkdocs build
+site_name: modern-todo-app
+docs_dir: product-docs
