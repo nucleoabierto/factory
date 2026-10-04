@@ -28,12 +28,12 @@ Reglas de combinación: el acento solo en foco, acciones primarias y estado sele
 
 ## Tipografía
 
-| Rol                 | Familia       | Tamaño                | Peso | Altura de línea |
-| ------------------- | ------------- | --------------------- | ---- | --------------- |
-| Título              | `--font-sans` | `--font-display` 40px | 700  | 1.1             |
-| Tarea / campo       | `--font-sans` | `--font-task` 18px    | 400  | 1.5             |
-| UI                  | `--font-sans` | `--font-ui` 15px      | 400  | 1.4             |
-| Etiqueta / contador | `--font-sans` | `--font-label` 14px   | 400  | 1.4             |
+| Rol                 | Familia       | Tamaño                                    | Peso | Altura de línea |
+| ------------------- | ------------- | ----------------------------------------- | ---- | --------------- |
+| Título              | `--font-sans` | `--font-display` `clamp(24px, 6vw, 32px)` | 700  | 1.1             |
+| Tarea / campo       | `--font-sans` | `--font-task` 18px                        | 400  | 1.5             |
+| UI                  | `--font-sans` | `--font-ui` 15px                          | 400  | 1.4             |
+| Etiqueta / contador | `--font-sans` | `--font-label` 14px                       | 400  | 1.4             |
 
 Reglas: una sola familia en toda la app (`--font-sans`: `system-ui, 'Segoe UI', Roboto, sans-serif`); el peso 700 solo en el título; el tamaño mínimo es 14px.
 
@@ -43,16 +43,17 @@ Reglas: una sola familia en toda la app (`--font-sans`: `system-ui, 'Segoe UI', 
 - Radios permitidos: `--radius` 8px para la tarjeta, campos y controles; `--radius-pill` 999px para las píldoras de filtro.
 - Sombra única: `--shadow-card` `0 4px 16px var(--color-shadow)`, solo en la tarjeta de la app.
 - Contenedor: ancho máximo `--container-max` 560px, centrado, con gutters de `--space-3`.
+- Tamaños de control: `--size-toggle` 20px — las casillas de completar y la maestra.
 
 ## Componentes
 
-- **Campo de captura** (`new-todo`): ancho completo de la tarjeta, fondo `--color-surface`, borde `--color-border`, radio `--radius`, padding `--space-2`; foco con anillo en `--color-accent`.
-- **Ítem de lista**: fila con checkbox, texto en `--font-task`, separador inferior `--color-border`, padding `--space-2`; el texto completada usa `--color-text-done` con tachado.
-- **Toggle** (`toggle`): checkbox nativo con `accent-color: var(--color-accent)` — ningún color fuera de la paleta.
+- **Campo de captura** (`new-todo`): ancho completo de la tarjeta, fondo `--color-surface`, borde `--color-border`, radio `--radius`, padding `--space-1` vertical y `--space-2` horizontal; foco con anillo en `--color-accent`.
+- **Ítem de lista**: fila con checkbox en `--size-toggle`, texto en `--font-task`, separador inferior `--color-border` entre ítems —el último no lo lleva—, padding `--space-2`; el texto completada usa `--color-text-done` con tachado.
+- **Toggle** (`toggle`): checkbox nativo con `accent-color: var(--color-accent)` y tamaño `--size-toggle` — ningún color fuera de la paleta.
 - **Acción discreta**: botón de texto en `--color-text-muted`, tamaño `--font-label`; hover cambia el color a `--color-text`, nunca el fondo.
 - **Acción destructiva** (`destroy`, limpiar completadas): como la discreta pero en `--color-danger`; aparece por opacidad al hover o foco del ítem.
 - **Filtros**: píldoras con padding `--space-1` `--space-2`, radio `--radius-pill`, borde transparente; hover muestra borde `--color-border-strong`, seleccionado fondo `--color-accent` con texto `--color-surface`.
-- **Marcar todas**: control discreto junto al campo de captura, en `--color-text-muted`.
+- **Marcar todas**: casilla maestra en una fila densa (`--space-1` vertical) sobre la lista, alineada con la columna de casillas de los ítems, con etiqueta visible «Todas» en `--font-label`/`--color-text-muted` y separador inferior `--color-border`; la casilla sigue el tratamiento de `toggle`.
 
 ## Estados
 

@@ -14,7 +14,7 @@
   --color-shadow: rgba(15, 23, 42, 0.08);
 
   --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 40px;
+  --font-display: clamp(24px, 6vw, 32px);
   --font-task: 18px;
   --font-ui: 15px;
   --font-label: 14px;
@@ -30,6 +30,7 @@
   --radius-pill: 999px;
   --shadow-card: 0 4px 16px var(--color-shadow);
   --container-max: 560px;
+  --size-toggle: 20px;
 
   font-family: var(--font-sans);
   line-height: 1.5;
