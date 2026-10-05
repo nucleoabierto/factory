@@ -1,6 +1,6 @@
 # Personalización del paquete factory
 
-Factory instala en `.agents/skills/` una colección de skills de agente autocontenidos —cada uno con su `SKILL.md` y, según el caso, directorios `references/` o `assets/` auxiliares— que orquestan el ciclo de trabajo de un proyecto: de la idea a la tarea, ejecución con revisión dual, memoria del proyecto, documentación viva y liberación de versiones.
+Factory instala en `.agents/skills/` una colección de skills de agente autocontenidos —cada uno con su `SKILL.md` y, según el caso, directorios `references/` o `assets/` auxiliares— que orquestan el ciclo de trabajo de un proyecto: de la idea a la tarea, ejecución con revisión vía pull request, memoria del proyecto, documentación viva y liberación de versiones.
 
 Los skills no llevan consigo los artefactos de estado: los crean y los mantienen en el repositorio destino. Este archivo describe la estructura mínima que asumen, para que el agente instalador la prepare o verifique.
 

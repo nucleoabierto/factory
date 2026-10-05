@@ -16,7 +16,7 @@ Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que 
 
 ## Cuándo usar
 
-- Al cerrar una tarea durante la cual el usuario corrigió al agente: en la revisión final («solicita cambios») o a mitad de la sesión.
+- Al cerrar una tarea durante la cual el usuario corrigió al agente: en la revisión final («solicita cambios»), en los comentarios del pull request de la tarea o a mitad de la sesión.
 - Cuando el usuario corrija una acción del agente y pida que quede constancia.
 
 ## Cuándo no usar
@@ -46,7 +46,7 @@ Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que 
 
 ## Procedimiento
 
-1. **Identificar las correcciones** de la sesión: revisiones donde el usuario solicitó cambios, indicaciones que desviaron el rumbo del trabajo, o peticiones explícitas de registro.
+1. **Identificar las correcciones** de la sesión: revisiones donde el usuario solicitó cambios, comentarios del pull request que corrigieron el trabajo, indicaciones que desviaron el rumbo del trabajo, o peticiones explícitas de registro.
 2. **Descartar lo que no es lección:** correcciones meramente mecánicas ya resueltas (una tilde, un nombre de variable) que no contienen nada transferible a tareas futuras. Ante la duda sobre si una corrección es transferible, preguntar al usuario.
 3. **Redactar una entrada por corrección** siguiendo el «Formato de la entrada»: un `Id` generado por entrada con el mecanismo de unicidad descrito en «Formato de la entrada», la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
 4. **Comprobar duplicados:** si `EXPERIENCIAS.md` existe, verificar que no haya ya una entrada equivalente (misma tarea y misma corrección) antes de añadirla; el skill puede invocarse a mitad de sesión y otra vez al cierre de la tarea.

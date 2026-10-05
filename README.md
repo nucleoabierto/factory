@@ -2,13 +2,13 @@
 
 Conjunto de skills que cubren el ciclo de vida completo del desarrollo de producto, desde el refinamiento de una idea hasta la integración del código en el repositorio.
 
-> **Estado del proyecto:** en desarrollo. El motor interno (idea → tarea → commit, con revisión dual y aprendizaje) está completo; el producto entregable está en construcción. Ver [Estado actual](#estado-actual) y [Hacia dónde va](#hacia-dónde-va).
+> **Estado del proyecto:** en desarrollo. El motor interno (idea → tarea → pull request, con revisión técnica independiente, dos puertas humanas y aprendizaje) está completo; el producto entregable está en construcción. Ver [Estado actual](#estado-actual) y [Hacia dónde va](#hacia-dónde-va).
 
 ---
 
 ## Estado actual
 
-Factory está en desarrollo. El motor interno está completo: cubre el ciclo desde una idea suelta hasta el commit, con revisión dual y aprendizaje. Lo que falta es el producto entregable: gestión a nivel de código y de producto.
+Factory está en desarrollo. El motor interno está completo: cubre el ciclo desde una idea suelta hasta el pull request fusionado, con revisión técnica independiente, dos puertas humanas y aprendizaje. Lo que falta es el producto entregable: gestión a nivel de código y de producto.
 
 ### Skills disponibles
 
@@ -29,7 +29,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 
 | Skill | Qué hace |
 |-------|----------|
-| `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta, la revisa y la commitea. |
+| `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta en su rama, la revisa y la entrega en un pull request. |
 | `planear-tarea` | Ejecuta la mitad de planeación del flujo de desarrollo: contexto, conectividad y plan con suite, y se detiene. |
 | `desarrollar-tarea` | Ejecuta la mitad de ejecución: toma una tarea con plan aprobado y completa la implementación con desviaciones. |
 | `recopilar-contexto` | Reúne el contexto que una tarea de desarrollo necesita —archivos similares, patrones, documentación de dominio y producto, lecciones y decisiones— y lo registra en la tarea. |
@@ -38,6 +38,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `prueba-concepto` | Valida una hipótesis técnica con código desechable —test, script temporal, prototipo— y alimenta con la conclusión al plan o la propuesta. |
 | `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |
 | `revisar-implementacion` | Revisión técnica adversarial del diff contra las convenciones del proyecto. |
+| `gestionar-pr` | Gestiona el pull request de una tarea: lo abre con descripción orientada al revisor, conduce el bucle de comentarios hasta la aprobación y lo fusiona tras el cierre. |
 | `cerrar-conjunto` | Cierra un conjunto de trabajo agotado: verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación de `TODO.txt`. |
 | `mantener-roadmap` | Mantiene `ROADMAP.md` fiel a la ejecución: refleja el estado de las líneas de Now, retira las completadas e invoca `planificar-roadmap` ante divergencia de dirección. |
 | `commit` | Crea commits siguiendo Conventional Commits en español. |
@@ -84,7 +85,7 @@ Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/
 
 ### Cómo funciona el ciclo de trabajo
 
-Dos orquestadores cubren el ciclo completo: `idea-a-tarea` convierte una idea en tareas planificadas y `ejecutar-tareas` ejecuta las tareas de `TODO.txt` hasta el commit. El estado entre pasos y entre sesiones viaja en artefactos —`TODO.txt`, el archivo de cada tarea, la propuesta, la épica—, no en la conversación, de modo que cualquier flujo se puede retomar donde quedó. El mapa exhaustivo de conexiones —quién invoca a quién, qué sensores corren al cierre, qué skills se activan por convención— vive en [docs/mapa-de-flujos.md](docs/mapa-de-flujos.md).
+Dos orquestadores cubren el ciclo completo: `idea-a-tarea` convierte una idea en tareas planificadas y `ejecutar-tareas` ejecuta las tareas de `TODO.txt` hasta el pull request fusionado. El estado entre pasos y entre sesiones viaja en artefactos —`TODO.txt`, el archivo de cada tarea, la propuesta, la épica—, no en la conversación, de modo que cualquier flujo se puede retomar donde quedó. El mapa exhaustivo de conexiones —quién invoca a quién, qué sensores corren al cierre, qué skills se activan por convención— vive en [docs/mapa-de-flujos.md](docs/mapa-de-flujos.md).
 
 De la idea a la tarea:
 
@@ -92,13 +93,13 @@ De la idea a la tarea:
 2. La propuesta queda pendiente `[p]` en la sección «Propuestas en revisión» de **`TODO.txt`**, a la espera de la decisión del usuario.
 3. Si el usuario la aprueba, `crear-tareas` promociona los borradores a tareas definitivas y `planificar` cierra la planeación agrupando el conjunto en su épica —o bajo un encabezado ligero si no amerita épica—; si la rechaza, la propuesta queda descartada pero conservada.
 
-De la tarea al commit:
+De la tarea al pull request:
 
 1. **`TODO.txt`** es el índice de trabajo activo: tareas agrupadas por hito o sueltas en la sección «General», más las propuestas en revisión. Los hitos completados se eliminan del índice.
-2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo` y `mantenimiento (refactoring)`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
+2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta en su propia rama siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo` y `mantenimiento (refactoring)`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
 3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor, cotejándolo además contra las lecciones aprendidas.
-4. Si el subagente aprueba, se presenta el resultado al **usuario** para aprobación.
-5. Si ambos aprueban, la tarea se marca completada `[x]` y corren los sensores de cierre antes del commit: `mantener-changelog` para toda tarea; `documentar-dominio`, `documentar-producto` y `mantener-prd` para las del sub-flujo de desarrollo; `registrar-experiencias` si el usuario corrigió algo durante la tarea.
+4. Si el subagente aprueba, `gestionar-pr` abre el **pull request** de la tarea con una descripción orientada al revisor y conduce el bucle de comentarios: la aprobación del usuario sobre el PR es la **puerta de ejecución**.
+5. Aprobado el PR, la tarea se marca completada `[x]` y corren los sensores de cierre sobre la rama: `mantener-changelog` para toda tarea; `documentar-dominio`, `documentar-producto` y `mantener-prd` para las del sub-flujo de desarrollo; `registrar-experiencias` si el usuario corrigió algo —en sesión o en el PR—. El usuario aprueba el paquete de cierre —la **puerta de cierre**— y el PR se fusiona dejando un commit por tarea en la rama principal.
 
 ### Estructura del repositorio
 
@@ -131,9 +132,9 @@ Para ejecutar una tarea, sigue el procedimiento del skill `ejecutar-tareas` o el
 
 ## Hacia dónde va
 
-Factory avanza hacia un **producto entregable** que cubre el ciclo completo de desarrollo de producto. Lo que existe hoy —del refinamiento de ideas a la ejecución de tareas con revisión dual— es un subconjunto del ciclo. El producto entregable lo extenderá:
+Factory avanza hacia un **producto entregable** que cubre el ciclo completo de desarrollo de producto. Lo que existe hoy —del refinamiento de ideas a la ejecución de tareas con revisión técnica independiente y puertas humanas— es un subconjunto del ciclo. El producto entregable lo extenderá:
 
-- **Gestión a nivel de código**: *branching*, *pull requests*, revisión de código.
+- **Gestión a nivel de código**: revisión de código como capacidad del producto.
 - **Gestión a nivel de producto**: *features*, *releases*, *feedback* de usuarios.
 
 ### Flujo asíncrono, no autónomo

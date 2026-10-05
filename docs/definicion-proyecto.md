@@ -10,11 +10,11 @@ El despliegue y el control de integración continua quedan fuera del alcance de 
 
 Factory tiene dos niveles que conviven y se alimentan mutuamente:
 
-1. **El motor interno**: el sistema de gestión de tareas y documentación que se usa para construir el propio proyecto. Hoy cubre el flujo completo de la idea al commit —refinamiento, tareas, épicas, desarrollo y revisión dual—, el versionado con Conventional Commits, el registro de decisiones de diseño, la investigación documentada, la documentación de dominio y el aprendizaje por lecciones. Es autoproductivo: cada nueva capacidad se construye usando el propio sistema.
+1. **El motor interno**: el sistema de gestión de tareas y documentación que se usa para construir el propio proyecto. Hoy cubre el flujo completo de la idea al pull request fusionado —refinamiento, tareas, épicas, desarrollo, revisión técnica independiente y dos puertas humanas—, el versionado con Conventional Commits, el registro de decisiones de diseño, la investigación documentada, la documentación de dominio y el aprendizaje por lecciones. Es autoproductivo: cada nueva capacidad se construye usando el propio sistema.
 
-2. **El producto entregable**: el conjunto de skills que cubren el ciclo completo de desarrollo de producto. Incluye lo que hoy tiene el motor interno, pero lo extiende con gestión a nivel de código (branching, *pull requests*, revisión de código) y gestión a nivel de producto (*features*, *releases*, *feedback*).
+2. **El producto entregable**: el conjunto de skills que cubren el ciclo completo de desarrollo de producto. Incluye lo que hoy tiene el motor interno, pero lo extiende con gestión a nivel de código (revisión de código) y gestión a nivel de producto (*features*, *releases*, *feedback*).
 
-El motor interno es la infraestructura de trabajo; el producto entregable es el objetivo final. El primero es necesario pero insuficiente: cubre el ciclo de la idea al commit y la memoria del proyecto, que sigue siendo un subconjunto del ciclo de desarrollo.
+El motor interno es la infraestructura de trabajo; el producto entregable es el objetivo final. El primero es necesario pero insuficiente: cubre el ciclo de la idea al pull request y la memoria del proyecto, que sigue siendo un subconjunto del ciclo de desarrollo.
 
 ## Estado actual
 
@@ -31,11 +31,11 @@ El motor interno está completo. Los skills existentes cubren:
 
 La conexión completa de los skills —quién invoca a quién, qué artefactos llevan el estado y dónde están las puertas humanas— está documentada en `docs/mapa-de-flujos.md`.
 
-El flujo de trabajo es: leer `TODO.txt`, tomar la siguiente tarea pendiente, ejecutarla siguiendo su archivo, marcarla en revisión, someterla a revisión dual (subagente independiente + usuario), marcarla como completada y commitear.
+El flujo de trabajo es: leer `TODO.txt`, tomar la siguiente tarea pendiente, ejecutarla siguiendo su archivo en su propia rama, marcarla en revisión, someterla a revisión técnica por un subagente independiente, abrir su pull request para la puerta de ejecución, correr los sensores de cierre y fusionarlo tras la puerta de cierre.
 
 Lo que falta para llegar al producto entregable:
 
-- **Gestión a nivel de código**: *branching*, *pull requests*, revisión de código.
+- **Gestión a nivel de código**: revisión de código como capacidad del producto.
 - **Gestión a nivel de producto**: *features*, *releases*, *feedback* de usuarios.
 
 ## Proceso de trabajo
@@ -46,8 +46,8 @@ El proceso se mantiene en cada nueva capacidad:
 
 1. Registrar la decisión de diseño que la motiva.
 2. Crear la tarea con objetivo, dependencias y criterios de calidad.
-3. Ejecutar la tarea siguiendo el flujo de revisión dual.
-4. Commitear el cambio siguiendo Conventional Commits.
+3. Ejecutar la tarea siguiendo el flujo de revisión técnica y puertas humanas.
+4. Integrar el cambio en un pull request siguiendo Conventional Commits.
 
 Este proceso no cambia al llegar al producto entregable: es el mismo flujo, aplicado a un alcance mayor.
 
@@ -59,7 +59,7 @@ Factory es un proyecto autónomo que también sirve como plantilla base para otr
 2. **Creación de tareas**: descomponer propuestas en tareas ejecutables con objetivo, dependencias y criterios de calidad.
 3. **Planeación**: gestionar tareas, épicas y *roadmap*.
 4. **Ejecución**: ejecutar tareas siguiendo su archivo de tarea y los skills relevantes.
-5. **Revisión**: verificar el resultado mediante revisión dual (subagente independiente + usuario).
+5. **Revisión**: verificar el resultado mediante revisión técnica por subagente independiente y las dos puertas humanas del pull request.
 6. **Corrección**: resolver los hallazgos de la revisión.
 7. **Integración**: cerrar los *pull requests* e integrar los cambios en la base de código.
 
@@ -74,14 +74,14 @@ Factory se documenta de forma pública para servir de referencia y ejemplo a la 
 - **Refinar una idea suelta** en una propuesta estructurada antes de convertirla en tarea.
 - **Planear un *roadmap*** a partir de épicas y tareas, manteniendo la trazabilidad entre objetivos y ejecución.
 - **Ejecutar una tarea** de principio a fin con un agente de IA, siguiendo un procedimiento reproducible.
-- **Revisar el resultado** de una tarea con un filtro técnico automático y un filtro humano.
-- **Commitear e integrar** cambios de forma consistente, siguiendo convenciones establecidas.
-- **Construir una nueva capacidad** (skill, formato, flujo) usando el propio sistema: registrar la decisión, crear la tarea, ejecutarla, revisarla y commitearla.
+- **Revisar el resultado** de una tarea con un filtro técnico automático y dos puertas humanas.
+- **Integrar** cambios de forma consistente en un pull request por tarea, siguiendo convenciones establecidas.
+- **Construir una nueva capacidad** (skill, formato, flujo) usando el propio sistema: registrar la decisión, crear la tarea, ejecutarla, revisarla e integrarla vía pull request.
 
 ## Criterios de éxito
 
 - **Mantenibilidad**: el sistema es fácil de mantener, extender y adaptar a nuevos proyectos. Los skills son autocontenidos y portables, siguen el estándar Agent Skills y mantienen el cuerpo por debajo de 500 líneas con el detalle en `references/`.
 - **Cobertura del ciclo**: cada fase del ciclo de vida (refinamiento, creación, planeación, ejecución, revisión, corrección, integración) tiene al menos un skill que la cubre.
-- **Autoproducción**: cada nueva capacidad se construye usando el propio sistema: la decisión queda registrada, la tarea se crea y ejecuta dentro del flujo, y el cambio se commitea siguiendo las convenciones del proyecto.
+- **Autoproducción**: cada nueva capacidad se construye usando el propio sistema: la decisión queda registrada, la tarea se crea y ejecuta dentro del flujo, y el cambio se integra en un pull request siguiendo las convenciones del proyecto.
 - **Trazabilidad**: las decisiones de diseño están documentadas en `docs/decisions/`, las tareas en `docs/tasks/` y las investigaciones en `docs/research/`, con referencias cruzadas cuando aplica.
 - **Validación externa**: el producto entregable se valida construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo. La prueba adoptada es una todo app en vanilla JS conforme a la especificación TodoMVC, construida en la subcarpeta `todo-app/` del repositorio (D018).
