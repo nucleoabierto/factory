@@ -1,9 +1,9 @@
 ---
 name: registrar-experiencias
 description: >
-  Registra en EXPERIENCIAS.md las correcciones que el usuario hizo durante
-  una tarea, como entradas que documentan la brecha entre el resultado
-  esperado y el obtenido.
+  Registra las correcciones que el usuario hizo durante una tarea en el
+  registro de experiencias del proyecto, como entradas que documentan la
+  brecha entre el resultado esperado y el obtenido.
   Usar al cerrar una tarea en la que el usuario corrigió al agente, o cuando
   el usuario corrija una acción y pida que quede constancia.
   Sinónimos: registrar experiencia, anotar corrección, guardar experiencia,
@@ -12,7 +12,7 @@ description: >
 
 # Registrar experiencias
 
-Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que el usuario corrigió durante una tarea, documentando la brecha entre el resultado esperado y el obtenido.
+Instrucciones para que un agente registre las acciones que el usuario corrigió durante una tarea en el registro de experiencias del proyecto, documentando la brecha entre el resultado esperado y el obtenido.
 
 ## Cuándo usar
 
@@ -29,16 +29,16 @@ Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que 
 
 - La conversación de la sesión actual, donde el usuario corrigió al agente.
 - La tarea en curso o recién terminada, referenciada como `docs/tasks/NNN-slug.md`.
-- `EXPERIENCIAS.md`, si ya existe.
+- El registro de experiencias del proyecto, si ya existe; su ubicación la resuelve `operar-experiencias`.
 
 ## Salida
 
-- Una entrada por corrección, añadida al final de `EXPERIENCIAS.md` con el formato definido en «Formato de la entrada».
-- `EXPERIENCIAS.md` creado con su cabecera si no existía.
+- Una entrada por corrección, añadida al final del registro de experiencias.
+- El registro creado con su cabecera append-only si no existía.
 
 ## Principios rectores
 
-1. **Append-only:** las entradas nunca se editan ni se borran. `EXPERIENCIAS.md` es el log de evidencia; la consolidación posterior marca las entradas como `consolidada`, no las elimina.
+1. **Append-only:** las entradas nunca se editan ni se borran. El registro de experiencias es el log de evidencia; la consolidación posterior marca las entradas, no las elimina.
 2. **Registrar la brecha, no solo la corrección:** cada entrada documenta qué se esperaba, qué se obtuvo y qué indicó el usuario. Una corrección sin brecha explicada no enseña nada al agente futuro.
 3. **Lenguaje natural:** el lector futuro de cada entrada es un agente; redactar en prosa clara, no en tuplas ni jerga críptica.
 4. **Solo la sesión que recibe la corrección registra:** el contexto completo de la corrección solo existe donde el usuario la emitió.
@@ -48,32 +48,22 @@ Instrucciones para que un agente registre en `EXPERIENCIAS.md` las acciones que 
 
 1. **Identificar las correcciones** de la sesión: revisiones donde el usuario solicitó cambios, comentarios del pull request que corrigieron el trabajo, indicaciones que desviaron el rumbo del trabajo, o peticiones explícitas de registro.
 2. **Descartar lo que no es lección:** correcciones meramente mecánicas ya resueltas (una tilde, un nombre de variable) que no contienen nada transferible a tareas futuras. Ante la duda sobre si una corrección es transferible, preguntar al usuario.
-3. **Redactar una entrada por corrección** siguiendo el «Formato de la entrada»: un `Id` generado por entrada con el mecanismo de unicidad descrito en «Formato de la entrada», la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
-4. **Comprobar duplicados:** si `EXPERIENCIAS.md` existe, verificar que no haya ya una entrada equivalente (misma tarea y misma corrección) antes de añadirla; el skill puede invocarse a mitad de sesión y otra vez al cierre de la tarea.
+3. **Redactar una entrada por corrección** con el contenido descrito en «Contenido de la entrada»: un `Id` único delegando su generación en `operar-experiencias` —operación `id`, pasando como ocupados los ya asignados a otras entradas del mismo lote—, la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
+4. **Comprobar duplicados:** verificar que el registro no tenga ya una entrada equivalente (misma tarea y misma corrección) antes de añadirla, recuperando las entradas de la tarea con la operación `por-tarea` de `operar-experiencias`; el skill puede invocarse a mitad de sesión y otra vez al cierre de la tarea.
 5. **Presentar las entradas al usuario** para validación. Si pide ajustes, corregir y volver a presentar.
-6. **Crear `EXPERIENCIAS.md`** en la raíz del proyecto si no existe, con la cabecera que declara su naturaleza append-only.
-7. **Añadir las entradas** nuevas al final del archivo con `Estado: pendiente`.
-8. **Informar al usuario** de las experiencias registradas.
+6. **Añadir las entradas** nuevas al registro delegando la operación `anexar` de `operar-experiencias`, que crea el registro con su cabecera si no existe y fija el estado inicial de cada entrada.
+7. **Informar al usuario** de las experiencias registradas.
 
-## Formato de la entrada
+## Contenido de la entrada
 
-```markdown
-- Id: AAAAMMDDTHHMMSS
-  Tarea: docs/tasks/NNN-slug.md
-  Esperado: [qué esperaba el usuario]
-  Obtenido: [qué produjo el agente]
-  Corrección: [lo que el usuario indicó]
-  Estado: pendiente | consolidada
-```
+Cada entrada documenta la brecha entre lo esperado y lo obtenido: un `Id` único, la tarea afectada, qué esperaba el usuario, qué produjo el agente y la corrección que indicó. La forma escrita —un campo por línea, el `Id` por timestamp con resolución de colisiones, el estado inicial— la define y valida `operar-experiencias` al anexar; este skill solo redacta el contenido.
 
-El `Id` es el timestamp de registro con precisión de segundo (`AAAAMMDDTHHMMSS`), tomado nuevo antes de escribir cada entrada —nunca se reutiliza un mismo timestamp para varias entradas del mismo lote, porque pueden caer en el mismo segundo. Si el timestamp obtenido coincide con un `Id` ya presente en el archivo o ya asignado a otra entrada de esta ejecución, se incrementa un segundo (y se repite si sigue coincidiendo) hasta obtener un `Id` único. Las lecciones consolidadas referencian este `Id`, no la tarea, porque una tarea puede generar varias experiencias.
-
-Una corrección genera una entrada; varias correcciones en la misma tarea generan varias entradas con la misma referencia de tarea.
+Una corrección genera una entrada; varias correcciones en la misma tarea generan varias entradas con la misma referencia de tarea. Las lecciones consolidadas referencian el `Id`, no la tarea, porque una tarea puede generar varias experiencias.
 
 ## Finalización
 
 El skill ha terminado cuando:
 
-- Las entradas validadas por el usuario están añadidas al final de `EXPERIENCIAS.md`.
+- Las entradas validadas por el usuario están añadidas al final del registro de experiencias.
 - Ninguna entrada previa fue editada ni eliminada.
 - Si no había correcciones que registrar, no se escribió nada.
