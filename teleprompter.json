@@ -34,6 +34,7 @@
     { "source": ".agents/skills/mantener-changelog", "target": ".agents/skills/mantener-changelog" },
     { "source": ".agents/skills/mantener-prd", "target": ".agents/skills/mantener-prd" },
     { "source": ".agents/skills/mantener-roadmap", "target": ".agents/skills/mantener-roadmap" },
+    { "source": ".agents/skills/operar-experiencias", "target": ".agents/skills/operar-experiencias" },
     { "source": ".agents/skills/planear-implementacion", "target": ".agents/skills/planear-implementacion" },
     { "source": ".agents/skills/planear-tarea", "target": ".agents/skills/planear-tarea" },
     { "source": ".agents/skills/planificar", "target": ".agents/skills/planificar" },
