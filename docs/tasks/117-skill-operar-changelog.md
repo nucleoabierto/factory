@@ -10,7 +10,7 @@ mantenimiento
 
 ## Objetivo
 
-Crear el skill de utilidad que ejecuta las operaciones mecánicas del changelog del proyecto evaluado mediante scripts bash propios: localizar el archivo (`CHANGELOG.md` y alternativas), volcar la sección `## [Unreleased]` y buscar en ella la entrada de una agrupación, anotar una línea bajo la categoría correcta creando el `###` en orden canónico si falta, reportar el estado (presencia/vacuidad de no liberados, última versión, enlaces comparativos), proponer el bump semver a partir de las categorías presentes, promover los no liberados a `## [X.Y.Z] - fecha` abriendo un `## [Unreleased]` vacío y actualizando los enlaces de pie cuando existen, y marcar una versión `[YANKED]`. La promoción es cirugía multiedit sobre formato fijo con casos borde ya especificados —primera versión, host sin enlaces—, exactamente donde la edición ad hoc falla. El nombre se decide en la ejecución (`operar-changelog` tentativo).
+Crear el skill de utilidad que ejecuta las operaciones mecánicas del changelog del proyecto evaluado mediante scripts bash propios: localizar el archivo (`CHANGELOG.md` y alternativas), volcar la sección `## [Unreleased]` y buscar en ella la entrada de una agrupación, anotar una línea bajo la categoría correcta creando el `###` en orden canónico si falta, reportar el estado (presencia/vacuidad de no liberados, última versión, enlaces comparativos), proponer el bump semver a partir de las categorías presentes, promover los no liberados a `## [X.Y.Z] - fecha` abriendo un `## [Unreleased]` vacío y actualizando los enlaces de pie cuando existen, y marcar una versión `[YANKED]`. La promoción es cirugía multiedit sobre formato fijo con casos borde ya especificados —primera versión, host sin enlaces—, exactamente donde la edición ad hoc falla. El nombre se decide en la ejecución (`operar-changelog` tentativo). El skill nace alineado con la dirección de la épica: su catálogo declara cada operación con su firma exacta, los consumidores piden acciones semánticas sin nombrar ni pasar el artefacto —la ubicación y las convenciones las resuelve el skill desde la configuración declarada en la instalación— y solo lo determinista es script.
 
 ## Dependencias
 
@@ -24,8 +24,8 @@ Crear el skill de utilidad que ejecuta las operaciones mecánicas del changelog 
 
 ## Resultado esperado
 
-- `.agents/skills/<nombre>/SKILL.md` con el contrato delegado y los scripts bash en `assets/`.
-- `mantener-changelog` y `liberar-version` actualizados para delegar la mecánica de archivo; conservan intactos sus juicios (notabilidad, agregación, curación, confirmación del usuario).
+- `.agents/skills/<nombre>/SKILL.md` con el catálogo de operaciones autodescriptivo —firma exacta por operación— y los scripts bash en `assets/`.
+- `mantener-changelog` y `liberar-version` actualizados para delegar la mecánica de archivo como acciones semánticas —sin nombrar `CHANGELOG.md` ni su formato—; conservan intactos sus juicios (notabilidad, agregación, curación, confirmación del usuario).
 - Actualización del `README.md`.
 
 ## Criterios de calidad
@@ -33,6 +33,7 @@ Crear el skill de utilidad que ejecuta las operaciones mecánicas del changelog 
 - El `SKILL.md` cumple D004 y D005; la `description` declara capacidad, no mecánica.
 - La promoción es atómica y cubre los casos borde especificados: primera versión sin enlace previo, ausencia de enlaces comparativos, `Unreleased` vacío (exit distinguishible).
 - La anotación valida la categoría contra la lista fija e inserta el `###` en el orden canónico; el texto de la entrada lo produce el consumidor.
+- La ubicación del archivo y sus convenciones llegan por configuración —no escritas en el skill— y los consumidores no pasan rutas ni formatos.
 - El skill aparece en `README.md`.
 
 ## Procedimiento sugerido
@@ -44,8 +45,10 @@ Crear el skill de utilidad que ejecuta las operaciones mecánicas del changelog 
 ## Notas
 
 - La curación de entradas, la decisión de notabilidad, la elección de categoría y la confirmación del bump son juicio del consumidor o del usuario; los scripts reciben contenido ya decidido.
+- Es prerrequisito de las tareas 131 y 132: el skill debe nacer con catálogo autodescriptivo e invocación por acción semántica para que esas tareas no tengan que rehacerlo.
 
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
