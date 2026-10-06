@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptada
+Sustituida por D034
 
 ## Contexto
 
@@ -15,3 +15,7 @@ Mantenemos un flujo de revisión dual: un subagente independiente hace la revisi
 ## Justificación
 
 El sesgo de autoaprobación está documentado en la investigación sobre revisión de código por LLMs y es estructural: no se resuelve con un mejor prompt, sino con separación de contextos. El subagente aporta verificación técnica objetiva; el usuario aporta juicio humano sobre intención, alineación con la visión del proyecto y decisiones de diseño. La combinación de ambos filtros equilibra calidad, seguridad y coste para este proyecto. La investigación en `docs/research/flujo-revision-tareas.md` documentó y justificó esta elección.
+
+## Referencias
+
+- Sustituida por `docs/decisions/D034-aprobacion-via-pr-con-dos-puertas.md`

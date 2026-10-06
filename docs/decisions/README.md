@@ -48,7 +48,7 @@
 - D009-flujo-revision-dual.md
   - Disparadores: revisión dual, subagente, estado en revisión, aprobación, ejecutar-tareas, sesgo de autoaprobación
   - Resumen: Toda tarea pasa por revisión dual antes de completarse: un subagente con contexto aislado hace la revisión técnica y el usuario da la aprobación final, con estado intermedio `[r]`.
-  - Estado: Aceptada
+  - Estado: Sustituida por D034
 - D010-decisiones-diseno-formato-hibrido.md
   - Disparadores: docs/decisions, decisión de diseño, ADR, DNNN-slug, formato de decisión, registrar decisión, estado de decisión
   - Resumen: Un archivo por decisión bajo `docs/decisions/DNNN-slug.md`, numerado, con estado explícito y las secciones contexto, decisión y justificación, más referencias opcionales.
@@ -144,4 +144,8 @@
 - D033-pasos-mecanicos-skills-utilidad-scripts.md
   - Disparadores: scripts bash, pasos mecánicos, skill de utilidad, delegación, assets/, contrato de scripts, stdout, stderr, ## Estado, ## Desviaciones del plan, forma canónica, parser
   - Resumen: Los pasos mecánicos compartidos se encapsulan en skills de utilidad con scripts bash propios en `assets/` bajo un contrato único de entrada y salida; se fija la forma canónica de `## Estado` y de la posición de `## Desviaciones del plan`, aplicable hacia adelante con parsers tolerantes a las variantes históricas.
+  - Estado: Aceptada
+- D034-aprobacion-via-pr-con-dos-puertas.md
+  - Disparadores: pull request, PR, puerta de ejecución, puerta de cierre, gestionar-pr, rama de la tarea, aprobación, merge squash, ejecutar-tareas, tres veredictos
+  - Resumen: La aprobación del usuario se ejerce en dos puertas sobre el pull request de la tarea —la de ejecución, sobre el PR con su bucle de comentarios, y la de cierre, sobre el paquete tras los sensores y antes del merge squash—; toda la iteración corre en la rama de la tarea y el «Revisión» registra tres veredictos. Sustituye a D009.
   - Estado: Aceptada

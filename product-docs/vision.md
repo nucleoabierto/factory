@@ -8,7 +8,7 @@ El flujo no es autónomo: es asíncrono. El agente avanza el trabajo que puede e
 
 ## Dirección
 
-Factory avanza desde un motor interno autoproductivo hacia un producto entregable que cubre el ciclo completo de desarrollo. El motor interno ya está en marcha: cubre el ciclo de la idea al commit —refinamiento, tareas, épicas, desarrollo y revisión dual— y mantiene la documentación, las decisiones de diseño y el aprendizaje por lecciones. El producto entregable extenderá ese motor con lo que hoy falta: planeación de *roadmap*, gestión a nivel de código y gestión a nivel de producto.
+Factory avanza desde un motor interno autoproductivo hacia un producto entregable que cubre el ciclo completo de desarrollo. El motor interno ya está en marcha: cubre el ciclo de la idea al *pull request* fusionado —refinamiento, tareas, épicas, desarrollo y dos puertas humanas de aprobación— y mantiene la documentación, las decisiones de diseño y el aprendizaje por lecciones. El producto entregable extenderá ese motor con lo que hoy falta: planeación de *roadmap*, revisión de código como capacidad del producto y gestión a nivel de producto.
 
 El principio *bootstrap* es permanente: cada nueva capacidad se construye usando el propio sistema, lo que asegura que el sistema se valida a sí mismo al evolucionar.
 
@@ -25,7 +25,7 @@ Dentro del alcance:
 
 - Refinamiento de ideas en propuestas accionables.
 - Creación y planeación de tareas, épicas y *roadmap*.
-- Ejecución de tareas con revisión dual.
+- Ejecución de tareas con revisión técnica independiente y aprobación humana en dos puertas.
 - Integración de cambios mediante *pull requests*.
 - Registro de decisiones de diseño y documentación de investigación.
 
