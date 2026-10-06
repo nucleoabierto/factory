@@ -200,28 +200,28 @@
   Esperado: que la revisión técnica independiente del subagente cubriera todos los puntos con esfuerzo abierto y terminara en un plazo razonable
   Obtenido: la primera revisión lanzada sin acotar el alcance tardó tanto que el usuario la interrumpió y pidió relanzarla con el esfuerzo de revisión acotado; la versión acotada —solo los puntos de mayor riesgo y una muestra del cableado— completó rápido y con el mismo veredicto útil
   Corrección: al lanzar revisiones de subagente, acotar el alcance desde el inicio —puntos de mayor riesgo, muestra de consumidores y formato de informe breve— en lugar de pedir cobertura exhaustiva
-  Estado: pendiente
+  Estado: consolidada
 - Id: 20261004T161500
   Tarea: docs/tasks/126-fundamentar-guia-estilo.md
   Esperado: que las razones de la guía explicaran qué protege cada decisión en la interfaz
   Obtenido: el usuario pidió máximo explícito en la parte cualitativa y el impacto en UX además del UI simple; las razones de una dimensión quedaban cortas para derivar el efecto de una decisión en quien la usa
   Corrección: al fundamentar decisiones de diseño, escribir la razón en dos dimensiones —qué protege en la interfaz y qué cambia en la experiencia del usuario: percepción, acción, error, aprendizaje o accesibilidad—
-  Estado: pendiente
+  Estado: consolidada
 - Id: 20261004T173000
   Tarea: docs/tasks/122-investigacion-en-propuesta.md
   Esperado: que la evidencia del refinamiento se resolviera solo con investigación teórica
   Obtenido: el usuario precisó que hay dos formas de resolver evidencia —la teórica con `investigar` y la activa con una prueba de concepto que valide vía código—; nombrar solo la primera dejaba fuera la validación empírica
   Corrección: al resolver evidencia durante la planeación, contemplar ambas formas —teórica y activa— y elegir la que el tipo de incertidumbre pide
-  Estado: pendiente
+  Estado: consolidada
 - Id: 20261004T183000
   Tarea: docs/tasks/124-investigacion-prd-planeacion.md
   Esperado: que la profundidad media de la investigación bastara para presentarla al usuario
   Obtenido: el usuario pidió extenderla a profundidad profunda antes de aprobarla; la investigación que fundamenta la materialización de un artefacto merece el nivel profundo desde el inicio
   Corrección: al investigar para materializar un skill o una decisión, acordar la profundidad al inicio y asumir profunda por defecto
-  Estado: pendiente
+  Estado: consolidada
 - Id: 20261005T233542
   Tarea: docs/tasks/130-materializar-aprobacion-via-pr.md
   Esperado: la cadena preventiva de redacción cubre todo el texto del cambio
   Obtenido: el texto añadido al skill en las rondas de corrección quedó sin pasada de redacción
   Corrección: re-correr la revisión preventiva sobre el texto añadido tras la primera pasada, antes de dar el trabajo por cerrado
-  Estado: pendiente
+  Estado: consolidada

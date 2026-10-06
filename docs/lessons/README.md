@@ -12,8 +12,8 @@
 -->
 
 - validacion.md
-  - Disparadores: prueba de concepto, validación, tareas sin datos de entrada, semilla de prueba, escenario de validación, estímulo, parser, formato con variantes, pruebas de scripts, tolerancia a formatos históricos
-  - Resumen: Diseñar el estímulo de la prueba con objetivo y restricciones —y datos sintéticos si falta información— sin revelar el procedimiento esperado; ejercitar cada variante de formato en todas sus posiciones significativas antes de aprobación.
+  - Disparadores: prueba de concepto, validación, tareas sin datos de entrada, semilla de prueba, escenario de validación, estímulo, parser, formato con variantes, pruebas de scripts, tolerancia a formatos históricos, revisión preventiva, revisar-redaccion, pulir-escritura, rondas de corrección, cierre de tarea
+  - Resumen: Diseñar el estímulo de la prueba con objetivo y restricciones —y datos sintéticos si falta información— sin revelar el procedimiento esperado; ejercitar cada variante de formato en todas sus posiciones significativas antes de aprobación; la verificación preventiva cubre el estado final, incluido lo añadido en rondas de corrección.
 - estabilidad-temporal.md
   - Disparadores: skills, SKILL.md, flujo, flujo N, referencia a proceso, orquestador, investigaciones, docs/research, editar documentos existentes, cambio de formato, historial, commits
   - Resumen: El conocimiento del proyecto debe seguir válido y fiel al evolucionar: referenciar elementos por nombre o hash y no editar retroactivamente los documentos de entrada.
@@ -36,8 +36,14 @@
   - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice
   - Resumen: Nombrar directorios y artefactos por el tipo específico de contenido que almacenan, no por la operación genérica.
 - contratos-de-skills.md
-  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, nombre de skill, modo interactivo, subagente, delegar, delegación, checklist, referencia a decisión, citas, reglas inline, diff, ubicación de cambios, sensor de cierre
-  - Resumen: El contrato que un skill declara va a nivel de resultado —nombre y description hablan de la capacidad completa, no de la acción inicial ni de la mecánica; las reglas van inline, la delegación devuelve explicación + archivos, la entrada sobre cambios es la ubicación y no un diff, y los artefactos decididos por humanos piden modo interactivo.
+  - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, nombre de skill, modo interactivo, subagente, delegar, delegación, checklist, referencia a decisión, citas, reglas inline, diff, ubicación de cambios, sensor de cierre, revisión técnica, alcance de revisión, lanzar subagente
+  - Resumen: El contrato que un skill declara va a nivel de resultado —nombre y description hablan de la capacidad completa, no de la acción inicial ni de la mecánica; las reglas van inline, la delegación devuelve explicación + archivos, la entrada sobre cambios es la ubicación y no un diff, los artefactos decididos por humanos piden modo interactivo, y las revisiones por subagente se lanzan con el alcance acotado.
+- guia-de-estilo.md
+  - Disparadores: DESIGN.md, guía de estilo, fundamentar decisión de diseño, razón, documentar-guia-estilo, tokens, UX, frontend
+  - Resumen: Al fundamentar una decisión de diseño, la razón se escribe en dos dimensiones: qué protege en la interfaz y qué cambia en la experiencia del usuario.
+- investigacion-en-planeacion.md
+  - Disparadores: evidencia, refinamiento, propuesta, planeación, investigar, investigación, profundidad, prueba de concepto, incertidumbre, materializar skill
+  - Resumen: La evidencia se resuelve por vía teórica o activa según la incertidumbre, y la profundidad de la investigación se acuerda al inicio —profunda por defecto cuando fundamenta materializar un artefacto—.
 - diseno-de-artefactos.md
   - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla, ruta de proyecto, references/
   - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión y la tecnología o las rutas del proyecto validado son datos de entrada, no parte del concepto.

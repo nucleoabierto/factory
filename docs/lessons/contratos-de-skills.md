@@ -25,3 +25,7 @@
 - **La entrada de un skill que opera sobre cambios es la ubicación de los cambios —árbol de trabajo o rango de commits—, no un diff materializado: el skill lo reconstruye con git.** Por qué: el paso de cierre y el skill de changelog declaraban «el diff de la tarea» como entrada, cuando el resto de los skills reciben la ubicación y reconstruyen el diff ellos mismos; materializar el diff acopla el contrato a un artefacto que el invocador tendría que producir.
   Disparadores: skills, SKILL.md, entrada de skill, diff, ubicación de cambios, sensor de cierre, revisar-implementacion
   Origen: 20260929T185349
+
+- **Al lanzar una revisión por subagente, acota el alcance desde el inicio —puntos de mayor riesgo, muestra de los puntos de contacto y formato de informe breve— en lugar de pedir cobertura exhaustiva.** Por qué: una revisión lanzada sin acotar tardó tanto que hubo que interrumpirla; la versión acotada a lo de mayor riesgo y una muestra del cableado completó rápido con el mismo veredicto útil.
+  Disparadores: subagente, revisión, revisión técnica, alcance de revisión, lanzar subagente, informe
+  Origen: 20261004T133821
