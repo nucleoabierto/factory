@@ -59,21 +59,21 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
    - **Revisar las reglas declaradas del proyecto** que apliquen al cambio.
    - **Cotejar contra las lecciones aprendidas:** consultar `docs/lessons/README.md`, identificar las notas cuyos disparadores coincidan con los archivos y acciones del diff, leerlas y verificar que el diff no repite errores ya aprendidos —aunque el ejecutor las haya aplicado bien, la revisión confirma independientemente.
    - **Verificar el plan nominalmente:** confrontar cada acción del `## Plan técnico` —enumerable con la operación `checklist` de `consultar-artefactos`— con su realización en el diff y cada expectativa de la `## Suite de pruebas esperada` con la prueba que la cubre. Una acción no realizada solo es aceptable si figura en `## Desviaciones del plan` con su motivo y decisión: la desviación registrada cuenta como realización declarada, y el revisor verifica que el registro exista y sea coherente con el diff.
-   - **Distinguir en el veredicto:** «plan no seguido sin desviación registrada» es un hallazgo que solicita cambios; «desviación registrada» se reporta como tal y puede requerir confirmación del usuario en la aprobación final.
+   - **Distinguir en el veredicto:** «plan no seguido sin desviación registrada» es un hallazgo que solicita cambios; «desviación registrada» se reporta como tal y puede requerir confirmación del usuario en la puerta de ejecución.
    - **Buscar problemas no previstos:** invariantes rotos, casos borde ignorados, discrepancias entre lo declarado en la tarea y lo implementado.
    - **Producir el informe:** criterios verificados, verificación nominal del plan, hallazgos con la regla o patrón infringido citado, y veredicto.
 
 ### 3. Interpretar el informe
 
 4. **Si el veredicto es solicita cambios:** corregir los problemas y repetir la revisión desde el paso 1 con el diff actualizado.
-5. **Si el veredicto es aprueba:** presentar el informe al usuario junto con el resumen del trabajo, para la aprobación final del ciclo de tareas.
+5. **Si el veredicto es aprueba:** devolver el informe al invocador junto con el resumen del trabajo. Sus observaciones alimentan los puntos de atención de la descripción del pull request; la aprobación humana del cambio corre por `gestionar-pr` —la puerta de ejecución—, no por la sesión.
 
 ## Finalización
 
 El skill ha terminado cuando:
 
 - El subagente produjo su informe con veredicto.
-- Los cambios solicitados se corrigieron y se repitió la revisión, o el informe aprobado se presentó al usuario.
+- Los cambios solicitados se corrigieron y se repitió la revisión, o el informe aprobado se devolvió al invocador.
 
 ## Referencias
 

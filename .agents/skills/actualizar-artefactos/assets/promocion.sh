@@ -104,7 +104,8 @@ ESTADO='**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada 
 REV='## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario: [fecha] — [Aprueba | Solicita cambios]'
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]'
 
 for d in "${drafts[@]}"; do
   mm=$(basename "$d" | cut -d- -f1)

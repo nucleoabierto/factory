@@ -219,3 +219,9 @@
   Obtenido: el usuario pidió extenderla a profundidad profunda antes de aprobarla; la investigación que fundamenta la materialización de un artefacto merece el nivel profundo desde el inicio
   Corrección: al investigar para materializar un skill o una decisión, acordar la profundidad al inicio y asumir profunda por defecto
   Estado: pendiente
+- Id: 20261005T233542
+  Tarea: docs/tasks/130-materializar-aprobacion-via-pr.md
+  Esperado: la cadena preventiva de redacción cubre todo el texto del cambio
+  Obtenido: el texto añadido al skill en las rondas de corrección quedó sin pasada de redacción
+  Corrección: re-correr la revisión preventiva sobre el texto añadido tras la primera pasada, antes de dar el trabajo por cerrado
+  Estado: pendiente

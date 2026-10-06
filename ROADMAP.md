@@ -16,7 +16,7 @@ Sin líneas: no hay trabajo validado esperando detrás de Now.
 
 ## Later
 
-- Gestión a nivel de código — branching, pull requests y revisión de código: la mayor brecha hacia el producto entregable; depende de decisiones de portabilidad frente a forjas y remotos que aún no están tomadas.
+- Gestión a nivel de código — revisión de código como capacidad del producto: branching y pull requests ya los ejecuta el ciclo de tareas vía `gestionar-pr`; la mayor brecha hacia el producto entregable pasa a ser la revisión de código como funcionalidad entregable.
 - Gestión a nivel de producto — features, releases y feedback de usuarios: releases parcialmente cubiertas por `mantener-changelog` y `liberar-version`; el feedback de usuarios no tiene artefacto de registro todavía.
 - Validación externa continuada — `modern-todo-app` como segundo proyecto real tras `todo-app`: práctica permanente del criterio de éxito, no una línea planificable.
 

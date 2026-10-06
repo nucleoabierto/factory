@@ -37,7 +37,7 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 
 - **Fronteras:**
   - Dentro: las cinco capacidades del pipeline (contexto, conectividad, planeación, ejecución, revisión de implementación) y su orquestación.
-  - Fuera: el ciclo de vida de la tarea en `TODO.txt` —estados, revisión dual, commit—, que pertenece al dominio del ciclo de tareas; la documentación del dominio afectado, que cierran los sensores de documentación viva.
+  - Fuera: el ciclo de vida de la tarea en `TODO.txt` —estados y puertas de aprobación vía pull request—, que pertenece al dominio del ciclo de tareas; la documentación del dominio afectado, que cierran los sensores de documentación viva.
   - Relaciones: `ejecutar-tareas` elige el punto de entrada por el estado de planeación del archivo de la tarea; consume lecciones y decisiones vía los skills de consulta del dominio de aprendizaje y de documentación viva.
 - **Decisiones relevantes:**
   - `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` (sustituye a D020)
@@ -46,5 +46,5 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 
 ## Estado de salud
 
-- Última revisión: 2026-09-28 (contexto de la tarea ampliado con documentación de dominio y de producto)
+- Última revisión: 2026-10-05 (frontera con el ciclo actualizada a las puertas vía pull request)
 - Divergencias conocidas: Ninguna

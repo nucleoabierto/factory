@@ -41,7 +41,7 @@ Instrucciones para que un agente ejecute la mitad de ejecución del flujo de des
 
 1. **La entrada se valida, no se presume:** el plan aprobado es el contrato; una tarea sin él no se ejecuta, se deriva a `planear-tarea`.
 2. **Las puertas humanas se respetan:** la confirmación de desviaciones mayores pertenece al usuario.
-3. **Acotado a una tarea:** no gestiona estado de la tarea en `TODO.txt`, ni revisión dual, ni commit; eso sigue siendo del ejecutor general.
+3. **Acotado a una tarea:** no gestiona estado de la tarea en `TODO.txt`, ni la revisión ni el pull request; eso sigue siendo del ejecutor general.
 
 ## Procedimiento
 

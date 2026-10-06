@@ -10,7 +10,7 @@ Reglas del índice:
 
 ## Dominios
 
-- 001-ciclo-de-tareas.md — Ciclo de tareas: índice TODO.txt, ejecución, revisión dual y commit
+- 001-ciclo-de-tareas.md — Ciclo de tareas: índice TODO.txt, ejecución en rama, pull request con dos puertas humanas y merge
 - 002-flujo-idea-a-tarea.md — Flujo de idea a tarea: propuestas, borradores, épicas y roadmap
 - 003-subflujo-desarrollo.md — Sub-flujo de desarrollo: contexto, conectividad, planeación, ejecución y revisión del diff
 - 004-documentacion-viva.md — Documentación viva: dominios, producto, decisiones, investigación y guía de estilo

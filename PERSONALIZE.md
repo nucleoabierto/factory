@@ -1,6 +1,6 @@
 # Personalización del paquete factory
 
-Factory instala en `.agents/skills/` una colección de skills de agente autocontenidos —cada uno con su `SKILL.md` y, según el caso, directorios `references/` o `assets/` auxiliares— que orquestan el ciclo de trabajo de un proyecto: de la idea a la tarea, ejecución con revisión dual, memoria del proyecto, documentación viva y liberación de versiones.
+Factory instala en `.agents/skills/` una colección de skills de agente autocontenidos —cada uno con su `SKILL.md` y, según el caso, directorios `references/` o `assets/` auxiliares— que orquestan el ciclo de trabajo de un proyecto: de la idea a la tarea, ejecución con revisión vía pull request, memoria del proyecto, documentación viva y liberación de versiones.
 
 Los skills no llevan consigo los artefactos de estado: los crean y los mantienen en el repositorio destino. Este archivo describe la estructura mínima que asumen, para que el agente instalador la prepare o verifique.
 
@@ -31,6 +31,7 @@ Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando 
 ## Qué queda a criterio del proyecto destino
 
 - Las convenciones de commit que `commit` debe seguir (mensaje, idioma, formato).
+- La convención de ramas del proyecto: el nombre de las ramas de tarea —`ejecutar-tareas` usa el identificador de la tarea bajo el prefijo `tarea/` por defecto— y el nombre de la rama principal sobre la que se abren los pull requests. Conviene declararla al instalar, en el documento de convenciones que el proyecto use (por ejemplo `AGENTS.md`).
 - La política de versionado del changelog (categorías, cuándo liberar).
 - El nombre del directorio de documentación de producto, que `documentar-producto` mantiene en un directorio propio, separado del `docs/` de proceso.
 - Cualquier artefacto propio del proyecto (código, pruebas, documentación existente): el paquete no los presume ni los toca.
