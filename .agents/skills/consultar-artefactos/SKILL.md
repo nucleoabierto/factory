@@ -50,37 +50,92 @@ Instrucciones para que un agente responda consultas deterministas sobre los arte
 
 ## Catálogo de operaciones
 
-Los scripts viven en `assets/` y se invocan como `assets/<script>.sh <objetivo> <operación> [términos]`. Los campos de salida van separados por tabulador. Una operación sin resultados devuelve `0` sin líneas.
+Los scripts viven en `assets/` y se invocan como `assets/<script>.sh <objetivo> <operación> [términos]`, donde `<objetivo>` es la ruta del artefacto consultado —un archivo o un directorio, según el script—. stdout queda reservado a los datos parseables —una línea por resultado, campos separados por tabulador— y stderr a los diagnósticos. Una operación sin resultados devuelve `0` sin líneas —el vacío legítimo—; un objetivo ausente sale con `2` y diagnóstico; una invocación mal formada —operación desconocida o argumentos que faltan— imprime el `uso:` por stderr y sale con `2`.
 
 ### `todo.sh` — el índice de tareas (`TODO.txt`)
 
-- `siguiente` — la primera línea en curso (`[~]` o `[r]`); si no hay, la primera pendiente `[ ]`.
-- `por-estado <marca>` — las líneas de tarea con la marca indicada (` `, `~`, `r`, `x`, `!`).
-- `propuestas` — las líneas de propuestas `[p]` en revisión.
-- `grupos` — `encabezado<TAB>épica` por cada `##` del índice; la épica va vacía en los encabezados ligeros.
-- `estado-grupo <texto>` — `marca<TAB>cuenta` por estado presente bajo el encabezado que contiene `<texto>`; la agrupación está agotada cuando solo figura la marca `x`.
-- `siguiente-hito` — el siguiente número de la serie `## Hito N`.
-- `inventario <dir-épicas>` — las líneas de trabajo abiertas: `epica<TAB>ruta<TAB>planificada|completada|otro` por documento de épica, `grupo<TAB>encabezado<TAB>épica` por agrupación del índice y `suelta<TAB>línea` por tarea no completada de `## General`.
+`<objetivo>` es la ruta del `TODO.txt`. Las operaciones solo reconocen líneas de tarea de nivel superior: la viñeta `- [` sin sangría. Índice ausente: exit `2`.
+
+#### `siguiente`
+
+Emite la primera línea `- [~] ` o `- [r] ` del índice —la tarea en curso—; si no hay ninguna, la primera `- [ ] `. La línea va completa, tal como está escrita. Sin tareas abiertas, salida vacía con exit `0`.
+
+#### `por-estado <marca>`
+
+Emite las líneas que empiezan por `- [<marca>] ` —la marca de un carácter indicada: ` `, `~`, `r`, `x`, `!`, u otra como `p`—, completas y en el orden del documento. Sin coincidencias, salida vacía con exit `0`; sin `<marca>`, `uso:` y exit `2`. Sin consumidor hoy: se mantiene publicada por anticipado (véase Cobertura).
+
+#### `propuestas`
+
+Emite las líneas `- [p] ` —las propuestas en revisión—, completas y en el orden del documento. Sin propuestas, salida vacía con exit `0`.
+
+#### `grupos`
+
+Emite `encabezado<TAB>épica` por cada encabezado `##` del índice, en orden: el texto tras el `## ` y la ruta del último comentario `<!-- épica: <ruta> -->` de su sección —vacía en los encabezados sin épica enlazada—.
+
+#### `estado-grupo <texto>`
+
+Emite `marca<TAB>cuenta` por cada marca presente en las líneas de tarea de las secciones cuyo encabezado `##` contiene la subcadena `<texto>` —varias palabras se concatenan con espacio—, ordenadas por marca con el espacio primero; las propuestas `[p]` cuentan como una marca más. La agrupación está agotada cuando solo figura la marca `x`. Sin sección que case o sin tareas bajo ella, salida vacía con exit `0`; sin `<texto>`, `uso:` y exit `2`.
+
+#### `siguiente-hito`
+
+Emite el siguiente número de la serie `## Hito N` —el mayor `N` más uno; `1` si el índice no tiene hitos—. Siempre una línea, exit `0`. Sin consumidor hoy: se mantiene publicada por anticipado (véase Cobertura).
+
+#### `inventario <dir-épicas>`
+
+Emite las líneas de trabajo abiertas. Primero `epica<TAB>ruta<TAB>estado` por cada `*.md` de `<dir-épicas>` —`completada` o `planificada` según la opción marcada `[x]` en su `## Estado`, `otro` en cualquier otro caso—. Después, en el orden del recorrido del índice: `suelta<TAB>línea` por cada tarea no completada —marca distinta de `x`, línea completa— bajo `## General`, y `grupo<TAB>encabezado<TAB>épica` por cada encabezado `##`, emitido al cerrar su sección. Sin `<dir-épicas>`, `uso:` y exit `2`; directorio de épicas ausente: exit `2`.
 
 ### `tarea.sh` — un archivo de tarea (`docs/tasks/NNN-slug.md`)
 
-- `estado` — `pendiente`, `en-progreso`, `en-revision`, `completada` o `bloqueada`, tolerando las convenciones históricas del campo `## Estado`.
-- `secciones` — los encabezados `##` presentes, en orden.
-- `planeacion` — `sección<TAB>presente|ausente` para `Contexto`, `Conectividad`, `Plan técnico` y `Suite de pruebas esperada`.
-- `dependencias` — las entradas de la sección `## Dependencias`, una por línea.
-- `checklist` — `marca<TAB>texto` por acción del `## Plan técnico`: la marca es ` ` o `x` en checklists y el número del ítem en las listas numeradas históricas.
+`<objetivo>` es la ruta del archivo de tarea. Archivo ausente: exit `2`.
+
+#### `estado`
+
+Emite una línea con el estado canónico —`pendiente`, `en-progreso`, `en-revision`, `completada` o `bloqueada`— resolviendo las convenciones históricas del campo `## Estado`: la casilla suelta da la etiqueta que la acompaña —marcada o no—; en la lista de opciones separadas por `|` da la opción en negrita o la única marcada. `## Estado` ausente, vacío, con más de una opción marcada o en una forma no reconocida: diagnóstico y exit `1`.
+
+#### `secciones`
+
+Emite el texto de cada encabezado `##` presente —sin el `## `—, una línea por sección en el orden del documento. Sin secciones, salida vacía con exit `0`.
+
+#### `planeacion`
+
+Emite siempre cuatro líneas `sección<TAB>presente|ausente`, en este orden fijo: `Contexto`, `Conectividad`, `Plan técnico`, `Suite de pruebas esperada`. `presente` exige el encabezado `## <sección>` exacto.
+
+#### `dependencias`
+
+Emite las entradas de la sección `## Dependencias` —hasta el siguiente `##`—, una por línea y sin el guion de viñeta; descarta las viñetas de checklist (`- […]`) y las que empiezan por `Ninguna`. Sin sección o sin entradas, salida vacía con exit `0`.
+
+#### `checklist`
+
+Emite `marca<TAB>texto` por cada acción de la sección `## Plan técnico`, en el orden en que aparece: en las viñetas `- [·]` la marca es el carácter de la casilla, cualquiera que sea, y el texto lo que sigue; en las listas numeradas históricas `N. texto` la marca es `N`. Sin sección o sin acciones, salida vacía con exit `0`.
 
 ### `ideas.sh` — el directorio de ideas persistidas (`docs/ideas/`)
 
-- `pendientes` — `orden<TAB>archivo<TAB>título` por idea sin la marca `Procesada en`, ordenadas por su «Orden sugerido»; las ideas sin orden van al final, con el campo vacío.
+`<objetivo>` es la ruta del directorio de ideas. Directorio ausente: exit `2`.
+
+#### `pendientes`
+
+Emite `orden<TAB>archivo<TAB>título` por cada `*.md` del directorio que no menciona `Procesada en`: `orden` es su «Orden sugerido», `archivo` la ruta del archivo y `título` su primer `# `. Las líneas salen ordenadas por `orden` numérico; las ideas sin orden van al final con el primer campo vacío. Sin pendientes, salida vacía con exit `0`.
 
 ### `indice.sh` — los índices de decisiones y de lecciones (`README.md`)
 
-- `coincidencias <término>…` — `archivo<TAB>estado<TAB>resumen` por cada entrada cuyos `Disparadores` contienen algún término, insensible a mayúsculas; el estado va vacío cuando la entrada no lo declara.
+`<objetivo>` es la ruta del `README.md` que hace de índice —entradas `- <archivo>` con sub-viñetas `Disparadores:`, `Resumen:` y `Estado:` opcional—. Índice ausente: exit `2`.
+
+#### `coincidencias <término>…`
+
+Emite `archivo<TAB>estado<TAB>resumen` por cada entrada cuya línea `Disparadores:` contiene algún `<término>` como subcadena, insensible a mayúsculas —una línea por entrada aunque casen varios términos, en el orden del índice—; `estado` va vacío cuando la entrada no declara `- Estado:`. Ignora los bloques de comentario `<!--`…`-->`. Sin término, `uso:` y exit `2`; sin coincidencias, salida vacía con exit `0`.
 
 ### `series.sh` — las series numeradas de un directorio
 
-- `siguiente [prefijo] [ancho]` — el siguiente número de la serie: `121` para `docs/tasks`, `D034` para `docs/decisions` con prefijo `D`, `05` para borradores con ancho `2`.
+`<objetivo>` es la ruta del directorio de la serie. Directorio ausente: exit `2`.
+
+#### `siguiente [prefijo] [ancho]`
+
+Emite el siguiente número de la serie —el mayor número entre los archivos `<prefijo><dígitos>…` del directorio, más uno— con el formato `<prefijo>` seguido del número rellenado con ceros a `<ancho>` dígitos. `<prefijo>` y `<ancho>` son opcionales; el ancho vale `3` por defecto y se pasa `""` como prefijo cuando solo interesa el ancho. Directorio sin entradas de la serie: emite el primero (`001`, `D001`…). Ejemplos: `121` para `docs/tasks`, `D034` para `docs/decisions` con prefijo `D`, `05` para borradores con ancho `2`.
+
+### Cobertura
+
+- Operaciones sin consumidor hoy: `por-estado` y `siguiente-hito` (`todo.sh`) —publicadas por anticipado—; el resto tiene al menos un skill consumidor.
+- Artefactos del ciclo aún sin operación delegada: `ROADMAP.md` —lectura y escritura directas del consumidor—; la sección `## Borradores` de `propuesta.md` —los borradores se listan y tachan a mano, `promocion.sh` solo la actualiza al promover—; las escrituras de los índices `README.md` de `docs/decisions/` y `docs/lessons/` —sus consultas por disparadores ya las cubre `indice.sh`—; y el índice de `docs/domains/` entero —formato distinto, sin lectura ni escritura delegada—. El registro de experiencias y el changelog están cubiertos por `operar-experiencias` y `operar-changelog`.
 
 ## Finalización
 
