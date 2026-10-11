@@ -17,6 +17,9 @@
 
 ## General
 
+- [ ] docs/tasks/016-fundamentar-guia-estilo.md — Fundamentar la guía de estilo
+
+
 
 ## Hito 1: Núcleo TodoMVC
 
