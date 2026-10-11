@@ -27,7 +27,7 @@ Instrucciones para que un agente mantenga viva la documentación de producto del
 
 ## Cuándo no usar
 
-- Para documentar el modelo del dominio —entidades, invariantes, lenguaje ubicuo—: eso corresponde a `documentar-dominio`. La frontera es de audiencia y contenido: un hecho de comportamiento observable vive en la doc de producto; un hecho de modelo, en `docs/domains/`; cada documento referencia al otro, no lo copia.
+- Para documentar el modelo del dominio —entidades, invariantes, lenguaje ubicuo—: eso corresponde a `documentar-dominio`. La frontera es de audiencia y contenido: un hecho de comportamiento observable vive en la doc de producto; un hecho de modelo, en la documentación de dominios; cada documento referencia al otro, no lo copia.
 - Para evaluar la calidad de la arquitectura: eso corresponde a `revisar-arquitectura`.
 - Para registrar decisiones de diseño: usar `decisiones-diseno`.
 - Cuando el proyecto no tiene directorio de documentación de producto: crearlo es una decisión que se planifica, no un efecto colateral de este sensor.
@@ -35,7 +35,7 @@ Instrucciones para que un agente mantenga viva la documentación de producto del
 ## Entrada
 
 - La ubicación de los cambios de la tarea —árbol de trabajo sin commitear o rango de commits—: el skill reconstruye el diff con git a partir de ella, no lo recibe ya materializado (o el comportamiento del producto, si se documenta por primera vez).
-- El directorio de documentación de producto del proyecto evaluado: su índice y los documentos existentes (guías, referencia, funcionalidades).
+- El directorio de documentación de producto del proyecto evaluado —resuelto con `convencion dir_docs_producto` de `consultar-artefactos`—: su índice y los documentos existentes (guías, referencia, funcionalidades).
 - La suite de pruebas del proyecto, como ancla de los escenarios.
 - `assets/feature.txt` como plantilla del documento de funcionalidad.
 
@@ -50,7 +50,7 @@ Instrucciones para que un agente mantenga viva la documentación de producto del
 2. **Un hogar por hecho:** cada hecho se define una sola vez. Los hechos del modelo no se repiten en la doc de producto: se referencia el documento de dominio correspondiente.
 3. **Indexado o no existe:** todo documento de producto está listado en el índice del directorio; un documento huérfano se da de alta o se elimina.
 4. **Anclado a la suite:** cada escenario nombra la prueba que lo verifica —módulo y título, no número de línea— de modo que una funcionalidad no puede quedar obsoleta sin que una prueba lo delate. La suite concreta (archivo, framework) es dato del proyecto evaluado, no parte del formato.
-5. **Trazado por el ancla, no por identificadores:** cuando el PRD del conjunto declara los casos de uso (`CU-N` en `docs/prd/`), los escenarios se redactan desde ese comportamiento declarado —mismo vocabulario de negocio—, pero el documento público queda limpio de identificadores internos: la remontada al PRD corre por el ancla a la prueba, que traza a su `CU-N` en la suite. El lector público lee producto; quien necesita la intención la remonta por la cadena escenario → prueba → caso de uso.
+5. **Trazado por el ancla, no por identificadores:** cuando el PRD del conjunto declara los casos de uso (los `CU-N` del PRD), los escenarios se redactan desde ese comportamiento declarado —mismo vocabulario de negocio—, pero el documento público queda limpio de identificadores internos: la remontada al PRD corre por el ancla a la prueba, que traza a su `CU-N` en la suite. El lector público lee producto; quien necesita la intención la remonta por la cadena escenario → prueba → caso de uso.
 6. **Lenguaje de uso, no de implementación:** los escenarios y las guías describen lo que el usuario observa y hace, no aserciones ni símbolos internos.
 
 ## Procedimiento

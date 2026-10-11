@@ -31,7 +31,89 @@ Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando 
 ## Qué queda a criterio del proyecto destino
 
 - Las convenciones de commit que `commit` debe seguir (mensaje, idioma, formato).
-- La convención de ramas del proyecto: el nombre de las ramas de tarea —`ejecutar-tareas` usa el identificador de la tarea bajo el prefijo `tarea/` por defecto— y el nombre de la rama principal sobre la que se abren los pull requests. Conviene declararla al instalar, en el documento de convenciones que el proyecto use (por ejemplo `AGENTS.md`).
 - La política de versionado del changelog (categorías, cuándo liberar).
-- El nombre del directorio de documentación de producto, que `documentar-producto` mantiene en un directorio propio, separado del `docs/` de proceso.
 - Cualquier artefacto propio del proyecto (código, pruebas, documentación existente): el paquete no los presume ni los toca.
+
+El resto de lo que históricamente se dejaba «a criterio del proyecto» —ubicaciones, nomenclaturas, marcas, secciones, prefijos— está catalogado abajo como configuración con valores por defecto.
+
+## Frontera entre dominio y convención
+
+Los skills consumidores expresan acciones de dominio —«la próxima pendiente», «marcar bloqueada», «registrar el veredicto», «crear la tarea»— y los gestores de artefactos resuelven ubicación, formato y aplicación. La frontera que separa lo que un consumidor puede escribir en su `SKILL.md`:
+
+- **Dominio — puede nombrarse:** los artefactos como objetos del trabajo del usuario: la tarea por su referencia, la propuesta, la épica, la idea, la decisión, la lección. Su referencia es vocabulario del dominio, no configuración.
+- **Convención — no aparece en los skills:** ubicaciones de almacenamiento —nombres de archivos y directorios—, formatos internos —forma de líneas, comentarios de enlace, plantillas—, marcas y etiquetas de estado, nombres de sección, nomenclaturas de series y prefijos. Viven en el catálogo de convenciones.
+- **Formato externo — tampoco es convención configurable:** la sintaxis de Markdown —encabezados `##`, casillas `- [ ]`, negritas, comentarios— y el formato Keep a Changelog —`## [Unreleased]`, `### Added`, `[YANKED]`— son contrato fijo del artefacto, no decisión del proyecto.
+
+Ejemplos del inventario de fugas: «marcar `[x]` la línea de `TODO.txt`» es fuga doble —marca y ubicación—; la acción es «marcar la tarea completada». «`docs/tasks/132-x.md`» como referencia de la tarea concreta es dominio; «`docs/tasks/`» como lugar donde viven las tareas es convención. «`## Revisión`» es convención —un nombre de sección—; «el veredicto del subagente» es dominio.
+
+## Catálogo de convenciones
+
+Toda constante de las clases listadas vive como clave de configuración con su valor por defecto —la convención del paquete— y el consumidor que la resuelve. La lista es abierta: una convención nueva del ciclo se registra aquí.
+
+**Rutas de artefactos** —las resuelven los gestores para construir el objetivo de cada operación—:
+
+- `indice_tareas` — `TODO.txt`: el índice de tareas.
+- `dir_tareas` — `docs/tasks`: un archivo por tarea.
+- `dir_propuestas` — `docs/proposals`: un directorio por propuesta.
+- `archivo_propuesta` — `propuesta.md`: el documento dentro de cada directorio de propuesta.
+- `dir_ideas` — `docs/ideas`: ideas persistidas.
+- `dir_epicas` — `docs/epics`: un documento por épica.
+- `dir_decisiones` — `docs/decisions`: decisiones de diseño, con `README.md` como índice por disparadores.
+- `dir_lecciones` — `docs/lessons`: lecciones aprendidas, con `README.md` como índice por disparadores.
+- `dir_dominios` — `docs/domains`: documentación viva de dominios.
+- `dir_investigaciones` — `docs/research`: resultados de `investigar`.
+- `dir_revisiones_arquitectura` — `docs/architecture-reviews`: informes de `revisar-arquitectura`.
+- `dir_prd` — `docs/prd`: PRD de conjuntos.
+- `dir_docs_producto` — `product-docs`: documentación de producto, fuera del `docs/` de proceso.
+- `archivo_experiencias` — `EXPERIENCIAS.md`: el registro append-only.
+- `archivo_changelog` — `CHANGELOG.md`: el changelog.
+- `archivo_roadmap` — `ROADMAP.md`: el roadmap.
+- `archivo_design` — `DESIGN.md`: la guía de estilo.
+
+**Marcas del índice** —el carácter dentro de la casilla—:
+
+- `marca_pendiente` — ` ` · `marca_en_progreso` — `~` · `marca_en_revision` — `r` · `marca_completada` — `x` · `marca_bloqueada` — `!` · `marca_propuesta` — `p`
+- `marca_aprobada` — `a` · `marca_descartada` — `d` (estados internos de `propuesta.md`)
+
+**Etiquetas de estado** —las opciones de la línea de estado de tareas, propuestas y épicas—:
+
+- `estado_pendiente` — `Pendiente` · `estado_en_progreso` — `En progreso` · `estado_en_revision` — `En revisión` · `estado_completada` — `Completada` · `estado_bloqueada` — `Bloqueada`
+- `estado_borrador` — `Borrador` · `estado_pendiente_revision` — `Pendiente de revisión` · `estado_aprobada` — `Aprobada` · `estado_descartada` — `Descartada`
+- `estado_planificada` — `Planificada` (épicas)
+
+**Secciones** —nombres de encabezado dentro de los artefactos—:
+
+- `seccion_general` — `General` · `seccion_propuestas` — `Propuestas en revisión` · `seccion_hito` — `Hito` (los encabezados de agrupación son `## Hito N: título`)
+- `seccion_estado` — `Estado` · `seccion_revision` — `Revisión` · `seccion_dependencias` — `Dependencias` · `seccion_desviaciones` — `Desviaciones del plan` · `seccion_plan` — `Plan técnico` · `seccion_suite` — `Suite de pruebas esperada` · `seccion_contexto` — `Contexto` · `seccion_conectividad` — `Conectividad`
+- `seccion_borradores` — `Borradores` (en `propuesta.md`) · `seccion_piezas` — `Piezas` (en la épica)
+
+**Nomenclaturas y formatos de línea:**
+
+- `ancho_numeracion` — `3`: la `NNN` de tareas, propuestas, épicas, ideas, dominios y revisiones.
+- `ancho_borrador` — `2`: la `MM` de los borradores dentro de una propuesta.
+- `prefijo_decision` — `D`: la `DNNN` de las decisiones.
+- `prefijo_caso_uso` — `CU`: el `CU-N` de los casos de uso del PRD.
+- `ref_borrador` — `Borrador`: la forma «Borrador MM» de las dependencias entre borradores.
+- `formato_linea_tarea` — `- [%s] %s — %s`, `formato_linea_propuesta` — `- [%s] %s/ — %s (%s borradores)` y `formato_bloqueante` — `  - [ ] %s`: las líneas del índice.
+- `comentario_epica` — `épica`: el enlace del encabezado a su épica es `<!-- épica: <ruta> -->`.
+- `formato_veredicto` — `- %s: %s — %s` (autor, fecha, veredicto), `marcador_fecha` — `[fecha]`, `opciones_veredicto` — `Aprueba | Solicita cambios` y `actores_revision` — `Subagente|Usuario (ejecución)|Usuario (cierre)`: la línea de `## Revisión`, su placeholder y la plantilla de veredictos.
+- `ref_depende` — `depende de`: la forma «depende de MM» de las dependencias en el índice de una propuesta.
+- `dependencias_vacia` — `Ninguna`: la línea que declara ausencia de dependencias.
+- `campo_procesada` — `> **Procesada en:** %s` y `campo_orden_idea` — `**Orden sugerido:**`: marcas de las ideas.
+- `campos_experiencia` — `Id Tarea Esperado Obtenido Corrección`, `campo_estado_experiencia` — `Estado`, `estado_experiencia_pendiente` — `pendiente` y `estado_experiencia_consolidada` — `consolidada`: la entrada del registro.
+- `campos_indice_disparadores` — `Disparadores|Resumen|Estado`: los sub-campos de los índices por disparadores.
+
+**Prefijos y git:**
+
+- `prefijo_rama_tarea` — `tarea/`: la rama de una tarea es su identificador bajo este prefijo.
+- `rama_principal` — `main`: la rama sobre la que se abren los pull requests.
+
+## Inyección al instalar
+
+Cada gestor —`consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias`, `operar-changelog`— lleva `assets/convenciones.sh`: un archivo `CLAVE=valor` con los valores por defecto del catálogo, idéntico en los cuatro. Los scripts lo cargan al arrancar y resuelven de él cada literal que es convención; el gestor resuelve además las rutas para construir el objetivo de las operaciones, de modo que el consumidor nunca nombra ni pasa una ubicación.
+
+Al instalar, el agente instalador escribe en cada `convenciones.sh` los valores del proyecto destino cuando difieren de la convención —otro nombre de índice, otro directorio de tareas, otra marca— y los flujos continúan sin tocar los skills. Una clave ausente en el archivo rige por el valor por defecto embebido en el script; un archivo malformado hace fallar la operación con diagnóstico, sin operar sobre datos sintetizados.
+
+Cuando un consumidor necesita una convención para mecánica ajena a los artefactos —el prefijo de rama de `ejecutar-tareas`, la rama principal de `gestionar-pr`, un directorio donde escribir directamente—, la consulta con la operación `convencion <clave>` de `consultar-artefactos`.
+
+Las plantillas de `assets/` de los consumidores —la del archivo de tarea, la de la propuesta, la de la épica— reproducen los literales de la convención por defecto; cuando la instalación cambia una convención, el instalador reescribe también esos literales en las plantillas.

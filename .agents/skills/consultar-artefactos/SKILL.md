@@ -28,7 +28,7 @@ Instrucciones para que un agente responda consultas deterministas sobre los arte
 
 ## Entrada
 
-- La orden delegada del consumidor: el archivo o directorio objetivo, la operación del catálogo y los términos que la operación pida.
+- La consulta delegada del consumidor en términos de dominio —«la próxima pendiente», «el estado de la tarea», «las propuestas en revisión», «el valor de la convención»— con las referencias de dominio que pida; nunca una ubicación, marca o sección que la configuración resuelve.
 
 ## Salida
 
@@ -44,9 +44,29 @@ Instrucciones para que un agente responda consultas deterministas sobre los arte
 
 ## Procedimiento
 
-1. **Recibir la orden delegada:** el consumidor indica el archivo o directorio objetivo, la operación y sus términos.
-2. **Ejecutar el script** de `assets/` correspondiente a la operación con los argumentos dados.
-3. **Devolver la salida al consumidor:** stdout es el dato; un código de salida distinto de cero se transmite con su diagnóstico, sin reinterpretarlo.
+1. **Recibir la consulta delegada:** el consumidor indica la consulta de dominio y sus referencias.
+2. **Resolver ubicación y operación:** la consulta mapea a la operación del catálogo; el objetivo —el artefacto a consultar— sale de `assets/convenciones.sh` salvo que sea la referencia de dominio pasada. Un `convenciones.sh` malformado hace fallar el script con diagnóstico.
+3. **Ejecutar el script** de `assets/` correspondiente a la operación con los argumentos resueltos.
+4. **Devolver la salida al consumidor:** stdout es el dato; un código de salida distinto de cero se transmite con su diagnóstico, sin reinterpretarlo.
+
+## Acciones
+
+El consumidor delega la consulta de dominio; el gestor la traduce a la operación del catálogo y resuelve el objetivo desde la configuración.
+
+- «la próxima pendiente»: `siguiente` sobre el índice configurado —emite la línea completa de la tarea en curso o la primera pendiente—.
+- «las propuestas en revisión»: `propuestas` sobre el índice configurado.
+- «las agrupaciones del índice con su épica»: `grupos` sobre el índice configurado.
+- «el estado de la agrupación `<texto>`»: `estado-grupo` sobre el índice configurado —la agrupación está agotada cuando solo figura la marca completada—.
+- «las líneas de trabajo abiertas»: `inventario` sobre el índice y el directorio de épicas configurados.
+- «el estado de la tarea `<ref>`»: `estado` sobre el archivo indicado —la referencia es de dominio: la tarea por su referencia, la propuesta, la épica—.
+- «las secciones de `<ref>`»: `secciones` sobre el documento indicado.
+- «si la planeación de la tarea `<ref>` está completa»: `planeacion` —cuatro líneas `sección<TAB>presente|ausente` en orden fijo—.
+- «las dependencias de la tarea `<ref>`»: `dependencias`.
+- «las acciones del plan de `<ref>` con su marca»: `checklist`.
+- «las ideas sin procesar»: `pendientes` sobre el directorio de ideas configurado.
+- «las lecciones/decisiones que disparan con `<término>…`»: `coincidencias` sobre el índice del dominio correspondiente.
+- «el siguiente número de la serie `<directorio>` [prefijo] [ancho]»: `siguiente` —el directorio es referencia de dominio; prefijo y ancho salen de la configuración si la consulta no los da—.
+- «el valor de la convención `<clave>`»: `convencion` —las convenciones ajenas a artefactos, como el prefijo de las ramas de tarea o la rama principal—.
 
 ## Catálogo de operaciones
 
@@ -123,6 +143,14 @@ Emite `archivo<TAB>estado<TAB>resumen` por cada entrada cuya línea `Disparadore
 #### `siguiente [prefijo] [ancho]`
 
 Emite el siguiente número de la serie —el mayor número entre los archivos `<prefijo><dígitos>…` del directorio, más uno— con el formato `<prefijo>` seguido del número rellenado con ceros a `<ancho>` dígitos. `<prefijo>` y `<ancho>` son opcionales; el ancho vale `3` por defecto y se pasa `""` como prefijo cuando solo interesa el ancho. Directorio sin entradas de la serie: emite el primero (`001`, `D001`…). Ejemplos: `121` para `docs/tasks`, `D034` para `docs/decisions` con prefijo `D`, `05` para borradores con ancho `2`.
+
+### `convencion.sh` — las convenciones del proyecto
+
+Se invoca como `assets/convencion.sh <clave>`, sin objetivo: el valor de la convención vive en `assets/convenciones.sh`.
+
+#### `convencion <clave>`
+
+Emite el valor configurado de `<clave>` por stdout —o el valor por defecto del catálogo de `PERSONALIZE.md` si la instalación no lo personaliza—. Es la vía para las convenciones ajenas a un artefacto concreto: el prefijo de las ramas de tarea (`prefijo_rama_tarea`), la rama principal (`rama_principal`) y cualquier clave del catálogo que un consumidor necesite. Clave desconocida o sin valor: diagnóstico y exit `1`; sin `<clave>`, `uso:` y exit `2`.
 
 ### Cobertura
 

@@ -30,7 +30,7 @@ Instrucciones para que un agente gestione el pull request de una tarea como veh�
 
 ## Entrada
 
-- El archivo de la tarea (`docs/tasks/NNN-slug.md`): objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo cuando existen —de él salen el qué y el porqué de la descripción—.
+- El archivo de la tarea: objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo cuando existen —de él salen el qué y el porqué de la descripción—.
 - El informe de la revisión técnica aprobada: sus observaciones alimentan los puntos de atención para el revisor.
 - La rama de la tarea —creada por el ejecutor al inicio de la iteración— con el trabajo en el árbol, commiteado o sin commitear.
 - El resultado de las pruebas o verificaciones ejecutadas durante la tarea, si las hubo.
@@ -73,7 +73,7 @@ Instrucciones para que un agente gestione el pull request de una tarea como veh�
 ### Cierre
 
 1. **Recibir la aprobación del paquete de cierre** del invocador: la puerta de cierre pertenece a `ejecutar-tareas`, este skill no la repite.
-2. **Empujar la rama** con `git push`, para que el merge remoto incluya los últimos commits —los veredictos de `## Revisión` entre ellos—.
+2. **Empujar la rama** con `git push`, para que el merge remoto incluya los últimos commits —los veredictos de la sección de revisión entre ellos—.
 3. **Fusionar el PR** con `gh pr merge <n> --squash --delete-branch`, fijando el mensaje del commit resultante con `--subject` y `--body`: el commit del squash es el único que queda de la tarea en la rama principal, así que su mensaje se redacta con las reglas del skill `commit` —asunto convencional, el del título del PR, y cuerpo que explica el qué y el porqué del cambio completo—; sin fijarlo, el cuerpo por defecto concatena los mensajes de todos los commits de la rama, rondas y escrituras de sensores incluidas. La opción `--delete-branch` borra la rama —local y remota— dejando la principal activa.
 4. **Traer el merge:** `git pull` en la rama principal.
 5. **Informar** del merge y del estado del repositorio.

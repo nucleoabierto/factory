@@ -28,7 +28,7 @@ Instrucciones para que un agente registre las acciones que el usuario corrigió 
 ## Entrada
 
 - La conversación de la sesión actual, donde el usuario corrigió al agente.
-- La tarea en curso o recién terminada, referenciada como `docs/tasks/NNN-slug.md`.
+- La tarea en curso o recién terminada, referenciada por la ruta de su archivo.
 - El registro de experiencias del proyecto, si ya existe; su ubicación la resuelve `operar-experiencias`.
 
 ## Salida
@@ -48,7 +48,7 @@ Instrucciones para que un agente registre las acciones que el usuario corrigió 
 
 1. **Identificar las correcciones** de la sesión: revisiones donde el usuario solicitó cambios, comentarios del pull request que corrigieron el trabajo, indicaciones que desviaron el rumbo del trabajo, o peticiones explícitas de registro.
 2. **Descartar lo que no es lección:** correcciones meramente mecánicas ya resueltas (una tilde, un nombre de variable) que no contienen nada transferible a tareas futuras. Ante la duda sobre si una corrección es transferible, preguntar al usuario.
-3. **Redactar una entrada por corrección** con el contenido descrito en «Contenido de la entrada»: un `Id` único delegando su generación en `operar-experiencias` —operación `id`, pasando como ocupados los ya asignados a otras entradas del mismo lote—, la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
+3. **Redactar una entrada por corrección** con el contenido descrito en «Contenido de la entrada»: un identificador único delegando su generación en `operar-experiencias` —operación `id`, pasando como ocupados los ya asignados a otras entradas del mismo lote—, la tarea afectada, lo esperado, lo obtenido y la corrección del usuario.
 4. **Comprobar duplicados:** verificar que el registro no tenga ya una entrada equivalente (misma tarea y misma corrección) antes de añadirla, recuperando las entradas de la tarea con la operación `por-tarea` de `operar-experiencias`; el skill puede invocarse a mitad de sesión y otra vez al cierre de la tarea.
 5. **Presentar las entradas al usuario** para validación. Si pide ajustes, corregir y volver a presentar.
 6. **Añadir las entradas** nuevas al registro delegando la operación `anexar` de `operar-experiencias`, que crea el registro con su cabecera si no existe y fija el estado inicial de cada entrada.
@@ -56,9 +56,9 @@ Instrucciones para que un agente registre las acciones que el usuario corrigió 
 
 ## Contenido de la entrada
 
-Cada entrada documenta la brecha entre lo esperado y lo obtenido: un `Id` único, la tarea afectada, qué esperaba el usuario, qué produjo el agente y la corrección que indicó. La forma escrita —un campo por línea, el `Id` por timestamp con resolución de colisiones, el estado inicial— la define y valida `operar-experiencias` al anexar; este skill solo redacta el contenido.
+Cada entrada documenta la brecha entre lo esperado y lo obtenido: un identificador único, la tarea afectada, qué esperaba el usuario, qué produjo el agente y la corrección que indicó. La forma escrita —un campo por línea, el identificador por timestamp con resolución de colisiones, el estado inicial— la define y valida `operar-experiencias` al anexar; este skill solo redacta el contenido.
 
-Una corrección genera una entrada; varias correcciones en la misma tarea generan varias entradas con la misma referencia de tarea. Las lecciones consolidadas referencian el `Id`, no la tarea, porque una tarea puede generar varias experiencias.
+Una corrección genera una entrada; varias correcciones en la misma tarea generan varias entradas con la misma referencia de tarea. Las lecciones consolidadas referencian el identificador de la experiencia, no la tarea, porque una tarea puede generar varias experiencias.
 
 ## Finalización
 

@@ -29,7 +29,7 @@ Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefac
 
 ## Entrada
 
-- La orden delegada del consumidor: el archivo o directorio objetivo, la operación del catálogo y los términos que la operación pida —marca, etiqueta, texto de referencia, línea a añadir o cuerpo de sección por `stdin`—.
+- La acción delegada del consumidor en términos de dominio —«marcar la tarea completada», «registrar el veredicto», «promover los borradores de la propuesta»— con las referencias de dominio que la acción pida: la tarea, la propuesta, la épica o la idea por su referencia; nunca una ubicación, marca o sección que la configuración resuelve.
 
 ## Salida
 
@@ -38,7 +38,7 @@ Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefac
 ## Principios rectores
 
 1. **Preservar lo que no se toca:** las mutaciones reescriben solo lo que la operación declara: sublistas de bloqueo, comentarios de épica, secciones ajenas y contenido quedan intactos.
-2. **La orden es completa:** el consumidor delega archivo, operación y términos; las decisiones —qué estado poner, qué sección escribir, dónde va una línea— son del consumidor, no del script.
+2. **La acción es completa:** el consumidor delega la acción y sus referencias de dominio; el gestor resuelve ubicación, formato y aplicación —qué artefactos toca un estado, con qué marca y etiqueta— desde `assets/convenciones.sh`; las decisiones —qué estado poner, qué texto escribir— son del consumidor, no del script.
 3. **Escritura canónica, lectura tolerante:** `## Estado` se escribe siempre en la forma canónica —línea completa de opciones con la vigente en negrita, marcador y etiqueta incluidos— aunque la entrada sea una variante histórica; `## Desviaciones del plan` y cualquier sección nueva van inmediatamente antes de `## Revisión` (D033).
 4. **Falla sin escribir:** ante un formato inesperado —sección ausente, referencia no localizada, línea de opciones no parseada— el script termina con diagnóstico y no modifica el archivo.
 5. **Promoción sin reescritura:** la promoción de borradores mueve archivos, inyecta las secciones que faltan y renumera referencias; no reformula el contenido aprobado (D014).
@@ -46,9 +46,34 @@ Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefac
 
 ## Procedimiento
 
-1. **Recibir la orden delegada:** el consumidor indica el archivo o directorio objetivo, la operación y sus términos.
-2. **Ejecutar el script** de `assets/` correspondiente a la operación con los argumentos dados; el cuerpo de las secciones nuevas entra por `stdin`.
-3. **Transmitir el resultado al consumidor:** un código de salida distinto de cero se comunica con su diagnóstico, sin reinterpretarlo.
+1. **Recibir la acción delegada:** el consumidor indica la acción de dominio y sus referencias.
+2. **Resolver ubicación, formato y aplicación:** la acción mapea a las operaciones del catálogo; el objetivo —el artefacto a mutar— sale de `assets/convenciones.sh` salvo que sea la referencia de dominio pasada; las marcas, etiquetas de estado, nombres de sección y formatos de línea salen de la misma configuración. Un `convenciones.sh` malformado hace fallar el script con diagnóstico antes de tocar nada.
+3. **Ejecutar el script** de `assets/` correspondiente a cada operación de la expansión —una acción puede componer varias—; el cuerpo de las secciones nuevas entra por `stdin`.
+4. **Transmitir el resultado al consumidor:** un código de salida distinto de cero se comunica con su diagnóstico, sin reinterpretarlo.
+
+## Acciones
+
+El consumidor delega la acción de dominio; el gestor la expande a las operaciones del catálogo y resuelve lo que la acción no nombra. Los estados se nombran en el vocabulario del dominio —`pendiente`, `en-progreso`, `en-revision`, `completada`, `bloqueada`, `borrador`, `pendiente-de-revision`, `aprobada`, `descartada`, `planificada`— y el gestor los traduce a la marca y la etiqueta configuradas. Las secciones se nombran por su concepto —`estado`, `revision`, `dependencias`, `plan`, `suite`, `contexto`, `conectividad`, `desviaciones`, `borradores`, `piezas`— y el gestor las traduce al nombre configurado.
+
+- «marcar la tarea `<ref>` como `<estado>`»: `marcar` sobre el índice con la marca configurada del estado y `estado` sobre el archivo de la tarea con su etiqueta —las dos mutaciones que el estado implica—.
+- «declarar la tarea `<ref>` bloqueada por `<refs>`»: la misma acción de estado con `bloqueada`, pasando los bloqueantes a `marcar`.
+- «dar de alta la tarea `<ref>` «`<título>`» bajo `<agrupación>`»: compone la línea con el formato configurado —marca pendiente, referencia, título— y `añadir`; `<agrupación>` `general` o `propuestas` denota las secciones fijas, otro texto casa con un encabezado.
+- «dar de alta la propuesta `<dir>` «`<título>`» (`<n>` borradores)»: compone la línea de propuesta en revisión con el formato configurado —marca de propuesta, directorio, título y cuenta— y `añadir` sobre la sección de propuestas.
+- «retirar `<ref>` del índice»: `retirar`.
+- «mover `<ref>` bajo `<agrupación>`»: `mover`.
+- «recolocar `<ref>` `antes-de`|`después-de` `<ref2>`|`final`»: `recolocar`.
+- «retirar la agrupación `<ref>`»: `retirar-grupo`.
+- «crear la agrupación «`<título>`» [con épica `<ref>`]»: `encabezado`; emite el encabezado creado.
+- «inicializar el índice»: `inicializar`.
+- «cambiar el estado de `<ref>` a `<estado>`»: `estado` sobre el documento indicado —la propuesta, la épica u otro documento con línea de estado—.
+- «marcar la opción `<estado>` del estado de `<ref>`»: `marcar-opcion` —el estado acumulativo de las épicas—.
+- «registrar el veredicto `<autor>` `<veredicto>` en `<ref>`»: compone la línea con el formato configurado —autor, fecha de hoy, veredicto— y `registrar-revision`.
+- «insertar la sección `<concepto>` en `<ref>` con el cuerpo dado»: `insertar-seccion` con el cuerpo por `stdin`.
+- «añadir la línea `<línea>` a la sección `<concepto>` de `<ref>`»: `añadir-linea`.
+- «marcar completado el ítem `<texto>` de la sección `<concepto>` de `<ref>`»: `marcar-item`.
+- «sustituir el ítem `<texto>` de la sección `<concepto>` de `<ref>` por el cuerpo dado»: `sustituir-item` con el cuerpo por `stdin`.
+- «marcar la idea `<ref>` procesada en `<destino>`»: `procesada`.
+- «promover los borradores de la propuesta `<dir>`»: `promover`, resolviendo el directorio de tareas y el índice de la configuración; emite la correspondencia `MM→NNN→ruta` por borrador.
 
 ## Catálogo de operaciones
 
