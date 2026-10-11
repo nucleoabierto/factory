@@ -225,3 +225,10 @@
   Obtenido: el texto añadido al skill en las rondas de corrección quedó sin pasada de redacción
   Corrección: re-correr la revisión preventiva sobre el texto añadido tras la primera pasada, antes de dar el trabajo por cerrado
   Estado: consolidada
+
+- Id: 20261011T021657
+  Tarea: docs/tasks/131-catalogo-autodescriptivo-frontera-mecanica.md
+  Esperado: el catálogo debía registrar solo operaciones en uso.
+  Obtenido: publiqué por-estado y siguiente-hito marcándolas como sin consumidor, por anticipado.
+  Corrección: no agregar operadores por anticipado — son YAGNI; se añaden cuando aparezca su consumidor.
+  Estado: pendiente
