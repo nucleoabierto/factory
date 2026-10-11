@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -123,5 +123,5 @@ Veredicto por operación sustentado en la batería de escenarios ejecutada sobre
 ## Revisión
 
 - Subagente: 2026-10-11 — Aprueba
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-10-11 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
