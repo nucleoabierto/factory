@@ -60,10 +60,6 @@ Los scripts viven en `assets/` y se invocan como `assets/<script>.sh <objetivo> 
 
 Emite la primera línea `- [~] ` o `- [r] ` del índice —la tarea en curso—; si no hay ninguna, la primera `- [ ] `. La línea va completa, tal como está escrita. Sin tareas abiertas, salida vacía con exit `0`.
 
-#### `por-estado <marca>`
-
-Emite las líneas que empiezan por `- [<marca>] ` —la marca de un carácter indicada: ` `, `~`, `r`, `x`, `!`, u otra como `p`—, completas y en el orden del documento. Sin coincidencias, salida vacía con exit `0`; sin `<marca>`, `uso:` y exit `2`. Sin consumidor hoy: se mantiene publicada por anticipado (véase Cobertura).
-
 #### `propuestas`
 
 Emite las líneas `- [p] ` —las propuestas en revisión—, completas y en el orden del documento. Sin propuestas, salida vacía con exit `0`.
@@ -75,10 +71,6 @@ Emite `encabezado<TAB>épica` por cada encabezado `##` del índice, en orden: el
 #### `estado-grupo <texto>`
 
 Emite `marca<TAB>cuenta` por cada marca presente en las líneas de tarea de las secciones cuyo encabezado `##` contiene la subcadena `<texto>` —varias palabras se concatenan con espacio—, ordenadas por marca con el espacio primero; las propuestas `[p]` cuentan como una marca más. La agrupación está agotada cuando solo figura la marca `x`. Sin sección que case o sin tareas bajo ella, salida vacía con exit `0`; sin `<texto>`, `uso:` y exit `2`.
-
-#### `siguiente-hito`
-
-Emite el siguiente número de la serie `## Hito N` —el mayor `N` más uno; `1` si el índice no tiene hitos—. Siempre una línea, exit `0`. Sin consumidor hoy: se mantiene publicada por anticipado (véase Cobertura).
 
 #### `inventario <dir-épicas>`
 
@@ -134,7 +126,7 @@ Emite el siguiente número de la serie —el mayor número entre los archivos `<
 
 ### Cobertura
 
-- Operaciones sin consumidor hoy: `por-estado` y `siguiente-hito` (`todo.sh`) —publicadas por anticipado—; el resto tiene al menos un skill consumidor.
+- Todas las operaciones tienen al menos un skill consumidor —las publicadas por anticipado no entran en el catálogo: se añaden cuando aparezca su consumidor—.
 - Artefactos del ciclo aún sin operación delegada: `ROADMAP.md` —lectura y escritura directas del consumidor—; la sección `## Borradores` de `propuesta.md` —los borradores se listan y tachan a mano, `promocion.sh` solo la actualiza al promover—; las escrituras de los índices `README.md` de `docs/decisions/` y `docs/lessons/` —sus consultas por disparadores ya las cubre `indice.sh`—; y el índice de `docs/domains/` entero —formato distinto, sin lectura ni escritura delegada—. El registro de experiencias y el changelog están cubiertos por `operar-experiencias` y `operar-changelog`.
 
 ## Finalización
