@@ -9,6 +9,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ### Added
 
+- Skill `operar-experiencias`: las operaciones mecánicas del registro de experiencias —`Id` únicos con resolución de colisiones, listado por estado o por tarea, anexado que valida la forma canónica y marcado de consolidadas— se delegan como acciones semánticas que el skill resuelve con su script propio y la ubicación configurada en la instalación; `registrar-experiencias` y `consolidar-lecciones` quedan cableados ([docs/epics/003-delegacion-mecanica-scripts.md](docs/epics/003-delegacion-mecanica-scripts.md))
 - Aprobación de tareas vía pull request: el ciclo ejecuta cada tarea en su propia rama —nombrada a partir del identificador de la tarea, con `tarea/` como prefijo por defecto que la instalación puede redefinir— y convierte la revisión humana en dos puertas, la de ejecución sobre el pull request con su bucle de comentarios clasificados y la de cierre sobre el paquete completo tras los sensores; el nuevo skill `gestionar-pr` encapsula la mecánica —apertura con descripción orientada al revisor, bucle de comentarios y merge squash que deja un commit por tarea en la rama principal— y el `## Revisión` de las tareas pasa a registrar tres veredictos ([docs/tasks/130-materializar-aprobacion-via-pr.md](docs/tasks/130-materializar-aprobacion-via-pr.md))
 
 ## [0.3.0] - 2026-10-04

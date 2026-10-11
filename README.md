@@ -55,6 +55,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `consultar-decisiones` | Recupera las decisiones de diseño vigentes que rigen el trabajo a realizar. |
 | `consultar-artefactos` | Responde consultas mecánicas sobre los artefactos del sistema —índice, tareas, índices de decisiones y lecciones, ideas y series— que los demás skills le delegan. |
 | `actualizar-artefactos` | Ejecuta las escrituras mecánicas sobre los artefactos del sistema —marcas del índice, `## Estado` y secciones de las tareas, ideas procesadas y promoción de borradores— que los demás skills le delegan. |
+| `operar-experiencias` | Ejecuta las operaciones mecánicas del registro de experiencias —`Id` únicos, listados por estado o tarea, anexado y marcado de consolidadas— que los demás skills le delegan. |
 
 **Salud del dominio y del producto**
 
