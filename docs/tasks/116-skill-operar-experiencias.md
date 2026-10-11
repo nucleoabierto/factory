@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -50,6 +50,6 @@ Crear el skill de utilidad que ejecuta las operaciones mecánicas sobre `EXPERIE
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-06 — Aprueba
+- Usuario (ejecución): 2026-10-06 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
