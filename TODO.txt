@@ -41,10 +41,6 @@
 - [x] docs/tasks/127-orientacion-generativa-en-aplicar-guia-estilo.md — Consumir la orientación generativa en aplicar-guia-estilo
 - [x] docs/tasks/128-pie-primera-version-changelog.md — Pie de primera versión en el changelog
 
-
-
-
-
 ## Hito 11: Delegación de pasos mecánicos a scripts
 <!-- épica: docs/epics/003-delegacion-mecanica-scripts.md -->
 
@@ -53,7 +49,6 @@
 - [x] docs/tasks/115-skill-actualizar-artefactos.md — Crear el skill de actualización de artefactos
 - [x] docs/tasks/116-skill-operar-experiencias.md — Crear el skill de operación de experiencias
 - [x] docs/tasks/117-skill-operar-changelog.md — Crear el skill de operación del changelog
-- [ ] docs/tasks/131-catalogo-autodescriptivo-frontera-mecanica.md — Catálogo autodescriptivo y frontera mecánica en los skills de utilidad
+- [x] docs/tasks/131-catalogo-autodescriptivo-frontera-mecanica.md — Catálogo autodescriptivo y frontera mecánica en los skills de utilidad
 - [ ] docs/tasks/132-accion-semantica-convenciones-configuracion.md — Acción semántica en los invocadores y convenciones como configuración
-
 

@@ -9,11 +9,9 @@ uso() {
 uso: todo.sh <indice> <operación> [argumentos]
 operaciones:
   siguiente                  primera línea en curso ([~] o [r]); si no hay, primera pendiente
-  por-estado <marca>         líneas de tarea con la marca indicada ( , ~, r, x, !)
   propuestas                 líneas de propuestas [p]
   grupos                     encabezados ## con su épica enlazada: encabezado<TAB>épica
   estado-grupo <texto>       conteo por estado bajo el encabezado que contiene <texto>
-  siguiente-hito             siguiente número de la serie «## Hito N»
   inventario <dir-epicas>    líneas abiertas: épicas, grupos del índice y tareas sueltas
 EOF
   exit 2
@@ -31,11 +29,6 @@ case "$op" in
       /^- \[ \] / && !pendiente { pendiente=$0 }
       END { if (!encontro && pendiente) print pendiente }
     ' "$indice"
-    ;;
-
-  por-estado)
-    [ $# -ge 1 ] || uso
-    awk -v m="$1" 'index($0, "- [" m "] ") == 1' "$indice"
     ;;
 
   propuestas)
@@ -68,10 +61,6 @@ case "$op" in
       }
       END { for (m in cuenta) print m "\t" cuenta[m] }
     ' "$indice" | sort
-    ;;
-
-  siguiente-hito)
-    awk '/^## Hito [0-9]+/ { n = $3 + 0; if (n > max) max = n } END { print max + 1 }' "$indice"
     ;;
 
   inventario)

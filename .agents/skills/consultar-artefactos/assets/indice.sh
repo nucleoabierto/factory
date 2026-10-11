@@ -32,7 +32,7 @@ awk -v terminos="$terminos" '
         return
       }
   }
-  /<!--/ { encom=1; next }
+  /<!--/ { if ($0 !~ /-->/) encom=1; next }
   /-->/ { encom=0; next }
   encom { next }
   /^- [^ ]/ { evaluar(); entrada=$2; disp=""; resumen=""; estado=""; next }

@@ -197,7 +197,7 @@ case "$op" in
           while (pos > h + 1 && l[pos - 1] ~ /^[[:space:]]*$/) pos--
           for (i = 1; i < pos; i++) print l[i]
           print nueva; print ""
-          for (i = pos; i <= NR; i++) print l[i]
+          for (i = fin; i <= NR; i++) print l[i]
         }
       ' "$f" > "$tmp" && mv "$tmp" "$f"
     fi
@@ -216,7 +216,7 @@ case "$op" in
         while (pos > h + 1 && l[pos - 1] ~ /^[[:space:]]*$/) pos--
         for (i = 1; i < pos; i++) print l[i]
         print nueva; print ""
-        for (i = pos; i <= NR; i++) print l[i]
+        for (i = fin; i <= NR; i++) print l[i]
       }
     ' "$f" > "$tmp"; then
       mv "$tmp" "$f"

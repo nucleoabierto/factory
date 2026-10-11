@@ -115,7 +115,7 @@ case "$op" in
         for (i = 1; i < pos; i++) print l[i]
         if (pos > 1 && l[pos - 1] ~ /^## /) print ""
         print nueva; print ""
-        for (i = pos; i <= n; i++) print l[i]
+        for (i = fin; i <= n; i++) print l[i]
       }
     ' "$indice" > "$tmp"; then
       normalizar "$tmp" > "$tmp.n" && mv "$tmp.n" "$tmp"
@@ -146,6 +146,7 @@ case "$op" in
   mover)
     [ $# -ge 2 ] || uso
     ref=$1; enc=$2
+    rc=0
     awk -v ref="$ref" -v enc="$enc" '
       { l[NR] = $0 }
       END {
@@ -169,9 +170,9 @@ case "$op" in
         if (pos > 1 && r[pos - 1] ~ /^## /) print ""
         for (j = ini; j <= fin; j++) print l[j]
         print ""
-        for (i = pos; i <= nr; i++) print r[i]
+        for (i = fin_b; i <= nr; i++) print r[i]
       }
-    ' "$indice" > "$tmp"; rc=$?
+    ' "$indice" > "$tmp" || rc=$?
     if [ "$rc" -eq 0 ]; then
       normalizar "$tmp" > "$tmp.n" && mv "$tmp.n" "$tmp"
       mv "$tmp" "$indice"
@@ -187,6 +188,7 @@ case "$op" in
     ref=$1; pos=$2; ref2=${3:-}
     case "$pos" in antes-de|después-de|final) ;; *) uso ;; esac
     [ "$pos" = "final" ] || [ -n "$ref2" ] || uso
+    rc=0
     awk -v ref="$ref" -v pos="$pos" -v ref2="$ref2" '
       { l[NR] = $0 }
       END {
@@ -235,7 +237,7 @@ case "$op" in
         }
         if (p == n + 1) for (j = 1; j <= na; j++) print a[j]
       }
-    ' "$indice" > "$tmp"; rc=$?
+    ' "$indice" > "$tmp" || rc=$?
     if [ "$rc" -eq 0 ]; then
       normalizar "$tmp" > "$tmp.n" && mv "$tmp.n" "$tmp"
       mv "$tmp" "$indice"
