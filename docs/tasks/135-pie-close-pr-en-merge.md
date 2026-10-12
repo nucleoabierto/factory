@@ -42,4 +42,4 @@ El merge squash del pull request produce un commit con mensaje personalizado —
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]
 - Usuario (ejecución): 2026-10-12 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-10-12 — Aprueba
