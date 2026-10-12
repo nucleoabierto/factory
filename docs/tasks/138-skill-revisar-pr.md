@@ -97,7 +97,7 @@ Trazadas a CU-1 del PRD («Revisar un PR ajeno», `docs/prd/004-revision-codigo-
 - Cada hallazgo cita la regla declarada o el patrón concreto que infringe
 - El skill no publica comentarios, no corrige código, no fusiona — solo análisis `(B)`
 - Funciona sobre un PR sin artefactos del ciclo de tareas — no exige archivo de tarea, plan ni suite `(E)`
-- `convencion dir_revisiones_pr` resuelve `docs/pr-reviews` tras el registro, y la clave figura en los cinco puntos del catálogo
+- `convencion dir_revisiones_pr` resuelve `.git/factory/pr-reviews` tras el registro, y la clave figura en los cinco puntos del catálogo
 - `bash -n` pasa sobre `convencion.sh` y las cuatro `convenciones.sh`; `teleprompter.json` queda JSON válido con la entrada en orden alfabético
 
 ## Desviaciones del plan

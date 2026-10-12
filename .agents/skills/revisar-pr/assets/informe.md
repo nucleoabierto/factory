@@ -1,7 +1,7 @@
-# Revisión de PR <número>
+# Revisión de PR [número]
 
 - **Fecha:** [fecha de la revisión]
-- **PR:** #<número> — «[título del PR]» — [enlace]
+- **PR:** #[número] — «[título del PR]» — [enlace]
 - **Base:** `[rama base]` ← **Head:** `[rama head]`
 - **Autor del PR:** [autor]
 

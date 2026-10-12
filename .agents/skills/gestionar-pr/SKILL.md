@@ -82,7 +82,7 @@ Instrucciones para que un agente gestione el pull request de una tarea como veh�
 ## Finalización
 
 - Apertura: el PR está abierto, el usuario lo aprobó tras el bucle de comentarios y el invocador recibió el número de PR y el resumen del bucle.
-- Cierre: el PR está fusionado, la rama eliminada y el repositorio local en la rama principal actualizada.
+- Cierre: el PR está fusionado, la rama eliminada, el repositorio local en la rama principal actualizada y los informes locales del PR eliminados si existían.
 
 ## Referencias
 
