@@ -29,7 +29,7 @@ Instrucciones para que un agente ejecute las operaciones mecánicas del changelo
 ## Entrada
 
 - La acción delegada del consumidor: la operación del catálogo y sus términos, más el contenido cuando la operación lo requiere —las líneas de entrada en `anotar`, el cuerpo curado en `promover`—. El consumidor no nombra el artefacto ni pasa su ruta.
-- La ubicación del changelog, declarada en la configuración de la instalación —el documento de personalización del paquete o las convenciones del proyecto evaluado—.
+- La ubicación del changelog, resuelta de `assets/convenciones.sh` —la clave `archivo_changelog`, escrita por el instalador según `PERSONALIZE.md`—.
 
 ## Salida
 
@@ -46,9 +46,22 @@ Instrucciones para que un agente ejecute las operaciones mecánicas del changelo
 ## Procedimiento
 
 1. **Recibir la acción delegada:** el consumidor indica la operación y sus términos.
-2. **Resolver la ubicación del changelog** según lo declarado en la instalación: el documento de personalización del paquete (`PERSONALIZE.md`) fija el artefacto convencional; si el proyecto evaluado declara otra ubicación en sus convenciones, esa prevalece. Cuando la ruta declarada no existe, la operación `localizar` busca el archivo por sus nombres alternativos.
+2. **Resolver la ubicación del changelog:** el valor de `archivo_changelog` en `assets/convenciones.sh` da la ruta convencional; cuando no existe, la operación `localizar` busca el archivo por sus nombres alternativos. Un archivo de configuración malformado hace fallar el script con diagnóstico antes de tocar nada.
 3. **Ejecutar el script** `assets/changelog.sh` con la ruta resuelta, la operación y los términos dados; el contenido de `anotar` y `promover` entra por `stdin`.
 4. **Devolver la salida al consumidor:** stdout es el dato; un código de salida distinto de cero se transmite con su diagnóstico, sin reinterpretarlo.
+
+## Acciones
+
+El consumidor delega la acción de dominio; el gestor resuelve la ubicación del changelog desde `assets/convenciones.sh` y la traduce a la operación del catálogo.
+
+- «localizar el changelog del proyecto»: `localizar` sobre la raíz —primero la ruta configurada, después las alternativas del formato—.
+- «los no liberados»: `volcar`.
+- «las entradas de los no liberados que mencionan `<término>`»: `buscar` —la referencia a la agrupación identifica su entrada—.
+- «anotar esta entrada en la categoría `<categoría>`»: `anotar` con las líneas de entrada por `stdin`.
+- «el estado del changelog»: `estado`.
+- «la propuesta de bump»: `bump`.
+- «promover los no liberados a la versión `<X.Y.Z>`»: `promover` con el cuerpo curado por `stdin`.
+- «marcar la versión `<X.Y.Z>` retirada»: `yank`.
 
 ## Catálogo de operaciones
 

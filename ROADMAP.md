@@ -6,9 +6,7 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 
 ## Now
 
-- 1. docs/epics/003-delegacion-mecanica-scripts.md — Delegación de pasos mecánicos a scripts
-  - Estado: en curso — 6 de 7 tareas completadas.
-  - Justificación: única línea planificada; estabiliza las mutaciones de los artefactos del ciclo —`TODO.txt`, archivos de tarea, índices, `EXPERIENCIAS.md`, `CHANGELOG.md`— y fija la forma canónica de `## Estado` y `## Desviaciones del plan` antes de seguir añadiendo capacidad sobre formatos con derivas observadas.
+Sin líneas: no hay trabajo comprometido en curso.
 
 ## Next
 

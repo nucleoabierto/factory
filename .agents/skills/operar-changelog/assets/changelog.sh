@@ -10,6 +10,14 @@
 # líneas «[ref]: url» del pie son los enlaces comparativos.
 set -euo pipefail
 
+# Convenciones: el instalador escribe los valores del proyecto en
+# convenciones.sh; una clave ausente rige por el valor por defecto.
+conv="$(dirname "$0")/convenciones.sh"
+if [ -f "$conv" ]; then
+  . "$conv" 2>/dev/null || { echo "changelog.sh: convenciones malformadas: $conv" >&2; exit 2; }
+fi
+export ARCHIVO_CHANGELOG=${ARCHIVO_CHANGELOG:-CHANGELOG.md}
+
 uso() {
   cat >&2 <<'EOF'
 uso: changelog.sh <objetivo> <operación> [términos]
@@ -77,7 +85,7 @@ case "$op" in
 
   localizar)
     [ -d "$obj" ] || { echo "changelog.sh: directorio ausente: $obj" >&2; exit 2; }
-    for cand in CHANGELOG.md CHANGELOG.txt CHANGELOG.rst CHANGELOG.markdown CHANGELOG Changelog.md changelog.md HISTORY.md HISTORY.txt HISTORY NEWS.md NEWS.txt NEWS; do
+    for cand in "$ARCHIVO_CHANGELOG" CHANGELOG.md CHANGELOG.txt CHANGELOG.rst CHANGELOG.markdown CHANGELOG Changelog.md changelog.md HISTORY.md HISTORY.txt HISTORY NEWS.md NEWS.txt NEWS; do
       if [ -f "$obj/$cand" ]; then
         printf '%s\n' "$obj/$cand"
         exit 0

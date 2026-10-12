@@ -7,6 +7,21 @@
 # ir envueltos); escritura canónica: un campo por línea, sin envolver.
 set -euo pipefail
 
+# Convenciones: el instalador escribe los valores del proyecto en
+# convenciones.sh; una clave ausente rige por el valor por defecto.
+conv="$(dirname "$0")/convenciones.sh"
+if [ -f "$conv" ]; then
+  . "$conv" 2>/dev/null || { echo "experiencias.sh: convenciones malformadas: $conv" >&2; exit 2; }
+fi
+export CAMPOS_EXPERIENCIA=${CAMPOS_EXPERIENCIA:-'Id Tarea Esperado Obtenido Corrección'}
+export CAMPO_ESTADO_EXPERIENCIA=${CAMPO_ESTADO_EXPERIENCIA:-Estado}
+export ESTADO_EXPERIENCIA_PENDIENTE=${ESTADO_EXPERIENCIA_PENDIENTE:-pendiente}
+export ESTADO_EXPERIENCIA_CONSOLIDADA=${ESTADO_EXPERIENCIA_CONSOLIDADA:-consolidada}
+campo_id=${CAMPOS_EXPERIENCIA%% *}
+# Formas escapadas para interpolar en regex (grep -E, awk match/~/sub, sed BRE).
+esc_re() { printf '%s' "$1" | sed 's/[][\.*^$/]/\\&/g'; }
+campo_id_re=$(esc_re "$campo_id")
+
 uso() {
   cat >&2 <<'EOF'
 uso: experiencias.sh <registro> <operación> [términos]
@@ -52,7 +67,7 @@ case "$op" in
       cand=$(date +%Y%m%dT%H%M%S)
       colision=0
       for o in "$@"; do [ "$cand" = "$o" ] && colision=1; done
-      if [ "$colision" -eq 0 ] && [ -f "$f" ] && grep -qE "^- Id:[[:space:]]+${cand}[[:space:]]*$" "$f"; then
+      if [ "$colision" -eq 0 ] && [ -f "$f" ] && grep -qE "^- ${campo_id_re}:[[:space:]]+${cand}[[:space:]]*$" "$f"; then
         colision=1
       fi
       [ "$colision" -eq 0 ] && break
@@ -69,10 +84,17 @@ case "$op" in
   listar)
     estado="${1:-}"
     case "$estado" in
-      ""|pendiente|consolidada) ;;
+      ""|"$ESTADO_EXPERIENCIA_PENDIENTE"|"$ESTADO_EXPERIENCIA_CONSOLIDADA") ;;
       *) echo "experiencias.sh: estado no reconocido: $estado" >&2; uso ;;
     esac
     awk -v estado="$estado" '
+      function esc(s) { gsub(/[][\\.*^$]/, "\\\\&", s); return s }
+      BEGIN {
+        split(ENVIRON["CAMPOS_EXPERIENCIA"], campos, " ")
+        re_id = "^- " esc(campos[1]) ":"
+        est = ENVIRON["CAMPO_ESTADO_EXPERIENCIA"]
+        re_est = ".*" esc(est) ":[[:space:]]*"
+      }
       function volcar() {
         sub(/\n+$/, "", bloque)
         if (estado == "" || e == estado) {
@@ -81,15 +103,15 @@ case "$op" in
           emitida = 1
         }
       }
-      /^- Id:/ {
+      $0 ~ re_id {
         if (bloque != "") volcar()
         bloque = $0 "\n"; e = ""; abierto = 0
         next
       }
       bloque != "" {
-        if ($0 ~ /^[[:space:]]+Estado:/) {
+        if ($0 ~ "^[[:space:]]+" esc(est) ":") {
           if (e == "") {
-            e = $0; sub(/.*Estado:[[:space:]]*/, "", e); sub(/[[:space:]]*$/, "", e)
+            e = $0; sub(re_est, "", e); sub(/[[:space:]]*$/, "", e)
             abierto = (e == "")
           }
         } else if ($0 ~ /^[[:space:]]*[A-Za-zÁÉÍÓÚÑáéíóúñ][A-Za-zÁÉÍÓÚÑáéíóúñ]*:/) {
@@ -107,6 +129,13 @@ case "$op" in
     [ $# -ge 1 ] || uso
     ref=$1
     awk -v ref="$ref" '
+      function esc(s) { gsub(/[][\\.*^$]/, "\\\\&", s); return s }
+      BEGIN {
+        split(ENVIRON["CAMPOS_EXPERIENCIA"], campos, " ")
+        re_id = "^- " esc(campos[1]) ":"
+        re_t = "^[[:space:]]+" esc(campos[2]) ":"
+        re_tv = ".*" esc(campos[2]) ":[[:space:]]*"
+      }
       function volcar() {
         sub(/\n+$/, "", bloque)
         if (index(t, ref) > 0) {
@@ -115,15 +144,15 @@ case "$op" in
           emitida = 1
         }
       }
-      /^- Id:/ {
+      $0 ~ re_id {
         if (bloque != "") volcar()
         bloque = $0 "\n"; t = ""; abierto = 0
         next
       }
       bloque != "" {
-        if ($0 ~ /^[[:space:]]+Tarea:/) {
+        if ($0 ~ re_t) {
           if (t == "") {
-            t = $0; sub(/.*Tarea:[[:space:]]*/, "", t); sub(/[[:space:]]*$/, "", t)
+            t = $0; sub(re_tv, "", t); sub(/[[:space:]]*$/, "", t)
             abierto = 1
           }
         } else if ($0 ~ /^[[:space:]]*[A-Za-zÁÉÍÓÚÑáéíóúñ][A-Za-zÁÉÍÓÚÑáéíóúñ]*:/) {
@@ -140,15 +169,16 @@ case "$op" in
   anexar)
     entrada=$(cat)
     if ! printf '%s\n' "$entrada" | awk '
+      function esc(s) { gsub(/[][\\.*^$]/, "\\\\&", s); return s }
       { lineas[NR] = $0 }
       END {
         n = NR
         while (n > 0 && lineas[n] ~ /^[[:space:]]*$/) n--
         if (n != 5) exit 1
-        if (lineas[1] !~ /^- Id: [0-9]{8}T[0-9]{6}$/) exit 1
-        split("Tarea Esperado Obtenido Corrección", campos, " ")
-        for (i = 1; i <= 4; i++) {
-          if (lineas[i + 1] !~ "^  " campos[i] ": .+") exit 1
+        split(ENVIRON["CAMPOS_EXPERIENCIA"], campos, " ")
+        if (lineas[1] !~ "^- " esc(campos[1]) ": [0-9]{8}T[0-9]{6}$") exit 1
+        for (i = 2; i <= 5; i++) {
+          if (lineas[i] !~ "^  " esc(campos[i]) ": .+") exit 1
         }
       }
     '; then
@@ -162,8 +192,8 @@ experiencias.sh: la entrada no cumple la forma canónica; se esperaba:
 EOF
       exit 1
     fi
-    nuevo_id=$(printf '%s\n' "$entrada" | head -1 | sed 's/^- Id: //')
-    if [ -f "$f" ] && grep -qE "^- Id:[[:space:]]+${nuevo_id}[[:space:]]*$" "$f"; then
+    nuevo_id=$(printf '%s\n' "$entrada" | head -1 | sed "s/^- ${campo_id_re}: //")
+    if [ -f "$f" ] && grep -qE "^- ${campo_id_re}:[[:space:]]+${nuevo_id}[[:space:]]*$" "$f"; then
       echo "experiencias.sh: Id duplicado: $nuevo_id" >&2
       exit 1
     fi
@@ -178,7 +208,7 @@ EOF
         0) printf '\n\n' >> "$f" ;;
       esac
     fi
-    printf '%s\n  Estado: pendiente\n' "$entrada" >> "$f"
+    printf '%s\n  %s: %s\n' "$entrada" "$CAMPO_ESTADO_EXPERIENCIA" "$ESTADO_EXPERIENCIA_PENDIENTE" >> "$f"
     ;;
 
   marcar)
@@ -186,32 +216,42 @@ EOF
     tmp=$(mktemp "${TMPDIR:-/tmp}/experiencias.XXXXXX")
     rc=0
     awk -v lista="$*" '
+      function esc(s) { gsub(/[][\\.*^$]/, "\\\\&", s); return s }
       function cerrar() {
         if (toca && !hecho) {
-          printf "experiencias.sh: %s no se marcó (sin campo Estado)\n", cur > "/dev/stderr"
+          printf "experiencias.sh: %s no se marcó (sin campo %s)\n", cur, est > "/dev/stderr"
           fallos++
         }
       }
       BEGIN {
         m = split(lista, a, " ")
         for (i = 1; i <= m; i++) pend[a[i]] = 1
+        split(ENVIRON["CAMPOS_EXPERIENCIA"], campos, " ")
+        re_id = "^- " esc(campos[1]) ":"
+        re_idv = "^- " esc(campos[1]) ":[[:space:]]*"
+        est = ENVIRON["CAMPO_ESTADO_EXPERIENCIA"]
+        re_est = ".*" esc(est) ":[[:space:]]*"
+        re_estln = "^[[:space:]]+" esc(est) ":[[:space:]]*"
+        ep = ENVIRON["ESTADO_EXPERIENCIA_PENDIENTE"]
+        ec = ENVIRON["ESTADO_EXPERIENCIA_CONSOLIDADA"]
         cur = ""; toca = 0; hecho = 0; fallos = 0
       }
-      /^- Id:/ {
+      $0 ~ re_id {
         cerrar()
-        cur = $0; sub(/^- Id:[[:space:]]*/, "", cur); sub(/[[:space:]]*$/, "", cur)
+        cur = $0; sub(re_idv, "", cur); sub(/[[:space:]]*$/, "", cur)
         toca = (cur in pend)
         if (toca) delete pend[cur]
         hecho = 0
       }
-      toca && !hecho && /^[[:space:]]+Estado:[[:space:]]*/ {
-        v = $0; sub(/.*Estado:[[:space:]]*/, "", v); sub(/[[:space:]]*$/, "", v)
+      toca && !hecho && $0 ~ re_estln {
+        v = $0; sub(re_est, "", v); sub(/[[:space:]]*$/, "", v)
         hecho = 1
-        if (v == "pendiente") {
-          sub(/Estado:.*/, "Estado: consolidada")
+        if (v == ep) {
+          rep = est ": " ec; gsub(/[&\\]/, "\\\\&", rep)
+          sub(esc(est) ":.*", rep)
           cambios++
         } else {
-          printf "experiencias.sh: %s no se marcó (Estado: %s)\n", cur, v > "/dev/stderr"
+          printf "experiencias.sh: %s no se marcó (%s: %s)\n", cur, est, v > "/dev/stderr"
           fallos++
         }
       }

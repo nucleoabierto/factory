@@ -29,7 +29,7 @@ Instrucciones para que un agente ejecute las operaciones mecánicas del registro
 ## Entrada
 
 - La acción delegada del consumidor: la operación del catálogo y sus términos, más el contenido de la entrada cuando la operación es `anexar`. El consumidor no nombra el artefacto ni pasa su ruta.
-- La ubicación del registro de experiencias, declarada en la configuración de la instalación —el documento de personalización del paquete o las convenciones del proyecto evaluado—.
+- La ubicación del registro de experiencias, resuelta de `assets/convenciones.sh` —la clave `archivo_experiencias`, escrita por el instalador según `PERSONALIZE.md`—.
 
 ## Salida
 
@@ -47,9 +47,19 @@ Instrucciones para que un agente ejecute las operaciones mecánicas del registro
 ## Procedimiento
 
 1. **Recibir la acción delegada:** el consumidor indica la operación y sus términos.
-2. **Resolver la ubicación del registro** según lo declarado en la instalación: el documento de personalización del paquete (`PERSONALIZE.md`) fija el artefacto; si el proyecto evaluado declara otra ubicación en sus convenciones, esa prevalece.
+2. **Resolver la ubicación del registro:** el valor de `archivo_experiencias` en `assets/convenciones.sh`; un archivo de configuración malformado hace fallar el script con diagnóstico antes de tocar nada.
 3. **Ejecutar el script** `assets/experiencias.sh` con la ruta resuelta, la operación y los términos dados; el cuerpo de la entrada en `anexar` entra por `stdin`.
 4. **Devolver la salida al consumidor:** stdout es el dato; un código de salida distinto de cero se transmite con su diagnóstico, sin reinterpretarlo.
+
+## Acciones
+
+El consumidor delega la acción de dominio; el gestor resuelve la ubicación del registro desde `assets/convenciones.sh` y la traduce a la operación del catálogo.
+
+- «un identificador para la entrada nueva»: `id` —pasando los `Id` ya asignados del mismo lote si los hay—.
+- «las experiencias [pendientes|consolidadas]»: `listar`.
+- «las experiencias de la tarea `<ref>`»: `por-tarea` —la referencia es de dominio—.
+- «anexar esta entrada»: `anexar` con la entrada en forma canónica por `stdin` —el contenido lo redacta el consumidor—.
+- «marcar consolidadas las entradas `<id>…`»: `marcar`.
 
 ## Catálogo de operaciones
 
