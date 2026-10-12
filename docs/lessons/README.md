@@ -1,6 +1,6 @@
 # Lecciones
 
-Índice de lecciones aprendidas, consolidadas desde `EXPERIENCIAS.md` por el skill `consolidar-lecciones`. `consultar-lecciones` lo consulta para recuperar las lecciones que aplican a un trabajo; `ejecutar-tareas` lo invoca al leer una tarea.
+Índice de lecciones aprendidas, destiladas desde las correcciones del usuario por el skill `destilar-lecciones` —la evidencia vive en `EXPERIENCIAS.md`. `consultar-lecciones` lo consulta para recuperar las lecciones que aplican a un trabajo; `ejecutar-tareas` lo invoca al leer una tarea.
 
 <!-- Formato de cada entrada: el tema en su línea y los datos como
      sub-bullets, con los disparadores siempre en la primera posición

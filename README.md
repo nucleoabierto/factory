@@ -49,8 +49,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 |-------|----------|
 | `investigar` | Investiga un tema y produce un documento con conclusiones y referencias verificables. |
 | `decisiones-diseno` | Registra decisiones de diseño con formato híbrido bajo `docs/decisions/`. |
-| `registrar-experiencias` | Anota en `EXPERIENCIAS.md` las correcciones del usuario al cerrar una tarea. |
-| `consolidar-lecciones` | Agrupa las experiencias pendientes por temas en notas bajo `docs/lessons/`. |
+| `destilar-lecciones` | Anota en `EXPERIENCIAS.md` las correcciones transferibles del usuario y las destila en notas por tema bajo `docs/lessons/`, en el mismo acto. |
 | `consultar-lecciones` | Recupera las lecciones aprendidas que aplican al trabajo a realizar. |
 | `consultar-decisiones` | Recupera las decisiones de diseño vigentes que rigen el trabajo a realizar. |
 | `consultar-artefactos` | Responde consultas mecánicas sobre los artefactos del sistema —índice, tareas, índices de decisiones y lecciones, ideas y series— que los demás skills le delegan. |
@@ -101,7 +100,7 @@ De la tarea al pull request:
 2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta en su propia rama siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo` y `mantenimiento (refactoring)`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
 3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor, cotejándolo además contra las lecciones aprendidas.
 4. Si el subagente aprueba, `gestionar-pr` abre el **pull request** de la tarea con una descripción orientada al revisor y conduce el bucle de comentarios: la aprobación del usuario sobre el PR es la **puerta de ejecución**.
-5. Aprobado el PR, la tarea se marca completada `[x]` y corren los sensores de cierre sobre la rama: `mantener-changelog` para toda tarea; `documentar-dominio`, `documentar-producto` y `mantener-prd` para las del sub-flujo de desarrollo; `registrar-experiencias` si el usuario corrigió algo —en sesión o en el PR—. El usuario aprueba el paquete de cierre —la **puerta de cierre**— y el PR se fusiona dejando un commit por tarea en la rama principal.
+5. Aprobado el PR, la tarea se marca completada `[x]` y corren los sensores de cierre sobre la rama: `mantener-changelog` para toda tarea; `documentar-dominio`, `documentar-producto` y `mantener-prd` para las del sub-flujo de desarrollo; `destilar-lecciones` si el usuario corrigió algo —en sesión o en el PR—. El usuario aprueba el paquete de cierre —la **puerta de cierre**— y el PR se fusiona dejando un commit por tarea en la rama principal.
 
 ### Estructura del repositorio
 

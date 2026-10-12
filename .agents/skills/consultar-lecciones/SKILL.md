@@ -23,8 +23,7 @@ Instrucciones para que un agente recupere las lecciones aprendidas que aplican a
 
 ## Cuándo no usar
 
-- Para registrar correcciones nuevas: eso corresponde a `registrar-experiencias`.
-- Para agrupar experiencias en notas de lecciones: eso corresponde a `consolidar-lecciones`.
+- Para registrar o destilar correcciones del usuario en lecciones: eso corresponde a `destilar-lecciones`.
 - Cuando el trabajo no toca el proyecto ni sus artefactos (por ejemplo, una pregunta conversacional).
 
 ## Entrada

@@ -12,7 +12,6 @@
     { "source": ".agents/skills/aplicar-guia-estilo", "target": ".agents/skills/aplicar-guia-estilo" },
     { "source": ".agents/skills/cerrar-conjunto", "target": ".agents/skills/cerrar-conjunto" },
     { "source": ".agents/skills/commit", "target": ".agents/skills/commit" },
-    { "source": ".agents/skills/consolidar-lecciones", "target": ".agents/skills/consolidar-lecciones" },
     { "source": ".agents/skills/consultar-artefactos", "target": ".agents/skills/consultar-artefactos" },
     { "source": ".agents/skills/consultar-decisiones", "target": ".agents/skills/consultar-decisiones" },
     { "source": ".agents/skills/consultar-lecciones", "target": ".agents/skills/consultar-lecciones" },
@@ -20,6 +19,7 @@
     { "source": ".agents/skills/decisiones-diseno", "target": ".agents/skills/decisiones-diseno" },
     { "source": ".agents/skills/desarrollar-tarea", "target": ".agents/skills/desarrollar-tarea" },
     { "source": ".agents/skills/descubrir-problema", "target": ".agents/skills/descubrir-problema" },
+    { "source": ".agents/skills/destilar-lecciones", "target": ".agents/skills/destilar-lecciones" },
     { "source": ".agents/skills/documentar-dominio", "target": ".agents/skills/documentar-dominio" },
     { "source": ".agents/skills/documentar-guia-estilo", "target": ".agents/skills/documentar-guia-estilo" },
     { "source": ".agents/skills/documentar-producto", "target": ".agents/skills/documentar-producto" },
@@ -45,7 +45,6 @@
     { "source": ".agents/skills/pulir-escritura", "target": ".agents/skills/pulir-escritura" },
     { "source": ".agents/skills/recopilar-contexto", "target": ".agents/skills/recopilar-contexto" },
     { "source": ".agents/skills/refinar-propuesta", "target": ".agents/skills/refinar-propuesta" },
-    { "source": ".agents/skills/registrar-experiencias", "target": ".agents/skills/registrar-experiencias" },
     { "source": ".agents/skills/revisar-arquitectura", "target": ".agents/skills/revisar-arquitectura" },
     { "source": ".agents/skills/revisar-implementacion", "target": ".agents/skills/revisar-implementacion" },
     { "source": ".agents/skills/revisar-redaccion", "target": ".agents/skills/revisar-redaccion" }
