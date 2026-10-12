@@ -9,7 +9,7 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 - 1. Revisión de código como capacidad del producto — línea de dirección, sin artefacto propio todavía
   - Estado: pendiente de arrancar; se materializa por el flujo de idea a tarea.
   - Justificación: el sistema ya revisa sus propios cambios en el ciclo de tareas (`revisar-implementacion`, subagente de revisión, cotejo de lecciones); convertir esa capacidad en un skill invocable sobre diffs arbitrarios del proyecto evaluado es la mayor brecha hacia el producto entregable y la que más habilita a las demás líneas, que producen código ajeno al flujo interno.
-  - Precedida por la suelta `docs/tasks/137-actualizar-vision-producto.md`, que alinea la documentación de producto antes de materializar la línea.
+  - Documentación de producto ya alineada con esta dirección (tarea 137, completada).
 
 ## Next
 
