@@ -46,3 +46,6 @@
 - [x] docs/tasks/136-aprendizaje-sincrono-til.md — Aprendizaje síncrono al estilo TIL
 - [x] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
 
+## Propuestas en revisión
+
+- [p] docs/proposals/003-revision-codigo-producto — Revisión de código como capacidad del producto (4 borradores)
