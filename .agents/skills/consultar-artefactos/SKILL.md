@@ -72,9 +72,9 @@ El consumidor delega la consulta de dominio; el gestor la traduce a la operació
 
 Los scripts viven en `assets/` y se invocan como `assets/<script>.sh <objetivo> <operación> [términos]`, donde `<objetivo>` es la ruta del artefacto consultado —un archivo o un directorio, según el script—. stdout queda reservado a los datos parseables —una línea por resultado, campos separados por tabulador— y stderr a los diagnósticos. Una operación sin resultados devuelve `0` sin líneas —el vacío legítimo—; un objetivo ausente sale con `2` y diagnóstico; una invocación mal formada —operación desconocida o argumentos que faltan— imprime el `uso:` por stderr y sale con `2`.
 
-### `todo.sh` — el índice de tareas (`TODO.txt`)
+### `todo.sh` — el índice de tareas (`TODO.md`)
 
-`<objetivo>` es la ruta del `TODO.txt`. Las operaciones solo reconocen líneas de tarea de nivel superior: la viñeta `- [` sin sangría. Índice ausente: exit `2`.
+`<objetivo>` es la ruta del `TODO.md`. Las operaciones solo reconocen líneas de tarea de nivel superior: la viñeta `- [` sin sangría. Índice ausente: exit `2`.
 
 #### `siguiente`
 

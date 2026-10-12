@@ -8,7 +8,7 @@ Los skills no llevan consigo los artefactos de estado: los crean y los mantienen
 
 Crear si no existen:
 
-- `TODO.txt` — índice de tareas del proyecto. Una línea por tarea con el formato `- [estado] docs/tasks/NNN-slug.md — título breve`, donde el estado es `[ ]` pendiente, `[~]` en progreso, `[r]` en revisión, `[x]` completada o `[!]` bloqueada. Las tareas sueltas viven bajo la sección `## General`; los conjuntos planificados, bajo encabezados `## Hito N: título`; al final, la sección `## Propuestas en revisión` lista las propuestas del flujo de idea a tarea con el marcador `[p]`.
+- `TODO.md` — índice de tareas del proyecto. Una línea por tarea con el formato `- [estado] docs/tasks/NNN-slug.md — título breve`, donde el estado es `[ ]` pendiente, `[~]` en progreso, `[r]` en revisión, `[x]` completada o `[!]` bloqueada. Las tareas sueltas viven bajo la sección `## General`; los conjuntos planificados, bajo encabezados `## Hito N: título`; al final, la sección `## Propuestas en revisión` lista las propuestas del flujo de idea a tarea con el marcador `[p]`.
 - `EXPERIENCIAS.md` — registro append-only de las correcciones que el usuario hace al agente; el skill `registrar-experiencias` lo gestiona.
 - `CHANGELOG.md` — changelog del proyecto en formato Keep a Changelog, con la sección `## [Unreleased]` para los cambios no liberados.
 - `ROADMAP.md` — opcional; lo produce `planificar-roadmap` cuando el proyecto quiere declarar dirección y prioridades.
@@ -18,7 +18,7 @@ Crear si no existen:
 
 Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando su productor lo necesita, pero conviene tenerlos presentes:
 
-- `docs/tasks/` — un archivo por tarea, con la plantilla de `crear-tareas` (`assets/task.txt` dentro del skill instalado).
+- `docs/tasks/` — un archivo por tarea, con la plantilla de `crear-tareas` (`assets/task.md` dentro del skill instalado).
 - `docs/ideas/` — ideas persistidas que alimentan el flujo de idea a tarea.
 - `docs/proposals/` — un directorio por propuesta, con su `propuesta.md` y los borradores de tarea.
 - `docs/epics/` — un documento por épica.
@@ -44,7 +44,7 @@ Los skills consumidores expresan acciones de dominio —«la próxima pendiente�
 - **Convención — no aparece en los skills:** ubicaciones de almacenamiento —nombres de archivos y directorios—, formatos internos —forma de líneas, comentarios de enlace, plantillas—, marcas y etiquetas de estado, nombres de sección, nomenclaturas de series y prefijos. Viven en el catálogo de convenciones.
 - **Formato externo — tampoco es convención configurable:** la sintaxis de Markdown —encabezados `##`, casillas `- [ ]`, negritas, comentarios— y el formato Keep a Changelog —`## [Unreleased]`, `### Added`, `[YANKED]`— son contrato fijo del artefacto, no decisión del proyecto.
 
-Ejemplos del inventario de fugas: «marcar `[x]` la línea de `TODO.txt`» es fuga doble —marca y ubicación—; la acción es «marcar la tarea completada». «`docs/tasks/132-x.md`» como referencia de la tarea concreta es dominio; «`docs/tasks/`» como lugar donde viven las tareas es convención. «`## Revisión`» es convención —un nombre de sección—; «el veredicto del subagente» es dominio.
+Ejemplos del inventario de fugas: «marcar `[x]` la línea del índice» es fuga doble —marca y ubicación—; la acción es «marcar la tarea completada». «`docs/tasks/132-x.md`» como referencia de la tarea concreta es dominio; «`docs/tasks/`» como lugar donde viven las tareas es convención. «`## Revisión`» es convención —un nombre de sección—; «el veredicto del subagente» es dominio.
 
 ## Catálogo de convenciones
 
@@ -52,7 +52,7 @@ Toda constante de las clases listadas vive como clave de configuración con su v
 
 **Rutas de artefactos** —las resuelven los gestores para construir el objetivo de cada operación—:
 
-- `indice_tareas` — `TODO.txt`: el índice de tareas.
+- `indice_tareas` — `TODO.md`: el índice de tareas.
 - `dir_tareas` — `docs/tasks`: un archivo por tarea.
 - `dir_propuestas` — `docs/proposals`: un directorio por propuesta.
 - `archivo_propuesta` — `propuesta.md`: el documento dentro de cada directorio de propuesta.

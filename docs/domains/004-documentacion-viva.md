@@ -8,7 +8,7 @@ Mantener la documentación del proyecto sincronizada con su estado real —domin
 
 - **Lenguaje ubicuo:**
   - **Documento de dominio:** `docs/domains/NNN-slug.md`, separa «Referencia del modelo» (lenguaje ubicuo, entidades, invariantes, operaciones, con anclas al código) de «Explicación del dominio» (fronteras, decisiones); el índice es `docs/domains/README.md`.
-    - Ancla: plantilla `.agents/skills/documentar-dominio/assets/domain.txt` y el propio directorio `docs/domains/`
+    - Ancla: plantilla `.agents/skills/documentar-dominio/assets/domain.md` y el propio directorio `docs/domains/`
     - Origen: `docs/decisions/D026-documento-dominio-referencia-explicacion.md`
   - **Documentación de producto:** directorio propio separado del `docs/` de proceso —`product-docs/` en el proyecto evaluado—, con índice, guías, referencia y un documento por funcionalidad cuyos escenarios se anclan a la suite de pruebas por nombre de módulo y título.
     - Ancla: `product-docs/` en la raíz de este repositorio y `todo-app/product-docs/` como instancia de referencia
@@ -25,7 +25,7 @@ Mantener la documentación del proyecto sincronizada con su estado real —domin
   - Cada dominio y cada funcionalidad tiene un solo documento hogar; el índice correspondiente los lista todos («indexado o no existe»).
     - Ancla: reglas del índice en `docs/domains/README.md` y principio «Indexado o no existe» en `.agents/skills/documentar-producto/SKILL.md`
   - Las decisiones tienen estado Aceptada/Sustituida/Obsoleta; los documentos de dominio llevan «Estado de salud» con fecha y divergencias conocidas.
-    - Ancla: comentario de formato en `docs/decisions/README.md` y sección «Estado de salud» de `.agents/skills/documentar-dominio/assets/domain.txt`
+    - Ancla: comentario de formato en `docs/decisions/README.md` y sección «Estado de salud» de `.agents/skills/documentar-dominio/assets/domain.md`
 - **Invariantes:**
   - Un hogar por hecho: los hechos del modelo no se repiten en la doc de producto ni a la inversa; se referencian.
   - Los anclas apuntan al código (o a la suite, en producto), no a la historia: la procedencia va en el campo «Origen».
