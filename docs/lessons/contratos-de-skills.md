@@ -29,3 +29,11 @@
 - **Al lanzar una revisión por subagente, acota el alcance desde el inicio —puntos de mayor riesgo, muestra de los puntos de contacto y formato de informe breve— en lugar de pedir cobertura exhaustiva.** Por qué: una revisión lanzada sin acotar tardó tanto que hubo que interrumpirla; la versión acotada a lo de mayor riesgo y una muestra del cableado completó rápido con el mismo veredicto útil.
   Disparadores: subagente, revisión, revisión técnica, alcance de revisión, lanzar subagente, informe
   Origen: 20261004T133821
+
+- **El formato de un artefacto que un skill produce vive en una plantilla de `assets/` referenciada desde el cuerpo, no descrito inline en el `SKILL.md`.** Por qué: `revisar-pr` declaraba la estructura del informe como bullets dentro de «Salida», cuando el patrón del sistema —`task.md`, `epica.md`, `prd.md`, `feature.md`— pone el esqueleto con placeholders en `assets/` y el cuerpo solo lo referencia; inline desincroniza el formato del patrón y lo hace irreutilizable por otros consumidores.
+  Disparadores: nuevo skill, SKILL.md, formato de artefacto, plantilla, assets/, Salida, estructura de informe
+  Origen: 20261012T172315
+
+- **Un skill es autocontenido: sus referencias apuntan solo a material que viaja con el paquete —`assets/` propios u otros skills—; los artefactos de desarrollo del repo —épica, PRD, tarea— son contexto de su construcción, no referencia.** Por qué: `revisar-pr` enlazaba en «Referencias» la épica y el PRD de su propia épica, documentos que existen en este repositorio pero no en un proyecto donde el paquete se instala; en la instalación quedaban como enlaces rotos.
+  Disparadores: nuevo skill, referencias, enlaces, paquete, instalar, autocontenido, docs/epics, docs/prd, docs/tasks
+  Origen: 20261012T172318

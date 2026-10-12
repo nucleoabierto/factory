@@ -7,6 +7,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+### Added
+
+- Revisión independiente de pull requests como capacidad del producto: el skill `revisar-pr` somete cualquier PR del proyecto evaluado —lo haya producido el ciclo de tareas o no— a un subagente revisor de contexto aislado con rol adversarial que reconstruye el diff, el historial, la intención del cambio y los comentarios previos sin duplicar lo ya resuelto, confronta el cambio con convenciones, archivos hermanos y lecciones, y produce un informe con hallazgos por severidad y veredicto `merge`/`improve`/`blocked`; el informe es estado local efímero bajo el directorio git del repositorio —convención `dir_revisiones_pr`— que `gestionar-pr` elimina al cerrar el PR, y su formato vive en una plantilla de `assets/` ([docs/tasks/138-skill-revisar-pr.md](docs/tasks/138-skill-revisar-pr.md))
+
 ## [0.4.0] - 2026-10-12
 
 ### Added

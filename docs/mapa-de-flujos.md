@@ -88,6 +88,7 @@ El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en l
 - **`DESIGN.md` del proyecto evaluado:** contrato de diseño mantenido por `documentar-guia-estilo` y consumido por `aplicar-guia-estilo`.
 - **`docs/research/`:** investigaciones producidas por `investigar`; las propuestas las referencian en «Investigaciones de apoyo» y los skills en sus secciones «Referencias».
 - **`docs/architecture-reviews/`:** informes persistidos por `revisar-arquitectura`; el campo «Derivado en» de cada hallazgo enlaza la tarea o decisión que lo materializó.
+- **Informes de revisión de PR** (en el directorio que resuelve `dir_revisiones_pr`, por convención bajo el directorio git del repositorio): estado local efímero que `revisar-pr` escribe sobre *pull requests* arbitrarios —resumen del cambio, intención reconstruida, hallazgos por severidad, preguntas abiertas y veredicto—; fuera del control de versiones con el valor por defecto y eliminado por `gestionar-pr` al cerrar el PR.
 
 ## Conexiones por convención del arnés
 
@@ -95,6 +96,7 @@ El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en l
 - **Revisión y pulido preventivos:** `revisar-redaccion` seguido de `pulir-escritura` es una invocación explícita pero condicionada —«si el arnés lo permite»— declarada por nombre en los skills que producen texto consolidado: `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta`, `crear-tareas`, `planificar`, `planificar-roadmap`, `planear-implementacion`, `decisiones-diseno` y `lluvia-de-ideas`; `investigar` declara la misma invocación por capacidad —«skills o herramientas de revisión de redacción y pulido mecánico»— sin nombrarlos. `pulir-escritura` exige que el texto haya pasado antes por la revisión de redacción.
 - **El subagente de revisión genérico** del ciclo de tareas es mecánica inline del procedimiento de `ejecutar-tareas`, no un skill: solo el sub-flujo de desarrollo lo sustituye por `revisar-implementacion`.
 - **`revisar-arquitectura` por recomendación:** `documentar-dominio` puede recomendarla al detectar divergencia estructural; el ejecutor la comunica al usuario y solo se ejecuta si el usuario la pide —una recomendación no es una invocación. Cuando corre, sus hallazgos derivan en tareas o decisiones vía `crear-tareas` y `decisiones-diseno`, siempre con aprobación del usuario.
+- **`revisar-pr` bajo demanda:** el usuario lo invoca sobre un *pull request* arbitrario del proyecto evaluado —por número o por la rama actual— y un subagente de contexto aislado produce el informe local con veredicto; es solo análisis —no publica comentarios, no corrige, no fusiona— y no sustituye a `revisar-implementacion` dentro del ciclo de tareas.
 
 ## Referencias
 

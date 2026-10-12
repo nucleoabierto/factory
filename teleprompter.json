@@ -47,6 +47,7 @@
     { "source": ".agents/skills/refinar-propuesta", "target": ".agents/skills/refinar-propuesta" },
     { "source": ".agents/skills/revisar-arquitectura", "target": ".agents/skills/revisar-arquitectura" },
     { "source": ".agents/skills/revisar-implementacion", "target": ".agents/skills/revisar-implementacion" },
+    { "source": ".agents/skills/revisar-pr", "target": ".agents/skills/revisar-pr" },
     { "source": ".agents/skills/revisar-redaccion", "target": ".agents/skills/revisar-redaccion" }
   ],
   "requires": {
