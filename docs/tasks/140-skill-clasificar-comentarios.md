@@ -1,5 +1,9 @@
 # Triage de la revisión recibida en un pull request propio
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -41,3 +45,9 @@ Crear el skill `clasificar-comentarios`: la primera mitad del bloque autor. Clas
 ## Notas
 
 - El documento de triage es la entrada natural del borrador 04, que aplica las correcciones; conviene dejar el formato pensado para ese consumo.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

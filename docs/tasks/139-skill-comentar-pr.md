@@ -1,5 +1,9 @@
 # Comentarios publicables de la revisión con confirmación
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,7 +14,7 @@ Crear el skill `comentar-pr`: la mitad de publicación del bloque revisor. A par
 
 ## Dependencias
 
-- Borrador 01 — necesita el formato del informe de `revisar-pr` como fuente de hallazgos.
+- 138 — necesita el formato del informe de `revisar-pr` como fuente de hallazgos.
 
 ## Entrada
 
@@ -40,3 +44,9 @@ Crear el skill `comentar-pr`: la mitad de publicación del bloque revisor. A par
 ## Notas
 
 - Los comentarios que el usuario descarte en la confirmación simplemente no se publican; no hace falta artefacto de «comentarios rechazados» en esta iteración.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

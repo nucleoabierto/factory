@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Borrador | **[p] Pendiente de revisión** | [a] Aprobada | [d] Descartada
+[ ] Borrador | [p] Pendiente de revisión | **[a] Aprobada** | [d] Descartada
 
 ## Problema
 
@@ -56,11 +56,11 @@ Cuatro capacidades nuevas, organizadas en dos bloques por el actor al que sirven
 
 ## Borradores
 
-- `01-skill-revisar-pr.md` — capacidad de revisión de PR arbitrario con informe y veredicto
-- `02-skill-comentar-pr.md` — comentarios autocontenidos publicables con confirmación (depende de 01)
-- `03-skill-clasificar-comentarios.md` — triage de la revisión recibida en un PR propio
-- `04-skill-mejorar-pr.md` — aplicar el triage sobre el cambio propio (depende de 03)
+- `docs/tasks/138-skill-revisar-pr.md` — capacidad de revisión de PR arbitrario con informe y veredicto
+- `docs/tasks/139-skill-comentar-pr.md` — comentarios autocontenidos publicables con confirmación (depende de 138)
+- `docs/tasks/140-skill-clasificar-comentarios.md` — triage de la revisión recibida en un PR propio
+- `docs/tasks/141-skill-mejorar-pr.md` — aplicar el triage sobre el cambio propio (depende de 140)
 
 ## Revisión
 
-- Usuario: [fecha] — [Aprueba | Solicita cambios | Rechaza]
+- Usuario: 2026-10-12 — Aprueba

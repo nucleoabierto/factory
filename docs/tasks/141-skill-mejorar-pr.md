@@ -1,5 +1,9 @@
 # Aplicar el triage sobre el cambio propio
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,7 +14,7 @@ Crear el skill `mejorar-pr`: la segunda mitad del bloque autor y el cierre del l
 
 ## Dependencias
 
-- Borrador 03 — consume el documento de triage que produce `clasificar-comentarios`.
+- 140 — consume el documento de triage que produce `clasificar-comentarios`.
 
 ## Entrada
 
@@ -41,3 +45,9 @@ Crear el skill `mejorar-pr`: la segunda mitad del bloque autor y el cierre del l
 ## Notas
 
 - Con este borrador el lazo queda cerrado: revisar → comentar | clasificar → mejorar, con los dos actores separados y las puertas humanas en los efectos laterales.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

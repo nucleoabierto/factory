@@ -1,5 +1,9 @@
 # Capacidad de revisión de un pull request arbitrario
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -43,3 +47,9 @@ Crear el skill `revisar-pr`: el bloque revisor de la revisión como capacidad de
 ## Notas
 
 - El veredicto del informe alimenta la puerta humana del usuario; la aprobación del merge sigue siendo suya, como en el resto del sistema.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
