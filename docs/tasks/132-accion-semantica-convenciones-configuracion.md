@@ -136,4 +136,4 @@ Caso de uso —sin PRD, derivado del objetivo y los criterios—: un consumidor 
 
 - Subagente: 2026-10-11 — Aprueba
 - Usuario (ejecución): 2026-10-12 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-10-12 — Aprueba
