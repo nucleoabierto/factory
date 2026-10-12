@@ -49,4 +49,4 @@ mantenimiento
 
 - Subagente: 2026-10-12 — Aprueba (tras corregir un alcance: el etiquetado de releases queda fuera por decisión del propio skill)
 - Usuario (ejecución): 2026-10-12 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-10-12 — Aprueba
