@@ -28,7 +28,7 @@ fi
 
 # Catálogo completo con los valores por defecto de PERSONALIZE.md:
 # una clave ausente en convenciones.sh rige por estos valores.
-INDICE_TAREAS=${INDICE_TAREAS:-TODO.txt}
+INDICE_TAREAS=${INDICE_TAREAS:-TODO.md}
 DIR_TAREAS=${DIR_TAREAS:-docs/tasks}
 DIR_PROPUESTAS=${DIR_PROPUESTAS:-docs/proposals}
 ARCHIVO_PROPUESTA=${ARCHIVO_PROPUESTA:-propuesta.md}

@@ -22,14 +22,14 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `proponer-forma-solucion` | Determina la forma de la solución a alto nivel: categoría, alternativas y fuera de alcance. |
 | `refinar-propuesta` | Descompone la solución validada en borradores de tarea y los envía a revisión asíncrona. |
 | `crear-tareas` | Crea tareas desde una solicitud articulada o promociona los borradores de una propuesta aprobada. |
-| `planificar` | Produce la épica de un conjunto de trabajo y refleja su agrupación en `TODO.txt`; cierra la planeación del flujo. |
-| `planificar-roadmap` | Organiza las líneas de trabajo del producto —épicas, hitos y tareas sueltas— en `ROADMAP.md` por horizontes Now/Next/Later y refleja los comprometidos en `TODO.txt`. |
+| `planificar` | Produce la épica de un conjunto de trabajo y refleja su agrupación en `TODO.md`; cierra la planeación del flujo. |
+| `planificar-roadmap` | Organiza las líneas de trabajo del producto —épicas, hitos y tareas sueltas— en `ROADMAP.md` por horizontes Now/Next/Later y refleja los comprometidos en `TODO.md`. |
 
 **Ejecución y cierre**
 
 | Skill | Qué hace |
 |-------|----------|
-| `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.txt`, toma la siguiente pendiente, la ejecuta en su rama, la revisa y la entrega en un pull request. |
+| `ejecutar-tareas` | Ejecuta el ciclo de tareas: lee `TODO.md`, toma la siguiente pendiente, la ejecuta en su rama, la revisa y la entrega en un pull request. |
 | `planear-tarea` | Ejecuta la mitad de planeación del flujo de desarrollo: contexto, conectividad y plan con suite, y se detiene. |
 | `desarrollar-tarea` | Ejecuta la mitad de ejecución: toma una tarea con plan aprobado y completa la implementación con desviaciones. |
 | `recopilar-contexto` | Reúne el contexto que una tarea de desarrollo necesita —archivos similares, patrones, documentación de dominio y producto, lecciones y decisiones— y lo registra en la tarea. |
@@ -39,7 +39,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `ejecutar-implementacion` | Ejecuta el desarrollo siguiendo el plan técnico y registra las desviaciones. |
 | `revisar-implementacion` | Revisión técnica adversarial del diff contra las convenciones del proyecto. |
 | `gestionar-pr` | Gestiona el pull request de una tarea: lo abre con descripción orientada al revisor, conduce el bucle de comentarios hasta la aprobación y lo fusiona tras el cierre. |
-| `cerrar-conjunto` | Cierra un conjunto de trabajo agotado: verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación de `TODO.txt`. |
+| `cerrar-conjunto` | Cierra un conjunto de trabajo agotado: verifica el criterio de cierre de la épica, la marca `Completada` y elimina la agrupación de `TODO.md`. |
 | `mantener-roadmap` | Mantiene `ROADMAP.md` fiel a la ejecución: refleja el estado de las líneas de Now, retira las completadas e invoca `planificar-roadmap` ante divergencia de dirección. |
 | `commit` | Crea commits siguiendo Conventional Commits en español. |
 
@@ -87,17 +87,17 @@ Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/
 
 ### Cómo funciona el ciclo de trabajo
 
-Dos orquestadores cubren el ciclo completo: `idea-a-tarea` convierte una idea en tareas planificadas y `ejecutar-tareas` ejecuta las tareas de `TODO.txt` hasta el pull request fusionado. El estado entre pasos y entre sesiones viaja en artefactos —`TODO.txt`, el archivo de cada tarea, la propuesta, la épica—, no en la conversación, de modo que cualquier flujo se puede retomar donde quedó. El mapa exhaustivo de conexiones —quién invoca a quién, qué sensores corren al cierre, qué skills se activan por convención— vive en [docs/mapa-de-flujos.md](docs/mapa-de-flujos.md).
+Dos orquestadores cubren el ciclo completo: `idea-a-tarea` convierte una idea en tareas planificadas y `ejecutar-tareas` ejecuta las tareas de `TODO.md` hasta el pull request fusionado. El estado entre pasos y entre sesiones viaja en artefactos —`TODO.md`, el archivo de cada tarea, la propuesta, la épica—, no en la conversación, de modo que cualquier flujo se puede retomar donde quedó. El mapa exhaustivo de conexiones —quién invoca a quién, qué sensores corren al cierre, qué skills se activan por convención— vive en [docs/mapa-de-flujos.md](docs/mapa-de-flujos.md).
 
 De la idea a la tarea:
 
 1. El skill `idea-a-tarea` coordina el flujo: `descubrir-problema` formula el problema, `proponer-forma-solucion` decide la forma de la solución y `refinar-propuesta` produce la propuesta con sus borradores.
-2. La propuesta queda pendiente `[p]` en la sección «Propuestas en revisión» de **`TODO.txt`**, a la espera de la decisión del usuario.
+2. La propuesta queda pendiente `[p]` en la sección «Propuestas en revisión» de **`TODO.md`**, a la espera de la decisión del usuario.
 3. Si el usuario la aprueba, `crear-tareas` promociona los borradores a tareas definitivas y `planificar` cierra la planeación agrupando el conjunto en su épica —o bajo un encabezado ligero si no amerita épica—; si la rechaza, la propuesta queda descartada pero conservada.
 
 De la tarea al pull request:
 
-1. **`TODO.txt`** es el índice de trabajo activo: tareas agrupadas por hito o sueltas en la sección «General», más las propuestas en revisión. Los hitos completados se eliminan del índice.
+1. **`TODO.md`** es el índice de trabajo activo: tareas agrupadas por hito o sueltas en la sección «General», más las propuestas en revisión. Los hitos completados se eliminan del índice.
 2. El skill `ejecutar-tareas` toma la siguiente tarea pendiente `[ ]`, la marca en progreso `[~]` y la ejecuta en su propia rama siguiendo su archivo; si la tarea declara un tipo con especialista (hoy `desarrollo` y `mantenimiento (refactoring)`), el ejecutor elige el punto de entrada según su estado de planeación: sin plan aprobado la enruta a `planear-tarea` —contexto, conectividad y plan con aprobación del usuario— y con plan aprobado a `desarrollar-tarea`, que la implementa.
 3. Al terminar, la marca en revisión `[r]` y lanza un **subagente independiente** que revisa el diff sin ver el razonamiento del ejecutor, cotejándolo además contra las lecciones aprendidas.
 4. Si el subagente aprueba, `gestionar-pr` abre el **pull request** de la tarea con una descripción orientada al revisor y conduce el bucle de comentarios: la aprobación del usuario sobre el PR es la **puerta de ejecución**.
@@ -119,12 +119,12 @@ docs/tasks/         Archivos de tarea individuales
 product-docs/       Documentación de producto de Factory (sitio MkDocs)
 todo-app/           Prueba del flujo externo: todo app en vanilla JS (D018)
 EXPERIENCIAS.md     Registro append-only de correcciones del usuario
-TODO.txt            Índice de trabajo activo: tareas y propuestas
+TODO.md             Índice de trabajo activo: tareas y propuestas
 ```
 
 ### Cómo empezar
 
-Clona el repositorio y abre `TODO.txt`. Las tareas pendientes `[ ]` son las siguientes en ejecutarse. Cada archivo en `docs/tasks/` describe su objetivo, dependencias, resultado esperado y criterios de calidad.
+Clona el repositorio y abre `TODO.md`. Las tareas pendientes `[ ]` son las siguientes en ejecutarse. Cada archivo en `docs/tasks/` describe su objetivo, dependencias, resultado esperado y criterios de calidad.
 
 Para ejecutar una tarea, sigue el procedimiento del skill `ejecutar-tareas` o el descrito en su archivo.
 

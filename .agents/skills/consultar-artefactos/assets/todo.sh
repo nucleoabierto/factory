@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Consultas al índice de tareas (TODO.txt).
+# Consultas al índice de tareas (TODO.md).
 # Contrato D033: stdout solo datos parseables, stderr diagnósticos,
 # exit 0 éxito (incluido el vacío legítimo), exit 2 entrada ausente.
 set -euo pipefail

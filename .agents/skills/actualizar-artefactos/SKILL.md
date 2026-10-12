@@ -81,7 +81,7 @@ Los scripts viven en `assets/` y se invocan como `assets/<script>.sh <objetivo> 
 
 Solo `encabezado` y `promover` emiten un dato por stdout; el resto muta en silencio. El artefacto ausente o la invocación incompleta o inválida terminan con exit `2` —salvo `inicializar`, que exige que el índice no exista— y toda mutación que no puede ejecutarse termina con diagnóstico en stderr y sin escribir.
 
-### `todo.sh` — el índice de tareas (`TODO.txt`)
+### `todo.sh` — el índice de tareas (`TODO.md`)
 
 #### `marcar <ref> <marca> [bloqueante…]`
 

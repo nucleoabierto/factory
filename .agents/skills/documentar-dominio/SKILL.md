@@ -34,7 +34,7 @@ Instrucciones para que un agente mantenga la documentación viva de los dominios
 
 - La ubicación de los cambios de la tarea —árbol de trabajo sin commitear o rango de commits—: el skill reconstruye el diff con git a partir de ella, no lo recibe ya materializado (o el código del dominio, si se documenta por primera vez).
 - El directorio de dominios como documentación existente: su índice y los documentos numerados de la serie.
-- `assets/domain.txt` como plantilla del documento de dominio.
+- `assets/domain.md` como plantilla del documento de dominio.
 
 ## Salida
 
@@ -54,7 +54,7 @@ Instrucciones para que un agente mantenga la documentación viva de los dominios
 
 1. **Delimitar el dominio afectado.** Reconstruir el diff con git a partir de la ubicación indicada —`git status` y `git diff` en el árbol de trabajo, o el rango de commits por sus hashes— e identificar a qué dominio pertenece el cambio y si existe ya su documento en el directorio de dominios. Si el proyecto tiene varios dominios, trabajar solo los tocados.
 2. **Evaluar el impacto.** Contrastar el diff con el documento del dominio: ¿introduce o renombra conceptos del lenguaje ubicuo?, ¿cambia entidades o invariantes del modelo?, ¿mueve responsabilidades entre fronteras?, ¿crea un dominio nuevo? La lista de preguntas es orientativa, abierta y extensible —cualquier cambio que altere lo que el documento afirma cuenta como impacto—. Si ninguna aplica, emitir «sin impacto» y terminar.
-3. **Crear o actualizar el documento.** Si el dominio no tiene documento, asignar el siguiente número de la serie numerada de dominios —operación `siguiente` de `consultar-artefactos` sobre el directorio de la convención— y crearlo con `assets/domain.txt` documentando el estado actual. Si existe, actualizar las secciones afectadas, manteniendo los anclas a elementos de código.
+3. **Crear o actualizar el documento.** Si el dominio no tiene documento, asignar el siguiente número de la serie numerada de dominios —operación `siguiente` de `consultar-artefactos` sobre el directorio de la convención— y crearlo con `assets/domain.md` documentando el estado actual. Si existe, actualizar las secciones afectadas, manteniendo los anclas a elementos de código.
 4. **Actualizar el índice** del directorio de dominios con el documento nuevo o los cambios de estado.
 5. **Actualizar el estado de salud** del documento: fecha de la revisión y divergencias conocidas o resueltas.
 6. **Evaluar divergencia estructural.** Si el código ya no se explica con el modelo documentado —responsabilidades que cruzan fronteras, conceptos sin hogar, estructura que contradice las fronteras declaradas—, registrar la divergencia en el estado de salud y recomendar invocar `revisar-arquitectura`.
@@ -69,5 +69,5 @@ El skill ha terminado cuando se cumple una de las dos ramas:
 
 ## Referencias
 
-- `assets/domain.txt` — Plantilla del documento de dominio. Leer antes de crear un documento nuevo.
+- `assets/domain.md` — Plantilla del documento de dominio. Leer antes de crear un documento nuevo.
 - `docs/research/2026-09-revision-arquitectura-y-documentacion-dominio.md` — Investigación que motiva el skill: documentación viva como sensor continuo, formatos (arc42 reducido, un hogar por hecho, anclas doc↔código).

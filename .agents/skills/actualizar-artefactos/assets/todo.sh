@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Escrituras sobre el índice de tareas (TODO.txt).
+# Escrituras sobre el índice de tareas (TODO.md).
 # Contrato D033: stdout solo datos parseables, stderr diagnósticos,
 # exit 0 éxito, exit 2 entrada ausente o invocación inválida;
 # una mutación ante formato no parseado falla sin escribir.

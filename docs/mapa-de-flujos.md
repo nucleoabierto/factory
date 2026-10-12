@@ -17,35 +17,35 @@ El grado es de la conexión, no del skill: casi todos los skills declaran ademá
 - **Orquestador:** `idea-a-tarea`.
 - **Puntos de entrada:**
   - Una idea suelta que el usuario trae a la conversación.
-  - Las propuestas pendientes `[p]` de la sección «Propuestas en revisión» de `TODO.txt`, que el orquestador procesa primero —una propuesta sin resolver bloquea el inicio de un flujo nuevo.
+  - Las propuestas pendientes `[p]` de la sección «Propuestas en revisión» de `TODO.md`, que el orquestador procesa primero —una propuesta sin resolver bloquea el inicio de un flujo nuevo.
   - Las ideas persistidas sin procesar de `docs/ideas/` —archivos escritos por `lluvia-de-ideas`, que actúa bajo demanda—, reconocibles por la ausencia de la marca «Procesada en» en su cabecera y ordenadas por su «Orden sugerido».
-- **Capacidades en orden:** `descubrir-problema` (produce problema + oportunidad en la conversación, sin archivo) → `proponer-forma-solucion` (produce forma de solución + alternativas + fuera de alcance, también en la conversación) → `refinar-propuesta` (materializa `docs/proposals/NNN-slug/` con `propuesta.md` y un borrador `MM-titulo.md` por tarea, y añade la línea `[p]` a `TODO.txt`). El orquestador transporta la salida de cada capacidad completa a la siguiente; no la resume ni la reformula.
+- **Capacidades en orden:** `descubrir-problema` (produce problema + oportunidad en la conversación, sin archivo) → `proponer-forma-solucion` (produce forma de solución + alternativas + fuera de alcance, también en la conversación) → `refinar-propuesta` (materializa `docs/proposals/NNN-slug/` con `propuesta.md` y un borrador `MM-titulo.md` por tarea, y añade la línea `[p]` a `TODO.md`). El orquestador transporta la salida de cada capacidad completa a la siguiente; no la resume ni la reformula.
 - **Capacidad auxiliar:** `refinar-propuesta` invoca `investigar` cuando un borrador necesita evidencia externa para definirse; la referencia queda en «Investigaciones de apoyo» de `propuesta.md`.
-- **Puerta asíncrona:** tras `refinar-propuesta` el agente se detiene con la propuesta en `[p]`. La decisión del usuario puede llegar en otra sesión, por eso la primera acción del orquestador es siempre leer `TODO.txt`.
+- **Puerta asíncrona:** tras `refinar-propuesta` el agente se detiene con la propuesta en `[p]`. La decisión del usuario puede llegar en otra sesión, por eso la primera acción del orquestador es siempre leer `TODO.md`.
 - **Resolución de la propuesta:**
-  - Aprobada → `crear-tareas` en modo flujo de idea a tarea: registra la decisión en el campo Revisión de `propuesta.md`, promociona cada borrador a `docs/tasks/NNN-slug.md` sin reescritura, deja las entradas en `## General` de `TODO.txt` y marca la propuesta `[a]` Aprobada. A continuación `planificar` en modo promoción agrupa el conjunto: épica en `docs/epics/NNN-slug.md` con su encabezado y comentario de enlace en `TODO.txt`, o encabezado ligero sin documento si el conjunto no la amerita.
+  - Aprobada → `crear-tareas` en modo flujo de idea a tarea: registra la decisión en el campo Revisión de `propuesta.md`, promociona cada borrador a `docs/tasks/NNN-slug.md` sin reescritura, deja las entradas en `## General` de `TODO.md` y marca la propuesta `[a]` Aprobada. A continuación `planificar` en modo promoción agrupa el conjunto: épica en `docs/epics/NNN-slug.md` con su encabezado y comentario de enlace en `TODO.md`, o encabezado ligero sin documento si el conjunto no la amerita.
   - Cambios solicitados → la línea `[p]` se retira, la propuesta vuelve a `[ ]` Borrador, se aplican los cambios y se reenvía a revisión siguiendo la sección de envío de `refinar-propuesta`.
   - Rechazada → la línea se elimina y `propuesta.md` pasa a `[d]` Descartada; el directorio se conserva para trazabilidad.
   - Borrador de épica rechazado → las tareas quedan en `## General` sin agrupar y la propuesta se considera procesada igualmente.
 - **Puertas humanas:** validación del problema enmarcado; validación de la forma de solución; decisión sobre la propuesta (asíncrona); aprobación del borrador de épica dentro de `planificar`.
-- **Artefactos de estado:** `TODO.txt` (marcador `[p]` y agrupación resultante), `propuesta.md` (ciclo `[ ]` → `[p]` → `[a]`/`[d]` y campo Revisión), los borradores `MM-titulo.md`, `docs/ideas/NNN-slug.md` (cabecera con «Orden sugerido» y marca «Procesada en»), `docs/epics/NNN-slug.md`.
+- **Artefactos de estado:** `TODO.md` (marcador `[p]` y agrupación resultante), `propuesta.md` (ciclo `[ ]` → `[p]` → `[a]`/`[d]` y campo Revisión), los borradores `MM-titulo.md`, `docs/ideas/NNN-slug.md` (cabecera con «Orden sugerido» y marca «Procesada en»), `docs/epics/NNN-slug.md`.
 - **Cruce con el ciclo de tareas:** `ejecutar-tareas` detecta las líneas `[p]` al leer el índice, informa al usuario y deriva su procesamiento a este flujo antes de tomar la siguiente tarea pendiente.
 
 ## Ciclo de tareas
 
 - **Orquestador:** `ejecutar-tareas`.
-- **Punto de entrada:** `TODO.txt`, que indexa tareas por hitos o sueltas en «General» más las propuestas en revisión.
+- **Punto de entrada:** `TODO.md`, que indexa tareas por hitos o sueltas en «General» más las propuestas en revisión.
 - **Por iteración:**
-  1. Toma la siguiente tarea `[ ]` no bloqueada —o retoma la `[~]`— y la marca en progreso en `TODO.txt` y en el campo «Estado» de su archivo.
+  1. Toma la siguiente tarea `[ ]` no bloqueada —o retoma la `[~]`— y la marca en progreso en `TODO.md` y en el campo «Estado» de su archivo.
   2. Invoca `consultar-lecciones` con la descripción de la tarea.
   3. Si la tarea figura bajo un encabezado con comentario `<!-- épica: docs/epics/NNN-slug.md -->`, lee la épica: su plan técnico es la guía de arquitectura de la ejecución.
   4. Enruta por el campo «Tipo» del archivo según el registro «Enrutado por tipo» del propio skill (ver el sub-flujo de desarrollo). Sin tipo o sin especialista registrado, la ejecuta con el comportamiento general.
   5. El trabajo descubierto se da de alta con `crear-tareas` en modo independiente y no se ejecuta en la iteración; una dependencia no resuelta marca la tarea `[!]` con sublista de bloqueantes.
 - **Revisión técnica:** al terminar, la tarea pasa a `[r]` y un subagente de contexto aislado revisa el diff —recibe el archivo de tarea y la ubicación de los cambios, no el razonamiento del ejecutor— y coteja contra las lecciones de `docs/lessons/`. Para tareas del sub-flujo de desarrollo la revisión corre por el skill `revisar-implementacion`; para el resto es el subagente genérico descrito en el procedimiento.
-- **Puerta de ejecución:** aprobada la revisión técnica, `gestionar-pr` commitea el trabajo en la rama de la tarea —creada al marcarla en progreso y nombrada a partir de su identificador—, abre el pull request con una descripción orientada al revisor y conduce el bucle de comentarios hasta que el usuario lo aprueba. Con la aprobación, la tarea pasa a `[x]` en `TODO.txt` y en su archivo, y los veredictos del subagente y del usuario —ejecución— quedan en el campo «Revisión».
+- **Puerta de ejecución:** aprobada la revisión técnica, `gestionar-pr` commitea el trabajo en la rama de la tarea —creada al marcarla en progreso y nombrada a partir de su identificador—, abre el pull request con una descripción orientada al revisor y conduce el bucle de comentarios hasta que el usuario lo aprueba. Con la aprobación, la tarea pasa a `[x]` en `TODO.md` y en su archivo, y los veredictos del subagente y del usuario —ejecución— quedan en el campo «Revisión».
 - **Cierre:** corren los sensores de cierre (sección siguiente) escribiendo sobre la rama, se commitean sus escrituras y el usuario aprueba el paquete completo —la puerta de cierre—; el tercer veredicto queda registrado y `gestionar-pr` fusiona el PR —merge squash: un commit por tarea en la rama principal— y deja el repositorio en la rama principal. El ciclo repite hasta que no quedan tareas pendientes.
 - **Puertas humanas:** la aprobación del plan dentro del sub-flujo de desarrollo; la confirmación de desviaciones mayores dentro de `ejecutar-implementacion`; la aprobación del PR de cada tarea —puerta de ejecución—; la aprobación del paquete de cierre —puerta de cierre—; la validación de las entradas de `EXPERIENCIAS.md` antes de escribirlas.
-- **Artefactos de estado:** `TODO.txt` (marcadores, bloqueos y agrupaciones), el archivo de tarea —que acumula «Estado», «Tipo» y las secciones del sub-flujo más «Revisión» con sus tres veredictos; cada sección registrada es un estado resumible: una sesión nueva continúa desde las secciones presentes, no de memoria—, la rama de la tarea y su pull request como artefacto transitorio de revisión —vive entre la apertura y el merge—.
+- **Artefactos de estado:** `TODO.md` (marcadores, bloqueos y agrupaciones), el archivo de tarea —que acumula «Estado», «Tipo» y las secciones del sub-flujo más «Revisión» con sus tres veredictos; cada sección registrada es un estado resumible: una sesión nueva continúa desde las secciones presentes, no de memoria—, la rama de la tarea y su pull request como artefacto transitorio de revisión —vive entre la apertura y el merge—.
 
 ## Sub-flujo de desarrollo
 
@@ -73,12 +73,12 @@ Invocaciones que `ejecutar-tareas` dispara al cerrar una tarea, entre la puerta 
 
 El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en la conversación:
 
-- **`TODO.txt`:** índice único de trabajo activo. `refinar-propuesta` añade las líneas `[p]`; `idea-a-tarea` las procesa; `crear-tareas` añade las entradas de tarea; `planificar` las agrupa bajo encabezados con comentario de épica; `planificar-roadmap` reordena las agrupaciones para reflejar los horizontes Now y Next del roadmap; `ejecutar-tareas` mantiene los marcadores de estado y `cerrar-conjunto` elimina las agrupaciones agotadas.
-- **`docs/tasks/NNN-slug.md`:** el archivo de la tarea porta su estado interno: «Estado» sincronizado con `TODO.txt`, «Tipo» para el enrutado, las secciones acumulativas del sub-flujo de desarrollo (`## Contexto`, `## Conectividad`, `## Plan técnico`, `## Suite de pruebas esperada`, `## Desviaciones del plan`) y «Revisión».
+- **`TODO.md`:** índice único de trabajo activo. `refinar-propuesta` añade las líneas `[p]`; `idea-a-tarea` las procesa; `crear-tareas` añade las entradas de tarea; `planificar` las agrupa bajo encabezados con comentario de épica; `planificar-roadmap` reordena las agrupaciones para reflejar los horizontes Now y Next del roadmap; `ejecutar-tareas` mantiene los marcadores de estado y `cerrar-conjunto` elimina las agrupaciones agotadas.
+- **`docs/tasks/NNN-slug.md`:** el archivo de la tarea porta su estado interno: «Estado» sincronizado con `TODO.md`, «Tipo» para el enrutado, las secciones acumulativas del sub-flujo de desarrollo (`## Contexto`, `## Conectividad`, `## Plan técnico`, `## Suite de pruebas esperada`, `## Desviaciones del plan`) y «Revisión».
 - **`docs/proposals/NNN-slug/`:** `propuesta.md` con su ciclo de vida en el campo Estado y las decisiones del usuario en «Revisión»; los borradores `MM-titulo.md` se mueven a `docs/tasks/` sin reescritura al promocionar.
 - **`docs/ideas/NNN-slug.md`:** entrada persistida del flujo de idea a tarea, escrita por `lluvia-de-ideas`; `idea-a-tarea` la marca «Procesada en» al consumirla.
-- **`docs/epics/NNN-slug.md`:** objetivo, alcance, piezas, plan técnico —la guía de arquitectura que `planear-implementacion` y `ejecutar-implementacion` respetan—, criterio de cierre y estado —`Completada` lo marca `cerrar-conjunto` al agotarse su agrupación—. Enlazada desde el encabezado de su agrupación en `TODO.txt`.
-- **`ROADMAP.md`:** líneas de trabajo por horizontes de confianza; `planificar-roadmap` escribe la dirección con su puerta humana y `mantener-roadmap` refleja mecánicamente el estado de las líneas de Now al cerrar cada tarea. `TODO.txt` refleja solo Now y Next.
+- **`docs/epics/NNN-slug.md`:** objetivo, alcance, piezas, plan técnico —la guía de arquitectura que `planear-implementacion` y `ejecutar-implementacion` respetan—, criterio de cierre y estado —`Completada` lo marca `cerrar-conjunto` al agotarse su agrupación—. Enlazada desde el encabezado de su agrupación en `TODO.md`.
+- **`ROADMAP.md`:** líneas de trabajo por horizontes de confianza; `planificar-roadmap` escribe la dirección con su puerta humana y `mantener-roadmap` refleja mecánicamente el estado de las líneas de Now al cerrar cada tarea. `TODO.md` refleja solo Now y Next.
 - **`EXPERIENCIAS.md`:** log append-only de correcciones del usuario; `registrar-experiencias` lo escribe al cierre y `consolidar-lecciones` lo lee y marca las entradas consolidadas, sin borrarlas.
 - **`docs/lessons/` y su `README.md`:** lecciones consolidadas por tema con disparadores; `consultar-lecciones` las recupera al inicio de cada tarea y el subagente de revisión las coteja contra el diff.
 - **`docs/decisions/` y su `README.md`:** decisiones vigentes con disparadores y estado; `consultar-decisiones` las recupera, invocado por `recopilar-contexto` o en cualquier punto de una sesión.
@@ -98,7 +98,7 @@ El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en l
 
 ## Referencias
 
-- `docs/decisions/D001-todo-txt-como-indice-unico.md` y `docs/decisions/D015-extension-de-d001-para-indice-de-propuestas.md` — `TODO.txt` como índice de tareas y propuestas.
+- `docs/decisions/D001-todo-txt-como-indice-unico.md` y `docs/decisions/D015-extension-de-d001-para-indice-de-propuestas.md` — `TODO.md` como índice de tareas y propuestas.
 - `docs/decisions/D008-organizacion-por-hitos-en-todo.md` y `docs/decisions/D017-todo-txt-indice-de-trabajo-activo.md` — Agrupación por hitos e índice de solo trabajo activo.
 - `docs/decisions/D009-flujo-revision-dual.md` — La revisión dual del ciclo de tareas.
 - `docs/decisions/D012-formato-y-ubicacion-de-las-propuestas.md`, `docs/decisions/D013-mecanismo-borradores-reflejo-todo.md` y `docs/decisions/D016-campos-de-propuesta-md.md` — El artefacto propuesta y su ciclo de vida.

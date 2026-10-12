@@ -34,7 +34,7 @@ Instrucciones para que un agente cree tareas definitivas en el directorio de tar
 - **Modo independiente:** la solicitud del usuario, que puede describir una o varias tareas, articulada con objetivo, resultado esperado y al menos un criterio de calidad. Si la entrada es una solicitud sin articular, se descompone en tareas antes de crear.
 - **Modo flujo de idea a tarea:** una propuesta en estado `pendiente-de-revision` cuya aprobación el usuario ya comunicó, con sus borradores.
 - El índice de tareas del proyecto.
-- `assets/task.txt` como plantilla de tarea definitiva.
+- `assets/task.md` como plantilla de tarea definitiva.
 
 ## Salida
 
@@ -73,7 +73,7 @@ Instrucciones para que un agente cree tareas definitivas en el directorio de tar
 En modo flujo de idea a tarea, la promoción del paso 7 ya realizó el equivalente de los pasos 9 y 10; continuar en el paso 11, que registra las entradas como tareas sueltas a la espera de que el orquestador del flujo las agrupe invocando `planificar`.
 
 9. **Determinar el siguiente número de tarea** con la consulta «el siguiente número de la serie» de `consultar-artefactos` sobre el directorio de tareas de la convención —si el índice referenciara un número mayor, manda el índice—. Si el índice no existe, crearlo con la acción «inicializar el índice» de `actualizar-artefactos` antes de continuar.
-10. **Crear cada archivo de tarea** en el directorio de tareas usando `assets/task.txt` —la plantilla usa los nombres convencionales configurables—, con estado inicial `pendiente` y la sección de revisión con los marcadores de la plantilla sin rellenar.
+10. **Crear cada archivo de tarea** en el directorio de tareas usando `assets/task.md` —la plantilla usa los nombres convencionales configurables—, con estado inicial `pendiente` y la sección de revisión con los marcadores de la plantilla sin rellenar.
 11. **Dar de alta las tareas en el índice** con la acción «dar de alta la tarea `<ref>` «`<título>`» bajo `<agrupación>`» de `actualizar-artefactos` —el gestor compone la línea con el formato configurado; la referencia de cada tarea es su archivo, numerado con la serie y un slug en kebab-case del título—. El destino es la agrupación correspondiente si la tarea pertenece a trabajo planificado —épica o encabezado ligero—, o la agrupación de tareas sueltas si no tiene agrupación propia —la operación la crea si falta—. Si el destino no está claro, inferirlo del contexto de la solicitud o la propuesta y, si aun así hay duda, preguntar al usuario.
 12. **Informar al usuario** de las tareas creadas. En modo flujo de idea a tarea, indicar que las entradas quedaron como tareas sueltas a la espera de la agrupación: si el skill no fue invocado por el orquestador del flujo, ofrecer invocar `planificar` en modo promoción para cerrar la planeación del conjunto.
 
@@ -87,4 +87,4 @@ El skill ha terminado cuando:
 
 ## Referencias
 
-- `assets/task.txt` — Plantilla de tarea definitiva; reproduce los nombres convencionales configurables. Leer antes de crear archivos de tarea.
+- `assets/task.md` — Plantilla de tarea definitiva; reproduce los nombres convencionales configurables. Leer antes de crear archivos de tarea.

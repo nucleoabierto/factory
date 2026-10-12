@@ -21,7 +21,7 @@ El motor interno es la infraestructura de trabajo; el producto entregable es el 
 El motor interno está completo. Los skills existentes cubren:
 
 - **Flujo de idea a tarea**: `lluvia-de-ideas` persiste ideas en `docs/ideas/`; `idea-a-tarea` orquesta `descubrir-problema`, `proponer-forma-solucion` y `refinar-propuesta`, con `crear-tareas` promocionando los borradores aprobados, `planificar` cerrando la planeación en épicas y `planificar-roadmap` ordenando las líneas de trabajo en `ROADMAP.md`.
-- **Gestión y ejecución de tareas**: `ejecutar-tareas`, con `TODO.txt` como índice y `docs/tasks/` como detalle; las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` se enrutan al sub-flujo de desarrollo, dividido en `planear-tarea` —contexto, conectividad y plan con suite de pruebas esperada— y `desarrollar-tarea` —implementación con registro de desviaciones—, con `revisar-implementacion` en la revisión técnica.
+- **Gestión y ejecución de tareas**: `ejecutar-tareas`, con `TODO.md` como índice y `docs/tasks/` como detalle; las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` se enrutan al sub-flujo de desarrollo, dividido en `planear-tarea` —contexto, conectividad y plan con suite de pruebas esperada— y `desarrollar-tarea` —implementación con registro de desviaciones—, con `revisar-implementacion` en la revisión técnica.
 - **Calidad de escritura**: `revisar-redaccion` y `pulir-escritura`, con revisión de estilo y corrección ortotipográfica.
 - **Versionado**: `commit`, con Conventional Commits en español.
 - **Changelog y liberación**: `mantener-changelog` registra en el changelog del proyecto evaluado los cambios con impacto observable al cerrar cada tarea, y `liberar-version` promueve los no liberados a una versión bajo demanda.
@@ -31,7 +31,7 @@ El motor interno está completo. Los skills existentes cubren:
 
 La conexión completa de los skills —quién invoca a quién, qué artefactos llevan el estado y dónde están las puertas humanas— está documentada en `docs/mapa-de-flujos.md`.
 
-El flujo de trabajo es: leer `TODO.txt`, tomar la siguiente tarea pendiente, ejecutarla siguiendo su archivo en su propia rama, marcarla en revisión, someterla a revisión técnica por un subagente independiente, abrir su pull request para la puerta de ejecución, correr los sensores de cierre y fusionarlo tras la puerta de cierre.
+El flujo de trabajo es: leer `TODO.md`, tomar la siguiente tarea pendiente, ejecutarla siguiendo su archivo en su propia rama, marcarla en revisión, someterla a revisión técnica por un subagente independiente, abrir su pull request para la puerta de ejecución, correr los sensores de cierre y fusionarlo tras la puerta de cierre.
 
 Lo que falta para llegar al producto entregable:
 
