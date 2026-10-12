@@ -50,7 +50,7 @@
 <!-- épica: docs/epics/004-revision-codigo-producto.md -->
 
 - [x] docs/tasks/138-skill-revisar-pr.md — Capacidad de revisión de un pull request arbitrario
-- [ ] docs/tasks/139-skill-comentar-pr.md — Comentarios publicables de la revisión con confirmación
+- [r] docs/tasks/139-skill-comentar-pr.md — Comentarios publicables de la revisión con confirmación
 - [ ] docs/tasks/140-skill-clasificar-comentarios.md — Triage de la revisión recibida en un pull request propio
 - [ ] docs/tasks/141-skill-mejorar-pr.md — Aplicar el triage sobre el cambio propio
 

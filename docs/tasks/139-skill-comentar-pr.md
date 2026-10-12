@@ -2,7 +2,7 @@
 
 ## Estado
 
-**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
 
 ## Tipo
 
@@ -44,6 +44,32 @@ Crear el skill `comentar-pr`: la mitad de publicación del bloque revisor. A par
 ## Notas
 
 - Los comentarios que el usuario descarte en la confirmación simplemente no se publican; no hace falta artefacto de «comentarios rechazados» en esta iteración.
+- Conectividad verificada 2026-10-12: `gh api` resuelve `:owner/:repo`, el SHA head del PR es accesible y el endpoint `/pulls/<n>/reviews` responde. La publicación real solo ocurre tras la puerta humana.
+
+## Plan técnico
+
+**Subsistema:** `comentar-pr` es la mitad de publicación del bloque revisor: consume el informe que `revisar-pr` deja en `dir_revisiones_pr` y publica los hallazgos como comentarios en el PR. Mecanismo de plataforma verificado: una única `gh api repos/:owner/:repo/pulls/<n>/reviews -X POST` con `event: COMMENT`, `commit_id` (SHA head) y `comments[]` de línea —una sola review, no comentario a comentario—. Lección aplicada: referencias autocontenidas —el skill solo enlaza material del paquete—; la de la plantilla en `assets/` no aplica, el skill no produce artefacto persistido.
+
+### Acciones
+
+- [x] **Escribir `.agents/skills/comentar-pr/SKILL.md`**: entrada (referencia del PR + informe más reciente en `dir_revisiones_pr` por patrón `pr-<n>-*.md`; sin informe → informar y terminar); selección (blocker/important/nit comentables, preguntas abiertas como `question` opcionales); mapeo severidad→tipo (blocker→`issue (blocking)`, important→`issue`/`suggestion`, nit→`nitpick`/`suggestion`, pregunta→`question`); regla de colocación (anclado a línea si el hallazgo apunta a un lugar del diff; general al cuerpo de la review si es transversal o no anclable); regla de propuesta (anclado lleva bloque `suggestion` de código o pseudocódigo; general lleva propuesta en prosa); autocontención verificable; puerta humana con el lote completo antes de publicar; publicación como una sola review `COMMENT` vía `gh api`; resumen en chat con enlaces —el informe no muta.
+- [x] **`teleprompter.json`** — registro alfabético.
+- [x] **Documentos vivos** — `README.md`, `docs/mapa-de-flujos.md`, `docs/definicion-proyecto.md` si aplica.
+
+## Suite de pruebas esperada
+
+Trazadas a CU-2 del PRD:
+
+- Sobre un informe con hallazgos, produce el lote con un comentario por hallazgo, mapeado a su tipo conventional (O)
+- Cada comentario se entiende sin el informe —problema + anclaje + razón— (B)
+- El skill decide por hallazgo entre comentario anclado y general según el criterio de colocación (B)
+- Todo comentario anclado lleva propuesta —`suggestion` de código o pseudocódigo— (B)
+- El hallazgo transversal o no anclable llega al cuerpo de la review, no se descarta (B)
+- Sin confirmación del usuario, nada llega a la plataforma (E)
+- Lo descartado en la confirmación no se publica (B)
+- Sin informe para el PR, informa y termina sin efecto lateral (E)
+- No resuelve hilos, no responde al autor, no edita el PR (B)
+- `bash -n`/JSON válido y manifiesto en orden
 
 ## Revisión
 
