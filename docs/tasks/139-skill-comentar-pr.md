@@ -71,6 +71,11 @@ Trazadas a CU-2 del PRD:
 - No resuelve hilos, no responde al autor, no edita el PR (B)
 - `bash -n`/JSON válido y manifiesto en orden
 
+## Desviaciones del plan
+
+- **La plantilla del informe registra el SHA head revisado y `comentar-pr` lo confronta.** Hallazgo `important` de la revisión dogfooding: sin esa verificación, commits posteriores a la revisión dejarían obsoleto el informe y se publicarían hallazgos que ya no aplican. `assets/informe.md` de `revisar-pr` gana el campo en la cabecera y `comentar-pr` exige la coincidencia antes de publicar.
+- **`comentar-pr` no republica hallazgos ya publicados.** Nit de la misma revisión: el procedimiento carga los comentarios existentes del PR y omite los equivalentes —re-ejecución segura—; también se declaró el lote vacío (veredicto `merge` sin hallazgos) y la dirección del anclaje multilínea (`start_*` primera línea, `line`/`side` última).
+
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]

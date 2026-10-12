@@ -55,24 +55,25 @@ Instrucciones para que un agente convierta los hallazgos de un informe de `revis
 
 1. **Resolver el PR:** con número dado, `gh pr view <n>`; sin número, el PR de la rama actual con `gh pr view`. Si no resuelve a un PR abierto, informar y terminar.
 2. **Localizar el informe más reciente del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-*.md`, el de mayor fecha y sufijo ordinal—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`. Si no hay informe para el PR, informar de que no hay nada que comentar —sugerir `revisar-pr`— y terminar.
-3. **Obtener el SHA head del PR** —`gh pr view <n> --json headRefOid`— y el diff —`gh pr diff <n>`— para el anclaje.
+3. **Verificar la frescura del informe:** el SHA head actual —`gh pr view <n> --json headRefOid`— debe coincidir con el que el informe registra como revisado en su cabecera; si difiere o el informe no lo registra, el informe está obsoleto —informar al usuario y proponer `revisar-pr` de nuevo antes de publicar, porque los hallazgos podrían ya no aplicar—.
+4. **Obtener el diff** —`gh pr diff <n>`— para el anclaje, y **cargar los comentarios ya publicados** en el PR —`gh api repos/:owner/:repo/pulls/<n>/comments`— para no republicar un hallazgo que ya está en la plataforma.
 
 ### 2. Redactar el lote
 
-4. **Seleccionar los hallazgos comentables:** todos los `blocker`, `important` y `nit` del informe se proponen como comentarios; las preguntas abiertas se ofrecen como comentarios `question` —el usuario decide si van—.
-5. **Decidir la colocación de cada comentario:**
-   - **Anclado a línea** cuando el hallazgo apunta a un lugar concreto del diff —una línea o un bloque—. El anclaje del informe —`archivo:línea`— se proyecta sobre el diff para obtener `path`, `line` y `side` del payload: `RIGHT` para líneas añadidas o de contexto, `LEFT` cuando el ancla es una línea eliminada; un bloque se ancla con `start_line`/`start_side` además de `line`/`side`. Si la línea exacta no está en el diff, se ancla a la línea añadida más próxima del mismo archivo.
+5. **Seleccionar los hallazgos comentables:** todos los `blocker`, `important` y `nit` del informe se proponen como comentarios —omitiendo los que ya tienen un comentario publicado equivalente—; las preguntas abiertas se ofrecen como comentarios `question` —el usuario decide si van—. Si el lote queda vacío —informe sin hallazgos, veredicto `merge`— informar de que no hay nada que comentar y terminar.
+6. **Decidir la colocación de cada comentario:**
+   - **Anclado a línea** cuando el hallazgo apunta a un lugar concreto del diff —una línea o un bloque—. El anclaje del informe —`archivo:línea`— se proyecta sobre el diff para obtener `path`, `line` y `side` del payload: `RIGHT` para líneas añadidas o de contexto, `LEFT` cuando el ancla es una línea eliminada; un bloque se ancla con `start_line`/`start_side` además de `line`/`side` —`start_*` es la primera línea del rango y `line`/`side` la última; invertirlos produce un error de la API—. Si la línea exacta no está en el diff, se ancla a la línea añadida más próxima del mismo archivo.
    - **General** —cuerpo de la review— cuando el hallazgo es transversal (un patrón repetido en varios archivos, una decisión de diseño) o cuando su anclaje no cae dentro del diff. Nada se descarta por no anclar.
-6. **Redactar cada comentario en formato *conventional comments*** —`tipo` derivado de la severidad: `blocker` → `issue (blocking)`, `important` → `issue` o `suggestion` según el arreglo sea escribible, `nit` → `nitpick` o `suggestion`, pregunta abierta → `question`—.
+7. **Redactar cada comentario en formato *conventional comments*** —`tipo` derivado de la severidad: `blocker` → `issue (blocking)`, `important` → `issue` o `suggestion` según el arreglo sea escribible, `nit` → `nitpick` o `suggestion`, pregunta abierta → `question`—.
    - Todo comentario anclado lleva propuesta concreta: un bloque ` ```suggestion ` con el código de reemplazo cuando el arreglo es localizable y escribible —la plataforma lo ofrece aplicable—, o pseudocódigo/descripción del arreglo cuando no cabe en un diff de líneas.
    - El comentario general lleva la propuesta en prosa —qué cambiaría y dónde—.
    - El comentario nunca remite al informe ni a artefactos que el autor pueda no tener; la regla o el patrón infringido se cita por nombre y se explica en una frase.
 
 ### 3. Confirmar y publicar
 
-7. **Presentar el lote completo al usuario:** por cada comentario, su colocación —archivo y línea, o «general»—, su tipo y su cuerpo redactado; más el cuerpo de la review si lleva comentarios generales. El usuario aprueba en bloque, descarta o edita; lo descartado no se publica y no deja artefacto.
-8. **Publicar como una sola review** —solo tras la confirmación— con `gh api repos/:owner/:repo/pulls/<n>/reviews -X POST --input -` y el JSON `{commit_id, event: "COMMENT", body, comments: [{path, line, side, body}]}` —con `start_line`/`start_side` cuando el comentario cubre un bloque—. El campo `body` es obligatorio en una review `COMMENT`: lleva los comentarios generales y, cuando no los hay, una frase de contexto del lote —qué se revisó y cuántos comentarios anclados trae—.
-9. **Informar del resumen:** qué se publicó, dónde quedó cada comentario y el enlace de la review. El informe no muta —es evidencia de la revisión, no de la publicación—.
+8. **Presentar el lote completo al usuario:** por cada comentario, su colocación —archivo y línea, o «general»—, su tipo y su cuerpo redactado; más el cuerpo de la review si lleva comentarios generales. El usuario aprueba en bloque, descarta o edita; lo descartado no se publica y no deja artefacto.
+9. **Publicar como una sola review** —solo tras la confirmación— con `gh api repos/:owner/:repo/pulls/<n>/reviews -X POST --input -` y el JSON `{commit_id, event: "COMMENT", body, comments: [{path, line, side, body}]}` —con `start_line`/`start_side` cuando el comentario cubre un bloque—. El campo `body` es obligatorio en una review `COMMENT`: lleva los comentarios generales y, cuando no los hay, una frase de contexto del lote —qué se revisó y cuántos comentarios anclados trae—.
+10. **Informar del resumen:** qué se publicó, dónde quedó cada comentario y el enlace de la review. El informe no muta —es evidencia de la revisión, no de la publicación—.
 
 ## Finalización
 
