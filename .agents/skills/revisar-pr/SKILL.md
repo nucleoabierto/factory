@@ -37,14 +37,7 @@ Instrucciones para que un agente someta un *pull request* del proyecto evaluado 
 
 ## Salida
 
-- Un informe de revisión persistido en el directorio de informes de revisión de PR del proyecto evaluado —resuelto con `convencion dir_revisiones_pr` de `consultar-artefactos`—, nombrado `pr-<numero>-<fecha>.md` con la fecha en `yyyymmdd`; el nombre admite re-revisiones del mismo PR y, si el archivo ya existe, lleva un sufijo ordinal al final (`pr-<numero>-<fecha>-2.md`, `-3`…) para no sobrescribirlo. El informe es estado local efímero: queda fuera del control de versiones —la convención lo ubica bajo `.git/`— y `gestionar-pr` lo elimina al cerrar el PR.
-- Contenido del informe, en secciones planas:
-  - Cabecera con bullets etiquetados: fecha, PR (número, título y enlace), ramas base y head, autor del PR.
-  - Resumen del cambio: qué hace el diff, en dos o tres frases.
-  - Intención reconstruida: contra qué se juzga el cambio, con las fuentes usadas —la descripción del PR, la tarea o épica referenciada, la documentación del proyecto—; cuando no se puede reconstruir, se declara así.
-  - Hallazgos ordenados por severidad —blocker, important, nit—; cada uno cita el archivo con su anclaje y la regla declarada o el patrón concreto que infringe.
-  - Preguntas abiertas: las dudas que el revisor no pudo resolver con el contexto disponible.
-  - Veredicto único: `merge` —el PR está listo—, `improve` —necesita cambios— o `blocked` —el contexto no alcanza para juzgar con justicia—.
+- Un informe de revisión persistido en el directorio de informes de revisión de PR del proyecto evaluado —resuelto con `convencion dir_revisiones_pr` de `consultar-artefactos`—, nombrado `pr-<numero>-<fecha>.md` con la fecha en `yyyymmdd`; el nombre admite re-revisiones del mismo PR y, si el archivo ya existe, lleva un sufijo ordinal al final (`pr-<numero>-<fecha>-2.md`, `-3`…) para no sobrescribirlo. El informe sigue la plantilla `assets/informe.md` —cabecera, resumen del cambio, intención reconstruida con sus fuentes, hallazgos por severidad, preguntas abiertas y veredicto único (`merge`/`improve`/`blocked`)— y es estado local efímero: queda fuera del control de versiones —la convención lo ubica bajo `.git/`— y `gestionar-pr` lo elimina al cerrar el PR.
 - El resumen del veredicto en chat, con la ruta del informe.
 
 ## Principios rectores
@@ -65,7 +58,7 @@ Instrucciones para que un agente someta un *pull request* del proyecto evaluado 
 
 ### 2. Lanzar el revisor independiente
 
-3. **Lanzar un subagente de contexto aislado y con capacidad de ejecutar comandos** —los necesita para `gh` y `git`— que recibe únicamente la referencia del PR y la ruta del informe, sin el razonamiento del agente. Su encargo, con el alcance acotado a los puntos de mayor riesgo:
+3. **Lanzar un subagente de contexto aislado y con capacidad de ejecutar comandos** —los necesita para `gh` y `git`— que recibe únicamente la referencia del PR, la ruta del informe y la ruta de la plantilla `assets/informe.md`, sin el razonamiento del agente. Su encargo, con el alcance acotado a los puntos de mayor riesgo:
    - **Reconstruir el diff y el historial** del PR por sí mismo: `gh pr diff <n>` y los commits de la rama contra su base.
    - **Reconstruir la intención del cambio** desde la descripción del PR y los artefactos del proyecto evaluado cuando existan —la tarea o épica referenciada, la documentación de dominio o de producto afectada, las reglas declaradas—; la lista de fuentes es abierta. Lo no reconstruible va a preguntas abiertas; si impide juzgar con justicia, el veredicto es `blocked`.
    - **Cargar los hilos de revisión existentes** —abiertos y resueltos; el estado lo expone la API GraphQL en `reviewThreads.isResolved`— para no duplicar feedback ya resuelto.
@@ -73,7 +66,7 @@ Instrucciones para que un agente someta un *pull request* del proyecto evaluado 
    - **Revisar las reglas declaradas del proyecto** que apliquen al cambio.
    - **Cotejar contra las lecciones aprendidas:** identificar las lecciones cuyos disparadores coincidan con los archivos y acciones del diff —la consulta por disparadores la resuelve `consultar-artefactos`— y verificar que el diff no repite errores ya aprendidos.
    - **Buscar problemas no previstos:** casos borde ignorados, efectos de segundo orden sobre llamantes e invariantes, discrepancias entre la intención reconstruida y lo implementado.
-   - **Producir el informe** en la ruta indicada, con el formato de «Salida», y devolver el veredicto con un resumen.
+   - **Producir el informe** en la ruta indicada, siguiendo la plantilla recibida, y devolver el veredicto con un resumen.
 
 ### 3. Entregar
 
@@ -88,6 +81,7 @@ El skill ha terminado cuando:
 
 ## Referencias
 
+- `assets/informe.md` — Plantilla del informe de revisión; el subagente la sigue al producirlo.
 - `.agents/skills/revisar-implementacion/SKILL.md` — La revisión interna del ciclo de tareas, de la que este skill toma los principios sin el contrato de archivo de tarea.
 - `docs/epics/004-revision-codigo-producto.md` — El conjunto al que pertenece la capacidad: bloque revisor y bloque autor.
 - `docs/prd/004-revision-codigo-producto.md` — El caso de uso CU-1 y el comportamiento esperado que este skill materializa.
