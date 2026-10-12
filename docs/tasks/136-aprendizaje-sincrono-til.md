@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -77,5 +77,5 @@ Skill unificado `destilar-lecciones`: un solo acto que anexa la experiencia en `
 ## Revisión
 
 - Subagente: 2026-10-12 — Aprueba
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-10-12 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
