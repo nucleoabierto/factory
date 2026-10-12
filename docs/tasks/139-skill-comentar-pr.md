@@ -75,6 +75,7 @@ Trazadas a CU-2 del PRD:
 
 - **La plantilla del informe registra el SHA head revisado y `comentar-pr` lo confronta.** Hallazgo `important` de la revisión dogfooding: sin esa verificación, commits posteriores a la revisión dejarían obsoleto el informe y se publicarían hallazgos que ya no aplican. `assets/informe.md` de `revisar-pr` gana el campo en la cabecera y `comentar-pr` exige la coincidencia antes de publicar.
 - **`comentar-pr` no republica hallazgos ya publicados.** Nit de la misma revisión: el procedimiento carga los comentarios existentes del PR y omite los equivalentes —re-ejecución segura—; también se declaró el lote vacío (veredicto `merge` sin hallazgos) y la dirección del anclaje multilínea (`start_*` primera línea, `line`/`side` última).
+- **La deduplicación cubre también las reviews, no solo los comentarios de línea.** Segunda ronda dogfooding: los comentarios generales viajan en el `body` de la review, que `pulls/<n>/comments` no devuelve; el paso carga ambos endpoints con `--paginate`. Además `commit_id` quedó declarado como el SHA verificado en el paso de frescura.
 
 ## Revisión
 
