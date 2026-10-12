@@ -88,7 +88,7 @@ El estado entre invocaciones —y entre sesiones— viaja en artefactos, no en l
 - **`DESIGN.md` del proyecto evaluado:** contrato de diseño mantenido por `documentar-guia-estilo` y consumido por `aplicar-guia-estilo`.
 - **`docs/research/`:** investigaciones producidas por `investigar`; las propuestas las referencian en «Investigaciones de apoyo» y los skills en sus secciones «Referencias».
 - **`docs/architecture-reviews/`:** informes persistidos por `revisar-arquitectura`; el campo «Derivado en» de cada hallazgo enlaza la tarea o decisión que lo materializó.
-- **Informes de revisión de PR** (en el directorio que resuelve `dir_revisiones_pr`, por convención `.git/factory/pr-reviews/`): estado local efímero que `revisar-pr` escribe sobre *pull requests* arbitrarios —resumen del cambio, intención reconstruida, hallazgos por severidad, preguntas abiertas y veredicto—; fuera del control de versiones y eliminado por `gestionar-pr` al cerrar el PR.
+- **Informes de revisión de PR** (en el directorio que resuelve `dir_revisiones_pr`, por convención bajo el directorio git del repositorio): estado local efímero que `revisar-pr` escribe sobre *pull requests* arbitrarios —resumen del cambio, intención reconstruida, hallazgos por severidad, preguntas abiertas y veredicto—; fuera del control de versiones con el valor por defecto y eliminado por `gestionar-pr` al cerrar el PR.
 
 ## Conexiones por convención del arnés
 
