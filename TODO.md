@@ -41,5 +41,5 @@
 - [x] docs/tasks/127-orientacion-generativa-en-aplicar-guia-estilo.md — Consumir la orientación generativa en aplicar-guia-estilo
 - [x] docs/tasks/128-pie-primera-version-changelog.md — Pie de primera versión en el changelog
 - [x] docs/tasks/133-plantillas-y-convencion-indice-markdown.md — Plantillas y convención del índice a Markdown
-- [ ] docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md — Renombrar los archivos .txt existentes a Markdown
+- [x] docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md — Renombrar los archivos .txt existentes a Markdown
 

@@ -2,5 +2,5 @@ dist
 coverage
 docs
 CHANGELOG.md
-TODO.txt
+TODO.md
 package-lock.json
