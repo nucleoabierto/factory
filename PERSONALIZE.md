@@ -9,7 +9,7 @@ Los skills no llevan consigo los artefactos de estado: los crean y los mantienen
 Crear si no existen:
 
 - `TODO.md` — índice de tareas del proyecto. Una línea por tarea con el formato `- [estado] docs/tasks/NNN-slug.md — título breve`, donde el estado es `[ ]` pendiente, `[~]` en progreso, `[r]` en revisión, `[x]` completada o `[!]` bloqueada. Las tareas sueltas viven bajo la sección `## General`; los conjuntos planificados, bajo encabezados `## Hito N: título`; al final, la sección `## Propuestas en revisión` lista las propuestas del flujo de idea a tarea con el marcador `[p]`.
-- `EXPERIENCIAS.md` — registro append-only de las correcciones que el usuario hace al agente; el skill `registrar-experiencias` lo gestiona.
+- `EXPERIENCIAS.md` — registro append-only de las correcciones que el usuario hace al agente; el skill `destilar-lecciones` lo gestiona.
 - `CHANGELOG.md` — changelog del proyecto en formato Keep a Changelog, con la sección `## [Unreleased]` para los cambios no liberados.
 - `ROADMAP.md` — opcional; lo produce `planificar-roadmap` cuando el proyecto quiere declarar dirección y prioridades.
 - `DESIGN.md` — opcional; si existe, activa por convención el par de skills de guía de estilo (`documentar-guia-estilo`, `aplicar-guia-estilo`).

@@ -16,6 +16,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 - Las plantillas de los skills y la convención del índice de tareas adoptan la extensión Markdown: `task`, `domain` y `feature` pasan de `.txt` a `.md` en sus `assets/`, `indice_tareas` vale `TODO.md` por defecto en el catálogo de convenciones, y los índices existentes de los tres proyectos gestionados se renombran —las instalaciones externas migran el nombre con su configuración (docs/tasks/133-plantillas-y-convencion-indice-markdown.md, docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md)
 - El merge squash del pull request termina el cuerpo del commit con el pie `Closes #<n>`, que conserva en la rama principal la referencia al PR que produjo el cambio (docs/tasks/135-pie-close-pr-en-merge.md)
+- El aprendizaje se destila en el mismo acto que registra la corrección: el skill `destilar-lecciones` fusiona `registrar-experiencias` y `consolidar-lecciones` —anexa la experiencia en el registro append-only, escribe la lección en la nota del tema, actualiza el índice y marca la entrada consolidada en una sola operación— eliminando la consolidación diferida en sesión posterior; el filtro sube de nivel y solo se registra lo transferible a trabajo futuro, y el skill procesa también el backlog pendiente del registro (docs/tasks/136-aprendizaje-sincrono-til.md)
 
 ## [0.3.0] - 2026-10-04
 

@@ -1,6 +1,6 @@
 # Lecciones
 
-Índice de lecciones aprendidas, consolidadas desde `EXPERIENCIAS.md` por el skill `consolidar-lecciones`. `consultar-lecciones` lo consulta para recuperar las lecciones que aplican a un trabajo; `ejecutar-tareas` lo invoca al leer una tarea.
+Índice de lecciones aprendidas, destiladas desde las correcciones del usuario por el skill `destilar-lecciones` —la evidencia vive en `EXPERIENCIAS.md`. `consultar-lecciones` lo consulta para recuperar las lecciones que aplican a un trabajo; `ejecutar-tareas` lo invoca al leer una tarea.
 
 <!-- Formato de cada entrada: el tema en su línea y los datos como
      sub-bullets, con los disparadores siempre en la primera posición
@@ -45,8 +45,8 @@
   - Disparadores: evidencia, refinamiento, propuesta, planeación, investigar, investigación, profundidad, prueba de concepto, incertidumbre, materializar skill
   - Resumen: La evidencia se resuelve por vía teórica o activa según la incertidumbre, y la profundidad de la investigación se acuerda al inicio —profunda por defecto cuando fundamenta materializar un artefacto—.
 - diseno-de-artefactos.md
-  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla, ruta de proyecto, references/, YAGNI, por anticipado, sin consumidor, superficie pública, API
-  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión, la tecnología o las rutas del proyecto validado son datos de entrada y la superficie pública solo publica lo que tiene consumidor —lo anticipado es YAGNI—.
+  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla, ruta de proyecto, references/, YAGNI, por anticipado, sin consumidor, superficie pública, API, retirar artefacto, registro, append-only, fuente de verdad, evidencia
+  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión, la tecnología o las rutas del proyecto validado son datos de entrada, la superficie pública solo publica lo que tiene consumidor —lo anticipado es YAGNI— y un artefacto de evidencia append-only no se degrada por perder lectores.
 - higiene-de-ramas.md
   - Disparadores: rama, branch, git push, main, pull request, commit en main, registro de tareas, nueva rama, diff del PR
   - Resumen: Tras commitear en la rama principal, push antes de ramificar: la rama de la tarea contiene solo el trabajo de su tarea.

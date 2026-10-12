@@ -57,7 +57,7 @@ cabecera='# Experiencias
      el resultado esperado y el obtenido.
 
      Las entradas nunca se editan ni se borran. Gestionado por el skill
-     registrar-experiencias. -->'
+     destilar-lecciones. -->'
 
 case "$op" in
 

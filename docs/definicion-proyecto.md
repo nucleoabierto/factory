@@ -25,7 +25,7 @@ El motor interno está completo. Los skills existentes cubren:
 - **Calidad de escritura**: `revisar-redaccion` y `pulir-escritura`, con revisión de estilo y corrección ortotipográfica.
 - **Versionado**: `commit`, con Conventional Commits en español.
 - **Changelog y liberación**: `mantener-changelog` registra en el changelog del proyecto evaluado los cambios con impacto observable al cerrar cada tarea, y `liberar-version` promueve los no liberados a una versión bajo demanda.
-- **Memoria del proyecto**: `investigar`, `decisiones-diseno`, `registrar-experiencias`, `consolidar-lecciones`, `consultar-lecciones` y `consultar-decisiones`.
+- **Memoria del proyecto**: `investigar`, `decisiones-diseno`, `destilar-lecciones`, `consultar-lecciones` y `consultar-decisiones`.
 - **Salud del dominio y del producto**: `documentar-dominio` mantiene `docs/domains/` y `documentar-producto` la documentación de producto en `product-docs/`; `revisar-arquitectura` evalúa dominios con criterios DDD, persistiendo informes en `docs/architecture-reviews/`.
 - **Diseño**: `documentar-guia-estilo` mantiene el `DESIGN.md` del proyecto evaluado y `aplicar-guia-estilo` lo aplica al escribir frontend; ambos se activan por convención del arnés, sin invocación del ciclo de tareas.
 

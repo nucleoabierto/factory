@@ -5,7 +5,7 @@
      el resultado esperado y el obtenido.
 
      Las entradas nunca se editan ni se borran. Gestionado por el skill
-     registrar-experiencias. -->
+     destilar-lecciones. -->
 
 - Id: 20260920T135408
   Tarea: docs/tasks/044-crear-consolidacion-lecciones.md
@@ -238,4 +238,11 @@
   Esperado: los commits de registro hechos directos en main debían empujarse antes de crear la rama de la tarea.
   Obtenido: el commit «docs: registra las tareas 133-134» quedó local y viajó dentro de la rama del PR, que mostró dos commits y arrastraba trabajo ajeno a la tarea.
   Corrección: tras commitear en main, push antes de ramificar —la rama debe contener solo el trabajo de su tarea.
+  Estado: consolidada
+
+- Id: 20261012T035528
+  Tarea: docs/tasks/136-aprendizaje-sincrono-til.md
+  Esperado: el plan evaluaba retirar EXPERIENCIAS.md si quedaba sin consumidor, por la lección YAGNI.
+  Obtenido: propuesta de posible retirada del registro.
+  Corrección: EXPERIENCIAS.md es la fuente de verdad y permanece; lo que desaparece es la asincronía, no el registro.
   Estado: consolidada

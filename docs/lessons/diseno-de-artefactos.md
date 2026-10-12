@@ -13,3 +13,7 @@
 - **Publica en la superficie de un artefacto solo lo que tiene consumidor; lo anticipado es YAGNI y se añade cuando aparezca su uso.** Por qué: un catálogo publicó dos operaciones marcándolas como «sin consumidor» por anticipado; ocupaban superficie pública sin uso y tuvieron que retirarse. El criterio aplica a cualquier superficie —catálogos, APIs, parámetros, secciones—: si nada la consume, no entra todavía.
   Disparadores: YAGNI, por anticipado, sin consumidor, catálogo, operaciones, API, superficie pública, parámetros, diseño de interfaz, publicar
   Origen: 20261011T021657
+
+- **Antes de proponer retirar o degradar un artefacto, verifica su rol declarado: un artefacto de evidencia append-only no se degrada por perder lectores —su valor es la persistencia de la historia, no su consumo corriente.** Por qué: el plan de la tarea 136 evaluaba retirar `EXPERIENCIAS.md` si quedaba sin consumidor, aplicando la lección YAGNI por el lado equivocado; el registro es la fuente de verdad de las correcciones y su rol es conservar la evidencia, no servir consultas.
+  Disparadores: retirar artefacto, registro, append-only, fuente de verdad, YAGNI, evidencia, refactor, EXPERIENCIAS.md
+  Origen: 20261012T035528
