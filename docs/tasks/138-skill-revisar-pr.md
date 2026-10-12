@@ -112,4 +112,4 @@ Trazadas a CU-1 del PRD («Revisar un PR ajeno», `docs/prd/004-revision-codigo-
 
 - Subagente: 2026-10-12 — Aprueba
 - Usuario (ejecución): 2026-10-12 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-10-12 — Aprueba
