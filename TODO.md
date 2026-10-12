@@ -42,5 +42,5 @@
 - [x] docs/tasks/128-pie-primera-version-changelog.md — Pie de primera versión en el changelog
 - [x] docs/tasks/133-plantillas-y-convencion-indice-markdown.md — Plantillas y convención del índice a Markdown
 - [x] docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md — Renombrar los archivos .txt existentes a Markdown
-- [~] docs/tasks/135-pie-close-pr-en-merge.md — Pie «Closes #N» en el commit de merge del PR
+- [x] docs/tasks/135-pie-close-pr-en-merge.md — Pie «Closes #N» en el commit de merge del PR
 
