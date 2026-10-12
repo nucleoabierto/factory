@@ -246,3 +246,24 @@
   Obtenido: propuesta de posible retirada del registro.
   Corrección: EXPERIENCIAS.md es la fuente de verdad y permanece; lo que desaparece es la asincronía, no el registro.
   Estado: consolidada
+
+- Id: 20261012T172312
+  Tarea: docs/tasks/138-skill-revisar-pr.md
+  Esperado: el informe de revisión no es artefacto entregable del repo; es estado local efímero con ciclo de vida —se elimina al cerrar el PR—.
+  Obtenido: el plan y la primera implementación persistían el informe en docs/pr-reviews versionado y commiteado.
+  Corrección: el informe vive fuera del control de versiones (.git/factory/pr-reviews) y gestionar-pr lo elimina al cerrar el PR.
+  Estado: consolidada
+
+- Id: 20261012T172315
+  Tarea: docs/tasks/138-skill-revisar-pr.md
+  Esperado: la estructura del informe que el skill produce debía materializarse como plantilla en assets/, como task.md, epica.md o prd.md.
+  Obtenido: el formato estaba descrito inline en la sección Salida del SKILL.md.
+  Corrección: crear assets/informe.md con la estructura y los placeholders; el cuerpo la referencia y el subagente la recibe por ruta.
+  Estado: consolidada
+
+- Id: 20261012T172318
+  Tarea: docs/tasks/138-skill-revisar-pr.md
+  Esperado: las referencias del skill solo pueden apuntar a material que viaja con el paquete instalado —assets/ propios u otros skills—.
+  Obtenido: la sección Referencias enlazaba docs/epics/004 y docs/prd/004, artefactos de desarrollo del repo ausentes en un proyecto instalado.
+  Corrección: retirarlas; el skill es autocontenido.
+  Estado: consolidada

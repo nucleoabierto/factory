@@ -17,3 +17,7 @@
 - **Antes de proponer retirar o degradar un artefacto, verifica su rol declarado: un artefacto de evidencia append-only no se degrada por perder lectores —su valor es la persistencia de la historia, no su consumo corriente.** Por qué: el plan de la tarea 136 evaluaba retirar `EXPERIENCIAS.md` si quedaba sin consumidor, aplicando la lección YAGNI por el lado equivocado; el registro es la fuente de verdad de las correcciones y su rol es conservar la evidencia, no servir consultas.
   Disparadores: retirar artefacto, registro, append-only, fuente de verdad, YAGNI, evidencia, refactor, EXPERIENCIAS.md
   Origen: 20261012T035528
+
+- **Distingue artefacto entregable de estado de proceso efímero: lo efímero vive fuera del control de versiones y su ciclo de vida —quién lo crea y quién lo elimina— queda declarado.** Por qué: el informe de `revisar-pr` se diseñó persistido en `docs/pr-reviews` versionado, tratándolo como entregable; el usuario lo corrigió a estado local bajo `.git/` con limpieza al cerrar el PR, porque un informe intermedio no es contenido del producto.
+  Disparadores: informe, estado local, artefacto efímero, .git/, ciclo de vida de artefacto, persistir, salida de skill, directorio de informes
+  Origen: 20261012T172312

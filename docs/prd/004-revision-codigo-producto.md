@@ -9,6 +9,7 @@ Desarrolladores y *product managers* que gestionan un producto con un agente de 
 ## Casos de uso
 
 - **CU-1 — Revisar un PR ajeno:** el usuario señala un PR del proyecto; el sistema reconstruye el diff y la intención del cambio, lo confronta con las convenciones y la memoria del proyecto, y entrega un informe con hallazgos por severidad y un veredicto (merge, improve o blocked).
+  - El informe es estado local del entorno —fuera del control de versiones— y se elimina al cerrar el PR.
   - El PR ya tiene revisión previa: los hilos resueltos no se duplican en el informe.
   - La intención del cambio no se puede reconstruir: el veredicto es `blocked` y las dudas van a preguntas abiertas.
 - **CU-2 — Comentar la revisión:** con el informe en la mano, el usuario confirma el lote de comentarios y el sistema los publica en el PR; cada comentario se entiende por sí solo, sin el informe.
