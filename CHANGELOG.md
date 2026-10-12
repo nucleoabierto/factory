@@ -15,6 +15,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 ### Changed
 
 - Las plantillas de los skills y la convención del índice de tareas adoptan la extensión Markdown: `task`, `domain` y `feature` pasan de `.txt` a `.md` en sus `assets/`, `indice_tareas` vale `TODO.md` por defecto en el catálogo de convenciones, y los índices existentes de los tres proyectos gestionados se renombran —las instalaciones externas migran el nombre con su configuración (docs/tasks/133-plantillas-y-convencion-indice-markdown.md, docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md)
+- El merge squash del pull request termina el cuerpo del commit con el pie `Closes #<n>`, que conserva en la rama principal la referencia al PR que produjo el cambio (docs/tasks/135-pie-close-pr-en-merge.md)
 
 ## [0.3.0] - 2026-10-04
 
