@@ -83,5 +83,3 @@ El skill ha terminado cuando:
 
 - `assets/informe.md` — Plantilla del informe de revisión; el subagente la sigue al producirlo.
 - `.agents/skills/revisar-implementacion/SKILL.md` — La revisión interna del ciclo de tareas, de la que este skill toma los principios sin el contrato de archivo de tarea.
-- `docs/epics/004-revision-codigo-producto.md` — El conjunto al que pertenece la capacidad: bloque revisor y bloque autor.
-- `docs/prd/004-revision-codigo-producto.md` — El caso de uso CU-1 y el comportamiento esperado que este skill materializa.
