@@ -22,3 +22,6 @@
 - comunicacion-en-codigo.md
   - Disparadores: app.js, nombres de parámetros, comentarios, predicados, validación, nombres que presuponen
   - Resumen: Los nombres no presuponen lo que la función verifica, y los comentarios explican razones duraderas del código, no narrativa de la sesión.
+- acabado-visual-ui.md
+  - Disparadores: CSS, componente nuevo, select, botones, glifos, hover, paleta, aria-label, estilo visual, control nuevo, fila, ocultar, visibility
+  - Resumen: Un elemento nuevo de la interfaz llega con acabado visual completo: regla CSS coherente con la paleta, nombre accesible, métricas uniformes con sus hermanos y el mismo patrón de comportamiento.

@@ -1,6 +1,6 @@
 # Experiencias
 
-Registro append-only de las correcciones que el usuario hizo durante las tareas de este proyecto. Cada entrada documenta la brecha entre el resultado esperado y el obtenido. `consolidar-lecciones` las agrupa después en notas de lecciones aprendidas bajo `docs/lessons/`; las entradas nunca se editan ni se borran, solo cambian su `Estado` a `consolidada`.
+Registro append-only de las correcciones que el usuario hizo durante las tareas de este proyecto. Cada entrada documenta la brecha entre el resultado esperado y el obtenido. `destilar-lecciones` las destila en notas de lecciones aprendidas bajo `docs/lessons/`; las entradas nunca se editan ni se borran, solo cambian su `Estado` a `consolidada`.
 
 - Id: 20260921T170817
   Tarea: docs/tasks/002-estructura-base.md
@@ -49,25 +49,25 @@ Registro append-only de las correcciones que el usuario hizo durante las tareas 
   Esperado: que un elemento nuevo de la interfaz llegara terminado también en lo visual, no solo en lo funcional
   Obtenido: el `<select>` de listas se entregó sin regla CSS y sin nombre accesible; se veía con el estilo por defecto del navegador, desalineado con el diseño
   Corrección: el usuario pidió revisar la parte visual y de estilos antes de aprobar; se añadió la regla `.list-select` coherente con la paleta y el `aria-label`
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260925T121008
   Tarea: todo-app/docs/tasks/013-gestion-de-listas.md
   Esperado: que los controles nuevos llegaran con acabado visual uniforme, aunque sean glifos de texto
   Obtenido: los botones +, ✎ y × tenían tamaños distintos por la métrica de cada carácter
   Corrección: el usuario pidió cajas cuadradas del mismo tamaño; se resolvió con inline-flex centrado y dimensiones fijas
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260925T213000
   Tarea: todo-app/docs/tasks/017-asignar-y-distinguir-fechas.md
   Esperado: que un control nuevo por fila siguiera el patrón visual de sus hermanos (mover, eliminar): oculto hasta el hover.
   Obtenido: el campo de fecha quedó siempre visible, rompiendo el patrón de la fila.
   Corrección: el usuario señaló que el campo no se oculta como el de mover o eliminar; se resolvió con visibility hidden por defecto y visible al hover o cuando la tarea tiene fecha.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20260926T125650
   Tarea: docs/tasks/027-vista-hoy-y-listas-archivadas.md
   Esperado: que las consultas de contexto de la tarea se limitaran a los artefactos del subproyecto todo-app.
   Obtenido: al consultar decisiones de diseño se leyó el índice de la raíz del repositorio (factory-2/docs/decisions/) y se citaron decisiones raíz como aplicables.
   Corrección: el usuario pidió mantenerse en el contexto del subproyecto, sin usar contexto de la raíz del repositorio.
-  Estado: pendiente
+  Estado: consolidada
