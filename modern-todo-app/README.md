@@ -28,4 +28,4 @@ Aplicación de lista de tareas moderna — segunda prueba de concepto del proyec
 - `src/components/` — componentes de la aplicación
 - `public/` — recursos estáticos servidos tal cual
 - `docs/` — documentación del proceso (ideas, propuestas, tareas, épicas, decisiones)
-- `TODO.txt` — índice de tareas del subproyecto
+- `TODO.md` — índice de tareas del subproyecto
