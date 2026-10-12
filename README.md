@@ -67,7 +67,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `mantener-changelog` | Mantiene el changelog del proyecto evaluado: registra en los no liberados los cambios con impacto observable, agregados por épica o propuesta. |
 | `liberar-version` | Libera una versión del proyecto evaluado: cura los no liberados, propone el bump semver justificado y promueve la sección con la confirmación del usuario. |
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
-| `revisar-pr` | Revisión independiente de un *pull request* arbitrario del proyecto evaluado; persiste el informe con hallazgos por severidad y veredicto en `docs/pr-reviews/`. |
+| `revisar-pr` | Revisión independiente de un *pull request* arbitrario del proyecto evaluado; produce un informe local con hallazgos por severidad y veredicto. |
 
 **Diseño**
 

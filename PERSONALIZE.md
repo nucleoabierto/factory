@@ -27,7 +27,6 @@ Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando 
 - `docs/research/` — resultados del skill `investigar` (su nombre exacto lo acuerda el proyecto).
 - `docs/domains/` — documentación viva de dominios, con un `README.md` como índice.
 - `docs/architecture-reviews/` — informes del skill `revisar-arquitectura`.
-- `docs/pr-reviews/` — informes del skill `revisar-pr`.
 
 ## Qué queda a criterio del proyecto destino
 
@@ -64,7 +63,7 @@ Toda constante de las clases listadas vive como clave de configuración con su v
 - `dir_dominios` — `docs/domains`: documentación viva de dominios.
 - `dir_investigaciones` — `docs/research`: resultados de `investigar`.
 - `dir_revisiones_arquitectura` — `docs/architecture-reviews`: informes de `revisar-arquitectura`.
-- `dir_revisiones_pr` — `docs/pr-reviews`: informes de `revisar-pr`.
+- `dir_revisiones_pr` — `.git/factory/pr-reviews`: informes de `revisar-pr`; estado local efímero fuera del control de versiones, que `gestionar-pr` elimina al cerrar el PR.
 - `dir_prd` — `docs/prd`: PRD de conjuntos.
 - `dir_docs_producto` — `product-docs`: documentación de producto, fuera del `docs/` de proceso.
 - `archivo_experiencias` — `EXPERIENCIAS.md`: el registro append-only.

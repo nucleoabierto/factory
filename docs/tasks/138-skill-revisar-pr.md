@@ -100,6 +100,11 @@ Trazadas a CU-1 del PRD («Revisar un PR ajeno», `docs/prd/004-revision-codigo-
 - `convencion dir_revisiones_pr` resuelve `docs/pr-reviews` tras el registro, y la clave figura en los cinco puntos del catálogo
 - `bash -n` pasa sobre `convencion.sh` y las cuatro `convenciones.sh`; `teleprompter.json` queda JSON válido con la entrada en orden alfabético
 
+## Desviaciones del plan
+
+- **El informe no se persiste dentro del repositorio.** El plan fijaba el directorio `docs/pr-reviews` bajo la convención `dir_revisiones_pr`; por corrección del usuario, los informes de revisión son estado local efímero fuera del control de versiones. Decisión: la convención se mantiene —`comentar-pr` la resolverá igual— pero su valor por defecto pasa a `.git/factory/pr-reviews`, local por clon y nunca trackeado.
+- **`gestionar-pr` gana un paso de limpieza en el cierre.** Misma corrección del usuario: al fusionar un PR, los informes `pr-<n>-*.md` del directorio de la convención se eliminan si existen. El skill `gestionar-pr` entra así en el alcance de la tarea —modificación de un skill existente, no solo creación—.
+
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]

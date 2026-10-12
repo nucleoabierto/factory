@@ -37,7 +37,7 @@ Instrucciones para que un agente someta un *pull request* del proyecto evaluado 
 
 ## Salida
 
-- Un informe de revisión persistido en el directorio de informes de revisión de PR del proyecto evaluado —resuelto con `convencion dir_revisiones_pr` de `consultar-artefactos`—, nombrado `pr-<numero>-<fecha>.md` con la fecha en `yyyymmdd`; el nombre admite re-revisiones del mismo PR y, si el archivo ya existe, lleva un sufijo ordinal al final (`pr-<numero>-<fecha>-2.md`, `-3`…) para no sobrescribirlo.
+- Un informe de revisión persistido en el directorio de informes de revisión de PR del proyecto evaluado —resuelto con `convencion dir_revisiones_pr` de `consultar-artefactos`—, nombrado `pr-<numero>-<fecha>.md` con la fecha en `yyyymmdd`; el nombre admite re-revisiones del mismo PR y, si el archivo ya existe, lleva un sufijo ordinal al final (`pr-<numero>-<fecha>-2.md`, `-3`…) para no sobrescribirlo. El informe es estado local efímero: queda fuera del control de versiones —la convención lo ubica bajo `.git/`— y `gestionar-pr` lo elimina al cerrar el PR.
 - Contenido del informe, en secciones planas:
   - Cabecera con bullets etiquetados: fecha, PR (número, título y enlace), ramas base y head, autor del PR.
   - Resumen del cambio: qué hace el diff, en dos o tres frases.

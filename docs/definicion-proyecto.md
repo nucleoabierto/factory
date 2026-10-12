@@ -35,7 +35,7 @@ El flujo de trabajo es: leer `TODO.md`, tomar la siguiente tarea pendiente, ejec
 
 Lo que falta para llegar al producto entregable:
 
-- **Gestión a nivel de código**: revisión de código como capacidad del producto —en construcción: `revisar-pr` ya somete un *pull request* arbitrario a revisión independiente con informe persistido; faltan los comentarios publicables y el bloque autor (épica 004)—.
+- **Gestión a nivel de código**: revisión de código como capacidad del producto —en construcción: `revisar-pr` ya somete un *pull request* arbitrario a revisión independiente con informe local; faltan los comentarios publicables y el bloque autor (épica 004)—.
 - **Gestión a nivel de producto**: *features*, *releases*, *feedback* de usuarios.
 
 ## Proceso de trabajo
