@@ -44,7 +44,17 @@ Crear el skill `comentar-pr`: la mitad de publicación del bloque revisor. A par
 ## Notas
 
 - Los comentarios que el usuario descarte en la confirmación simplemente no se publican; no hace falta artefacto de «comentarios rechazados» en esta iteración.
-- Conectividad verificada 2026-10-12: `gh api` resuelve `:owner/:repo`, el SHA head del PR es accesible y el endpoint `/pulls/<n>/reviews` responde. La publicación real solo ocurre tras la puerta humana.
+
+## Contexto
+
+- **Artefactos de la tarea:** el informe de `revisar-pr` —`.agents/skills/revisar-pr/SKILL.md` y su plantilla `assets/informe.md`— como contrato de entrada; `.agents/skills/gestionar-pr/SKILL.md` como referencia de patrones `gh` sobre PRs; `teleprompter.json`, `README.md`, `docs/mapa-de-flujos.md`, `docs/definicion-proyecto.md` como cableado.
+- **Decisiones aplicables:** D003 (skill autocontenido), D004 (estándar Agent Skills), D005 (cuerpo bajo 500 líneas), D033 (contrato de scripts).
+- **Lecciones aplicables:** `contratos-de-skills` —referencias autocontenidas, reglas inline, description a nivel de capacidad—; `diseno-de-artefactos` —el informe es estado efímero, no se muta—; `consistencia-de-formatos`; `vocabulario`.
+- **Del epic/PRD:** CU-2 —comentarios autocontenidos publicados solo tras confirmación; los descartados no se publican— y la decisión transversal de puerta humana en todo efecto lateral.
+
+## Conectividad
+
+Verificada 2026-10-12: `gh api` resuelve `:owner/:repo`, el SHA head del PR es accesible (`headRefOid`) y el endpoint `/pulls/<n>/reviews` responde. La publicación real solo ocurre tras la puerta humana.
 
 ## Plan técnico
 
@@ -76,6 +86,7 @@ Trazadas a CU-2 del PRD:
 - **La plantilla del informe registra el SHA head revisado y `comentar-pr` lo confronta.** Hallazgo `important` de la revisión dogfooding: sin esa verificación, commits posteriores a la revisión dejarían obsoleto el informe y se publicarían hallazgos que ya no aplican. `assets/informe.md` de `revisar-pr` gana el campo en la cabecera y `comentar-pr` exige la coincidencia antes de publicar.
 - **`comentar-pr` no republica hallazgos ya publicados.** Nit de la misma revisión: el procedimiento carga los comentarios existentes del PR y omite los equivalentes —re-ejecución segura—; también se declaró el lote vacío (veredicto `merge` sin hallazgos) y la dirección del anclaje multilínea (`start_*` primera línea, `line`/`side` última).
 - **La deduplicación cubre también las reviews, no solo los comentarios de línea.** Segunda ronda dogfooding: los comentarios generales viajan en el `body` de la review, que `pulls/<n>/comments` no devuelve; el paso carga ambos endpoints con `--paginate`. Además `commit_id` quedó declarado como el SHA verificado en el paso de frescura.
+- **El archivo de la tarea llevaba las secciones de planeación degradadas.** Tercera ronda dogfooding: `## Contexto` y `## Conectividad` faltaban —la conectividad vivía como bullet de `## Notas`—; ahora están en su sección canónica. En el mismo pase: la deduplicación cubre también `issues/<n>/comments` (comentarios sueltos de la conversación), la frontera «sin remoto GitHub o sin `gh`» se añadió a «Cuándo no usar» y el mapeo `nit` declara su criterio de elección.
 
 ## Revisión
 

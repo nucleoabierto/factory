@@ -29,6 +29,7 @@ Instrucciones para que un agente convierta los hallazgos de un informe de `revis
 - Para responder a comentarios que el autor dejó en un PR propio: ese es el bloque autor —`clasificar-comentarios` y `mejorar-pr`—.
 - Para difusión de cualquier texto que no venga del informe de revisión: los comentarios son la traducción publicable de hallazgos concretos, no un canal libre.
 - Para cualquier otro efecto sobre el PR: el skill solo publica comentarios —no resuelve hilos, no responde en nombre del usuario a comentarios del autor, no edita el PR ni lo fusiona—.
+- En repositorios sin remoto GitHub o sin `gh` autenticado: la publicación opera sobre el PR en la plataforma.
 
 ## Entrada
 
@@ -56,7 +57,7 @@ Instrucciones para que un agente convierta los hallazgos de un informe de `revis
 1. **Resolver el PR:** con número dado, `gh pr view <n>`; sin número, el PR de la rama actual con `gh pr view`. Si no resuelve a un PR abierto, informar y terminar.
 2. **Localizar el informe más reciente del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-*.md`, el de mayor fecha y sufijo ordinal—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`. Si no hay informe para el PR, informar de que no hay nada que comentar —sugerir `revisar-pr`— y terminar.
 3. **Verificar la frescura del informe:** el SHA head actual —`gh pr view <n> --json headRefOid`— debe coincidir con el que el informe registra como revisado en su cabecera; si difiere o el informe no lo registra, el informe está obsoleto —informar al usuario y proponer `revisar-pr` de nuevo antes de publicar, porque los hallazgos podrían ya no aplicar—.
-4. **Obtener el diff** —`gh pr diff <n>`— para el anclaje, y **cargar lo ya publicado** en el PR —`gh api --paginate repos/:owner/:repo/pulls/<n>/comments` para los comentarios de línea y `gh api --paginate repos/:owner/:repo/pulls/<n>/reviews` para los generales, que viajan en el `body` de las reviews— para no republicar un hallazgo que ya está en la plataforma.
+4. **Obtener el diff** —`gh pr diff <n>`— para el anclaje, y **cargar lo ya publicado** en el PR —`gh api --paginate repos/:owner/:repo/pulls/<n>/comments` para los comentarios de línea, `gh api --paginate repos/:owner/:repo/pulls/<n>/reviews` para los generales, que viajan en el `body` de las reviews, y `gh api --paginate repos/:owner/:repo/issues/<n>/comments` para los sueltos en la conversación— para no republicar un hallazgo que ya está en la plataforma.
 
 ### 2. Redactar el lote
 
@@ -64,7 +65,7 @@ Instrucciones para que un agente convierta los hallazgos de un informe de `revis
 6. **Decidir la colocación de cada comentario:**
    - **Anclado a línea** cuando el hallazgo apunta a un lugar concreto del diff —una línea o un bloque—. El anclaje del informe —`archivo:línea`— se proyecta sobre el diff para obtener `path`, `line` y `side` del payload: `RIGHT` para líneas añadidas o de contexto, `LEFT` cuando el ancla es una línea eliminada; un bloque se ancla con `start_line`/`start_side` además de `line`/`side` —`start_*` es la primera línea del rango y `line`/`side` la última; invertirlos produce un error de la API—. Si la línea exacta no está en el diff, se ancla a la línea añadida más próxima del mismo archivo.
    - **General** —cuerpo de la review— cuando el hallazgo es transversal (un patrón repetido en varios archivos, una decisión de diseño) o cuando su anclaje no cae dentro del diff. Nada se descarta por no anclar.
-7. **Redactar cada comentario en formato *conventional comments*** —`tipo` derivado de la severidad: `blocker` → `issue (blocking)`, `important` → `issue` o `suggestion` según el arreglo sea escribible, `nit` → `nitpick` o `suggestion`, pregunta abierta → `question`—.
+7. **Redactar cada comentario en formato *conventional comments*** —`tipo` derivado de la severidad: `blocker` → `issue (blocking)`, `important` → `issue` o `suggestion` según el arreglo sea escribible, `nit` → `nitpick` para la observación sin arreglo escribible o `suggestion` cuando propone un cambio concreto, pregunta abierta → `question`—.
    - Todo comentario anclado lleva propuesta concreta: un bloque ` ```suggestion ` con el código de reemplazo cuando el arreglo es localizable y escribible —la plataforma lo ofrece aplicable—, o pseudocódigo/descripción del arreglo cuando no cabe en un diff de líneas.
    - El comentario general lleva la propuesta en prosa —qué cambiaría y dónde—.
    - El comentario nunca remite al informe ni a artefactos que el autor pueda no tener; la regla o el patrón infringido se cita por nombre y se explica en una frase.
