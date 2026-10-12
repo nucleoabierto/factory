@@ -27,6 +27,7 @@ Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando 
 - `docs/research/` — resultados del skill `investigar` (su nombre exacto lo acuerda el proyecto).
 - `docs/domains/` — documentación viva de dominios, con un `README.md` como índice.
 - `docs/architecture-reviews/` — informes del skill `revisar-arquitectura`.
+- `docs/pr-reviews/` — informes del skill `revisar-pr`.
 
 ## Qué queda a criterio del proyecto destino
 

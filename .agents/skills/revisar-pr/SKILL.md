@@ -37,7 +37,7 @@ Instrucciones para que un agente someta un *pull request* del proyecto evaluado 
 
 ## Salida
 
-- Un informe de revisión persistido en el directorio de informes de revisión de PR del proyecto evaluado —resuelto con `convencion dir_revisiones_pr` de `consultar-artefactos`—, nombrado `pr-<numero>-<fecha>.md` con la fecha en `yyyymmdd`; el nombre admite re-revisiones del mismo PR y, si el archivo ya existe, lleva un sufijo ordinal (`-2`, `-3`…) para no sobrescribirlo.
+- Un informe de revisión persistido en el directorio de informes de revisión de PR del proyecto evaluado —resuelto con `convencion dir_revisiones_pr` de `consultar-artefactos`—, nombrado `pr-<numero>-<fecha>.md` con la fecha en `yyyymmdd`; el nombre admite re-revisiones del mismo PR y, si el archivo ya existe, lleva un sufijo ordinal al final (`pr-<numero>-<fecha>-2.md`, `-3`…) para no sobrescribirlo.
 - Contenido del informe, en secciones planas:
   - Cabecera con bullets etiquetados: fecha, PR (número, título y enlace), ramas base y head, autor del PR.
   - Resumen del cambio: qué hace el diff, en dos o tres frases.
@@ -60,8 +60,8 @@ Instrucciones para que un agente someta un *pull request* del proyecto evaluado 
 
 ### 1. Resolver el PR y la ubicación del informe
 
-1. **Resolver el PR:** con número dado, `gh pr view <n>`; sin número, el PR de la rama actual con `gh pr view`. Si el número no resuelve a un PR —inexistente o inaccesible— o la rama no tiene PR, informar de que no hay nada que revisar y terminar. Extraer el número, el título y las ramas base y head.
-2. **Resolver la ubicación del informe** con la consulta «el valor de la convención `dir_revisiones_pr`» de `consultar-artefactos`, crear el directorio si no existe y fijar el nombre `pr-<numero>-<fecha>.md` con la fecha del día en `yyyymmdd`.
+1. **Resolver el PR:** con número dado, `gh pr view <n>`; sin número, el PR de la rama actual con `gh pr view`. Si el número no resuelve a un PR —inexistente o inaccesible— o la rama no tiene PR, informar de que no hay nada que revisar y terminar. El invocador solo necesita el número —para el nombre del informe—; todo lo demás lo reconstruye el revisor.
+2. **Resolver la ubicación del informe** con la consulta «el valor de la convención `dir_revisiones_pr`» de `consultar-artefactos`, crear el directorio si no existe y fijar el nombre `pr-<numero>-<fecha>.md` con la fecha del día en `yyyymmdd` —con el sufijo ordinal si el archivo ya existe—.
 
 ### 2. Lanzar el revisor independiente
 
