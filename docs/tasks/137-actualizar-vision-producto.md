@@ -4,7 +4,7 @@
 
 [ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
 
-**[ ] Pendiente**
+**[x] Completada**
 
 ## Tipo
 
@@ -47,6 +47,6 @@ mantenimiento
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-12 — Aprueba (tras corregir un alcance: el etiquetado de releases queda fuera por decisión del propio skill)
+- Usuario (ejecución): 2026-10-12 — Aprueba
+- Usuario (cierre): 2026-10-12 — Aprueba

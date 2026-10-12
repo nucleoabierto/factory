@@ -8,7 +8,7 @@ El flujo no es autónomo: es asíncrono. El agente avanza el trabajo que puede e
 
 ## Dirección
 
-Factory avanza desde un motor interno autoproductivo hacia un producto entregable que cubre el ciclo completo de desarrollo. El motor interno ya está en marcha: cubre el ciclo de la idea al *pull request* fusionado —refinamiento, tareas, épicas, desarrollo y dos puertas humanas de aprobación— y mantiene la documentación, las decisiones de diseño y el aprendizaje por lecciones. El producto entregable extenderá ese motor con lo que hoy falta: planeación de *roadmap*, revisión de código como capacidad del producto y gestión a nivel de producto.
+Factory avanza desde un motor interno autoproductivo hacia un producto entregable que cubre el ciclo completo de desarrollo. El motor interno ya está en marcha: cubre el ciclo de la idea al *pull request* fusionado —refinamiento, tareas, épicas, planeación de *roadmap*, desarrollo y dos puertas humanas de aprobación— y mantiene la documentación, las decisiones de diseño, el aprendizaje por lecciones y la liberación de versiones. El producto entregable extenderá ese motor con lo que hoy falta: revisión de código como capacidad del producto y gestión a nivel de producto.
 
 El principio *bootstrap* es permanente: cada nueva capacidad se construye usando el propio sistema, lo que asegura que el sistema se valida a sí mismo al evolucionar.
 
@@ -16,7 +16,7 @@ El principio *bootstrap* es permanente: cada nueva capacidad se construye usando
 
 1. **Cubrir el ciclo completo**: cada fase del ciclo de vida (refinamiento, creación, planeación, ejecución, revisión, corrección, integración) tendrá al menos un skill que la cubra.
 2. **Mantener la portabilidad**: los skills seguirán el estándar Agent Skills, sin depender de un arnés específico.
-3. **Validar externamente**: el producto entregable se validará construyendo un proyecto real con el sistema Factory, no solo usándolo sobre sí mismo. La prueba adoptada es una todo app en vanilla JS conforme a la especificación TodoMVC (D018).
+3. **Validar externamente**: el producto se valida construyendo proyectos reales con el sistema Factory, no solo usándolo sobre sí mismo. La primera prueba —una todo app en vanilla JS conforme a la especificación TodoMVC (D018)— ya está construida; la validación continúa con un segundo proyecto de mayor exigencia técnica: toolchain real, dependencias, tipado estricto y compilación verificable.
 4. **Preservar la trazabilidad**: cada decisión, cada tarea y cada investigación quedará documentada y referenciable.
 
 ## Alcance
@@ -27,7 +27,8 @@ Dentro del alcance:
 - Creación y planeación de tareas, épicas y *roadmap*.
 - Ejecución de tareas con revisión técnica independiente y aprobación humana en dos puertas.
 - Integración de cambios mediante *pull requests*.
-- Registro de decisiones de diseño y documentación de investigación.
+- Registro de decisiones de diseño, documentación de investigación y aprendizaje por lecciones destiladas de las correcciones.
+- Liberación de versiones del producto: *changelog* curado y promoción de la versión liberada.
 
 Fuera del alcance:
 

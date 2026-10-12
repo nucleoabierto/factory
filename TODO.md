@@ -44,5 +44,5 @@
 - [x] docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md — Renombrar los archivos .txt existentes a Markdown
 - [x] docs/tasks/135-pie-close-pr-en-merge.md — Pie «Closes #N» en el commit de merge del PR
 - [x] docs/tasks/136-aprendizaje-sincrono-til.md — Aprendizaje síncrono al estilo TIL
-- [ ] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
+- [x] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
 
