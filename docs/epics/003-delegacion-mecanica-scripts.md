@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Planificada | [ ] Completada
+[x] Planificada | [x] Completada
 
 ## Objetivo
 
@@ -18,10 +18,10 @@ Los pasos mecánicos repetidos de los skills —mutaciones de `TODO.txt`, campos
 - [x] docs/tasks/113-delegacion-mecanica-scripts.md — Delegación mecánica a scripts: decisión y contrato
 - [x] docs/tasks/114-skill-consultar-artefactos.md — Crear el skill de consulta de artefactos
 - [x] docs/tasks/115-skill-actualizar-artefactos.md — Crear el skill de actualización de artefactos
-- [ ] docs/tasks/116-skill-operar-experiencias.md — Crear el skill de operación de experiencias
-- [ ] docs/tasks/117-skill-operar-changelog.md — Crear el skill de operación del changelog
-- [ ] docs/tasks/131-catalogo-autodescriptivo-frontera-mecanica.md — Catálogo autodescriptivo y frontera mecánica en los skills de utilidad
-- [ ] docs/tasks/132-accion-semantica-convenciones-configuracion.md — Acción semántica en los invocadores y convenciones como configuración
+- [x] docs/tasks/116-skill-operar-experiencias.md — Crear el skill de operación de experiencias
+- [x] docs/tasks/117-skill-operar-changelog.md — Crear el skill de operación del changelog
+- [x] docs/tasks/131-catalogo-autodescriptivo-frontera-mecanica.md — Catálogo autodescriptivo y frontera mecánica en los skills de utilidad
+- [x] docs/tasks/132-accion-semantica-convenciones-configuracion.md — Acción semántica en los invocadores y convenciones como configuración
 
 
 
