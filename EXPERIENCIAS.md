@@ -231,11 +231,11 @@
   Esperado: el catálogo debía registrar solo operaciones en uso.
   Obtenido: publiqué por-estado y siguiente-hito marcándolas como sin consumidor, por anticipado.
   Corrección: no agregar operadores por anticipado — son YAGNI; se añaden cuando aparezca su consumidor.
-  Estado: pendiente
+  Estado: consolidada
 
 - Id: 20261012T031400
   Tarea: docs/tasks/133-plantillas-y-convencion-indice-markdown.md
   Esperado: los commits de registro hechos directos en main debían empujarse antes de crear la rama de la tarea.
   Obtenido: el commit «docs: registra las tareas 133-134» quedó local y viajó dentro de la rama del PR, que mostró dos commits y arrastraba trabajo ajeno a la tarea.
   Corrección: tras commitear en main, push antes de ramificar —la rama debe contener solo el trabajo de su tarea.
-  Estado: pendiente
+  Estado: consolidada

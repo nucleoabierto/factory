@@ -45,5 +45,8 @@
   - Disparadores: evidencia, refinamiento, propuesta, planeación, investigar, investigación, profundidad, prueba de concepto, incertidumbre, materializar skill
   - Resumen: La evidencia se resuelve por vía teórica o activa según la incertidumbre, y la profundidad de la investigación se acuerda al inicio —profunda por defecto cuando fundamenta materializar un artefacto—.
 - diseno-de-artefactos.md
-  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla, ruta de proyecto, references/
-  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión y la tecnología o las rutas del proyecto validado son datos de entrada, no parte del concepto.
+  - Disparadores: artefactos del sistema, épicas, tareas, propuestas, borradores, registrar decisión, concepto genérico, PoC, ancla, ruta de proyecto, references/, YAGNI, por anticipado, sin consumidor, superficie pública, API
+  - Resumen: Los artefactos del sistema se diseñan autónomos y genéricos: cada tarea registra su propia decisión, la tecnología o las rutas del proyecto validado son datos de entrada y la superficie pública solo publica lo que tiene consumidor —lo anticipado es YAGNI—.
+- higiene-de-ramas.md
+  - Disparadores: rama, branch, git push, main, pull request, commit en main, registro de tareas, nueva rama, diff del PR
+  - Resumen: Tras commitear en la rama principal, push antes de ramificar: la rama de la tarea contiene solo el trabajo de su tarea.
