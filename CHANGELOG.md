@@ -14,7 +14,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ### Changed
 
-- Las plantillas de los skills y la convención del índice de tareas adoptan la extensión Markdown: `task`, `domain` y `feature` pasan de `.txt` a `.md` en sus `assets/`, y `indice_tareas` vale `TODO.md` por defecto en el catálogo de convenciones —las instalaciones existentes migran el nombre con su configuración (docs/tasks/133-plantillas-y-convencion-indice-markdown.md)
+- Las plantillas de los skills y la convención del índice de tareas adoptan la extensión Markdown: `task`, `domain` y `feature` pasan de `.txt` a `.md` en sus `assets/`, `indice_tareas` vale `TODO.md` por defecto en el catálogo de convenciones, y los índices existentes de los tres proyectos gestionados se renombran —las instalaciones externas migran el nombre con su configuración (docs/tasks/133-plantillas-y-convencion-indice-markdown.md, docs/tasks/134-renombrar-archivos-txt-existentes-markdown.md)
 
 ## [0.3.0] - 2026-10-04
 
