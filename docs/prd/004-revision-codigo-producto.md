@@ -14,6 +14,8 @@ Desarrolladores y *product managers* que gestionan un producto con un agente de 
   - La intención del cambio no se puede reconstruir: el veredicto es `blocked` y las dudas van a preguntas abiertas.
 - **CU-2 — Comentar la revisión:** con el informe en la mano, el usuario confirma el lote de comentarios y el sistema los publica en el PR; cada comentario se entiende por sí solo, sin el informe.
   - El usuario descarta comentarios en la confirmación: solo los aceptados se publican.
+  - Solo se publica feedback objetivo con impacto real en el código: los nits de estilo, preferencia personal o fuera de alcance no llegan al lote.
+  - Un informe que no corresponde al head actual del PR está obsoleto: la publicación exige revisar de nuevo.
 - **CU-3 — Clasificar la revisión recibida:** sobre un PR propio con comentarios, el sistema entrega el triage —cada hilo abierto con su acción (corregir, responder, aplazar), severidad y propuesta— en un documento persistido.
   - Un hilo de intención ambigua va a preguntas abiertas, no a una suposición.
 - **CU-4 — Mejorar el cambio:** desde el triage, el sistema aplica las correcciones al árbol de trabajo, redacta las respuestas y documenta los aplazamientos; el usuario revisa el resultado y publica.
