@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -94,6 +94,6 @@ Trazadas a CU-3 del PRD:
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-12 — Aprueba
+- Usuario (ejecución): 2026-10-12 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
