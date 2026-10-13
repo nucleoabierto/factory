@@ -40,7 +40,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 
 ## Salida
 
-- El documento de triage persistido en el directorio de la convención `dir_revisiones_pr`, con el nombre `pr-<n>-triage-<yyyymmdd>.md` —un triage posterior acumula sobre el documento existente del PR, así que el sufijo ordinal `-2`, `-3`… solo aplica si por alguna razón debe crearse un documento nuevo en una fecha ya usada—. Es estado local efímero fuera del control de versiones: `gestionar-pr` lo elimina al cerrar el PR junto con el resto de `pr-<n>-*.md`.
+- El documento de triage persistido en el directorio de la convención `dir_revisiones_pr`, con el nombre `pr-<n>-triage-<yyyymmdd>.md` —el sufijo ordinal `-2`, `-3`… solo aplica si por alguna razón debe crearse un documento nuevo en una fecha ya usada—. Es estado local efímero fuera del control de versiones: `gestionar-pr` lo elimina al cerrar el PR junto con el resto de `pr-<n>-*.md`.
 - Una entrada por hilo abierto: ubicación —ancla archivo:línea o superficie—, cita del comentario, veredicto, severidad, propuesta y, en los aplazamientos, la razón.
 - El resumen en chat: cuántos hilos entraron a cada veredicto y cuántos quedaron como preguntas abiertas.
 - Un triage posterior sobre el mismo PR acumula: reutiliza el documento existente añadiendo las entradas nuevas con su ronda, nunca reclasifica.
@@ -48,7 +48,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ## Principios rectores
 
 1. **Cada hilo abierto, un veredicto:** nada queda sin clasificar y nada se clasifica dos veces; los resueltos y los ya triagiados no entran salvo como contexto de uno abierto.
-2. **El veredicto lleva propuesta:** `corregir` cita el código y la regla o intención del comentario con el arreglo concreto; `responder` lleva la respuesta redactada —y si la respuesta sería «lee el hilo», el código falló en explicarse y la propuesta es mejorarlo—; `aplazar` lleva su razón obligatoria.
+2. **El veredicto lleva propuesta:** `corregir` cita el código y la regla o intención del comentario con el arreglo concreto; `responder` lleva la respuesta redactada —y si la única respuesta honesta fuera «mira el código», el código no se explica solo y la propuesta es mejorarlo—; `aplazar` lleva su razón obligatoria.
 3. **La ambigüedad no se adivina:** un hilo cuya intención no es clara va a preguntas abiertas del documento; una suposición silenciosa contamina la ejecución posterior.
 4. **Solo análisis:** el skill no responde al revisor, no resuelve hilos y no toca el código; su producto es el documento —actuar sobre él es la mitad siguiente del bloque.
 
@@ -74,7 +74,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 7. **Agrupar por tema cuando el volumen lo justifique** —varios hilos sobre el mismo archivo o la misma decisión— y delegar cada grupo en un subagente paralelo, siguiendo el patrón de delegación de `revisar-pr`/`ejecutar-tareas`; el encargo lleva el hilo, el diff y la intención reconstruida, y devuelve las entradas redactadas.
 8. **Clasificar cada hilo en un veredicto con su propuesta:**
    - **`corregir`** —el comentario señala un problema real del cambio—: la propuesta describe el arreglo concreto citando el código afectado y la regla o intención del comentario que lo motiva. Un hilo abierto con `isOutdated` puede indicar que el código ya cambió desde el comentario: verificar contra el diff si la observación ya quedó atendida antes de clasificar `corregir`.
-   - **`responder`** —el hilo es una pregunta, una discrepancia o algo que no pide cambio—: la propuesta es la respuesta redactada al revisor. Si la única respuesta honesta fuera «mira el código», el código no se explica solo y el veredicto es `corregir` con propuesta de clarificarlo.
+   - **`responder`** —el hilo es una pregunta, una discrepancia o algo que no pide cambio—: la propuesta es la respuesta redactada al revisor, incluida la refutación de un comentario incorrecto —se explica por qué la observación no aplica, con el código como evidencia—. Si la única respuesta honesta fuera «mira el código», el código no se explica solo y el veredicto es `corregir` con propuesta de clarificarlo. `aplazar` nunca cubre un comentario incorrecto: aplazar un comentario inválido lo validaría implícitamente.
    - **`aplazar`** —el comentario es válido pero fuera del alcance del PR—: la razón del aplazamiento es obligatoria —fuera de alcance, trabajo posterior, requiere decisión ajena—.
 9. **Asignar la severidad** que el hilo merece como revisor-autor —`blocker`, `important`, `nit`—: la misma escala del informe de `revisar-pr`, que ordena la ejecución posterior.
 10. **Derivar la ambigüedad a preguntas abiertas:** un hilo cuya intención no se reconstruye del comentario ni del código no recibe veredicto —va a la lista de preguntas abiertas del documento con lo que haría falta para decidir—.
@@ -89,7 +89,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 El skill ha terminado cuando:
 
 - Cada hilo abierto no triagiado tiene su entrada en el documento —veredicto, severidad, propuesta— o su lugar en preguntas abiertas.
-- El documento está persistido en `dir_revisiones_pr` como `pr-<n>-triage-<fecha>.md` y el usuario recibió el resumen.
+- El documento está persistido en `dir_revisiones_pr` como `pr-<n>-triage-<yyyymmdd>.md` y el usuario recibió el resumen.
 - Ningún hilo fue respondido, resuelto ni corregido —solo clasificado—.
 
 ## Referencias

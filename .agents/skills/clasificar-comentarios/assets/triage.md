@@ -17,7 +17,7 @@
 
 ## Entradas por hilo
 
-- `<archivo o superficie>:<línea o tema>` — "<fragmento del comentario del revisor>" (@<autor>)
+- `<archivo o superficie>:<línea o tema>` — «<fragmento del comentario del revisor>» (@<autor>)
   - hilo: <identificador de plataforma —`PRRT_…` para hilos de línea, el id de la review para cuerpos de review, el id del comentario para la conversación—; es la clave de deduplicación y lo que `mejorar-pr` necesita para responder o resolver>
   - veredicto: <corregir | responder | aplazar>
   - severidad: <blocker | important | nit>
