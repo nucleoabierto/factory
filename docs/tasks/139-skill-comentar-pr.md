@@ -92,6 +92,7 @@ Trazadas a CU-2 del PRD:
 - **`comentar-pr` no republica hallazgos ya publicados.** Nit de la misma revisión: el procedimiento carga los comentarios existentes del PR y omite los equivalentes —re-ejecución segura—; también se declaró el lote vacío (veredicto `merge` sin hallazgos) y la dirección del anclaje multilínea (`start_*` primera línea, `line`/`side` última).
 - **La deduplicación cubre también las reviews, no solo los comentarios de línea.** Segunda ronda dogfooding: los comentarios generales viajan en el `body` de la review, que `pulls/<n>/comments` no devuelve; el paso carga ambos endpoints con `--paginate`. Además `commit_id` quedó declarado como el SHA verificado en el paso de frescura.
 - **El archivo de la tarea llevaba las secciones de planeación degradadas.** Tercera ronda dogfooding: `## Contexto` y `## Conectividad` faltaban —la conectividad vivía como bullet de `## Notas`—; ahora están en su sección canónica. En el mismo pase: la deduplicación cubre también `issues/<n>/comments` (comentarios sueltos de la conversación), la frontera «sin remoto GitHub o sin `gh`» se añadió a «Cuándo no usar» y el mapeo `nit` declara su criterio de elección.
+- **Los nits se filtran por objetividad antes del lote.** Corrección del usuario: un `nit` solo se publica si es objetivo y tiene impacto real en el código; los de estilo, preferencia personal o fuera de alcance se descartan sin presentar —una opinión no es una sugerencia de mejora—.
 
 ## Revisión
 
