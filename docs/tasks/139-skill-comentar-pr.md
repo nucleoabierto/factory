@@ -47,14 +47,19 @@ Crear el skill `comentar-pr`: la mitad de publicación del bloque revisor. A par
 
 ## Contexto
 
-- **Artefactos de la tarea:** el informe de `revisar-pr` —`.agents/skills/revisar-pr/SKILL.md` y su plantilla `assets/informe.md`— como contrato de entrada; `.agents/skills/gestionar-pr/SKILL.md` como referencia de patrones `gh` sobre PRs; `teleprompter.json`, `README.md`, `docs/mapa-de-flujos.md`, `docs/definicion-proyecto.md` como cableado.
-- **Decisiones aplicables:** D003 (skill autocontenido), D004 (estándar Agent Skills), D005 (cuerpo bajo 500 líneas), D033 (contrato de scripts).
-- **Lecciones aplicables:** `contratos-de-skills` —referencias autocontenidas, reglas inline, description a nivel de capacidad—; `diseno-de-artefactos` —el informe es estado efímero, no se muta—; `consistencia-de-formatos`; `vocabulario`.
-- **Del epic/PRD:** CU-2 —comentarios autocontenidos publicados solo tras confirmación; los descartados no se publican— y la decisión transversal de puerta humana en todo efecto lateral.
+- `Archivos similares:` `.agents/skills/revisar-pr/SKILL.md` — productor del informe que este skill consume y modelo de skill operador de `gh` sobre PRs; `.agents/skills/revisar-pr/assets/informe.md` — el contrato del artefacto de entrada; `.agents/skills/gestionar-pr/SKILL.md` — referencia del patrón de invocación `gh` (comentarios, reviews, merge).
+- `Patrones:` estructura común del SKILL.md; ubicaciones configurables resueltas con la operación `convencion` de `consultar-artefactos` y prefijo `.git/` sustituido por `git rev-parse --git-common-dir`; puerta humana literal antes de todo efecto lateral; publicación en una sola review `COMMENT` vía `gh api`.
+- `Dominio:` `docs/domains/001-ciclo-de-tareas.md` — el ciclo con pull request y dos puertas humanas al que la publicación de comentarios se suma como capacidad externa.
+- `Producto:` `product-docs/vision.md` — la revisión de código como brecha que esta tarea sigue cerrando.
+- `PRD:` `docs/prd/004-revision-codigo-producto.md` — CU-2 «Comentar la revisión»: lote de comentarios autocontenidos *conventional comments* confirmado por el usuario; lo descartado no se publica.
+- `Lecciones:` `contratos-de-skills.md` — referencias autocontenidas, reglas inline, description a nivel de capacidad; `diseno-de-artefactos.md` — el informe es estado efímero que no se muta; `consistencia-de-formatos.md`; `vocabulario.md`.
+- `Decisiones:` D003 — skill autocontenido; D004 — estándar Agent Skills; D005 — cuerpo bajo 500 líneas; D033 — delegación mecánica cuando aplica.
 
 ## Conectividad
 
-Verificada 2026-10-12: `gh api` resuelve `:owner/:repo`, el SHA head del PR es accesible (`headRefOid`) y el endpoint `/pulls/<n>/reviews` responde. La publicación real solo ocurre tras la puerta humana.
+**Veredicto: conectada.**
+
+Todo lo que la tarea asume existe en el codebase: la convención `dir_revisiones_pr` está registrada y resuelve `.git/factory/pr-reviews`; `gh` está autenticado contra GitHub con scope `repo` y la API de publicación (`POST /repos/:owner/:repo/pulls/<n>/reviews` con `event: COMMENT`, `commit_id` y `comments[]`) está verificada —`gh api` resuelve `:owner/:repo`, el `headRefOid` es accesible y el endpoint responde—; `revisar-pr` produce el informe de entrada. La publicación real solo ocurre tras la puerta humana.
 
 ## Plan técnico
 
