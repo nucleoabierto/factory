@@ -18,7 +18,8 @@
 ## Entradas por hilo
 
 - `<archivo o superficie>:<línea o tema>` — «<fragmento del comentario del revisor>» (@<autor>)
-  - hilo: <el `node_id` de GraphQL —`PRRT_…` para hilos de línea, `PRR_…`/`PRRP_…` para cuerpos de review, `IC_…` para la conversación—; nunca el `id` numérico de REST, que no casa con la recarga GraphQL. Es la clave de deduplicación y lo que `mejorar-pr` necesita para responder o resolver>
+  - hilo: <el `node_id` de GraphQL —`PRRT_…` para hilos de línea, `PRR_…` para cuerpos de review, `IC_…` para la conversación—; nunca el `id` numérico de REST, que no casa con la recarga GraphQL. Es la clave de deduplicación y lo que `mejorar-pr` necesita para responder o resolver>
+  - visto: <fecha ISO del último comentario del hilo al triagiar —con ella un hilo registrado con actividad nueva es detectable en recargas posteriores>
   - veredicto: <corregir | responder | aplazar>
   - severidad: <blocker | important | nit>
   - propuesta: <corrección concreta citando el código y la regla o intención del comentario; respuesta redactada si el veredicto es responder; ausente si es aplazar —la respuesta de aplazamiento la redacta `mejorar-pr` a partir de la `razón`>

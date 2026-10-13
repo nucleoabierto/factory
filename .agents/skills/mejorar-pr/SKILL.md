@@ -57,13 +57,13 @@ Instrucciones para que un agente ejecute el documento de triage sobre un *pull r
 ### 1. Resolver el PR, el árbol y el triage
 
 1. **Resolver el PR:** con número dado, `gh pr view <n>`; sin número, el PR de la rama actual con `gh pr view`. Si no resuelve a un PR abierto, informar y terminar.
-2. **Situar el árbol en la rama del PR:** las correcciones se aplican sobre el cambio —si la rama actual no es la head del PR, `gh pr checkout <n>`—.
+2. **Situar el árbol en la rama del PR:** las correcciones se aplican sobre el cambio —si la rama actual no es la head del PR, `gh pr checkout <n>`— y se deja al día con el head remoto —`git pull` si la rama local va atrás—.
 3. **Localizar el triage más reciente del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-triage-*.md`, el de mayor fecha y sufijo—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`. Si no hay triage para el PR, informar de que no hay nada que mejorar —sugerir `clasificar-comentarios`— y terminar.
 4. **Verificar la frescura del triage en ambos sentidos:** cargar los hilos de la plataforma **con su estado** en las tres superficies con `--paginate` —hilos de línea GraphQL con `isResolved` e `isOutdated`, cuerpos de reviews, conversación—:
-   - Un hilo abierto sin entrada **ni pregunta abierta** registrada en el triage —la comparación se hace por el `hilo:`— significa revisión nueva no clasificada: informar al usuario —por defecto se propone `clasificar-comentarios` antes de actuar, porque un triage incompleto ejecuta a ciegas; si el usuario decide ejecutar lo ya triagiado, las entradas pendientes proceden igual—.
-   - Una entrada pendiente cuyo hilo ya aparece resuelto en la plataforma se omite y se anota `resultado: resuelto en plataforma` —ejecutarla publicaría o corregiría sobre un tema cerrado—.
-   - Si el head del PR difiere del `head triagiado` que registra el documento —un push intermedio movió el cambio—, las entradas `corregir` pendientes se revalidan contra el estado actual antes de aplicarse: un `isOutdated` puede indicar que la observación ya quedó atendida o que su premisa cambió.
-   - Las preguntas abiertas del triage se presentan al usuario como pendientes de su respuesta; no disparan la alarma ni se ejecutan —pero si el usuario resuelve la ambigüedad, el hilo se promueve a entrada clasificada en el documento —veredicto y propuesta— y entra a la ejecución de la misma ronda.
+   - Un hilo abierto sin entrada **ni pregunta abierta** registrada en el triage —la comparación se hace por el `hilo:`— significa revisión nueva no clasificada: informar al usuario —por defecto se propone `clasificar-comentarios` antes de actuar, porque un triage incompleto ejecuta a ciegas; si el usuario decide ejecutar lo ya triagiado, las entradas pendientes proceden igual—. La misma alarma cubre un hilo registrado con actividad posterior a su `visto:` —una réplica del revisor sin clasificar—.
+   - Una entrada pendiente cuyo hilo ya aparece resuelto en la plataforma se omite y se anota `resultado: resuelto en plataforma` —ejecutarla publicaría o corregiría sobre un tema cerrado—; una cuyo hilo ya no aparece en la recarga se anota `resultado: omitido — hilo no localizado`.
+   - Si el head del PR difiere del `head triagiado` que registra el documento —un push intermedio movió el cambio—, las entradas `corregir` pendientes se revalidan contra el estado actual antes de aplicarse: un `isOutdated` puede indicar que la observación ya quedó atendida; si la premisa ya no aplica, se anota `resultado: omitido — premisa obsoleta`.
+   - Las preguntas abiertas del triage se presentan al usuario como pendientes de su respuesta; no disparan la alarma ni se ejecutan —pero si el usuario resuelve la ambigüedad, el hilo se promueve a entrada clasificada en el documento —veredicto, severidad, propuesta y su `ronda:`— y entra a la ejecución de la misma ronda.
 
 ### 2. Aplicar las correcciones
 
@@ -85,7 +85,7 @@ Instrucciones para que un agente ejecute el documento de triage sobre un *pull r
 ### 4. Resolver y cerrar la ronda
 
 11. **Resolver los hilos atendidos:** solo los de línea —`PRRT_…`— con `resolveReviewThread` vía `gh api graphql` (`threadId`), después de que aterriza su resultado —`corregir` tras el push, `responder` y `aplazar` tras publicar la respuesta—; los cuerpos de review y la conversación no tienen resolución. Bajo la misma confirmación del lote.
-12. **Anotar el resultado en el triage:** cada entrada ejecutada —o descartada en las puertas— gana el sub-ítem `resultado:` —`corregido en <sha>`, `respondido`, `aplazado` con la referencia de la tarea si se registró, `omitido — <motivo>`—; es lo que omite una ejecución posterior, salvo los valores con `pendiente`, que se retoman.
+12. **Anotar el resultado en el triage:** cada entrada ejecutada —o descartada en las puertas— gana el sub-ítem `resultado:` —`corregido en <sha>`, `respondido`, `aplazado` con la referencia de la tarea si se registró, `omitido — <motivo>`; la anotación compone lo que pasó cuando hay más de un efecto —un `corregir` empujado con su respuesta descartada queda `corregido en <sha>; respuesta omitida`—; es lo que omite una ejecución posterior, salvo los valores con `pendiente`, que se retoman.
 13. **Informar del resumen:** qué se aplicó, qué se publicó, qué se resolvió —y que el diff corregido vuelve a ser candidato a una revisión: el lazo puede repetirse; el skill lo declara sin orquestarlo—.
 
 ## Finalización
