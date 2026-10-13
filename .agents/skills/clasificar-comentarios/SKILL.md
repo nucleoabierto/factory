@@ -4,8 +4,9 @@ description: >
   Triage de la revisión recibida en un pull request propio del
   proyecto evaluado: lee los hilos de revisión abiertos en las tres
   superficies de la plataforma —hilos de línea, cuerpos de reviews y
-  conversación—, omite los resueltos y los ya triagiados, clasifica
-  cada hilo restante en corregir, responder o aplazar con la
+  conversación—, omite los resueltos sin actividad nueva y los ya
+  triagiados, clasifica cada hilo restante en corregir, responder o
+  aplazar con la
   corrección o respuesta propuesta y su severidad, y produce el
   documento de triage persistido —estado local efímero, acumulable
   por rondas—.
@@ -41,7 +42,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ## Salida
 
 - El documento de triage persistido en el directorio de la convención `dir_revisiones_pr`, con el nombre `pr-<n>-triage-<yyyymmdd>.md` —el sufijo ordinal `-2`, `-3`… solo aplica si por alguna razón debe crearse un documento nuevo en una fecha ya usada—. Es estado local efímero fuera del control de versiones: `gestionar-pr` lo elimina al cerrar el PR junto con el resto de `pr-<n>-*.md`.
-- Una entrada por hilo abierto: ubicación —ancla archivo:línea o superficie—, cita del comentario, veredicto, severidad, la propuesta que el veredicto exige y, en los aplazamientos, la razón.
+- Una entrada por hilo abierto o con actividad nueva: ubicación —ancla archivo:línea o superficie—, cita del comentario, veredicto, severidad, la propuesta que el veredicto exige y, en los aplazamientos, la razón.
 - El resumen en chat: cuántos hilos entraron a cada veredicto y cuántos quedaron como preguntas abiertas.
 - Un triage posterior sobre el mismo PR acumula: reutiliza el documento existente añadiendo las entradas nuevas con su ronda, nunca reclasifica.
 
@@ -67,7 +68,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ### 2. Acumular sobre triages anteriores
 
 5. **Localizar el documento previo del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-triage-*.md`, el de mayor fecha y sufijo—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`.
-6. **Omitir lo ya triagiado, salvo actividad nueva:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. La excepción es la actividad posterior: un hilo registrado con comentarios más recientes que el `visto:` más reciente que el documento tiene para él —incluidos los ya resueltos, donde aterriza la réplica del revisor—, o reabierto tras quedar registrado como resuelto —la reapertura no genera comentario, la detecta el cambio de estado—, vuelve a entrar y genera una entrada nueva en la ronda, citando el mismo `hilo:` —las entradas previas no se tocan—. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados sin actividad nueva, informar de que la ronda no trae hilos nuevos y terminar.
+6. **Omitir lo ya triagiado, salvo actividad nueva:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. La excepción es la actividad posterior: un hilo registrado con comentarios más recientes que el `visto:` más reciente que el documento tiene para él —incluidos los ya resueltos, donde aterriza la réplica del revisor—, o reabierto tras quedar registrado con `resuelto` en su `resultado:` —la reapertura no genera comentario, la detecta el cambio de estado contra esa línea base—, vuelve a entrar y genera una entrada nueva en la ronda, citando el mismo `hilo:` —las entradas previas no se tocan—. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados sin actividad nueva, informar de que la ronda no trae hilos nuevos y terminar.
 
 ### 3. Clasificar cada hilo abierto
 
