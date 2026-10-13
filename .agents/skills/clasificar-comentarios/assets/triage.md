@@ -20,6 +20,7 @@
 - `<archivo o superficie>:<línea o tema>` — «<fragmento del comentario del revisor>» (@<autor>)
   - hilo: <el `node_id` de GraphQL —`PRRT_…` para hilos de línea, `PRR_…` para cuerpos de review, `IC_…` para la conversación—; nunca el `id` numérico de REST, que no casa con la recarga GraphQL. Es la clave de deduplicación y lo que `mejorar-pr` necesita para responder o resolver>
   - visto: <fecha ISO del último comentario del hilo al triagiar —con ella un hilo registrado con actividad nueva es detectable en recargas posteriores>
+  - estado: <`abierto` o `resuelto` —el estado del hilo en la plataforma al registrar la entrada—; junto con `visto:` forma el par que detecta la actividad posterior: comentarios más recientes o reapertura>
   - veredicto: <corregir | responder | aplazar>
   - severidad: <blocker | important | nit>
   - propuesta: <corrección concreta citando el código y la regla o intención del comentario; respuesta redactada si el veredicto es responder; ausente si es aplazar —la respuesta de aplazamiento la redacta `mejorar-pr` a partir de la `razón`>
@@ -32,4 +33,6 @@
 - `<archivo o superficie>:<línea o tema>` — «<fragmento del comentario del revisor>» (@<autor>)
   - hilo: <identificador de plataforma —mismo formato que las entradas; hace reconocible y deduplicable la pregunta en rondas posteriores>
   - visto: <mismo campo que las entradas —fecha ISO del último comentario del hilo al registrar la pregunta>
+  - estado: <mismo campo que las entradas —`abierto` o `resuelto` al registrarla>
   - pregunta: <qué haría falta para decidir el veredicto —solo si el hilo no tiene intención clara; nunca una suposición>
+  - resultado: <`promovida a entrada` cuando el usuario resolvió la ambigüedad en `mejorar-pr`; nace sin este sub-ítem>

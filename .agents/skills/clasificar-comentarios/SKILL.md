@@ -48,7 +48,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 
 ## Principios rectores
 
-1. **Cada hilo abierto, un veredicto:** nada queda sin clasificar y nada se clasifica dos veces; los resueltos y los ya triagiados no entran salvo como contexto de uno abierto.
+1. **Cada hilo abierto, un veredicto:** nada queda sin clasificar y nada se clasifica dos veces; los resueltos sin actividad posterior y los ya triagiados no entran salvo como contexto de uno abierto.
 2. **El veredicto lleva propuesta:** `corregir` cita el código y la regla o intención del comentario con el arreglo concreto; `responder` lleva la respuesta redactada —y si la única respuesta honesta fuera «mira el código», el código no se explica solo y la propuesta es mejorarlo—; `aplazar` lleva su razón obligatoria.
 3. **La ambigüedad no se adivina:** un hilo cuya intención no es clara va a preguntas abiertas del documento; una suposición silenciosa contamina la ejecución posterior.
 4. **Solo análisis:** el skill no responde al revisor, no resuelve hilos y no toca el código; su producto es el documento —actuar sobre él es la mitad siguiente del bloque.
@@ -68,7 +68,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ### 2. Acumular sobre triages anteriores
 
 5. **Localizar el documento previo del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-triage-*.md`, el de mayor fecha y sufijo—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`.
-6. **Omitir lo ya triagiado, salvo actividad nueva:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. La excepción es la actividad posterior: un hilo registrado con comentarios más recientes que el `visto:` más reciente que el documento tiene para él —incluidos los ya resueltos, donde aterriza la réplica del revisor—, o reabierto tras quedar registrado con `resuelto` en su `resultado:` —la reapertura no genera comentario, la detecta el cambio de estado contra esa línea base—, vuelve a entrar y genera una entrada nueva en la ronda, citando el mismo `hilo:` —las entradas previas no se tocan—. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados sin actividad nueva, informar de que la ronda no trae hilos nuevos y terminar.
+6. **Omitir lo ya triagiado, salvo actividad nueva:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. La excepción es la actividad posterior: un hilo registrado vuelve a entrar cuando su par (`visto:`, `estado:`) ya no describe la plataforma —comentarios más recientes que el `visto:` más reciente registrado, incluidos los de hilos ya resueltos donde aterriza la réplica del revisor, o un `estado: resuelto` registrado que reaparece abierto —la reapertura no genera comentario, la detecta el cambio de estado contra esa línea base—; genera una entrada nueva en la ronda, citando el mismo `hilo:` —las entradas previas no se tocan—. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados sin actividad nueva, informar de que la ronda no trae hilos nuevos y terminar.
 
 ### 3. Clasificar cada hilo abierto
 
@@ -89,7 +89,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 
 El skill ha terminado cuando:
 
-- Cada hilo abierto no triagiado tiene su entrada en el documento —veredicto, severidad, propuesta— o su lugar en preguntas abiertas.
+- Cada hilo abierto o con actividad posterior sin triagiar tiene su entrada en el documento —veredicto, severidad, propuesta— o su lugar en preguntas abiertas.
 - El documento está persistido en `dir_revisiones_pr` como `pr-<n>-triage-<yyyymmdd>.md` y el usuario recibió el resumen.
 - Ningún hilo fue respondido, resuelto ni corregido —solo clasificado—.
 
