@@ -90,6 +90,7 @@ Trazadas a CU-3 del PRD:
 
 - **`comentar-pr` estrecha su glob de descubrimiento.** Hallazgo `important` de la revisión técnica: el patrón `pr-<n>-*.md` del paso de localización del informe casaba también los documentos de triage `pr-<n>-triage-*.md`; el patrón quedó como `pr-<n>-<yyyymmdd>*.md` —la fecha sigue inmediata al número—.
 - **La entrada del triage registra el identificador de hilo.** Otro `important` de la misma revisión: la deduplicación por ancla+cita falla tras empujar correcciones —las líneas derivan—; cada entrada gana el sub-ítem `hilo:` con el id de plataforma (`PRRT_…`, review o comentario), clave primaria de deduplicación y lo que `mejorar-pr` necesita para responder o resolver. En el mismo pase: carga explícita del diff y de archivos del head vía `git show`, uso declarado de `isOutdated` antes de clasificar `corregir`, y aclaración del sufijo ordinal frente a la acumulación in situ.
+- **`responder` cubre la refutación de un comentario incorrecto.** Aclaración del usuario: un comentario inválido —no por alcance sino por incorrecto— es una discrepancia que se responde con la refutación redactada y el código como evidencia; `aplazar` lo validaría implícitamente. Se aplicó además una ronda de `revisar-redaccion` + `pulir-escritura` sobre el skill y la plantilla.
 
 ## Revisión
 
