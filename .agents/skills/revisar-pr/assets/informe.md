@@ -2,7 +2,7 @@
 
 - **Fecha:** [fecha de la revisión]
 - **PR:** #[número] — «[título del PR]» — [enlace]
-- **Base:** `[rama base]` ← **Head:** `[rama head]`
+- **Base:** `[rama base]` ← **Head:** `[rama head]` — `[SHA head revisado]`
 - **Autor del PR:** [autor]
 
 ## Resumen del cambio

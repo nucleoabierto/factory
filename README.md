@@ -68,6 +68,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `liberar-version` | Libera una versión del proyecto evaluado: cura los no liberados, propone el bump semver justificado y promueve la sección con la confirmación del usuario. |
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
 | `revisar-pr` | Revisión independiente de un *pull request* arbitrario del proyecto evaluado; produce un informe local con hallazgos por severidad y veredicto. |
+| `comentar-pr` | Publica los hallazgos del informe de `revisar-pr` como comentarios *conventional* autocontenidos —anclados a línea con propuesta o generales en la review—, solo tras confirmación del usuario. |
 
 **Diseño**
 
