@@ -19,8 +19,8 @@
 
 - `<archivo o superficie>:<línea o tema>` — «<fragmento del comentario del revisor>» (@<autor>)
   - hilo: <el `node_id` de GraphQL —`PRRT_…` para hilos de línea, `PRR_…` para cuerpos de review, `IC_…` para la conversación—; nunca el `id` numérico de REST, que no casa con la recarga GraphQL. Es la clave de deduplicación y lo que `mejorar-pr` necesita para responder o resolver>
-  - visto: <fecha ISO del último comentario del hilo al triagiar —con ella un hilo registrado con actividad nueva es detectable en recargas posteriores>
-  - estado: <`abierto` o `resuelto` —el estado del hilo en la plataforma; las superficies sin resolución (`PRR_…`, `IC_…`) registran siempre `abierto`—; es un campo vivo: `mejorar-pr` lo actualiza al ejecutar la entrada, y junto con `visto:` forma el par que detecta la actividad posterior —comentarios más recientes o reapertura>
+  - visto: <fecha ISO del último comentario del hilo al triagiar —en superficies sin hilo (`PRR_…`, `IC_…`), la fecha del propio ítem o de su última edición—; con ella un hilo registrado con actividad nueva es detectable en recargas posteriores>
+  - estado: <`abierto` o `resuelto` —el estado del hilo en la plataforma; las superficies sin resolución (`PRR_…`, `IC_…`) registran siempre `abierto`—; es un campo vivo: `mejorar-pr` lo actualiza al anotar la entrada —ejecutada u omitida—, y junto con `visto:` forma el par que detecta la actividad posterior —comentarios más recientes o reapertura>
   - veredicto: <corregir | responder | aplazar>
   - severidad: <blocker | important | nit>
   - propuesta: <corrección concreta citando el código y la regla o intención del comentario; respuesta redactada si el veredicto es responder; ausente si es aplazar —la respuesta de aplazamiento la redacta `mejorar-pr` a partir de la `razón`>

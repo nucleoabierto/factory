@@ -48,7 +48,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 
 ## Principios rectores
 
-1. **Cada hilo abierto, un veredicto:** nada queda sin clasificar y nada se clasifica dos veces; los resueltos sin actividad posterior y los ya triagiados no entran salvo como contexto de uno abierto.
+1. **Cada hilo abierto, un veredicto:** nada queda sin clasificar y nada se clasifica dos veces; los resueltos y los ya triagiados no entran salvo por actividad posterior registrable o como contexto de uno abierto.
 2. **El veredicto lleva propuesta:** `corregir` cita el código y la regla o intención del comentario con el arreglo concreto; `responder` lleva la respuesta redactada —y si la única respuesta honesta fuera «mira el código», el código no se explica solo y la propuesta es mejorarlo—; `aplazar` lleva su razón obligatoria.
 3. **La ambigüedad no se adivina:** un hilo cuya intención no es clara va a preguntas abiertas del documento; una suposición silenciosa contamina la ejecución posterior.
 4. **Solo análisis:** el skill no responde al revisor, no resuelve hilos y no toca el código; su producto es el documento —actuar sobre él es la mitad siguiente del bloque.
