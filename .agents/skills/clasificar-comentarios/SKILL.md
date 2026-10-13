@@ -4,8 +4,8 @@ description: >
   Triage de la revisión recibida en un pull request propio del
   proyecto evaluado: lee los hilos de revisión abiertos en las tres
   superficies de la plataforma —hilos de línea, cuerpos de reviews y
-  conversación—, omite los resueltos sin actividad nueva y los ya
-  triagiados, clasifica cada hilo restante en corregir, responder o
+  conversación—, omite los resueltos y los ya triagiados sin actividad
+  posterior, clasifica cada hilo restante en corregir, responder o
   aplazar con la
   corrección o respuesta propuesta y su severidad, y produce el
   documento de triage persistido —estado local efímero, acumulable
@@ -68,7 +68,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ### 2. Acumular sobre triages anteriores
 
 5. **Localizar el documento previo del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-triage-*.md`, el de mayor fecha y sufijo—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`.
-6. **Omitir lo ya triagiado, salvo actividad nueva:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. La excepción es la actividad posterior: un hilo registrado vuelve a entrar cuando su par (`visto:`, `estado:`) ya no describe la plataforma —comentarios más recientes que el `visto:` más reciente registrado, incluidos los de hilos ya resueltos donde aterriza la réplica del revisor, o un `estado: resuelto` registrado que reaparece abierto —la reapertura no genera comentario, la detecta el cambio de estado contra esa línea base—; genera una entrada nueva en la ronda, citando el mismo `hilo:` —las entradas previas no se tocan—. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados sin actividad nueva, informar de que la ronda no trae hilos nuevos y terminar.
+6. **Omitir lo ya triagiado, salvo actividad nueva:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. La excepción es la actividad posterior: un hilo registrado vuelve a entrar cuando su par (`visto:`, `estado:`) ya no describe la plataforma —comentarios ajenos más recientes que el `visto:` más reciente registrado —lo que el propio flujo publicó no computa como actividad—, incluidos los de hilos ya resueltos donde aterriza la réplica del revisor, o un `estado: resuelto` registrado que reaparece abierto —la reapertura no genera comentario, la detecta el cambio de estado contra esa línea base—; genera una entrada nueva en la ronda, citando el mismo `hilo:` —las entradas previas no se tocan—. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados sin actividad nueva, informar de que la ronda no trae hilos nuevos y terminar.
 
 ### 3. Clasificar cada hilo abierto
 
