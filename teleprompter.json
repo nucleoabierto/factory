@@ -11,6 +11,7 @@
     { "source": ".agents/skills/actualizar-artefactos", "target": ".agents/skills/actualizar-artefactos" },
     { "source": ".agents/skills/aplicar-guia-estilo", "target": ".agents/skills/aplicar-guia-estilo" },
     { "source": ".agents/skills/cerrar-conjunto", "target": ".agents/skills/cerrar-conjunto" },
+    { "source": ".agents/skills/clasificar-comentarios", "target": ".agents/skills/clasificar-comentarios" },
     { "source": ".agents/skills/comentar-pr", "target": ".agents/skills/comentar-pr" },
     { "source": ".agents/skills/commit", "target": ".agents/skills/commit" },
     { "source": ".agents/skills/consultar-artefactos", "target": ".agents/skills/consultar-artefactos" },
