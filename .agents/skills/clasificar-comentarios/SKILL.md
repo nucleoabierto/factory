@@ -67,7 +67,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ### 2. Acumular sobre triages anteriores
 
 5. **Localizar el documento previo del PR** en el directorio que resuelve la convención `dir_revisiones_pr` de `consultar-artefactos` —patrón `pr-<n>-triage-*.md`, el de mayor fecha y sufijo—. Cuando el valor resuelto empieza por `.git/`, sustituir ese prefijo por `git rev-parse --git-common-dir`.
-6. **Omitir lo ya triagiado:** un hilo que ya tiene entrada en el documento no se reclasifica —la comparación se hace por el identificador `hilo:` registrado en la entrada y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin entrada. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados, informar de que la ronda no trae hilos nuevos y terminar.
+6. **Omitir lo ya triagiado:** un hilo que ya tiene entrada en el documento —clasificado o en preguntas abiertas— no se reclasifica —la comparación se hace por el identificador `hilo:` registrado y, como *fallback*, por ancla, cita y autor—; solo entran los hilos abiertos sin registro. El ancla sola no basta: tras empujar correcciones las líneas derivan y `isOutdated` recoloca hilos. Si todos los abiertos ya están triagiados, informar de que la ronda no trae hilos nuevos y terminar.
 
 ### 3. Clasificar cada hilo abierto
 
@@ -77,7 +77,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
    - **`responder`** —el hilo es una pregunta, una discrepancia o algo que no pide cambio—: la propuesta es la respuesta redactada al revisor, incluida la refutación de un comentario incorrecto —se explica por qué la observación no aplica, con el código como evidencia—. Si la única respuesta honesta fuera «mira el código», el código no se explica solo y el veredicto es `corregir` con propuesta de clarificarlo. `aplazar` nunca cubre un comentario incorrecto: aplazar un comentario inválido lo validaría implícitamente.
    - **`aplazar`** —el comentario es válido pero fuera del alcance del PR—: la razón del aplazamiento es obligatoria —fuera de alcance, trabajo posterior, requiere decisión ajena—.
 9. **Asignar la severidad** que el hilo merece como revisor-autor —`blocker`, `important`, `nit`—: la misma escala del informe de `revisar-pr`, que ordena la ejecución posterior.
-10. **Derivar la ambigüedad a preguntas abiertas:** un hilo cuya intención no se reconstruye del comentario ni del código no recibe veredicto —va a la lista de preguntas abiertas del documento con lo que haría falta para decidir—.
+10. **Derivar la ambigüedad a preguntas abiertas:** un hilo cuya intención no se reconstruye del comentario ni del código no recibe veredicto —va a la lista de preguntas abiertas del documento con su `hilo:` registrado y lo que haría falta para decidir—.
 
 ### 4. Producir el documento
 

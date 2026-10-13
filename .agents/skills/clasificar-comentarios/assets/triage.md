@@ -24,7 +24,10 @@
   - propuesta: <corrección concreta citando el código y la regla o intención del comentario; respuesta redactada si el veredicto es responder>
   - razón: <obligatoria cuando el veredicto es aplazar; se omite en otro caso>
   - ronda: <número de la ronda de triage en que entró la entrada —1 en el documento nuevo; en un triage acumulado, la ronda en que cada hilo se clasificó>
+  - resultado: <lo escribe `mejorar-pr` al ejecutar la entrada —`corregido en <sha>`, `respondido`, `aplazado` con la referencia si se registró tarea, `resuelto en plataforma` u `omitido — <motivo>`—; la entrada nace sin este sub-ítem>
 
 ## Preguntas abiertas
 
-- <pregunta — solo si el hilo no tiene intención clara; nunca una suposición>
+- `<archivo o superficie>:<línea o tema>` — «<fragmento del comentario del revisor>» (@<autor>)
+  - hilo: <identificador de plataforma —mismo formato que las entradas; hace reconocible y deduplicable la pregunta en rondas posteriores>
+  - pregunta: <qué haría falta para decidir el veredicto —solo si el hilo no tiene intención clara; nunca una suposición>
