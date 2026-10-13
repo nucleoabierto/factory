@@ -63,20 +63,20 @@ Instrucciones para que un agente ejecute el documento de triage sobre un *pull r
    - Un hilo abierto sin entrada **ni pregunta abierta** registrada en el triage —la comparación se hace por el `hilo:`— significa revisión nueva no clasificada: informar al usuario —por defecto se propone `clasificar-comentarios` antes de actuar, porque un triage incompleto ejecuta a ciegas; si el usuario decide ejecutar lo ya triagiado, las entradas pendientes proceden igual—.
    - Una entrada pendiente cuyo hilo ya aparece resuelto en la plataforma se omite y se anota `resultado: resuelto en plataforma` —ejecutarla publicaría o corregiría sobre un tema cerrado—.
    - Si el head del PR difiere del `head triagiado` que registra el documento —un push intermedio movió el cambio—, las entradas `corregir` pendientes se revalidan contra el estado actual antes de aplicarse: un `isOutdated` puede indicar que la observación ya quedó atendida o que su premisa cambió.
-   - Las preguntas abiertas del triage se presentan al usuario en el resumen como pendientes de su respuesta; no disparan la alarma ni se ejecutan.
+   - Las preguntas abiertas del triage se presentan al usuario como pendientes de su respuesta; no disparan la alarma ni se ejecutan —pero si el usuario resuelve la ambigüedad, el hilo se promueve a entrada clasificada en el documento —veredicto y propuesta— y entra a la ejecución de la misma ronda.
 
 ### 2. Aplicar las correcciones
 
-5. **Separar las entradas pendientes por veredicto** —las que ya llevan `resultado:` se omiten—. Si todas están atendidas, informar de que no queda nada pendiente y terminar.
+5. **Separar las entradas pendientes por veredicto:** las que llevan `resultado:` terminal se omiten; una anotación con `pendiente` —un `corregir` commiteado con el push pospuesto— se retoma donde quedó, no se reaplica. Si no queda nada pendiente, las preguntas abiertas se presentan igual antes de informar y terminar.
 6. **Aplicar cada `corregir` sobre el árbol de trabajo** en orden de severidad —`blocker`, `important`, `nit`, que para eso la registra el triage— siguiendo su `propuesta` —que ya cita el código y la regla o intención—, respetando las convenciones del proyecto y las lecciones aplicables —`consultar-lecciones` por los disparadores del cambio—. Una corrección que contradice el cambio o una convención se presenta al usuario con el conflicto; no se aplica ni se descarta en silencio.
-7. **Verificar, presentar el diff y, tras confirmación, commitear y empujar:** correr las verificaciones que correspondan del proyecto evaluado —como en la ronda de `gestionar-pr`—, presentar el diff aplicado y, solo tras la confirmación, commitear en la rama con el skill `commit` y `git push`. Sin `corregir` pendientes no hay árbol que tocar ni push que pedir.
+7. **Verificar, presentar el diff y, tras confirmación, commitear y empujar:** correr las verificaciones que correspondan del proyecto evaluado —como en la ronda de `gestionar-pr`—, presentar el diff aplicado y, solo tras la confirmación, commitear en la rama con el skill `commit` y `git push`. Si el usuario aprueba el commit pero pospone el push, la entrada se anota `resultado: aplicado en <sha> — pendiente de push y respuesta` —no es terminal: la ronda siguiente la retoma—. Sin `corregir` pendientes no hay árbol que tocar ni push que pedir.
 
 ### 3. Responder
 
 8. **Redactar el lote de respuestas** a partir del triage:
    - **`responder`:** la respuesta ya viene redactada en la `propuesta` de la entrada.
    - **`corregir`:** una respuesta breve que cita el commit donde quedó la corrección —el revisor ve qué cambió—; solo entra al lote si el push del paso 7 aterrizó —citar un commit que no llegó al remoto publica una referencia rota, así que si el usuario pospone el push, estas respuestas se posponen con él—.
-   - **`aplazar`:** la respuesta de aplazamiento con su razón; cuando la razón es trabajo posterior se ofrece registrarla con `crear-tareas` y citar la referencia —convención de `gestionar-pr`—.
+   - **`aplazar`:** la respuesta de aplazamiento con su razón; cuando el aplazamiento produce trabajo posterior —fuera de alcance incluido— se ofrece registrarlo con `crear-tareas` y citar la referencia en la respuesta —convención de `gestionar-pr`—.
 9. **Presentar el lote completo al usuario:** cada respuesta con el hilo al que va —ancla y autor—. El usuario aprueba, edita o descarta; lo descartado no se publica y queda anotado en el triage con `resultado: omitido — <motivo>` —sin anotación se repondría en cada ejecución—.
 10. **Publicar tras confirmación** por el endpoint que dicta el `hilo:` de cada entrada:
     - `PRRT_…` —hilo de línea—: `addPullRequestReviewThreadReply` vía `gh api graphql` con `pullRequestReviewThreadId` y `body`.
@@ -84,8 +84,8 @@ Instrucciones para que un agente ejecute el documento de triage sobre un *pull r
 
 ### 4. Resolver y cerrar la ronda
 
-11. **Resolver los hilos atendidos:** solo los de línea —`PRRT_…`— con `resolveReviewThread` vía `gh api graphql`, después de que aterriza su resultado —`corregir` tras el push, `responder` y `aplazar` tras publicar la respuesta—; los cuerpos de review y la conversación no tienen resolución. Bajo la misma confirmación del lote.
-12. **Anotar el resultado en el triage:** cada entrada ejecutada —o descartada en las puertas— gana el sub-ítem `resultado:` —`corregido en <sha>`, `respondido`, `aplazado` con la referencia de la tarea si se registró, `omitido — <motivo>`—; es lo que omite una ejecución posterior.
+11. **Resolver los hilos atendidos:** solo los de línea —`PRRT_…`— con `resolveReviewThread` vía `gh api graphql` (`threadId`), después de que aterriza su resultado —`corregir` tras el push, `responder` y `aplazar` tras publicar la respuesta—; los cuerpos de review y la conversación no tienen resolución. Bajo la misma confirmación del lote.
+12. **Anotar el resultado en el triage:** cada entrada ejecutada —o descartada en las puertas— gana el sub-ítem `resultado:` —`corregido en <sha>`, `respondido`, `aplazado` con la referencia de la tarea si se registró, `omitido — <motivo>`—; es lo que omite una ejecución posterior, salvo los valores con `pendiente`, que se retoman.
 13. **Informar del resumen:** qué se aplicó, qué se publicó, qué se resolvió —y que el diff corregido vuelve a ser candidato a una revisión: el lazo puede repetirse; el skill lo declara sin orquestarlo—.
 
 ## Finalización

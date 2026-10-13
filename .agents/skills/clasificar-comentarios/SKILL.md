@@ -41,7 +41,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ## Salida
 
 - El documento de triage persistido en el directorio de la convención `dir_revisiones_pr`, con el nombre `pr-<n>-triage-<yyyymmdd>.md` —el sufijo ordinal `-2`, `-3`… solo aplica si por alguna razón debe crearse un documento nuevo en una fecha ya usada—. Es estado local efímero fuera del control de versiones: `gestionar-pr` lo elimina al cerrar el PR junto con el resto de `pr-<n>-*.md`.
-- Una entrada por hilo abierto: ubicación —ancla archivo:línea o superficie—, cita del comentario, veredicto, severidad, propuesta y, en los aplazamientos, la razón.
+- Una entrada por hilo abierto: ubicación —ancla archivo:línea o superficie—, cita del comentario, veredicto, severidad, la propuesta que el veredicto exige y, en los aplazamientos, la razón.
 - El resumen en chat: cuántos hilos entraron a cada veredicto y cuántos quedaron como preguntas abiertas.
 - Un triage posterior sobre el mismo PR acumula: reutiliza el documento existente añadiendo las entradas nuevas con su ronda, nunca reclasifica.
 
@@ -57,7 +57,7 @@ Instrucciones para que un agente convierta la revisión recibida en un *pull req
 ### 1. Resolver el PR y cargar la revisión recibida
 
 1. **Resolver el PR:** con número dado, `gh pr view <n>`; sin número, el PR de la rama actual con `gh pr view`. Si no resuelve a un PR abierto, informar y terminar.
-2. **Cargar los hilos en las tres superficies**, siempre con `--paginate`:
+2. **Cargar los hilos en las tres superficies**, siempre con `--paginate` y conservando el `node_id` de cada uno —es el `hilo:` que la entrada registra—:
    - **Hilos de línea** con su estado —GraphQL `reviewThreads` del PR: `isResolved`, `isOutdated`, comentarios, `path` y `line`—.
    - **Cuerpos de reviews** —`gh api --paginate repos/:owner/:repo/pulls/<n>/reviews`: el comentario general de un revisor viaja en el `body`—.
    - **Conversación** —`gh api --paginate repos/:owner/:repo/issues/<n>/comments`: comentarios sueltos que no son review—.
