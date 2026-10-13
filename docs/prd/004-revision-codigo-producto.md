@@ -18,6 +18,7 @@ Desarrolladores y *product managers* que gestionan un producto con un agente de 
   - Un informe que no corresponde al head actual del PR está obsoleto: la publicación exige revisar de nuevo.
 - **CU-3 — Clasificar la revisión recibida:** sobre un PR propio con comentarios, el sistema entrega el triage —cada hilo abierto con su acción (corregir, responder, aplazar), severidad y propuesta— en un documento persistido.
   - Un hilo de intención ambigua va a preguntas abiertas, no a una suposición.
+  - Un comentario incorrecto es una discrepancia: se clasifica `responder` con la refutación y el código como evidencia; `aplazar` lo validaría implícitamente.
 - **CU-4 — Mejorar el cambio:** desde el triage, el sistema aplica las correcciones al árbol de trabajo, redacta las respuestas y documenta los aplazamientos; el usuario revisa el resultado y publica.
   - Una corrección que contradice el cambio o una convención se eleva al usuario, no se resuelve en silencio.
 

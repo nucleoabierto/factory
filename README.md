@@ -69,6 +69,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `revisar-arquitectura` | Evalúa la arquitectura de un dominio con criterios DDD y persiste el informe en `docs/architecture-reviews/`. |
 | `revisar-pr` | Revisión independiente de un *pull request* arbitrario del proyecto evaluado; produce un informe local con hallazgos por severidad y veredicto. |
 | `comentar-pr` | Publica los hallazgos del informe de `revisar-pr` como comentarios *conventional* autocontenidos —anclados a línea con propuesta o generales en la review—, solo tras confirmación del usuario. |
+| `clasificar-comentarios` | Triage de la revisión recibida en un PR propio: clasifica cada hilo abierto en corregir/responder/aplazar con propuesta y produce el documento de triage local, acumulable por rondas. |
 
 **Diseño**
 
