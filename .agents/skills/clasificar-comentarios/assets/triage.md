@@ -35,4 +35,4 @@
   - visto: <mismo campo que las entradas —fecha ISO del último comentario del hilo al registrar la pregunta>
   - estado: <mismo campo que las entradas —`abierto` o `resuelto` al registrarla>
   - pregunta: <qué haría falta para decidir el veredicto —solo si el hilo no tiene intención clara; nunca una suposición>
-  - resultado: <`promovida a entrada` cuando el usuario resolvió la ambigüedad en `mejorar-pr`, u `omitido — <motivo>` cuando la pregunta se declinó o su hilo apareció resuelto; nace sin este sub-ítem>
+  - resultado: <`promovida a entrada` cuando el usuario resolvió la ambigüedad en `mejorar-pr`, u `omitido — <motivo>` cuando la pregunta se declinó o su hilo apareció resuelto; nace sin este sub-ítem y toda anotación deja (`visto:`, `estado:`) al día con la plataforma>
