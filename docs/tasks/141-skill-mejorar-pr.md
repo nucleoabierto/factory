@@ -119,4 +119,4 @@ Trazadas a CU-4 del PRD:
 
 - Subagente: 2026-10-13 — Aprueba
 - Usuario (ejecución): 2026-10-13 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-10-14 — Aprueba

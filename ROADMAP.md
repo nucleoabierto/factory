@@ -6,11 +6,6 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 
 ## Now
 
-- 1. `docs/epics/004-revision-codigo-producto.md` — Revisión de código como capacidad del producto
-  - Estado: planificada — Hito 1 en el índice (tareas 138–141), pendiente de arrancar.
-  - Justificación: el sistema ya revisa sus propios cambios en el ciclo de tareas (`revisar-implementacion`, subagente de revisión, cotejo de lecciones); convertir esa capacidad en un skill invocable sobre diffs arbitrarios del proyecto evaluado es la mayor brecha hacia el producto entregable y la que más habilita a las demás líneas, que producen código ajeno al flujo interno.
-  - Documentación de producto ya alineada con esta dirección (tarea 137, completada).
-
 ## Next
 
 - 1. Planeación y gestión a nivel de producto — formalizar cómo el producto decide y ordena el trabajo, no solo cómo lo ejecuta

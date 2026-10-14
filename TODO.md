@@ -46,13 +46,5 @@
 - [x] docs/tasks/136-aprendizaje-sincrono-til.md — Aprendizaje síncrono al estilo TIL
 - [x] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
 
-## Hito 1: Revisión de código como capacidad del producto
-<!-- épica: docs/epics/004-revision-codigo-producto.md -->
-
-- [x] docs/tasks/138-skill-revisar-pr.md — Capacidad de revisión de un pull request arbitrario
-- [x] docs/tasks/139-skill-comentar-pr.md — Comentarios publicables de la revisión con confirmación
-- [x] docs/tasks/140-skill-clasificar-comentarios.md — Triage de la revisión recibida en un pull request propio
-- [x] docs/tasks/141-skill-mejorar-pr.md — Aplicar el triage sobre el cambio propio
-
 ## Propuestas en revisión
 
