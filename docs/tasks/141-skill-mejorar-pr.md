@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
+[ ] Pendiente | [~] En progreso | [r] En revisión | **[x] Completada** | [!] Bloqueada
 
 ## Tipo
 
@@ -113,9 +113,10 @@ Trazadas a CU-4 del PRD:
 - **Invariante universal de anotación.** Octava ronda dogfooding: las anotaciones de omisión (`resuelto en plataforma`, `hilo no localizado`, `premisa obsoleta`, `superada`) dejaban el par divergente para siempre; ahora toda anotación —de ejecución o de omisión— deja (`visto:`, `estado:`) al día con la plataforma, la regla de resolución exime también a la entrada `pendiente` —su superación preserva el commit local—, `visto:` declara su valor en superficies sin hilo y el principio rector gana el calificador de actividad posterior.
 - **Pulido post-veredicto.** Novena ronda dogfooding —veredicto `merge` con el important de diseño cerrado— aplicó sus cinco nits: la plantilla declara el invariante universal en `resultado:`, las anotaciones sobre `pendiente` conservan el commit local en todos los caminos, las preguntas con `resultado:` ya no se representan, la cláusula de divergencia acota la transición inversa y la `description` nombra la respuesta del `corregir`.
 - **Ronda de redacción.** A petición del usuario, los tres archivos del cambio pasaron por `revisar-redaccion` + `pulir-escritura`: las oraciones de +120 palabras del paso de frescura y del de anotación se dividen en oraciones y sub-viñetas, la justificación del par (`visto:`, `estado:`) vive en un solo lugar —la plantilla ya no la repite en `resultado:`— y «aplastar un comentario inválido» se aprieta a «aplazarlo». Sin patrones de la lista negra; el sentido y la convención de incisos del repositorio se conservan.
+- **La salida del bloque revisor va marcada para que el bloque autor la reconozca.** Al ejercitar el lazo completo sobre el PR 14 quedó claro que autor y revisor pueden compartir cuenta autenticada —el usuario ejecuta la revisión mediante el propio agente— y el filtro de cuenta de `clasificar-comentarios` descartaba la review publicada por `comentar-pr`: la pregunta abierta del informe 9 resuelta. Decisión: `comentar-pr` termina cada cuerpo publicado con `<!-- factory:revision -->` y el filtro admite del autor autenticado solo lo marcado; las respuestas del propio flujo siguen fuera. Cambios en `comentar-pr`, `clasificar-comentarios`, `mejorar-pr` y el PRD (CU-3).
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-10-13 — Aprueba
+- Usuario (ejecución): 2026-10-13 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
