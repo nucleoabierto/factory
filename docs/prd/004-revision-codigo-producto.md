@@ -19,6 +19,7 @@ Desarrolladores y *product managers* que gestionan un producto con un agente de 
 - **CU-3 — Clasificar la revisión recibida:** sobre un PR propio con comentarios, el sistema entrega el triage —cada hilo abierto con su acción (corregir, responder, aplazar), severidad y propuesta— en un documento persistido.
   - Un hilo de intención ambigua va a preguntas abiertas, no a una suposición.
   - Un comentario incorrecto es una discrepancia: se clasifica `responder` con la refutación y el código como evidencia; `aplazar` lo validaría implícitamente.
+  - El autor ejecuta la revisión mediante el propio agente —autor y revisor comparten cuenta—: la salida que el bloque revisor publica va marcada y entra al triage como revisión; las respuestas del propio flujo siguen fuera. *(Añadido al cerrar la tarea 141: el dogfooding del lazo completo lo exigió.)*
 - **CU-4 — Mejorar el cambio:** desde el triage, el sistema aplica las correcciones al árbol de trabajo, redacta las respuestas y documenta los aplazamientos; el usuario revisa el resultado y publica.
   - Una corrección que contradice el cambio o una convención se eleva al usuario, no se resuelve en silencio.
 
@@ -26,7 +27,7 @@ Desarrolladores y *product managers* que gestionan un producto con un agente de 
 
 - **Revisión:** todo hallazgo cita la regla o el patrón infringido; los hilos ya resueltos nunca aparecen duplicados; «no hay hallazgos» es un veredicto válido; sin contexto suficiente, el veredicto es `blocked` con preguntas abiertas —nunca suposiciones—.
 - **Comentarios:** cada comentario publicado sigue *conventional comments* y es autocontenido —problema, anclaje y contexto—; nada llega a la plataforma sin confirmación del usuario.
-- **Triage:** cada hilo abierto queda clasificado exactamente una vez; los resueltos y los ya triagiados se omiten; un aplazamiento siempre lleva su razón.
+- **Triage:** cada hilo abierto queda clasificado exactamente una vez; los resueltos y los ya triagiados se omiten —salvo la actividad posterior del revisor, que reentra a clasificación como entrada nueva de la ronda—; un aplazamiento siempre lleva su razón. *(Actualizado al cerrar la tarea 141: el par vivo `visto:`/`estado:` hace detectable la actividad posterior sobre hilos ya triagiados.)*
 - **Mejora:** las correcciones respetan las convenciones y lecciones del proyecto; las respuestas y el push esperan confirmación, igual que la publicación de comentarios.
 
 ## Criterios de éxito

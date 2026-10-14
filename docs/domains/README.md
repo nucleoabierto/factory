@@ -15,3 +15,4 @@ Reglas del índice:
 - 003-subflujo-desarrollo.md — Sub-flujo de desarrollo: contexto, conectividad, planeación, ejecución y revisión del diff
 - 004-documentacion-viva.md — Documentación viva: dominios, producto, decisiones, investigación y guía de estilo
 - 005-aprendizaje.md — Aprendizaje por experiencias: registro, consolidación y consulta por disparadores
+- 006-revision-codigo.md — Revisión de código: informe con veredicto sobre PRs ajenos, comentarios publicables, triage de la revisión recibida y mejora del cambio propio

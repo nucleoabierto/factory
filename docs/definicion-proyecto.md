@@ -35,7 +35,7 @@ El flujo de trabajo es: leer `TODO.md`, tomar la siguiente tarea pendiente, ejec
 
 Lo que falta para llegar al producto entregable:
 
-- **Gestión a nivel de código**: revisión de código como capacidad del producto —en construcción: el bloque revisor ya está completo, `revisar-pr` somete un *pull request* arbitrario a revisión independiente con informe local y `comentar-pr` publica los hallazgos como comentarios autocontenidos bajo confirmación; del bloque autor, `clasificar-comentarios` produce el documento de triage de la revisión recibida y falta la pieza que actúa sobre él (épica 004)—.
+- **Gestión a nivel de código**: revisión de código como capacidad del producto —en construcción, con las cuatro piezas del lazo ya construidas: el bloque revisor, `revisar-pr` somete un *pull request* arbitrario a revisión independiente con informe local y `comentar-pr` publica los hallazgos como comentarios autocontenidos bajo confirmación; el bloque autor, `clasificar-comentarios` produce el triage de la revisión recibida y `mejorar-pr` lo ejecuta —correcciones al cambio, respuestas a los revisores y resolución de hilos, todo tras confirmación—. Falta ejercitar el lazo sobre un PR real, que es el criterio de cierre de la épica 004—.
 - **Gestión a nivel de producto**: *features*, *releases*, *feedback* de usuarios.
 
 ## Proceso de trabajo

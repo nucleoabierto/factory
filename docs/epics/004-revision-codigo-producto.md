@@ -2,7 +2,7 @@
 
 ## Estado
 
-[x] Planificada | [ ] Completada
+[x] Planificada | [x] Completada
 
 ## Objetivo
 
@@ -15,10 +15,10 @@ Cualquier *pull request* del proyecto evaluado —lo haya producido el ciclo de 
 
 ## Piezas
 
-- [ ] docs/tasks/138-skill-revisar-pr.md — capacidad de revisión de PR arbitrario con informe y veredicto
-- [ ] docs/tasks/139-skill-comentar-pr.md — comentarios autocontenidos publicables con confirmación
-- [ ] docs/tasks/140-skill-clasificar-comentarios.md — triage de la revisión recibida en un PR propio
-- [ ] docs/tasks/141-skill-mejorar-pr.md — aplicar el triage sobre el cambio propio
+- [x] docs/tasks/138-skill-revisar-pr.md — capacidad de revisión de PR arbitrario con informe y veredicto
+- [x] docs/tasks/139-skill-comentar-pr.md — comentarios autocontenidos publicables con confirmación
+- [x] docs/tasks/140-skill-clasificar-comentarios.md — triage de la revisión recibida en un PR propio
+- [x] docs/tasks/141-skill-mejorar-pr.md — aplicar el triage sobre el cambio propio
 
 ## Plan técnico
 
