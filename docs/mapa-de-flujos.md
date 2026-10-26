@@ -4,11 +4,12 @@ Cómo se conectan los skills de `.agents/skills/` en flujos: qué orquestadores 
 
 ## Grados de conexión
 
-Toda conexión entre skills cae en uno de tres grados:
+Toda conexión entre skills cae en uno de cuatro grados:
 
 - **Invocación explícita:** el `SKILL.md` del llamador nombra al skill invocado en su procedimiento. Ejemplo: `ejecutar-tareas` invoca `mantener-changelog` al cerrar cada tarea.
 - **Convención del arnés:** ningún skill lo invoca; su propia descripción declara cuándo aplica y el agente lo activa al reconocer la condición. Ejemplo: `aplicar-guia-estilo` entra cuando un trabajo toca frontend en un proyecto con `DESIGN.md`, sin que ningún orquestador lo nombre.
 - **Uso bajo demanda:** solo entra en juego cuando el usuario lo pide. Ejemplo: `liberar-version`.
+- **Delegación mecánica:** las operaciones mecánicas sobre los artefactos del sistema —consultas y escrituras del índice de tareas, campos de tareas, propuestas, épicas e ideas, índices por disparadores, registro de experiencias y changelog— se delegan en los gestores `consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias` y `operar-changelog`, que las resuelven aplicando el documento de reglas del artefacto. El consumidor declara la acción de dominio; la ubicación, el formato y la aplicación viven en el documento de reglas, que el gestor lee para operar el archivo directamente.
 
 El grado es de la conexión, no del skill: casi todos los skills declaran además un «Cuándo usar» bajo demanda (`crear-tareas` atiende solicitudes articuladas, `commit` commitea cuando se pide, las capacidades internas de los flujos se pueden invocar sueltas). Las secciones siguientes describen las conexiones que forman los flujos; la demanda directa del usuario siempre existe como puerta adicional.
 
@@ -28,7 +29,7 @@ El grado es de la conexión, no del skill: casi todos los skills declaran ademá
   - Rechazada → la línea se elimina y `propuesta.md` pasa a `[d]` Descartada; el directorio se conserva para trazabilidad.
   - Borrador de épica rechazado → las tareas quedan en `## General` sin agrupar y la propuesta se considera procesada igualmente.
 - **Puertas humanas:** validación del problema enmarcado; validación de la forma de solución; decisión sobre la propuesta (asíncrona); aprobación del borrador de épica dentro de `planificar`.
-- **Artefactos de estado:** `TODO.md` (marcador `[p]` y agrupación resultante), `propuesta.md` (ciclo `[ ]` → `[p]` → `[a]`/`[d]` y campo Revisión), los borradores `MM-titulo.md`, `docs/ideas/NNN-slug.md` (cabecera con «Orden sugerido» y marca «Procesada en»), `docs/epics/NNN-slug.md`.
+- **Artefactos de estado:** `TODO.md` (marcador `[p]` y agrupación resultante), `propuesta.md` (ciclo `[ ]` → `[p]` → `[a]`/`[d]` y campo Revisión), los borradores `MM-titulo.md`, `docs/ideas/NNN-slug.md` (cabecera con «Requiere» y marca «Procesada en»), `docs/epics/NNN-slug.md`.
 - **Cruce con el ciclo de tareas:** `ejecutar-tareas` detecta las líneas `[p]` al leer el índice, informa al usuario y deriva su procesamiento a este flujo antes de tomar la siguiente tarea pendiente.
 
 ## Ciclo de tareas

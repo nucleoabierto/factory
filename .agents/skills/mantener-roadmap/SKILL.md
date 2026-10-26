@@ -32,7 +32,7 @@ Instrucciones para que un agente mantenga el roadmap del proyecto evaluado fiel 
 ## Entrada
 
 - La tarea recién completada, comunicada por el ciclo de tareas en su punto de cierre, o la solicitud de sincronización del usuario.
-- El índice de tareas del proyecto evaluado como fuente de verdad del estado de ejecución: qué trabajo está comprometido y en qué estado está cada tarea. Sus consultas se delegan en `consultar-artefactos`, que resuelve su ubicación desde la configuración.
+- El índice de tareas del proyecto evaluado como fuente de verdad del estado de ejecución: qué trabajo está comprometido y en qué estado está cada tarea. Sus consultas se delegan en `consultar-artefactos`, que resuelve su ubicación desde el documento de reglas del índice.
 - Las épicas del proyecto evaluado como fuente del estado de las líneas-épica; su inventario y su estado también se consultan delegando en `consultar-artefactos`.
 - El roadmap del proyecto evaluado —su ubicación es la convención `archivo_roadmap` (`ROADMAP.md` por defecto)—; este skill lo lee y lo escribe directamente. El formato esperado es el que produce `planificar-roadmap`: horizontes Now, Next, Later y No ahora, con campo «Estado» por línea en Now.
 

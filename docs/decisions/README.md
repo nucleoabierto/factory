@@ -132,7 +132,7 @@
 - D030-ideas-persistidas-en-docs-ideas.md
   - Disparadores: docs/ideas, archivo de idea, lluvia-de-ideas, idea persistida, Procesada en, Orden sugerido, entrada del flujo
   - Resumen: Las ideas se persisten en `docs/ideas/NNN-slug.md` —un archivo por idea— como entrada del flujo; `idea-a-tarea` consume las sin procesar en el orden sugerido y marca la consumida en su propia cabecera.
-  - Estado: Aceptada
+  - Estado: Sustituida por D035 en lo relativo al orden de procesamiento de las ideas; el resto permanece aceptada
 - D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md
   - Disparadores: planear-tarea, desarrollar-tarea, sub-flujo de desarrollo, enrutado por tipo, estado de planeación, plan aprobado, ejecutar-tareas
   - Resumen: El flujo de desarrollo se divide en `planear-tarea` y `desarrollar-tarea`, con el skill `desarrollo` eliminado; `ejecutar-tareas` elige el punto de entrada por el estado de planeación del archivo de la tarea.
@@ -144,8 +144,12 @@
 - D033-pasos-mecanicos-skills-utilidad-scripts.md
   - Disparadores: scripts bash, pasos mecánicos, skill de utilidad, delegación, assets/, contrato de scripts, stdout, stderr, ## Estado, ## Desviaciones del plan, forma canónica, parser
   - Resumen: Los pasos mecánicos compartidos se encapsulan en skills de utilidad con scripts bash propios en `assets/` bajo un contrato único de entrada y salida; se fija la forma canónica de `## Estado` y de la posición de `## Desviaciones del plan`, aplicable hacia adelante con parsers tolerantes a las variantes históricas.
-  - Estado: Aceptada
+  - Estado: Sustituida por D035
 - D034-aprobacion-via-pr-con-dos-puertas.md
   - Disparadores: pull request, PR, puerta de ejecución, puerta de cierre, gestionar-pr, rama de la tarea, aprobación, merge squash, ejecutar-tareas, tres veredictos
   - Resumen: La aprobación del usuario se ejerce en dos puertas sobre el pull request de la tarea —la de ejecución, sobre el PR con su bucle de comentarios, y la de cierre, sobre el paquete tras los sensores y antes del merge squash—; toda la iteración corre en la rama de la tarea y el «Revisión» registra tres veredictos. Sustituye a D009.
+  - Estado: Aceptada
+- D035-reglas-declarativas-por-artefacto.md
+  - Disparadores: documentos de reglas, references/, gestores mecánicos, consultar-artefactos, actualizar-artefactos, operar-experiencias, operar-changelog, delegación, artefactos del sistema, lectura tolerante, escritura canónica, convenciones embebidas, PERSONALIZE.md, Requiere, ## Estado
+  - Resumen: Los gestores mecánicos resuelven las operaciones de su catálogo aplicando documentos de reglas declarativos —uno por tipo de artefacto, con hogar único y literales de convención embebidos, sin scripts ni catálogo central—; `## Estado` pasa a línea única y las ideas declaran «Requiere» en lugar de «Orden sugerido». Sustituye a D033 y, en lo relativo al orden de las ideas, a D030.
   - Estado: Aceptada

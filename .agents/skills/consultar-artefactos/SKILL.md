@@ -39,7 +39,7 @@ Instrucciones para que un agente responda consultas deterministas sobre los arte
 1. **Datos, nunca síntesis:** las operaciones devuelven lo que el artefacto contiene; la ausencia de archivo o de resultados se reporta como tal, sin fabricar datos.
 2. **La orden es completa:** el consumidor delega artefacto, operación y términos; no re-describe el formato del artefacto en su propio cuerpo.
 3. **Catálogo abierto:** una consulta mecánica no cubierta la resuelve el consumidor leyendo el artefacto directamente, y puede incorporarse después como operación nueva en el documento de reglas del artefacto.
-4. **Contrato único:** datos parseables, una línea por resultado con campos separados por tabulador; el vacío legítimo no es error y la operación que no puede ejecutarse falla con diagnóstico, sin producir datos (D033).
+4. **Contrato único:** datos parseables, una línea por resultado con campos separados por tabulador; el vacío legítimo no es error y la operación que no puede ejecutarse falla con diagnóstico, sin producir datos (D035).
 
 ## Procedimiento
 
@@ -118,5 +118,5 @@ El skill ha terminado cuando el consumidor recibió los datos de la consulta (o 
 
 ## Referencias
 
-- `docs/decisions/D033-pasos-mecanicos-skills-utilidad-scripts.md`: el mecanismo de delegación que estas operaciones cumplen; los scripts que introdujo fueron sustituidos por los documentos de reglas.
+- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen.
 - `../actualizar-artefactos/references/`: los documentos de reglas de los artefactos compartidos: `indice-tareas.md`, `tarea.md`, `propuesta.md`, `epica.md`, `idea.md`.

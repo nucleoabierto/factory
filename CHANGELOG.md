@@ -14,6 +14,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 ### Changed
 
 - Los cuatro gestores mecanicos (`consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias`, `operar-changelog`) resuelven su catalogo de dominio aplicando los documentos de reglas directamente sobre los artefactos en lugar de invocar scripts: se eliminan los dieciseis `assets/*.sh`, la operacion `convencion` desaparece —cada consumidor embebe el literal que usa— y `siguiente` describe la serie numerada en linea. Los catalogos quedan como firmas que apuntan a su documento de reglas (tarea 146).
+- La personalización del paquete deja de ser un catálogo de claves inyectado en cada gestor: `PERSONALIZE.md` indica qué documento de reglas o qué skill contiene cada literal y el instalador lo edita en su sitio (tarea 147).
 
 ## [0.5.0] - 2026-10-13
 

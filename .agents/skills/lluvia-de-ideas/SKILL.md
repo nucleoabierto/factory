@@ -67,13 +67,13 @@ Instrucciones para que un agente acompañe al usuario en una conversación de ll
 5. **Crear el directorio de ideas si no existe** y asignar a cada idea el siguiente número de la serie —consulta «el siguiente número de la serie» de `consultar-artefactos` sobre el directorio de ideas de la convención—.
 6. **Redactar cada archivo** con el formato de `references/formato-idea.md`: cabecera con tipo y fecha, Problema, Qué desbloquea, Flujos de trabajo que se hacen viables, Ventajas como producto y Tensión que introduce en el roadmap. En las ideas del mismo origen, la tensión referencia a las hermanas por su slug y la cabecera declara la dependencia en «Requiere» cuando existe.
 7. **Revisar la redacción y pulir mecánicamente** cada archivo. Si el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura` en modo preventivo; de lo contrario, realizar el equivalente manualmente.
-8. **Presentar los archivos al usuario** e informar del encaje: cada idea puede entrar al flujo invocando `idea-a-tarea`, que las consume desde el directorio de ideas en el orden sugerido.
+8. **Presentar los archivos al usuario** e informar del encaje: cada idea puede entrar al flujo invocando `idea-a-tarea`, que las consume desde el directorio de ideas respetando las dependencias «Requiere» de sus cabeceras.
 
 ## Finalización
 
 El skill ha terminado cuando ocurre una de estas dos cosas:
 
-- Los archivos de idea confirmados están escritos en el directorio de ideas —uno o varios— y el usuario conoce el orden sugerido y cómo procesarlos.
+- Los archivos de idea confirmados están escritos en el directorio de ideas —uno o varios— y el usuario conoce las dependencias entre ellas y cómo procesarlas.
 - La propuesta no maduró a idea o el usuario decidió no persistirla, y la conclusión quedó comunicada sin escribir nada.
 
 ## Referencias

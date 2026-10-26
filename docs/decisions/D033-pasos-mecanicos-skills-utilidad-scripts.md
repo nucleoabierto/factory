@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptada
+Sustituida por D035
 
 ## Contexto
 
@@ -29,3 +29,4 @@ Se descartaron tres alternativas: scripts compartidos en un directorio común, q
 
 - `docs/tasks/113-delegacion-mecanica-scripts.md` — tarea que consolida la decisión.
 - `docs/epics/003-delegacion-mecanica-scripts.md` — épica que la enmarca.
+- Sustituida por `docs/decisions/D035-reglas-declarativas-por-artefacto.md`
