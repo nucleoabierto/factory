@@ -55,8 +55,8 @@
 
 ## Hito 2: Reglas declarativas por artefacto
 
-- [r] docs/tasks/145-reglas-por-tipo-artefacto.md — Escribir los documentos de reglas por tipo de artefacto
-- [ ] docs/tasks/146-migrar-gestores-a-reglas.md — Migrar los gestores mecánicos a reglas y eliminar los scripts
+- [x] docs/tasks/145-reglas-por-tipo-artefacto.md — Escribir los documentos de reglas por tipo de artefacto
+- [r] docs/tasks/146-migrar-gestores-a-reglas.md — Migrar los gestores mecánicos a reglas y eliminar los scripts
 - [ ] docs/tasks/147-decision-reglas-sobre-scripts.md — Registrar la decisión del mecanismo de reglas y actualizar la documentación
 
 ## Propuestas en revisión

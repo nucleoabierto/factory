@@ -11,6 +11,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 - Reglas declarativas por tipo de artefacto: documentos de referencia que trasladan la gramatica, las variantes toleradas y la escritura canonica de los ocho artefactos del sistema (indice de tareas, tarea, propuesta, epica, idea, indice por disparadores, experiencias, changelog), con los literales de convencion embebidos; sustituiran a los scripts de los gestores mecanicos (tarea 145).
 
+### Changed
+
+- Los cuatro gestores mecanicos (`consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias`, `operar-changelog`) resuelven su catalogo de dominio aplicando los documentos de reglas directamente sobre los artefactos en lugar de invocar scripts: se eliminan los dieciseis `assets/*.sh`, la operacion `convencion` desaparece —cada consumidor embebe el literal que usa— y `siguiente` describe la serie numerada en linea. Los catalogos quedan como firmas que apuntan a su documento de reglas (tarea 146).
+
 ## [0.5.0] - 2026-10-13
 
 ### Added

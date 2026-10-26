@@ -33,7 +33,7 @@ Instrucciones para que un agente acompañe al usuario en una conversación de ll
 ## Entrada
 
 - Una propuesta del usuario en lenguaje libre, posiblemente rica y con varias líneas de trabajo implícitas.
-- El directorio de ideas de la convención (`convencion dir_ideas` de `consultar-artefactos`) como destino —se crea en la primera idea si no existe— y `references/formato-idea.md` como plantilla del archivo.
+- El directorio de ideas de la convención `dir_ideas` (`docs/ideas` por defecto) como destino —se crea en la primera idea si no existe— y `references/formato-idea.md` como plantilla del archivo.
 - `references/deteccion-multiplicidad.md` como guía para distinguir idea única de conjunto de ideas.
 
 ## Salida
