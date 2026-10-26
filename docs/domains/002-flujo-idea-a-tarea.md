@@ -10,7 +10,7 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - **Idea persistida:** archivo `docs/ideas/NNN-slug.md` producido por `lluvia-de-ideas`, con Problema, Qué desbloquea (equivalente a la Oportunidad de `descubrir-problema`), Flujos viables, Ventajas como producto y Tensión con el roadmap; entrada persistida del flujo, anterior a la propuesta.
     - Ancla: `.agents/skills/lluvia-de-ideas/SKILL.md` y `references/formato-idea.md`
     - Origen: `docs/tasks/101-skill-lluvia-de-ideas.md`
-  - **Idea procesada:** idea de `docs/ideas/` cuya cabecera lleva la marca `Procesada en: docs/proposals/NNN-slug/`, añadida por `idea-a-tarea` al generar su propuesta; las ideas sin marca se presentan como pendientes siguiendo el «Orden sugerido» de sus cabeceras.
+  - **Idea procesada:** idea de `docs/ideas/` cuya cabecera lleva la marca `Procesada en: docs/proposals/NNN-slug/`, añadida por `idea-a-tarea` al generar su propuesta; las ideas sin marca se presentan como pendientes siguiendo el «Requiere» de sus cabeceras.
     - Ancla: pasos 7 y 11 del procedimiento en `.agents/skills/idea-a-tarea/SKILL.md`
   - **Propuesta:** unidad de revisión del flujo; vive en `docs/proposals/NNN-slug/` con un `propuesta.md` —problema, solución, alternativas, fuera de alcance— y sus borradores de tarea.
     - Ancla: directorios bajo `docs/proposals/`; campos descritos en `.agents/skills/refinar-propuesta/SKILL.md`

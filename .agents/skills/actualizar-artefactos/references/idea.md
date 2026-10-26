@@ -9,7 +9,7 @@ Reglas del artefacto «idea persistida»: los archivos del directorio de ideas q
 
 ## Formato del artefacto
 
-Un documento Markdown con título `# `, una cabecera de líneas de cita (toda línea que empieza por `>`, como `> **Fecha:**` u `> **Orden sugerido:** <n>`) y secciones `## ` con el enunciado del problema. La idea procesada se distingue por la marca `> **Procesada en:** ` seguida del destino (la referencia del artefacto que la consumió, como la propuesta).
+Un documento Markdown con título `# `, una cabecera de líneas de cita (toda línea que empieza por `>`, como `> **Fecha:**` o `> **Requiere:** <slug de la idea>`) y secciones `## ` con el enunciado del problema. La idea procesada se distingue por la marca `> **Procesada en:** ` seguida del destino (la referencia del artefacto que la consumió, como la propuesta).
 
 ## Operaciones de lectura
 
@@ -17,7 +17,7 @@ Directorio ausente: fallo. Sin resultados: vacío legítimo.
 
 ### `pendientes`
 
-`orden<TAB>archivo<TAB>título` por cada `*.md` del directorio que **no** menciona `> **Procesada en:**`: `orden` es el número de su campo `**Orden sugerido:**`, `archivo` la ruta del archivo y `título` su primer `# `. Las líneas salen ordenadas por `orden` numérico; las ideas sin orden van al final con el primer campo vacío.
+`requiere<TAB>archivo<TAB>título` por cada `*.md` del directorio que **no** menciona `> **Procesada en:**`: `requiere` es el slug de la idea declarada en su campo `> **Requiere:**` —vacío cuando no la hay—, `archivo` la ruta del archivo y `título` su primer `# `. Las líneas salen en el orden de la serie de archivos; el consumidor decide el orden de procesamiento —una idea cuyo `requiere` sigue sin procesar depende de ella—.
 
 ## Operaciones de escritura
 

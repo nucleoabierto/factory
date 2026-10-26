@@ -2,7 +2,7 @@
 
 > **Tipo:** idea de funcionalidad — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-10
-> **Orden sugerido:** 2 de 5 — produce la clasificación que `convergencia-plan-requisitos` reutiliza al devolver trabajo al diagnóstico
+> **Requiere:** ninguna — produce la clasificación que `convergencia-plan-requisitos` reutiliza al devolver trabajo al diagnóstico
 
 ## Problema
 

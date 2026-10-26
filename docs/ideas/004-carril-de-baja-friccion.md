@@ -2,7 +2,7 @@
 
 > **Tipo:** idea de funcionalidad — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-10
-> **Orden sugerido:** 4 de 5 — la más independiente; su clasificación de lo trivial puede apoyarse en `brechas-clasificadas`, pero no la exige
+> **Requiere:** ninguna — la más independiente; su clasificación de lo trivial puede apoyarse en `brechas-clasificadas`, pero no la exige
 
 ## Problema
 

@@ -2,7 +2,7 @@
 
 > **Tipo:** idea de funcionalidad — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-10
-> **Orden sugerido:** 3 de 5 — asume la clasificación de `brechas-clasificadas` para devolver trabajo al diagnóstico
+> **Requiere:** `002-brechas-clasificadas` — asume su clasificación de brechas para devolver trabajo al diagnóstico
 
 ## Problema
 
