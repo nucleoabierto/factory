@@ -40,6 +40,11 @@ Registrar la decisión de diseño que sustituye la delegación por scripts bash 
 3. Actualizar los documentos de proceso y el catálogo de convenciones.
 4. Verificar referencias cruzadas a scripts en toda la documentación.
 
+## Notas
+
+
+- `PERSONALIZE.md` deja de ser el catálogo de convenciones con claves y valores: pasa a ser la guía que indica qué documento de reglas —o qué skill consumidor— contiene cada literal personalizable, para que el instalador edite cada archivo individualmente en lugar de reescribir un `convenciones.sh` central.
+
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]

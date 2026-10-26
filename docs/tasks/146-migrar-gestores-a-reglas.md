@@ -41,6 +41,11 @@ Reescribir `consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias
 3. Eliminar los scripts y ajustar las referencias internas.
 4. Verificar que los consumidores existentes siguen siendo correctos sin cambios.
 
+## Notas
+
+
+- Con las convenciones embebidas por documento —sin `convenciones.md` ni `convenciones.sh`— la operación `convencion <clave>` pierde su artefacto: desaparece del catálogo. Los consumidores que resolvían convenciones ajenas a un artefacto —prefijo de rama de tarea, rama principal, directorios sin gestor como `dir_prd` o `dir_dominios`— embeben el literal en su propio `SKILL.md` o `references/`; el criterio «ningún consumidor cambia» aplica a la forma de delegar operaciones de artefacto, no a estos consumidores de convenciones.
+
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]
