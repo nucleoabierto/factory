@@ -48,3 +48,5 @@
 
 ## Propuestas en revisión
 
+- [p] docs/proposals/004-priorizacion-declarada/ — Priorización declarada de las líneas de trabajo (3 borradores)
+
