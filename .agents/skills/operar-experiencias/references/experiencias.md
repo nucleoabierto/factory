@@ -41,7 +41,7 @@ Cada entrada es un bloque que empieza en `- Id:` y corre hasta la siguiente `- I
 El lector acepta las variantes existentes:
 
 - Una entrada empieza siempre en la línea `- Id:`.
-- Un campo puede ir **envuelto**: su valor continúa en la línea siguiente hasta que aparece otra línea `Campo:` —una línea sangrada `<Texto>:` con nombre de campo— o se acaba la entrada.
+- Un campo puede ir **envuelto**: su valor continúa en la línea siguiente hasta que aparece otra línea `Campo:` (una línea sangrada `<Texto>:` con nombre de campo) o se acaba la entrada.
 - Pueden faltar el campo `Estado` o la línea en blanco de separación entre entradas.
 
 ## Escritura canónica
@@ -50,19 +50,19 @@ La escritura produce siempre la forma canónica: un campo por línea, sin envolv
 
 ## Operaciones
 
-Una operación que no puede ejecutarse falla sin escribir, con su diagnóstico. Las lecturas exigen el registro —ausente: fallo—; las escrituras lo crean si falta.
+Una operación que no puede ejecutarse falla sin escribir, con su diagnóstico. Las lecturas exigen el registro (ausente: fallo); las escrituras lo crean si falta.
 
 ### `id [ocupado…]`
 
-Devuelve un `Id` único con formato `AAAAMMDDTHHMMSS`: la marca de tiempo actual o, si colisiona con un `Id` del registro o con algún `<ocupado>` dado —los ya asignados a otras entradas del mismo lote—, uno posterior. El registro ausente no es error: la escritura posterior lo creará. Tras una decena de intentos sin lograr unicidad: fallo.
+Devuelve un `Id` único con formato `AAAAMMDDTHHMMSS`: la marca de tiempo actual o, si colisiona con un `Id` del registro o con algún `<ocupado>` dado (los ya asignados a otras entradas del mismo lote), uno posterior. El registro ausente no es error: la escritura posterior lo creará. Tras una decena de intentos sin lograr unicidad: fallo.
 
 ### `listar [pendiente|consolidada]`
 
-Devuelve las entradas del registro tal como están escritas —el bloque `- Id:` con sus campos—, separadas por una línea en blanco; con el estado como término, solo las de ese estado —el estado de una entrada es el valor de su campo `Estado`, resuelto con la lectura tolerante—. Otro estado como término: invocación inválida. Sin resultados: vacío legítimo.
+Devuelve las entradas del registro tal como están escritas (el bloque `- Id:` con sus campos), separadas por una línea en blanco; con el estado como término, solo las de ese estado (el estado de una entrada es el valor de su campo `Estado`, resuelto con la lectura tolerante). Otro estado como término: invocación inválida. Sin resultados: vacío legítimo.
 
 ### `por-tarea <ref>`
 
-Devuelve las entradas cuyo campo `Tarea` contiene la subcadena `<ref>` —la ruta del archivo de tarea identifica sus entradas—, en la misma forma que `listar`. Sin resultados: vacío legítimo.
+Devuelve las entradas cuyo campo `Tarea` contiene la subcadena `<ref>` (la ruta del archivo de tarea identifica sus entradas), en la misma forma que `listar`. Sin resultados: vacío legítimo.
 
 ### `anexar`
 
@@ -76,7 +76,7 @@ Añade al final del registro la entrada dada por el consumidor, fijando `  Estad
   Corrección: <texto>
 ```
 
-Cualquier otra forma —campos envueltos, ausentes o de más, `Id` mal formado o ya presente en el registro— rechaza la operación sin escribir. Si el registro no existe o está vacío, se crea con la cabecera fija antes de anexar; si ya tiene contenido, una línea en blanco separa la entrada nueva de lo que hay escrito.
+Cualquier otra forma (campos envueltos, ausentes o de más, `Id` mal formado o ya presente en el registro) rechaza la operación sin escribir. Si el registro no existe o está vacío, se crea con la cabecera fija antes de anexar; si ya tiene contenido, una línea en blanco separa la entrada nueva de lo que hay escrito.
 
 ### `marcar <id>…`
 
