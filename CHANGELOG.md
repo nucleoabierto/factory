@@ -7,6 +7,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+### Added
+
+- Skill `priorizar-lineas`: comparación de las líneas de trabajo abiertas por escenarios —norte declarado, atributos relativos con confianza e incertidumbre explícitas, dos o más alternativas con implicaciones y doble puerta humana— con la decisión persistida en `docs/priorizaciones/` (tarea 142).
+
 ## [0.6.0] - 2026-10-26
 
 ### Added

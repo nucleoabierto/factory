@@ -43,6 +43,7 @@
     { "source": ".agents/skills/planear-tarea", "target": ".agents/skills/planear-tarea" },
     { "source": ".agents/skills/planificar", "target": ".agents/skills/planificar" },
     { "source": ".agents/skills/planificar-roadmap", "target": ".agents/skills/planificar-roadmap" },
+    { "source": ".agents/skills/priorizar-lineas", "target": ".agents/skills/priorizar-lineas" },
     { "source": ".agents/skills/proponer-forma-solucion", "target": ".agents/skills/proponer-forma-solucion" },
     { "source": ".agents/skills/prueba-concepto", "target": ".agents/skills/prueba-concepto" },
     { "source": ".agents/skills/pulir-escritura", "target": ".agents/skills/pulir-escritura" },

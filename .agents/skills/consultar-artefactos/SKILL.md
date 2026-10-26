@@ -110,7 +110,7 @@ Emite el siguiente número de la serie: el mayor número que casa `<prefijo><dí
 ### Cobertura
 
 - Todas las operaciones tienen al menos un skill consumidor (las publicadas por anticipado no entran en el catálogo: se añaden cuando aparezca su consumidor).
-- Artefactos del ciclo aún sin operación delegada: `ROADMAP.md` (lectura y escritura directas del consumidor); la sección `## Borradores` de `propuesta.md` (los borradores se listan y tachan a mano; la promoción solo la actualiza al promover); las escrituras de los índices `README.md` de `docs/decisions/` y `docs/lessons/` (sus consultas por disparadores ya las cubre `coincidencias`); y el índice de `docs/domains/` entero (formato distinto, sin lectura ni escritura delegada). El registro de experiencias y el changelog están cubiertos por `operar-experiencias` y `operar-changelog`.
+- Artefactos del ciclo aún sin operación delegada: `ROADMAP.md` (lectura y escritura directas del consumidor); `docs/priorizaciones/` (los escenarios los escribe `priorizar-lineas` directamente; su serie la resuelve `siguiente`); la sección `## Borradores` de `propuesta.md` (los borradores se listan y tachan a mano; la promoción solo la actualiza al promover); las escrituras de los índices `README.md` de `docs/decisions/` y `docs/lessons/` (sus consultas por disparadores ya las cubre `coincidencias`); y el índice de `docs/domains/` entero (formato distinto, sin lectura ni escritura delegada). El registro de experiencias y el changelog están cubiertos por `operar-experiencias` y `operar-changelog`.
 
 ## Finalización
 

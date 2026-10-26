@@ -153,3 +153,7 @@
   - Disparadores: documentos de reglas, references/, gestores mecánicos, consultar-artefactos, actualizar-artefactos, operar-experiencias, operar-changelog, delegación, artefactos del sistema, lectura tolerante, escritura canónica, convenciones embebidas, PERSONALIZE.md, Requiere, ## Estado
   - Resumen: Los gestores mecánicos resuelven las operaciones de su catálogo aplicando documentos de reglas declarativos —uno por tipo de artefacto, con hogar único y literales de convención embebidos, sin scripts ni catálogo central—; `## Estado` pasa a línea única y las ideas declaran «Requiere» en lugar de «Orden sugerido». Sustituye a D033 y, en lo relativo al orden de las ideas, a D030.
   - Estado: Aceptada
+- D036-priorizacion-por-escenarios-comparados.md
+  - Disparadores: priorizar-lineas, priorización, escenarios, líneas de trabajo, comparación relativa, WSJF, confianza, incertidumbre, norte, docs/priorizaciones, orden de líneas
+  - Resumen: La comparación de líneas vive en el skill invocable `priorizar-lineas`: atributos relativos —valor, criticidad temporal, habilitación/riesgo, tamaño— con confianza e incertidumbre explícitas, dos o más alternativas con implicaciones, doble puerta humana y escenario persistido en `docs/priorizaciones/`.
+  - Estado: Aceptada

@@ -27,6 +27,7 @@ Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando 
 - `docs/research/` — resultados del skill `investigar` (su nombre exacto lo acuerda el proyecto).
 - `docs/domains/` — documentación viva de dominios, con un `README.md` como índice.
 - `docs/architecture-reviews/` — informes del skill `revisar-arquitectura`.
+- `docs/priorizaciones/` — escenarios de priorización persistidos por `priorizar-lineas`.
 
 ## Qué queda a criterio del proyecto destino
 
@@ -84,6 +85,7 @@ Una convención que no pertenece a ningún artefacto vive embebida en el `SKILL.
 - `dir_ideas` (`docs/ideas`): `lluvia-de-ideas`, además del documento de reglas de la idea.
 - `dir_propuestas` (`docs/proposals`): `refinar-propuesta`, además del documento de reglas de la propuesta.
 - `dir_epicas` (`docs/epics`): `planificar`, además del documento de reglas de la épica.
+- `dir_priorizaciones` (`docs/priorizaciones`): `priorizar-lineas`.
 
 ## Personalización al instalar
 
