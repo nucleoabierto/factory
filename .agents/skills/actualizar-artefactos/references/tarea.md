@@ -19,13 +19,13 @@ Un documento Markdown con título `# ` y secciones `## `. Las secciones relevant
 
 ### `## Estado`
 
-La forma canónica es una sola línea con todas las opciones separadas por ` | `, cada una `[<marca>] <Etiqueta>` y la vigente en negrita completa (marcador y etiqueta incluidos):
+La forma canónica es una sola línea con el estado vigente, sin negritas:
 
 ```
-[ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
+[r] En revisión
 ```
 
-El juego de opciones de las tareas es `[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada`. Las propuestas tienen el suyo (`[ ] Borrador | [p] Pendiente de revisión | [a] Aprobada | [d] Descartada`) y las épicas el suyo (opciones acumulativas, ver `epica.md`).
+Los juegos de estados válidos son el de las tareas (`Pendiente`, `En progreso`, `En revisión`, `Completada`, `Bloqueada`), el de las propuestas (`Borrador`, `Pendiente de revisión`, `Aprobada`, `Descartada`) y el acumulativo de las épicas (ver `epica.md`).
 
 El marcador corresponde siempre a la etiqueta: ` ` Pendiente, `~` En progreso, `r` En revisión, `x` Completada, `!` Bloqueada y, para las propuestas, ` ` Borrador, `p` Pendiente de revisión, `a` Aprobada, `d` Descartada.
 
@@ -43,10 +43,10 @@ Las acciones del plan son ítems de checklist `- [ ] <acción>` que se marcan `-
 
 ## Lectura tolerante
 
-El `## Estado` admite tres variantes históricas además de la canónica:
+El `## Estado` admite las variantes históricas además de la canónica:
 
-- **Casilla suelta:** `[x] Completada` (la etiqueta acompaña a la casilla, marcada o no).
-- **Línea de opciones con la casilla activa marcada:** sin negrita (`[ ] Pendiente | [x] En progreso | …`).
+- **Línea de opciones con la vigente en negrita completa** (la canónica anterior): `[ ] Pendiente | **[~] En progreso** | …`.
+- **Línea de opciones con la casilla activa marcada,** sin negrita: `[ ] Pendiente | [x] En progreso | …`.
 - **Negrita solo en la etiqueta:** `[ ] **Pendiente** | …`.
 
 El estado lo da siempre la **etiqueta** de la opción vigente, no el marcador: en la convención de casillas, `x` solo señala la opción activa (`[x] En revisión` resuelve `en-revision`, no `completada`).
@@ -55,7 +55,7 @@ Las demás secciones se localizan por **prefijo** (una línea que empieza por `#
 
 ## Escritura canónica
 
-`## Estado` se escribe siempre en la forma canónica (línea completa de opciones con la vigente en negrita) aunque la entrada sea una variante histórica. Las secciones nuevas se insertan antes de `## Desviaciones del plan` si existe (salvo que la sección nueva sea esa misma) o, en su defecto, antes de `## Revisión`.
+`## Estado` se escribe siempre en la forma canónica (la línea única del estado vigente) aunque la entrada sea una variante histórica. Las secciones nuevas se insertan antes de `## Desviaciones del plan` si existe (salvo que la sección nueva sea esa misma) o, en su defecto, antes de `## Revisión`.
 
 ## Operaciones de lectura
 
@@ -92,10 +92,7 @@ Una mutación que no puede ejecutarse falla sin escribir, con el diagnóstico co
 
 ### `estado <etiqueta>`
 
-Escribe `## Estado` en forma canónica activando la opción `<etiqueta>`:
-
-- Sobre una línea de opciones: conserva las opciones existentes, normaliza el marcador de cada opción al de su etiqueta (una etiqueta fuera de los juegos conocidos conserva su marcador) y pone en negrita completa la vigente.
-- Sobre la forma suelta: reconstruye la línea de opciones completa con el juego que indica la etiqueta vigente (el de las tareas o el de las propuestas) y activa la opción pedida.
+Escribe `## Estado` en forma canónica con el estado `<etiqueta>`: la línea única `[marca] Etiqueta` con el marcador de su etiqueta, sea cual sea la forma de entrada —línea de opciones histórica o forma suelta—.
 
 `## Estado` ausente o vacío, línea de opciones no parseada, forma suelta no reconocida o `<etiqueta>` fuera del juego de opciones: fallo.
 

@@ -13,7 +13,7 @@ Reglas del artefacto «propuesta»: el directorio de la propuesta, el documento 
 
 `propuesta.md` es un documento con estado que sigue las mecánicas de `tarea.md`, con estas particularidades:
 
-- Su `## Estado` usa el juego de opciones de las propuestas: `[ ] Borrador | [p] Pendiente de revisión | [a] Aprobada | [d] Descartada` (mismas reglas de forma canónica y variantes toleradas).
+- Su `## Estado` usa los estados de las propuestas (`Borrador`, `Pendiente de revisión`, `Aprobada`, `Descartada`) con las mismas reglas de forma canónica y variantes toleradas.
 - Tiene la sección `## Borradores`: una viñeta por borrador de la propuesta, cada una referencia el archivo entre comillas simples invertidas (`` - `MM-slug.md` — <título>``) y puede declarar su orden con la forma `depende de MM`.
 - Un borrador `MM-slug.md` usa los campos de la plantilla de tarea sin `## Estado` ni `## Revisión` (se inyectan al promocionar) y declara sus dependencias entre borradores como `Borrador MM` en su `## Dependencias`.
 - En el índice de tareas, la propuesta figura en `## Propuestas en revisión` como `- [p] <dir-propuesta>/ — <título> (<n> borradores)`. Las reglas del índice están en `indice-tareas.md`.
@@ -35,7 +35,7 @@ Promueve los borradores `MM-slug.md` del directorio a tareas definitivas `docs/t
    - Un fallo cualquiera aborta sin escribir, con diagnóstico por cada causa.
    - Un borrador del directorio cuyo nombre de archivo no aparece en `propuesta.md` (la comprobación busca el nombre en todo el documento) no es fallo: avisa y se promueve igual, aunque su línea en `## Borradores` no exista para actualizarla.
 4. **Por cada borrador, en orden:** mover `MM-slug.md` a `docs/tasks/NNN-slug.md` conservando el `slug`, con estas transformaciones en el contenido:
-   - Inyectar `## Estado` en forma canónica (el juego de las tareas con `**[ ] Pendiente**` activo) inmediatamente antes de la primera sección `## `.
+   - Inyectar `## Estado` en forma canónica —`[ ] Pendiente`— inmediatamente antes de la primera sección `## `.
    - Renumerar las dependencias `Borrador MM` de su `## Dependencias` al `NNN` asignado (la referencia queda como el número de la tarea).
    - Anexar al final `## Revisión` con los tres placeholders de veredicto —Subagente, Usuario (ejecución), Usuario (cierre)— en la forma `- <Autor>: [fecha] — [Aprueba | Solicita cambios]`.
 5. **Actualizar el índice de `propuesta.md`:** en su sección `## Borradores`, cada referencia `` `MM-slug.md` `` se reescribe a `docs/tasks/NNN-slug.md` y cada `depende de MM` a `depende de NNN`.
