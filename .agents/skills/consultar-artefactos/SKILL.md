@@ -126,7 +126,7 @@ Emite `marca<TAB>texto` por cada acción de la sección `## Plan técnico`, en e
 
 #### `pendientes`
 
-Emite `orden<TAB>archivo<TAB>título` por cada `*.md` del directorio que no menciona `Procesada en`: `orden` es su «Orden sugerido», `archivo` la ruta del archivo y `título` su primer `# `. Las líneas salen ordenadas por `orden` numérico; las ideas sin orden van al final con el primer campo vacío. Sin pendientes, salida vacía con exit `0`.
+Emite `requiere<TAB>archivo<TAB>título` por cada `*.md` del directorio que no menciona `Procesada en`: `requiere` es el slug de su «Requiere» —vacío cuando no lo hay—, `archivo` la ruta del archivo y `título` su primer `# `. Las líneas salen en el orden de la serie. Sin pendientes, salida vacía con exit `0`.
 
 ### `indice.sh` — los índices de decisiones y de lecciones (`README.md`)
 

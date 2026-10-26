@@ -2,7 +2,7 @@
 
 > **Tipo:** idea de funcionalidad — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-10
-> **Orden sugerido:** 5 de 5 — es la etapa final del pipeline y la de evidencia más débil hoy; cierra el lazo
+> **Requiere:** ninguna — es la etapa final del pipeline y la de evidencia más débil hoy; cierra el lazo
 
 ## Problema
 

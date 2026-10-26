@@ -18,7 +18,7 @@ El grado es de la conexión, no del skill: casi todos los skills declaran ademá
 - **Puntos de entrada:**
   - Una idea suelta que el usuario trae a la conversación.
   - Las propuestas pendientes `[p]` de la sección «Propuestas en revisión» de `TODO.md`, que el orquestador procesa primero —una propuesta sin resolver bloquea el inicio de un flujo nuevo.
-  - Las ideas persistidas sin procesar de `docs/ideas/` —archivos escritos por `lluvia-de-ideas`, que actúa bajo demanda—, reconocibles por la ausencia de la marca «Procesada en» en su cabecera y ordenadas por su «Orden sugerido».
+  - Las ideas persistidas sin procesar de `docs/ideas/` —archivos escritos por `lluvia-de-ideas`, que actúa bajo demanda—, reconocibles por la ausencia de la marca «Procesada en» en su cabecera y ordenadas por el «Requiere» declarado en sus cabeceras.
 - **Capacidades en orden:** `descubrir-problema` (produce problema + oportunidad en la conversación, sin archivo) → `proponer-forma-solucion` (produce forma de solución + alternativas + fuera de alcance, también en la conversación) → `refinar-propuesta` (materializa `docs/proposals/NNN-slug/` con `propuesta.md` y un borrador `MM-titulo.md` por tarea, y añade la línea `[p]` a `TODO.md`). El orquestador transporta la salida de cada capacidad completa a la siguiente; no la resume ni la reformula.
 - **Capacidad auxiliar:** `refinar-propuesta` invoca `investigar` cuando un borrador necesita evidencia externa para definirse; la referencia queda en «Investigaciones de apoyo» de `propuesta.md`.
 - **Puerta asíncrona:** tras `refinar-propuesta` el agente se detiene con la propuesta en `[p]`. La decisión del usuario puede llegar en otra sesión, por eso la primera acción del orquestador es siempre leer `TODO.md`.

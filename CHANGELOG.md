@@ -7,6 +7,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+### Added
+
+- Reglas declarativas por tipo de artefacto: documentos de referencia que trasladan la gramatica, las variantes toleradas y la escritura canonica de los ocho artefactos del sistema (indice de tareas, tarea, propuesta, epica, idea, indice por disparadores, experiencias, changelog), con los literales de convencion embebidos; sustituiran a los scripts de los gestores mecanicos (tarea 145).
+
 ## [0.5.0] - 2026-10-13
 
 ### Added
