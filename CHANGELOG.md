@@ -7,14 +7,16 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-26
+
 ### Added
 
-- Reglas declarativas por tipo de artefacto: documentos de referencia que trasladan la gramatica, las variantes toleradas y la escritura canonica de los ocho artefactos del sistema (indice de tareas, tarea, propuesta, epica, idea, indice por disparadores, experiencias, changelog), con los literales de convencion embebidos; sustituiran a los scripts de los gestores mecanicos (tarea 145).
+- Reglas declarativas por tipo de artefacto: documentos de referencia que declaran la gramática, las variantes toleradas y la escritura canónica de los ocho artefactos del sistema (índice de tareas, tarea, propuesta, épica, idea, índice por disparadores, experiencias, changelog), con los literales de convención embebidos (tarea 145).
 
 ### Changed
 
-- Los cuatro gestores mecanicos (`consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias`, `operar-changelog`) resuelven su catalogo de dominio aplicando los documentos de reglas directamente sobre los artefactos en lugar de invocar scripts: se eliminan los dieciseis `assets/*.sh`, la operacion `convencion` desaparece —cada consumidor embebe el literal que usa— y `siguiente` describe la serie numerada en linea. Los catalogos quedan como firmas que apuntan a su documento de reglas (tarea 146).
-- La personalización del paquete deja de ser un catálogo de claves inyectado en cada gestor: `PERSONALIZE.md` indica qué documento de reglas o qué skill contiene cada literal y el instalador lo edita en su sitio (tarea 147).
+- **Breaking:** Los cuatro gestores mecánicos (`consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias`, `operar-changelog`) resuelven su catálogo de dominio aplicando los documentos de reglas directamente sobre los artefactos en lugar de invocar scripts: se eliminan los dieciséis `assets/*.sh`, la operación `convencion` desaparece —cada consumidor embebe el literal que usa— y `siguiente` describe la serie numerada en línea. Los catálogos quedan como firmas que apuntan a su documento de reglas (tarea 146).
+- **Breaking:** La personalización del paquete deja de ser un catálogo de claves inyectado en cada gestor: `PERSONALIZE.md` indica qué documento de reglas o qué skill contiene cada literal y el instalador lo edita en su sitio (tarea 147).
 
 ## [0.5.0] - 2026-10-13
 
@@ -93,7 +95,8 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 - `registrar-experiencias` genera un Id único por entrada —varias correcciones de una misma sesión ya no comparten timestamp—
 - La description de `consultar-lecciones` declara la capacidad ofrecida en lugar de narrar su mecánica interna
 
-[Unreleased]: https://github.com/nucleoabierto/factory/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/nucleoabierto/factory/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/nucleoabierto/factory/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/nucleoabierto/factory/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/nucleoabierto/factory/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/nucleoabierto/factory/compare/v0.2.0...v0.3.0
