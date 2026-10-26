@@ -45,6 +45,7 @@ Reescribir `consultar-artefactos`, `actualizar-artefactos`, `operar-experiencias
 
 
 - Con las convenciones embebidas por documento —sin `convenciones.md` ni `convenciones.sh`— la operación `convencion <clave>` pierde su artefacto: desaparece del catálogo. Los consumidores que resolvían convenciones ajenas a un artefacto —prefijo de rama de tarea, rama principal, directorios sin gestor como `dir_prd` o `dir_dominios`— embeben el literal en su propio `SKILL.md` o `references/`; el criterio «ningún consumidor cambia» aplica a la forma de delegar operaciones de artefacto, no a estos consumidores de convenciones.
+- La consulta `siguiente` de las series numeradas tampoco tiene documento propio: la regla queda embebida en cada documento de artefacto con serie y el catálogo de `consultar-artefactos` la describe junto a la operación.
 
 ## Revisión
 

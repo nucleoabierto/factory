@@ -4,7 +4,7 @@ Reglas del artefacto «propuesta»: el directorio de la propuesta, el documento 
 
 ## Ubicación y literales
 
-- Un directorio por propuesta en `docs/proposals/`, nombrado `NNN-slug` (la serie `NNN` es la de `series.md`).
+- Un directorio por propuesta en `docs/proposals/`, nombrado `NNN-slug` —serie continua: el mayor `NNN` de los directorios, más uno, a tres dígitos—.
 - El documento principal de cada directorio es `propuesta.md`; los borradores son archivos `MM-slug.md` del mismo directorio (serie propia de dos dígitos).
 - Las tareas definitivas viven en `docs/tasks/` y el índice de tareas es `TODO.md` (los necesita la promoción).
 - Los literales llevan los valores por defecto de la convención; un proyecto que difiere los edita aquí.

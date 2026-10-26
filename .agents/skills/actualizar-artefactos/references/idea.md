@@ -4,7 +4,7 @@ Reglas del artefacto «idea persistida»: los archivos del directorio de ideas q
 
 ## Ubicación y literales
 
-- Un archivo por idea en `docs/ideas/`, nombrado `NNN-slug.md` (la serie `NNN` es la de `series.md`).
+- Un archivo por idea en `docs/ideas/`, nombrado `NNN-slug.md` —serie continua: el mayor `NNN` de los archivos del directorio, más uno, a tres dígitos—.
 - Los literales llevan los valores por defecto de la convención; un proyecto que difiere los edita aquí.
 
 ## Formato del artefacto

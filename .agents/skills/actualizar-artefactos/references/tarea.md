@@ -4,7 +4,7 @@ Reglas del artefacto «archivo de tarea»: su formato, su lectura tolerante, su 
 
 ## Ubicación y literales
 
-- Un archivo por tarea en `docs/tasks/`, nombrado `NNN-slug.md` (la serie `NNN` es la de `series.md`).
+- Un archivo por tarea en `docs/tasks/`, nombrado `NNN-slug.md` —serie continua: el mayor `NNN` de los archivos del directorio, más uno, a tres dígitos—.
 - Los literales de este documento llevan los valores por defecto de la convención; un proyecto que difiere los edita aquí.
 
 ## Formato del artefacto
