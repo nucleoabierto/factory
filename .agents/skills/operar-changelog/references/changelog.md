@@ -40,7 +40,7 @@ Toda escritura produce la forma fija: las seis categorías en su orden canónico
 
 ## Operaciones
 
-Una operación que no puede ejecutarse falla sin escribir, con su diagnóstico. Tres situaciones se distinguen siempre: el archivo ausente —fallo en las lecturas, creación en `anotar`—, la sección de no liberados ausente o vacía donde la operación la exige —el «nada que liberar» distinguible, equivalente al exit `3` del script— y el vacío legítimo como resultado.
+Una operación que no puede ejecutarse falla sin escribir, con su diagnóstico. Tres situaciones se distinguen siempre: el archivo ausente —fallo en las lecturas, creación en `anotar`—, la sección de no liberados ausente o vacía donde la operación la exige —el «nada que liberar» distinguible, equivalente al código de salida `3` del script— y el vacío legítimo como resultado.
 
 ### `localizar <directorio>`
 
@@ -90,7 +90,7 @@ Promueve los no liberados a `## [X.Y.Z] - <fecha del día>`:
 
 - Exige que la sección `## [Unreleased]` exista. Lee el cuerpo curado dado por el consumidor —si viene vacío, usa el contenido existente de la sección—; el «nada que liberar» se decide sobre el cuerpo efectivo resultante: si no contiene ninguna línea de entrada `- `, la operación no libera. Un `Unreleased` vacío con un cuerpo curado que sí trae entradas promueve con normalidad.
 - Escribe el cuerpo bajo la nueva sección de versión, abriendo encima una `## [Unreleased]` vacía.
-- Cuando el archivo tiene línea `[Unreleased]:` al pie, la actualiza para comparar la nueva versión con `HEAD` y añade `[X.Y.Z]:` inmediatamente debajo de ella —`compare` contra la versión anterior, o `releases/tag` en la primera liberación— derivando la base de la URL y el prefijo de etiqueta de la línea existente —el patrón `…/compare/<prefijo>X.Y.Z...HEAD`—. Si esa línea no encaja el patrón, el pie no se toca y se avisa; sin enlaces, no se crean.
+- Cuando el archivo tiene línea `[Unreleased]:` al pie, la actualiza para comparar la nueva versión con `HEAD` y añade `[X.Y.Z]:` inmediatamente debajo de ella —`compare` contra la versión anterior, o `releases/tag` en la primera liberación— derivando la base de la URL y el prefijo de etiqueta de la línea existente —el patrón `…/compare/<prefijo>X.Y.Z...HEAD`—. Si esa línea no casa con el patrón, el pie no se toca y se avisa; sin enlaces, no se crean.
 - Versión mal formada —no `X.Y.Z`—: invocación inválida. Versión que ya existe como sección: fallo. Sin sección de no liberados: «nada que liberar».
 - La mutación es atómica: el archivo se escribe completo o no se toca.
 

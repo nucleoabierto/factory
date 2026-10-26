@@ -67,15 +67,15 @@ Las líneas `- [p]` —las propuestas en revisión—, completas y en el orden d
 
 ### `inventario <dir-épicas>`
 
-Las líneas de trabajo abiertas. Primero `epica<TAB>ruta<TAB>estado` por cada `*.md` del directorio de épicas: `completada` cuando su `## Estado` lleva `[x] Completada`, `planificada` cuando lleva `[x] Planificada` y `otro` en cualquier otro caso —la comprobación de `completada` precede porque las épicas acumulan marcas—. Después, en el orden del recorrido del índice: `suelta<TAB>línea` por cada tarea no completada —marca distinta de `x`, línea completa— bajo `## General`, y `grupo<TAB>encabezado<TAB>épica` por cada encabezado `## `, emitido al cerrar su sección. Directorio de épicas ausente: fallo.
+Las líneas de trabajo abiertas. Primero `epica<TAB>ruta<TAB>estado` por cada `*.md` del directorio de épicas: `completada` cuando su `## Estado` lleva `[x] Completada`, `planificada` cuando lleva `[x] Planificada` y `otro` en cualquier otro caso —la comprobación de `completada` precede a la de `planificada` porque las épicas acumulan marcas—. Después, en el orden del recorrido del índice: `suelta<TAB>línea` por cada tarea no completada —marca distinta de `x`, línea completa— bajo `## General`, y `grupo<TAB>encabezado<TAB>épica` por cada encabezado `## `, emitido al cerrar su sección. Directorio de épicas ausente: fallo.
 
 ## Operaciones de escritura
 
-Las mutaciones reescriben solo lo que la operación declara —sublistas de bloqueo, comentarios de épica, secciones ajenas y contenido quedan intactos— y normalizan el espaciado. Una mutación que no puede ejecutarse falla sin escribir, con el diagnóstico correspondiente.
+Las mutaciones reescriben solo lo que la operación declara —sublistas de bloqueantes, comentarios de épica, secciones ajenas y contenido quedan intactos— y normalizan el espaciado. Una mutación que no puede ejecutarse falla sin escribir, con el diagnóstico correspondiente.
 
 ### `marcar <ref> <marca> [bloqueante…]`
 
-Cambia la marca de la línea de tarea de primer nivel que contiene `<ref>`, conservando todo lo que sigue a la casilla. Las marcas válidas son ` `, `~`, `r`, `x` y `!` —otra marca es invocación inválida—. Con `!` se reemplaza la sublista por una línea `  - [ ] <bloqueante>` por cada bloqueante dado; con cualquier otra marca se elimina la sublista existente —las líneas sangradas que siguen a la línea—. Línea no localizada: fallo.
+Cambia la marca de la línea de tarea de primer nivel que contiene `<ref>`, conservando todo lo que sigue a la casilla. Las marcas válidas son ` `, `~`, `r`, `x` y `!` —otra marca es invocación inválida—. Con `!` se reemplaza la sublista por una línea `  - [ ] <bloqueante>` por cada bloqueante dado; con cualquier otra marca se elimina la sublista existente —las líneas sangradas que la siguen—. Línea no localizada: fallo.
 
 ### `añadir <sección> <línea>`
 

@@ -24,7 +24,7 @@ Las operaciones de estado, secciones y revisión sobre `propuesta.md` son las de
 
 ### `promover`
 
-Promueve los borradores `MM-slug.md` del directorio a tareas definitivas `docs/tasks/NNN-slug.md`. Es una operación compuesta: la validación precede a cualquier escritura —un fallo aborta la promoción entera sin tocar nada— y devuelve una línea `MM<TAB>NNN<TAB>ruta-nueva` por borrador promovido. El cambio de estado de `propuesta.md` a `[a]` y la retirada de su línea `[p]` del índice son órdenes aparte que delega el consumidor.
+Promueve los borradores `MM-slug.md` del directorio a tareas definitivas `docs/tasks/NNN-slug.md`. Es una operación compuesta: la validación precede a cualquier escritura —un fallo aborta la promoción entera sin tocar nada— y devuelve una línea `MM<TAB>NNN<TAB>ruta-nueva` por borrador promovido. El cambio de estado de `propuesta.md` a `[a]` y la retirada de su línea `[p]` del índice son órdenes aparte, que delega el consumidor.
 
 1. **Precondiciones:** existen el directorio de la propuesta, su `propuesta.md`, el directorio de tareas y el índice —cualquiera ausente es invocación inválida—. Sin borradores `MM-slug.md` en el directorio: fallo.
 2. **Numeración:** la base es el mayor número entre los archivos cuyo nombre empieza por dígitos en el directorio de tareas y las ocurrencias `docs/tasks/<dígitos>` del índice —ambas fuentes, porque el índice puede apuntar a tareas ya retiradas del directorio—. Cada borrador, en orden de su `MM`, recibe el siguiente `NNN` de tres dígitos.
@@ -33,7 +33,7 @@ Promueve los borradores `MM-slug.md` del directorio a tareas definitivas `docs/t
    - Todo `MM-slug.md` listado en la sección `## Borradores` de `propuesta.md` existe en el directorio y tiene serie válida.
    - Todo borrador tiene secciones `## ` donde inyectar y no trae ya `## Estado` ni `## Revisión`.
    - Un fallo cualquiera aborta sin escribir, con diagnóstico por cada causa.
-   - Un borrador del directorio cuyo nombre de archivo no aparece en `propuesta.md` —la comprobación busca el nombre en todo el documento— no es fallo: avisa y se promueve igual, aunque su línea del índice de la propuesta no exista para actualizarla.
+   - Un borrador del directorio cuyo nombre de archivo no aparece en `propuesta.md` —la comprobación busca el nombre en todo el documento— no es fallo: avisa y se promueve igual, aunque su línea en `## Borradores` no exista para actualizarla.
 4. **Por cada borrador, en orden:** mover `MM-slug.md` a `docs/tasks/NNN-slug.md` conservando el `slug`, con estas transformaciones en el contenido:
    - Inyectar `## Estado` en forma canónica —el juego de las tareas con `**[ ] Pendiente**` activo— inmediatamente antes de la primera sección `## `.
    - Renumerar las dependencias `Borrador MM` de su `## Dependencias` al `NNN` asignado —la referencia queda como el número de la tarea—.

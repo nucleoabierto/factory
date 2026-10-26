@@ -19,7 +19,7 @@ Un documento Markdown con título `# ` y secciones `## `. Las secciones relevant
 
 ### `## Estado`
 
-La forma canónica es una sola línea con todas las opciones separadas por ` | `, cada una `[<marca>] <Etiqueta>` y la vigente en negrita completa —marcador y etiqueta incluidos:
+La forma canónica es una sola línea con todas las opciones separadas por ` | `, cada una `[<marca>] <Etiqueta>` y la vigente en negrita completa —marcador y etiqueta incluidos—:
 
 ```
 [ ] Pendiente | [~] En progreso | **[r] En revisión** | [x] Completada | [!] Bloqueada
@@ -51,7 +51,7 @@ El `## Estado` admite tres variantes históricas además de la canónica:
 
 El estado lo da siempre la **etiqueta** de la opción vigente, no el marcador: en la convención de casillas, `x` solo señala la opción activa —`[x] En revisión` resuelve `en-revision`, no `completada`—.
 
-Las demás secciones se localizan por **prefijo** —una línea que empieza por `## <nombre>` casa la sección aunque el encabezado continúe— y su contenido corre hasta el siguiente `## ` o el fin del archivo. Las excepciones que exigen el encabezado exacto `## <nombre>`: `planeacion`, la comprobación de duplicado de `insertar-seccion`, y `añadir-linea`, `marcar-item` y `sustituir-item`.
+Las demás secciones se localizan por **prefijo** —una línea que empieza por `## <nombre>` casa la sección aunque el encabezado continúe— y su contenido corre hasta el siguiente `## ` o el fin del archivo. Las excepciones que exigen el encabezado exacto `## <nombre>`: `planeacion`, `añadir-linea`, `marcar-item` y `sustituir-item`, además de la comprobación de duplicado de `insertar-seccion`.
 
 ## Escritura canónica
 
@@ -68,7 +68,7 @@ Devuelve el estado canónico —`pendiente`, `en-progreso`, `en-revision`, `comp
 - La línea de estado es la primera línea no vacía tras el encabezado `## Estado`.
 - Sin `|` —forma suelta—: la etiqueta es el texto que sigue a la casilla `[·]`, sin negritas ni espacios sobrantes.
 - Con `|`: la opción vigente es la única en negrita `**…**`; si ninguna la lleva, la única con casilla no vacía. La etiqueta de esa opción da el estado.
-- Sección ausente o vacía, más de una opción activa, o etiqueta fuera del juego de las tareas: fallo con diagnóstico.
+- Sección ausente o vacía, más de una opción activa o etiqueta fuera del juego de las tareas: fallo con diagnóstico.
 
 ### `secciones`
 
@@ -95,13 +95,13 @@ Una mutación que no puede ejecutarse falla sin escribir, con el diagnóstico co
 Escribe `## Estado` en forma canónica activando la opción `<etiqueta>`:
 
 - Sobre una línea de opciones: conserva las opciones existentes, normaliza el marcador de cada opción al de su etiqueta —una etiqueta fuera de los juegos conocidos conserva su marcador— y pone en negrita completa la vigente.
-- Sobre la forma suelta: reconstruye la línea de opciones completa con el juego que indica la etiqueta vigente —el de las tareas o el de las propuestas— y activa la pedida.
+- Sobre la forma suelta: reconstruye la línea de opciones completa con el juego que indica la etiqueta vigente —el de las tareas o el de las propuestas— y activa la opción pedida.
 
 `## Estado` ausente o vacío, línea de opciones no parseada, forma suelta no reconocida o `<etiqueta>` fuera del juego de opciones: fallo.
 
 ### `marcar-opcion <etiqueta>`
 
-Pone `[x]` a la opción `<etiqueta>` de la línea de opciones sin cambiar la marca de las demás —la línea queda escrita sin negritas—. Es la forma acumulativa del `## Estado` de las épicas (`[x] Planificada | [x] Completada`). `## Estado` ausente o vacío, o en forma suelta: fallo; opción no encontrada: fallo.
+Pone `[x]` a la opción `<etiqueta>` de la línea de opciones sin cambiar la marca de las demás —la línea queda escrita sin negritas—. Es la forma acumulativa del `## Estado` de las épicas (`[x] Planificada | [x] Completada`). `## Estado` ausente, vacío o en forma suelta: fallo; opción no encontrada: fallo.
 
 ### `insertar-seccion <título>`
 
@@ -121,4 +121,4 @@ Marca `[x]` todos los ítems `- [ ]` de `## <sección>` que contienen `<texto>`;
 
 ### `sustituir-item <sección> <texto>`
 
-Sustituye el primer ítem `- [·]` de `## <sección>` que contiene `<texto>` —con sus sub-bullets, las líneas sangradas que le siguen— por el cuerpo dado por el consumidor. Cuerpo vacío: invocación inválida. Ítem no localizado: fallo.
+Sustituye el primer ítem `- [·]` de `## <sección>` que contiene `<texto>` —con sus subviñetas, las líneas sangradas que le siguen— por el cuerpo dado por el consumidor. Cuerpo vacío: invocación inválida. Ítem no localizado: fallo.
