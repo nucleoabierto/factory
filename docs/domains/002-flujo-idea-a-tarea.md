@@ -27,6 +27,9 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - **Roadmap:** `ROADMAP.md` en la raíz del proyecto evaluado, fuente de verdad de prioridad y dirección, con líneas de trabajo ordenadas en horizontes Now/Next/Later/No ahora.
     - Ancla: `.agents/skills/planificar-roadmap/SKILL.md`; `todo-app/ROADMAP.md` como instancia
     - Origen: `docs/decisions/D022-roadmap-como-nivel-de-direccion.md`, `docs/decisions/D027-roadmap-horizontes-now-next-later.md`
+  - **Escenario de priorización:** archivo `docs/priorizaciones/NNN-slug.md` producido por `priorizar-lineas`, con disparador, norte declarado, comparación de líneas, alternativas, decisión y límites; registro inmutable de cada revisita del orden.
+    - Ancla: `.agents/skills/priorizar-lineas/SKILL.md`
+    - Origen: `docs/decisions/D036-priorizacion-por-escenarios-comparados.md`
 - **Entidades / estado:**
   - Ciclo de vida de la propuesta: borradores → pendiente `[p]` → aprobada (se promociona y planifica) o descartada (se conserva).
     - Ancla: marcador `[p]` en la sección «Propuestas en revisión» de `TODO.md` y `.agents/skills/idea-a-tarea/SKILL.md`
@@ -59,8 +62,9 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - `docs/decisions/D022-roadmap-como-nivel-de-direccion.md`
   - `docs/decisions/D027-roadmap-horizontes-now-next-later.md`
   - `docs/decisions/D030-ideas-persistidas-en-docs-ideas.md`
+  - `docs/decisions/D036-priorizacion-por-escenarios-comparados.md`
 
 ## Estado de salud
 
-- Última revisión: 2026-09-28 (añadido el artefacto de idea persistida y su consumo)
+- Última revisión: 2026-10-26 (añadido el escenario de priorización de `priorizar-lineas`)
 - Divergencias conocidas: Ninguna
