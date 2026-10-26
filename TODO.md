@@ -53,12 +53,6 @@
 - [ ] docs/tasks/143-paso-priorizacion-planeacion-direccion.md — Integrar la priorización como paso de la planeación de dirección
 - [ ] docs/tasks/144-disparadores-revisita-prioridad.md — Conectar los momentos informativos que disparan la revisita
 
-## Hito 2: Reglas declarativas por artefacto
-
-- [x] docs/tasks/145-reglas-por-tipo-artefacto.md — Escribir los documentos de reglas por tipo de artefacto
-- [x] docs/tasks/146-migrar-gestores-a-reglas.md — Migrar los gestores mecánicos a reglas y eliminar los scripts
-- [r] docs/tasks/147-decision-reglas-sobre-scripts.md — Registrar la decisión del mecanismo de reglas y actualizar la documentación
-
 ## Propuestas en revisión
 
 
