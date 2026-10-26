@@ -4,11 +4,15 @@
 - **Norte:** <uno o dos temas declarados por el usuario>
 - **Fecha:** <fecha de la revisita>
 
-## Tabla comparada
+## Comparación
 
-| Línea | Valor | Criticidad temporal | Habilitación/riesgo | Tamaño | Confianza | Factores de incertidumbre |
-|---|---|---|---|---|---|---|
-| <línea> | <estimación y razón> | <estimación y razón> | <estimación y razón> | <estimación y razón> | <la menor de la línea, nombrando el atributo afectado cuando no es alta> | <lista o «ninguno»> |
+- <línea>
+  - Valor: <estimación y razón>
+  - Criticidad temporal: <estimación y razón>
+  - Habilitación/riesgo: <estimación y razón>
+  - Tamaño: <estimación y razón>
+  - Confianza: <la menor de la línea, nombrando el atributo afectado cuando no es alta>
+  - Factores de incertidumbre: <lista o «ninguno»>
 
 ## Alternativas
 

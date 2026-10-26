@@ -25,7 +25,7 @@ Cada estimación lleva su confianza en escala cerrada:
 - **Media:** la estimación razona sobre lo conocido pero con supuestos no verificados.
 - **Baja:** la estimación depende de información que falta o es volátil.
 
-La confianza se estima por atributo; en la tabla del escenario se registra la menor de la línea, nombrando el atributo afectado cuando no es alta.
+La confianza se estima por atributo; en la comparación del escenario se registra la menor de la línea, nombrando el atributo afectado cuando no es alta.
 
 ## Factores de incertidumbre
 
