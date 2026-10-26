@@ -15,7 +15,7 @@ description: >
 
 # Actualizar artefactos
 
-Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefactos del sistema. El skill recibe la orden delegada —archivo objetivo, operación y términos— y la resuelve aplicando el documento de reglas del artefacto, que declara su formato, su escritura canónica y cada operación: el agente muta el artefacto directamente, preservando lo que no toca. Es la mitad de escritura del mecanismo de delegación: las consultas corresponden a `consultar-artefactos`.
+Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefactos del sistema. El skill recibe la orden delegada —artefacto objetivo, operación y términos— y la resuelve aplicando el documento de reglas del artefacto, que declara su formato, su escritura canónica y cada operación: el agente muta el artefacto directamente, preservando lo que no toca. Es la mitad de escritura del mecanismo de delegación: las consultas corresponden a `consultar-artefactos`.
 
 ## Cuándo usar
 
