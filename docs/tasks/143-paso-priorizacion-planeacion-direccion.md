@@ -1,5 +1,9 @@
 # Integrar la priorización como paso de la planeación de dirección
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,7 +14,7 @@ Integrar la comparación por escenarios como paso nuevo del flujo de planeación
 
 ## Dependencias
 
-- Borrador 01.
+- 142.
 
 ## Entrada
 
@@ -35,3 +39,9 @@ Integrar la comparación por escenarios como paso nuevo del flujo de planeación
 2. Integrar la invocación de la comparación con su puerta humana y el reflejo del orden elegido en la dirección.
 3. Extender el formato de las líneas para declarar los atributos comparados.
 4. Actualizar las convenciones y la documentación afectadas por el paso nuevo.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

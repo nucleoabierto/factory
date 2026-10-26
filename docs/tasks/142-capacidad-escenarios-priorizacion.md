@@ -1,5 +1,9 @@
 # Crear la capacidad de comparación por escenarios de las líneas
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -36,3 +40,9 @@ Crear la capacidad que compara objetivamente las líneas de trabajo abiertas: gu
 2. Diseñar el modelo de comparación: atributos, escalas, forma de la tabla comparada, declaración del norte y formato de las alternativas con implicaciones.
 3. Redactar el skill con su procedimiento: recoger líneas abiertas, declarar el norte, comparar, componer alternativas, presentar para elección y pulido, registrar la decisión.
 4. Registrar la decisión de diseño del mecanismo en el registro de decisiones del proyecto.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

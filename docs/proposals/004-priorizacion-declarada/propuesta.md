@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Borrador | **[p] Pendiente de revisión** | [a] Aprobada | [d] Descartada
+[ ] Borrador | [p] Pendiente de revisión | **[a] Aprobada** | [d] Descartada
 
 ## Problema
 
@@ -44,10 +44,10 @@ La capacidad se invoca desde la planeación de dirección como un paso nuevo; ad
 
 ## Borradores
 
-- `01-capacidad-escenarios-priorizacion.md` — Crear la capacidad de comparación por escenarios de las líneas
-- `02-paso-priorizacion-planeacion-direccion.md` — Integrar la priorización como paso de la planeación de dirección (depende de 01)
-- `03-disparadores-revisita-prioridad.md` — Conectar los momentos informativos que disparan la revisita (depende de 01 y 02)
+- `docs/tasks/142-capacidad-escenarios-priorizacion.md` — Crear la capacidad de comparación por escenarios de las líneas
+- `docs/tasks/143-paso-priorizacion-planeacion-direccion.md` — Integrar la priorización como paso de la planeación de dirección (depende de 142)
+- `docs/tasks/144-disparadores-revisita-prioridad.md` — Conectar los momentos informativos que disparan la revisita (depende de 142 y 02)
 
 ## Revisión
 
-- Usuario: [fecha] — Aprueba | Solicita cambios | Rechaza
+- Usuario: 2026-10-25 — Aprueba

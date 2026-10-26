@@ -1,5 +1,9 @@
 # Conectar los momentos informativos que disparan la revisita
 
+## Estado
+
+**[ ] Pendiente** | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
+
 ## Tipo
 
 desarrollo
@@ -10,8 +14,8 @@ Hacer que la revisita de prioridad se dispare sola en los dos momentos en que la
 
 ## Dependencias
 
-- Borrador 01.
-- Borrador 02.
+- 142.
+- 143.
 
 ## Entrada
 
@@ -37,3 +41,9 @@ Hacer que la revisita de prioridad se dispare sola en los dos momentos en que la
 2. Cablear en cada punto la invocación de la comparación como propuesta revisable, con su forma de aplazamiento registrado.
 3. Documentar la invocación bajo demanda en las superficies donde el usuario entra al ciclo.
 4. Actualizar la documentación de flujos que describe las conexiones entre skills.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

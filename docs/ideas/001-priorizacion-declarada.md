@@ -3,6 +3,7 @@
 > **Tipo:** idea de funcionalidad — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-10
 > **Orden sugerido:** 1 de 5 — es la etapa más temprana del embudo; una vez construida, el propio sistema la usa para ordenar a sus hermanas
+> **Procesada en:** docs/proposals/004-priorizacion-declarada/
 
 ## Problema
 
