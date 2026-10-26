@@ -39,7 +39,7 @@ Instrucciones para que un agente ejecute las operaciones mecánicas del changelo
 1. **Mecánica, nunca síntesis:** las operaciones devuelven lo que el changelog contiene o materializan el contenido dado; la notabilidad, la categoría, la redacción, la curación y el número de versión los decide siempre el consumidor o el usuario.
 2. **La acción es semántica:** el consumidor delega qué hacer sobre el changelog («los no liberados», «anotar esta entrada», «promover a esta versión») sin nombrar el artefacto, su ubicación ni su formato; esos detalles los resuelve este skill.
 3. **Escritura canónica, lectura tolerante:** las operaciones escriben la forma fija (las seis categorías en su orden canónico, `## [X.Y.Z] - fecha` al promover) y toleran el archivo real al leer: changelog con otro nombre, sin sección de no liberados, sin enlaces de pie.
-4. **Contrato único:** las operaciones devuelven datos parseables, reportan el vacío legítimo como tal y fallan con diagnóstico y sin escribir cuando no pueden ejecutarse (D033): una entrada mal formada, una categoría desconocida o una versión duplicada rechazan la mutación sin tocar el archivo. El «nada que liberar» (sección de no liberados ausente o vacía donde la operación la exige) se distingue siempre del resto de fallos.
+4. **Contrato único:** las operaciones devuelven datos parseables, reportan el vacío legítimo como tal y fallan con diagnóstico y sin escribir cuando no pueden ejecutarse (D035): una entrada mal formada, una categoría desconocida o una versión duplicada rechazan la mutación sin tocar el archivo. El «nada que liberar» (sección de no liberados ausente o vacía donde la operación la exige) se distingue siempre del resto de fallos.
 
 ## Procedimiento
 
@@ -82,5 +82,5 @@ El skill ha terminado cuando el consumidor recibió el resultado de la operació
 ## Referencias
 
 - `references/changelog.md`: el documento de reglas del changelog: formato, lectura tolerante, escritura canónica y la definición completa de cada operación.
-- `docs/decisions/D033-pasos-mecanicos-skills-utilidad-scripts.md`: el mecanismo de delegación que estas operaciones cumplen; los scripts que introdujo fueron sustituidos por el documento de reglas.
+- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen.
 - `PERSONALIZE.md` del paquete: los artefactos de estado que la instalación prepara y verifica.

@@ -39,9 +39,9 @@ Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefac
 
 1. **Preservar lo que no se toca:** la mutación reescribe solo lo que la operación declara; sublistas de bloqueantes, comentarios de épica, secciones ajenas y contenido quedan intactos.
 2. **La acción es completa:** el consumidor delega la acción y sus referencias de dominio; ubicación, formato y aplicación los resuelve el documento de reglas, y las decisiones (qué estado poner, qué texto escribir) son del consumidor.
-3. **Escritura canónica, lectura tolerante:** la forma la fija el documento de reglas aunque la entrada sea una variante histórica (D033).
+3. **Escritura canónica, lectura tolerante:** la forma la fija el documento de reglas aunque la entrada sea una variante histórica (D035).
 4. **Promoción sin reescritura:** la promoción mueve archivos, inyecta las secciones que faltan y renumera referencias; no reformula el contenido aprobado (D014).
-5. **Contrato único:** dato parseable cuando lo produce; fallo con diagnóstico y sin escribir cuando la mutación no puede ejecutarse, la entrada falta o la invocación es inválida (D033).
+5. **Contrato único:** dato parseable cuando lo produce; fallo con diagnóstico y sin escribir cuando la mutación no puede ejecutarse, la entrada falta o la invocación es inválida (D035).
 
 ## Procedimiento
 
@@ -118,6 +118,6 @@ El skill ha terminado cuando el artefacto quedó mutado según la orden (o el co
 
 ## Referencias
 
-- `docs/decisions/D033-pasos-mecanicos-skills-utilidad-scripts.md`: el mecanismo de delegación y las formas canónicas que estas operaciones escriben; los scripts que introdujo fueron sustituidos por los documentos de reglas.
+- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen y las formas canónicas que escriben.
 - `references/`: los documentos de reglas de los artefactos: `indice-tareas.md`, `tarea.md`, `propuesta.md`, `epica.md`, `idea.md`.
 - `.agents/skills/consultar-artefactos/SKILL.md`: la mitad de lectura del mecanismo.

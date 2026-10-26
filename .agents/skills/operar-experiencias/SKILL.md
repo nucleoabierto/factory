@@ -40,7 +40,7 @@ Instrucciones para que un agente ejecute las operaciones mecánicas del registro
 2. **La acción es semántica:** el consumidor delega qué hacer sobre el registro («las pendientes», «anexar esta entrada», «marcar consolidadas») sin nombrar el artefacto, su ubicación ni su formato; esos detalles los resuelve este skill.
 3. **Append-only:** las entradas nunca se editan ni se borran; la única mutación admitida sobre una entrada es el marcado de `Estado` pendiente a consolidada.
 4. **Escritura canónica, lectura tolerante:** la lectura acepta las variantes existentes (campos envueltos, entradas sin `Estado`, separación irregular entre entradas) y la escritura produce siempre la forma canónica: un campo por línea, sin envolver.
-5. **Contrato único:** las operaciones devuelven datos parseables (las entradas tal como están escritas), reportan el vacío legítimo como tal y fallan con diagnóstico cuando no pueden ejecutarse (D033); el anexado de una entrada fuera de la forma canónica o con `Id` duplicado se rechaza sin tocar el registro.
+5. **Contrato único:** las operaciones devuelven datos parseables (las entradas tal como están escritas), reportan el vacío legítimo como tal y fallan con diagnóstico cuando no pueden ejecutarse (D035); el anexado de una entrada fuera de la forma canónica o con `Id` duplicado se rechaza sin tocar el registro.
 
 ## Procedimiento
 
@@ -77,5 +77,5 @@ El skill ha terminado cuando el consumidor recibió el resultado de la operació
 ## Referencias
 
 - `references/experiencias.md`: el documento de reglas del registro de experiencias: formato, lectura tolerante, escritura canónica y la definición completa de cada operación.
-- `docs/decisions/D033-pasos-mecanicos-skills-utilidad-scripts.md`: el mecanismo de delegación que estas operaciones cumplen; los scripts que introdujo fueron sustituidos por el documento de reglas.
+- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen.
 - `PERSONALIZE.md` del paquete: los artefactos de estado que la instalación prepara y verifica.

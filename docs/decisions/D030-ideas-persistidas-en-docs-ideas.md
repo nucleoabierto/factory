@@ -2,7 +2,7 @@
 
 ## Estado
 
-Aceptada
+Sustituida por D035 en lo relativo al orden de procesamiento de las ideas —el campo «Orden sugerido»—. La persistencia de las ideas en `docs/ideas/` como entrada del flujo permanece aceptada.
 
 ## Contexto
 
@@ -21,3 +21,4 @@ El archivo por idea conserva la descomposición temprana que la conversación pr
 - `docs/tasks/101-skill-lluvia-de-ideas.md` — tarea que la consolida
 - `.agents/skills/lluvia-de-ideas/SKILL.md` — el skill que produce los archivos
 - `docs/domains/002-flujo-idea-a-tarea.md` — dominio donde vive el artefacto
+- Sustituida en lo relativo al orden de procesamiento por `docs/decisions/D035-reglas-declarativas-por-artefacto.md`
