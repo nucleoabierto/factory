@@ -85,7 +85,7 @@ Una convención que no pertenece a ningún artefacto vive embebida en el `SKILL.
 - `dir_ideas` (`docs/ideas`): `lluvia-de-ideas`, además del documento de reglas de la idea.
 - `dir_propuestas` (`docs/proposals`): `refinar-propuesta`, además del documento de reglas de la propuesta.
 - `dir_epicas` (`docs/epics`): `planificar`, además del documento de reglas de la épica.
-- `dir_priorizaciones` (`docs/priorizaciones`): `priorizar-lineas`.
+- `dir_priorizaciones` (`docs/priorizaciones`): `priorizar-lineas`; la plantilla `planificar-roadmap/assets/roadmap.md` lo referencia en el campo «Escenario» de las líneas comprometidas.
 
 ## Personalización al instalar
 
