@@ -24,9 +24,9 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - **Épica:** documento `docs/epics/NNN-slug.md` que da hogar y dirección técnica a un conjunto de tareas —objetivo, alcance, piezas, plan técnico y criterio de cierre—; los conjuntos que no la ameritan se agrupan bajo un encabezado ligero en `TODO.md`.
     - Ancla: archivos de `docs/epics/` y `.agents/skills/planificar/SKILL.md`
     - Origen: `docs/decisions/D019-epica-como-artefacto-de-planeacion.md`
-  - **Roadmap:** `ROADMAP.md` en la raíz del proyecto evaluado, fuente de verdad de prioridad y dirección, con líneas de trabajo ordenadas en horizontes Now/Next/Later/No ahora.
-    - Ancla: `.agents/skills/planificar-roadmap/SKILL.md`; `todo-app/ROADMAP.md` como instancia
-    - Origen: `docs/decisions/D022-roadmap-como-nivel-de-direccion.md`, `docs/decisions/D027-roadmap-horizontes-now-next-later.md`
+  - **Roadmap:** `ROADMAP.md` en la raíz del proyecto evaluado, fuente de verdad de prioridad y dirección, con líneas de trabajo ordenadas en horizontes Now/Next/Later/No ahora; las líneas comprometidas —Now y Next— declaran los atributos de la comparación y el escenario que fijó su posición.
+    - Ancla: `.agents/skills/planificar-roadmap/SKILL.md` y `assets/roadmap.md`; `todo-app/ROADMAP.md` como instancia
+    - Origen: `docs/decisions/D022-roadmap-como-nivel-de-direccion.md`, `docs/decisions/D027-roadmap-horizontes-now-next-later.md`, `docs/decisions/D036-priorizacion-por-escenarios-comparados.md`
   - **Escenario de priorización:** archivo `docs/priorizaciones/NNN-slug.md` producido por `priorizar-lineas`, con disparador, norte declarado, comparación de líneas, alternativas, decisión y límites; registro inmutable de cada revisita del orden.
     - Ancla: `.agents/skills/priorizar-lineas/SKILL.md`
     - Origen: `docs/decisions/D036-priorizacion-por-escenarios-comparados.md`
@@ -37,6 +37,7 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - La propuesta —no cada borrador— es la unidad de revisión: el usuario decide sobre el conjunto completo.
   - Una propuesta `[p]` no entra al roadmap ni se ejecuta hasta aprobarse y planificarse.
   - `TODO.md` refleja solo los horizontes comprometidos del roadmap.
+  - El orden de los horizontes comprometidos sale de escenarios de priorización decididos, no del orden de inserción.
   - La descomposición de una propuesta en varias ideas se escribe solo tras confirmación del usuario; una idea ya procesada no se reprocesa.
 - **Operaciones:**
   - Explorar y persistir ideas: `.agents/skills/lluvia-de-ideas/SKILL.md`.
@@ -66,5 +67,5 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
 
 ## Estado de salud
 
-- Última revisión: 2026-10-26 (añadido el escenario de priorización de `priorizar-lineas`)
+- Última revisión: 2026-10-26 (el roadmap declara comparación y escenario por línea comprometida)
 - Divergencias conocidas: Ninguna

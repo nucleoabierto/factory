@@ -11,6 +11,10 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 - Skill `priorizar-lineas`: comparación de las líneas de trabajo abiertas por escenarios —norte declarado, atributos relativos con confianza e incertidumbre explícitas, dos o más alternativas con implicaciones y doble puerta humana— con la decisión persistida en `docs/priorizaciones/` (tarea 142).
 
+### Changed
+
+- La planeación de dirección (`planificar-roadmap`) decide el orden de las líneas comprometidas invocando `priorizar-lineas` como paso propio del flujo: el orden de Now y Next sale del escenario decidido —no del orden de inserción— y las líneas comprometidas del roadmap declaran los atributos de la comparación y el escenario que fijó su posición; `mantener-roadmap` los tolera y preserva (tarea 143).
+
 ## [0.6.0] - 2026-10-26
 
 ### Added
