@@ -43,6 +43,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 - Un documento de épica nuevo en el directorio de épicas de la convención `dir_epicas` (`docs/epics` por defecto) con estado `planificada`, o una épica existente actualizada con las piezas nuevas.
 - La agrupación correspondiente en el índice: un encabezado con el título de la épica, las líneas de las tareas bajo él y el comentario de enlace a la épica que la vincula con el documento.
 - Las líneas de las tareas agrupadas se mueven bajo el encabezado de la épica desde su ubicación anterior (en modo promoción, las tareas sueltas; en modo bajo demanda, su agrupación previa).
+- Cuando la agrupación es nueva, la revisita de la prioridad propuesta a través de `priorizar-lineas` con el disparador «incorporación de demanda» —aceptada y ejecutada, o pospuesta con su escenario registrado—.
 
 ## Principios rectores
 
@@ -62,7 +63,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 
 2. **Identificar las tareas del conjunto.** En modo promoción, son las tareas recién creadas de la propuesta; en modo bajo demanda, son las que el usuario lista.
 3. **Leer los archivos de tarea** para extraer objetivos, dependencias y resultados esperados. El plan se construye sobre ese contenido real.
-4. **Decidir si el conjunto amerita épica.** Si es trivial (pocas piezas, sin decisiones transversales), informar al usuario y agrupar bajo un encabezado ligero —la acción «crear la agrupación «`<título>`»» de `actualizar-artefactos` crea el encabezado sin enlace a épica y «mover `<ref>` bajo `<agrupación>`» lleva las entradas de las tareas bajo él—; terminar. En caso de duda, preguntar al usuario.
+4. **Decidir si el conjunto amerita épica.** Si es trivial (pocas piezas, sin decisiones transversales), informar al usuario y agrupar bajo un encabezado ligero —la acción «crear la agrupación «`<título>`»» de `actualizar-artefactos` crea el encabezado sin enlace a épica y «mover `<ref>` bajo `<agrupación>`» lleva las entradas de las tareas bajo él—; terminar proponiendo la revisita de la prioridad —la línea nueva compite por el orden: invocar `priorizar-lineas` con el disparador «incorporación de demanda»—. En caso de duda, preguntar al usuario.
 5. **Determinar si existe una épica destino.** Revisar el directorio de épicas de la convención y las agrupaciones del índice —consulta «las agrupaciones del índice con su épica» de `consultar-artefactos`—. Si el conjunto pertenece a una épica existente, el procedimiento actualiza esa épica en lugar de crear una nueva; en caso de duda, preguntar al usuario.
 
 ### 3. Redactar el borrador de épica
@@ -86,6 +87,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
 11. **Si es épica existente:** añadir las piezas nuevas a su lista, actualizar objetivo, alcance o plan técnico solo si el conjunto nuevo lo exige, extender su PRD con los casos de uso nuevos vía `mantener-prd` y registrar la incorporación en su sección de revisión con la acción «registrar el veredicto».
 12. **Reflejar la agrupación en el índice** con `actualizar-artefactos`: si la agrupación de la épica no existe, la acción «crear la agrupación «`<título>`» [con épica `<ref>`]» la crea —numera con el siguiente de la serie y escribe el comentario de enlace a la épica cuando se le pasa la referencia del documento—; si ya existe, se reutiliza. «dar de alta la tarea» crea bajo la agrupación las líneas de las tareas del conjunto que no figuren en el índice y «mover `<ref>` bajo `<agrupación>`» traslada bajo él las que ya figuran.
 13. **Informar al usuario** de la épica creada o actualizada, del PRD y de la agrupación resultante.
+14. **Proponer la revisita de la prioridad cuando la agrupación es nueva.** Una agrupación recién creada materializa una línea que compite por el orden: invocar `priorizar-lineas` con el disparador «incorporación de demanda» —el usuario decide revisitar ahora, mantener el orden vigente o posponer—. Cuando las piezas se añadieron a una épica existente, la línea ya figuraba entre las abiertas y no hay disparo.
 
 ## Finalización
 

@@ -33,7 +33,7 @@ Instrucciones para que un agente produzca escenarios de priorización de las lí
 
 ## Entrada
 
-- El disparador de la revisita: planeación de dirección, cierre de un conjunto, incorporación de demanda o invocación directa. Se registra en el escenario.
+- El disparador de la revisita: planeación de dirección, cierre de conjunto, incorporación de demanda o llamada directa. Se registra en el escenario.
 - El norte del usuario: uno o dos temas que declara en el momento y guían la alineación de todas las líneas, no solo la cabeza del orden.
 - Las líneas de trabajo abiertas del proyecto evaluado, obtenidas delegando la consulta «las líneas de trabajo abiertas» en `consultar-artefactos`: épicas con su estado, agrupaciones del índice y tareas sueltas.
 - `references/modelo-comparacion.md`: los atributos, sus escalas, la confianza y la regla de escalación. Cargarlo antes de comparar.
@@ -43,7 +43,7 @@ Instrucciones para que un agente produzca escenarios de priorización de las lí
 
 - Un escenario de priorización persistido en el directorio de priorizaciones del proyecto evaluado —la convención `dir_priorizaciones` (`docs/priorizaciones` por defecto)— con la serie numerada propia: norte declarado, disparador, comparación por línea con atributos, confianza y factores, las alternativas con sus implicaciones, el orden elegido y los límites de la decisión.
 - El orden elegido, confirmado por el usuario, listo para que su consumidor lo aplique —la planeación de dirección lo materializa en el roadmap y el índice.
-- O la revisita registrada sin orden nuevo cuando el usuario rechaza las alternativas o pospone la decisión.
+- O la revisita sin orden nuevo: la confirmación anotada en la sección «Confirmaciones» del escenario vigente cuando el usuario decide mantener el orden, el escenario mínimo cuando pospone, o la revisita registrada sin decisión nueva cuando rechaza las alternativas.
 
 ## Principios rectores
 
@@ -56,23 +56,25 @@ Instrucciones para que un agente produzca escenarios de priorización de las lí
 
 ## Procedimiento
 
-1. **Declarar el disparador y reunir las líneas.** Registrar qué motiva la revisita —planeación, cierre de conjunto, demanda nueva o llamada directa— y obtener las líneas abiertas delegando «las líneas de trabajo abiertas» en `consultar-artefactos`. Si hay una sola, informar de que no hay orden que decidir y terminar.
-2. **Leer el contenido real de cada línea:** el objetivo y el plan técnico de las épicas y las tareas sueltas, buscando las interacciones —qué línea habilita o encarece a otra— que alimentan los atributos.
-3. **Pedir el norte al usuario:** uno o dos temas-norte del momento. Sin norte declarado no se compara: el norte es el eje que alinea la comparación, no un dato inferible.
-4. **Comparar cada línea** sobre los atributos del modelo —valor, criticidad temporal, habilitación/riesgo y tamaño— estimados relativamente entre las líneas, con su confianza y sus factores de incertidumbre por línea. Cargar `references/modelo-comparacion.md` antes de puntuar.
-5. **Escalar los puntos dudosos:** toda línea con confianza baja o tres o más factores de incertidumbre se presenta al usuario para revisión explícita antes de componer alternativas —el usuario confirma la estimación o la corrige—.
-6. **Componer dos o más planificaciones alternativas** del orden, cada una con sus implicaciones: qué beneficios adelanta y qué costes acepta —qué decae por esperar, qué queda desbloqueado antes o después—. Las alternativas difieren en un criterio legible —por ejemplo, la que maximiza valor inmediato frente a la que desbloquea antes el resto—.
-7. **Presentar las alternativas al usuario** con la comparación completa. El usuario elige una y la pule si quiere —ajustar puntuaciones o el orden propuesto— o rechaza todas: en ese caso el orden queda como estaba y se registra la revisita sin decisión nueva.
-8. **Persistir el escenario** con la plantilla `assets/escenario.md` en el directorio de priorizaciones —si no existe, crearlo y empezar por el primer número de la serie— con el nombre `NNN-slug.md`: el identificador emitido por «el siguiente número de la serie» de `consultar-artefactos`, un guion y un slug en kebab-case del norte declarado —con dos temas, el principal o ambos concatenados—; la serie distingue revisitas con el mismo norte. Contenido: disparador, norte, comparación, alternativas, orden elegido o revisita pospuesta, y los límites de la decisión. Antes de escribirlo, aplicar revisión de redacción y pulido mecánico en modo preventivo —`revisar-redaccion` y `pulir-escritura` si el arnés lo permite, el equivalente manual en caso contrario—.
-9. **Confirmar la aplicación:** con el orden elegido y el escenario persistido, pedir confirmación para aplicarlo —quien invocó decide qué hacer con él: la planeación de dirección lo materializa en el roadmap y el índice; la invocación directa lo deja como decisión registrada—.
-10. **Informar** del escenario persistido y del orden resultante —o de la revisita pospuesta—.
+1. **Declarar el disparador.** Registrar qué motiva la revisita —planeación de dirección, cierre de conjunto, incorporación de demanda o llamada directa—: se conserva en el escenario.
+2. **Ofrecer la revisita cuando el disparador es un momento informativo.** Si la invocación llega del cierre de conjunto o de la incorporación de demanda —no de la llamada directa ni del paso de planeación de dirección—, proponer la revisita al usuario antes de comparar. Si acepta, continuar. Si el orden vigente sigue sirviendo, anotar la confirmación como línea append-only en la sección «Confirmaciones» del escenario vigente —el último de la serie de priorizaciones— con la forma «fecha — disparador: orden vigente confirmado», y terminar; sin escenario previo no hay decisión que confirmar: informar sin escribir. Si pospone, persistir el escenario mínimo —disparador, fecha y decisión «revisita pospuesta» con el motivo, sin norte ni comparación— siguiendo el paso 10 y terminar.
+3. **Reunir las líneas** delegando «las líneas de trabajo abiertas» en `consultar-artefactos`. Si hay una sola, informar de que no hay orden que decidir y terminar.
+4. **Leer el contenido real de cada línea:** el objetivo y el plan técnico de las épicas y las tareas sueltas, buscando las interacciones —qué línea habilita o encarece a otra— que alimentan los atributos.
+5. **Pedir el norte al usuario:** uno o dos temas-norte del momento. Sin norte declarado no se compara: el norte es el eje que alinea la comparación, no un dato inferible.
+6. **Comparar cada línea** sobre los atributos del modelo —valor, criticidad temporal, habilitación/riesgo y tamaño— estimados relativamente entre las líneas, con su confianza y sus factores de incertidumbre por línea. Cargar `references/modelo-comparacion.md` antes de puntuar.
+7. **Escalar los puntos dudosos:** toda línea con confianza baja o tres o más factores de incertidumbre se presenta al usuario para revisión explícita antes de componer alternativas —el usuario confirma la estimación o la corrige—.
+8. **Componer dos o más planificaciones alternativas** del orden, cada una con sus implicaciones: qué beneficios adelanta y qué costes acepta —qué decae por esperar, qué queda desbloqueado antes o después—. Las alternativas difieren en un criterio legible —por ejemplo, la que maximiza valor inmediato frente a la que desbloquea antes el resto—.
+9. **Presentar las alternativas al usuario** con la comparación completa. El usuario elige una y la pule si quiere —ajustar puntuaciones o el orden propuesto— o rechaza todas: en ese caso el orden queda como estaba y se registra la revisita sin decisión nueva.
+10. **Persistir el escenario** con la plantilla `assets/escenario.md` en el directorio de priorizaciones —si no existe, crearlo y empezar por el primer número de la serie— con el nombre `NNN-slug.md`: el identificador emitido por «el siguiente número de la serie» de `consultar-artefactos`, un guion y un slug en kebab-case del norte declarado —con dos temas, el principal o ambos concatenados; en una posposición sin norte, del disparador—; la serie distingue revisitas con el mismo nombre. Contenido: disparador, norte, comparación, alternativas, orden elegido o revisita pospuesta, y los límites de la decisión. Antes de escribirlo, aplicar revisión de redacción y pulido mecánico en modo preventivo —`revisar-redaccion` y `pulir-escritura` si el arnés lo permite, el equivalente manual en caso contrario—.
+11. **Confirmar la aplicación:** con el orden elegido y el escenario persistido, pedir confirmación para aplicarlo —quien invocó decide qué hacer con él: la planeación de dirección lo materializa en el roadmap y el índice; la llamada directa lo deja como decisión registrada—.
+12. **Informar** del escenario persistido y del orden resultante —o de la revisita pospuesta—.
 
 ## Finalización
 
 El skill ha terminado cuando ocurre una de estas dos cosas:
 
 - El escenario quedó persistido con el orden elegido, confirmado para su aplicación por el invocador.
-- La revisita quedó registrada sin orden nuevo —rechazo o aplazamiento del usuario—, o se informó de que no hay orden que decidir.
+- La revisita quedó resuelta sin orden nuevo: el usuario confirmó el orden vigente y la anotación quedó en el escenario vigente, pospuso y su escenario mínimo quedó persistido, o rechazó las alternativas y la revisita quedó registrada; o se informó de que no hay orden que decidir.
 
 ## Referencias
 
