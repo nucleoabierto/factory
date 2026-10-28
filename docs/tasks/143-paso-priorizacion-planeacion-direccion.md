@@ -2,7 +2,7 @@
 
 ## Estado
 
-[r] En revisión
+[x] Completada
 
 ## Tipo
 
@@ -83,5 +83,5 @@ Conectada. Todo lo que la tarea asume existe: `priorizar-lineas` con su plantill
 ## Revisión
 
 - Subagente: 2026-10-26 — Aprueba
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-10-26 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

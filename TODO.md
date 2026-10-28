@@ -50,7 +50,7 @@
 <!-- épica: docs/epics/005-priorizacion-declarada.md -->
 
 - [x] docs/tasks/142-capacidad-escenarios-priorizacion.md — Crear la capacidad de comparación por escenarios de las líneas
-- [r] docs/tasks/143-paso-priorizacion-planeacion-direccion.md — Integrar la priorización como paso de la planeación de dirección
+- [x] docs/tasks/143-paso-priorizacion-planeacion-direccion.md — Integrar la priorización como paso de la planeación de dirección
 - [ ] docs/tasks/144-disparadores-revisita-prioridad.md — Conectar los momentos informativos que disparan la revisita
 
 ## Propuestas en revisión
