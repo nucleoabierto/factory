@@ -91,4 +91,4 @@ Conectada. `priorizar-lineas` produce y persiste escenarios con los disparadores
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]
 - Usuario (ejecución): 2026-10-26 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-10-26 — Aprueba
