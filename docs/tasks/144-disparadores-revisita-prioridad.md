@@ -2,7 +2,7 @@
 
 ## Estado
 
-[r] En revisión
+[x] Completada
 
 ## Tipo
 
@@ -90,5 +90,5 @@ Conectada. `priorizar-lineas` produce y persiste escenarios con los disparadores
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-10-26 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

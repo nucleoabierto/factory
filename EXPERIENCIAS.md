@@ -267,3 +267,10 @@
   Obtenido: la sección Referencias enlazaba docs/epics/004 y docs/prd/004, artefactos de desarrollo del repo ausentes en un proyecto instalado.
   Corrección: retirarlas; el skill es autocontenido.
   Estado: consolidada
+
+- Id: 20261013
+  Tarea: docs/tasks/144-disparadores-revisita-prioridad.md
+  Esperado: registrar la posposición de la revisita disparada como escenario mínimo propio.
+  Obtenido: la confirmación «mantener el orden vigente» producía el mismo artefacto mínimo, un archivo por no-decisión que no aporta.
+  Corrección: distinguir tres salidas —ahora, mantener, posponer—; «mantener» no escribe archivo: anota la confirmación en la sección «Confirmaciones» del escenario vigente.
+  Estado: consolidada

@@ -27,7 +27,7 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
   - **Roadmap:** `ROADMAP.md` en la raíz del proyecto evaluado, fuente de verdad de prioridad y dirección, con líneas de trabajo ordenadas en horizontes Now/Next/Later/No ahora; las líneas comprometidas —Now y Next— declaran los atributos de la comparación y el escenario que fijó su posición.
     - Ancla: `.agents/skills/planificar-roadmap/SKILL.md` y `assets/roadmap.md`; `todo-app/ROADMAP.md` como instancia
     - Origen: `docs/decisions/D022-roadmap-como-nivel-de-direccion.md`, `docs/decisions/D027-roadmap-horizontes-now-next-later.md`, `docs/decisions/D036-priorizacion-por-escenarios-comparados.md`
-  - **Escenario de priorización:** archivo `docs/priorizaciones/NNN-slug.md` producido por `priorizar-lineas`, con disparador, norte declarado, comparación de líneas, alternativas, decisión y límites; registro inmutable de cada revisita del orden.
+  - **Escenario de priorización:** archivo `docs/priorizaciones/NNN-slug.md` producido por `priorizar-lineas`, con disparador, norte declarado, comparación de líneas, alternativas, decisión y límites; registro de cada revisita del orden; los disparadores —cierre de conjunto e incorporación de demanda— lo proponen sin bloquear su flujo, y su sección «Confirmaciones» acumula los mantenimientos del orden vigente.
     - Ancla: `.agents/skills/priorizar-lineas/SKILL.md`
     - Origen: `docs/decisions/D036-priorizacion-por-escenarios-comparados.md`
 - **Entidades / estado:**
@@ -67,5 +67,5 @@ Transformar una idea suelta del usuario en un conjunto de tareas planificadas y 
 
 ## Estado de salud
 
-- Última revisión: 2026-10-26 (el roadmap declara comparación y escenario por línea comprometida)
+- Última revisión: 2026-10-26 (disparadores de revisita y sección «Confirmaciones» del escenario)
 - Divergencias conocidas: Ninguna
