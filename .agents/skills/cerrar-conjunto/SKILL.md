@@ -5,7 +5,9 @@ description: >
   proyecto evaluado: cuando la última tarea de una agrupación —épica,
   encabezado ligero o tarea suelta— queda completada, verifica el
   criterio de cierre de la épica contra el resultado real, la marca
-  como completada y elimina la agrupación del índice.
+  como completada, elimina la agrupación del índice y
+  propone revisitar la prioridad de las líneas con la
+  información ganada.
   Usar al cerrar una tarea cuya agrupación puede haberse agotado, o
   cuando el usuario pida cerrar un conjunto de trabajo.
   Sinónimos: cerrar conjunto, cerrar épica, cierre de hito, conjunto
@@ -57,7 +59,8 @@ Instrucciones para que un agente cierre un conjunto de trabajo agotado del índi
    - **Criterio incumplido o no verificable:** elevar al usuario con la evidencia —qué condición no se cumple o qué falta para verificarla— y esperar su decisión. Si decide mantener el conjunto abierto, informar de que el trabajo restante se da de alta con `crear-tareas` y terminar sin eliminar nada: el conjunto queda visible en el índice hasta que el usuario lo resuelva. Si decide cerrar igualmente, registrar su decisión en la sección de revisión de la épica —«registrar el veredicto `<autor>` `<veredicto>`», delegada en `actualizar-artefactos`— y continuar en el paso 4.
 4. **Cerrar la épica, cuando la hay.** Marcar la opción `completada` del estado de la épica —«marcar la opción `<estado>` del estado», delegada en `actualizar-artefactos`; no toca la de `planificada`— y marcar completadas las piezas ejecutadas de su lista —«marcar completado el ítem de la sección `piezas`»—, registro que queda del conjunto una vez que el índice lo olvida. Si el conjunto tiene PRD, invocar `mantener-prd` en su modo de cierre: el PRD queda como registro histórico, sin moverse ni reescribirse.
 5. **Eliminar la agrupación del índice** con `actualizar-artefactos`: «retirar la agrupación `<ref>`» borra el encabezado, su comentario de enlace a la épica y todas las líneas de tarea bajo él; para una tarea suelta, «retirar `<ref>` del índice» borra solo su línea.
-6. **Informar del resultado:** conjunto cerrado —con épica marcada o encabezado ligero disuelto—, conjunto no agotado, o cierre elevado al usuario.
+6. **Proponer la revisita de la prioridad.** Con el conjunto cerrado, la información recién ganada —coste real y sinergias— puede cambiar el orden de las líneas: invocar `priorizar-lineas` con el disparador «cierre de conjunto», que ofrece al usuario revisitar ahora, mantener el orden vigente —anotado en el escenario vigente— o posponer —registrado en un escenario mínimo—. La propuesta corre después del cierre y no lo bloquea ni lo condiciona.
+7. **Informar del resultado:** conjunto cerrado —con épica marcada o encabezado ligero disuelto—, conjunto no agotado, o cierre elevado al usuario.
 
 ## Finalización
 

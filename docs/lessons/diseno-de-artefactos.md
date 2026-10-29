@@ -21,3 +21,7 @@
 - **Distingue artefacto entregable de estado de proceso efímero: lo efímero vive fuera del control de versiones y su ciclo de vida —quién lo crea y quién lo elimina— queda declarado.** Por qué: el informe de `revisar-pr` se diseñó persistido en `docs/pr-reviews` versionado, tratándolo como entregable; el usuario lo corrigió a estado local bajo `.git/` con limpieza al cerrar el PR, porque un informe intermedio no es contenido del producto.
   Disparadores: informe, estado local, artefacto efímero, .git/, ciclo de vida de artefacto, persistir, salida de skill, directorio de informes
   Origen: 20261012T172312
+
+- **Una confirmación de statu quo no amerita artefacto propio: anótala en el artefacto que la gobierna.** Por qué: la posposición de una revisita se diseñó como escenario mínimo propio y el mismo molde iba a servir para «mantener el orden vigente»; el usuario lo corrigió —un archivo por cada confirmación multiplica registros sin información—. La confirmación vive como línea append-only en la sección «Confirmaciones» del escenario que decidió el orden; solo la renuncia a decidir (posponer) necesita registro propio para no quedar silenciada.
+  Disparadores: artefactos del sistema, registro, append-only, confirmación, decisión, escenario, pospuesta, ruido en el registro
+  Origen: EXPERIENCIAS

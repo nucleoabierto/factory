@@ -24,6 +24,7 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 | `crear-tareas` | Crea tareas desde una solicitud articulada o promociona los borradores de una propuesta aprobada. |
 | `planificar` | Produce la épica de un conjunto de trabajo y refleja su agrupación en `TODO.md`; cierra la planeación del flujo. |
 | `planificar-roadmap` | Organiza las líneas de trabajo del producto —épicas, hitos y tareas sueltas— en `ROADMAP.md` por horizontes Now/Next/Later y refleja los comprometidos en `TODO.md`. |
+| `priorizar-lineas` | Compara las líneas de trabajo abiertas y produce escenarios de priorización —atributos relativos, alternativas con implicaciones y doble puerta humana— persistidos en `docs/priorizaciones/`; invocable bajo demanda y por los disparadores de revisita. |
 
 **Ejecución y cierre**
 
