@@ -6,17 +6,49 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 
 ## Now
 
-- 1. docs/epics/005-priorizacion-declarada.md — Planeación y gestión a nivel de producto
-  - Estado: en curso
-  - Justificación: la línea está en vuelo —dos de las tres piezas del hito (escenarios de priorización y su paso en la planeación) ya están integradas; resta cablear los disparadores de revisita—. Formalizar la gestión es lo que convierte el sistema en gestor de producto y no solo ejecutor. Temas de la línea:
-  - Diagnóstico de brechas con dos vías: un detalle de implementación toma un track técnico ligero (restricción → alternativas → decisión documentada) mientras una capacidad independiente produce una idea derivada que compite por prioridad en el backlog, dejando la original bloqueada con trazabilidad — en lugar del tratamiento uniforme de tareas puente.
-  - Priorización cuantificada de las líneas (valor, impacto, confianza, esfuerzo) y backlog unificado con política de capacidad por tipo de trabajo.
-  - Planeación por casos de uso con happy path, alternativas y casos límite; detección de bloqueos ocultos en el detalle del PRD que devuelva el trabajo al diagnóstico de brecha.
-  - Puerta de convergencia plan↔PRD antes de ejecutar: verificar que los requisitos funcionales y las decisiones técnicas están alineados.
-  - Carril rápido para cambios triviales: gate de trivialidad y revisión mínima en lugar del ciclo completo.
-  - Artefacto de registro de feedback de usuarios, aún inexistente.
+- 1. docs/ideas/002-brechas-clasificadas.md — Brechas clasificadas
+  - Estado: pendiente de arrancar
+  - Justificación: encabeza el orden porque es la maquinaria de diagnóstico que consume el resto de la cadena —`convergencia` la requiere y `carril` la aprovecha— y convierte los problemas de ejecución en señal de producto.
+  - Comparación:
+    - Valor: alta
+    - Criticidad temporal: media
+    - Habilitación/riesgo: alta
+    - Tamaño: media
+    - Confianza: alta
+  - Escenario: docs/priorizaciones/001-gestion-a-nivel-de-producto.md
 
 ## Next
+
+- 1. docs/ideas/003-convergencia-plan-requisitos.md — Convergencia plan↔requisitos
+  - Estado: bloqueada por brechas clasificadas
+  - Justificación: segunda del orden por dependencia —su vuelta al diagnóstico reutiliza la clasificación de brechas— y por valor: hace que los requisitos declarados manden sobre la ejecución.
+  - Comparación:
+    - Valor: alta
+    - Criticidad temporal: media
+    - Habilitación/riesgo: media
+    - Tamaño: media
+    - Confianza: media
+  - Escenario: docs/priorizaciones/001-gestion-a-nivel-de-producto.md
+- 2. docs/ideas/005-validacion-de-resultado.md — Validación de resultado
+  - Estado: pendiente de arrancar
+  - Justificación: cierra el lazo de producto —revisita si el problema declarado se resolvió—; va tras la cadena que consolida la trazabilidad problema→entrega de la que depende.
+  - Comparación:
+    - Valor: alta
+    - Criticidad temporal: baja
+    - Habilitación/riesgo: media
+    - Tamaño: media
+    - Confianza: media
+  - Escenario: docs/priorizaciones/001-gestion-a-nivel-de-producto.md
+- 3. docs/ideas/004-carril-de-baja-friccion.md — Carril de baja fricción
+  - Estado: pendiente de arrancar
+  - Justificación: la más independiente del conjunto —podría adelantarse si se buscara alivio inmediato—; baja la barrera de entrada a perfiles de gestión y reserva la revisión humana para lo que la merece.
+  - Comparación:
+    - Valor: alta
+    - Criticidad temporal: media
+    - Habilitación/riesgo: media
+    - Tamaño: media
+    - Confianza: alta
+  - Escenario: docs/priorizaciones/001-gestion-a-nivel-de-producto.md
 
 ## Later
 
@@ -31,3 +63,4 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 
 - Usuario: 2026-10-12 — Aprueba
 - Usuario: 2026-10-26 — Aprueba
+- Usuario: 2026-10-29 — Aprueba
