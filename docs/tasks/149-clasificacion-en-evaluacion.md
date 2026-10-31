@@ -1,5 +1,9 @@
 # Clasificación de brechas en la evaluación de conectividad
 
+## Estado
+
+[ ] Pendiente
+
 ## Tipo
 
 desarrollo
@@ -10,7 +14,7 @@ Insertar en `evaluar-conectividad` el punto de decisión que clasifica cada piez
 
 ## Dependencias
 
-- Borrador 01
+- 148
 
 ## Entrada
 
@@ -20,7 +24,7 @@ Insertar en `evaluar-conectividad` el punto de decisión que clasifica cada piez
 ## Resultado esperado
 
 - `evaluar-conectividad` clasifica cada brecha detectada aplicando el modelo y su veredicto declara por pieza desconectada la clase y el destino.
-- Los consumidores del veredicto saben leer la nueva forma; `docs/mapa-de-flujos.md` refleja el punto de decisión si el cableado cambia.
+- Los consumidores del veredicto quedan actualizados para leer la nueva forma; `docs/mapa-de-flujos.md` refleja el punto de decisión si el cableado cambia.
 
 ## Criterios de calidad
 
@@ -36,3 +40,9 @@ Insertar en `evaluar-conectividad` el punto de decisión que clasifica cada piez
 3. Declarar la forma de salida del veredicto enrutado y ajustar lo que los consumidores esperan leer.
 4. Actualizar el mapa de flujos si el cableado del veredicto cambia.
 5. Revisión de redacción preventiva sobre los cambios.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

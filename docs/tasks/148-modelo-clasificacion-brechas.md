@@ -1,5 +1,9 @@
 # Modelo de clasificación de brechas
 
+## Estado
+
+[ ] Pendiente
+
 ## Tipo
 
 desarrollo
@@ -39,3 +43,9 @@ Definir el modelo que discrimina la naturaleza de una brecha —detalle de imple
 ## Notas
 
 - La distinción decisiva que la idea declara: un detalle se resuelve con un ajuste local dentro de la pieza; una capacidad ausente exige algo que el proyecto no tiene y que merece competir por prioridad.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

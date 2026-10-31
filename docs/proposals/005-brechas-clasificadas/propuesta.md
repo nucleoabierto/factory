@@ -2,7 +2,7 @@
 
 ## Estado
 
-[ ] Borrador | **[p] Pendiente de revisión** | [a] Aprobada | [d] Descartada
+[a] Aprobada
 
 ## Problema
 
@@ -43,11 +43,11 @@ Las dos vías se comportan distinto según la naturaleza de la brecha: el detall
 
 ## Borradores
 
-- `01-modelo-clasificacion-brechas.md` — Modelo de clasificación de brechas
-- `02-clasificacion-en-evaluacion.md` — Clasificación de brechas en la evaluación de conectividad (depende de 01)
-- `03-carril-tecnico-ligero.md` — Carril técnico ligero para el detalle de implementación (depende de 01, 02)
-- `04-vuelta-demanda-trazable.md` — Vuelta a la demanda de la capacidad ausente (depende de 01, 02)
+- `docs/tasks/148-modelo-clasificacion-brechas.md` — Modelo de clasificación de brechas
+- `docs/tasks/149-clasificacion-en-evaluacion.md` — Clasificación de brechas en la evaluación de conectividad (depende de 148)
+- `docs/tasks/150-carril-tecnico-ligero.md` — Carril técnico ligero para el detalle de implementación (depende de 148, 149)
+- `docs/tasks/151-vuelta-demanda-trazable.md` — Vuelta a la demanda de la capacidad ausente (depende de 148, 149)
 
 ## Revisión
 
-- Usuario: [fecha] — [Aprueba | Solicita cambios | Rechaza]
+- Usuario: 2026-10-29 — Aprueba

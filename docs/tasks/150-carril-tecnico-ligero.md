@@ -1,5 +1,9 @@
 # Carril técnico ligero para el detalle de implementación
 
+## Estado
+
+[ ] Pendiente
+
 ## Tipo
 
 desarrollo
@@ -10,8 +14,8 @@ Dar a la brecha clasificada como detalle de implementación una vía propia dent
 
 ## Dependencias
 
-- Borrador 01
-- Borrador 02
+- 148
+- 149
 
 ## Entrada
 
@@ -35,3 +39,9 @@ Dar a la brecha clasificada como detalle de implementación una vía propia dent
 2. Definir el carril ligero: la forma de la restricción, de las alternativas y del registro en la tarea —una sección del archivo existente, no un artefacto nuevo, salvo que el detalle lo justifique—.
 3. Cablear el consumo: el veredicto «detalle» entra al carril; declarar la reclasificación cuando el detalle se revela ausencia.
 4. Revisión de redacción preventiva sobre los cambios.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

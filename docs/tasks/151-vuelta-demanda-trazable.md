@@ -1,5 +1,9 @@
 # Vuelta a la demanda de la capacidad ausente
 
+## Estado
+
+[ ] Pendiente
+
 ## Tipo
 
 desarrollo
@@ -10,8 +14,8 @@ Dar a la brecha clasificada como capacidad ausente su vía de producto: la brech
 
 ## Dependencias
 
-- Borrador 01
-- Borrador 02
+- 148
+- 149
 
 ## Entrada
 
@@ -42,3 +46,9 @@ Dar a la brecha clasificada como capacidad ausente su vía de producto: la brech
 ## Notas
 
 - La idea persistida es demanda, no trabajo: su ordenación la decide la maquinaria de priorización cuando entre a competir —fuera de alcance de esta tarea según la propuesta—.
+
+## Revisión
+
+- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
