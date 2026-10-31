@@ -3,6 +3,7 @@
 > **Tipo:** idea de funcionalidad — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-10
 > **Requiere:** ninguna — produce la clasificación que `convergencia-plan-requisitos` reutiliza al devolver trabajo al diagnóstico
+> **Procesada en:** docs/proposals/005-brechas-clasificadas/
 
 ## Problema
 

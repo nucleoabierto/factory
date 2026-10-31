@@ -48,4 +48,6 @@
 
 ## Propuestas en revisión
 
+- [p] docs/proposals/005-brechas-clasificadas/ — Brechas clasificadas: distinguir el detalle técnico de la capacidad ausente (4 borradores)
+
 
