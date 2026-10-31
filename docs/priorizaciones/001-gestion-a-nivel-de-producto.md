@@ -68,3 +68,5 @@ Alternativa A, elegida por el usuario sin ajustes: brechas clasificadas → conv
 Las líneas comparadas son candidatas de dirección —ideas persistidas y líneas del roadmap—, no trabajo materializado: las estimaciones descansan en los enunciados de las ideas y pueden moverse cuando cada línea se planifique. «Validación externa» es una práctica continua más que una línea con entrega: su puesto marca cuándo se retoma con foco, no una espera bloqueante. La confianza media de convergencia y de validación de resultado refleja sus dependencias —la primera requiere brechas entregada; la segunda, trazabilidad problema→entrega y hoy solo señal interna—. Conviene revisitar si entra demanda externa nueva o si el diagnóstico de brechas revela un coste distinto al estimado.
 
 ## Confirmaciones
+
+- 2026-10-29 — incorporación de demanda: orden vigente confirmado
