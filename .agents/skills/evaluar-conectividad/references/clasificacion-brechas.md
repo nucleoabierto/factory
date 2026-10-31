@@ -6,7 +6,7 @@ La distinción anterior del veredicto —«absorbible por la propia tarea» fren
 
 ## Categorías
 
-Toda brecha declarada cae en una de dos clases, decididas por quién debe decidir su resolución, no por su tamaño:
+Toda brecha **no absorbible** declarada —la que separa el veredicto `desconectada`; lo absorbible por la propia pieza sigue su curso actual— cae en una de dos clases, decididas por quién debe decidir su resolución, no por cuánto falta:
 
 - **Detalle de implementación:** lo que falta se resuelve con una decisión técnica dentro del alcance de la pieza en curso. El criterio observable: resolverlo no añade superficie de producto nueva —no crea una capacidad que otra línea pudiera querer ni exige decidir prioridad— y quien ejecuta puede elegir entre alternativas técnicas con el contexto de la tarea, sin preguntar nada sobre el producto. El carril técnico ligero lo resuelve: restricción declarada, alternativas, decisión documentada.
 - **Capacidad ausente:** lo que falta es algo que el proyecto no tiene y cuya existencia es una decisión de producto. El criterio observable: resolverlo exige decidir fuera del trabajo en curso —si esa capacidad merece existir, con qué prioridad, con qué alcance— o excede lo que una decisión técnica local puede absorber con responsabilidad, por riesgo o por efecto sobre otras piezas. La vuelta a la demanda lo tramita: la brecha produce una idea derivada con trazabilidad y la pieza queda bloqueada con su causa declarada.
@@ -15,7 +15,7 @@ La pregunta discriminadora cuando el criterio no resuelve de inmediato: **¿pued
 
 ## Forma del veredicto enrutado
 
-Por cada brecha declarada, el punto de decisión emite una entrada con tres campos —los consumidores los leen sin reinterpretar—:
+Por cada brecha no absorbible declarada, el punto de decisión emite una entrada con tres campos —los consumidores los leen sin reinterpretar—:
 
 ```markdown
 - <qué falta, en términos de la pieza>
@@ -24,13 +24,13 @@ Por cada brecha declarada, el punto de decisión emite una entrada con tres camp
   - Razón: <por qué esa clase, una frase>
 ```
 
-La entrada vive en la sección de conectividad del archivo de la tarea, junto al veredicto que ya se registra. Una pieza puede declarar varias brechas, cada una con su clase y su destino.
+La entrada vive en la sección de conectividad del archivo de la tarea, junto al veredicto que ya se registra. Una pieza puede declarar varias brechas, cada una con su clase y su destino; a nivel de pieza, la regla agregada es una: **una pieza con al menos una brecha «capacidad ausente» queda bloqueada** y el carril no corre sobre ella —el detalle que la acompaña se resuelve cuando la demanda libere la pieza o se declara en su razón—.
 
 ## Casos límite
 
 - **Brecha mixta** —parte detalle, parte ausencia—: se clasifica por el componente que bloquea primero. Si resolver la parte técnica no libera la pieza porque la capacidad sigue faltando, la clase es «capacidad ausente» y la razón declara la parte detallada que quedó identificada.
-- **Brecha dudosa** —ningún criterio la resuelve—: escala al usuario con la pregunta formulada —qué falta, por qué el modelo no discrimina—. La duda nunca se adivina: una clasificación forzada es peor que una pregunta.
-- **Detalle que se revela ausencia:** si al resolverlo en el carril el detalle muestra que la resolución exige decidir fuera del trabajo en curso, la brecha se reclasifica a «capacidad ausente» y toma la otra vía —la reclasificación queda declarada, no oculta.
+- **Brecha dudosa** —ningún criterio la resuelve—: escala al usuario con la pregunta formulada —qué falta, por qué el modelo no discrimina—. La duda nunca se adivina: una clasificación forzada es peor que una pregunta. La entrada de la brecha escalada queda sin clase ni destino hasta que el usuario la resuelve —lleva la pregunta en la razón y la pieza espera, no continúa—.
+- **Detalle que se revela ausencia:** si al resolverlo en el carril el detalle muestra que la resolución exige decidir fuera del trabajo en curso, la brecha se reclasifica a «capacidad ausente» y toma la otra vía —la reclasificación queda declarada, no oculta. El sentido inverso no está en este modelo: una ausencia tramitada como demanda la resuelve el ciclo de la idea, no el carril.
 
 ## Precedentes que anclan los criterios
 
