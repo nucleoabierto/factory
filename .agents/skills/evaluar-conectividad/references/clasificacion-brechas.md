@@ -2,7 +2,7 @@
 
 El modelo que `evaluar-conectividad` aplica para discriminar la naturaleza de una brecha —lo que le falta a una pieza del trabajo— y la forma del veredicto enrutado que el punto de decisión emite por cada brecha no absorbible. Las dos vías de resolución —el carril técnico ligero y la vuelta a la demanda— consumen este documento: aquí se decide qué es cada brecha, allá se resuelve según su clase.
 
-La distinción anterior del veredicto —«absorbible por la propia tarea» frente a «no absorbible»— separaba cuánto falta; esta clasificación separa **de qué naturaleza** es lo que falta. Un detalle de implementación y una capacidad ausente pueden ser ambos no absorbibles como ajuste mínimo, y merecen destinos distintos.
+La distinción anterior del veredicto —«absorbible por la propia tarea» frente a «no absorbible»— separaba cuánto falta; esta clasificación separa **de qué naturaleza** es lo que falta. Un detalle de implementación y una capacidad ausente pueden ser ambos no absorbibles como ajuste mínimo, y merecen destinos distintos. Sin esa distinción, toda brecha no absorbible recibe el mismo tratamiento improvisado —trabajo puente creado al vuelo—, sea un detalle o una ausencia.
 
 ## Categorías
 
@@ -32,7 +32,3 @@ La entrada vive en la sección de conectividad del archivo de la tarea, junto al
 - **Brecha dudosa** —ningún criterio la resuelve—: escala al usuario con la pregunta formulada —qué falta, por qué el modelo no discrimina—. La duda nunca se adivina: una clasificación forzada es peor que una pregunta. La entrada de la brecha escalada queda sin clase ni destino hasta que el usuario la resuelve —lleva la pregunta en la razón y la pieza espera, no continúa—.
 - **Detalle que se revela ausencia:** si al resolverlo en el carril el detalle muestra que la resolución exige decidir fuera del trabajo en curso, la brecha se reclasifica a «capacidad ausente» y toma la otra vía —la reclasificación queda declarada, no oculta. El sentido inverso no está en este modelo: una ausencia tramitada como demanda la resuelve el ciclo de la idea, no el carril.
 
-## Precedentes que anclan los criterios
-
-- El gate de conectividad (commit `5f344cb`) nació para no planear sobre infraestructura inexistente: su «no absorbible» es el borde que esta clasificación refina.
-- Las tareas puente creadas al vuelo para subsanar desconexiones son la improvisación que el modelo elimina: antes, toda brecha no absorbible producía la misma tarea puente, fuera detalle o ausencia.

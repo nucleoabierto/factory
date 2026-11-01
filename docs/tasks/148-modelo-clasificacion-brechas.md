@@ -63,6 +63,10 @@ Conectada — la tarea produce documentación dentro del paquete: el skill que l
 - [x] Anclar los criterios en los precedentes del repositorio y escribir el documento en `evaluar-conectividad/references/clasificacion-brechas.md`.
 - [x] Revisión de redacción preventiva sobre el documento final.
 
+## Desviaciones del plan
+
+- La sección «Precedentes que anclan los criterios» se eliminó: el usuario señaló que anclar el modelo al historial del proyecto (commits, tareas puente) lo hace dependiente de material que no viaja con el paquete al instalarse en otro proyecto. La motivación quedó integrada en la introducción de forma portable.
+
 ## Suite de pruebas esperada
 
 - Dada una pieza a la que falta algo resoluble con decisión técnica local, el modelo la clasifica «detalle» con criterio observable (CU-2). (I)
