@@ -2,7 +2,7 @@
 
 ## Estado
 
-[r] En revisión
+[x] Completada
 
 ## Tipo
 
@@ -78,5 +78,5 @@ Conectada — la tarea produce documentación dentro del paquete: el skill que l
 ## Revisión
 
 - Subagente: 2026-10-29 — Aprueba con menores corregidos
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-10-29 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

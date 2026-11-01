@@ -37,3 +37,7 @@
 - **Un skill es autocontenido: sus referencias apuntan solo a material que viaja con el paquete —`assets/` propios u otros skills—; los artefactos de desarrollo del repo —épica, PRD, tarea— son contexto de su construcción, no referencia.** Por qué: `revisar-pr` enlazaba en «Referencias» la épica y el PRD de su propia épica, documentos que existen en este repositorio pero no en un proyecto donde el paquete se instala; en la instalación quedaban como enlaces rotos.
   Disparadores: nuevo skill, referencias, enlaces, paquete, instalar, autocontenido, docs/epics, docs/prd, docs/tasks
   Origen: 20261012T172318
+
+- **El anclaje a la historia del proyecto anfitrión —commits, trabajo local, precedentes del repo— tampoco viaja: la motivación de un documento del paquete se escribe de forma portable o se omite.** Por qué: el modelo de clasificación de brechas llevaba una sección «Precedentes» con un hash de commit y tareas locales; en una instalación del paquete esas referencias no resuelven y el documento queda apoyado en evidencia inexistente — el usuario lo detectó y la sección se retiró, integrando la motivación en la introducción.
+  Disparadores: references/, documento de referencia, precedentes, commit, historia del proyecto, portabilidad, paquete, instalar
+  Origen: 20261031T204402
