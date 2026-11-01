@@ -46,6 +46,7 @@ Dar a la brecha clasificada como capacidad ausente su vía de producto: la brech
 ## Notas
 
 - La idea persistida es demanda, no trabajo: su ordenación la decide la maquinaria de priorización cuando entre a competir —fuera de alcance de esta tarea según la propuesta—.
+- Costura detectada en la revisión de la 149: `ejecutar-tareas` solo declara bloqueo por otra tarea (`bloqueada por <refs>`); sin tarea puente, la capacidad ausente no produce ref bloqueante —la declaración del bloqueo con causa sobre la pieza debe cubrir ese hueco.
 
 ## Revisión
 
