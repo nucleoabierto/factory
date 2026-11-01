@@ -7,7 +7,7 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 ## Now
 
 - 1. docs/ideas/002-brechas-clasificadas.md — Brechas clasificadas
-  - Estado: pendiente de arrancar
+  - Estado: en curso
   - Justificación: encabeza el orden porque es la maquinaria de diagnóstico que consume el resto de la cadena —`convergencia` la requiere y `carril` la aprovecha— y convierte los problemas de ejecución en señal de producto.
   - Comparación:
     - Valor: alta

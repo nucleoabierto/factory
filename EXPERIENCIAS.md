@@ -274,3 +274,10 @@
   Obtenido: la confirmación «mantener el orden vigente» producía el mismo artefacto mínimo, un archivo por no-decisión que no aporta.
   Corrección: distinguir tres salidas —ahora, mantener, posponer—; «mantener» no escribe archivo: anota la confirmación en la sección «Confirmaciones» del escenario vigente.
   Estado: consolidada
+
+- Id: 20261031T204402
+  Tarea: docs/tasks/148-modelo-clasificacion-brechas.md
+  Esperado: que el documento del modelo anclara sus criterios en los precedentes del repositorio (commits y tareas puente) como pedía el plan aprobado
+  Obtenido: el usuario señaló que esa sección crea una dependencia de la historia del proyecto, que no está disponible cuando el paquete se instala en otro proyecto
+  Corrección: los documentos del paquete no pueden anclarse a la historia del proyecto anfitrión —ni commits ni trabajo local—; la motivación se escribe de forma portable o no se escribe
+  Estado: consolidada

@@ -11,6 +11,8 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
     - Ancla: `.agents/skills/recopilar-contexto/SKILL.md`
   - **Veredicto de conectividad:** evaluación —conectada, parcialmente conectada o desconectada— de si lo que la tarea asume existe en el codebase, registrada en el archivo de la tarea antes de planear.
     - Ancla: `.agents/skills/evaluar-conectividad/SKILL.md`
+  - **Clasificación de brechas:** cada brecha no absorbible declarada recibe una clase —detalle de implementación o capacidad ausente— y un destino —carril técnico ligero o vuelta a la demanda—, según el modelo de referencia compartido.
+    - Ancla: `.agents/skills/evaluar-conectividad/references/clasificacion-brechas.md`
   - **Plan de implementación:** entendimiento del subsistema, plan técnico conceptual y «Suite de pruebas esperada» guiada por ZOMBIE, con la letra declarada por expectativa cuando aplica.
     - Ancla: `.agents/skills/planear-implementacion/SKILL.md`
     - Origen: `docs/decisions/D028-letra-zombie-declarada-en-suite.md`
