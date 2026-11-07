@@ -9,6 +9,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ### Added
 
+- Carril técnico ligero: las brechas «detalle de implementación» declaradas en la conectividad se resuelven dentro del trabajo en curso —restricción declarada, alternativas y decisión documentada en la sección `## Carril` de la tarea—, y la que se revela ausencia se reclasifica declarada a la vía de la demanda (tarea 150).
 - Skill `priorizar-lineas`: comparación de las líneas de trabajo abiertas por escenarios —norte declarado, atributos relativos con confianza e incertidumbre explícitas, dos o más alternativas con implicaciones y doble puerta humana— con la decisión persistida en `docs/priorizaciones/` (tarea 142).
 
 ### Changed
