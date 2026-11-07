@@ -9,7 +9,7 @@ Reglas del artefacto «idea persistida»: los archivos del directorio de ideas q
 
 ## Formato del artefacto
 
-Un documento Markdown con título `# `, una cabecera de líneas de cita (toda línea que empieza por `>`, como `> **Fecha:**` o `> **Requiere:** <slug de la idea>`) y secciones `## ` con el enunciado del problema. La idea procesada se distingue por la marca `> **Procesada en:** ` seguida del destino (la referencia del artefacto que la consumió, como la propuesta).
+Un documento Markdown con título `# `, una cabecera de líneas de cita (toda línea que empieza por `>`, como `> **Fecha:**`, `> **Requiere:** <slug de la idea>` o `> **Origen:** <referencia del artefacto que reveló la demanda>` —la trazabilidad de la idea derivada—) y secciones `## ` con el enunciado del problema. La idea procesada se distingue por la marca `> **Procesada en:** ` seguida del destino (la referencia del artefacto que la consumió, como la propuesta).
 
 ## Operaciones de lectura
 
