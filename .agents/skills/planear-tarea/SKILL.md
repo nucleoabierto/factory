@@ -38,7 +38,7 @@ Instrucciones para que un agente ejecute la mitad de planeación del flujo de de
 ## Salida
 
 - El archivo de la tarea con las secciones de contexto, conectividad, plan y suite completas y aprobadas, listo para `desarrollar-tarea`.
-- O la conclusión de que la tarea no puede planearse —desconectada, plan rechazado—, comunicada al invocador.
+- O la conclusión de que la tarea no puede planearse —bloqueada en la evaluación de conectividad, plan rechazado—, comunicada al invocador.
 
 ## Principios rectores
 
@@ -52,7 +52,7 @@ Instrucciones para que un agente ejecute la mitad de planeación del flujo de de
 1. **Leer el archivo de la tarea** y comprobar el estado de planeación delegando en `consultar-artefactos` la consulta «si la planeación de la tarea está completa»: si ya contiene el plan y la suite aprobados, informar de que la tarea ya está planeada y terminar sin tocar nada.
 2. **Revisar las dependencias declaradas** —la consulta «las dependencias de la tarea» de `consultar-artefactos` las devuelve—. Para cada tarea bloqueante: si está ejecutada, nada que hacer; si tiene plan aprobado sin ejecutar, leer su plan técnico y tratarlo como base asumida —el contexto y la conectividad de esta tarea se recopilan sobre el mundo que ese plan describe—; si no tiene plan aprobado, la dependencia bloquea la planeación: informar al invocador y terminar.
 3. **Invocar `recopilar-contexto`** con el archivo de la tarea —y los planes base de las dependencias, si los hay—, que registra la sección de contexto.
-4. **Invocar `evaluar-conectividad`**, que registra la sección de conectividad. Si el veredicto es `desconectada`, dar de alta la tarea puente con `crear-tareas`, declararla como dependencia en la tarea actual —«añadir la línea a la sección `dependencias` de la tarea», delegada en `actualizar-artefactos`— e informar al invocador —que la declarará bloqueada— sin llegar a planear.
+4. **Invocar `evaluar-conectividad`**, que registra la sección de conectividad con su veredicto y las entradas enrutadas por brecha. Si el veredicto es `desconectada`, leer las entradas: una pieza con al menos una brecha «capacidad ausente» —o con una brecha escalada sin resolver— queda bloqueada con su causa declarada: se informa al invocador —que la declarará bloqueada— sin llegar a planear. Una pieza con solo brechas «detalle de implementación» continúa a la planeación —su resolución corre en el carril ligero durante la ejecución—.
 5. **Invocar `planear-implementacion`**, que produce el plan técnico y la suite de pruebas esperada y los somete a la puerta humana. Si el usuario rechaza el plan, informar al invocador y terminar.
 6. **Informar al invocador** de que la tarea quedó planeada: secciones aprobadas registradas, lista para `desarrollar-tarea` en esta iteración o en otra sesión.
 
@@ -61,7 +61,7 @@ Instrucciones para que un agente ejecute la mitad de planeación del flujo de de
 El skill ha terminado cuando:
 
 - La tarea tiene contexto, conectividad, plan y suite aprobados en su archivo, o
-- Se informó de que no puede planearse —ya planeada, dependencia sin plan, desconectada o plan rechazado— con el motivo.
+- Se informó de que no puede planearse —ya planeada, dependencia sin plan, bloqueada en la evaluación de conectividad o plan rechazado— con el motivo.
 
 ## Referencias
 

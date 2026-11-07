@@ -9,7 +9,7 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 - **Lenguaje ubicuo:**
   - **Contexto de la tarea:** conjunto de archivos similares, patrones vigentes, documentación de dominio y de producto aplicable, lecciones y decisiones aplicables, registrado en la sección «Contexto» del archivo de tarea.
     - Ancla: `.agents/skills/recopilar-contexto/SKILL.md`
-  - **Veredicto de conectividad:** evaluación —conectada, parcialmente conectada o desconectada— de si lo que la tarea asume existe en el codebase, registrada en el archivo de la tarea antes de planear.
+  - **Veredicto de conectividad:** evaluación —conectada, parcialmente conectada o desconectada— de si lo que la tarea asume existe en el codebase, registrada en el archivo de la tarea antes de planear; en el desconectada, cada brecha no absorbible sale con su entrada enrutada —clase, destino y razón—.
     - Ancla: `.agents/skills/evaluar-conectividad/SKILL.md`
   - **Clasificación de brechas:** cada brecha no absorbible declarada recibe una clase —detalle de implementación o capacidad ausente— y un destino —carril técnico ligero o vuelta a la demanda—, según el modelo de referencia compartido.
     - Ancla: `.agents/skills/evaluar-conectividad/references/clasificacion-brechas.md`
@@ -26,6 +26,7 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
     - Ancla: `.agents/skills/planear-tarea/SKILL.md` y `.agents/skills/desarrollar-tarea/SKILL.md` (cada flujo registra su mitad en el archivo de la tarea)
 - **Invariantes:**
   - La conectividad se evalúa antes de la planeación: la falta de infraestructura se detecta antes de escribir el plan.
+  - El bloqueo se deriva de la naturaleza de la brecha, no del veredicto uniforme: una capacidad ausente bloquea la pieza con su causa declarada; un detalle de implementación lo resuelve el carril ligero en la ejecución; la brecha que el modelo no discrimina escala al usuario, nunca se adivina.
   - No se replanifica: una tarea con plan y suite aprobados entra directa a ejecución, en esta sesión o en otra.
   - La planeación es incremental: una dependencia con plan aprobado pero sin ejecutar se toma como base asumida; sin plan, bloquea.
   - La implementación sigue el plan registrado; las desviaciones se documentan, no se ocultan.
@@ -42,11 +43,12 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
   - Fuera: el ciclo de vida de la tarea en `TODO.md` —estados y puertas de aprobación vía pull request—, que pertenece al dominio del ciclo de tareas; la documentación del dominio afectado, que cierran los sensores de documentación viva.
   - Relaciones: `ejecutar-tareas` elige el punto de entrada por el estado de planeación del archivo de la tarea; consume lecciones y decisiones vía los skills de consulta del dominio de aprendizaje y de documentación viva.
 - **Decisiones relevantes:**
+  - `docs/decisions/D037-brechas-clasificadas-enrutadas.md`
   - `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` (sustituye a D020)
   - `docs/decisions/D028-letra-zombie-declarada-en-suite.md`
   - `docs/decisions/D011-posponer-separacion-ejecutar-tareas.md` (parcialmente sustituida por D020)
 
 ## Estado de salud
 
-- Última revisión: 2026-10-05 (frontera con el ciclo actualizada a las puertas vía pull request)
+- Última revisión: 2026-11-01 (el veredicto de conectividad enruta las brechas por naturaleza)
 - Divergencias conocidas: Ninguna
