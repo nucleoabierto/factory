@@ -34,7 +34,7 @@ Instrucciones para que un agente ejecute la mitad de ejecución del flujo de des
 ## Salida
 
 - El diff de los cambios que implementan la tarea, devuelto al invocador.
-- El plan técnico del archivo de la tarea con las acciones marcadas y, si las hubo, la sección de desviaciones.
+- El plan técnico del archivo de la tarea con las acciones marcadas, la sección del carril con las decisiones de los detalles de implementación cuando los hubo y, si las hubo, la sección de desviaciones.
 - O la conclusión de que la tarea no puede ejecutarse —sin plan aprobado, desviación mayor no confirmada—, comunicada al invocador.
 
 ## Principios rectores

@@ -13,6 +13,8 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
     - Ancla: `.agents/skills/evaluar-conectividad/SKILL.md`
   - **Clasificación de brechas:** cada brecha no absorbible declarada recibe una clase —detalle de implementación o capacidad ausente— y un destino —carril técnico ligero o vuelta a la demanda—, según el modelo de referencia compartido.
     - Ancla: `.agents/skills/evaluar-conectividad/references/clasificacion-brechas.md`
+  - **Carril técnico ligero:** la vía de la brecha «detalle de implementación»: se resuelve dentro del trabajo en curso con restricción declarada, alternativas y decisión documentada en la sección `## Carril` de la tarea; la que exige decidir fuera del alcance se reclasifica a «capacidad ausente».
+    - Ancla: `.agents/skills/ejecutar-implementacion/SKILL.md`
   - **Plan de implementación:** entendimiento del subsistema, plan técnico conceptual y «Suite de pruebas esperada» guiada por ZOMBIE, con la letra declarada por expectativa cuando aplica.
     - Ancla: `.agents/skills/planear-implementacion/SKILL.md`
     - Origen: `docs/decisions/D028-letra-zombie-declarada-en-suite.md`
@@ -50,5 +52,5 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 
 ## Estado de salud
 
-- Última revisión: 2026-11-01 (el veredicto de conectividad enruta las brechas por naturaleza)
+- Última revisión: 2026-11-01 (el veredicto de conectividad enruta las brechas por naturaleza; el carril ligero resuelve los detalles en la ejecución)
 - Divergencias conocidas: Ninguna

@@ -28,7 +28,7 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 
 ## Entrada
 
-- El archivo de la tarea de desarrollo con el plan y la suite aprobados.
+- El archivo de la tarea de desarrollo con el plan y la suite aprobados; si la conectividad declaró entradas «detalle de implementación», el carril las resuelve durante la ejecución.
 - El código base del subsistema afectado.
 - El plan técnico de la épica, si la tarea pertenece a una, como guía de arquitectura vigente durante la ejecución.
 
@@ -37,6 +37,7 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 - El diff de los cambios de código que implementan la tarea.
 - El plan técnico del archivo de la tarea con cada acción marcada como completada al verificarla.
 - La sección de desviaciones agregada al archivo de la tarea cuando las hubo, con cada desviación, su motivo y la decisión tomada. Si no hubo, no se agrega nada.
+- La sección `## Carril` del archivo de la tarea con la decisión de cada brecha «detalle de implementación» resuelta —restricción, alternativas y elección—, cuando la hubo.
 
 ## Principios rectores
 
@@ -58,6 +59,8 @@ Instrucciones para que un agente ejecute el desarrollo de una tarea siguiendo el
 ### 2. Implementar siguiendo el plan
 
 4. **Recorrer las acciones del plan en su orden**, delegando cada una a un subagente según el paso 5 o ejecutándola directamente cuando la delegación no aplica. Al terminar cada acción —delegada o propia—, confrontar lo hecho con lo planeado: si coincide, marcarla completada en el plan técnico —«marcar completado el ítem de la sección `plan`», delegada en `actualizar-artefactos`— y en la lista de control antes de continuar; si no, pasar al manejo de desviaciones (paso 7). Con delegaciones en paralelo, la lista de control mantiene varios ítems en progreso a la vez. La checklist es el estado del avance: una ejecución interrumpida se retoma desde el primer ítem sin marcar, sin replanificar.
+
+   **El carril ligero de los detalles de implementación.** Antes de implementar lo que una entrada «detalle de implementación» de la sección de conectividad condiciona, resolverla en el carril: declarar la restricción que el detalle fija, listar las alternativas técnicas y documentar la elección en la sección `## Carril` del archivo de la tarea —«insertar la sección `carril` en la tarea» la primera vez y «añadir la línea a la sección `carril`» por detalle, delegadas en `actualizar-artefactos`—. Si al resolverlo el detalle exige decidir fuera del trabajo en curso, reclasificarlo a «capacidad ausente» —declarado en la entrada de la conectividad y en el registro del carril—: la pieza toma la vía de la demanda y la ejecución informa al invocador deteniéndose con la causa declarada. El carril no crea tarea ni invoca el ciclo de idea a tarea.
 5. **Delegación por defecto a subagentes:** cada acción del plan se ejecuta en un subagente con capacidad de escritura sobre el mismo árbol de trabajo; el agente actúa como orquestador —prepara el contexto, verifica lo devuelto y marca el avance—. El subagente corre en primer plano o en segundo plano según el arnés; dos acciones delegadas en paralelo deben tocar archivos disjuntos, porque ambas trabajan sobre el mismo árbol de trabajo, y una acción delegada no adelanta a las que la preceden cuando el orden importa. El orquestador ejecuta directamente las acciones acopladas entre sí, las que dependen del entendimiento acumulado del subsistema y las que cuestan más en handoff que en ejecución —la lista es abierta y extensible—. Al delegar:
    - **Handoff:** pasar al subagente la acción y su `Contexto:` inline —no debe tener que adivinar qué parte del plan le toca—, más las rutas del archivo de la tarea —que contiene objetivo, criterios, plan, suite y el resumen del subsistema con sus convenciones— y de la épica si la hay. El subagente lee el archivo de la tarea por sí mismo; el orquestador no le transfiere su razonamiento acumulado.
    - **Retorno:** el subagente realiza el cambio en el código y devuelve la explicación de lo que hizo con la lista de archivos que tocó; no devuelve un diff para que el ejecutor lo aplique.
@@ -81,6 +84,7 @@ El skill ha terminado cuando:
 
 - Las acciones del plan quedaron marcadas como completadas o registradas como desviaciones.
 - La suite de pruebas esperada quedó cubierta por pruebas que expresan sus expectativas.
+- La sección `## Carril` registra la decisión de cada brecha «detalle de implementación» resuelta, cuando la hubo.
 - Las desviaciones, si las hubo, constan en la sección de desviaciones del archivo de la tarea con motivo y decisión.
 
 ## Referencias

@@ -14,6 +14,7 @@ Un documento Markdown con título `# ` y secciones `## `. Las secciones relevant
 - `## Estado`: el estado del documento.
 - `## Dependencias`: las tareas de las que depende.
 - `## Contexto`, `## Conectividad`, `## Plan técnico`, `## Suite de pruebas esperada`: las secciones de la planeación.
+- `## Carril`: cuando existe, las decisiones del carril ligero por detalle de implementación.
 - `## Desviaciones del plan`: cuando existe, inmediatamente antes de `## Revisión`.
 - `## Revisión`: los veredictos; es siempre la última sección del archivo.
 

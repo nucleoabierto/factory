@@ -28,7 +28,7 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
 ## Entrada
 
 - La ubicación de los cambios de la tarea: árbol de trabajo sin commitear (`git status` y `git diff`, incluidos los archivos nuevos) o el rango de commits de la tarea si ya están commiteados.
-- El archivo de la tarea: objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo —contexto, conectividad, plan, suite y desviaciones—, que son el objeto de la verificación nominal cuando existen.
+- El archivo de la tarea: objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo —contexto, conectividad, plan, suite, carril y desviaciones—, que son el objeto de la verificación nominal cuando existen.
 - El código base del subsistema afectado, para la comparación con archivos hermanos.
 
 ## Salida
@@ -48,7 +48,7 @@ Instrucciones para que un agente someta la implementación de una tarea de desar
 ### 1. Preparar el encargo
 
 1. **Determinar dónde están los cambios** de la tarea: si están sin commitear, el árbol de trabajo (`git status`, `git diff`); si ya están commiteados, el rango de commits de la tarea por sus hashes. Esa ubicación —no el contenido del diff— es lo que se pasa al revisor.
-2. **Reunir el archivo de la tarea** con su objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo que existan (contexto, conectividad, plan técnico, suite, desviaciones).
+2. **Reunir el archivo de la tarea** con su objetivo, criterios de calidad y las secciones del sub-flujo de desarrollo que existan (contexto, conectividad, plan técnico, suite, carril, desviaciones).
 
 ### 2. Lanzar el revisor independiente
 
