@@ -6,17 +6,6 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 
 ## Now
 
-- 1. docs/ideas/002-brechas-clasificadas.md — Brechas clasificadas
-  - Estado: en curso
-  - Justificación: encabeza el orden porque es la maquinaria de diagnóstico que consume el resto de la cadena —`convergencia` la requiere y `carril` la aprovecha— y convierte los problemas de ejecución en señal de producto.
-  - Comparación:
-    - Valor: alta
-    - Criticidad temporal: media
-    - Habilitación/riesgo: alta
-    - Tamaño: media
-    - Confianza: alta
-  - Escenario: docs/priorizaciones/001-gestion-a-nivel-de-producto.md
-
 ## Next
 
 - 1. docs/ideas/003-convergencia-plan-requisitos.md — Convergencia plan↔requisitos

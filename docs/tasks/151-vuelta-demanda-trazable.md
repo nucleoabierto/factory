@@ -2,7 +2,7 @@
 
 ## Estado
 
-[r] En revisión
+[x] Completada
 
 ## Tipo
 
@@ -98,5 +98,5 @@ La «capacidad ausente» actúa en dos puntos del sub-flujo —`planear-tarea` l
 ## Revisión
 
 - Subagente: 2026-11-06 — Solicita cambios (3 menores de alineación documental: literal de `inicializar`, Finalización de `ejecutar-implementacion`, Salida/Finalización de `planear-tarea`; más 1 cosmético —`<refs>`→`<bloqueantes>`—), corregidos; segunda ronda: Aprueba (1 observación menor resuelta: causa de bloqueo en el resumen del mapa)
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-11-06 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
