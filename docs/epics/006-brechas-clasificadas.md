@@ -16,7 +16,7 @@ Toda pieza desconectada sale de la evaluación con su naturaleza declarada y su 
 ## Piezas
 
 - [x] docs/tasks/148-modelo-clasificacion-brechas.md — Modelo de clasificación de brechas
-- [ ] docs/tasks/149-clasificacion-en-evaluacion.md — Clasificación de brechas en la evaluación de conectividad
+- [x] docs/tasks/149-clasificacion-en-evaluacion.md — Clasificación de brechas en la evaluación de conectividad
 - [ ] docs/tasks/150-carril-tecnico-ligero.md — Carril técnico ligero para el detalle de implementación
 - [ ] docs/tasks/151-vuelta-demanda-trazable.md — Vuelta a la demanda de la capacidad ausente
 
