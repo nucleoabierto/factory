@@ -35,7 +35,7 @@ Instrucciones para que un agente ejecute la mitad de ejecución del flujo de des
 
 - El diff de los cambios que implementan la tarea, devuelto al invocador.
 - El plan técnico del archivo de la tarea con las acciones marcadas, la sección del carril con las decisiones de los detalles de implementación cuando los hubo y, si las hubo, la sección de desviaciones.
-- O la conclusión de que la tarea no puede ejecutarse —sin plan aprobado, desviación mayor no confirmada—, comunicada al invocador.
+- O la conclusión de que la tarea no puede ejecutarse —sin plan aprobado, desviación mayor no confirmada, brecha reclasificada a «capacidad ausente»—, comunicada al invocador con su causa —en la reclasificación, la idea derivada—.
 
 ## Principios rectores
 
@@ -46,7 +46,7 @@ Instrucciones para que un agente ejecute la mitad de ejecución del flujo de des
 ## Procedimiento
 
 1. **Leer el archivo de la tarea** y validar la entrada delegando en `consultar-artefactos` la consulta «si la planeación de la tarea está completa»: plan técnico y suite de pruebas esperada presentes y aprobados. Si falta alguna, informar al invocador de que la tarea requiere `planear-tarea` primero y terminar sin ejecutar.
-2. **Invocar `ejecutar-implementacion`** con el archivo de la tarea: implementa el plan, marca la checklist, cubre la suite esperada y registra las desviaciones; escala al usuario las que cambian objetivo, alcance o guía de la épica. Si el usuario no confirma una desviación mayor, informar al invocador y terminar.
+2. **Invocar `ejecutar-implementacion`** con el archivo de la tarea: implementa el plan, marca la checklist, cubre la suite esperada y registra las desviaciones; escala al usuario las que cambian objetivo, alcance o guía de la épica. Si el usuario no confirma una desviación mayor, informar al invocador y terminar; si la ejecución se detiene por una brecha reclasificada a «capacidad ausente», informar al invocador con la idea derivada como causa y terminar.
 3. **Devolver el control al invocador** informando del diff producido y de las desviaciones registradas.
 
 ## Finalización

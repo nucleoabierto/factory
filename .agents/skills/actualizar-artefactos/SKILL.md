@@ -54,7 +54,7 @@ Instrucciones para que un agente ejecute escrituras mecánicas sobre los artefac
 El consumidor delega la acción de dominio; el gestor la expande a las operaciones del catálogo y resuelve lo que la acción no nombra. Los estados y las secciones se nombran por su concepto en el vocabulario del dominio (`en-revision`, `estado`, `plan`, `borradores`…) y el gestor los traduce a la marca, etiqueta o nombre que declara el documento de reglas.
 
 - «marcar la tarea `<ref>` como `<estado>`»: `marcar` sobre el índice con la marca declarada y `estado` sobre el archivo de la tarea con su etiqueta (las dos mutaciones que el estado implica).
-- «declarar la tarea `<ref>` bloqueada por `<refs>`»: la misma acción de estado con `bloqueada`, pasando los bloqueantes a `marcar`.
+- «declarar la tarea `<ref>` bloqueada por `<bloqueantes>`»: la misma acción de estado con `bloqueada`, pasando los bloqueantes a `marcar`.
 - «dar de alta la tarea `<ref>` «`<título>`» bajo `<agrupación>`»: `añadir` con la línea compuesta según el formato declarado.
 - «dar de alta la propuesta `<dir>` «`<título>`» (`<n>` borradores)»: `añadir` sobre la sección de propuestas con la línea compuesta.
 - «retirar `<ref>` del índice»: `retirar`.

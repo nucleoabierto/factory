@@ -15,6 +15,8 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
     - Ancla: `.agents/skills/evaluar-conectividad/references/clasificacion-brechas.md`
   - **Carril técnico ligero:** la vía de la brecha «detalle de implementación»: se resuelve dentro del trabajo en curso con restricción declarada, alternativas y decisión documentada en la sección `## Carril` de la tarea; la que exige decidir fuera del alcance se reclasifica a «capacidad ausente».
     - Ancla: `.agents/skills/ejecutar-implementacion/SKILL.md`
+  - **Vuelta a la demanda:** la vía de la brecha «capacidad ausente»: produce una idea persistida derivada —enunciado heredado y «Origen» a la tarea y pieza que la revelaron— y la pieza queda bloqueada en el índice con la idea como causa declarada; persistir la idea no dispara la revisita —compite por el canal habitual al materializarse—.
+    - Ancla: `.agents/skills/evaluar-conectividad/references/vuelta-demanda.md`
   - **Plan de implementación:** entendimiento del subsistema, plan técnico conceptual y «Suite de pruebas esperada» guiada por ZOMBIE, con la letra declarada por expectativa cuando aplica.
     - Ancla: `.agents/skills/planear-implementacion/SKILL.md`
     - Origen: `docs/decisions/D028-letra-zombie-declarada-en-suite.md`
@@ -28,7 +30,7 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
     - Ancla: `.agents/skills/planear-tarea/SKILL.md` y `.agents/skills/desarrollar-tarea/SKILL.md` (cada flujo registra su mitad en el archivo de la tarea)
 - **Invariantes:**
   - La conectividad se evalúa antes de la planeación: la falta de infraestructura se detecta antes de escribir el plan.
-  - El bloqueo se deriva de la naturaleza de la brecha, no del veredicto uniforme: una capacidad ausente bloquea la pieza con su causa declarada; un detalle de implementación lo resuelve el carril ligero en la ejecución; la brecha que el modelo no discrimina escala al usuario, nunca se adivina.
+  - El bloqueo se deriva de la naturaleza de la brecha, no del veredicto uniforme: una capacidad ausente devuelve la pieza a la demanda —idea derivada con origen— y la bloquea con esa causa declarada; un detalle de implementación lo resuelve el carril ligero en la ejecución; la brecha que el modelo no discrimina escala al usuario, nunca se adivina.
   - No se replanifica: una tarea con plan y suite aprobados entra directa a ejecución, en esta sesión o en otra.
   - La planeación es incremental: una dependencia con plan aprobado pero sin ejecutar se toma como base asumida; sin plan, bloquea.
   - La implementación sigue el plan registrado; las desviaciones se documentan, no se ocultan.
@@ -52,5 +54,5 @@ Ejecutar las tareas de tipo `desarrollo` o `mantenimiento (refactoring)` con un 
 
 ## Estado de salud
 
-- Última revisión: 2026-11-01 (el veredicto de conectividad enruta las brechas por naturaleza; el carril ligero resuelve los detalles en la ejecución)
+- Última revisión: 2026-11-06 (la capacidad ausente vuelve a la demanda con idea derivada trazable y bloqueo con causa declarada)
 - Divergencias conocidas: Ninguna

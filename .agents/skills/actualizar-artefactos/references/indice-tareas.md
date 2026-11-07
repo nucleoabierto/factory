@@ -28,7 +28,7 @@ Cada tarea es una línea de primer nivel, la viñeta `- [` sin sangría, con la 
 
 - `<marca>` es un carácter dentro de la casilla: ` ` pendiente, `~` en progreso, `r` en revisión, `x` completada, `!` bloqueada.
 - `<referencia>` es la ruta del archivo de la tarea (`docs/tasks/NNN-slug.md`).
-- Una tarea bloqueada lleva una sublista con sus bloqueantes, una línea por cada uno con la forma `  - [ ] <referencia>` (dos espacios de sangría).
+- Una tarea bloqueada lleva una sublista con sus bloqueantes, una línea por cada uno con la forma `  - [ ] <referencia>` (dos espacios de sangría): el bloqueante es la referencia del artefacto que la detiene —otra tarea, una idea persistida— o la causa declarada en texto cuando no hay artefacto.
 - Las líneas de propuesta usan el mismo molde con la marca `p` y la referencia al directorio: `- [p] <dir-propuesta>/ — <título> (<n> borradores)`.
 
 Solo las líneas de primer nivel son entradas del índice: la línea empieza por `- [` y el `]` cae en quinta posición (las líneas sangradas son sublistas de la entrada que las precede). Las operaciones `siguiente` y `propuestas` exigen además el espacio tras `]`; `estado-grupo` e `inventario` aceptan cualquier marca en la casilla. Al referenciar una línea por subcadena, conviene usar la ruta del archivo para que la coincidencia sea única.
@@ -112,7 +112,7 @@ Crea el índice con la estructura de la convención. El archivo no debe existir:
      Formato de cada línea:
      - [estado] docs/tasks/NNN-slug.md — título breve
        estado: [ ] pendiente, [~] en progreso, [r] en revisión, [x] completada, [!] bloqueada
-     Para tareas bloqueadas, añadir sublista con las tareas bloqueantes.
+     Para tareas bloqueadas, añadir sublista con las referencias o causas bloqueantes.
      Las tareas planificadas se agrupan por hito bajo encabezados
      ## Hito N: título. Las tareas sueltas, sin hito propio, viven en
      la sección ## General, que precede a los hitos.

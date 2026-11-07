@@ -4,7 +4,7 @@
      Formato de cada línea:
      - [estado] docs/tasks/NNN-slug.md — título breve
        estado: [ ] pendiente, [~] en progreso, [r] en revisión, [x] completada, [!] bloqueada
-     Para tareas bloqueadas, añadir sublista con las tareas bloqueantes.
+     Para tareas bloqueadas, añadir sublista con las referencias o causas bloqueantes.
      Las tareas planificadas se agrupan por hito bajo encabezados
      ## Hito N: título. Las tareas sueltas, sin hito propio, viven en
      la sección ## General, que precede a los hitos.
@@ -46,13 +46,6 @@
 - [x] docs/tasks/136-aprendizaje-sincrono-til.md — Aprendizaje síncrono al estilo TIL
 - [x] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
 
-## Hito 2: Brechas clasificadas
-<!-- épica: docs/epics/006-brechas-clasificadas.md -->
-
-- [x] docs/tasks/148-modelo-clasificacion-brechas.md — Modelo de clasificación de brechas
-- [x] docs/tasks/149-clasificacion-en-evaluacion.md — Clasificación de brechas en la evaluación de conectividad
-- [x] docs/tasks/150-carril-tecnico-ligero.md — Carril técnico ligero para el detalle de implementación
-- [ ] docs/tasks/151-vuelta-demanda-trazable.md — Vuelta a la demanda de la capacidad ausente
 
 ## Propuestas en revisión
 
