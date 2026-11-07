@@ -69,3 +69,4 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `references/clasificacion-brechas.md` — El modelo que el punto de decisión aplica: las dos clases con sus criterios, la forma de la entrada enrutada y los casos límite.
+- `docs/decisions/D037-brechas-clasificadas-enrutadas.md` — La decisión que este punto de decisión materializa.

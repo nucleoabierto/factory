@@ -13,6 +13,7 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ### Changed
 
+- La evaluación de conectividad clasifica cada brecha no absorbible según su naturaleza —detalle de implementación o capacidad ausente— y emite su destino declarado junto al veredicto: la pieza con capacidad ausente queda bloqueada con su causa, la de solo detalle continúa a la planeación, y el alta improvisada de la tarea puente desaparece del flujo (tarea 149).
 - La planeación de dirección (`planificar-roadmap`) decide el orden de las líneas comprometidas invocando `priorizar-lineas` como paso propio del flujo: el orden de Now y Next sale del escenario decidido —no del orden de inserción— y las líneas comprometidas del roadmap declaran los atributos de la comparación y el escenario que fijó su posición; `mantener-roadmap` los tolera y preserva (tarea 143).
 - Los momentos informativos disparan la revisita de prioridad por su cuenta: `cerrar-conjunto`, `planificar` y `crear-tareas` invocan `priorizar-lineas` tras su momento —la propuesta ofrece revisitar ahora, mantener el orden vigente anotado en el escenario o posponerlo con registro— (tarea 144).
 

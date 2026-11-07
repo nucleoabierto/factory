@@ -90,5 +90,5 @@ Conectada — el modelo de clasificación existe en `evaluar-conectividad/refere
 ## Revisión
 
 - Subagente: 2026-11-01 — Aprueba con menores corregidos
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-11-01 — Aprueba
+- Usuario (cierre): 2026-11-01 — Aprueba

@@ -157,3 +157,7 @@
   - Disparadores: priorizar-lineas, priorización, escenarios, líneas de trabajo, comparación relativa, WSJF, confianza, incertidumbre, norte, docs/priorizaciones, orden de líneas
   - Resumen: La comparación de líneas vive en el skill invocable `priorizar-lineas`: atributos relativos —valor, criticidad temporal, habilitación/riesgo, tamaño— con confianza e incertidumbre explícitas, dos o más alternativas con implicaciones, doble puerta humana y escenario persistido en `docs/priorizaciones/`.
   - Estado: Aceptada
+- D037-brechas-clasificadas-enrutadas.md
+  - Disparadores: evaluar-conectividad, clasificación de brechas, veredicto enrutado, detalle de implementación, capacidad ausente, carril técnico ligero, vuelta a la demanda, tarea puente, bloqueo por naturaleza, planear-tarea, brecha dudosa, escalación
+  - Resumen: La evaluación de conectividad clasifica cada brecha no absorbible según el modelo compartido y la enruta —detalle de implementación al carril ligero, capacidad ausente a la demanda—; el bloqueo se deriva de la clase agregada, la duda escala al usuario y la tarea puente improvisada desaparece.
+  - Estado: Aceptada
