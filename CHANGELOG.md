@@ -7,6 +7,8 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-20
+
 ### Added
 
 - Vuelta a la demanda de la capacidad ausente: la brecha-ausencia produce una idea persistida derivada en `docs/ideas/` —enunciado heredado y `> **Origen:**` a la tarea y pieza que la revelaron— y la pieza queda bloqueada en el índice con la idea como causa declarada; el bloqueo admite cualquier referencia de artefacto o causa literal y persistir la idea no dispara la revisita de prioridad —compite por el canal habitual al materializarse— (tarea 151).
@@ -107,7 +109,8 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 - `registrar-experiencias` genera un Id único por entrada —varias correcciones de una misma sesión ya no comparten timestamp—
 - La description de `consultar-lecciones` declara la capacidad ofrecida en lugar de narrar su mecánica interna
 
-[Unreleased]: https://github.com/nucleoabierto/factory/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/nucleoabierto/factory/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/nucleoabierto/factory/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/nucleoabierto/factory/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/nucleoabierto/factory/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/nucleoabierto/factory/compare/v0.3.0...v0.4.0

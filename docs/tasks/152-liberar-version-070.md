@@ -2,9 +2,7 @@
 
 ## Estado
 
-[ ] Pendiente | [~] En progreso | [r] En revisión | [x] Completada | [!] Bloqueada
-
-**[ ] Pendiente**
+[r] En revisión
 
 ## Tipo
 
