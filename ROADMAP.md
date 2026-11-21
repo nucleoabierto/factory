@@ -6,7 +6,17 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 
 ## Now
 
-- 1. docs/ideas/003-convergencia-plan-requisitos.md — Convergencia plan↔requisitos
+- 1. docs/ideas/006-division-paquete-partes.md — División del paquete en subpaquetes
+  - Estado: pendiente de arrancar
+  - Justificación: primera del orden por decisión directa del usuario —modularizar el paquete antes de seguir extendiendo el núcleo de gestión, cuando cada skill nuevo aumenta el coste de la división—.
+  - Comparación:
+    - Valor: alta
+    - Criticidad temporal: media
+    - Habilitación/riesgo: media
+    - Tamaño: media
+    - Confianza: media
+  - Escenario: decisión directa del usuario (2026-11-20), fuera de escenario
+- 2. docs/ideas/003-convergencia-plan-requisitos.md — Convergencia plan↔requisitos
   - Estado: pendiente de arrancar
   - Justificación: primera del orden porque es el núcleo de gestionar producto —los requisitos declarados mandan sobre la ejecución— y su dependencia de brechas clasificadas ya está entregada.
   - Comparación:
@@ -16,7 +26,7 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
     - Tamaño: media
     - Confianza: media
   - Escenario: docs/priorizaciones/002-gestion-a-nivel-de-producto.md
-- 2. docs/ideas/005-validacion-de-resultado.md — Validación de resultado
+- 3. docs/ideas/005-validacion-de-resultado.md — Validación de resultado
   - Estado: pendiente de arrancar
   - Justificación: cierra el lazo de producto —problema declarado → efecto entregado— y se apoya en la trazabilidad que convergencia consolida.
   - Comparación:
@@ -26,7 +36,7 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
     - Tamaño: media
     - Confianza: media
   - Escenario: docs/priorizaciones/002-gestion-a-nivel-de-producto.md
-- 3. docs/ideas/004-carril-de-baja-friccion.md — Carril de baja fricción
+- 4. docs/ideas/004-carril-de-baja-friccion.md — Carril de baja fricción
   - Estado: pendiente de arrancar
   - Justificación: baja la barrera de entrada a perfiles de gestión; va tras los dos conjuntos anteriores y tras aclarar su solapamiento con el carril técnico ligero entregado.
   - Comparación:
@@ -58,3 +68,4 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 - Usuario: 2026-10-26 — Aprueba
 - Usuario: 2026-10-29 — Aprueba
 - Usuario: 2026-11-06 — Aprueba (escenario 002, alternativa A)
+- Usuario: 2026-11-20 — Aprueba (incorpora la división del paquete como Now #1, por delante de convergencia)
