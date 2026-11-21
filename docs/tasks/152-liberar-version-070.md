@@ -48,4 +48,4 @@ Promover la sección Unreleased del changelog —seis entradas acumuladas de las
 
 - Subagente: 2026-11-20 — Aprueba
 - Usuario (ejecución): 2026-11-20 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-11-20 — Aprueba

@@ -59,3 +59,7 @@ Alternativa A, elegida por el usuario sin ajustes: convergencia plan↔requisito
 ## Límites de la decisión
 
 Las líneas comparadas siguen siendo candidatas de dirección —ideas persistidas y líneas del roadmap—, no trabajo materializado. La estimación del carril de baja fricción depende de aclarar su solapamiento con el carril técnico ligero: si el solapamiento resulta total, la línea sale de la comparación; si resulta parcial, su valor se reduce al terreno de perfiles de gestión. Convergencia y validación de resultado mantienen confianza media por la adopción no verificada y la señal interna débil. Conviene revisitar si entra demanda externa, si el carril de baja fricción se redefine tras aclarar el solapamiento, o si la práctica de declarar requisitos se verifica en un conjunto real.
+
+## Confirmaciones
+
+- 2026-11-20 — cierre de conjunto: orden vigente confirmado
