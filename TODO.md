@@ -45,7 +45,6 @@
 - [x] docs/tasks/135-pie-close-pr-en-merge.md — Pie «Closes #N» en el commit de merge del PR
 - [x] docs/tasks/136-aprendizaje-sincrono-til.md — Aprendizaje síncrono al estilo TIL
 - [x] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
-- [ ] docs/tasks/152-liberar-version-070.md — Liberar la versión 0.7.0
 
 
 ## Propuestas en revisión
