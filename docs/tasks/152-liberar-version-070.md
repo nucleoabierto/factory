@@ -2,7 +2,7 @@
 
 ## Estado
 
-[r] En revisión
+[x] Completada
 
 ## Tipo
 
@@ -46,6 +46,6 @@ Promover la sección Unreleased del changelog —seis entradas acumuladas de las
 
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-11-20 — Aprueba
+- Usuario (ejecución): 2026-11-20 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
