@@ -49,4 +49,6 @@
 
 ## Propuestas en revisión
 
+- [p] docs/proposals/006-subpaquetes-por-dominio/ — División del paquete en subpaquetes por dominio de capacidad (5 borradores)
+
 

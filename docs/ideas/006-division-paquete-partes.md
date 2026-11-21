@@ -3,6 +3,7 @@
 > **Tipo:** idea de estructura de producto — tamaño conjunto (complejidad media)
 > **Fecha:** 2026-11
 > **Requiere:** ninguna — se apoya en el empaquetado teleprompter existente
+> **Procesada en:** docs/proposals/006-subpaquetes-por-dominio/
 
 ## Problema
 
