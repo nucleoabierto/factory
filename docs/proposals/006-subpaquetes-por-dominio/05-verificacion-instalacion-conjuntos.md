@@ -1,37 +1,42 @@
-# Verificación de la instalación por conjunto
+# Borrador: Verificación de instalación por conjunto
 
-## Tipo
-
-mantenimiento
+> **Estado:** borrador — pendiente de aprobación de la propuesta
+> **Tipo:** mantenimiento
+> **Depende de:** `04-resolucion-necesidades-frontera.md`
 
 ## Objetivo
 
-Verificar la garantía de coherencia de forma ejecutable: instalar cada subpaquete por separado en un proyecto de prueba y comprobar que sus piezas se resuelven y operan sin el resto de la colección.
+Verificar que cada conjunto instala en un destino limpio exactamente lo que declara —sus piezas más sus dependencias, transitivamente resueltas— y que las piezas operan en su frontera; que la composición pura, si existe, reproduce la adopción completa; y que el conjunto es reinstalable.
 
-## Dependencias
+## Contexto y enfoque
 
-- Borrador 03
+- La instalación resuelve el grafo transitivo: la verificación comprueba orden (dependencias antes que dependientes), restricciones satisfechas y ausencia de ciclos —el instalador aborta sin escribir si es irresoluble—.
+- Cada pieza instalada registra su origen en el registro del destino: `reinstall` la reproduce; el destino de prueba lo comprueba.
+- Instalación global en `docs/tasks/proyectos-validacion/`; la verificación requiere destinos limpios por conjunto, no proyectos existentes.
+- La verificación de estructura (manifiestos, mapas) es previa y parte de ella; la funcional (destinos por conjunto) es el núcleo.
 
-## Entrada
+## Plan de trabajo
 
-- La colección materializada y adaptada: los paquetes con sus piezas.
-- El instalador teleprompter disponible en el entorno y un repositorio de prueba desechable por conjunto.
+- [ ] Crear destinos de prueba por conjunto (directorios vacíos con la estructura mínima).
+- [ ] Instalar cada conjunto por su nombre de miembro: verificar que trae sus dependencias —todas, antes que el dependiente, con restricciones satisfechas— y nada más.
+- [ ] Ejecutar las piezas del conjunto instalado: flujos principales operan; las necesidades degradadas se comportan como se documentó.
+- [ ] Si el modelo declaró composición pura, instalarla y verificar paridad con la adopción completa.
+- [ ] `reinstall` en un destino: reproduce el conjunto desde el registro.
+- [ ] Registrar defectos encontrados y resolver o reportar fuera de alcance.
 
-## Resultado esperado
+## Entregable
 
-- Un informe de verificación por conjunto: instalación limpia del paquete, piezas resueltas en el destino y operación básica ejercitada —cada skill del conjunto se invoca sin referencias rotas—.
-- La misma verificación sobre la colección completa instalada como antes, para detectar regresiones de la reestructuración.
-- Los defectos encontrados, corregidos o devueltos al modelo con su evidencia.
+Cada conjunto verificado: instala solo lo suyo más sus dependencias, opera en su frontera, y es reinstalable desde el registro; composición pura con paridad verificada; defectos resueltos o reportados.
 
-## Criterios de calidad
+## Criterios de aceptación
 
-- Cada paquete instala sin errores en un repositorio limpio.
-- Ninguna pieza instalada referencia material o capacidades ausentes: las referencias `../` resuelven dentro de lo instalado.
-- La colección completa sigue instalando igual que el paquete único anterior: mismo conjunto de skills en el destino.
+- Cada conjunto instala en destino limpio sin errores y trae exactamente sus piezas más sus dependencias —el grafo declarado, resuelto transitivamente—.
+- Las piezas de cada conjunto operan con solo sus dependencias presentes.
+- El destino conserva evidencia: registro con origen por pieza, reinstalable.
+- Las restricciones de versión declaradas se satisfacen; no hay ciclos ni conflictos.
+- Defectos resueltos o reportados con alcance.
 
-## Procedimiento sugerido
+## Fuera de alcance
 
-1. Por cada paquete, instalar en un repositorio de prueba limpio y verificar el mapa de instalación completo.
-2. Ejercitar la operación básica de cada pieza instalada y comprobar que ninguna referencia queda rota.
-3. Instalar la colección entera y comparar el resultado contra la instalación del paquete único previo.
-4. Registrar defectos: los de frontera se resuelven en la pieza correspondiente o se devuelven al modelo con evidencia.
+- Reinstalar con subconjuntos los proyectos de validación existentes.
+- Automatización de la verificación como proceso del producto —el disparador `proyectos-validacion` lo decide aparte—.

@@ -1,4 +1,4 @@
-# División del paquete en subpaquetes por dominio de capacidad
+# Propuesta: Subpaquetes por dominio
 
 ## Estado
 
@@ -16,40 +16,41 @@ Resolverlo permitiría consumir el sistema por conjuntos de capacidades coherent
 
 ## Forma de solución
 
-La colección deja de ofrecerse solo como unidad completa: quien la adopta elige entre conjuntos declarados de capacidades —por ejemplo, el conjunto de redacción, el del lazo de revisión o el núcleo del ciclo—, cada uno consumible por separado y con garantía de coherencia, sin conocer las dependencias internas de las piezas. El conjunto incluye adaptar las piezas que lo requieran para funcionar dentro de su frontera. Categoría: flujo nuevo —una vía de adopción parcial que hoy no existe—.
+La colección deja de ofrecerse solo como unidad completa: quien la adopta elige entre conjuntos declarados de capacidades —por ejemplo, el conjunto de redacción, el del lazo de revisión o el núcleo del ciclo—, cada uno consumible por separado y con garantía de coherencia, sin conocer las dependencias internas de las piezas. El conjunto incluye adaptar las piezas que lo requieran para funcionar dentro de su frontera. Categoría: **flujo nuevo** —una vía de adopción parcial que hoy no existe—.
 
 ## Solución
 
-El repositorio se reorganiza como colección teleprompter: el manifiesto raíz pasa a describir la colección y cada conjunto vive en su propio directorio de paquete con manifiesto propio —nombre, versión inicial y mapa de instalación— que contiene físicamente las piezas que instala, porque el formato exige que la fuente no salga del paquete y no ofrece dependencias entre paquetes.
-
-El corte por dominios se decide con un modelo de fronteras construido sobre el grafo real de dependencias entre piezas —invocaciones por nombre y referencias a material compartido—: cada pieza queda asignada a un conjunto y cada dependencia que cruza una frontera se resuelve por regla —misma frontera, opcional degradada o material duplicado—. El primer conjunto es evidente: redacción, ya autocontenida. Las piezas adaptadas se limitan a lo que la coherencia de su conjunto exige, y la política de versionado de los conjuntos se decide y se materializa en el proceso de liberación.
+La colección se ofrece como índice de conjuntos declarados: cada conjunto agrupa las piezas de un dominio de capacidad en un paquete propio —instalable por separado y versionado— y declara qué otros conjuntos necesita para completarse, de modo que instalarlo trae todo lo que su coherencia exige. Los conjuntos del ejemplo —redacción, lazo de revisión, núcleo del ciclo— ilustran la división, no la fijan: el corte exacto se decide en el modelo de fronteras del primer borrador. El conjunto incluye adaptar las piezas que lo requieran para funcionar dentro de su frontera.
 
 ## Alternativas consideradas
 
-- Guía documental de subconjuntos recomendados: documentar qué piezas elegir para cada caso de uso. Se descarta porque la coherencia sigue siendo responsabilidad del adoptante —justo el conocimiento que falta— y la guía envejece con cada pieza nueva.
-- Selección asistida en la instalación: que la instalación pregunte las capacidades deseadas y resuelva las piezas por él. Se descarta porque la coherencia se computaría en cada instalación en lugar de declararse una vez, y exige mecanismos ajenos al paquete.
-- Distribución como productos independientes: cada conjunto como entrega separada con su propio ciclo. Se descarta porque multiplica la operación de mantener y versionar cada entrega, y el material compartido exigiría una entrega base que reproduce el mismo problema un nivel arriba.
+- **Guía documental de subconjuntos recomendados** (cambio de UI): documentar qué piezas elegir para cada caso de uso. Se descarta porque la coherencia sigue siendo responsabilidad del adoptante —justo el conocimiento que falta— y la guía envejece con cada pieza nueva.
+- **Selección asistida en la instalación** (paso nuevo en un flujo existente): que la instalación pregunte las capacidades deseadas y resuelva las piezas por él. Se descarta porque la coherencia se computaría en cada instalación en lugar de declararse una vez, y exige mecanismos ajenos al paquete.
+- **Distribución como productos independientes** (cambio de proceso): cada conjunto como entrega separada con su propio ciclo. Se descarta porque multiplica la operación de mantener y versionar cada entrega, y el material compartido exigiría una entrega base que reproduce el mismo problema un nivel arriba.
 
 ## Fuera de alcance
 
-- La mecánica concreta que expresa los conjuntos en el formato de empaquetado (decisión del refinamiento ya tomada: colección con paquetes autocontenidos; su detalle vive en los borradores).
-- Ciclo de vida de liberaciones independientes por conjunto —cadencia propia, changelog por conjunto—; la decisión de política de versionado (tren compartido o independiente) sí entra en el conjunto.
+- La mecánica concreta que expresa los conjuntos y sus dependencias en el formato de empaquetado (decisión del refinamiento).
+- Ciclo de vida de liberaciones independientes por conjunto —cadencia propia, changelog por conjunto—; la decisión de política de versionado y las restricciones que los conjuntos declaran entre sí sí entran en el conjunto.
+- Dependencias sobre piezas fuera de esta colección —orígenes externos—: todas las que el sistema declara residen en el mismo árbol.
 - Reinstalar con subconjuntos los proyectos de validación existentes.
-- Rediseño de las piezas más allá de lo que la coherencia de su conjunto exija —incluida la duplicación del material compartido que cada subpaquete necesite—.
+- Rediseño de las piezas más allá de lo que la coherencia de su conjunto exija —incluida la resolución del material compartido como dependencia declarada, reubicación o duplicación—.
 
 ## Investigaciones de apoyo
 
-- Análisis del formato de paquete teleprompter resuelto durante el refinamiento —`docs/formato-paquete.md` y `examples/coleccion-skills/` del repositorio teleprompter—: la colección con paquetes autocontenidos es la forma nativa que el formato ya soporta; `source` no puede salir del paquete y no existe mecanismo de dependencias entre paquetes.
-- Grafo de dependencias entre las 45 piezas, extraído mecánicamente durante el refinamiento: referencias `../<hermano>/` e invocaciones por nombre en cada `SKILL.md`. Confirma el primer corte limpio —`revisar-redaccion` y `pulir-escritura` no invocan ni referencian ninguna otra pieza—.
+- El grafo real de dependencias entre las 45 piezas (obtenido por análisis de invocaciones y referencias entre ellas en el momento de la propuesta; el primer borrador lo regenera): `revisar-redaccion` y `pulir-escritura` no invocan ni referencian a ninguna otra pieza —el conjunto de redacción es un corte limpio—; las piezas de orquestación (`ejecutar-tareas`, `idea-a-tarea`, `crear-tareas`, `planificar`, `refinar-propuesta`) dependen de hasta 17, y los gestores (`distribuir`, `actualizar-artefactos`, `operar-changelog`, `operar-roadmap`, `registrar`, `consultar-artefactos`) son dependencia de la mayoría —material compartido que el modelo de fronteras convierte en conjuntos base o duplicado—.
+- El paquete actual ya instala por pieza, pero la unidad de adopción es la colección completa de 45.
+- El formato teleprompter soporta colecciones (`"collection": true`, paquetes por directorio con manifiesto propio y `version` obligatoria) y, desde su versión 0.7.0, dependencias entre paquetes: cada manifiesto declara las piezas que lo completan —del mismo árbol por nombre, con restricción de versión opcional como aserción—; la instalación resuelve el conjunto entero transitivamente, aborta ante ciclos o conflictos sin escribir, admite paquetes de composición pura sin instalación propia y registra el origen de cada pieza para reproducirla. La contención física deja de ser la única vía de coherencia.
 
 ## Borradores
 
-- `01-modelo-fronteras-conjuntos.md` — Modelo de fronteras de los conjuntos
-- `02-repositorio-como-coleccion.md` — Repositorio reorganizado como colección (depende de 01)
-- `03-autocontencion-piezas-frontera.md` — Autocontención de las piezas que cruzan fronteras (depende de 01, 02)
-- `04-politica-versionado-conjuntos.md` — Política de versionado de los conjuntos (depende de 01)
-- `05-verificacion-instalacion-conjuntos.md` — Verificación de la instalación por conjunto (depende de 03)
+- `01-modelo-fronteras-conjuntos.md` — Modelo de fronteras de los conjuntos (desarrollo; depende de: ninguna).
+- `02-politica-versionado-conjuntos.md` — Política de versionado de los conjuntos (desarrollo; depende de: `01-modelo-fronteras-conjuntos.md`).
+- `03-repositorio-como-coleccion.md` — Repositorio como colección de paquetes (mantenimiento; depende de: `01-modelo-fronteras-conjuntos.md`, `02-politica-versionado-conjuntos.md`).
+- `04-resolucion-necesidades-frontera.md` — Resolución de necesidades de las piezas en frontera (desarrollo; depende de: `03-repositorio-como-coleccion.md`).
+- `05-verificacion-instalacion-conjuntos.md` — Verificación de instalación por conjunto (mantenimiento; depende de: `04-resolucion-necesidades-frontera.md`).
 
 ## Revisión
 
-- Usuario: [fecha] — [Aprueba | Solicita cambios | Rechaza]
+- Última revisión: 2026-11-23
+- Decisiones: (pendiente)

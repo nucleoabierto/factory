@@ -1,41 +1,42 @@
-# Modelo de fronteras de los conjuntos
+# Borrador: Modelo de fronteras de los conjuntos
 
-## Tipo
-
-desarrollo
+> **Estado:** borrador — pendiente de aprobación de la propuesta
+> **Tipo:** desarrollo
+> **Depende de:** ninguna
 
 ## Objetivo
 
-Producir el modelo de fronteras de los conjuntos —la fuente común de criterios que consumen las piezas siguientes—: el grafo de dependencias real entre las piezas, el criterio de coherencia de un conjunto y el corte declarado con el material compartido que cada conjunto necesita.
+Definir el modelo que decide a qué conjunto pertenece cada pieza, qué conjunto depende de cuál y qué necesidades quedan degradadas, de modo que cada conjunto sea consumible por separado con su coherencia garantizada por dependencias declaradas.
 
-## Dependencias
+## Contexto y enfoque
 
-- Ninguna
+- La propuesta pide coherencia por conjunto, no solo corte por dominio: una pieza solo cabe donde sus necesidades obligatorias queden satisfechas —en la misma frontera o como dependencia declarada—.
+- Las 45 piezas tienen un grafo real de invocaciones y referencias: el análisis previo muestra gestores compartidos por casi todas (`distribuir`, `actualizar-artefactos`, `operar-changelog`, `operar-roadmap`, `registrar`, `consultar-artefactos`), orquestadores con muchas dependencias (`ejecutar-tareas`, `idea-a-tarea`, `crear-tareas`, `planificar`) y piezas aisladas (`revisar-redaccion`, `pulir-escritura`).
+- El formato del empaquetado admite declarar que un conjunto depende de otros del mismo árbol —la coherencia se declara, no solo se contiene—, así como paquetes de composición pura sin contenido propio; el supuesto de autocontención física deja de ser obligatorio.
+- La frontera se decide por conjunto, con criterio explícito por pieza —así el modelo es verificable y la pertenencia no depende de criterio implícito.
+- `skill-para-humano` declara hoy «pieza autocontenida en un directorio»: la tarea actualiza el criterio a pertenencia y dependencias por conjunto.
 
-## Entrada
+## Plan de trabajo
 
-- El grafo de dependencias entre las piezas, extraíble mecánicamente: referencias `../<hermano>/` e invocaciones por nombre en cada `SKILL.md` y sus `references/`.
-- El formato de paquete teleprompter: colección como contenedor de paquetes autocontenidos —`source` no puede salir del paquete— y sin mecanismo de dependencias entre paquetes (`docs/formato-paquete.md` del repositorio teleprompter).
-- La dirección del usuario: primer conjunto evidente el de redacción; la adaptación de piezas está dentro del alcance del conjunto.
+- [ ] Obtener el grafo real de dependencias entre las 45 piezas (invocaciones y referencias entre ellas).
+- [ ] Agrupar por dominio de capacidad: redacción; lazo de revisión; núcleo del ciclo (descubrimiento→entrega); gestión de producto; validación; gestores e instrumentación.
+- [ ] Clasificar cada necesidad de una pieza sobre otra: **obligatoria** —la pieza no funciona sin ella: va a la misma frontera o se declara dependencia del conjunto—; **deseable** —mejora pero puede degradarse con gracia—; **ortogonal** —fuera del conjunto—.
+- [ ] Trazar el grafo de dependencias entre conjuntos: para cada necesidad obligatoria que cruza frontera, decidir dependencia declarada o co-ubicación —el material compartido por muchos (gestores) pesa a favor de un conjunto base del que dependan los demás—.
+- [ ] Decidir si la colección incluye un conjunto de composición pura —sin contenido propio, depende de todos— que preserve la adopción completa en un solo gesto.
+- [ ] Anexar a `skill-para-humano` el criterio de composición: «¿a qué conjunto pertenece la pieza? ¿qué declara como dependencia?».
 
-## Resultado esperado
+## Entregable
 
-- Documento del modelo que declara:
-  - Los criterios para asignar cada pieza a un conjunto —dominio de capacidad, densidad de invocaciones internas, material compartido—.
-  - La lista de conjuntos con el contenido de cada uno: las 45 piezas asignadas.
-  - La regla para las invocaciones que cruzan fronteras: obligatoria —misma frontera o dependencia declarada en la guía del paquete— u opcional —con su degradación documentada—.
-  - El destino del material compartido (`references/`, literales de convención) por conjunto: dentro de la misma frontera o duplicado.
+El modelo de fronteras como documento en la propuesta (o referencia en `docs/`): división declarada de conjuntos con su grafo de dependencias, la lista de necesidades degradadas, la decisión sobre conjuntos base y de composición pura, y el criterio de pertenencia anexado a `skill-para-humano`.
 
-## Criterios de calidad
+## Criterios de aceptación
 
-- Cada una de las 45 piezas queda asignada a exactamente un conjunto, sin huérfanas.
-- Toda invocación y toda referencia a material que cruza una frontera queda clasificada según la regla, con su resolución declarada.
-- El conjunto de redacción resulta autocontenido sin necesitar adaptación alguna.
-- El modelo basta para ejecutar los borradores siguientes sin rehacer el análisis.
+- Toda pieza tiene conjunto declarado; la pertenencia es verificable contra la regla.
+- Cada necesidad obligatoria que cruza frontera queda resuelta como dependencia declarada o co-ubicación; el grafo no tiene ciclos —el formato los aborta—.
+- Las necesidades deseables no resueltas tienen degradación elegante documentada.
+- La división responde al problema: un conjunto como el de redacción es consumible solo, sin invocaciones ni referencias rotas a lo no instalado.
 
-## Procedimiento sugerido
+## Fuera de alcance
 
-1. Extraer el grafo completo: por pieza, invocaciones salientes a otras piezas y referencias `../` a material hermano.
-2. Proponer el corte inicial por dominios de capacidad y verificarlo contra el grafo: las fronteras con más cruces se revisan —pieza mal ubicada o frontera mal trazada—.
-3. Declarar la regla de cruces y aplicarla a cada cruce detectado.
-4. Fijar el documento del modelo con la lista de conjuntos, sus contenidos y el material compartido por conjunto.
+- Materializar la estructura (borrador 03) y la adaptación de piezas (borrador 04).
+- La política de versionado (borrador 02) —aunque el grafo que aquí se declara es su entrada—.
