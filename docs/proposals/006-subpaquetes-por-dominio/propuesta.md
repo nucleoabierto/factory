@@ -2,7 +2,7 @@
 
 ## Estado
 
-[p] Pendiente de revisión
+[a] Aprobada
 
 ## Problema
 
@@ -44,13 +44,12 @@ La colección se ofrece como índice de conjuntos declarados: cada conjunto agru
 
 ## Borradores
 
-- `01-modelo-fronteras-conjuntos.md` — Modelo de fronteras de los conjuntos (desarrollo; depende de: ninguna).
-- `02-politica-versionado-conjuntos.md` — Política de versionado de los conjuntos (desarrollo; depende de: `01-modelo-fronteras-conjuntos.md`).
-- `03-repositorio-como-coleccion.md` — Repositorio como colección de paquetes (mantenimiento; depende de: `01-modelo-fronteras-conjuntos.md`, `02-politica-versionado-conjuntos.md`).
-- `04-resolucion-necesidades-frontera.md` — Resolución de necesidades de las piezas en frontera (desarrollo; depende de: `03-repositorio-como-coleccion.md`).
-- `05-verificacion-instalacion-conjuntos.md` — Verificación de instalación por conjunto (mantenimiento; depende de: `04-resolucion-necesidades-frontera.md`).
+- `docs/tasks/153-modelo-fronteras-conjuntos.md` — Modelo de fronteras de los conjuntos
+- `docs/tasks/154-politica-versionado-conjuntos.md` — Política de versionado de los conjuntos (depende de 153)
+- `docs/tasks/155-repositorio-como-coleccion.md` — Repositorio como colección de paquetes (depende de 153, 154)
+- `docs/tasks/156-resolucion-necesidades-frontera.md` — Resolución de necesidades de las piezas en frontera (depende de 155)
+- `docs/tasks/157-verificacion-instalacion-conjuntos.md` — Verificación de instalación por conjunto (depende de 156)
 
 ## Revisión
 
-- Última revisión: 2026-11-23
-- Decisiones: (pendiente)
+- Usuario: 2026-11-23 — Aprueba
