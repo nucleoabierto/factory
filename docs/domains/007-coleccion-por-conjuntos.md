@@ -7,7 +7,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 ## Referencia del modelo
 
 - **Lenguaje ubicuo:**
-  - **Pieza:** un skill de la colección —un directorio autocontenido con `SKILL.md` y `references/`—.
+  - **Pieza:** un skill de la colección —un directorio autocontenido con `SKILL.md` y sus recursos propios (`references/`, `assets/`)—.
     - Ancla: `.agents/skills/`
   - **Conjunto:** un paquete de la colección que agrupa piezas de un dominio de capacidad, instalable por separado y versionado; declara las piezas de otros conjuntos que necesita para completarse.
     - Ancla: este documento; los manifiestos que la materialicen —pendientes de la tarea 155—
@@ -36,7 +36,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `direccion` → `gestores` — `planificar`, `planificar-roadmap` y `mantener-roadmap` delegan su mecánica en `consultar-artefactos`/`actualizar-artefactos`.
   - `documentacion` → `gestores` — `documentar-dominio`, `documentar-producto`, `decisiones-diseno` y `destilar-lecciones` consultan artefactos y lecciones con los gestores.
   - `versionado` → `gestores` — `mantener-changelog` y `liberar-version` delegan toda operación en `operar-changelog`.
-  - `flujo-ideas` → `gestores` — `idea-a-tarea`, `crear-tareas`, `refinar-propuesta` y `lluvia-de-ideas` registran artefactos con los gestores.
+  - `flujo-ideas` → `gestores` — `idea-a-tarea`, `crear-tareas` y `refinar-propuesta` registran artefactos con los gestores; `lluvia-de-ideas` consulta la serie con `consultar-artefactos`.
   - `flujo-ideas` → `direccion` — `idea-a-tarea` invoca `planificar` en modo promoción tras promocionar borradores.
   - `lazo-revision` → `gestores` — `revisar-pr` y `mejorar-pr` consultan artefactos con los gestores.
   - `lazo-revision` → `commit` — `mejorar-pr` commitea correcciones y `gestionar-pr` redacta mensajes con las reglas de `commit`.
@@ -46,7 +46,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `ciclo-tareas` → `versionado` — `ejecutar-tareas` invoca el sensor `mantener-changelog`.
   - `ciclo-tareas` → `lazo-revision` — `ejecutar-tareas` abre la puerta de ejecución con `gestionar-pr`.
   - `ciclo-tareas` → `flujo-ideas` — `evaluar-conectividad/references/vuelta-demanda.md` lee `lluvia-de-ideas/references/formato-idea.md` para escribir la demanda derivada.
-  - `ciclo-tareas` → `commit` — `ejecutar-tareas` commitea cada ronda con `commit`.
+  - `ciclo-tareas` → `commit` — `ejecutar-tareas` commitea las escrituras del cierre con `commit`.
   - `commit`, `evidencia`, `redaccion`, `gestores` → ninguna
   - El grafo no tiene ciclos: `ciclo-tareas` es el sumidero que declara casi toda la colección porque sus sensores de cierre son parte de su contrato; `gestores`, `commit`, `evidencia` y `redaccion` son fuentes.
 - **Invariantes:**
@@ -72,7 +72,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 - **Fronteras:**
   - Dentro: la división de las 45 piezas en conjuntos, sus dependencias declaradas, las degradaciones y el criterio de composición.
   - Fuera: la mecánica del formato de empaquetado —colecciones, manifiestos, resolución transitiva—, que pertenece al producto de empaquetado; los orígenes externos a la colección; el ciclo de vida de liberaciones independientes por conjunto —descartado por la propuesta—; la reescritura de piezas más allá de su frontera.
-  - Relaciones: `ciclo-tareas` es el consumidor mayor —declara casi todos los conjuntos—; `gestores` es la base de la que dependen casi todos; `redaccion` y `evidencia` son consumidos opcionalmente por muchas piezas sin dependencia declarada.
+  - Relaciones: `ciclo-tareas` es el consumidor mayor —declara casi todos los conjuntos—; `gestores` es la base de la que dependen casi todos; `redaccion` es consumida opcionalmente por una docena de piezas y `evidencia` por dos, sin dependencia declarada.
 - **Decisiones relevantes:**
   - `docs/proposals/006-subpaquetes-por-dominio/propuesta.md` — la propuesta aprobada que origina el dominio.
   - `docs/epics/007-subpaquetes-por-dominio.md` y `docs/prd/007-subpaquetes-por-dominio.md` — la épica y el PRD del conjunto.
