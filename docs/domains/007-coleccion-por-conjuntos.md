@@ -28,7 +28,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `documentacion` — `documentar-dominio`, `documentar-producto`, `documentar-guia-estilo`, `aplicar-guia-estilo`, `decisiones-diseno`, `destilar-lecciones`: la documentación viva, las decisiones, el aprendizaje y la guía de estilo.
   - `versionado` — `liberar-version`, `mantener-changelog`: el ciclo de liberaciones.
   - `flujo-ideas` — `idea-a-tarea`, `lluvia-de-ideas`, `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta`, `crear-tareas`: de la idea suelta a las tareas definitivas.
-  - `lazo-revision` — `gestionar-pr`, `revisar-pr`, `comentar-pr`, `clasificar-comentarios`, `mejorar-pr`: el ciclo de vida del pull request y su revisión.
+  - `ciclo-revision` — `gestionar-pr`, `revisar-pr`, `comentar-pr`, `clasificar-comentarios`, `mejorar-pr`: el ciclo de vida del pull request y su revisión.
   - `ciclo-tareas` — `ejecutar-tareas`, `planear-tarea`, `recopilar-contexto`, `evaluar-conectividad`, `planear-implementacion`, `desarrollar-tarea`, `ejecutar-implementacion`, `cerrar-conjunto`, `revisar-implementacion`: el ciclo de desarrollo de una tarea con sus sensores de cierre.
   - `composicion` — conjunto de composición pura que depende de todos los demás conjuntos; preserva la adopción completa.
   - Origen: `docs/proposals/006-subpaquetes-por-dominio/propuesta.md`, `docs/epics/007-subpaquetes-por-dominio.md`, `docs/tasks/153-modelo-fronteras-conjuntos.md`
@@ -38,13 +38,13 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `versionado` → `gestores` — `mantener-changelog` y `liberar-version` delegan toda operación en `operar-changelog`.
   - `flujo-ideas` → `gestores` — `idea-a-tarea`, `crear-tareas` y `refinar-propuesta` registran artefactos con los gestores; `lluvia-de-ideas` consulta la serie con `consultar-artefactos`.
   - `flujo-ideas` → `direccion` — `idea-a-tarea` invoca `planificar` en modo promoción tras promocionar borradores.
-  - `lazo-revision` → `gestores` — `revisar-pr` y `mejorar-pr` consultan artefactos con los gestores.
-  - `lazo-revision` → `commit` — `mejorar-pr` commitea correcciones y `gestionar-pr` redacta mensajes con las reglas de `commit`.
+  - `ciclo-revision` → `gestores` — `revisar-pr` y `mejorar-pr` consultan artefactos con los gestores.
+  - `ciclo-revision` → `commit` — `mejorar-pr` commitea correcciones y `gestionar-pr` redacta mensajes con las reglas de `commit`.
   - `ciclo-tareas` → `gestores` — `recopilar-contexto`, `evaluar-conectividad` y las piezas de planeación y ejecución delegan en los gestores.
   - `ciclo-tareas` → `direccion` — `ejecutar-tareas` invoca los sensores `mantener-prd` y `mantener-roadmap` al cerrar cada tarea.
   - `ciclo-tareas` → `documentacion` — `ejecutar-tareas` invoca los sensores `documentar-dominio`, `documentar-producto`, `destilar-lecciones` y `decisiones-diseno`.
   - `ciclo-tareas` → `versionado` — `ejecutar-tareas` invoca el sensor `mantener-changelog`.
-  - `ciclo-tareas` → `lazo-revision` — `ejecutar-tareas` abre la puerta de ejecución con `gestionar-pr`.
+  - `ciclo-tareas` → `ciclo-revision` — `ejecutar-tareas` abre la puerta de ejecución con `gestionar-pr`.
   - `ciclo-tareas` → `flujo-ideas` — `evaluar-conectividad/references/vuelta-demanda.md` lee `lluvia-de-ideas/references/formato-idea.md` para escribir la demanda derivada.
   - `ciclo-tareas` → `commit` — `ejecutar-tareas` commitea las escrituras del cierre con `commit`.
   - `commit`, `evidencia`, `redaccion`, `gestores` → ninguna
