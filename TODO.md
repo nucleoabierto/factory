@@ -45,11 +45,14 @@
 - [x] docs/tasks/135-pie-close-pr-en-merge.md — Pie «Closes #N» en el commit de merge del PR
 - [x] docs/tasks/136-aprendizaje-sincrono-til.md — Aprendizaje síncrono al estilo TIL
 - [x] docs/tasks/137-actualizar-vision-producto.md — Actualizar la visión de producto
+
+## Hito 3: Subpaquetes por dominio
+<!-- épica: docs/epics/007-subpaquetes-por-dominio.md -->
+
 - [ ] docs/tasks/153-modelo-fronteras-conjuntos.md — Modelo de fronteras de los conjuntos
 - [ ] docs/tasks/154-politica-versionado-conjuntos.md — Política de versionado de los conjuntos
 - [ ] docs/tasks/155-repositorio-como-coleccion.md — Repositorio como colección de paquetes
 - [ ] docs/tasks/156-resolucion-necesidades-frontera.md — Resolución de necesidades de las piezas en frontera
-- [ ] docs/tasks/157-verificacion-instalacion-conjuntos.md — Verificación de instalación por conjunto
 
 
 ## Propuestas en revisión

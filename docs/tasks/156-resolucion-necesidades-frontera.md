@@ -39,11 +39,12 @@ Adaptar las piezas para que cada necesidad que cruza su frontera quede resuelta:
 1. Por pieza, recorrer sus necesidades según la lista del modelo: la referencia a pieza declarada como dependencia queda tal cual —resuelve en destino—; la referencia o invocación a pieza opcional se degrada a instrucción o comportamiento reducido documentado.
 2. Adaptar invocaciones entre skills: `skill(nombre)` de una pieza no dependiente degrada a instrucción; las de piezas dependientes se mantienen.
 3. Adaptar imports y referencias a gestores que quedaron como dependencias o fuera de frontera.
-4. Ejecutar las piezas en frontera en un destino de prueba por conjunto: cada una funciona con solo sus dependencias instaladas.
+4. Ejecutar las piezas en frontera en un destino de prueba por conjunto: cada una funciona con solo sus dependencias instaladas —la verificación funcional del grafo declarado—.
+5. Si la adaptación ajustó alguna dependencia declarada en un manifiesto, re-verificar la instalación de los conjuntos afectados: el grafo sigue resolviendo y la composición pura, si existe, mantiene la paridad.
 
 ## Notas
 
-- Fuera de alcance: el modelo de fronteras (tarea 153), la materialización de la colección (tarea 155), la verificación instalación-a-instalación completa (tarea 157), reinstalar con subconjuntos los proyectos de validación existentes y rediseño de piezas más allá de lo que su coherencia en frontera exige.
+- Fuera de alcance: el modelo de fronteras (tarea 153), la materialización de la colección (tarea 155), reinstalar con subconjuntos los proyectos de validación existentes y rediseño de piezas más allá de lo que su coherencia en frontera exige.
 
 ## Revisión
 

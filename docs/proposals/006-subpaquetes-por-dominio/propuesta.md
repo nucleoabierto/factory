@@ -48,7 +48,6 @@ La colección se ofrece como índice de conjuntos declarados: cada conjunto agru
 - `docs/tasks/154-politica-versionado-conjuntos.md` — Política de versionado de los conjuntos (depende de 153)
 - `docs/tasks/155-repositorio-como-coleccion.md` — Repositorio como colección de paquetes (depende de 153, 154)
 - `docs/tasks/156-resolucion-necesidades-frontera.md` — Resolución de necesidades de las piezas en frontera (depende de 155)
-- `docs/tasks/157-verificacion-instalacion-conjuntos.md` — Verificación de instalación por conjunto (depende de 156)
 
 ## Revisión
 

@@ -32,7 +32,7 @@ Expresar la división del modelo de fronteras en la estructura física del repos
 - El manifiesto raíz es colección válida y lista todos los conjuntos.
 - Cada conjunto tiene manifiesto válido: `name` igual al directorio, `version` según política, `install` no vacío salvo composición pura, y `dependencies` fieles al grafo del modelo.
 - Ningún `source` sale de su paquete; el contenido que cada conjunto instala —con sus dependencias— contiene lo que sus piezas necesitan.
-- La estructura instalable por conjunto queda verificable por instalación en destino de prueba.
+- Cada conjunto —y la composición pura, si existe— instala en destino limpio trayendo exactamente sus piezas más sus dependencias resueltas transitivamente, y `reinstall` lo reproduce desde el registro.
 
 ## Procedimiento sugerido
 
@@ -40,11 +40,12 @@ Expresar la división del modelo de fronteras en la estructura física del repos
 2. Generar el manifiesto de cada conjunto: `name` igual al directorio, `version` inicial según política, `install` con las rutas de sus piezas, `requires.paths`, `personalization` y `dependencies` sobre los conjuntos que el grafo declara —del mismo árbol, con las restricciones de la política—.
 3. Materializar el conjunto de composición pura si el modelo lo declara: manifiesto sin `install` cuyas `dependencies` reúnen la colección entera.
 4. Ajustar `personalization`, `docs/` y el README a la nueva estructura.
+5. Instalar cada conjunto —y la composición pura, si existe— en destinos limpios de prueba: verificar que la resolución trae todas las dependencias antes que los dependientes, satisface las restricciones, no encuentra ciclos y que la composición reproduce la adopción completa; comprobar `reinstall` desde el registro.
 
 ## Notas
 
 - El `source` de una entrada `install` no puede salir de su paquete: lo que instala vive físicamente en su directorio; las dependencias no se instalan por `source` sino por resolución transitiva.
-- Fuera de alcance: adaptar el contenido de las piezas (tarea 156) y la verificación de instalación por conjunto (tarea 157).
+- Fuera de alcance: adaptar el contenido de las piezas (tarea 156), que cierra ejecutando cada conjunto en su frontera —la verificación funcional le pertenece—.
 
 ## Revisión
 
