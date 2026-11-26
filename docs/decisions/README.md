@@ -161,3 +161,7 @@
   - Disparadores: evaluar-conectividad, clasificación de brechas, veredicto enrutado, detalle de implementación, capacidad ausente, carril técnico ligero, vuelta a la demanda, tarea puente, bloqueo por naturaleza, planear-tarea, brecha dudosa, escalación
   - Resumen: La evaluación de conectividad clasifica cada brecha no absorbible según el modelo compartido y la enruta —detalle de implementación al carril ligero, capacidad ausente a la demanda—; el bloqueo se deriva de la clase agregada, la duda escala al usuario y la tarea puente improvisada desaparece.
   - Estado: Aceptada
+- D038-versiones-por-conjunto-tren-comun.md
+  - Disparadores: versionado de conjuntos, teleprompter.json, version, dependencies, restricción de versión, semver, tren de liberación, manifiesto, liberar-version, repositorio-como-coleccion
+  - Resumen: Cada conjunto lleva versión semver propia en su manifiesto —inicial `1.0.0`— dentro de un único tren de liberación por repositorio; toda dependencia declarada lleva `^1.0.0` y las restricciones insatisfechas se actualizan en el mismo tren.
+  - Estado: Aceptada

@@ -19,6 +19,10 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
     - Ancla: este documento
   - **Composición pura:** un conjunto sin piezas propias cuyas dependencias reúnen la colección entera; preserva la adopción completa en un solo gesto.
     - Ancla: este documento
+  - **Versión de conjunto:** la versión semver propia que el manifiesto de cada conjunto declara —autoridad sobre el VCS, como en todo paquete—.
+    - Ancla: este documento; los manifiestos que la materialicen —pendientes de la tarea 155—
+  - **Tren de liberación:** el evento de liberación único del repositorio —un tag, el CHANGELOG y la puerta humana de siempre— que mueve las versiones de los conjuntos que cambiaron; las cadencias por conjunto quedan descartadas.
+    - Ancla: este documento
 - **Entidades / estado — la división declarada:**
   - `gestores` — la mecánica de artefactos y escenarios: `actualizar-artefactos`, `consultar-artefactos`, `consultar-lecciones`, `consultar-decisiones`, `operar-changelog`, `operar-experiencias`, `priorizar-lineas`. Conjunto base: casi todos los demás declaran dependencia sobre él.
   - `commit` — contiene solo la pieza `commit`, la más transversal después de los gestores.
@@ -49,6 +53,14 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `ciclo-tareas` → `commit` — `ejecutar-tareas` commitea las escrituras del cierre con `commit`.
   - `commit`, `evidencia`, `redaccion`, `gestores` → ninguna
   - El grafo no tiene ciclos: `ciclo-tareas` es el sumidero que declara casi toda la colección porque sus sensores de cierre son parte de su contrato; `gestores`, `commit`, `evidencia` y `redaccion` son fuentes.
+- **Política de versionado** (D038 — versión propia por conjunto, liberación única):
+  - Las once versiones iniciales son `1.0.0` —`gestores`, `commit`, `evidencia`, `redaccion`, `direccion`, `documentacion`, `versionado`, `flujo-ideas`, `ciclo-revision`, `ciclo-tareas` y `completo`—: el contenido ya maduró dentro del paquete único; lo nuevo es la frontera, no la capacidad.
+  - La liberación es una sola —el tren—: un tag, el CHANGELOG del repositorio y una puerta humana por evento; los conjuntos que cambiaron avanzan su versión y los que no la conservan. Las cadencias y changelogs independientes por conjunto quedan descartadas —la propuesta los declara fuera de alcance y esta política lo confirma—. El CHANGELOG sigue versionando el tren; los manifiestos versionan cada conjunto.
+  - La versión de un conjunto avanza por la señal más fuerte de los cambios que tocan sus piezas o su manifiesto —ruptura → major, funcionalidad → minor, corrección → patch, la misma correspondencia del CHANGELOG—; un dependiente no avanza por la versión de su dependencia: la restricción absorbe los bumps compatibles.
+  - Toda dependencia declarada lleva la restricción `^1.0.0`: la forma `^` admite la evolución compatible y rechaza la ruptura, que fuerza la actualización explícita del dependiente en el mismo tren. Las aristas se clasifican por naturaleza —mecánica de artefactos (`→gestores`), invocación de pieza (`flujo-ideas`→`direccion`, `→commit`, `ciclo-tareas`→`ciclo-revision`), sensores de cierre (`ciclo-tareas`→`direccion`/`documentacion`/`versionado`), contrato de archivo (`ciclo-tareas`→`flujo-ideas`) y agregación (`completo`→los diez)— y la forma es uniforme: todos los contratos son del mismo tren y se liberan atómicamente.
+  - En cada liberación se verifican las restricciones declaradas contra las nuevas versiones de las dependencias; la que quede insatisfecha se actualiza en el manifiesto del dependiente en el mismo tren, y el dependiente avanza también —su bump sigue la señal de sus propios cambios: una actualización de restricción sin cambios de piezas es corrección, patch—. `completo` declara `^1.0.0` sobre los diez conjuntos como cualquier otro —su composición pura no lo exime—.
+  - Un conjunto nuevo entra a la colección con versión `1.0.0` y sus dependencias declaradas llevan `^` anclada en la versión vigente de cada dependencia al declararse; una dependencia nueva sobre un conjunto existente se ancla igual.
+  - Las restricciones nombran solo piezas del mismo árbol —los orígenes externos están fuera de alcance—; si esa frontera se amplía, esta política se revisa.
 - **Invariantes:**
   - Toda pieza tiene conjunto declarado y la pertenencia es verificable contra la regla de este documento —una pieza nueva declara su conjunto y sus dependencias al entrar a la colección—.
     - Ancla: este documento
@@ -66,19 +78,21 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - Componer una pieza nueva: consultar este documento —¿a qué conjunto pertenece? ¿qué declara como dependencia?— antes de escribirla.
   - Instalar un conjunto: el empaquetado resuelve sus dependencias transitivamente; instalar `ciclo-tareas` trae casi toda la colección porque es el sumidero del grafo.
   - Adoptar la colección completa: instalar `completo`, que reproduce la unidad actual en un solo gesto.
+  - Liberar el tren: `liberar-version` cura el CHANGELOG y propone el bump del tren; los bumps por conjunto se derivan de las piezas tocadas y las restricciones insatisfechas se actualizan en la misma liberación.
 
 ## Explicación del dominio
 
 - **Fronteras:**
-  - Dentro: la división de las 45 piezas en conjuntos, sus dependencias declaradas, las degradaciones y el criterio de composición.
-  - Fuera: la mecánica del formato de empaquetado —colecciones, manifiestos, resolución transitiva—, que pertenece al producto de empaquetado; los orígenes externos a la colección; el ciclo de vida de liberaciones independientes por conjunto —descartado por la propuesta—; la reescritura de piezas más allá de su frontera.
+  - Dentro: la división de las 45 piezas en conjuntos, sus dependencias declaradas, la política de versionado, las degradaciones y el criterio de composición.
+  - Fuera: la mecánica del formato de empaquetado —colecciones, manifiestos, resolución transitiva—, que pertenece al producto de empaquetado; los orígenes externos a la colección; el ciclo de vida de liberaciones independientes por conjunto —descartado por la propuesta y confirmado por la política de versionado—; la reescritura de piezas más allá de su frontera.
   - Relaciones: `ciclo-tareas` es el consumidor mayor —declara casi todos los conjuntos—; `gestores` es la base de la que dependen casi todos; `redaccion` es consumida opcionalmente por una docena de piezas y `evidencia` por dos, sin dependencia declarada.
 - **Decisiones relevantes:**
   - `docs/proposals/006-subpaquetes-por-dominio/propuesta.md` — la propuesta aprobada que origina el dominio.
   - `docs/epics/007-subpaquetes-por-dominio.md` y `docs/prd/007-subpaquetes-por-dominio.md` — la épica y el PRD del conjunto.
   - `docs/decisions/D003-skills-como-unidades-autocontenidas.md`, `D004-estandar-agent-skills.md`, `D005-division-progresiva-con-references.md` — las decisiones que definen la pieza que este dominio agrupa.
+  - `docs/decisions/D038-versiones-por-conjunto-tren-comun.md` — la política de versionado de los conjuntos que este documento declara.
 
 ## Estado de salud
 
-- Última revisión: 2026-11-24
-- Divergencias conocidas: el modelo es prospectivo —los conjuntos aún no existen como paquetes; la materialización corre en la tarea 155 y la adaptación de piezas en la 156—; la lista de conjuntos es la división vigente a esa fecha y crece con cada pieza nueva.
+- Última revisión: 2026-11-25
+- Divergencias conocidas: el modelo es prospectivo —los conjuntos aún no existen como paquetes; la materialización corre en la tarea 155 y la adaptación de piezas en la 156—; la política de versionado está decidida y la ejecutan los manifiestos de la 155; la lista de conjuntos es la división vigente a esa fecha y crece con cada pieza nueva.
