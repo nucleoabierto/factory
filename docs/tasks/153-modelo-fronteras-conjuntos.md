@@ -2,7 +2,7 @@
 
 ## Estado
 
-[~] En progreso
+[x] Completada
 
 ## Tipo
 
@@ -97,5 +97,5 @@ La colección son 45 piezas autocontenidas en `.agents/skills/` con `SKILL.md` y
 ## Revisión
 
 - Subagente: 2026-11-24 — Aprueba (primera ronda solicitó cambios: tres atribuciones de evidencia corregidas y verificadas)
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-11-24 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]

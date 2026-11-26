@@ -49,7 +49,7 @@
 ## Hito 3: Subpaquetes por dominio
 <!-- épica: docs/epics/007-subpaquetes-por-dominio.md -->
 
-- [~] docs/tasks/153-modelo-fronteras-conjuntos.md — Modelo de fronteras de los conjuntos
+- [x] docs/tasks/153-modelo-fronteras-conjuntos.md — Modelo de fronteras de los conjuntos
 - [ ] docs/tasks/154-politica-versionado-conjuntos.md — Política de versionado de los conjuntos
 - [ ] docs/tasks/155-repositorio-como-coleccion.md — Repositorio como colección de paquetes
 - [ ] docs/tasks/156-resolucion-necesidades-frontera.md — Resolución de necesidades de las piezas en frontera

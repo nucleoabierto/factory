@@ -33,8 +33,8 @@
   - Disparadores: redacción, SKILL.md, documentos, texto en español, derivaciones, participios
   - Resumen: Usar vocabulario llano del español; no acuñar derivaciones cuando existe la forma estándar.
 - nomenclatura.md
-  - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice
-  - Resumen: Nombrar directorios y artefactos por el tipo específico de contenido que almacenan, no por la operación genérica.
+  - Disparadores: nuevo directorio, docs/, nombre de directorio, nomenclatura, ubicación de documentos, persistir documentos, nuevo índice, nuevo término, nombrar, nombre de artefacto, acuñar, invocación, --package, identificador, nombre de conjunto, nombre de paquete
+  - Resumen: Nombrar artefactos por el tipo específico de contenido que almacenan y por el contexto de invocación; verificar el uso real de los términos acuñados antes de propagarlos.
 - contratos-de-skills.md
   - Disparadores: skills, SKILL.md, front-matter, description, nuevo skill, nombre de skill, modo interactivo, subagente, delegar, delegación, checklist, referencia a decisión, citas, reglas inline, diff, ubicación de cambios, sensor de cierre, revisión técnica, alcance de revisión, lanzar subagente, plantilla, assets/, formato de artefacto, referencias, autocontenido, instalar, paquete
   - Resumen: El contrato que un skill declara va a nivel de resultado —nombre y description hablan de la capacidad completa, no de la acción inicial ni de la mecánica; las reglas van inline, la delegación devuelve explicación + archivos, la entrada sobre cambios es la ubicación y no un diff, los artefactos decididos por humanos piden modo interactivo, las revisiones por subagente se lanzan con el alcance acotado, el formato de lo producido vive en plantillas de assets/, y las referencias solo apuntan a material que viaja con el paquete.
