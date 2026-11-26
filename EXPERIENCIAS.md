@@ -281,3 +281,17 @@
   Obtenido: el usuario señaló que esa sección crea una dependencia de la historia del proyecto, que no está disponible cuando el paquete se instala en otro proyecto
   Corrección: los documentos del paquete no pueden anclarse a la historia del proyecto anfitrión —ni commits ni trabajo local—; la motivación se escribe de forma portable o no se escribe
   Estado: consolidada
+
+- Id: 20261125T230344
+  Tarea: docs/tasks/153-modelo-fronteras-conjuntos.md
+  Esperado: que el nombre del conjunto usara vocabulario con uso real.
+  Obtenido: «lazo-revision», término acuñado sin uso establecido, propagado al documento del dominio como identificador del conjunto.
+  Corrección: verificar el uso real del término antes de propagarlo —«ciclo de revisión» es la forma atestiguada en español para el ciclo de revisión del pull request—.
+  Estado: consolidada
+
+- Id: 20261125T230345
+  Tarea: docs/tasks/153-modelo-fronteras-conjuntos.md
+  Esperado: que el nombre del conjunto se leyera en su contexto de invocación (`--package <nombre>`).
+  Obtenido: «composicion», que nombraba el mecanismo del conjunto y no lo que el usuario instala.
+  Corrección: nombrar por lo que el artefacto es para quien lo invoca —«completo» se lee solo—.
+  Estado: consolidada

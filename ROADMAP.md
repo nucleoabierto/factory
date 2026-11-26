@@ -7,7 +7,7 @@ Cubrir el ciclo de vida completo del desarrollo de producto con skills autoconte
 ## Now
 
 - 1. docs/ideas/006-division-paquete-partes.md — División del paquete en subpaquetes
-  - Estado: pendiente de arrancar
+  - Estado: en curso
   - Justificación: primera del orden por decisión directa del usuario —modularizar el paquete antes de seguir extendiendo el núcleo de gestión, cuando cada skill nuevo aumenta el coste de la división—.
   - Comparación:
     - Valor: alta

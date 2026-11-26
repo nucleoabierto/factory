@@ -45,6 +45,7 @@ Adaptar las piezas para que cada necesidad que cruza su frontera quede resuelta:
 ## Notas
 
 - Fuera de alcance: el modelo de fronteras (tarea 153), la materialización de la colección (tarea 155), reinstalar con subconjuntos los proyectos de validación existentes y rediseño de piezas más allá de lo que su coherencia en frontera exige.
+- Detectado en la revisión de la tarea 153: `revisar-pr/SKILL.md` cita `.agents/skills/revisar-implementacion/SKILL.md` como proveniencia —referencia de archivo que cruza conjuntos (`ciclo-revision` → `ciclo-tareas`) y declararla como dependencia crearía un ciclo (`ciclo-tareas` ya depende de `ciclo-revision`); resolverla como referencia incidental en esta tarea —reformular la cita o duplicar el fragmento necesario—.
 
 ## Revisión
 
