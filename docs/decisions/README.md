@@ -163,5 +163,5 @@
   - Estado: Aceptada
 - D038-versiones-por-conjunto-tren-comun.md
   - Disparadores: versionado de conjuntos, teleprompter.json, version, dependencies, restricción de versión, semver, tren de liberación, manifiesto, liberar-version, repositorio-como-coleccion
-  - Resumen: Cada conjunto lleva versión semver propia en su manifiesto —inicial `1.0.0`— dentro de un único tren de liberación por repositorio; toda dependencia declarada lleva `^1.0.0` y las restricciones insatisfechas se actualizan en el mismo tren.
+  - Resumen: Cada conjunto lleva versión semver propia en su manifiesto —inicial, la del tren que lo publica primero (`0.8.0`)— dentro de un único tren de liberación por repositorio; toda dependencia declarada lleva el rango de era `>=0.8.0 <1.0.0` y las restricciones insatisfechas se actualizan en el mismo tren.
   - Estado: Aceptada
