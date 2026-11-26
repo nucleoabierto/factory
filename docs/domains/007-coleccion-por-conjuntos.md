@@ -30,7 +30,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `flujo-ideas` — `idea-a-tarea`, `lluvia-de-ideas`, `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta`, `crear-tareas`: de la idea suelta a las tareas definitivas.
   - `ciclo-revision` — `gestionar-pr`, `revisar-pr`, `comentar-pr`, `clasificar-comentarios`, `mejorar-pr`: el ciclo de vida del pull request y su revisión.
   - `ciclo-tareas` — `ejecutar-tareas`, `planear-tarea`, `recopilar-contexto`, `evaluar-conectividad`, `planear-implementacion`, `desarrollar-tarea`, `ejecutar-implementacion`, `cerrar-conjunto`, `revisar-implementacion`: el ciclo de desarrollo de una tarea con sus sensores de cierre.
-  - `composicion` — conjunto de composición pura que depende de todos los demás conjuntos; preserva la adopción completa.
+  - `completo` — conjunto de composición pura que depende de todos los demás conjuntos; preserva la adopción completa.
   - Origen: `docs/proposals/006-subpaquetes-por-dominio/propuesta.md`, `docs/epics/007-subpaquetes-por-dominio.md`, `docs/tasks/153-modelo-fronteras-conjuntos.md`
 - **Dependencias declaradas entre conjuntos** (las que los manifiestos escribirán). El grafo se extrajo de las invocaciones por nombre y las referencias de archivo en `SKILL.md` y `references/` de las 45 piezas; las menciones en prosa —«cuándo no usar», citas de contexto— no son dependencias:
   - `direccion` → `gestores` — `planificar`, `planificar-roadmap` y `mantener-roadmap` delegan su mecánica en `consultar-artefactos`/`actualizar-artefactos`.
@@ -65,7 +65,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 - **Operaciones:**
   - Componer una pieza nueva: consultar este documento —¿a qué conjunto pertenece? ¿qué declara como dependencia?— antes de escribirla.
   - Instalar un conjunto: el empaquetado resuelve sus dependencias transitivamente; instalar `ciclo-tareas` trae casi toda la colección porque es el sumidero del grafo.
-  - Adoptar la colección completa: instalar `composicion`, que reproduce la unidad actual en un solo gesto.
+  - Adoptar la colección completa: instalar `completo`, que reproduce la unidad actual en un solo gesto.
 
 ## Explicación del dominio
 
