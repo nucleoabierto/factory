@@ -1,0 +1,52 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "gestores",
+  "version": "0.8.0",
+  "description": "Mecánica de los artefactos del proyecto: consulta y escritura canónica de tareas, lecciones, decisiones, changelog y experiencias",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/actualizar-artefactos/",
+      "target": ".agents/skills/actualizar-artefactos/"
+    },
+    {
+      "source": "skills/consultar-artefactos/",
+      "target": ".agents/skills/consultar-artefactos/"
+    },
+    {
+      "source": "skills/consultar-lecciones/",
+      "target": ".agents/skills/consultar-lecciones/"
+    },
+    {
+      "source": "skills/consultar-decisiones/",
+      "target": ".agents/skills/consultar-decisiones/"
+    },
+    {
+      "source": "skills/operar-changelog/",
+      "target": ".agents/skills/operar-changelog/"
+    },
+    {
+      "source": "skills/operar-experiencias/",
+      "target": ".agents/skills/operar-experiencias/"
+    },
+    {
+      "source": "skills/priorizar-lineas/",
+      "target": ".agents/skills/priorizar-lineas/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}

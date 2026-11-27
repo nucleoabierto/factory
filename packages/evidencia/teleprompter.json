@@ -1,0 +1,32 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "evidencia",
+  "version": "0.8.0",
+  "description": "Obtención de evidencia: investigación externa y validación de hipótesis técnicas",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/investigar/",
+      "target": ".agents/skills/investigar/"
+    },
+    {
+      "source": "skills/prueba-concepto/",
+      "target": ".agents/skills/prueba-concepto/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}

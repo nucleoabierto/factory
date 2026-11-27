@@ -1,0 +1,31 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "redaccion",
+  "version": "0.8.0",
+  "description": "Revisión y pulido de la escritura de los documentos del proyecto",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/revisar-redaccion/",
+      "target": ".agents/skills/revisar-redaccion/"
+    },
+    {
+      "source": "skills/pulir-escritura/",
+      "target": ".agents/skills/pulir-escritura/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "metadata": {
+    "idioma": "es"
+  }
+}

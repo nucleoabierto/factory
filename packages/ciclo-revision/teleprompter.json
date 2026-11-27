@@ -1,0 +1,54 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "ciclo-revision",
+  "version": "0.8.0",
+  "description": "Ciclo de vida del pull request: revisión, comentarios, triage y mejora",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/gestionar-pr/",
+      "target": ".agents/skills/gestionar-pr/"
+    },
+    {
+      "source": "skills/revisar-pr/",
+      "target": ".agents/skills/revisar-pr/"
+    },
+    {
+      "source": "skills/comentar-pr/",
+      "target": ".agents/skills/comentar-pr/"
+    },
+    {
+      "source": "skills/clasificar-comentarios/",
+      "target": ".agents/skills/clasificar-comentarios/"
+    },
+    {
+      "source": "skills/mejorar-pr/",
+      "target": ".agents/skills/mejorar-pr/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "package": "gestores",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "commit",
+      "version": ">=0.8.0 <1.0.0"
+    }
+  ],
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}

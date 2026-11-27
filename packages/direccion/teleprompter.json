@@ -1,0 +1,50 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "direccion",
+  "version": "0.8.0",
+  "description": "Dirección del producto: épicas, roadmap, PRD y revisión arquitectónica",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/planificar/",
+      "target": ".agents/skills/planificar/"
+    },
+    {
+      "source": "skills/planificar-roadmap/",
+      "target": ".agents/skills/planificar-roadmap/"
+    },
+    {
+      "source": "skills/mantener-roadmap/",
+      "target": ".agents/skills/mantener-roadmap/"
+    },
+    {
+      "source": "skills/mantener-prd/",
+      "target": ".agents/skills/mantener-prd/"
+    },
+    {
+      "source": "skills/revisar-arquitectura/",
+      "target": ".agents/skills/revisar-arquitectura/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "package": "gestores",
+      "version": ">=0.8.0 <1.0.0"
+    }
+  ],
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}

@@ -89,6 +89,31 @@ Factory está en desarrollo. El motor interno está completo: cubre el ciclo des
 
 Cada skill se invoca por su nombre. El procedimiento completo está en `.agents/skills/<nombre>/SKILL.md`.
 
+### Instalación
+
+La colección se instala en cualquier repositorio con [teleprompter](https://github.com/nucleoabierto/teleprompter), seleccionando conjuntos con `--package`:
+
+```sh
+teleprompter install nucleoabierto/factory --package completo      # la colección entera (45 piezas)
+teleprompter install nucleoabierto/factory --package ciclo-tareas  # un conjunto y sus dependencias
+```
+
+| Conjunto | Piezas | Dependencias |
+|----------|--------|--------------|
+| `gestores` | `actualizar-artefactos`, `consultar-artefactos`, `consultar-lecciones`, `consultar-decisiones`, `operar-changelog`, `operar-experiencias`, `priorizar-lineas` | — |
+| `commit` | `commit` | — |
+| `evidencia` | `investigar`, `prueba-concepto` | — |
+| `redaccion` | `revisar-redaccion`, `pulir-escritura` | — |
+| `direccion` | `planificar`, `planificar-roadmap`, `mantener-roadmap`, `mantener-prd`, `revisar-arquitectura` | `gestores` |
+| `documentacion` | `documentar-dominio`, `documentar-producto`, `documentar-guia-estilo`, `aplicar-guia-estilo`, `decisiones-diseno`, `destilar-lecciones` | `gestores` |
+| `versionado` | `liberar-version`, `mantener-changelog` | `gestores` |
+| `flujo-ideas` | `idea-a-tarea`, `lluvia-de-ideas`, `descubrir-problema`, `proponer-forma-solucion`, `refinar-propuesta`, `crear-tareas` | `gestores`, `direccion` |
+| `ciclo-revision` | `gestionar-pr`, `revisar-pr`, `comentar-pr`, `clasificar-comentarios`, `mejorar-pr` | `gestores`, `commit` |
+| `ciclo-tareas` | `ejecutar-tareas`, `planear-tarea`, `recopilar-contexto`, `evaluar-conectividad`, `planear-implementacion`, `desarrollar-tarea`, `ejecutar-implementacion`, `cerrar-conjunto`, `revisar-implementacion` | `gestores`, `direccion`, `documentacion`, `versionado`, `ciclo-revision`, `flujo-ideas`, `commit` |
+| `completo` | — (composición pura) | los diez conjuntos |
+
+Las dependencias se resuelven solas: instalar `ciclo-tareas` trae también sus siete dependencias transitivas. Cada conjunto se instala en `.agents/skills/` del repositorio destino y trae su propia guía de personalización (`teleprompter guide`).
+
 ### Cómo funciona el ciclo de trabajo
 
 Dos orquestadores cubren el ciclo completo: `idea-a-tarea` convierte una idea en tareas planificadas y `ejecutar-tareas` ejecuta las tareas de `TODO.md` hasta el pull request fusionado. El estado entre pasos y entre sesiones viaja en artefactos —`TODO.md`, el archivo de cada tarea, la propuesta, la épica—, no en la conversación, de modo que cualquier flujo se puede retomar donde quedó. El mapa exhaustivo de conexiones —quién invoca a quién, qué sensores corren al cierre, qué skills se activan por convención— vive en [docs/mapa-de-flujos.md](docs/mapa-de-flujos.md).
@@ -110,7 +135,9 @@ De la tarea al pull request:
 ### Estructura del repositorio
 
 ```
-.agents/skills/     Skills formales (SKILL.md + references/)
+teleprompter.json   Índice de la colección: los once conjuntos instalables
+packages/           Los conjuntos de la colección —cada uno con su manifiesto,
+                    su PERSONALIZE.md y sus piezas bajo skills/ (SKILL.md + references/)
 docs/architecture-reviews/  Informes de revisión de arquitectura
 docs/decisions/     Decisiones de diseño (DNNN-slug.md)
 docs/domains/       Documentación viva de los dominios
@@ -128,7 +155,13 @@ TODO.md             Índice de trabajo activo: tareas y propuestas
 
 ### Cómo empezar
 
-Clona el repositorio y abre `TODO.md`. Las tareas pendientes `[ ]` son las siguientes en ejecutarse. Cada archivo en `docs/tasks/` describe su objetivo, dependencias, resultado esperado y criterios de calidad.
+Clona el repositorio y repuebla las skills en tu copia local —las piezas viven en `packages/` y el directorio `.agents/skills/` no se versiona; es el producto de instalar la colección sobre el propio repo, que requiere node y el CLI de teleprompter—:
+
+```sh
+teleprompter install --path . . --package completo
+```
+
+Abre `TODO.md`. Las tareas pendientes `[ ]` son las siguientes en ejecutarse. Cada archivo en `docs/tasks/` describe su objetivo, dependencias, resultado esperado y criterios de calidad.
 
 Para ejecutar una tarea, sigue el procedimiento del skill `ejecutar-tareas` o el descrito en su archivo.
 

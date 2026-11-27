@@ -1,0 +1,28 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "commit",
+  "version": "0.8.0",
+  "description": "Creación de commits siguiendo las convenciones del proyecto",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/commit/",
+      "target": ".agents/skills/commit/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "documentacion",
+  "version": "0.8.0",
+  "description": "Documentación viva: dominios, producto, guía de estilo, decisiones y lecciones",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/documentar-dominio/",
+      "target": ".agents/skills/documentar-dominio/"
+    },
+    {
+      "source": "skills/documentar-producto/",
+      "target": ".agents/skills/documentar-producto/"
+    },
+    {
+      "source": "skills/documentar-guia-estilo/",
+      "target": ".agents/skills/documentar-guia-estilo/"
+    },
+    {
+      "source": "skills/aplicar-guia-estilo/",
+      "target": ".agents/skills/aplicar-guia-estilo/"
+    },
+    {
+      "source": "skills/decisiones-diseno/",
+      "target": ".agents/skills/decisiones-diseno/"
+    },
+    {
+      "source": "skills/destilar-lecciones/",
+      "target": ".agents/skills/destilar-lecciones/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "package": "gestores",
+      "version": ">=0.8.0 <1.0.0"
+    }
+  ],
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}
