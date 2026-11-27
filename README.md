@@ -158,10 +158,10 @@ TODO.md             Índice de trabajo activo: tareas y propuestas
 Clona el repositorio y repuebla las skills en tu copia local —las piezas viven en `packages/` y el directorio `.agents/skills/` no se versiona; es el producto de instalar la colección sobre el propio repo, que requiere node y el CLI de teleprompter—:
 
 ```sh
-teleprompter install --path . . --package completo
+teleprompter install --path . . --package completo  # origen y destino: este mismo repo
 ```
 
-Abre `TODO.md`. Las tareas pendientes `[ ]` son las siguientes en ejecutarse. Cada archivo en `docs/tasks/` describe su objetivo, dependencias, resultado esperado y criterios de calidad.
+Las piezas instaladas son una foto: al editar una pieza en `packages/` hay que repetir la instalación para refrescar la copia local. Abre `TODO.md`. Las tareas pendientes `[ ]` son las siguientes en ejecutarse. Cada archivo en `docs/tasks/` describe su objetivo, dependencias, resultado esperado y criterios de calidad.
 
 Para ejecutar una tarea, sigue el procedimiento del skill `ejecutar-tareas` o el descrito en su archivo.
 

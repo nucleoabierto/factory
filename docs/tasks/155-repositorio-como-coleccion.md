@@ -115,8 +115,12 @@ El repo es hoy un paquete único `factory@0.7.0` — el `teleprompter.json` raí
 - Ningún `source` de ningún manifiesto sale de su directorio de paquete (CU-1) (I)
 - El `.agents/skills/` del repo repoblado por instalación local contiene las 45 piezas — dogfooding verificado (regresión)
 
+## Desviaciones
+
+- `.gitignore` cubre también `.teleprompter/` — el directorio de copias de personalización que la instalación local crea y que el plan no nombraba—. Motivo: es estado de instalación del mismo tipo que el lockfile; dejarlo fuera versionaría copias generadas. Decisión: ignorarlo como parte de la misma acción.
+
 ## Revisión
 
-- Subagente: [fecha] — [Aprueba | Solicita cambios]
+- Subagente: 2026-11-26 — Aprueba
 - Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
