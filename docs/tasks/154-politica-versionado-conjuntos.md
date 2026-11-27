@@ -94,4 +94,4 @@ Conectada — todo lo que la tarea asume existe: el modelo de fronteras está fu
 
 - Subagente: 2026-11-25 — Aprueba
 - Usuario (ejecución): 2026-11-25 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-11-25 — Aprueba
