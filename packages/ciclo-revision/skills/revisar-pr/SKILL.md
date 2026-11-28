@@ -82,4 +82,3 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `assets/informe.md` — Plantilla del informe de revisión; el subagente la sigue al producirlo.
-- `.agents/skills/revisar-implementacion/SKILL.md` — La revisión interna del ciclo de tareas, de la que este skill toma los principios sin el contrato de archivo de tarea.

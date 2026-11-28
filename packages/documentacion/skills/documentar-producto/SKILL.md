@@ -72,6 +72,3 @@ El skill ha terminado cuando se cumple una de las dos ramas:
 ## Referencias
 
 - `assets/feature.md` — Plantilla del documento de funcionalidad. Leer antes de crear un documento nuevo.
-- `docs/research/2026-09-documentacion-producto-y-roadmap.md` — Patrón de living documentation y estructura Diátaxis ligera.
-- `docs/decisions/D021-documentacion-dominio-y-revision-arquitectura.md` — La división sensor continuo / evaluación ocasional que este skill replica a nivel de producto.
-- `docs/decisions/D024-documentacion-producto-separada-anclas-suite.md` — El directorio separado y la convención de ancla doc↔test.

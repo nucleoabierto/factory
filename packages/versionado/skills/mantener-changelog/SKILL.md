@@ -67,4 +67,3 @@ El skill ha terminado cuando se cumple una de las dos ramas:
 
 - `references/formato-y-agregacion.md` — Estructura Keep a Changelog, criterios de notabilidad, política de agregación y correspondencia con semver. Leer al redactar o fusionar entradas.
 - `operar-changelog` — Ejecuta las operaciones mecánicas delegadas: localizar el archivo, buscar en los no liberados y anotar la entrada.
-- `docs/research/2026-09-changelog-y-versionado-semantico.md` — Investigación que motiva el skill: modelo de dos momentos, formato recomendado y justificación de la agregación por agrupación.

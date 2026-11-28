@@ -82,5 +82,4 @@ El skill ha terminado cuando el consumidor recibió el resultado de la operació
 ## Referencias
 
 - `references/changelog.md`: el documento de reglas del changelog: formato, lectura tolerante, escritura canónica y la definición completa de cada operación.
-- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen.
 - `PERSONALIZE.md` del paquete: los artefactos de estado que la instalación prepara y verifica.

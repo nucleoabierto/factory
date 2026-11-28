@@ -64,7 +64,7 @@ Instrucciones para que un agente transforme una idea suelta en un problema formu
 
 7. **Redactar el problema** en dos o tres párrafos: situación actual, a quién afecta y qué cuesta o impide. Verificar contra `references/guia-dialogo.md` que no contiene lenguaje de solución.
 8. **Redactar la oportunidad** en un párrafo: por qué vale la pena resolverlo, qué beneficio aporta y qué alternativas existentes supera.
-9. **Revisar la redacción y pulir mecánicamente** el borrador. Si el arnés lo permite, invocar `revisar-redaccion` en modo preventivo y, con su salida, `pulir-escritura` en modo preventivo; de lo contrario, realizar el equivalente manualmente.
+9. **Revisar la redacción y pulir mecánicamente** el borrador. Si las piezas `revisar-redaccion` y `pulir-escritura` están instaladas y el arnés lo permite, invocar `revisar-redaccion` en modo preventivo y, con su salida, `pulir-escritura` en modo preventivo; de lo contrario, realizar el equivalente manualmente.
 
 ### 4. Validar con el usuario
 

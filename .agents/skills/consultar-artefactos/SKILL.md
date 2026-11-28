@@ -118,5 +118,4 @@ El skill ha terminado cuando el consumidor recibió los datos de la consulta (o 
 
 ## Referencias
 
-- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen.
 - `../actualizar-artefactos/references/`: los documentos de reglas de los artefactos compartidos: `indice-tareas.md`, `tarea.md`, `propuesta.md`, `epica.md`, `idea.md`.

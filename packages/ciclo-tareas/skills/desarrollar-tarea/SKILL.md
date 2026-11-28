@@ -59,4 +59,3 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `.agents/skills/planear-tarea/SKILL.md` — La mitad de planeación del flujo.
-- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — La división del flujo que este skill materializa.

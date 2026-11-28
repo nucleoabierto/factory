@@ -64,7 +64,7 @@ Instrucciones para que un agente cree tareas definitivas en el directorio de tar
 ### 2b. Modo flujo de idea a tarea
 
 5. **Verificar la propuesta:** estado `pendiente-de-revision`, aprobación del usuario comunicada y borradores presentes. Si alguna condición falla, detenerse e informar al usuario sin modificar archivos. Si todo es correcto, registrar la decisión en la sección de revisión de la propuesta con la acción «registrar el veredicto» de `actualizar-artefactos`.
-6. **Revisar cada borrador en orden de numeración.** Por cada borrador, aplicar revisión de redacción y pulido mecánico en modo preventivo. Si el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
+6. **Revisar cada borrador en orden de numeración.** Por cada borrador, aplicar revisión de redacción y pulido mecánico en modo preventivo. Si las piezas `revisar-redaccion` y `pulir-escritura` están instaladas y el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
 7. **Promocionar los borradores** con la acción «promover los borradores de la propuesta `<dir>`» de `actualizar-artefactos`: mueve cada borrador al directorio de tareas con numeración continua de la serie, inyecta las secciones de estado y de revisión, renumera las dependencias entre borradores y actualiza el índice de la propuesta. Devuelve la correspondencia borrador→tarea→ruta por borrador; una referencia no resoluble aborta la promoción sin escribir.
 8. **Cerrar el ciclo de la propuesta:** cambiar su estado a `aprobada` y retirarla del índice, con las acciones de `actualizar-artefactos`.
 

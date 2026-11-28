@@ -1,2 +1,3 @@
 .DS_Store
 teleprompter-lock.json
+.teleprompter/backups/

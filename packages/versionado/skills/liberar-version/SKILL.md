@@ -74,5 +74,4 @@ El skill ha terminado cuando se cumple una de las cuatro ramas:
 
 - `references/promocion-y-semver.md` — Lista de curación previa a la promoción y correspondencia entre categorías y bump semver. Leer al curar y al proponer el bump.
 - `operar-changelog` — Ejecuta las operaciones mecánicas delegadas: localización, estado, volcado, propuesta bruta de bump, promoción y marcado de retiradas.
-- `docs/research/2026-09-changelog-y-versionado-semantico.md` — Investigación que motiva el skill: modelo de dos momentos, correspondencia semver y ciclo de vida de los no liberados.
 - `.agents/skills/mantener-changelog/` — Skill hermano que produce el material en borrador que este skill promueve.

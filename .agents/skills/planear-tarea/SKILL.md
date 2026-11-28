@@ -38,7 +38,7 @@ Instrucciones para que un agente ejecute la mitad de planeación del flujo de de
 ## Salida
 
 - El archivo de la tarea con las secciones de contexto, conectividad, plan y suite completas y aprobadas, listo para `desarrollar-tarea`.
-- O la conclusión de que la tarea no puede planearse —bloqueada en la evaluación de conectividad, plan rechazado—, comunicada al invocador; cuando la bloqueó una «capacidad ausente», con las ideas derivadas persistidas en `docs/ideas/`.
+- O la conclusión de que la tarea no puede planearse —bloqueada en la evaluación de conectividad, plan rechazado—, comunicada al invocador; cuando la bloqueó una «capacidad ausente», con las ideas derivadas persistidas en el directorio de ideas de la convención.
 
 ## Principios rectores
 
@@ -67,4 +67,3 @@ El skill ha terminado cuando:
 
 - `.agents/skills/desarrollar-tarea/SKILL.md` — La mitad de ejecución del flujo.
 - `.agents/skills/evaluar-conectividad/references/vuelta-demanda.md` — La vía que este skill aplica ante una brecha «capacidad ausente»: idea derivada y bloqueo con causa.
-- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — La división del flujo que este skill materializa.

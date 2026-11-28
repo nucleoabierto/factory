@@ -118,6 +118,5 @@ El skill ha terminado cuando el artefacto quedó mutado según la orden (o el co
 
 ## Referencias
 
-- `docs/decisions/D035-reglas-declarativas-por-artefacto.md`: el mecanismo de delegación que estas operaciones cumplen y las formas canónicas que escriben.
 - `references/`: los documentos de reglas de los artefactos: `indice-tareas.md`, `tarea.md`, `propuesta.md`, `epica.md`, `idea.md`.
 - `.agents/skills/consultar-artefactos/SKILL.md`: la mitad de lectura del mecanismo.

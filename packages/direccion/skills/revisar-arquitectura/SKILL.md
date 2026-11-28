@@ -61,7 +61,7 @@ Instrucciones para que un agente evalúe la arquitectura de un dominio con crite
 3. **Evaluar por criterio.** Aplicar la rúbrica de `references/rubrica.md`: lenguaje ubicuo, separación de capas, fronteras, invariantes y modelo, acoplamiento y estructura, y el catálogo de smells. Cada veredicto con su evidencia y confianza; los criterios son abiertos y extensibles —si el dominio presenta una dimensión no cubierta, se evalúa y se propone su adición a la rúbrica.
 4. **Priorizar hallazgos.** Ordenar por impacto en la mantenibilidad del dominio: primero lo que contradice la intención declarada o hace cumplir fronteras, después lo que degrada el modelo, al final lo cosmético.
 5. **Emitir el informe** con la estructura de «Salida»: escribir el archivo en el directorio de revisiones de arquitectura y presentar un resumen al usuario.
-6. **Derivar con aprobación.** Si el usuario aprueba actuar sobre los hallazgos, darlos de alta con `crear-tareas` (correcciones) o `decisiones-diseno` (cambios de criterio arquitectónico); las tareas y decisiones creadas referencian el informe por su ruta, y el campo «Derivado en» de cada hallazgo se actualiza con lo creado. Sin aprobación, no se crea nada.
+6. **Derivar con aprobación.** Si el usuario aprueba actuar sobre los hallazgos, darlos de alta con `crear-tareas` (correcciones) o `decisiones-diseno` (cambios de criterio arquitectónico); cuando la pieza de registro no está instalada, los hallazgos de su clase se entregan al usuario como lista de registro pendiente en el resumen —la derivación degrada a instrucción, nunca a invocación rota—. Las tareas y decisiones creadas referencian el informe por su ruta, y el campo «Derivado en» de cada hallazgo se actualiza con lo creado. Sin aprobación, no se crea nada.
 
 ## Finalización
 
@@ -74,4 +74,3 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `references/rubrica.md` — Criterios de evaluación y catálogo de patrones y antipatrones con sus estrategias de detección. Leer antes de evaluar.
-- `docs/research/2026-09-revision-arquitectura-y-documentacion-dominio.md` — Investigación que motiva el skill: métodos de evaluación de arquitectura, catálogo de smells y la división sensor continuo / evaluación profunda.

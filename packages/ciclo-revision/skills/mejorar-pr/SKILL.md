@@ -78,7 +78,7 @@ Instrucciones para que un agente ejecute el documento de triage sobre un *pull r
 8. **Redactar el lote de respuestas** a partir del triage:
    - **`responder`:** la respuesta ya viene redactada en la `propuesta` de la entrada.
    - **`corregir`:** una respuesta breve que cita el commit donde quedó la corrección —el revisor ve qué cambió—. Solo entra al lote si el push del paso 7 aterrizó: citar un commit que no llegó al remoto publica una referencia rota, así que si el usuario pospone el push, estas respuestas se posponen con él.
-   - **`aplazar`:** la respuesta de aplazamiento con su razón; cuando el aplazamiento produce trabajo posterior —fuera de alcance incluido— se ofrece registrarlo con `crear-tareas` y citar la referencia en la respuesta —convención de `gestionar-pr`—.
+   - **`aplazar`:** la respuesta de aplazamiento con su razón; cuando el aplazamiento produce trabajo posterior —fuera de alcance incluido— se ofrece registrarlo con `crear-tareas` cuando esa pieza está instalada, citando la referencia en la respuesta; si no lo está, el trabajo pendiente se declara en la propia respuesta —convención de `gestionar-pr`—.
 9. **Presentar el lote completo al usuario:** cada respuesta con el hilo al que va —ancla y autor—. El usuario aprueba, edita o descarta; lo descartado no se publica y queda anotado en el triage con `resultado: omitido — <motivo>` —sin anotación se repondría en cada ejecución—.
 10. **Publicar tras confirmación** por el endpoint que dicta el `hilo:` de cada entrada:
     - `PRRT_…` —hilo de línea—: `addPullRequestReviewThreadReply` vía `gh api graphql` con `pullRequestReviewThreadId` y `body`.

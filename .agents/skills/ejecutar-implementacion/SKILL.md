@@ -92,5 +92,3 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `.agents/skills/evaluar-conectividad/references/vuelta-demanda.md` — La vía que la reclasificación del carril aplica: idea derivada y bloqueo con causa.
-- `docs/research/2026-09-flujo-desarrollo.md` — Fase de ejecución con el ajuste aprobado de revisión del plan durante el desarrollo.
-- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — El flujo de desarrollo dividido en `planear-tarea` y `desarrollar-tarea` (sustituye a D020).

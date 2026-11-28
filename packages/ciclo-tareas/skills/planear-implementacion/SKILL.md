@@ -82,7 +82,7 @@ Instrucciones para que un agente produzca el plan de una tarea de desarrollo ant
 
 ### 4. Puerta humana
 
-13. **Aplicar revisión de redacción y pulido mecánico en modo preventivo.** Si el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
+13. **Aplicar revisión de redacción y pulido mecánico en modo preventivo.** Si las piezas `revisar-redaccion` y `pulir-escritura` están instaladas y el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
 14. **Presentar el plan y la suite al usuario** para aprobación. Si solicita cambios, ajustar y repetir la presentación. Si lo rechaza, no escribir nada en el archivo de la tarea y terminar informando del rechazo.
 
 ### 5. Materializar el plan
@@ -100,6 +100,4 @@ El skill ha terminado cuando:
 
 ## Referencias
 
-- `docs/research/2026-09-flujo-desarrollo.md` — Fases de planeación técnica y de testing, con los ajustes aprobados (entendimiento previo, granularidad flexible).
-- `docs/decisions/D031-flujo-desarrollo-dividido-en-planear-y-ejecutar.md` — El flujo de desarrollo dividido en `planear-tarea` y `desarrollar-tarea` (sustituye a D020).
 - James Grenning, «TDD Guided by ZOMBIES» — blog.wingman-sw.com/tdd-guided-by-zombies — Guía de generación de casos de prueba.

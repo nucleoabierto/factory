@@ -46,7 +46,7 @@ Instrucciones para que un agente gestione el pull request de una tarea como veh�
 2. **El revisor es el usuario:** la aprobación del PR es una puerta humana; ni el agente ni una herramienta automática aprueban en su nombre.
 3. **Comentarios como plan de mejoras:** cada ronda de comentarios se clasifica y se convierte en acciones concretas; el trabajo modificado vuelve a revisión, no se da por bueno.
 4. **Rondas por lotes:** los comentarios de una ronda se procesan juntos —un plan de mejoras, los cambios agrupados en commits, una respuesta por comentario y una nueva pasada de revisión—.
-5. **Una rama por tarea:** todo el ciclo —trabajo, rondas de comentarios, escrituras de los sensores, cierre— aterriza en la rama de la tarea; el merge squash deja un commit por tarea en la principal.
+5. **Una rama por tarea:** todo el ciclo —trabajo, rondas de comentarios, escrituras de los sensores, cierre— aterriza en la rama de la tarea; el merge squash deja un commit por tarea en la rama principal —la de la convención `rama_principal` (`main` por defecto), literal embebido—.
 
 ## Procedimiento
 
@@ -63,7 +63,7 @@ Instrucciones para que un agente gestione el pull request de una tarea como veh�
    - Referencia al archivo de la tarea para el plan y las desviaciones, sin reescribirlos.
 3. **Crear el PR** con `gh pr create` —título igual al asunto de Conventional Commits de la tarea, porque el merge squash lo usará como commit en la rama principal; cuerpo igual a la descripción— y presentar su URL al usuario. Si la rama ya tiene un PR abierto —una iteración retomada tras la apertura—, no se crea otro: `gh pr view` recupera su número y el bucle continúa desde el paso siguiente.
 4. **Conducir el bucle de comentarios** hasta la aprobación. Cuando el usuario indique que dejó sus comentarios —o una pasada por `gh pr view <n> --comments` y `gh api repos/:owner/:repo/pulls/<n>/comments` muestre comentarios o reviews nuevas—:
-   - **Clasificar cada comentario:** bloqueante → cambio que debe entrar; pregunta → se responde clarificando el código —si la respuesta sería «lee el hilo», el código falló y se mejora—; sugerencia o detalle menor → se aplica, o se justifica en el hilo por qué no se aplica; fuera de alcance → se da de alta con `crear-tareas` y se responde con la referencia; desacuerdo → se escala al usuario en la conversación.
+   - **Clasificar cada comentario:** bloqueante → cambio que debe entrar; pregunta → se responde clarificando el código —si la respuesta sería «lee el hilo», el código falló y se mejora—; sugerencia o detalle menor → se aplica, o se justifica en el hilo por qué no se aplica; fuera de alcance → se da de alta con `crear-tareas` cuando esa pieza está instalada y se responde con la referencia; si no lo está, el trabajo pendiente se declara en la propia respuesta del hilo; desacuerdo → se escala al usuario en la conversación.
    - **Formular el plan de mejoras:** la lista comentario → acción, presentada al usuario antes de tocar código.
    - **Ejecutar y verificar:** implementar las acciones, correr las verificaciones que correspondan y commitear la ronda en la rama con `commit`; `git push`.
    - **Responder y resolver:** una respuesta por comentario —qué cambió o la justificación— y los hilos atendidos se resuelven.
@@ -84,6 +84,3 @@ Instrucciones para que un agente gestione el pull request de una tarea como veh�
 - Apertura: el PR está abierto, el usuario lo aprobó tras el bucle de comentarios y el invocador recibió el número de PR y el resumen del bucle.
 - Cierre: el PR está fusionado, la rama eliminada, el repositorio local en la rama principal actualizada y los informes locales del PR eliminados si existían.
 
-## Referencias
-
-- `docs/research/2026-10-prs-punto-revision.md` — La recomendación que este skill materializa: descripción orientada al revisor, bucle de comentarios clasificado y las dos puertas humanas del ciclo.

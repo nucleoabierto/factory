@@ -75,7 +75,7 @@ Instrucciones para que un agente produzca la épica de un conjunto de trabajo: e
    - **Plan técnico:** el orden de implementación derivado de las dependencias entre piezas, las dependencias técnicas y las decisiones transversales ya tomadas (patrones y estructuras que las piezas comparten).
    - **Criterio de cierre:** la condición bajo la que el conjunto se considera completo.
 7. **Redactar el PRD del conjunto** invocando `mantener-prd` con la propuesta —si la hay— y las piezas: el documento de producto con los casos de uso `CU-N` y el comportamiento esperado que las tareas declararán y la suite anclará. Si el conjunto es un hito ligero sin épica, el PRD solo procede cuando introduce comportamiento de producto observable; en caso de duda, preguntar al usuario.
-8. **Aplicar revisión de redacción y pulido mecánico en modo preventivo** a la épica y al PRD. Si el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
+8. **Aplicar revisión de redacción y pulido mecánico en modo preventivo** a la épica y al PRD. Si las piezas `revisar-redaccion` y `pulir-escritura` están instaladas y el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
 
 ### 4. Puerta humana
 
@@ -100,5 +100,3 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `assets/epica.md` — Plantilla del documento de épica; reproduce los nombres convencionales configurables. Leer antes de redactar el borrador.
-- `docs/decisions/D019-epica-como-artefacto-de-planeacion.md` — Formato, ubicación y lugar de la épica en el flujo.
-- `docs/decisions/D008-organizacion-por-hitos-en-todo.md` — Convención de encabezados de agrupación en el índice.

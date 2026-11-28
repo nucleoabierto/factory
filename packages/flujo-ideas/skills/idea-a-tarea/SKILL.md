@@ -85,7 +85,3 @@ El skill ha terminado cuando:
 - No quedan propuestas en revisión sin procesar en el índice: cada una fue aprobada, promocionada y agrupada bajo su épica o encabezado (o con sus tareas sueltas si se rechazó el borrador de épica), devuelta a revisión con cambios o marcada como `descartada`.
 - Si el usuario trajo una idea nueva, esta recorrió las tres capacidades del flujo y terminó en propuesta enviada a revisión, o se descartó en una capacidad temprana con la conclusión comunicada.
 
-## Referencias
-
-- `docs/decisions/D013-mecanismo-borradores-reflejo-todo.md` — Ciclo de vida de la propuesta y su marcador en el índice de tareas.
-- `docs/decisions/D015-extension-de-d001-para-indice-de-propuestas.md` — El índice como índice de tareas y de propuestas en revisión.
