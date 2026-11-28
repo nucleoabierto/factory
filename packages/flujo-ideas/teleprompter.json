@@ -43,11 +43,15 @@
   },
   "dependencies": [
     {
-      "package": "gestores",
+      "package": "direccion",
       "version": ">=0.8.0 <1.0.0"
     },
     {
-      "package": "direccion",
+      "package": "evidencia",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "gestores",
       "version": ">=0.8.0 <1.0.0"
     }
   ],

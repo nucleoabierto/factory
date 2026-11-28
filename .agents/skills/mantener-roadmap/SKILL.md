@@ -72,6 +72,4 @@ El skill ha terminado cuando se cumple una de las tres ramas:
 
 ## Referencias
 
-- `docs/decisions/D022-roadmap-como-nivel-de-direccion.md` — El roadmap decide y el índice ejecuta; el reflejo entre ambos es mecánico.
-- `docs/decisions/D027-roadmap-horizontes-now-next-later.md` — Los horizontes del roadmap; solo Now declara estado por línea.
 - `.agents/skills/planificar-roadmap/assets/roadmap.md` — La plantilla del documento: formato de líneas y campo «Estado».

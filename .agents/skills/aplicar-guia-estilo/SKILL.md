@@ -70,4 +70,3 @@ El skill ha terminado cuando:
 ## Referencias
 
 - `references/rubrica-y-validacion.md` — Rúbrica fija de revisión y estrategias de validación estática y renderizada, con sus límites. Leer antes de validar.
-- `docs/research/2026-09-guias-estilo-frontend-agentes.md` — Investigación que motiva el skill: dos niveles de evidencia, rúbrica de dimensiones fijas, degradación sin toolchain.

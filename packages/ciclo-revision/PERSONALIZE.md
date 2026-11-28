@@ -7,6 +7,7 @@ Ciclo de revisión instala en `.agents/skills/` las piezas del ciclo de vida del
 Cuando el proyecto destino usa una convención distinta del valor por defecto, el instalador edita el literal en cada archivo que lo contiene. Los literales ajenos a un artefacto viven embebidos en el `SKILL.md` —o `references/`— de cada pieza que los usa; los literales de un artefacto viven en su documento de reglas, instalado por el conjunto `gestores`. Los literales de este conjunto:
 
 - El directorio de informes de revisión de PR (`.git/factory/pr-reviews`, con sustitución del prefijo `.git/` por `git rev-parse --git-common-dir`; los skills lo declaran sin nombre de convención): `revisar-pr`, `comentar-pr`, `clasificar-comentarios`, `mejorar-pr` y `gestionar-pr`.
+- `rama_principal` (`main`): `gestionar-pr`.
 
 ## Personalización al instalar
 

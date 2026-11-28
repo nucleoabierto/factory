@@ -92,4 +92,3 @@ El skill ha terminado cuando se cumple una de las ramas:
 
 - `references/formato-design-md.md` — Estructura de la guía contrato: secciones, reglas de redacción verificable y ejemplo. Leer antes de crear o actualizar la guía.
 - `references/ejemplo-design-md.md` — Ejemplo completo de una guía que cumple las reglas, con el mapeo de cada sección a la regla que demuestra. Leer junto a la plantilla para ver la expectativa de cada sección.
-- `docs/research/2026-09-guias-estilo-frontend-agentes.md` — Investigación que motiva el skill: guía como contrato, tokens como custom properties, deriva reportada en lugar de corregida.

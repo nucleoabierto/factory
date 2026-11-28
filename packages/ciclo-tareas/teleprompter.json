@@ -55,7 +55,11 @@
   },
   "dependencies": [
     {
-      "package": "gestores",
+      "package": "ciclo-revision",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "commit",
       "version": ">=0.8.0 <1.0.0"
     },
     {
@@ -67,11 +71,7 @@
       "version": ">=0.8.0 <1.0.0"
     },
     {
-      "package": "versionado",
-      "version": ">=0.8.0 <1.0.0"
-    },
-    {
-      "package": "ciclo-revision",
+      "package": "evidencia",
       "version": ">=0.8.0 <1.0.0"
     },
     {
@@ -79,7 +79,11 @@
       "version": ">=0.8.0 <1.0.0"
     },
     {
-      "package": "commit",
+      "package": "gestores",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "versionado",
       "version": ">=0.8.0 <1.0.0"
     }
   ],

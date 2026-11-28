@@ -72,7 +72,7 @@ Instrucciones para que un agente determine, dado un problema formulado, la forma
 ### 5. Formular y validar
 
 8. **Redactar la salida** según el «Formato de salida»: forma de solución, alternativas y fuera de alcance. Verificar contra `references/categorias-solucion.md` que la forma no contiene detalles de implementación.
-9. **Revisar la redacción y pulir mecánicamente** el borrador. Si el arnés lo permite, invocar `revisar-redaccion` en modo preventivo y, con su salida, `pulir-escritura` en modo preventivo; de lo contrario, realizar el equivalente manualmente.
+9. **Revisar la redacción y pulir mecánicamente** el borrador. Si las piezas `revisar-redaccion` y `pulir-escritura` están instaladas y el arnés lo permite, invocar `revisar-redaccion` en modo preventivo y, con su salida, `pulir-escritura` en modo preventivo; de lo contrario, realizar el equivalente manualmente.
 10. **Presentar la salida al usuario** y preguntar si la forma de solución es la correcta. Si el arnés no permite el diálogo interactivo, presentar la propuesta con las suposiciones declaradas explícitamente.
 11. **Si el usuario pide cambios,** ajustar y repetir desde el paso correspondiente.
 12. **Si el usuario aprueba,** entregar la salida (forma de solución + alternativas + fuera de alcance) a quien invocó el skill: el usuario, para continuar con el refinamiento con borradores, o el orquestador del flujo de idea a tarea.

@@ -74,7 +74,7 @@ Instrucciones para que un agente produzca el roadmap de un producto: el document
 6. **Asignar cada línea a su horizonte** según el nivel de compromiso: Now para lo decidido y en vuelo (3-5 líneas, con estado), Next para lo validado que sigue, Later para la dirección sin compromiso (temas sin orden) y No ahora para lo aparcado, con la razón. Las propuestas en revisión del índice no entran: una propuesta no es línea hasta que se aprueba y planifica.
 7. **Distribuir el orden decidido en Now y Next:** los primeros puestos de la secuencia van a Now —acotado a 3-5 líneas— y los siguientes a Next. Redactar la justificación de cada posición —qué la hace conveniente ahí y qué pasaría si ocupara otra— y declarar por línea los atributos que la comparación estimó y el escenario que fijó su posición. Later se agrupa por tema sin orden interno ni comparación.
 8. **Redactar la dirección** a partir de la visión del producto: el objetivo que este conjunto de líneas sirve; toda línea del documento debe remitir a ella.
-9. **Aplicar revisión de redacción y pulido mecánico en modo preventivo.** Si el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
+9. **Aplicar revisión de redacción y pulido mecánico en modo preventivo.** Si las piezas `revisar-redaccion` y `pulir-escritura` están instaladas y el arnés lo permite, invocar `revisar-redaccion` y, con su salida, `pulir-escritura`; de lo contrario, realizar el equivalente manualmente.
 
 ### 4. Puerta humana
 
@@ -98,7 +98,3 @@ El skill ha terminado cuando:
 
 - `assets/roadmap.md` — Plantilla del documento de roadmap. Leer antes de redactar el borrador.
 - `.agents/skills/priorizar-lineas/SKILL.md` — La comparación de líneas invocada en el paso de priorización.
-- `docs/decisions/D036-priorizacion-por-escenarios-comparados.md` — La decisión que fija la comparación por escenarios como fuente del orden.
-- `docs/decisions/D022-roadmap-como-nivel-de-direccion.md` — El roadmap como artefacto de dirección y su relación con el índice.
-- `docs/research/2026-09-documentacion-producto-y-roadmap.md` — El patrón Now/Next/Later, los límites por horizonte y el «No ahora».
-- `docs/decisions/D019-epica-como-artefacto-de-planeacion.md` — El nivel inmediatamente inferior y la relación artefacto↔índice que este nivel replica.

@@ -42,6 +42,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `versionado` → `gestores` — `mantener-changelog` y `liberar-version` delegan toda operación en `operar-changelog`.
   - `flujo-ideas` → `gestores` — `idea-a-tarea`, `crear-tareas` y `refinar-propuesta` registran artefactos con los gestores; `lluvia-de-ideas` consulta la serie con `consultar-artefactos`.
   - `flujo-ideas` → `direccion` — `idea-a-tarea` invoca `planificar` en modo promoción tras promocionar borradores.
+  - `flujo-ideas` → `evidencia` — `refinar-propuesta` resuelve la evidencia externa con `investigar` y `prueba-concepto` como principio rector: la propuesta no va a revisión con su enfoque pendiente de evidencia.
   - `ciclo-revision` → `gestores` — `revisar-pr` y `mejorar-pr` consultan artefactos con los gestores.
   - `ciclo-revision` → `commit` — `mejorar-pr` commitea correcciones y `gestionar-pr` redacta mensajes con las reglas de `commit`.
   - `ciclo-tareas` → `gestores` — `recopilar-contexto`, `evaluar-conectividad` y las piezas de planeación y ejecución delegan en los gestores.
@@ -50,6 +51,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - `ciclo-tareas` → `versionado` — `ejecutar-tareas` invoca el sensor `mantener-changelog`.
   - `ciclo-tareas` → `ciclo-revision` — `ejecutar-tareas` abre la puerta de ejecución con `gestionar-pr`.
   - `ciclo-tareas` → `flujo-ideas` — `evaluar-conectividad/references/vuelta-demanda.md` lee `lluvia-de-ideas/references/formato-idea.md` para escribir la demanda derivada.
+  - `ciclo-tareas` → `evidencia` — `planear-implementacion` resuelve la incertidumbre activa con `prueba-concepto` como principio rector del plan.
   - `ciclo-tareas` → `commit` — `ejecutar-tareas` commitea las escrituras del cierre con `commit`.
   - `commit`, `evidencia`, `redaccion`, `gestores` → ninguna
   - El grafo no tiene ciclos: `ciclo-tareas` es el sumidero que declara casi toda la colección porque sus sensores de cierre son parte de su contrato; `gestores`, `commit`, `evidencia` y `redaccion` son fuentes.
@@ -71,8 +73,8 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - Las listas de conjuntos, dominios y necesidades son abiertas y extensibles: un caso real que no encaje se cubre igual, declarando su pertenencia.
     - Origen: lección `flexibilidad-en-procesos`
 - **Degradaciones declaradas** (necesidades deseables sin dependencia):
-  - El pulido de redacción preventivo de una docena de piezas invoca `revisar-redaccion` y `pulir-escritura` «si el arnés lo permite» y ya declara el equivalente manual —sin la dependencia, la pieza conserva su procedimiento.
-  - La evidencia externa (`investigar`) y la validación de hipótesis (`prueba-concepto`) se invocan condicionalmente en `flujo-ideas` y `ciclo-tareas`; sin ellas la pieza registra la investigación como pendiente o asume con la suposición declarada.
+  - El pulido de redacción preventivo de una docena de piezas invoca `revisar-redaccion` y `pulir-escritura` si están instaladas y el arnés lo permite, con el equivalente manual declarado —sin la dependencia, la pieza conserva su procedimiento.
+  - Las derivaciones de registro —`revisar-arquitectura` hacia `crear-tareas`/`decisiones-diseno`, la rama fuera-de-alcance de `gestionar-pr` y `mejorar-pr` hacia `crear-tareas`— son condicionales: sin la pieza destino el trabajo pendiente se entrega como lista de registro manual o se declara en la respuesta. `direccion` no puede depender de `flujo-ideas` —sería circular— y las ramas son condicionales por naturaleza.
   - Las derivaciones «eso corresponde a X» —enrutado entre skills— son señales, no dependencias: sin la pieza destino el procedimiento termina donde termina.
 - **Operaciones:**
   - Componer una pieza nueva: consultar este documento —¿a qué conjunto pertenece? ¿qué declara como dependencia?— antes de escribirla.
@@ -85,7 +87,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 - **Fronteras:**
   - Dentro: la división de las 45 piezas en conjuntos, sus dependencias declaradas, la política de versionado, las degradaciones y el criterio de composición.
   - Fuera: la mecánica del formato de empaquetado —colecciones, manifiestos, resolución transitiva—, que pertenece al producto de empaquetado; los orígenes externos a la colección; el ciclo de vida de liberaciones independientes por conjunto —descartado por la propuesta y confirmado por la política de versionado—; la reescritura de piezas más allá de su frontera.
-  - Relaciones: `ciclo-tareas` es el consumidor mayor —declara casi todos los conjuntos—; `gestores` es la base de la que dependen casi todos; `redaccion` es consumida opcionalmente por una docena de piezas y `evidencia` por dos, sin dependencia declarada.
+  - Relaciones: `ciclo-tareas` es el consumidor mayor —declara casi todos los conjuntos—; `gestores` es la base de la que dependen casi todos; `redaccion` es consumida opcionalmente por una docena de piezas sin dependencia declarada; `evidencia` es dependencia obligatoria de `flujo-ideas` y `ciclo-tareas` —la resolución de evidencia es principio rector de `refinar-propuesta` y `planear-implementacion`, no un accesorio—.
 - **Decisiones relevantes:**
   - `docs/proposals/006-subpaquetes-por-dominio/propuesta.md` — la propuesta aprobada que origina el dominio.
   - `docs/epics/007-subpaquetes-por-dominio.md` y `docs/prd/007-subpaquetes-por-dominio.md` — la épica y el PRD del conjunto.
@@ -95,4 +97,4 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 ## Estado de salud
 
 - Última revisión: 2026-11-26
-- Divergencias conocidas: el modelo está materializado —los once conjuntos existen como paquetes en `packages/` con sus manifiestos y la raíz es índice de colección; la verificación de instalación pasó para cada conjunto y para `completo`—; la adaptación del contenido de las piezas a su frontera corre en la tarea 156; la lista de conjuntos es la división vigente y crece con cada pieza nueva.
+- Divergencias conocidas: el modelo está materializado —los once conjuntos existen como paquetes en `packages/` con sus manifiestos y la raíz es índice de colección; la verificación de instalación pasó para cada conjunto y para `completo`—; el contenido de las piezas está adaptado a su frontera —sin citas colgadas, con las dependencias obligatorias declaradas y las degradaciones documentadas—; la lista de conjuntos es la división vigente y crece con cada pieza nueva.

@@ -70,8 +70,3 @@ El skill ha terminado cuando se cumple una de las tres ramas:
 - **Conjunto cerrado:** la épica quedó marcada como completada cuando la agrupación la tenía —con la decisión del usuario registrada si el cierre fue con criterio incumplido— y la agrupación desapareció del índice; el roadmap del producto no se tocó.
 - **Cierre elevado:** el usuario recibió la evidencia del criterio incumplido o no verificable y decidió; el índice y la épica solo cambiaron si su decisión fue cerrar.
 
-## Referencias
-
-- `docs/decisions/D017-todo-txt-indice-de-trabajo-activo.md` — El índice contiene solo trabajo activo; los conjuntos completados se eliminan de él.
-- `docs/decisions/D019-epica-como-artefacto-de-planeacion.md` — El documento de épica, su criterio de cierre y su relación con la agrupación del índice.
-- `docs/decisions/D008-organizacion-por-hitos-en-todo.md` — Convención de encabezados de agrupación en el índice.

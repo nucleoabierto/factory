@@ -6,7 +6,6 @@ La vía que tramita la brecha que el modelo de `clasificacion-brechas.md` clasif
 
 Cada brecha «capacidad ausente» produce un archivo de idea persistida —uno por brecha— escrito directamente siguiendo las reglas de `.agents/skills/actualizar-artefactos/references/idea.md` —no hay operación de alta en el catálogo: la creación es escritura con juicio del consumidor, como en `lluvia-de-ideas`—:
 
-- **Ubicación y nombre:** `docs/ideas/NNN-slug.md`, con la serie continua del directorio.
 - **Cabecera:** `> **Fecha:**` y `> **Origen:** <referencia de la tarea> — <la pieza o brecha que la reveló>`. El «Origen» es la trazabilidad que sobrevive a la promoción: declara qué evaluación reveló la demanda.
 - **`## Problema`:** el enunciado heredado de la brecha —qué falta, en términos de la pieza, sin lenguaje de solución—.
 - **`## Qué desbloquea`:** la pieza origen, liberada cuando la capacidad exista.
@@ -31,4 +30,4 @@ Persistir la idea no invoca la revisita de prioridad: la idea derivada es demand
 
 ## El retroenlace
 
-El consumidor puede anotar la idea derivada en la entrada enrutada de la sección de conectividad —una línea `  - Idea: docs/ideas/NNN-slug.md` bajo la brecha— para que el archivo de la tarea trace en ambos sentidos sin pasar por el índice. El retroenlace es de trazabilidad, no parte del veredicto enrutado.
+El consumidor puede anotar la idea derivada en la entrada enrutada de la sección de conectividad —una línea `  - Idea: <referencia del archivo de la idea>` bajo la brecha— para que el archivo de la tarea trace en ambos sentidos sin pasar por el índice. El retroenlace es de trazabilidad, no parte del veredicto enrutado.

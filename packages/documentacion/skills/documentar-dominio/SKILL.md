@@ -70,4 +70,3 @@ El skill ha terminado cuando se cumple una de las dos ramas:
 ## Referencias
 
 - `assets/domain.md` — Plantilla del documento de dominio. Leer antes de crear un documento nuevo.
-- `docs/research/2026-09-revision-arquitectura-y-documentacion-dominio.md` — Investigación que motiva el skill: documentación viva como sensor continuo, formatos (arc42 reducido, un hogar por hecho, anclas doc↔código).
