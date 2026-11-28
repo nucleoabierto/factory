@@ -117,7 +117,9 @@ El repo es hoy un paquete único `factory@0.7.0` — el `teleprompter.json` raí
 
 ## Desviaciones
 
-- `.gitignore` cubre también `.teleprompter/` — el directorio de copias de personalización que la instalación local crea y que el plan no nombraba—. Motivo: es estado de instalación del mismo tipo que el lockfile; dejarlo fuera versionaría copias generadas. Decisión: ignorarlo como parte de la misma acción.
+- Las copias instaladas pasan de ignoradas a versionadas (B): `.agents/skills/`, `teleprompter-lock.json` y `.teleprompter/` se commitean y la reinstalación queda como regla de cierre de tareas que tocan `packages/` en `AGENTS.md`. Motivo: la instalación ignorada rompía el bootstrap del clon y dejaba staleness silencioso; la copia versionada es además el lugar legítimo de la personalización del proyecto. Decisión del usuario tras evaluación en la revisión del PR — la regla no vive en las piezas del ciclo (son genéricas) ni en las copias instaladas (la reinstalación la borraría), sino en las reglas de proyecto que sobreviven a la instalación.
+
+- `.teleprompter/` y `teleprompter-lock.json` quedaron primero ignorados y después versionados junto con las copias — el estado de instalación completo forma parte del repo—. Motivo inicial: tratar la instalación como artefacto generado; la decisión posterior (la primera de esta lista) lo reconsideró.
 
 ## Revisión
 
