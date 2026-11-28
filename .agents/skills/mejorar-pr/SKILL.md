@@ -102,4 +102,4 @@ El skill ha terminado cuando:
 
 - `.agents/skills/clasificar-comentarios/SKILL.md` — El productor del documento de triage que este skill consume; la plantilla vive en su `assets/triage.md`.
 - `.agents/skills/comentar-pr/SKILL.md` — Hermano que resuelve el directorio de informes con la sustitución de `.git/` y publica tras confirmación.
-- `.agents/skills/gestionar-pr/SKILL.md` — Convención «fuera de alcance → `crear-tareas` + responder con la referencia» y la limpieza de `pr-<n>-*.md` al cerrar.
+- `.agents/skills/gestionar-pr/SKILL.md` — Convención «fuera de alcance → `crear-tareas` cuando está instalada, si no declaración en la respuesta» y la limpieza de `pr-<n>-*.md` al cerrar.

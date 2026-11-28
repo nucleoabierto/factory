@@ -15,7 +15,7 @@ description: >
 
 # Revisar arquitectura
 
-Instrucciones para que un agente evalúe la arquitectura de un dominio con criterios de Domain Driven Design. El resultado es un informe persistido en el directorio de revisiones de arquitectura del proyecto evaluado: no implementa cambios ni los ordena directamente —los hallazgos derivan en tareas vía `crear-tareas` o en decisiones vía `decisiones-diseno`, siempre con aprobación del usuario.
+Instrucciones para que un agente evalúe la arquitectura de un dominio con criterios de Domain Driven Design. El resultado es un informe persistido en el directorio de revisiones de arquitectura del proyecto evaluado: no implementa cambios ni los ordena directamente —los hallazgos derivan en tareas vía `crear-tareas` o en decisiones vía `decisiones-diseno` cuando esas piezas están instaladas —si no, se entregan como lista de registro pendiente—, siempre con aprobación del usuario.
 
 ## Cuándo usar
 

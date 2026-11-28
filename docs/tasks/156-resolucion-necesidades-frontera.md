@@ -111,6 +111,11 @@ Aprobada por el usuario el 2026-11-26.
 - Copias instaladas en sincronía byte-idéntica tras la reinstalación del cierre (regresión)
 - Las referencias legítimas se conservan intactas (regresión)
 
+## Desviaciones
+
+- `.teleprompter/backups/` añadido al `.gitignore`: la reinstalación con `--force` crea copias de seguridad transitorias de las piezas sobrescritas, estado local de máquina que el plan no nombraba —misma clase que el lockfile—. Sin efecto sobre el resultado.
+- Ronda de correcciones de la revisión técnica aplicada dentro de la propia tarea: citas inline `(DNNN)` que el barrido por secciones no alcanzó, resolución operativa del literal `rama_principal` en los pasos de apertura y cierre, alineación de dos textos con la degradación y la salud del dominio. Flujo normal de revisión, registrado por transparencia.
+
 ## Revisión
 
 - Subagente: [fecha] — [Aprueba | Solicita cambios]

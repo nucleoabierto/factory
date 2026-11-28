@@ -97,4 +97,4 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 ## Estado de salud
 
 - Última revisión: 2026-11-26
-- Divergencias conocidas: el modelo está materializado —los once conjuntos existen como paquetes en `packages/` con sus manifiestos y la raíz es índice de colección; la verificación de instalación pasó para cada conjunto y para `completo`—; la adaptación del contenido de las piezas a su frontera corre en la tarea 156; la lista de conjuntos es la división vigente y crece con cada pieza nueva.
+- Divergencias conocidas: el modelo está materializado —los once conjuntos existen como paquetes en `packages/` con sus manifiestos y la raíz es índice de colección; la verificación de instalación pasó para cada conjunto y para `completo`—; el contenido de las piezas está adaptado a su frontera —sin citas colgadas, con las dependencias obligatorias declaradas y las degradaciones documentadas—; la lista de conjuntos es la división vigente y crece con cada pieza nueva.
