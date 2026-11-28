@@ -1,65 +1,47 @@
 {
   "format": "teleprompter-package@1",
   "name": "factory",
-  "version": "0.7.0",
   "description": "Colección autocontenida de skills de agente que cubre el ciclo de desarrollo de producto: de la idea a la tarea, ejecución con revisión vía pull request, memoria del proyecto, documentación viva y liberación de versiones",
   "license": "MIT",
   "author": {
     "name": "Gildardo Adrian Maravilla Jacome"
   },
-  "install": [
-    { "source": ".agents/skills/actualizar-artefactos", "target": ".agents/skills/actualizar-artefactos" },
-    { "source": ".agents/skills/aplicar-guia-estilo", "target": ".agents/skills/aplicar-guia-estilo" },
-    { "source": ".agents/skills/cerrar-conjunto", "target": ".agents/skills/cerrar-conjunto" },
-    { "source": ".agents/skills/clasificar-comentarios", "target": ".agents/skills/clasificar-comentarios" },
-    { "source": ".agents/skills/comentar-pr", "target": ".agents/skills/comentar-pr" },
-    { "source": ".agents/skills/commit", "target": ".agents/skills/commit" },
-    { "source": ".agents/skills/consultar-artefactos", "target": ".agents/skills/consultar-artefactos" },
-    { "source": ".agents/skills/consultar-decisiones", "target": ".agents/skills/consultar-decisiones" },
-    { "source": ".agents/skills/consultar-lecciones", "target": ".agents/skills/consultar-lecciones" },
-    { "source": ".agents/skills/crear-tareas", "target": ".agents/skills/crear-tareas" },
-    { "source": ".agents/skills/decisiones-diseno", "target": ".agents/skills/decisiones-diseno" },
-    { "source": ".agents/skills/desarrollar-tarea", "target": ".agents/skills/desarrollar-tarea" },
-    { "source": ".agents/skills/descubrir-problema", "target": ".agents/skills/descubrir-problema" },
-    { "source": ".agents/skills/destilar-lecciones", "target": ".agents/skills/destilar-lecciones" },
-    { "source": ".agents/skills/documentar-dominio", "target": ".agents/skills/documentar-dominio" },
-    { "source": ".agents/skills/documentar-guia-estilo", "target": ".agents/skills/documentar-guia-estilo" },
-    { "source": ".agents/skills/documentar-producto", "target": ".agents/skills/documentar-producto" },
-    { "source": ".agents/skills/ejecutar-implementacion", "target": ".agents/skills/ejecutar-implementacion" },
-    { "source": ".agents/skills/ejecutar-tareas", "target": ".agents/skills/ejecutar-tareas" },
-    { "source": ".agents/skills/evaluar-conectividad", "target": ".agents/skills/evaluar-conectividad" },
-    { "source": ".agents/skills/gestionar-pr", "target": ".agents/skills/gestionar-pr" },
-    { "source": ".agents/skills/idea-a-tarea", "target": ".agents/skills/idea-a-tarea" },
-    { "source": ".agents/skills/investigar", "target": ".agents/skills/investigar" },
-    { "source": ".agents/skills/liberar-version", "target": ".agents/skills/liberar-version" },
-    { "source": ".agents/skills/lluvia-de-ideas", "target": ".agents/skills/lluvia-de-ideas" },
-    { "source": ".agents/skills/mantener-changelog", "target": ".agents/skills/mantener-changelog" },
-    { "source": ".agents/skills/mantener-prd", "target": ".agents/skills/mantener-prd" },
-    { "source": ".agents/skills/mantener-roadmap", "target": ".agents/skills/mantener-roadmap" },
-    { "source": ".agents/skills/mejorar-pr", "target": ".agents/skills/mejorar-pr" },
-    { "source": ".agents/skills/operar-changelog", "target": ".agents/skills/operar-changelog" },
-    { "source": ".agents/skills/operar-experiencias", "target": ".agents/skills/operar-experiencias" },
-    { "source": ".agents/skills/planear-implementacion", "target": ".agents/skills/planear-implementacion" },
-    { "source": ".agents/skills/planear-tarea", "target": ".agents/skills/planear-tarea" },
-    { "source": ".agents/skills/planificar", "target": ".agents/skills/planificar" },
-    { "source": ".agents/skills/planificar-roadmap", "target": ".agents/skills/planificar-roadmap" },
-    { "source": ".agents/skills/priorizar-lineas", "target": ".agents/skills/priorizar-lineas" },
-    { "source": ".agents/skills/proponer-forma-solucion", "target": ".agents/skills/proponer-forma-solucion" },
-    { "source": ".agents/skills/prueba-concepto", "target": ".agents/skills/prueba-concepto" },
-    { "source": ".agents/skills/pulir-escritura", "target": ".agents/skills/pulir-escritura" },
-    { "source": ".agents/skills/recopilar-contexto", "target": ".agents/skills/recopilar-contexto" },
-    { "source": ".agents/skills/refinar-propuesta", "target": ".agents/skills/refinar-propuesta" },
-    { "source": ".agents/skills/revisar-arquitectura", "target": ".agents/skills/revisar-arquitectura" },
-    { "source": ".agents/skills/revisar-implementacion", "target": ".agents/skills/revisar-implementacion" },
-    { "source": ".agents/skills/revisar-pr", "target": ".agents/skills/revisar-pr" },
-    { "source": ".agents/skills/revisar-redaccion", "target": ".agents/skills/revisar-redaccion" }
+  "collection": true,
+  "packages": [
+    {
+      "path": "packages/gestores"
+    },
+    {
+      "path": "packages/commit"
+    },
+    {
+      "path": "packages/evidencia"
+    },
+    {
+      "path": "packages/redaccion"
+    },
+    {
+      "path": "packages/direccion"
+    },
+    {
+      "path": "packages/documentacion"
+    },
+    {
+      "path": "packages/versionado"
+    },
+    {
+      "path": "packages/flujo-ideas"
+    },
+    {
+      "path": "packages/ciclo-revision"
+    },
+    {
+      "path": "packages/ciclo-tareas"
+    },
+    {
+      "path": "packages/completo"
+    }
   ],
-  "requires": {
-    "paths": [
-      { "path": ".agents/skills/", "create": true }
-    ]
-  },
-  "personalization": "PERSONALIZE.md",
   "metadata": {
     "idioma": "es"
   }

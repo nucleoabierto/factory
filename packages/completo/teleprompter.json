@@ -1,0 +1,55 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "completo",
+  "version": "0.8.0",
+  "description": "Adopción completa de la colección factory en un solo gesto: composición pura de los diez conjuntos",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "dependencies": [
+    {
+      "package": "gestores",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "commit",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "evidencia",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "redaccion",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "direccion",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "documentacion",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "versionado",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "flujo-ideas",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "ciclo-revision",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "ciclo-tareas",
+      "version": ">=0.8.0 <1.0.0"
+    }
+  ],
+  "metadata": {
+    "idioma": "es"
+  }
+}

@@ -7,6 +7,14 @@ y el proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.
 
 ## [Unreleased]
 
+### Added
+
+- La colección se divide en once conjuntos instalables por separado con `--package` —`gestores`, `commit`, `evidencia`, `redaccion`, `direccion`, `documentacion`, `versionado`, `flujo-ideas`, `ciclo-revision`, `ciclo-tareas` y `completo`, que preserva la adopción completa en un gesto por composición pura—. Cada conjunto declara sus dependencias y el instalador las resuelve transitivamente; cada conjunto con literales personalizables trae su propia guía de personalización.
+
+### Changed
+
+- **Breaking:** la raíz del repositorio pasa de paquete a índice de colección — instalar exige seleccionar conjunto con `--package` (por ejemplo `--package completo` para la colección entera); la instalación sin selección ya no instala nada.
+
 ## [0.7.0] - 2026-11-20
 
 ### Added

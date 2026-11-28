@@ -8,9 +8,9 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 
 - **Lenguaje ubicuo:**
   - **Pieza:** un skill de la colección —un directorio autocontenido con `SKILL.md` y sus recursos propios (`references/`, `assets/`)—.
-    - Ancla: `.agents/skills/`
+    - Ancla: `packages/<conjunto>/skills/` en la fuente; `.agents/skills/` en el destino instalado
   - **Conjunto:** un paquete de la colección que agrupa piezas de un dominio de capacidad, instalable por separado y versionado; declara las piezas de otros conjuntos que necesita para completarse.
-    - Ancla: este documento; los manifiestos que la materialicen —pendientes de la tarea 155—
+    - Ancla: este documento; los manifiestos en `packages/<conjunto>/teleprompter.json`
   - **Frontera:** el límite de un conjunto; una pieza solo cabe donde sus necesidades obligatorias quedan satisfechas —en la misma frontera o como dependencia declarada—.
     - Ancla: este documento
   - **Necesidad obligatoria / deseable / ortogonal:** toda referencia de una pieza a otra se clasifica así —obligatoria si la pieza no funciona sin ella, deseable si mejora pero degrada con gracia, ortogonal si queda fuera del conjunto—.
@@ -20,7 +20,7 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
   - **Composición pura:** un conjunto sin piezas propias cuyas dependencias reúnen la colección entera; preserva la adopción completa en un solo gesto.
     - Ancla: este documento
   - **Versión de conjunto:** la versión semver propia que el manifiesto de cada conjunto declara —autoridad sobre el VCS, como en todo paquete—.
-    - Ancla: este documento; los manifiestos que la materialicen —pendientes de la tarea 155—
+    - Ancla: este documento; los manifiestos en `packages/<conjunto>/teleprompter.json`
   - **Tren de liberación:** el evento de liberación único del repositorio —un tag, el CHANGELOG y la puerta humana de siempre— que mueve las versiones de los conjuntos que cambiaron; las cadencias por conjunto quedan descartadas.
     - Ancla: este documento
 - **Entidades / estado — la división declarada:**
@@ -94,5 +94,5 @@ La colección de skills se ofrece hoy como una única unidad de 45 piezas: quien
 
 ## Estado de salud
 
-- Última revisión: 2026-11-25
-- Divergencias conocidas: el modelo es prospectivo —los conjuntos aún no existen como paquetes; la materialización corre en la tarea 155 y la adaptación de piezas en la 156—; la política de versionado está decidida y la ejecutan los manifiestos de la 155; la lista de conjuntos es la división vigente a esa fecha y crece con cada pieza nueva.
+- Última revisión: 2026-11-26
+- Divergencias conocidas: el modelo está materializado —los once conjuntos existen como paquetes en `packages/` con sus manifiestos y la raíz es índice de colección; la verificación de instalación pasó para cada conjunto y para `completo`—; la adaptación del contenido de las piezas a su frontera corre en la tarea 156; la lista de conjuntos es la división vigente y crece con cada pieza nueva.

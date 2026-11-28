@@ -1,0 +1,90 @@
+{
+  "format": "teleprompter-package@1",
+  "name": "ciclo-tareas",
+  "version": "0.8.0",
+  "description": "Ciclo de desarrollo de una tarea: planeación, ejecución, revisión y cierre",
+  "license": "MIT",
+  "author": {
+    "name": "Gildardo Adrian Maravilla Jacome"
+  },
+  "install": [
+    {
+      "source": "skills/ejecutar-tareas/",
+      "target": ".agents/skills/ejecutar-tareas/"
+    },
+    {
+      "source": "skills/planear-tarea/",
+      "target": ".agents/skills/planear-tarea/"
+    },
+    {
+      "source": "skills/recopilar-contexto/",
+      "target": ".agents/skills/recopilar-contexto/"
+    },
+    {
+      "source": "skills/evaluar-conectividad/",
+      "target": ".agents/skills/evaluar-conectividad/"
+    },
+    {
+      "source": "skills/planear-implementacion/",
+      "target": ".agents/skills/planear-implementacion/"
+    },
+    {
+      "source": "skills/desarrollar-tarea/",
+      "target": ".agents/skills/desarrollar-tarea/"
+    },
+    {
+      "source": "skills/ejecutar-implementacion/",
+      "target": ".agents/skills/ejecutar-implementacion/"
+    },
+    {
+      "source": "skills/cerrar-conjunto/",
+      "target": ".agents/skills/cerrar-conjunto/"
+    },
+    {
+      "source": "skills/revisar-implementacion/",
+      "target": ".agents/skills/revisar-implementacion/"
+    }
+  ],
+  "requires": {
+    "paths": [
+      {
+        "path": ".agents/skills/",
+        "create": true
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "package": "gestores",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "direccion",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "documentacion",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "versionado",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "ciclo-revision",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "flujo-ideas",
+      "version": ">=0.8.0 <1.0.0"
+    },
+    {
+      "package": "commit",
+      "version": ">=0.8.0 <1.0.0"
+    }
+  ],
+  "personalization": "PERSONALIZE.md",
+  "metadata": {
+    "idioma": "es"
+  }
+}

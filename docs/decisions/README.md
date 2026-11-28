@@ -165,3 +165,7 @@
   - Disparadores: versionado de conjuntos, teleprompter.json, version, dependencies, restricción de versión, semver, tren de liberación, manifiesto, liberar-version, repositorio-como-coleccion
   - Resumen: Cada conjunto lleva versión semver propia en su manifiesto —inicial, la del tren que lo publica primero (`0.8.0`)— dentro de un único tren de liberación por repositorio; toda dependencia declarada lleva el rango de era `>=0.8.0 <1.0.0` y las restricciones insatisfechas se actualizan en el mismo tren.
   - Estado: Aceptada
+- D039-copias-instaladas-versionadas-con-refresco.md
+  - Disparadores: dogfooding, .agents/skills, copias instaladas, reinstall, autoinstalación, packages, bootstrap, AGENTS.md, personalización
+  - Resumen: Las copias instaladas de las piezas quedan versionadas —el clon trae las skills listas y la copia es el lugar legítimo de la personalización del proyecto—; la sincronía con la fuente en `packages/` la garantiza la regla de `AGENTS.md` que manda reinstalar y commitear el refresco al cerrar toda tarea que las toque, y el lockfile queda fuera por ser estado de máquina.
+  - Estado: Aceptada
