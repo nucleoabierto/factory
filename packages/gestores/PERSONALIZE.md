@@ -4,28 +4,28 @@ Gestores instala en `.agents/skills/` las piezas que ejecutan la mecánica de lo
 
 ## Artefactos de la raíz
 
-Crear si no existen:
+Crear si no existen. Los tres primeros los operan las piezas de este conjunto en cualquier instalación; los dos últimos solo entran en juego cuando el proyecto instala los conjuntos que los producen —no son requisito de una instalación de solo gestores—:
 
 - `TODO.md` — índice de tareas del proyecto. Una línea por tarea con el formato `- [estado] docs/tasks/NNN-slug.md — título breve`, donde el estado es `[ ]` pendiente, `[~]` en progreso, `[r]` en revisión, `[x]` completada o `[!]` bloqueada. Las tareas sueltas viven bajo la sección `## General`; los conjuntos planificados, bajo encabezados `## Hito N: título`; al final, la sección `## Propuestas en revisión` lista las propuestas del flujo de idea a tarea con el marcador `[p]`.
-- `EXPERIENCIAS.md` — registro append-only de las correcciones que el usuario hace al agente; el skill `destilar-lecciones` lo gestiona.
-- `CHANGELOG.md` — changelog del proyecto en formato Keep a Changelog, con la sección `## [Unreleased]` para los cambios no liberados.
-- `ROADMAP.md` — opcional; lo produce `planificar-roadmap` cuando el proyecto quiere declarar dirección y prioridades.
-- `DESIGN.md` — opcional; si existe, activa por convención el par de skills de guía de estilo (`documentar-guia-estilo`, `aplicar-guia-estilo`).
+- `EXPERIENCIAS.md` — registro append-only de las correcciones que el usuario hace al agente; lo opera `operar-experiencias`, pieza de este conjunto. Cuando el conjunto documentacion está instalado, sus piezas consolidan las entradas en lecciones.
+- `CHANGELOG.md` — changelog del proyecto en formato Keep a Changelog, con la sección `## [Unreleased]` para los cambios no liberados; lo opera `operar-changelog`, pieza de este conjunto.
+- `ROADMAP.md` — opcional; lo producen las piezas del conjunto direccion cuando está instalado y el proyecto quiere declarar dirección y prioridades.
+- `DESIGN.md` — opcional; si existe, activa por convención el par de piezas de guía de estilo del conjunto documentacion cuando está instalado.
 
 ## Directorios de `docs/`
 
-Los skills escriben sus artefactos bajo `docs/`; cada directorio se crea cuando su productor lo necesita, pero conviene tenerlos presentes:
+Las piezas escriben sus artefactos bajo `docs/`; cada directorio se crea cuando su productor lo necesita. Los documentos de reglas de este conjunto declaran la estructura de la mayoría —también la de los que producen otros conjuntos— porque gestores es la base sobre la que operan todos. En una instalación de solo gestores, los únicos que entran en juego son `docs/decisions/`, `docs/lessons/` y `docs/priorizaciones/`; el resto lo crean las piezas de otros conjuntos cuando están instalados:
 
-- `docs/tasks/` — un archivo por tarea, con la plantilla de `crear-tareas` (`assets/task.md` dentro del skill instalado).
-- `docs/ideas/` — ideas persistidas que alimentan el flujo de idea a tarea.
-- `docs/proposals/` — un directorio por propuesta, con su `propuesta.md` y los borradores de tarea.
-- `docs/epics/` — un documento por épica.
-- `docs/decisions/` — decisiones de diseño, con un `README.md` como índice por disparadores.
-- `docs/lessons/` — notas de lecciones aprendidas, con un `README.md` como índice por disparadores.
-- `docs/research/` — resultados del skill `investigar` (su nombre exacto lo acuerda el proyecto).
-- `docs/domains/` — documentación viva de dominios, con un `README.md` como índice.
-- `docs/architecture-reviews/` — informes del skill `revisar-arquitectura`.
-- `docs/priorizaciones/` — escenarios de priorización persistidos por `priorizar-lineas`.
+- `docs/tasks/` — un archivo por tarea. Su formato canónico lo declara el documento de reglas de la tarea de este conjunto; la plantilla la trae el conjunto flujo-ideas cuando está instalado.
+- `docs/ideas/` — ideas persistidas que alimentan el flujo de idea a tarea; las producen piezas del conjunto flujo-ideas cuando está instalado.
+- `docs/proposals/` — un directorio por propuesta, con su `propuesta.md` y los borradores de tarea; lo producen piezas del conjunto flujo-ideas cuando está instalado.
+- `docs/epics/` — un documento por épica; lo producen piezas del conjunto direccion cuando está instalado.
+- `docs/decisions/` — decisiones de diseño, con un `README.md` como índice por disparadores; las producen piezas del conjunto documentacion cuando está instalado y las opera `consultar-decisiones`, pieza de este conjunto.
+- `docs/lessons/` — notas de lecciones aprendidas, con un `README.md` como índice por disparadores; las producen piezas del conjunto documentacion cuando está instalado y las opera `consultar-lecciones`, pieza de este conjunto.
+- `docs/research/` — resultados de las investigaciones del conjunto evidencia cuando está instalado (su nombre exacto lo acuerda el proyecto).
+- `docs/domains/` — documentación viva de dominios, con un `README.md` como índice; la produce el conjunto documentacion cuando está instalado.
+- `docs/architecture-reviews/` — informes de revisión de arquitectura del conjunto direccion cuando está instalado.
+- `docs/priorizaciones/` — escenarios de priorización persistidos por `priorizar-lineas`, pieza de este conjunto.
 
 ## Los documentos de reglas de los artefactos
 
@@ -55,14 +55,16 @@ Ejemplos del inventario de fugas: «marcar `[x]` la línea del índice» es fuga
 
 ## Dónde vive cada literal personalizable
 
-Cuando el proyecto destino usa una convención distinta del valor por defecto, el instalador edita el literal en cada archivo que lo contiene. Los literales ajenos a un artefacto viven embebidos en el `SKILL.md` —o `references/`— de cada pieza que los usa; los literales de un artefacto viven en su documento de reglas, instalado por el conjunto `gestores`. Los literales de este conjunto:
+Cuando el proyecto destino usa una convención distinta del valor por defecto, el instalador edita el literal en cada archivo que lo contiene. Los literales ajenos a un artefacto viven embebidos en el `SKILL.md` —o `references/`— de cada pieza que los usa; los literales de un artefacto viven en su documento de reglas, instalado por este conjunto —la sección anterior los enumera con sus rutas—. Los literales que las piezas de este conjunto embeben fuera de los documentos de reglas:
 
 - `dir_decisiones` (`docs/decisions`): `consultar-decisiones`; el índice por disparadores lo opera desde `consultar-artefactos/references/indice-disparadores.md`.
 - `dir_lecciones` (`docs/lessons`): `consultar-lecciones`; mismo documento de índice.
-- `dir_priorizaciones` (`docs/priorizaciones`): `priorizar-lineas`.
+- `dir_priorizaciones` (`docs/priorizaciones`): `priorizar-lineas` y la mención operativa en `consultar-artefactos`.
+
+Las menciones a artefactos de otros conjuntos que quedan en las piezas de este conjunto —`ROADMAP.md` y `docs/domains` en la enumeración de artefactos sin operación delegada de `consultar-artefactos`— son informativas, no operativas: su literal lo declara la guía del conjunto que produce el artefacto y la búsqueda sobre la unión instalada alcanza esas menciones cuando el conjunto está presente.
 
 ## Personalización al instalar
 
-Al instalar, el agente instalador recorre la guía anterior: para cada convención que difiere del valor por defecto, edita el literal en cada archivo que lo contiene —el documento de reglas del artefacto y cada consumidor que lo embebe—. Un literal compartido puede vivir en varios archivos; la forma segura de no dejar ocurrencias es buscar el valor por defecto o el nombre de la convención en el paquete instalado y editar cada resultado. Las plantillas de `assets/` de los consumidores reproducen literales de la convención por defecto y se reescriben igualmente.
+Al instalar, el agente instalador recorre la guía anterior: para cada convención que difiere del valor por defecto, edita el literal en cada archivo que lo contiene —el documento de reglas del artefacto y cada consumidor que lo embebe—. Un literal compartido puede vivir en varios archivos y en piezas de varios conjuntos; la forma segura de no dejar ocurrencias es buscar el valor por defecto —y el nombre de la convención— en todas las piezas instaladas y editar cada resultado. Las plantillas de `assets/` de los consumidores reproducen literales de la convención por defecto y se reescriben igualmente.
 
-Cuando el proyecto instala varios conjuntos de la colección, la personalización se aplica sobre la unión instalada: cada conjunto trae la guía de sus propios literales y los artefactos compartidos se preparan una sola vez.
+Cada conjunto instala su propia guía —el instalador la encuentra en `.teleprompter/<conjunto>/PERSONALIZE.md`— y cada guía asume solamente la presencia de su propio conjunto y de sus dependencias. Cuando el proyecto instala varios conjuntos de la colección, la personalización se aplica una sola vez sobre la unión instalada: se recorren las guías de todos los conjuntos presentes, cada literal compartido se edita en todas sus ocurrencias de la unión y los artefactos compartidos se preparan una sola vez.

@@ -14,5 +14,6 @@
 
 ## Personalización de las copias instaladas
 
-- Las copias instaladas son el lugar legítimo de los ajustes del proyecto según el modelo de teleprompter. Hoy factory usa las convenciones por defecto y las copias son idénticas a la fuente.
-- Si el proyecto personaliza un literal en el futuro, la personalización se documenta en este archivo — la reinstalación la sobrescribe y hay que reaplicarla después de cada install.
+- El modelo de personalización de teleprompter —qué literales son editables y dónde vive cada uno— lo describen las guías `PERSONALIZE.md` de los paquetes: la fuente vive en `packages/<conjunto>/PERSONALIZE.md` y la instalación las copia a `.teleprompter/<conjunto>/`. Esas guías están escritas para el agente instalador de un proyecto consumidor; en factory sirven de referencia para el dogfooding.
+- Las copias instaladas en `.agents/skills/` son el lugar legítimo de los ajustes del proyecto según ese modelo. Hoy factory usa las convenciones por defecto y las copias son idénticas a la fuente.
+- Si el proyecto personaliza un literal en el futuro, la personalización se documenta en este archivo —la reinstalación la sobrescribe y hay que reaplicarla después de cada install—.
