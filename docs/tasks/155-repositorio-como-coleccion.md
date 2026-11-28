@@ -2,7 +2,7 @@
 
 ## Estado
 
-[r] En revisión
+[x] Completada
 
 ## Tipo
 
@@ -124,5 +124,5 @@ El repo es hoy un paquete único `factory@0.7.0` — el `teleprompter.json` raí
 ## Revisión
 
 - Subagente: 2026-11-26 — Aprueba
-- Usuario (ejecución): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (ejecución): 2026-11-27 — Aprueba
 - Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
