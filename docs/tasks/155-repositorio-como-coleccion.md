@@ -125,4 +125,4 @@ El repo es hoy un paquete único `factory@0.7.0` — el `teleprompter.json` raí
 
 - Subagente: 2026-11-26 — Aprueba
 - Usuario (ejecución): 2026-11-27 — Aprueba
-- Usuario (cierre): [fecha] — [Aprueba | Solicita cambios]
+- Usuario (cierre): 2026-11-27 — Aprueba
